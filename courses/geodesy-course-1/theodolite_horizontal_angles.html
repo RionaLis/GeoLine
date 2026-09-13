@@ -5,137 +5,173 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Принцип измерения горизонтальных углов теодолитом</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
+  /* ==== Палитра ГеоЛинии ==== */
   :root{
-    --bg:#0f172a; --panel:#1e293b; --panel2:#243449;
-    --accent:#38bdf8; --accent2:#fbbf24; --green:#4ade80; --red:#f87171;
-    --text:#e2e8f0; --muted:#94a3b8;
+    --ink:#092c33; --muted:#657674; --paper:#f4f8f6; --white:#fff;
+    --dark:#063f3b; --dark2:#07534d; --accent:#ff7136; --teal:#0a655d;
+    --line:#d5e3de; --radius:18px; --shadow:0 18px 50px rgba(18,54,49,.09);
+    --hl-y:#b45309; --hl-g:#15803d; --hl-r:#dc2626; --hl-b:#0369a1;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
-    font-family:'Segoe UI', Arial, sans-serif;
-    background:var(--bg); color:var(--text);
-    padding:24px; line-height:1.55;
+    font-family:Manrope,'Segoe UI',Arial,sans-serif;
+    background:var(--paper); color:var(--ink);
+    padding:24px; line-height:1.65;
   }
   .wrap{max-width:1220px; margin:0 auto;}
   h1{
-    font-size:26px; text-align:center; margin-bottom:6px;
-    background:linear-gradient(90deg,var(--accent),var(--green));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
+    font-size:clamp(28px,4vw,40px); text-align:center; margin-bottom:8px;
+    letter-spacing:-.04em; line-height:1.1; color:var(--dark); font-weight:800;
   }
-  .subtitle{text-align:center; color:var(--muted); margin-bottom:22px; font-size:14px;}
+  h1 em{color:var(--accent); font-style:normal;}
+  .subtitle{
+    text-align:center; color:var(--muted); margin-bottom:26px;
+    font:500 12px 'Roboto Mono',Consolas,monospace; letter-spacing:.12em; text-transform:uppercase;
+  }
   .card{
-    background:var(--panel); border:1px solid #334155; border-radius:14px;
-    padding:18px 20px; margin-bottom:20px;
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px 30px; margin-bottom:22px; box-shadow:var(--shadow);
   }
-  .card h2{font-size:18px; color:var(--accent); margin-bottom:10px;}
+  .card h2{
+    font-size:24px; color:var(--dark); margin-bottom:14px;
+    letter-spacing:-.025em; font-weight:800;
+  }
   .card h2 .num{
-    display:inline-block; width:26px; height:26px; line-height:26px; text-align:center;
-    background:var(--accent); color:#082f49; border-radius:50%; font-size:14px; margin-right:8px;
+    display:inline-block; width:30px; height:30px; line-height:30px; text-align:center;
+    background:#e7f6f1; color:#17725f; border-radius:9px; font-size:14px; margin-right:10px;
+    font-family:'Roboto Mono',Consolas,monospace; font-weight:500; vertical-align:2px;
   }
-  .grid{display:flex; gap:20px; flex-wrap:wrap;}
+  .grid{display:flex; gap:26px; flex-wrap:wrap;}
   .grid > div{flex:1 1 420px;}
   .formula{
-    background:#082f49; border:1px solid var(--accent); border-radius:10px;
-    padding:12px 16px; text-align:center; font-size:20px; margin:12px 0;
-    font-family:Georgia, 'Times New Roman', serif;
+    background:#e8f5f1; border:1px solid #b3d9d0; border-radius:12px;
+    padding:14px 18px; text-align:center; font-size:21px; margin:14px 0;
+    font-family:Georgia,'Times New Roman',serif; color:var(--dark);
   }
-  .formula small{display:block; font-family:'Segoe UI',sans-serif; font-size:12px; color:var(--muted); margin-top:6px;}
+  .formula small{display:block; font-family:Manrope,sans-serif; font-size:12px; color:var(--muted); margin-top:6px;}
   ul{margin:8px 0 8px 20px;}
-  li{margin-bottom:6px;}
-  .hl{color:var(--accent2); font-weight:600;}
-  .hl-b{color:var(--accent); font-weight:600;}
-  .hl-g{color:var(--green); font-weight:600;}
-  .hl-r{color:var(--red); font-weight:600;}
-  .controls{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:14px 0;}
+  li{margin-bottom:6px; color:#435b56;}
+  p{color:#435b56;}
+  .hl{color:var(--hl-y); font-weight:700;}
+  .hl-b{color:var(--hl-b); font-weight:700;}
+  .hl-g{color:var(--hl-g); font-weight:700;}
+  .hl-r{color:var(--hl-r); font-weight:700;}
+  .controls{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:16px 0;}
   button{
-    background:var(--accent); color:#082f49; border:none; border-radius:8px;
-    padding:9px 16px; font-size:14px; font-weight:600; cursor:pointer;
-    transition:transform .15s, opacity .15s;
+    background:var(--accent); color:#fff; border:0; border-radius:11px;
+    padding:11px 17px; font-size:14px; font-weight:800; cursor:pointer;
+    font-family:Manrope,sans-serif; transition:transform .2s, box-shadow .2s, opacity .15s;
   }
-  button:hover{transform:translateY(-2px);}
-  button.secondary{background:var(--panel2); color:var(--text); border:1px solid #475569;}
-  button.setup{background:var(--green); color:#052e16;}
-  button.kp{background:var(--accent2); color:#3b2f14;}
-  button.rec{background:#a78bfa; color:#2e1065;}
-  button:disabled{opacity:.45; cursor:default; transform:none;}
-  .instr-row{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:8px 0 14px;}
+  button:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(222,80,26,.25);}
+  button.secondary{background:#fff; color:#4a625d; border:1px solid var(--line); box-shadow:none;}
+  button.secondary:hover{box-shadow:var(--shadow); border-color:#a7c7bf;}
+  button.setup{background:var(--teal); color:#fff;}
+  button.setup:hover{box-shadow:0 10px 24px rgba(10,101,93,.25);}
+  button.kp{background:#f0b429; color:#3d2c02;}
+  button.kp:hover{box-shadow:0 10px 24px rgba(240,180,41,.3);}
+  button.rec{background:#e7f6f1; color:#0a655d; border:1px solid #b3d9d0;}
+  button.rec:hover{box-shadow:0 10px 24px rgba(10,101,93,.15);}
+  button:disabled{opacity:.45; cursor:default; transform:none; box-shadow:none;}
+  .instr-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:8px 0 16px;}
   .instr-btn{
-    background:var(--panel2); color:var(--text); border:1px solid #475569; border-radius:10px;
-    padding:8px 14px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s;
+    background:#fff; color:var(--ink); border:1px solid var(--line); border-radius:12px;
+    padding:10px 16px; text-align:center; cursor:pointer; transition:.25s;
   }
+  .instr-btn:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:#a7c7bf;}
   .instr-btn b{display:block; font-size:15px;}
-  .instr-btn span{font-size:11px; color:var(--muted);}
-  .instr-btn.active{background:#083344; border-color:var(--accent); box-shadow:0 0 0 2px rgba(56,189,248,.35);}
-  .instr-btn.active span{color:var(--accent);}
+  .instr-btn span{font:500 10px 'Roboto Mono',Consolas,monospace; color:var(--muted);}
+  .instr-btn.active{background:#e8f5f1; border-color:var(--teal); box-shadow:0 0 0 2px rgba(10,101,93,.18);}
+  .instr-btn.active span{color:#12624f;}
   .limb-row{
     display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;
-    background:var(--panel2); border:1px solid #475569; border-radius:10px; padding:10px 14px; margin-bottom:12px;
+    background:#f5f8f7; border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:14px;
   }
   .limb-row label{font-size:13px; color:var(--muted);}
-  .limb-row input[type=range]{width:200px; accent-color:var(--accent);}
-  .limb-row .limbval{font-family:Consolas,monospace; color:var(--accent2); font-weight:700; min-width:52px; text-align:center;}
   .mode-badge{
-    font-family:Consolas,monospace; font-weight:700; font-size:14px; padding:4px 12px; border-radius:8px;
-    background:#083344; border:1px solid var(--accent); color:var(--accent);
+    font:700 13px 'Roboto Mono',Consolas,monospace; padding:6px 14px; border-radius:99px;
+    background:#e8f5f1; border:1px solid #b3d9d0; color:#12624f;
   }
-  .mode-badge.kp{background:#3b2f14; border-color:var(--accent2); color:var(--accent2);}
-  .model-flex{display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
+  .mode-badge.kp{background:#fdf0e3; border-color:#f3cf9d; color:#a05a12;}
+  .model-flex{display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
   .scene-box{flex:1 1 560px; min-width:340px;}
-  .side-col{flex:0 1 320px; display:flex; flex-direction:column; gap:12px; min-width:280px;}
+  .side-col{flex:0 1 320px; display:flex; flex-direction:column; gap:14px; min-width:280px;}
   .opt-box{
-    background:var(--panel2); border:1px solid #475569; border-radius:12px; padding:10px;
+    background:#f5f8f7; border:1px solid var(--line); border-radius:14px; padding:12px;
   }
-  .opt-box h3{font-size:13px; color:var(--muted); text-align:center; font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px;}
+  .opt-box h3{
+    font:600 11px 'Roboto Mono',Consolas,monospace; color:#789089; text-align:center;
+    margin-bottom:8px; text-transform:uppercase; letter-spacing:.1em;
+  }
   .digital{
-    text-align:center; font-family:Consolas,monospace; font-size:20px; font-weight:700;
-    color:var(--accent2); margin-top:4px;
+    text-align:center; font-family:'Roboto Mono',Consolas,monospace; font-size:20px; font-weight:700;
+    color:var(--teal); margin-top:6px;
   }
-  .digital small{display:block; font-size:11px; color:var(--muted); font-family:'Segoe UI',sans-serif; font-weight:400;}
-  .readout{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
-  .readbox{
-    background:var(--panel2); border-radius:10px; padding:8px 14px; text-align:center;
-    min-width:140px; border:1px solid #475569;
-  }
-  .readbox .lbl{font-size:12px; color:var(--muted);}
-  .readbox .val{font-size:18px; font-weight:700; font-family:Consolas, monospace;}
-  .readbox.final{border-color:var(--red); min-width:220px;}
-  .status{text-align:center; color:var(--accent2); min-height:24px; margin-top:10px; font-size:15px;}
+  .digital small{display:block; font-size:11px; color:var(--muted); font-family:Manrope,sans-serif; font-weight:400;}
+  .status{text-align:center; color:#de501a; min-height:24px; margin-top:12px; font-size:15px; font-weight:600;}
   svg{display:block; margin:0 auto; max-width:100%;}
-  #scene, #staticFigSvg{background:linear-gradient(#cfe8ff 0%, #eaf4ff 26%, #b9e0a0 29%, #7dbb63 100%); border-radius:12px;}
-  #scene{touch-action:none;}
+  #scene{background:linear-gradient(#cfe8ff 0%, #eaf4ff 26%, #b9e0a0 29%, #7dbb63 100%); border-radius:14px; touch-action:none;}
   .pole-grab{cursor:grab;}
   .pole-grab:active{cursor:grabbing;}
-  table{width:100%; border-collapse:collapse; font-size:14px; margin-top:10px;}
-  th,td{border:1px solid #475569; padding:8px 10px; text-align:center;}
-  th{background:var(--panel2); color:var(--accent);}
+  table{width:100%; border-collapse:collapse; font-size:14px; margin-top:10px; background:#fff;}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:center;}
+  th{background:#eef3f1; color:#12624f;}
   table.journal{max-width:860px; margin:10px auto 0;}
-  table.journal th{font-size:12px; line-height:1.3; padding:6px 8px;}
+  table.journal th{font:600 11px/1.35 Manrope,sans-serif; padding:6px 8px;}
   table.journal td{
-    font-family:Consolas, monospace; font-size:16px; font-weight:600;
-    padding:6px 10px; min-width:44px; height:34px; color:var(--accent2);
+    font-family:'Roboto Mono',Consolas,monospace; font-size:16px; font-weight:600;
+    padding:6px 10px; min-width:44px; height:34px; color:var(--teal);
   }
-  table.journal td.jstation{color:var(--red); font-size:18px; font-style:italic;}
-  table.journal td.jlabel{color:var(--text); font-family:'Segoe UI',sans-serif; font-weight:600;}
-  @keyframes jflash{0%{background:#3b2f14;}100%{background:transparent;}}
+  table.journal td.jstation{color:var(--hl-r); font-size:18px; font-style:italic;}
+  table.journal td.jlabel{color:var(--ink); font-family:Manrope,sans-serif; font-weight:700;}
+  @keyframes jflash{0%{background:#ffe9de;}100%{background:transparent;}}
   table.journal td.jnew{animation:jflash 1.6s ease-out;}
   .note{
-    background:#3b2f14; border-left:4px solid var(--accent2); border-radius:6px;
-    padding:10px 14px; margin-top:12px; font-size:14px;
+    border-left:3px solid var(--accent); background:#fdf3ec; border-radius:0 10px 10px 0;
+    padding:16px 20px; margin-top:14px; font-size:14px; color:#5d4a3a;
   }
+  .note b{color:var(--ink);}
   .steps{counter-reset:step;}
-  .steps li{list-style:none; position:relative; padding-left:34px; margin-bottom:10px;}
+  .steps li{list-style:none; position:relative; padding-left:36px; margin-bottom:12px;}
   .steps li::before{
     counter-increment:step; content:counter(step);
-    position:absolute; left:0; top:0; width:24px; height:24px; line-height:24px;
-    background:var(--green); color:#052e16; border-radius:50%; text-align:center; font-weight:700; font-size:13px;
+    position:absolute; left:0; top:2px; width:25px; height:25px; line-height:25px;
+    background:var(--teal); color:#fff; border-radius:50%; text-align:center; font-weight:700; font-size:13px;
   }
+
+  /* ==== Общая рамка ГеоЛинии (lesson-site.css) ==== */
+  .gl-sitebar,.gl-sitebar *,.gl-footer,.gl-footer *{box-sizing:border-box}
+  .gl-sitebar{width:100%;min-height:68px;margin:-24px -24px 24px;padding:10px max(24px,calc((100vw - 1220px)/2));width:calc(100% + 48px);background:#063f3b;border-bottom:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:30px;font-family:Manrope,'Segoe UI',Arial,sans-serif;color:white}
+  .gl-brand{display:flex;align-items:center;gap:10px;color:white!important;text-decoration:none;font-weight:700;white-space:nowrap}
+  .gl-brand img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+  .gl-brand small{opacity:.55;font-weight:400}
+  .gl-sitebar nav{display:flex;gap:22px;margin-left:auto}
+  .gl-sitebar nav a{color:#bfd6d1!important;text-decoration:none;font-size:13px}
+  .gl-sitebar nav a:hover{color:white!important}
+  .gl-footer{margin:36px -24px -24px;padding:28px max(24px,calc((100vw - 1220px)/2));width:calc(100% + 48px);background:#043632;color:#9db8b2;display:flex;justify-content:space-between;align-items:center;gap:30px;font:12px/1.55 Manrope,'Segoe UI',Arial,sans-serif}
+  .gl-footer>div{display:grid}
+  .gl-footer b{color:#dce9e6}
+  .gl-footer a{color:#9db8b2;text-decoration:none}
+  @media(max-width:700px){.gl-sitebar nav a:not(:last-child){display:none}.gl-sitebar{gap:10px}.gl-footer{display:grid}.gl-footer>div:last-child{opacity:.7}}
 </style>
-<link rel="stylesheet" href="../../assets/lesson-site.css">
 </head>
-<body><div class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt=""><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a></nav></div>
+<body>
+<header class="gl-sitebar">
+  <a class="gl-brand" href="#">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='42' height='42'><circle cx='21' cy='21' r='21' fill='%2307534d'/><circle cx='21' cy='21' r='13' fill='none' stroke='%23ff7136' stroke-width='2'/><line x1='21' y1='2' x2='21' y2='40' stroke='%23ff7136' stroke-width='1.4'/><line x1='2' y1='21' x2='40' y2='21' stroke='%23ff7136' stroke-width='1.4'/><circle cx='21' cy='21' r='3.2' fill='%23ff7136'/></svg>" alt="ГеоЛиния">
+    <span>ГеоЛиния <small>· интерактивные уроки геодезии</small></span>
+  </a>
+  <nav>
+    <a href="#">Курсы</a>
+    <a href="#">Уроки</a>
+    <a href="#">О проекте</a>
+    <a href="#">Контакты</a>
+  </nav>
+</header>
 <div class="wrap">
 
-<h1>Принцип измерения горизонтальных углов теодолитом</h1>
+<h1>Принцип измерения <em>горизонтальных углов</em> теодолитом</h1>
 <p class="subtitle">Интерактивная модель · Станция B, левая цель C, правая цель A · β = a − c · полный приём КЛ + КП</p>
 
 <!-- ================= 1. СУТЬ ================= -->
@@ -264,10 +300,10 @@
     <div class="scene-box">
       <svg id="scene" viewBox="0 0 680 460"></svg>
       <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:6px;">
-        Вехи <b style="color:#fbbf24;">C</b> и <b style="color:#4ade80;">A</b> можно <b>перетаскивать мышью</b>.
+        Вехи <b style="color:#b45309;">C</b> и <b style="color:#15803d;">A</b> можно <b>перетаскивать мышью</b>.
         При снятии отсчётов моделируются случайные погрешности наблюдателя, изредка — грубый промах.
         Голубые пунктирные линии на земле — <b>проекции визирных лучей</b> на горизонтальную плоскость;
-        между ними — измеряемый угол <b style="color:#f87171;">β</b>.
+        между ними — измеряемый угол <b style="color:#dc2626;">β</b>.
       </p>
     </div>
     <div class="side-col">
@@ -288,7 +324,7 @@
     <div class="digital" id="microDigital">—<small>возьмите отсчёт самостоятельно и сверьте</small></div>
   </div>
 
-  <h3 style="text-align:center;color:var(--accent);font-size:15px;margin-top:16px;">Журнал измерения горизонтальных углов</h3>
+  <h3 style="text-align:center;color:var(--dark);font-size:18px;font-weight:800;letter-spacing:-.02em;margin-top:20px;">Журнал измерения горизонтальных углов</h3>
   <table class="journal" id="journal">
     <tr>
       <th rowspan="2">№<br>станции</th>
@@ -361,6 +397,17 @@
 </div>
 
 </div>
+
+<footer class="gl-footer">
+  <div>
+    <b>ГеоЛиния</b>
+    <span>Интерактивные материалы по инженерной геодезии</span>
+  </div>
+  <div>
+    <b>Урок</b>
+    <span>Измерение горизонтальных углов теодолитом · полный приём КЛ + КП</span>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -1225,11 +1272,11 @@ function finishSet(){
   if (ok){
     jSet('jM', mean, instr, true);
     document.getElementById('jControl').innerHTML =
-      '<span style="color:#4ade80;">✓ Контроль: расхождение β′ и β″ = ' + diffTxt + ' ≤ 2t = ' + instr.tolTxt + '. В журнал записано среднее.</span>';
+      '<span style="color:#15803d;">✓ Контроль: расхождение β′ и β″ = ' + diffTxt + ' ≤ 2t = ' + instr.tolTxt + '. В журнал записано среднее.</span>';
     setStatus('Приём завершён! β′ = ' + instr.fmt(S.b1) + ', β″ = ' + instr.fmt(S.b2) + '; расхождение ' + diffTxt + ' в допуске. Среднее β = ' + instr.fmtMean(mean) + ' занесено в журнал.');
   } else {
     document.getElementById('jControl').innerHTML =
-      '<span style="color:#f87171;">✗ Расхождение β′ и β″ = ' + diffTxt + ' &gt; 2t = ' + instr.tolTxt + ' — в одном из отсчётов промах, среднее вычислить невозможно. Приём бракуется и начинается заново.</span>';
+      '<span style="color:#dc2626;">✗ Расхождение β′ и β″ = ' + diffTxt + ' &gt; 2t = ' + instr.tolTxt + ' — в одном из отсчётов промах, среднее вычислить невозможно. Приём бракуется и начинается заново.</span>';
     setStatus('Расхождение ' + diffTxt + ' превышает допуск 2t = ' + instr.tolTxt + '! Журнал очищен — повторите приём с первого измерения (КЛ: наведение на A). Прибор в рабочем положении.');
     // возврат к первому измерению: прибор остаётся установленным
     setTimeout(function(){
@@ -1319,5 +1366,5 @@ updateModeUI();
 renderAll();
 })();
 </script>
-<div class="gl-footer"><div><b>ГеоЛиния</b><span>Образовательный проект о геодезии и науках о Земле</span></div><div><span>Контакты</span><b>Здесь укажите ФИО</b><a href="mailto:email@example.ru">email@example.ru</a></div><div>© 2026 · GeoLine</div></div></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3a65b8e2d5b349b',t:'MTc4OTI5NDE3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
