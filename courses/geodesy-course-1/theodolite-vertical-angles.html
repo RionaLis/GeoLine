@@ -132,16 +132,18 @@
   .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--muted); margin-top:8px;}
   .legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:5px; vertical-align:middle;}
 </style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
 </head>
 <body>
-<div class="gl-sitebar">
-  <a class="gl-brand" href="#">
-    <span class="gl-mark">ГЛ</span>
-    <span>ГеоЛиния&nbsp;<small>· инженерная геодезия</small></span>
-  </a>
-  <span class="gl-eyebrow">Интерактивный урок · Теодолит</span>
-</div>
-<div class="wrap">
+<header class="gl-sitebar">
+  <a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a>
+  <nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
+  <button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button>
+</header>
+<div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div>
+<a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>01</span>Горизонтальные углы</a>
+<a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>02</span>Вертикальные углы</a>
+<a class="gl-course-link" href="index.html">← Все темы курса</a></aside><main class="gl-lesson-content"><div class="wrap">
   <h1>📐 Принцип измерения <span>вертикальных углов</span> теодолитом</h1>
   <p class="sub">Интерактивная схема: наклоняйте зрительную трубу, переключайте круг «лево / право», выбирайте тип оцифровки лимба и наблюдайте, как из отсчётов КЛ и КП получается угол наклона ν и место нуля МО.</p>
 
@@ -342,7 +344,7 @@
     <b>Зачем это нужно?</b> Вертикальные углы применяются в тригонометрическом нивелировании — для вычисления превышений h = d·tg ν (где d — горизонтальное проложение), при передаче высот на сооружения, определении высоты недоступных объектов и приведении наклонных расстояний к горизонту.
   </div>
 </div>
-<div class="gl-footer">
+</main></div><div class="gl-footer">
   <div><b>ГеоЛиния</b><span>Интерактивные материалы по инженерной геодезии</span></div>
   <div><span>Принцип измерения вертикальных углов теодолитом</span></div>
 </div>
@@ -802,5 +804,5 @@
   rebuild();
 })();
 </script>
-</body>
+<script>(function(){document.querySelector('[data-lesson="theodolite-vertical-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
 </html>

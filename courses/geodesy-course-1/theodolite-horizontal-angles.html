@@ -155,21 +155,18 @@
   .gl-footer a{color:#9db8b2;text-decoration:none}
   @media(max-width:700px){.gl-sitebar nav a:not(:last-child){display:none}.gl-sitebar{gap:10px}.gl-footer{display:grid}.gl-footer>div:last-child{opacity:.7}}
 </style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
 </head>
 <body>
 <header class="gl-sitebar">
-  <a class="gl-brand" href="#">
-    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='42' height='42'><circle cx='21' cy='21' r='21' fill='%2307534d'/><circle cx='21' cy='21' r='13' fill='none' stroke='%23ff7136' stroke-width='2'/><line x1='21' y1='2' x2='21' y2='40' stroke='%23ff7136' stroke-width='1.4'/><line x1='2' y1='21' x2='40' y2='21' stroke='%23ff7136' stroke-width='1.4'/><circle cx='21' cy='21' r='3.2' fill='%23ff7136'/></svg>" alt="ГеоЛиния">
-    <span>ГеоЛиния <small>· интерактивные уроки геодезии</small></span>
-  </a>
-  <nav>
-    <a href="#">Курсы</a>
-    <a href="#">Уроки</a>
-    <a href="#">О проекте</a>
-    <a href="#">Контакты</a>
-  </nav>
+  <a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a>
+  <nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
+  <button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button>
 </header>
-<div class="wrap">
+<div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div>
+<a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>01</span>Горизонтальные углы</a>
+<a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>02</span>Вертикальные углы</a>
+<a class="gl-course-link" href="index.html">← Все темы курса</a></aside><main class="gl-lesson-content"><div class="wrap">
 
 <h1>Принцип измерения <em>горизонтальных углов</em> теодолитом</h1>
 <p class="subtitle">Интерактивная модель · Станция B, левая цель C, правая цель A · β = a − c · полный приём КЛ + КП</p>
@@ -398,7 +395,7 @@
 
 </div>
 
-<footer class="gl-footer">
+</main></div><footer class="gl-footer">
   <div>
     <b>ГеоЛиния</b>
     <span>Интерактивные материалы по инженерной геодезии</span>
@@ -1366,5 +1363,5 @@ updateModeUI();
 renderAll();
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3a65b8e2d5b349b',t:'MTc4OTI5NDE3OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){document.querySelector('[data-lesson="theodolite-horizontal-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
 </html>
