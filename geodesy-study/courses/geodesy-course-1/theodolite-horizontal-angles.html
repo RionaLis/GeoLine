@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Принцип измерения горизонтальных углов теодолитом</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#243449;
+    --accent:#38bdf8; --accent2:#fbbf24; --green:#4ade80; --red:#f87171;
+    --text:#e2e8f0; --muted:#94a3b8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:var(--bg); color:var(--text);
+    padding:24px; line-height:1.55;
+  }
+  .wrap{max-width:1220px; margin:0 auto;}
+  h1{
+    font-size:26px; text-align:center; margin-bottom:6px;
+    background:linear-gradient(90deg,var(--accent),var(--green));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .subtitle{text-align:center; color:var(--muted); margin-bottom:22px; font-size:14px;}
+  .card{
+    background:var(--panel); border:1px solid #334155; border-radius:14px;
+    padding:18px 20px; margin-bottom:20px;
+  }
+  .card h2{font-size:18px; color:var(--accent); margin-bottom:10px;}
+  .card h2 .num{
+    display:inline-block; width:26px; height:26px; line-height:26px; text-align:center;
+    background:var(--accent); color:#082f49; border-radius:50%; font-size:14px; margin-right:8px;
+  }
+  .grid{display:flex; gap:20px; flex-wrap:wrap;}
+  .grid > div{flex:1 1 420px;}
+  .formula{
+    background:#082f49; border:1px solid var(--accent); border-radius:10px;
+    padding:12px 16px; text-align:center; font-size:20px; margin:12px 0;
+    font-family:Georgia, 'Times New Roman', serif;
+  }
+  .formula small{display:block; font-family:'Segoe UI',sans-serif; font-size:12px; color:var(--muted); margin-top:6px;}
+  ul{margin:8px 0 8px 20px;}
+  li{margin-bottom:6px;}
+  .hl{color:var(--accent2); font-weight:600;}
+  .hl-b{color:var(--accent); font-weight:600;}
+  .hl-g{color:var(--green); font-weight:600;}
+  .hl-r{color:var(--red); font-weight:600;}
+  .controls{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:14px 0;}
+  button{
+    background:var(--accent); color:#082f49; border:none; border-radius:8px;
+    padding:9px 16px; font-size:14px; font-weight:600; cursor:pointer;
+    transition:transform .15s, opacity .15s;
+  }
+  button:hover{transform:translateY(-2px);}
+  button.secondary{background:var(--panel2); color:var(--text); border:1px solid #475569;}
+  button.setup{background:var(--green); color:#052e16;}
+  button.kp{background:var(--accent2); color:#3b2f14;}
+  button.rec{background:#a78bfa; color:#2e1065;}
+  button:disabled{opacity:.45; cursor:default; transform:none;}
+  .instr-row{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:8px 0 14px;}
+  .instr-btn{
+    background:var(--panel2); color:var(--text); border:1px solid #475569; border-radius:10px;
+    padding:8px 14px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s;
+  }
+  .instr-btn b{display:block; font-size:15px;}
+  .instr-btn span{font-size:11px; color:var(--muted);}
+  .instr-btn.active{background:#083344; border-color:var(--accent); box-shadow:0 0 0 2px rgba(56,189,248,.35);}
+  .instr-btn.active span{color:var(--accent);}
+  .limb-row{
+    display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;
+    background:var(--panel2); border:1px solid #475569; border-radius:10px; padding:10px 14px; margin-bottom:12px;
+  }
+  .limb-row label{font-size:13px; color:var(--muted);}
+  .limb-row input[type=range]{width:200px; accent-color:var(--accent);}
+  .limb-row .limbval{font-family:Consolas,monospace; color:var(--accent2); font-weight:700; min-width:52px; text-align:center;}
+  .mode-badge{
+    font-family:Consolas,monospace; font-weight:700; font-size:14px; padding:4px 12px; border-radius:8px;
+    background:#083344; border:1px solid var(--accent); color:var(--accent);
+  }
+  .mode-badge.kp{background:#3b2f14; border-color:var(--accent2); color:var(--accent2);}
+  .model-flex{display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
+  .scene-box{flex:1 1 560px; min-width:340px;}
+  .side-col{flex:0 1 320px; display:flex; flex-direction:column; gap:12px; min-width:280px;}
+  .opt-box{
+    background:var(--panel2); border:1px solid #475569; border-radius:12px; padding:10px;
+  }
+  .opt-box h3{font-size:13px; color:var(--muted); text-align:center; font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px;}
+  .digital{
+    text-align:center; font-family:Consolas,monospace; font-size:20px; font-weight:700;
+    color:var(--accent2); margin-top:4px;
+  }
+  .digital small{display:block; font-size:11px; color:var(--muted); font-family:'Segoe UI',sans-serif; font-weight:400;}
+  .readout{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+  .readbox{
+    background:var(--panel2); border-radius:10px; padding:8px 14px; text-align:center;
+    min-width:140px; border:1px solid #475569;
+  }
+  .readbox .lbl{font-size:12px; color:var(--muted);}
+  .readbox .val{font-size:18px; font-weight:700; font-family:Consolas, monospace;}
+  .readbox.final{border-color:var(--red); min-width:220px;}
+  .status{text-align:center; color:var(--accent2); min-height:24px; margin-top:10px; font-size:15px;}
+  svg{display:block; margin:0 auto; max-width:100%;}
+  #scene, #staticFigSvg{background:linear-gradient(#cfe8ff 0%, #eaf4ff 26%, #b9e0a0 29%, #7dbb63 100%); border-radius:12px;}
+  #scene{touch-action:none;}
+  .pole-grab{cursor:grab;}
+  .pole-grab:active{cursor:grabbing;}
+  table{width:100%; border-collapse:collapse; font-size:14px; margin-top:10px;}
+  th,td{border:1px solid #475569; padding:8px 10px; text-align:center;}
+  th{background:var(--panel2); color:var(--accent);}
+  table.journal{max-width:860px; margin:10px auto 0;}
+  table.journal th{font-size:12px; line-height:1.3; padding:6px 8px;}
+  table.journal td{
+    font-family:Consolas, monospace; font-size:16px; font-weight:600;
+    padding:6px 10px; min-width:44px; height:34px; color:var(--accent2);
+  }
+  table.journal td.jstation{color:var(--red); font-size:18px; font-style:italic;}
+  table.journal td.jlabel{color:var(--text); font-family:'Segoe UI',sans-serif; font-weight:600;}
+  @keyframes jflash{0%{background:#3b2f14;}100%{background:transparent;}}
+  table.journal td.jnew{animation:jflash 1.6s ease-out;}
+  .note{
+    background:#3b2f14; border-left:4px solid var(--accent2); border-radius:6px;
+    padding:10px 14px; margin-top:12px; font-size:14px;
+  }
+  .steps{counter-reset:step;}
+  .steps li{list-style:none; position:relative; padding-left:34px; margin-bottom:10px;}
+  .steps li::before{
+    counter-increment:step; content:counter(step);
+    position:absolute; left:0; top:0; width:24px; height:24px; line-height:24px;
+    background:var(--green); color:#052e16; border-radius:50%; text-align:center; font-weight:700; font-size:13px;
+  }
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body><div class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt=""><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a></nav></div>
+<div class="wrap">
+
+<h1>Принцип измерения горизонтальных углов теодолитом</h1>
+<p class="subtitle">Интерактивная модель · Станция B, левая цель C, правая цель A · β = a − c · полный приём КЛ + КП</p>
+
+<!-- ================= 1. СУТЬ ================= -->
+<div class="card">
+  <h2><span class="num">1</span>В чём суть измерения</h2>
+  <div class="grid">
+    <div>
+      <p><b><i>Горизонтальным углом</i></b> называют горизонтальную проекцию угла, образованного
+      точками местности, на уровенную поверхность.</p>
+      <p style="margin-top:8px;">При визировании на цель берут отсчёт по лимбу горизонтального круга,
+      который покажет направление на цель относительно нуля лимба. Если при одной и той же установке
+      прибора взять по отсчёту на две цели, то по разности между отсчётами можно вычислить
+      горизонтальный угол между этими целями.</p>
+      <p style="margin-top:8px;">Теодолит устанавливают в вершине угла — на станции <span class="hl-r">B</span> (над колышком,
+      закреплённым в земле). На концах сторон угла выставляют вехи: <span class="hl">C</span> — левая цель,
+      <span class="hl-g">A</span> — правая цель.</p>
+      <p style="margin-top:8px;">Внутри теодолита находится <b>лимб</b> — горизонтальный круг с делениями 0…360°.
+      Наводя трубу поочерёдно на цели, снимают <b>отсчёты</b> по лимбу через отсчётный микроскоп:</p>
+      <div class="formula">
+        β = a − c
+        <small>a — отсчёт на правую цель A, c — отсчёт на левую цель C.<br>
+        Если a &lt; c, то β = a − c + 360°</small>
+      </div>
+      <ul>
+        <li>Измеряется не пространственный угол между визирными лучами, а угол между их <span class="hl-b">проекциями на горизонтальную плоскость</span>;</li>
+        <li>Угол по лимбу отсчитывается <b>по ходу часовой стрелки</b> — от левой цели к правой;</li>
+        <li>Наводить трубу нужно на <span class="hl">низ вехи</span> — так меньше ошибка от её наклона.</li>
+      </ul>
+    </div>
+    <div>
+      <!-- вид горизонтального лимба сверху (как image-1) -->
+      <svg viewBox="0 0 340 330">
+        <g id="limbFig"></g>
+      </svg>
+      <p style="text-align:center;color:var(--muted);font-size:12px;margin-top:6px;">
+        Горизонтальный круг (лимб) — вид сверху: отсчёты c и a показаны дугами
+        от нуля лимба до соответствующих целей; β = a − c.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 3. ПОРЯДОК РАБОТЫ ================= -->
+<div class="card">
+  <h2><span class="num">2</span>Порядок измерения горизонтального угла полным приёмом</h2>
+  <div class="grid">
+    <div>
+      <ol class="steps">
+        <li><b>Приведение в рабочее положение</b>:<br>
+        <i>Центрирование прибора</i> — установка вертикальной оси прибора над вершиной измеряемого угла.<br>
+        <i>Горизонтирование прибора</i> — приведение вертикальной оси прибора в отвесное положение с помощью подъёмных винтов и цилиндрического уровня.</li>
+        <li><b>Первый полуприём (КЛ)</b> — при положении круг лево наводят на правую цель <span class="hl-g">A</span>, берут отсчёт a₁ по микроскопу и записывают в журнал; затем на левую <span class="hl">C</span> — отсчёт c₁. Вычисляют угол полуприёма β′ = a₁ − c₁.</li>
+        <li><b>Между полуприёмами</b> — трубу переводят через зенит (теперь положение круг право) и <span class="hl">сбивают лимб на 1–2°</span>, чтобы отсчёты второго полуприёма пришлись на другие штрихи лимба.</li>
+        <li><b>Второй полуприём (КП)</b> — при положении круг право повторяют: отсчёт a₂, затем c₂; вычисляют β″ = a₂ − c₂.</li>
+        <li><b>Контроль и результат</b> — расхождение |β′ − β″| ≤ 2t (двойная точность отсчёта); β = (β′ + β″) / 2.</li>
+      </ol>
+    </div>
+    <div>
+      <p><b>Пример заполнения журнала:</b></p>
+      <table class="journal">
+        <tr>
+          <th rowspan="2">№<br>станции</th>
+          <th rowspan="2">Точка<br>наблюдения</th>
+          <th rowspan="2">Положение<br>вертикального<br>круга</th>
+          <th colspan="2">Отсчёт по<br>горизонтальному кругу</th>
+          <th colspan="2">Величина угла<br>в полуприёме</th>
+          <th colspan="2">Средняя<br>величина угла</th>
+        </tr>
+        <tr><th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th></tr>
+        <tr>
+          <td rowspan="4" class="jstation">B</td>
+          <td class="jlabel">A</td><td class="jlabel" rowspan="2">КЛ</td>
+          <td>122</td><td>34</td>
+          <td rowspan="2">67</td><td rowspan="2">18</td>
+          <td rowspan="4">67</td><td rowspan="4">17,0</td>
+        </tr>
+        <tr><td class="jlabel">C</td><td>55</td><td>16</td></tr>
+        <tr>
+          <td class="jlabel">A</td><td class="jlabel" rowspan="2">КП</td>
+          <td>303</td><td>30</td>
+          <td rowspan="2">67</td><td rowspan="2">16</td>
+        </tr>
+        <tr><td class="jlabel">C</td><td>236</td><td>14</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--muted);margin-top:6px;">
+        Отсчёты и углы полуприёмов — до целой минуты; до 0,1′ (…,0 или …,5) записывается только среднее.
+        В примере расхождение между полуприёмами составило 2′ — на пределе допуска (2t = 2′), приём принят.
+      </p>
+      <div class="note">
+        <b>Зачем два полуприёма?</b> Измерение при КЛ и КП исключает влияние
+        <span class="hl">коллимационной ошибки</span> и наклона оси вращения трубы,
+        а сбивка лимба между полуприёмами ослабляет ошибки его делений.
+        Отсчёты при КП отличаются от КЛ примерно на 180° (плюс сбивка лимба) — это нормально:
+        угол β от этого не меняется.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 2. ИНТЕРАКТИВНАЯ МОДЕЛЬ ================= -->
+<div class="card">
+  <h2><span class="num">3</span>Интерактивная модель: полный приём (вид сбоку)</h2>
+
+  <div class="instr-row" id="instrRow">
+    <div class="instr-btn" data-id="t30"><b>Т30</b><span>штриховой микроскоп · отсчёт до 1′</span></div>
+    <div class="instr-btn active" data-id="t2t30"><b>2Т30 / 4Т30П</b><span>шкаловой микроскоп · отсчёт до 1′</span></div>
+    <div class="instr-btn" data-id="t5"><b>Т5</b><span>шкаловой микроскоп · отсчёт до 0,1′</span></div>
+  </div>
+
+  <div class="limb-row">
+    <span class="mode-badge" id="modeBadge">КЛ — положение круг лево</span>
+    <span style="font-size:13px;color:var(--muted);">Ориентировка лимба устанавливается случайно при приведении прибора в рабочее положение и сбивается на 1–2° при переходе к КП.</span>
+  </div>
+
+  <div class="controls">
+    <button class="setup" id="btnSetup">1. Привести в рабочее положение</button>
+    <button id="btnA">2. КЛ: навести на A (правая)</button>
+    <button id="btnC">3. КЛ: навести на C (левая)</button>
+    <button class="kp" id="btnKP" disabled>4. Через зенит → КП (сбить лимб на 1–2°)</button>
+    <button class="rec" id="btnRecord">✍ Записать в журнал</button>
+    <button class="rec" id="btnCalc">🖩 Вычислить</button>
+    <button class="secondary" id="btnReset">Сброс</button>
+  </div>
+
+  <div class="model-flex">
+    <div class="scene-box">
+      <svg id="scene" viewBox="0 0 680 460"></svg>
+      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:6px;">
+        Вехи <b style="color:#fbbf24;">C</b> и <b style="color:#4ade80;">A</b> можно <b>перетаскивать мышью</b>.
+        При снятии отсчётов моделируются случайные погрешности наблюдателя, изредка — грубый промах.
+        Голубые пунктирные линии на земле — <b>проекции визирных лучей</b> на горизонтальную плоскость;
+        между ними — измеряемый угол <b style="color:#f87171;">β</b>.
+      </p>
+    </div>
+    <div class="side-col">
+      <div class="opt-box">
+        <h3>Горизонтальный круг (вид сверху)</h3>
+        <div id="limbScheme"></div>
+      </div>
+      <div class="opt-box">
+        <h3>Поле зрения трубы</h3>
+        <div id="fov"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt-box" style="max-width:600px;margin:16px auto 0;">
+    <h3>Отсчётный микроскоп</h3>
+    <div id="micro"></div>
+    <div class="digital" id="microDigital">—<small>возьмите отсчёт самостоятельно и сверьте</small></div>
+  </div>
+
+  <h3 style="text-align:center;color:var(--accent);font-size:15px;margin-top:16px;">Журнал измерения горизонтальных углов</h3>
+  <table class="journal" id="journal">
+    <tr>
+      <th rowspan="2">№<br>станции</th>
+      <th rowspan="2">Точка<br>наблюдения</th>
+      <th rowspan="2">Положение<br>вертикального<br>круга</th>
+      <th colspan="2">Отсчёт по<br>горизонтальному кругу</th>
+      <th colspan="2">Величина угла<br>в полуприёме</th>
+      <th colspan="2">Средняя<br>величина угла</th>
+    </tr>
+    <tr>
+      <th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th>
+    </tr>
+    <tr>
+      <td rowspan="4" class="jstation">B</td>
+      <td class="jlabel">A</td>
+      <td class="jlabel" rowspan="2">КЛ</td>
+      <td id="jA1d"></td><td id="jA1m"></td>
+      <td rowspan="2" id="jB1d"></td><td rowspan="2" id="jB1m"></td>
+      <td rowspan="4" id="jMd"></td><td rowspan="4" id="jMm"></td>
+    </tr>
+    <tr>
+      <td class="jlabel">C</td>
+      <td id="jC1d"></td><td id="jC1m"></td>
+    </tr>
+    <tr>
+      <td class="jlabel">A</td>
+      <td class="jlabel" rowspan="2">КП</td>
+      <td id="jA2d"></td><td id="jA2m"></td>
+      <td rowspan="2" id="jB2d"></td><td rowspan="2" id="jB2m"></td>
+    </tr>
+    <tr>
+      <td class="jlabel">C</td>
+      <td id="jC2d"></td><td id="jC2m"></td>
+    </tr>
+  </table>
+  <div id="jControl" style="text-align:center;font-size:13px;color:var(--muted);margin-top:6px;"></div>
+  <div class="status" id="status">Прибор стоит в стороне от колышка, площадка наклонена. Выполните пункт 1 — приведение в рабочее положение.</div>
+</div>
+
+<!-- ================= 4. ОТСЧЁТНЫЕ УСТРОЙСТВА ================= -->
+<div class="card">
+  <h2><span class="num">4</span>Отсчётные устройства теодолитов</h2>
+  <table>
+    <tr><th>Теодолит</th><th>Устройство</th><th>Цена деления лимба</th><th>Отсчёт</th><th>Допуск 2t</th></tr>
+    <tr><td><b>Т30</b></td><td>Штриховой микроскоп: неподвижный индекс-штрих, отсчёт между штрихами (10′) оценивается на глаз</td><td>10′</td><td>до 1′</td><td>2′</td></tr>
+    <tr><td><b>2Т30 / 4Т30П</b></td><td>Шкаловой микроскоп: шкала 0–6 (деления по 5′), градусный штрих лимба «читается» по шкале</td><td>1°</td><td>до 1′</td><td>2′</td></tr>
+    <tr><td><b>Т5</b></td><td>Шкаловой микроскоп: шкала на 60 делений по 1′, десятые доли минуты — на глаз</td><td>1°</td><td>до 0,1′</td><td>0,2′</td></tr>
+  </table>
+  <div class="note">
+    У всей серии Т30 (Т30, 2Т30, 4Т30П) отсчёты берутся <b>до целой минуты</b>;
+    до десятых долей минуты (…,0′ или …,5′) вычисляется только <b>среднее значение угла</b> из двух полуприёмов.
+  </div>
+  <div class="note">
+    Переключайте тип теодолита в модели выше — окно микроскопа, точность отсчёта и допуск контроля изменятся.
+  </div>
+</div>
+
+<!-- ================= 5. ЗАПОМНИТЬ ================= -->
+<div class="card">
+  <h2><span class="num">5</span>Главное, что нужно запомнить</h2>
+  <ul>
+    <li>Сначала — <span class="hl-g">центрирование по отвесу над колышком</span> и <span class="hl-g">горизонтирование по уровню</span>, только потом измерения.</li>
+    <li>Горизонтальный угол — это угол между <span class="hl-b">проекциями визирных лучей</span> на горизонтальную плоскость.</li>
+    <li>Угол получается как <span class="hl-r">разность двух отсчётов</span>: β = a − c (правая цель минус левая); если a &lt; c — прибавляем 360°.</li>
+    <li>Наводить трубу — на <span class="hl">низ вехи</span>, биссектором сетки нитей.</li>
+    <li>Полный приём = полуприём при КЛ + полуприём при КП; между ними трубу переводят через зенит и <span class="hl">сбивают лимб на 1–2°</span>.</li>
+    <li>Контроль: |β′ − β″| ≤ 2t; результат — среднее из двух полуприёмов.</li>
+    <li>У серии Т30 отсчёты берутся <span class="hl">до целой минуты</span>; до 0,1′ (…,0 или …,5) вычисляется только среднее значение угла.</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= форматирование ================= */
+function pad2(n){ return (n<10?'0':'')+n; }
+function norm360(x){ x = x % 360; return x < 0 ? x + 360 : x; }
+var RAD = Math.PI/180;
+
+function fmtDM0(r){
+  var d = Math.floor(r), m = Math.round((r-d)*60);
+  if (m >= 60){ m -= 60; d = (d+1)%360; }
+  return d + '°' + pad2(m) + '′';
+}
+function fmtDM1(r){
+  var d = Math.floor(r), m = Math.round((r-d)*600)/10;
+  if (m >= 60){ m -= 60; d = (d+1)%360; }
+  var ms = m.toFixed(1).replace('.',',');
+  if (m < 10) ms = '0'+ms;
+  return d + '°' + ms + '′';
+}
+
+
+/* ================= теодолиты =================
+   Вся серия Т30 (Т30, 2Т30, 4Т30П): отсчёты берутся до целой минуты,
+   до десятых долей минуты (…,0 / …,5) вычисляется только среднее. */
+var INSTR = {
+  t30:  { name:'Т30',        round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'штриховой микроскоп', tol:2/60,   tolTxt:'2′'  },
+  t2t30:{ name:'2Т30/4Т30П', round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tol:2/60,   tolTxt:'2′'  },
+  t5:   { name:'Т5',         round:function(r){return Math.round(r*600)/600;}, fmt:fmtDM1, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tol:0.2/60, tolTxt:'0,2′'}
+};
+
+/* ================= состояние ================= */
+var G = {x:320, y:372};          // колышек — вершина угла B
+var DEPTH = 2.2;
+
+var S = {
+  instr: 't2t30',
+  limb: 40,
+  dx: -52, tilt: 7, ready: false,
+  mode: 'KL',                    // 'KL' | 'KP'
+  C: {x:450, y:150},
+  A: {x:520, y:345},
+  telAngle: 0, telAz: 0,
+  aimed: null,
+  r: {c1:null, a1:null, c2:null, a2:null},
+  b1: null, b2: null,
+  pending: null, meanDone: false,
+  errPlan: null, lastRec: null,
+  animating: false, animTarget: null
+};
+
+var svg = document.getElementById('scene');
+var statusEl = document.getElementById('status');
+function setStatus(t){ statusEl.textContent = t; }
+
+/* ================= геометрия ================= */
+function pivot(){ return {x: G.x + S.dx, y: 318}; }
+function trunnion(){
+  var P = pivot(), t = S.tilt*RAD, H = 82;
+  return {x: P.x + H*Math.sin(t), y: P.y - H*Math.cos(t)};
+}
+function poleScale(p){ return 0.65 + (p.y - 130)/(430-130)*0.55; }
+function aimPoint(p){ var s = poleScale(p); return {x:p.x, y:p.y - 8*s}; }
+function angleToScreen(p){
+  var T = trunnion(), a = aimPoint(p);
+  return Math.atan2(T.y - a.y, a.x - T.x) / RAD;
+}
+function azOf(p){
+  return norm360(Math.atan2((p.y - G.y)*DEPTH, p.x - G.x) / RAD);
+}
+function readingOf(az){
+  return norm360(az + S.limb + (S.mode==='KP' ? 180 : 0));
+}
+function angDiff(a,b){ return ((a-b+540)%360)-180; }
+
+/* ================= вехи, трава ================= */
+function poleSVG(p, color, letter, id){
+  var s = poleScale(p);
+  var w = 8*s, H = 105*s, seg = 15*s;
+  var out = '<g'+(id?' id="'+id+'" class="pole-grab"':'')+'>';
+  out += '<ellipse cx="'+p.x+'" cy="'+(p.y+3)+'" rx="'+(16*s)+'" ry="'+(4*s)+'" fill="rgba(0,0,0,0.25)"/>';
+  out += '<polygon points="'+(p.x-w/2)+','+(p.y-10*s)+' '+(p.x+w/2)+','+(p.y-10*s)+' '+p.x+','+p.y+'" fill="#6b7280"/>';
+  for (var i=0;i<6;i++){
+    var y2 = p.y - 10*s - i*seg;
+    out += '<rect x="'+(p.x-w/2)+'" y="'+(y2-seg)+'" width="'+w+'" height="'+seg+'" fill="'+(i%2===0?'#dc2626':'#f8fafc')+'" stroke="#7f1d1d" stroke-width="0.6"/>';
+  }
+  out += '<path d="M '+(p.x-14*s)+' '+p.y+' q 3 -12 6 0 M '+(p.x-6*s)+' '+(p.y+2)+' q 3 -14 6 0 M '+(p.x+8*s)+' '+p.y+' q 3 -12 6 0" stroke="#166534" stroke-width="1.6" fill="none"/>';
+  out += '<text x="'+p.x+'" y="'+(p.y+16+8*s)+'" fill="'+color+'" font-size="'+(20*s+6)+'" font-weight="bold" text-anchor="middle" font-style="italic">'+letter+'</text>';
+  out += '<rect x="'+(p.x-24)+'" y="'+(p.y-H-30)+'" width="48" height="'+(H+40)+'" fill="transparent"/>';
+  out += '</g>';
+  return out;
+}
+function grassDecor(){
+  var pts = [[300,260],[380,180],[560,240],[250,395],[420,415],[610,330],[640,170],[330,330],[490,270],[60,200],[110,300],[45,350],[150,255],[95,410],[35,265],[175,175],[130,205],[70,430],[200,320]];
+  var out = '';
+  for (var i=0;i<pts.length;i++){
+    var x=pts[i][0], y=pts[i][1];
+    out += '<path d="M '+x+' '+y+' q 2 -10 5 0 M '+(x+6)+' '+y+' q 2 -12 5 0 M '+(x+12)+' '+y+' q 2 -9 5 0" stroke="#2d7a3a" stroke-width="1.4" fill="none" opacity="0.7"/>';
+  }
+  return out;
+}
+
+/* ================= колышек ================= */
+function pegSVG(){
+  var out = '<g>';
+  out += '<ellipse cx="'+G.x+'" cy="374" rx="14" ry="4" fill="rgba(60,40,10,0.35)"/>';
+  out += '<polygon points="'+(G.x-6)+',358 '+(G.x+6)+',358 '+(G.x+4)+',380 '+(G.x-4)+',380" fill="#b07a37" stroke="#7c4a1e" stroke-width="1.2"/>';
+  out += '<line x1="'+(G.x-3)+'" y1="361" x2="'+(G.x+3)+'" y2="361" stroke="#7c4a1e" stroke-width="1"/>';
+  out += '<line x1="'+(G.x-3)+'" y1="366" x2="'+(G.x+3)+'" y2="366" stroke="#7c4a1e" stroke-width="0.8"/>';
+  out += '<circle cx="'+G.x+'" cy="359.5" r="1.3" fill="#1f2937"/>';
+  out += '<text x="'+G.x+'" y="400" fill="#b91c1c" font-size="22" font-weight="bold" font-style="italic" text-anchor="middle">B</text>';
+  return out + '</g>';
+}
+
+/* ================= штатив и теодолит ================= */
+function tripodSVG(){
+  var P = pivot(), out = '<g>';
+  out += '<ellipse cx="'+P.x+'" cy="378" rx="56" ry="6" fill="rgba(0,0,0,0.16)"/>';
+  out += '<line x1="'+(P.x-10)+'" y1="'+(P.y+6)+'" x2="'+(P.x-46)+'" y2="374" stroke="#8a5a2b" stroke-width="5"/>';
+  out += '<line x1="'+(P.x+10)+'" y1="'+(P.y+6)+'" x2="'+(P.x+46)+'" y2="374" stroke="#8a5a2b" stroke-width="5"/>';
+  out += '<line x1="'+P.x+'" y1="'+(P.y+6)+'" x2="'+(P.x+7)+'" y2="378" stroke="#6b4423" stroke-width="5"/>';
+  out += '<polygon points="'+(P.x-49)+',374 '+(P.x-43)+',374 '+(P.x-45)+',382 '+(P.x-47)+',382" fill="#475569"/>';
+  out += '<polygon points="'+(P.x+43)+',374 '+(P.x+49)+',374 '+(P.x+47)+',382 '+(P.x+45)+',382" fill="#475569"/>';
+  return out + '</g>';
+}
+function theodoliteSVG(){
+  var P = pivot(), x0 = P.x;
+  var out = '<g transform="rotate('+S.tilt+' '+x0+' '+P.y+')">';
+  out += '<rect x="'+(x0-26)+'" y="316" width="52" height="7" rx="2" fill="#a16207" stroke="#713f12" stroke-width="1"/>';
+  out += '<rect x="'+(x0-4)+'" y="323" width="8" height="5" rx="1" fill="#374151"/>';
+  out += '<rect x="'+(x0-20)+'" y="309" width="40" height="7" rx="2" fill="#334155"/>';
+  var fx = [x0-14, x0, x0+14];
+  for (var i=0;i<3;i++){
+    out += '<rect x="'+(fx[i]-3.5)+'" y="303" width="7" height="6" rx="1.5" fill="#94a3b8" stroke="#475569" stroke-width="0.8"/>';
+    out += '<line x1="'+fx[i]+'" y1="303.5" x2="'+fx[i]+'" y2="308.5" stroke="#475569" stroke-width="1"/>';
+  }
+  out += '<polygon points="'+(x0-17)+',303 '+(x0+17)+',303 '+(x0+12)+',295 '+(x0-12)+',295" fill="#475569"/>';
+  out += '<circle cx="'+(x0+13)+'" cy="299" r="2.6" fill="#d9f99d" stroke="#3f6212" stroke-width="1"/>';
+  out += '<rect x="'+(x0-23)+'" y="283" width="46" height="12" rx="4" fill="#166534" stroke="#052e16" stroke-width="1.2"/>';
+  out += '<line x1="'+(x0-21)+'" y1="289" x2="'+(x0+21)+'" y2="289" stroke="#facc15" stroke-width="1"/>';
+  out += '<rect x="'+(x0-13)+'" y="272" width="26" height="11" rx="3" fill="#15803d" stroke="#052e16" stroke-width="1"/>';
+  out += '<rect x="'+(x0-9)+'" y="267" width="18" height="5" rx="2.5" fill="#e2e8f0" stroke="#475569" stroke-width="0.8"/>';
+  var bub = Math.max(-6, Math.min(6, S.tilt*1.6));
+  out += '<rect x="'+(x0-2.6+bub)+'" y="268" width="5.2" height="3" rx="1.5" fill="#a3e635"/>';
+  out += '<line x1="'+(x0-2)+'" y1="267" x2="'+(x0-2)+'" y2="272" stroke="#64748b" stroke-width="0.6"/>';
+  out += '<line x1="'+(x0+2)+'" y1="267" x2="'+(x0+2)+'" y2="272" stroke="#64748b" stroke-width="0.6"/>';
+  // вертикальный круг — всегда по центру трубы (на её оси).
+  // При КЛ он ЗА трубой (дальше от наблюдателя) — рисуется до трубы,
+  // при КП — ПЕРЕД трубой (ближе к наблюдателю) — рисуется поверх неё.
+  var vertCircle = '<g opacity="'+(S.mode==='KP'?'0.92':'1')+'">' +
+    '<circle cx="'+x0+'" cy="236" r="18" fill="#14532d" stroke="#052e16" stroke-width="1.5"/>' +
+    '<circle cx="'+x0+'" cy="236" r="13" fill="none" stroke="#86efac" stroke-width="0.8" stroke-dasharray="1.5,2.5"/>' +
+    '<circle cx="'+x0+'" cy="236" r="2" fill="#86efac"/>' +
+    '</g>';
+  out += '<polygon points="'+(x0-17)+',272 '+(x0-7)+',272 '+(x0-9)+',240 '+(x0-15)+',240" fill="#16a34a" stroke="#052e16" stroke-width="1"/>';
+  out += '<polygon points="'+(x0+7)+',272 '+(x0+17)+',272 '+(x0+15)+',240 '+(x0+9)+',240" fill="#16a34a" stroke="#052e16" stroke-width="1"/>';
+  out += '<circle cx="'+(x0-12)+'" cy="238" r="4.5" fill="#0f766e" stroke="#052e16" stroke-width="1"/>';
+  out += '<circle cx="'+(x0+12)+'" cy="238" r="4.5" fill="#0f766e" stroke="#052e16" stroke-width="1"/>';
+  out += '<circle cx="'+(x0+19)+'" cy="277" r="2.8" fill="#94a3b8" stroke="#475569" stroke-width="0.8"/>';
+  out += '<circle cx="'+(x0-19)+'" cy="277" r="2.8" fill="#94a3b8" stroke="#475569" stroke-width="0.8"/>';
+  if (S.mode!=='KP') out += vertCircle;   // КЛ: круг за трубой
+  out += '<g transform="translate('+x0+' 236) rotate('+(-S.telAngle)+')">';
+  out += '<rect x="-27" y="-6.5" width="54" height="13" rx="4" fill="#15803d" stroke="#052e16" stroke-width="1.2"/>';
+  out += '<rect x="23" y="-8.5" width="8" height="17" rx="2" fill="#052e16"/>';
+  out += '<rect x="-31" y="-4.5" width="7" height="9" rx="2" fill="#052e16"/>';
+  out += '<circle cx="7" cy="-9.5" r="2.6" fill="#94a3b8" stroke="#475569" stroke-width="0.8"/>';
+  out += '<line x1="14" y1="-6.5" x2="14" y2="-10" stroke="#052e16" stroke-width="1.5"/>';
+  out += '<circle r="3.4" fill="#334155" stroke="#0f172a"/>';
+  out += '</g>';
+  if (S.mode==='KP') out += vertCircle;   // КП: круг перед трубой (ближе к наблюдателю)
+  out += '</g>';
+  return out;
+}
+function plumbSVG(){
+  var P = pivot(), t = S.tilt*RAD;
+  var ax = P.x + 10*Math.sin(t), ay = P.y + 10*Math.cos(t);
+  var tipY = 356;
+  var out = '<g>';
+  out += '<line x1="'+ax+'" y1="'+ay+'" x2="'+ax+'" y2="'+(tipY-12)+'" stroke="#1f2937" stroke-width="1.1"/>';
+  out += '<polygon points="'+(ax-4.5)+','+(tipY-12)+' '+(ax+4.5)+','+(tipY-12)+' '+ax+','+tipY+'" fill="#374151" stroke="#111827" stroke-width="0.8"/>';
+  out += '<rect x="'+(ax-3)+'" y="'+(tipY-16)+'" width="6" height="4" rx="1" fill="#6b7280"/>';
+  if (!S.ready && Math.abs(ax - G.x) > 4){
+    out += '<path d="M '+ax+' '+(tipY+4)+' Q '+((ax+G.x)/2)+' '+(tipY+16)+' '+(G.x-2)+' '+(tipY+6)+'" fill="none" stroke="#b91c1c" stroke-width="1.4" stroke-dasharray="3,3"/>';
+    out += '<text x="'+((ax+G.x)/2-30)+'" y="'+(tipY+30)+'" fill="#b91c1c" font-size="11">отвес не над колышком!</text>';
+  }
+  return out + '</g>';
+}
+
+/* ================= проекции на горизонтальную плоскость ================= */
+function planePointAt(az, r){
+  return { x: G.x + r*Math.cos(az*RAD), y: G.y + r*Math.sin(az*RAD)/DEPTH };
+}
+function projectionsSVG(){
+  var azC = azOf(S.C), azA = azOf(S.A);
+  var out = '<g>';
+  out += '<line x1="'+G.x+'" y1="'+G.y+'" x2="'+S.C.x+'" y2="'+S.C.y+'" stroke="#0e7490" stroke-width="2" stroke-dasharray="8,5"/>';
+  out += '<line x1="'+G.x+'" y1="'+G.y+'" x2="'+S.A.x+'" y2="'+S.A.y+'" stroke="#0e7490" stroke-width="2" stroke-dasharray="8,5"/>';
+  var delta = norm360(azA - azC);
+  var n = Math.max(8, Math.round(delta/5)), pts = [];
+  for (var i=0;i<=n;i++){
+    var p = planePointAt(azC + delta*i/n, 46);
+    pts.push(p.x.toFixed(1)+','+p.y.toFixed(1));
+  }
+  out += '<polyline points="'+pts.join(' ')+'" fill="none" stroke="#dc2626" stroke-width="2.5"/>';
+  var lm = planePointAt(azC + delta/2, 68);
+  out += '<text x="'+lm.x+'" y="'+(lm.y+5)+'" fill="#dc2626" font-size="20" font-weight="bold" text-anchor="middle">β</text>';
+  return out + '</g>';
+}
+
+/* ================= сцена ================= */
+function sceneMarkup(interactive){
+  var T = trunnion();
+  var apC = aimPoint(S.C), apA = aimPoint(S.A);
+  var out = '';
+  out += grassDecor();
+  out += projectionsSVG();
+  out += '<line x1="'+T.x+'" y1="'+(T.y+14)+'" x2="'+T.x+'" y2="354" stroke="#64748b" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>';
+  out += '<line x1="'+T.x+'" y1="'+T.y+'" x2="'+apC.x+'" y2="'+apC.y+'" stroke="'+(S.r.c1!==null||S.r.c2!==null?'#b45309':'#64748b')+'" stroke-width="1.6" stroke-dasharray="7,6" opacity="0.9"/>';
+  out += '<line x1="'+T.x+'" y1="'+T.y+'" x2="'+apA.x+'" y2="'+apA.y+'" stroke="'+(S.r.a1!==null||S.r.a2!==null?'#15803d':'#64748b')+'" stroke-width="1.6" stroke-dasharray="7,6" opacity="0.9"/>';
+  if (interactive){
+    var la = S.telAngle*RAD, L = 560;
+    out += '<line x1="'+T.x+'" y1="'+T.y+'" x2="'+(T.x+L*Math.cos(la))+'" y2="'+(T.y-L*Math.sin(la))+'" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="3,5" opacity="0.85"/>';
+  }
+  out += pegSVG();
+  out += tripodSVG();
+  out += theodoliteSVG();
+  out += plumbSVG();
+  out += poleSVG(S.C, '#b45309', 'C', interactive?'poleC':null);
+  out += poleSVG(S.A, '#15803d', 'A', interactive?'poleA':null);
+  return out;
+}
+function renderScene(){
+  var out = sceneMarkup(true);
+  var badge = S.mode==='KL' ? 'КЛ — положение круг лево' : 'КП — положение круг право';
+  var bcol = S.mode==='KL' ? '#0369a1' : '#b45309';
+  out += '<rect x="10" y="10" width="228" height="24" rx="6" fill="rgba(255,255,255,0.75)" stroke="'+bcol+'"/>';
+  out += '<text x="124" y="27" fill="'+bcol+'" font-size="13" font-weight="bold" text-anchor="middle">'+badge+'</text>';
+  svg.innerHTML = out;
+  attachDrag('poleC', S.C, 'C');
+  attachDrag('poleA', S.A, 'A');
+}
+
+/* ================= схема лимба в разделе 1 ================= */
+function renderSection1Ticks(){
+  var g = document.getElementById('limbFig');
+  if (!g) return;
+  var cx=160, cy=166, R=118, out='';
+  var z = -120;              // экранный угол нуля лимба
+  var vC = 65, vA = 118;     // отсчёты: c (цель C) и a (цель A)
+  // тёмный круг с голубым ободом
+  out += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="#16283f" stroke="#38bdf8" stroke-width="2.5"/>';
+  // деления: через 10°, длинные через 30° с оцифровкой
+  for (var v=0; v<360; v+=10){
+    var th = (z + v)*RAD;
+    var is30 = (v%30===0);
+    var r2 = is30 ? R-12 : R-7;
+    var col = (v===0) ? '#f87171' : '#94a3b8';
+    out += '<line x1="'+(cx+R*Math.cos(th))+'" y1="'+(cy+R*Math.sin(th))+'" x2="'+(cx+r2*Math.cos(th))+'" y2="'+(cy+r2*Math.sin(th))+'" stroke="'+col+'" stroke-width="'+(v===0?3:(is30?1.8:1))+'"/>';
+    if (is30){
+      var rt = R-23;
+      var lbl = (v===0)?'0':v;
+      out += '<text x="'+(cx+rt*Math.cos(th))+'" y="'+(cy+rt*Math.sin(th)+4)+'" fill="'+(v===0?'#f87171':'#64748b')+'" font-size="'+(v===0?13:11)+'" font-weight="'+(v===0?'bold':'normal')+'" text-anchor="middle">'+lbl+'</text>';
+    }
+  }
+  // красная пунктирная линия от центра к нулю лимба (до подписи «0»)
+  var a0 = z*RAD;
+  out += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+(R-32)*Math.cos(a0))+'" y2="'+(cy+(R-32)*Math.sin(a0))+'" stroke="#f87171" stroke-width="1.8" stroke-dasharray="5,4"/>';
+
+  function arcPath(rr, v1, v2){
+    var t1=(z+v1)*RAD, t2=(z+v2)*RAD;
+    return 'M '+(cx+rr*Math.cos(t1))+' '+(cy+rr*Math.sin(t1))+
+           ' A '+rr+' '+rr+' 0 '+((v2-v1)>180?1:0)+' 1 '+(cx+rr*Math.cos(t2))+' '+(cy+rr*Math.sin(t2));
+  }
+  var aC=(z+vC)*RAD, aA=(z+vA)*RAD;
+
+  // ---- дуги отсчётов (радиусы разнесены, подписи снаружи своих дуг) ----
+  // отсчёт c: жёлтая дуга 0→C, r=78
+  var rC=78;
+  var arrLenC = 9/rC/RAD;              // длина стрелки в градусах дуги (~6.6°)
+  var baseC = vC - 1 - arrLenC;        // основание стрелки; остриё — у линии C (зазор 1°)
+  out += '<path d="'+arcPath(rC,0,baseC)+'" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,4"/>';
+  var tC=(z+baseC)*RAD;
+  out += '<polygon points="0,-4.5 9,0 0,4.5" transform="translate('+(cx+rC*Math.cos(tC))+' '+(cy+rC*Math.sin(tC))+') rotate('+(z+baseC+90)+')" fill="#fbbf24"/>';
+  var amC=(z+vC*0.5)*RAD;
+  out += '<text x="'+(cx+(rC+13)*Math.cos(amC))+'" y="'+(cy+(rC+13)*Math.sin(amC)+4)+'" fill="#fbbf24" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle">c</text>';
+  // отсчёт a: зелёная дуга 0→A, r=54
+  var rA=54;
+  var arrLenA = 9/rA/RAD;              // ~9.5°
+  var baseA = vA - 1 - arrLenA;
+  out += '<path d="'+arcPath(rA,0,baseA)+'" fill="none" stroke="#4ade80" stroke-width="2" stroke-dasharray="5,4"/>';
+  var tA=(z+baseA)*RAD;
+  out += '<polygon points="0,-4.5 9,0 0,4.5" transform="translate('+(cx+rA*Math.cos(tA))+' '+(cy+rA*Math.sin(tA))+') rotate('+(z+baseA+90)+')" fill="#4ade80"/>';
+  var amA=(z+vA*0.42)*RAD; // подпись a — между дугами a и c, в стороне от линии C
+  out += '<text x="'+(cx+(rA+12)*Math.cos(amA))+'" y="'+(cy+(rA+12)*Math.sin(amA)+4)+'" fill="#4ade80" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle">a</text>';
+
+  // ---- направления на цели ----
+  out += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(aC))+'" y2="'+(cy+R*Math.sin(aC))+'" stroke="#fbbf24" stroke-width="3"/>';
+  out += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(aA))+'" y2="'+(cy+R*Math.sin(aA))+'" stroke="#4ade80" stroke-width="3"/>';
+
+  // подписи целей: C — сверху справа, A — справа (не выходят за 340×330)
+  var xC = cx+(R+14)*Math.cos(aC), yC = cy+(R+14)*Math.sin(aC);
+  out += '<text x="'+xC+'" y="'+(yC+4)+'" fill="#fbbf24" font-size="17" font-weight="bold" font-style="italic" text-anchor="middle">C</text>';
+  var xA = cx+(R+12)*Math.cos(aA), yA = cy+(R+12)*Math.sin(aA);
+  out += '<text x="'+xA+'" y="'+(yA+4)+'" fill="#4ade80" font-size="17" font-weight="bold" font-style="italic" text-anchor="middle">A</text>';
+
+  // ---- дуга β между C и A, r=30, подпись на r=42 ----
+  var rb=30;
+  out += '<path d="'+arcPath(rb,vC,vA)+'" fill="none" stroke="#f87171" stroke-width="2.5"/>';
+  var am=(z+(vC+vA)/2)*RAD;
+  out += '<text x="'+(cx+43*Math.cos(am))+'" y="'+(cy+43*Math.sin(am)+5)+'" fill="#f87171" font-size="17" font-weight="bold" text-anchor="middle">β</text>';
+
+  // станция B
+  out += '<circle cx="'+cx+'" cy="'+cy+'" r="4.5" fill="#f8fafc"/>';
+  out += '<text x="'+(cx-18)+'" y="'+(cy+18)+'" fill="#f87171" font-size="15" font-weight="bold" font-style="italic">B</text>';
+  g.innerHTML = out;
+}
+
+/* ================= перетаскивание вех ================= */
+function svgPoint(evt){
+  var pt = svg.createSVGPoint();
+  pt.x = evt.clientX; pt.y = evt.clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+function attachDrag(id, pos, which){
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('pointerdown', function(e){
+    if (S.animating) return;
+    e.preventDefault();
+    var moved = false;
+    var move = function(ev){
+      var p = svgPoint(ev);
+      pos.x = Math.min(655, Math.max(25, p.x));
+      pos.y = Math.min(430, Math.max(130, p.y));
+      if (!moved && (S.r.c1!==null || S.r.a1!==null || S.r.c2!==null || S.r.a2!==null)){
+        moved = true;
+        clearReadings('Веха ' + which + ' передвинута — приём начат заново (все отсчёты сброшены).');
+        S.mode = 'KL'; updateModeUI();
+      }
+      S.aimed = null; S.pending = null;
+      renderAll();
+    };
+    var up = function(){
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  });
+}
+
+/* ================= схема горизонтального круга ================= */
+function renderLimbScheme(){
+  var cx=125, cy=118, R=92;
+  var azC = azOf(S.C), azA = azOf(S.A);
+  var inner = '';
+  inner += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="#0b1f33" stroke="#38bdf8" stroke-width="2"/>';
+  for (var v=0; v<360; v+=10){
+    var th = (v - S.limb)*RAD;
+    var r1 = R, r2 = (v%30===0)? R-10 : R-5;
+    inner += '<line x1="'+(cx+r1*Math.cos(th))+'" y1="'+(cy+r1*Math.sin(th))+'" x2="'+(cx+r2*Math.cos(th))+'" y2="'+(cy+r2*Math.sin(th))+'" stroke="'+(v===0?'#f87171':'#94a3b8')+'" stroke-width="'+(v===0?2.5:(v%30===0?1.6:0.8))+'"/>';
+    if (v%30===0){
+      var rt = R-20;
+      inner += '<text x="'+(cx+rt*Math.cos(th))+'" y="'+(cy+rt*Math.sin(th)+3)+'" fill="'+(v===0?'#f87171':'#64748b')+'" font-size="'+(v===0?11:8)+'" font-weight="'+(v===0?'bold':'normal')+'" text-anchor="middle">'+v+'</text>';
+    }
+  }
+  function ray(az, color, letter){
+    var x2 = cx + (R+2)*Math.cos(az*RAD), y2 = cy + (R+2)*Math.sin(az*RAD);
+    var xl = cx + (R+13)*Math.cos(az*RAD), yl = cy + (R+13)*Math.sin(az*RAD);
+    return '<line x1="'+cx+'" y1="'+cy+'" x2="'+x2+'" y2="'+y2+'" stroke="'+color+'" stroke-width="1.6"/>' +
+           '<text x="'+xl+'" y="'+(yl+4)+'" fill="'+color+'" font-size="13" font-weight="bold" text-anchor="middle" font-style="italic">'+letter+'</text>';
+  }
+  inner += ray(azC, '#fbbf24', 'C');
+  inner += ray(azA, '#4ade80', 'A');
+  var delta = norm360(azA - azC), rb = 40;
+  var x1 = cx + rb*Math.cos(azC*RAD), y1 = cy + rb*Math.sin(azC*RAD);
+  var x2b = cx + rb*Math.cos(azA*RAD), y2b = cy + rb*Math.sin(azA*RAD);
+  inner += '<path d="M '+x1+' '+y1+' A '+rb+' '+rb+' 0 '+(delta>180?1:0)+' 1 '+x2b+' '+y2b+'" fill="none" stroke="#f87171" stroke-width="2.2"/>';
+  var mid = (azC + delta/2)*RAD, rm = 56;
+  inner += '<text x="'+(cx+rm*Math.cos(mid))+'" y="'+(cy+rm*Math.sin(mid)+4)+'" fill="#f87171" font-size="14" font-weight="bold" text-anchor="middle">β</text>';
+  var pa = S.telAz*RAD;
+  inner += '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+(R-12)*Math.cos(pa))+'" y2="'+(cy+(R-12)*Math.sin(pa))+'" stroke="#38bdf8" stroke-width="2.6"/>';
+  inner += '<polygon points="0,-5 12,0 0,5" transform="translate('+(cx+(R-12)*Math.cos(pa))+' '+(cy+(R-12)*Math.sin(pa))+') rotate('+(S.telAz)+')" fill="#38bdf8"/>';
+  inner += '<circle cx="'+cx+'" cy="'+cy+'" r="3.4" fill="#e2e8f0"/>';
+  inner += '<text x="'+(cx-14)+'" y="'+(cy+15)+'" fill="#f87171" font-size="12" font-weight="bold" font-style="italic">B</text>';
+  var instr = INSTR[S.instr];
+  var txt = S.ready ? (S.mode + ' · визир: ' + instr.fmt(instr.round(norm360(readingOf(S.telAz) + pendingErr())))) : 'лимб не ориентирован';
+  txt = txt.replace('KL','КЛ').replace('KP','КП');
+  inner += '<text x="'+cx+'" y="238" fill="#94a3b8" font-size="11" text-anchor="middle">деления лимба · '+txt+'</text>';
+  document.getElementById('limbScheme').innerHTML =
+    '<svg viewBox="0 0 250 246" width="100%">'+inner+'</svg>';
+}
+
+/* ================= поле зрения трубы ================= */
+function renderFOV(){
+  var host = document.getElementById('fov');
+  var inner = '';
+  var target = null, letter='';
+  if (S.aimed==='C' || (S.animating && S.animTarget==='C')){ target=S.C; letter='C'; }
+  if (S.aimed==='A' || (S.animating && S.animTarget==='A')){ target=S.A; letter='A'; }
+  inner += '<rect x="0" y="0" width="220" height="120" fill="#cfe8ff"/>';
+  inner += '<rect x="0" y="120" width="220" height="105" fill="#8cc370"/>';
+  inner += '<path d="M 20 123 q 3 -12 6 0 M 60 127 q 3 -14 6 0 M 150 124 q 3 -12 6 0 M 185 129 q 3 -13 6 0" stroke="#166534" stroke-width="1.5" fill="none"/>';
+  if (target){
+    var ta = angleToScreen(target);
+    var dx = Math.max(-130, Math.min(130, (S.telAngle - ta) * -14));
+    var cx = 110 + dx;
+    // веха: низ (остриё) в точке наведения — центре сетки (110,110)
+    inner += '<polygon points="'+(cx-5)+',108 '+(cx+5)+',108 '+cx+',122" fill="#6b7280"/>';
+    for (var i=0;i<6;i++){
+      inner += '<rect x="'+(cx-5)+'" y="'+(108-(i+1)*17)+'" width="10" height="17" fill="'+(i%2===0?'#dc2626':'#f8fafc')+'" stroke="#7f1d1d" stroke-width="0.5"/>';
+    }
+    inner += '<text x="'+(cx+16)+'" y="26" fill="#b91c1c" font-size="16" font-weight="bold" font-style="italic">'+letter+'</text>';
+  } else {
+    inner += '<text x="110" y="62" fill="#64748b" font-size="12" text-anchor="middle">труба не наведена</text>';
+  }
+  // ===== сетка нитей (классическая: биссектор сверху, одинарная нить снизу,
+  //       средняя горизонтальная нить и две короткие дальномерные) =====
+  var C = 110;
+  // горизонтальная средняя нить
+  inner += '<line x1="14" y1="'+C+'" x2="206" y2="'+C+'" stroke="#111" stroke-width="1.1"/>';
+  // вертикальная нить: верхняя половина — биссектор (двойная)
+  inner += '<line x1="'+(C-2.2)+'" y1="14" x2="'+(C-2.2)+'" y2="'+C+'" stroke="#111" stroke-width="1"/>';
+  inner += '<line x1="'+(C+2.2)+'" y1="14" x2="'+(C+2.2)+'" y2="'+C+'" stroke="#111" stroke-width="1"/>';
+  // нижняя половина — одинарная
+  inner += '<line x1="'+C+'" y1="'+C+'" x2="'+C+'" y2="206" stroke="#111" stroke-width="1.1"/>';
+  // дальномерные нити — короткие горизонтальные штрихи выше и ниже центра
+  inner += '<line x1="'+(C-16)+'" y1="'+(C-24)+'" x2="'+(C+16)+'" y2="'+(C-24)+'" stroke="#111" stroke-width="1"/>';
+  inner += '<line x1="'+(C-16)+'" y1="'+(C+24)+'" x2="'+(C+16)+'" y2="'+(C+24)+'" stroke="#111" stroke-width="1"/>';
+  host.innerHTML =
+    '<svg viewBox="0 0 220 220" width="100%">' +
+    '<defs><clipPath id="fovClip"><circle cx="110" cy="110" r="96"/></clipPath></defs>' +
+    '<circle cx="110" cy="110" r="104" fill="#111827"/>' +
+    '<g clip-path="url(#fovClip)">'+inner+'</g>' +
+    '<circle cx="110" cy="110" r="96" fill="none" stroke="#000" stroke-width="5"/>' +
+    '</svg>';
+}
+
+/* ================= отсчётный микроскоп ================= */
+
+/* ---- Т30: штриховое отсчётное устройство ----
+   Два окна: В (штрихи от верхней кромки вниз, подписи градусов сверху)
+   и Г (штрихи от нижней кромки вверх, подписи снизу). Деления по 10′,
+   средний штрих (30′) удлинён. Неподвижный отсчётный штрих через оба окна. */
+function microT30(r){
+  var inner = '';
+  inner += '<rect x="0" y="0" width="300" height="240" fill="#0a0a0a"/>';
+  // буквы В и Г в белых квадратах
+  inner += '<rect x="137" y="24" width="26" height="22" fill="#fff"/>' +
+           '<text x="150" y="41" fill="#000" font-size="15" font-weight="bold" text-anchor="middle">В</text>';
+  inner += '<rect x="137" y="192" width="26" height="22" fill="#fff"/>' +
+           '<text x="150" y="209" fill="#000" font-size="15" font-weight="bold" text-anchor="middle">Г</text>';
+
+  var ppm = 1.55; // px на минуту
+  function band(yTop, val, numsAtTop){
+    var out = '', h = 48, yB = yTop + h;
+    out += '<rect x="44" y="'+yTop+'" width="212" height="'+h+'" fill="#fff"/>';
+    var rMin = val*60;
+    var start = Math.floor((rMin-70)/10)*10;
+    for (var v = start; v <= rMin+70; v += 10){
+      var x = 150 + (v - rMin)*ppm;
+      if (x < 48 || x > 252) continue;
+      var mm = ((v % 60)+60)%60;
+      var isDeg = (mm === 0);
+      var is30 = (mm === 30);              // штрих 30′ — удлинён
+      var dg = ((v/60)%360+360)%360;
+      if (numsAtTop){
+        var yEnd = yTop + (isDeg ? h-6 : (is30 ? 40 : 33));
+        out += '<line x1="'+x+'" y1="'+(yTop+15)+'" x2="'+x+'" y2="'+yEnd+'" stroke="#000" stroke-width="'+(isDeg?2.2:1.2)+'"/>';
+        if (isDeg) out += '<text x="'+x+'" y="'+(yTop+12)+'" fill="#000" font-size="13" font-weight="bold" text-anchor="middle">'+dg+'</text>';
+      } else {
+        var yEnd2 = yTop + (isDeg ? 6 : (is30 ? 8 : 15));
+        out += '<line x1="'+x+'" y1="'+(yB-15)+'" x2="'+x+'" y2="'+yEnd2+'" stroke="#000" stroke-width="'+(isDeg?2.2:1.2)+'"/>';
+        if (isDeg) out += '<text x="'+x+'" y="'+(yB-2)+'" fill="#000" font-size="13" font-weight="bold" text-anchor="middle">'+dg+'</text>';
+      }
+    }
+    return out;
+  }
+  inner += band(58, 358.80, true);   // В (условное значение)
+  inner += band(122, r, false);      // Г
+  // неподвижный отсчётный штрих-индекс через оба окна
+  inner += '<line x1="150" y1="50" x2="150" y2="178" stroke="#000" stroke-width="2.4"/>';
+  return '<svg viewBox="0 0 300 240" width="100%">' +
+    '<defs><clipPath id="micClip30"><circle cx="150" cy="118" r="100"/></clipPath></defs>' +
+    '<circle cx="150" cy="118" r="106" fill="#1f2937"/>' +
+    '<g clip-path="url(#micClip30)">' + inner + '</g>' +
+    '<circle cx="150" cy="118" r="100" fill="none" stroke="#000" stroke-width="6"/>' +
+    '</svg>';
+}
+
+/* ---- треугольные индексы В и Г ---- */
+function triIndexes(topY, botY){
+  return '<polygon points="150,'+(topY+18)+' 137,'+topY+' 163,'+topY+'" fill="#fff" stroke="#000" stroke-width="1.4"/>' +
+         '<text x="150" y="'+(topY+13)+'" fill="#000" font-size="11" font-weight="bold" text-anchor="middle">В</text>' +
+         '<polygon points="150,'+(botY-18)+' 137,'+botY+' 163,'+botY+'" fill="#fff" stroke="#000" stroke-width="1.4"/>' +
+         '<text x="150" y="'+(botY-4)+'" fill="#000" font-size="11" font-weight="bold" text-anchor="middle">Г</text>';
+}
+
+/* ---- 2Т30 / 4Т30П: шкаловое отсчётное устройство (по образцу) ----
+   Одно светлое окно с толстой горизонтальной линией посередине.
+   Одна общая шкала (целиком в поле зрения): штрихи пересекают линию,
+   деления по 5′, десятки длиннее. Оцифровка концов: сверху 0 и 6,
+   под ними −6 и −0; на нижней шкале — 0 и 6.
+   Штрих круга В опускается сверху, штрихи круга Г поднимаются снизу. */
+function micro2T30(r){
+  var inner = '';
+  inner += '<rect x="0" y="0" width="300" height="240" fill="#101010"/>';
+  // светлое окно — целиком внутри поля зрения
+  inner += '<rect x="66" y="60" width="168" height="116" rx="3" fill="#e0e0e0" stroke="#666"/>';
+  var x0 = 82, w = 136, ppm = w/60;
+  var yc = 118; // толстая горизонтальная линия — посередине окна
+
+  // штрихи шкалы, пересекающие линию
+  for (var m=0; m<=60; m+=5){
+    var x = x0 + m*ppm, isTen = (m%10===0);
+    var len = isTen ? 13 : 8;
+    inner += '<line x1="'+x+'" y1="'+(yc-len)+'" x2="'+x+'" y2="'+(yc+len)+'" stroke="#1f2937" stroke-width="'+(isTen?1.5:0.8)+'"/>';
+  }
+  // толстая линия ПОВЕРХ штрихов
+  inner += '<line x1="66" y1="'+yc+'" x2="234" y2="'+yc+'" stroke="#111" stroke-width="4"/>';
+
+  // оцифровка концов шкалы (приподнята): сверху 0 / 6, ниже −6 / −0
+  inner += '<text x="'+(x0-4)+'" y="'+(yc-31)+'" fill="#1f2937" font-size="11" text-anchor="middle">0</text>' +
+           '<text x="'+(x0+w+4)+'" y="'+(yc-31)+'" fill="#1f2937" font-size="11" text-anchor="middle">6</text>' +
+           '<text x="'+(x0-4)+'" y="'+(yc-18)+'" fill="#1f2937" font-size="11" text-anchor="middle">−6</text>' +
+           '<text x="'+(x0+w+6)+'" y="'+(yc-18)+'" fill="#1f2937" font-size="11" text-anchor="middle">−0</text>';
+
+  // ===== штрих вертикального круга (В): опускается сверху до линии =====
+  // условно −5°15′: по шкале «−» отсчёт справа налево → позиция 60−15=45
+  var xv = x0 + 45*ppm;
+  inner += '<line x1="'+xv+'" y1="'+(yc-36)+'" x2="'+xv+'" y2="'+yc+'" stroke="#1f2937" stroke-width="2"/>';
+  inner += '<text x="'+xv+'" y="'+(yc-40)+'" fill="#1f2937" font-size="13" font-weight="bold" text-anchor="middle">−5</text>';
+
+  // ===== штрихи горизонтального круга (Г): поднимаются снизу до линии =====
+  var deg = Math.floor(r);
+  for (var k=-1;k<=1;k++){
+    var dg = ((deg+k)%360+360)%360;
+    var frac = (r - (deg+k))*60;
+    if (frac >= -1 && frac <= 62){
+      var xs = x0 + frac*ppm;
+      if (xs < 68 || xs > 232) continue;
+      inner += '<line x1="'+xs+'" y1="'+yc+'" x2="'+xs+'" y2="'+(yc+36)+'" stroke="#1f2937" stroke-width="2"/>';
+      inner += '<text x="'+xs+'" y="'+(yc+50)+'" fill="#1f2937" font-size="13" font-weight="bold" text-anchor="middle">'+dg+'</text>';
+    }
+  }
+  // подписи нижней шкалы: 0 слева, 6 справа
+  inner += '<text x="'+(x0-6)+'" y="'+(yc+34)+'" fill="#1f2937" font-size="11" text-anchor="middle">0</text>';
+  inner += '<text x="'+(x0+w+6)+'" y="'+(yc+34)+'" fill="#1f2937" font-size="11" text-anchor="middle">6</text>';
+
+  inner += triIndexes(38, 200);
+  return '<svg viewBox="0 0 300 240" width="100%">' +
+    '<defs><clipPath id="micClip2t"><circle cx="150" cy="118" r="100"/></clipPath></defs>' +
+    '<circle cx="150" cy="118" r="106" fill="#1f2937"/>' +
+    '<g clip-path="url(#micClip2t)">' + inner + '</g>' +
+    '<circle cx="150" cy="118" r="100" fill="none" stroke="#000" stroke-width="6"/>' +
+    '</svg>';
+}
+
+/* ---- Т5: шкаловый микроскоп (по образцу: две цветные полосы, шкала 0–6 c делениями по 1′) ---- */
+function microT5(r){
+  var inner = '';
+  inner += '<rect x="0" y="0" width="300" height="240" fill="#cfcfcf"/>';
+  var x0 = 56, w = 188;
+  // ===== верхняя (жёлтая) полоса — В, условно 1°21,4′ =====
+  inner += '<rect x="42" y="62" width="216" height="54" rx="2" fill="#efe9c4" stroke="#8a8a6a"/>';
+  var yscV = 92, vVal = 1 + 21.4/60;
+  inner += '<line x1="'+x0+'" y1="'+yscV+'" x2="'+(x0+w)+'" y2="'+yscV+'" stroke="#1f2937" stroke-width="1.2"/>';
+  for (var m=0; m<=60; m+=1){
+    var x = x0 + m*(w/60), isTen = (m%10===0);
+    var len = isTen ? 12 : 6;
+    inner += '<line x1="'+x+'" y1="'+(yscV-len)+'" x2="'+x+'" y2="'+yscV+'" stroke="#1f2937" stroke-width="'+(isTen?1.3:0.6)+'"/>';
+    if (isTen) inner += '<text x="'+x+'" y="'+(yscV+13)+'" fill="#1f2937" font-size="10" text-anchor="middle">'+(m/10)+'</text>';
+  }
+  var xv = x0 + ((vVal - Math.floor(vVal))*60)*(w/60);
+  inner += '<line x1="'+xv+'" y1="'+(yscV-20)+'" x2="'+xv+'" y2="'+(yscV+8)+'" stroke="#cc2222" stroke-width="1.1"/>';
+  inner += '<text x="'+(x0+58)+'" y="76" fill="#1f2937" font-size="12" font-weight="bold">1</text>' +
+           '<text x="'+(x0+w-4)+'" y="76" fill="#1f2937" font-size="12" font-weight="bold">2</text>';
+  // ===== нижняя (голубая) полоса — Г =====
+  inner += '<rect x="42" y="122" width="216" height="54" rx="2" fill="#d9edf5" stroke="#6a8a9a"/>';
+  var yscG = 140;
+  inner += '<line x1="'+x0+'" y1="'+yscG+'" x2="'+(x0+w)+'" y2="'+yscG+'" stroke="#1f2937" stroke-width="1.2"/>';
+  for (var m2=0; m2<=60; m2+=1){
+    var x2 = x0 + m2*(w/60), isTen2 = (m2%10===0);
+    var len2 = isTen2 ? 12 : 6;
+    inner += '<line x1="'+x2+'" y1="'+yscG+'" x2="'+x2+'" y2="'+(yscG+len2)+'" stroke="#1f2937" stroke-width="'+(isTen2?1.3:0.6)+'"/>';
+    if (isTen2) inner += '<text x="'+x2+'" y="'+(yscG-4)+'" fill="#1f2937" font-size="10" text-anchor="middle">'+(m2/10)+'</text>';
+  }
+  // градусные штрихи лимба Г (красные), подписи снизу
+  var deg = Math.floor(r);
+  for (var k=-1;k<=1;k++){
+    var dg = ((deg+k)%360+360)%360;
+    var frac = (r - (deg+k))*60;
+    if (frac >= -1 && frac <= 61){
+      var xs = x0 + frac*(w/60);
+      inner += '<line x1="'+xs+'" y1="'+(yscG-16)+'" x2="'+xs+'" y2="'+(yscG+20)+'" stroke="#cc2222" stroke-width="1.1"/>';
+      var anc = (xs > x0+w-14) ? 'end' : ((xs < x0+14) ? 'start' : 'middle');
+      inner += '<text x="'+xs+'" y="'+(yscG+33)+'" fill="#1f2937" font-size="12" font-weight="bold" text-anchor="'+anc+'">'+dg+'</text>';
+    }
+  }
+  inner += triIndexes(38, 202);
+  return '<svg viewBox="0 0 300 240" width="100%">' +
+    '<defs><clipPath id="micClip5"><circle cx="150" cy="118" r="100"/></clipPath></defs>' +
+    '<circle cx="150" cy="118" r="106" fill="#4b5563"/>' +
+    '<g clip-path="url(#micClip5)">' + inner + '</g>' +
+    '<circle cx="150" cy="118" r="100" fill="none" stroke="#1f2937" stroke-width="6"/>' +
+    '</svg>';
+}
+
+function pendingErr(){
+  if (!S.pending) return 0;
+  var idx = (S.mode==='KL' ? 0 : 2) + (S.pending==='C' ? 1 : 0);
+  return readErr(idx);
+}
+function renderMicro(){
+  var host = document.getElementById('micro');
+  var instr = INSTR[S.instr];
+  var raw = norm360(readingOf(S.telAz) + pendingErr());
+  var r = instr.round(raw);
+  if (S.instr==='t30') host.innerHTML = microT30(r);
+  else if (S.instr==='t2t30') host.innerHTML = micro2T30(r);
+  else host.innerHTML = microT5(r);
+  var modeTxt = S.mode==='KL' ? 'КЛ' : 'КП';
+  // цифровой отсчёт показывается только после нажатия «Записать в журнал»
+  if (S.lastRec !== null){
+    document.getElementById('microDigital').innerHTML =
+      instr.fmt(S.lastRec.val) + '<small>' + instr.name + ' · ' + S.lastRec.label + ' — записано в журнал</small>';
+  } else {
+    document.getElementById('microDigital').innerHTML =
+      '—<small>' + instr.name + ' · ' + instr.dev + ' · ' + modeTxt + ' · возьмите отсчёт самостоятельно и нажмите «Записать в журнал»</small>';
+  }
+}
+
+/* ================= общий рендер ================= */
+function renderAll(){
+  renderScene();
+  renderLimbScheme();
+  renderFOV();
+  renderMicro();
+}
+function updateModeUI(){
+  var badge = document.getElementById('modeBadge');
+  if (S.mode==='KL'){ badge.textContent = 'КЛ — положение круг лево'; badge.classList.remove('kp'); }
+  else { badge.textContent = 'КП — положение круг право'; badge.classList.add('kp'); }
+  document.getElementById('btnA').textContent = (S.mode==='KL'?'2. КЛ':'5. КП') + ': навести на A (правая)';
+  document.getElementById('btnC').textContent = (S.mode==='KL'?'3. КЛ':'6. КП') + ': навести на C (левая)';
+  document.getElementById('btnKP').disabled = !(S.mode==='KL' && S.b1!==null);
+}
+
+/* ================= приведение в рабочее положение ================= */
+document.getElementById('btnSetup').onclick = function(){
+  if (S.animating || S.ready) return;
+  S.animating = true;
+  setStatus('Центрирование по отвесу и горизонтирование по уровню…');
+  var dx0 = S.dx, tilt0 = S.tilt;
+  var newLimb = Math.floor(Math.random()*360);
+  var limb0 = S.limb, spin = 720 + norm360(newLimb - limb0);
+  var dur1 = 1500, dur2 = 1100, t0 = null;
+  function frame(ts){
+    if (!t0) t0 = ts;
+    var el = ts - t0;
+    if (el <= dur1){
+      var p = el/dur1, e = 0.5-0.5*Math.cos(Math.PI*p);
+      S.dx = dx0*(1-e);
+      S.tilt = tilt0*(1-e);
+      renderAll();
+      requestAnimationFrame(frame);
+    } else if (el <= dur1+dur2){
+      S.dx = 0; S.tilt = 0;
+      var p2 = (el-dur1)/dur2, e2 = 0.5-0.5*Math.cos(Math.PI*p2);
+      S.limb = norm360(limb0 + spin*e2);
+      renderAll();
+      requestAnimationFrame(frame);
+    } else {
+      S.dx = 0; S.tilt = 0; S.limb = newLimb;
+      S.animating = false; S.ready = true;
+      newErrPlan();
+      document.getElementById('btnSetup').disabled = true;
+      setStatus('Прибор в рабочем положении: отвес над колышком, площадка горизонтальна. Лимб занял случайное положение. Первый полуприём (КЛ): наводитесь на правую цель A.');
+      renderAll();
+    }
+  }
+  requestAnimationFrame(frame);
+};
+
+/* ================= наведение ================= */
+function aim(which){
+  if (S.animating) return;
+  if (!S.ready){ setStatus('Сначала приведите прибор в рабочее положение (пункт 1)!'); return; }
+  if (which==='C'){
+    if (S.mode==='KL' && S.r.a1===null){ setStatus('В полуприёме КЛ сначала возьмите отсчёт на правую цель A!'); return; }
+    if (S.mode==='KP' && S.r.a2===null){ setStatus('В полуприёме КП сначала возьмите отсчёт на правую цель A!'); return; }
+  }
+  var target = which==='C' ? S.C : S.A;
+  var targetScr = angleToScreen(target);
+  var targetAz = azOf(target);
+  S.animating = true; S.animTarget = which;
+  var modeTxt = S.mode==='KL' ? 'КЛ' : 'КП';
+  setStatus(modeTxt + ': вращаем алидаду — наведение на цель ' + which + '…');
+  var s0 = S.telAngle, a0 = S.telAz;
+  var dScr = targetScr - s0;
+  var dAz = angDiff(targetAz, a0);
+  var dur = Math.max(700, Math.abs(dAz)*14);
+  var t0 = null;
+  function frame(ts){
+    if (!t0) t0 = ts;
+    var p = Math.min(1, (ts-t0)/dur);
+    var e = 0.5 - 0.5*Math.cos(Math.PI*p);
+    S.telAngle = s0 + dScr*e;
+    S.telAz = norm360(a0 + dAz*e);
+    renderAll();
+    if (p < 1) requestAnimationFrame(frame);
+    else {
+      S.telAngle = targetScr; S.telAz = targetAz;
+      S.animating = false; S.aimed = which;
+      S.pending = which; S.lastRec = null;
+      var mt = S.mode==='KL' ? 'КЛ' : 'КП';
+      setStatus(mt + ': труба наведена на цель ' + which + '. Возьмите отсчёт по микроскопу и нажмите «Записать в журнал».');
+      renderAll();
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---- генерация погрешностей отсчётов ----
+   В 3 случаях из 4 все погрешности в допуске (малые, случайные).
+   В 1 случае из 4 в один из четырёх отсчётов закладывается промах
+   до 10° — тогда контроль не сойдётся и среднее вычислить нельзя. */
+function newErrPlan(){
+  var plan = { small: [], blunderAt: -1, blunder: 0 };
+  var tol = INSTR[S.instr].tol; // 2t, град
+  // случайные ошибки первых двух отсчётов (a1, c1)
+  var e0 = (Math.random()-0.5)*0.6*tol;
+  var e1 = (Math.random()-0.5)*0.6*tol;
+  // целевое расхождение полуприёмов: равномерно из [-2t; +2t],
+  // чтобы попадались невязки и 0, и 1, и 2 минуты
+  var D = (Math.random()*2 - 1) * tol;
+  // подбираем ошибки a2, c2 так, чтобы (e0-e1)-(e2-e3) = D
+  var e2 = (Math.random()-0.5)*0.6*tol;
+  var e3 = e2 - (e0 - e1) + D;
+  plan.small = [e0, e1, e2, e3];
+  if (Math.random() < 0.25){
+    plan.blunderAt = Math.floor(Math.random()*4);
+    var sign = Math.random()<0.5 ? -1 : 1;
+    plan.blunder = sign * (1 + Math.random()*9); // 1–10°
+  }
+  return (S.errPlan = plan);
+}
+function readErr(idx){
+  if (!S.errPlan) newErrPlan();
+  var e = S.errPlan.small[idx];
+  if (S.errPlan.blunderAt === idx) e += S.errPlan.blunder;
+  return e;
+}
+
+/* ---- запись отсчёта в журнал (по кнопке) ---- */
+function recordReading(){
+  if (!S.ready){ setStatus('Сначала приведите прибор в рабочее положение!'); return; }
+  if (!S.pending){ setStatus('Нечего записывать: сначала наведите трубу на цель.'); return; }
+  var which = S.pending;
+  var instr = INSTR[S.instr];
+  var idx = (S.mode==='KL' ? 0 : 2) + (which==='C' ? 1 : 0); // a1,c1,a2,c2
+  var val = norm360(instr.round(readingOf(azOf(which==='C'?S.C:S.A)) + readErr(idx)));
+  if (S.mode==='KL'){
+    if (which==='A'){
+      S.r.a1 = val; S.r.c1 = null; S.b1 = null; S.meanDone = false;
+      jSet('jA1', val, instr); jClear(['jC1','jB1','jM']);
+      setStatus('КЛ: a₁ = ' + instr.fmt(val) + ' записан в журнал. Наводитесь на левую цель C.');
+    } else {
+      S.r.c1 = val;
+      jSet('jC1', val, instr);
+      setStatus('КЛ: c₁ = ' + instr.fmt(val) + ' записан. Нажмите «Вычислить» — получите угол полуприёма β′.');
+    }
+  } else {
+    if (which==='A'){
+      S.r.a2 = val; S.r.c2 = null; S.b2 = null; S.meanDone = false;
+      jSet('jA2', val, instr); jClear(['jC2','jB2','jM']);
+      setStatus('КП: a₂ = ' + instr.fmt(val) + ' записан в журнал. Наводитесь на левую цель C.');
+    } else {
+      S.r.c2 = val;
+      jSet('jC2', val, instr);
+      setStatus('КП: c₂ = ' + instr.fmt(val) + ' записан. Нажмите «Вычислить» — получите β″, а затем среднее.');
+    }
+  }
+  var lbl = (S.mode==='KL'?'КЛ':'КП') + ', цель ' + which;
+  S.lastRec = { val: val, label: lbl };
+  S.pending = null;
+  updateModeUI();
+  renderMicro();
+}
+
+/* ---- вычисления (по кнопке): β′ → β″ → среднее ---- */
+function calcNext(){
+  var instr = INSTR[S.instr];
+  if (S.r.a1!==null && S.r.c1!==null && S.b1===null){
+    S.b1 = norm360(S.r.a1 - S.r.c1);
+    jSet('jB1', S.b1, instr);
+    setStatus('Вычислено: β′ = a₁ − c₁ = ' + instr.fmt(S.b1) + '. Переведите трубу через зенит (кнопка 4).');
+    updateModeUI();
+    return;
+  }
+  if (S.r.a2!==null && S.r.c2!==null && S.b2===null){
+    S.b2 = norm360(S.r.a2 - S.r.c2);
+    jSet('jB2', S.b2, instr);
+    setStatus('Вычислено: β″ = a₂ − c₂ = ' + instr.fmt(S.b2) + '. Нажмите «Вычислить» ещё раз — контроль и среднее.');
+    return;
+  }
+  if (S.b1!==null && S.b2!==null && !S.meanDone){
+    finishSet();
+    S.meanDone = true;
+    return;
+  }
+  setStatus('Пока нечего вычислять: запишите недостающие отсчёты в журнал.');
+}
+
+/* ---- запись в журнал: разделение на графы ° и ′ ---- */
+function jSplit(val, instr, mean){
+  var d, m;
+  if (S.instr === 't5'){
+    var tot = Math.round(val*600)/600;
+    d = Math.floor(tot);
+    m = ((tot-d)*60).toFixed(1).replace('.',',');
+  } else if (mean){
+    // среднее у серии Т30 — до 0,1' (…,0 или …,5)
+    var tot2 = Math.round(val*120)/120;
+    d = Math.floor(tot2);
+    m = ((tot2-d)*60).toFixed(1).replace('.',',');
+  } else {
+    var tot3 = Math.round(val*60)/60;
+    d = Math.floor(tot3);
+    m = Math.round((tot3-d)*60);
+    if (m===60){ m=0; d=(d+1)%360; }
+  }
+  return {d:d, m:m};
+}
+function jSet(prefix, val, instr, mean){
+  var p = jSplit(val, instr, mean);
+  var td = document.getElementById(prefix+'d'), tm = document.getElementById(prefix+'m');
+  td.textContent = p.d; tm.textContent = p.m;
+  td.classList.remove('jnew'); tm.classList.remove('jnew');
+  void td.offsetWidth; // перезапуск анимации
+  td.classList.add('jnew'); tm.classList.add('jnew');
+}
+function jClear(prefixes){
+  prefixes.forEach(function(pr){
+    document.getElementById(pr+'d').textContent='';
+    document.getElementById(pr+'m').textContent='';
+  });
+  if (prefixes.indexOf('jM')>=0) document.getElementById('jControl').textContent='';
+}
+
+function finishSet(){
+  var instr = INSTR[S.instr];
+  var diff = Math.abs(angDiff(S.b1, S.b2));
+  // среднее из двух полуприёмов — до десятых долей минуты (…,0 или …,5)
+  var mean = norm360(S.b1 + angDiff(S.b2, S.b1)/2);
+  var ok = diff <= instr.tol + 1e-9;
+  var diffTxt = diff >= 1
+    ? (Math.round(diff*10)/10).toFixed(1).replace('.',',') + '°'
+    : (Math.round(diff*600)/10).toFixed(1).replace('.',',') + '′';
+  if (ok){
+    jSet('jM', mean, instr, true);
+    document.getElementById('jControl').innerHTML =
+      '<span style="color:#4ade80;">✓ Контроль: расхождение β′ и β″ = ' + diffTxt + ' ≤ 2t = ' + instr.tolTxt + '. В журнал записано среднее.</span>';
+    setStatus('Приём завершён! β′ = ' + instr.fmt(S.b1) + ', β″ = ' + instr.fmt(S.b2) + '; расхождение ' + diffTxt + ' в допуске. Среднее β = ' + instr.fmtMean(mean) + ' занесено в журнал.');
+  } else {
+    document.getElementById('jControl').innerHTML =
+      '<span style="color:#f87171;">✗ Расхождение β′ и β″ = ' + diffTxt + ' &gt; 2t = ' + instr.tolTxt + ' — в одном из отсчётов промах, среднее вычислить невозможно. Приём бракуется и начинается заново.</span>';
+    setStatus('Расхождение ' + diffTxt + ' превышает допуск 2t = ' + instr.tolTxt + '! Журнал очищен — повторите приём с первого измерения (КЛ: наведение на A). Прибор в рабочем положении.');
+    // возврат к первому измерению: прибор остаётся установленным
+    setTimeout(function(){
+      S.r = {c1:null,a1:null,c2:null,a2:null};
+      S.b1 = null; S.b2 = null; S.aimed = null;
+      S.pending = null; S.meanDone = false; S.lastRec = null;
+      newErrPlan();
+      jClear(['jA1','jC1','jB1','jA2','jC2','jB2','jM']);
+      S.mode = 'KL';
+      updateModeUI();
+      renderAll();
+    }, 2600);
+  }
+}
+
+document.getElementById('btnC').onclick = function(){ aim('C'); };
+document.getElementById('btnA').onclick = function(){ aim('A'); };
+document.getElementById('btnRecord').onclick = function(){ if (!S.animating) recordReading(); };
+document.getElementById('btnCalc').onclick = function(){ if (!S.animating) calcNext(); };
+
+/* ================= переход к КП ================= */
+document.getElementById('btnKP').onclick = function(){
+  if (S.animating || S.mode!=='KL' || S.b1===null) return;
+  S.animating = true;
+  setStatus('Переводим трубу через зенит и сбиваем лимб на 1–2°…');
+  var s0 = S.telAngle;
+  var shift = 1 + Math.random();                       // 1–2°
+  var limb0 = S.limb, limb1 = norm360(limb0 + shift);
+  var dur = 1200, t0 = null;
+  function frame(ts){
+    if (!t0) t0 = ts;
+    var p = Math.min(1,(ts-t0)/dur);
+    var e = 0.5-0.5*Math.cos(Math.PI*p);
+    S.telAngle = s0 + 180*e;                           // через зенит
+    S.limb = norm360(limb0 + shift*e);
+    renderAll();
+    if (p<1) requestAnimationFrame(frame);
+    else {
+      S.mode = 'KP';
+      S.telAngle = s0 + 180; S.telAz = norm360(S.telAz + 180);
+      S.limb = limb1;
+      S.aimed = null; S.pending = null; S.animating = false;
+      updateModeUI();
+      setStatus('Положение круг право (КП), лимб сбит на ' + shift.toFixed(1).replace('.',',') + '°. Второй полуприём: наводитесь на правую цель A.');
+      renderAll();
+    }
+  }
+  requestAnimationFrame(frame);
+};
+
+/* ================= сброс ================= */
+function clearReadings(msg){
+  S.r = {c1:null,a1:null,c2:null,a2:null};
+  S.b1 = null; S.b2 = null; S.aimed = null;
+  S.pending = null; S.meanDone = false; S.lastRec = null;
+  newErrPlan();
+  jClear(['jA1','jC1','jB1','jA2','jC2','jB2','jM']);
+  if (msg) setStatus(msg);
+  updateModeUI();
+}
+document.getElementById('btnReset').onclick = function(){
+  if (S.animating) return;
+  S.dx = -52; S.tilt = 7; S.ready = false;
+  S.mode = 'KL'; S.telAngle = 0; S.telAz = 0;
+  document.getElementById('btnSetup').disabled = false;
+  clearReadings('Сброшено: прибор снова в стороне от колышка, площадка наклонена. Начните с пункта 1.');
+  renderAll();
+};
+
+/* ================= выбор теодолита ================= */
+var row = document.getElementById('instrRow');
+row.addEventListener('click', function(e){
+  var btn = e.target.closest('.instr-btn');
+  if (!btn || S.animating) return;
+  var all = row.querySelectorAll('.instr-btn');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('active');
+  btn.classList.add('active');
+  S.instr = btn.getAttribute('data-id');
+  S.mode = 'KL';
+  clearReadings('Выбран теодолит ' + INSTR[S.instr].name + ' (' + INSTR[S.instr].dev + ', допуск 2t = ' + INSTR[S.instr].tolTxt + '). Начните приём заново.');
+  renderAll();
+});
+
+/* ================= старт ================= */
+renderSection1Ticks();
+updateModeUI();
+renderAll();
+})();
+</script>
+<div class="gl-footer"><div><b>ГеоЛиния</b><span>Образовательный проект о геодезии и науках о Земле</span></div><div><span>Контакты</span><b>Здесь укажите ФИО</b><a href="mailto:email@example.ru">email@example.ru</a></div><div>© 2026 · GeoLine</div></div></body>
+</html>

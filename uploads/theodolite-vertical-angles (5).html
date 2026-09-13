@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Измерение вертикальных углов теодолитом</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#233450;
+    --accent:#38bdf8; --accent2:#fbbf24; --green:#4ade80; --red:#f87171;
+    --pink:#e879f9;
+    --text:#e2e8f0; --muted:#94a3b8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:var(--bg); color:var(--text);
+    padding:24px; line-height:1.55;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-size:26px; margin-bottom:6px; color:#fff;}
+  h1 span{color:var(--accent);}
+  .sub{color:var(--muted); margin-bottom:22px; font-size:15px;}
+  h2{font-size:19px; margin:26px 0 12px; color:var(--accent); border-left:4px solid var(--accent); padding-left:10px;}
+  .grid{display:grid; grid-template-columns:1.35fr 1fr; gap:18px; align-items:start;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr;}}
+  .panel{background:var(--panel); border-radius:14px; padding:16px; border:1px solid #33415588;}
+  .panel h3{font-size:15px; color:var(--accent2); margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px;}
+  svg{width:100%; height:auto; display:block;}
+  .controls{display:flex; flex-direction:column; gap:14px;}
+  .ctrl label{display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px; color:var(--muted);}
+  .ctrl label b{color:var(--text); font-variant-numeric:tabular-nums;}
+  input[type=range]{width:100%; accent-color:var(--accent); cursor:pointer;}
+  select{
+    width:100%; padding:9px 10px; border-radius:10px; border:1px solid #475569;
+    background:var(--panel2); color:var(--text); font-size:14px; cursor:pointer;
+  }
+  .typeDesc{font-size:12.5px; color:var(--muted); margin-top:6px;}
+  .manual{display:flex; align-items:center; gap:6px; margin-top:6px; font-size:14px; color:var(--muted);}
+  .manual input[type=number], .manual select{
+    background:var(--panel2); border:1px solid #475569; color:var(--text);
+    border-radius:8px; padding:5px 6px; font-size:14px; width:66px;
+  }
+  .manual select{width:54px; cursor:pointer;}
+  .btns{display:flex; gap:8px;}
+  .btn{
+    flex:1; padding:10px 6px; border:none; border-radius:10px; cursor:pointer;
+    font-size:15px; font-weight:600; background:var(--panel2); color:var(--muted);
+    transition:.15s;
+  }
+  .btn.active-kl{background:var(--green); color:#052e16;}
+  .btn.active-kp{background:var(--red); color:#450a0a;}
+  .readout{
+    background:var(--panel2); border-radius:10px; padding:12px 14px;
+    font-size:15px; display:flex; flex-direction:column; gap:6px;
+  }
+  .readout .row{display:flex; justify-content:space-between; gap:10px;}
+  .readout .row b{font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .kl{color:var(--green);} .kp{color:var(--red);} .nu{color:var(--accent2);} .mo{color:var(--accent);}
+  .zz{color:#c4b5fd;}
+  .hint{font-size:12.5px; color:var(--muted); border-top:1px dashed #475569; padding-top:6px; margin-top:2px;}
+  .formula{
+    background:var(--panel2); border-radius:10px; padding:12px 14px; margin-top:10px;
+    font-size:15px; text-align:center; font-family:Georgia, 'Times New Roman', serif;
+  }
+  .formula .big{font-size:17px;}
+  .formula .small{color:var(--muted); font-size:13px; margin-top:6px;}
+  .steps{counter-reset:s; display:flex; flex-direction:column; gap:10px;}
+  .step{
+    background:var(--panel); border:1px solid #33415588; border-radius:12px;
+    padding:12px 14px 12px 52px; position:relative; font-size:15px;
+  }
+  .step::before{
+    counter-increment:s; content:counter(s);
+    position:absolute; left:12px; top:12px;
+    width:28px; height:28px; border-radius:50%;
+    background:var(--accent); color:#082f49; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  table{width:100%; border-collapse:collapse; font-size:14px; margin-top:8px;}
+  th,td{border:1px solid #334155; padding:8px 10px; text-align:center;}
+  th{background:var(--panel2); color:var(--accent);}
+  td.l{text-align:left;}
+  .note{
+    margin-top:16px; background:#422006aa; border:1px solid #a16207;
+    border-radius:12px; padding:12px 14px; font-size:14px;
+  }
+  .note b{color:var(--accent2);}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--muted); margin-top:8px;}
+  .legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:5px; vertical-align:middle;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📐 Принцип измерения <span>вертикальных углов</span> теодолитом</h1>
+  <p class="sub">Интерактивная схема: наклоняйте зрительную трубу, переключайте круг «лево / право», выбирайте тип оцифровки лимба и наблюдайте, как из отсчётов КЛ и КП получается угол наклона ν и место нуля МО.</p>
+
+  <h2>1. Суть принципа</h2>
+  <div class="panel">
+    <p>Вертикальный угол (угол наклона <b class="nu">ν</b>) — это угол в вертикальной плоскости между <b>горизонтальной линией визирования</b> и направлением на наблюдаемую точку. Он измеряется с помощью <b>вертикального круга</b> теодолита — стеклянного лимба с градусными делениями, жёстко закреплённого на оси зрительной трубы и вращающегося <i>вместе с ней</i>. Отсчётный индекс при этом остаётся неподвижным (его положение контролируется цилиндрическим уровнем или компенсатором). Поэтому при наклоне трубы отсчёт по вертикальному кругу изменяется ровно на величину угла наклона.</p>
+    <p style="margin-top:8px;">Угол <b class="nu">ν</b> считается <b style="color:var(--green)">положительным</b>, если цель выше горизонта (угол возвышения), и <b style="color:var(--red)">отрицательным</b>, если ниже (угол понижения). У приборов с нулём в зените непосредственно измеряется <b class="zz">зенитное расстояние z</b>, а угол наклона получают как ν = 90° − z.</p>
+  </div>
+
+  <h2>2. Интерактивная модель</h2>
+  <div class="grid">
+    <div class="panel">
+      <h3>Схема визирования и вертикальный круг</h3>
+      <svg viewBox="0 0 620 438" id="scene">
+        <!-- ground -->
+        <rect x="0" y="360" width="620" height="78" fill="#14532d"/>
+        <line x1="0" y1="360" x2="620" y2="360" stroke="#22c55e" stroke-width="2"/>
+        <!-- tripod -->
+        <g stroke="#64748b" stroke-width="5" stroke-linecap="round">
+          <line x1="150" y1="245" x2="115" y2="360"/>
+          <line x1="150" y1="245" x2="185" y2="360"/>
+          <line x1="150" y1="245" x2="150" y2="360"/>
+        </g>
+        <rect x="128" y="232" width="44" height="14" rx="4" fill="#475569"/>
+        <!-- theodolite body -->
+        <rect x="136" y="196" width="28" height="38" rx="5" fill="#0ea5e9" opacity="0.85"/>
+        <!-- horizon line -->
+        <line x1="150" y1="200" x2="600" y2="200" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 6"/>
+        <text id="horizonTxt" x="598" y="192" fill="#94a3b8" font-size="12" text-anchor="end">горизонт (ν = 0°)</text>
+        <!-- zenith line (for zenith-zero digitization) -->
+        <g id="zenithGroup" style="display:none;">
+          <line x1="150" y1="200" x2="150" y2="28" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 6"/>
+          <text x="158" y="38" fill="#94a3b8" font-size="12">зенит (z = 0)</text>
+        </g>
+        <!-- actual zero-reading direction -->
+        <g id="zeroGroup">
+          <line id="zeroLine" x1="150" y1="200" x2="410" y2="200" stroke="#e879f9" stroke-width="2" stroke-dasharray="4 4"/>
+          <circle id="zeroDot" cx="410" cy="200" r="4" fill="#e879f9"/>
+          <text id="zeroTxt" x="415" y="215" fill="#e879f9" font-size="12">отсчёт 0</text>
+          <text id="zeroTxt2" x="415" y="230" fill="#e879f9" font-size="11" opacity="0.8"></text>
+        </g>
+        <!-- line of sight -->
+        <line id="sight" x1="150" y1="200" x2="600" y2="200" stroke="#fbbf24" stroke-width="2.5"/>
+        <!-- angle arc -->
+        <path id="arc" d="" fill="none" stroke="#fbbf24" stroke-width="2"/>
+        <text id="arcLabel" x="290" y="190" fill="#fbbf24" font-size="16" font-weight="bold">ν</text>
+        <!-- theodolite standards (columns supporting the trunnion axis) -->
+        <rect x="133" y="200" width="7" height="34" rx="2" fill="#0284c7"/>
+        <rect x="160" y="200" width="7" height="34" rx="2" fill="#0284c7"/>
+        <!-- telescope with vertical circle (limb rotates together with the tube) -->
+        <g id="telescope">
+          <!-- vertical circle limb on the trunnion axis -->
+          <circle cx="150" cy="200" r="19" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+          <g stroke="#7dd3fc" stroke-width="1.2">
+            <line x1="150" y1="183" x2="150" y2="188"/>
+            <line x1="150" y1="212" x2="150" y2="217"/>
+            <line x1="133" y1="200" x2="138" y2="200"/>
+            <line x1="162" y1="200" x2="167" y2="200"/>
+            <line x1="138" y1="188" x2="141.5" y2="191.5"/>
+            <line x1="162" y1="188" x2="158.5" y2="191.5"/>
+            <line x1="138" y1="212" x2="141.5" y2="208.5"/>
+            <line x1="162" y1="212" x2="158.5" y2="208.5"/>
+          </g>
+          <!-- zero-diameter mark of the limb -->
+          <circle cx="164.5" cy="200" r="2" fill="#e879f9"/>
+          <!-- telescope tube -->
+          <rect x="112" y="192.5" width="76" height="15" rx="5" fill="#e2e8f0"/>
+          <rect x="182" y="189.5" width="10" height="21" rx="3" fill="#cbd5e1"/>
+          <rect x="108" y="194.5" width="6" height="11" rx="2" fill="#94a3b8"/>
+          <!-- trunnion axis -->
+          <circle cx="150" cy="200" r="5" fill="#0f172a" stroke="#e2e8f0" stroke-width="2"/>
+        </g>
+        <!-- fixed reading index of the vertical circle (does not rotate) -->
+        <polygon points="150,178 146,170 154,170" fill="#38bdf8"/>
+        <text x="98" y="168" fill="#38bdf8" font-size="11">индекс</text>
+        <text x="60" y="207" fill="#38bdf8" font-size="11" text-anchor="end">верт. круг</text>
+        <line x1="63" y1="203" x2="128" y2="201" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3 3"/>
+        <!-- target -->
+        <g id="target">
+          <line id="pole" x1="560" y1="360" x2="560" y2="120" stroke="#dc2626" stroke-width="5"/>
+          <circle id="targetPt" cx="560" cy="120" r="9" fill="#facc15" stroke="#dc2626" stroke-width="3"/>
+          <text id="targetTxt" x="576" y="124" fill="#facc15" font-size="13">цель</text>
+        </g>
+        <!-- vertical circle (schematic dial): limb is fixed, index moves with the tube -->
+        <g transform="translate(320,305)">
+          <circle r="72" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+          <g id="dial"></g>
+          <!-- moving reading index (rotates with the telescope) -->
+          <g id="indexPtr">
+            <line x1="0" y1="0" x2="56" y2="0" stroke="#38bdf8" stroke-width="2.5"/>
+            <polygon points="69,0 55,-6 55,6" fill="#38bdf8"/>
+          </g>
+          <circle r="6" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+          <text x="0" y="-92" fill="#38bdf8" font-size="12" text-anchor="middle">отсчётный индекс движется с трубой</text>
+          <text id="dialReading" x="0" y="102" fill="#e2e8f0" font-size="15" font-weight="bold" text-anchor="middle">отсчёт</text>
+        </g>
+        <text x="320" y="248" fill="#94a3b8" font-size="12" text-anchor="middle">вертикальный круг: лимб закреплён по типу оцифровки (поворачивается только при МО)</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#fbbf24"></i>визирная ось</span>
+        <span><i style="background:#94a3b8"></i>нулевое направление (идеальное)</span>
+        <span><i style="background:#e879f9"></i>фактическое направление отсчёта 0 (при КЛ)</span>
+        <span><i style="background:#38bdf8"></i>отсчётный индекс</span>
+      </div>
+      <p style="font-size:12.5px; color:var(--muted); margin-top:6px;">⚠️ Наклон розового луча «отсчёт 0» и поворот лимба от МО показаны с увеличением в 60 раз — иначе место нуля в несколько минут дуги было бы неразличимо на схеме.</p>
+      <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">ℹ️ Большой круг показан «в системе лимба»: шкала закреплена согласно выбранной оцифровке (0 — в горизонте или в зените), по ней движется отсчётный индекс, связанный с трубой. При наличии МО (МЗ) весь лимб повёрнут на эту величину — видно, что нулевой штрих (розовый) не совпадает с идеальным нулевым направлением. При переходе на КП оцифровка разворачивается зеркально: наблюдатель видит круг с другой стороны.</p>
+
+      <h3 style="margin-top:18px;">Поле зрения отсчётного микроскопа</h3>
+      <svg viewBox="0 0 620 336" id="microSvg">
+        <defs>
+          <clipPath id="microClip"><ellipse cx="310" cy="150" rx="200" ry="156"/></clipPath>
+        </defs>
+        <ellipse cx="310" cy="150" rx="206" ry="162" fill="#0b1220" stroke="#475569" stroke-width="4"/>
+        <ellipse cx="310" cy="150" rx="200" ry="156" fill="#f1f5f9"/>
+        <g id="microG" clip-path="url(#microClip)"></g>
+        <text id="microCaption" x="310" y="328" text-anchor="middle" font-size="14" fill="#e2e8f0" font-weight="bold"></text>
+      </svg>
+      <p id="microDesc" style="font-size:12.5px; color:var(--muted); margin-top:4px;"></p>
+    </div>
+
+    <div class="panel controls">
+      <h3>Управление</h3>
+      <div class="ctrl">
+        <label for="typeSelect" style="margin-bottom:6px;">Тип оцифровки вертикального круга</label>
+        <select id="typeSelect">
+          <option value="circ">Круговая 0–360° (Т30)</option>
+          <option value="symH" selected>Симметричная, 0 в горизонте (2Т30)</option>
+          <option value="symZ">Симметричная, 0 в зените</option>
+          <option value="quadH">Четвертная 0–90°, нули в горизонте</option>
+          <option value="quadZ">Четвертная 0–90°, нули в зените</option>
+        </select>
+        <div class="typeDesc" id="typeDesc"></div>
+      </div>
+      <div class="ctrl">
+        <label>Угол наклона на цель ν <b id="nuVal">+15° 00′</b></label>
+        <input type="range" id="nuSlider" min="-1500" max="2400" step="1" value="900">
+        <div class="manual">
+          <select id="nuSign"><option value="1">+</option><option value="-1">−</option></select>
+          <input type="number" id="nuDeg" min="0" max="40" step="1" value="15">°
+          <input type="number" id="nuMin" min="0" max="59" step="1" value="0">′
+        </div>
+      </div>
+      <div class="ctrl">
+        <label><span id="moName">Место нуля МО (погрешность)</span> <b id="moVal">0′</b></label>
+        <input type="range" id="moSlider" min="-10" max="10" step="1" value="0">
+        <div class="manual">
+          <select id="moSign"><option value="1">+</option><option value="-1">−</option></select>
+          <input type="number" id="moMinIn" min="0" max="10" step="1" value="0">′
+        </div>
+      </div>
+      <div class="btns">
+        <button class="btn active-kl" id="btnKL">Круг лево (КЛ)</button>
+        <button class="btn" id="btnKP">Круг право (КП)</button>
+      </div>
+      <div class="readout" id="readout"></div>
+      <div class="formula" id="formulaBox"></div>
+      <p style="font-size:13px; color:var(--muted);">💡 Как бы вы ни меняли МО и тип оцифровки, полусумма/полуразность отсчётов при двух кругах всегда «расщепляет» результат на приборную погрешность (МО или МЗ) и чистый угол. В этом и состоит смысл измерения при КЛ и КП.</p>
+    </div>
+  </div>
+
+  <h2>3. Типы оцифровки лимба и рабочие формулы</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Оцифровка</th><th>Пример прибора</th><th>Место нуля / зенита</th><th>Угол наклона</th></tr>
+      <tr><td class="l">Круговая 0–360°</td><td>Т30</td><td>МО = (КЛ + КП + 180°) / 2 *</td><td>ν = КЛ − МО = (КЛ − КП − 180°) / 2 *</td></tr>
+      <tr><td class="l">Симметричная (±), 0 в горизонте</td><td>2Т30, 2Т5К</td><td>МО = (КЛ + КП) / 2</td><td>ν = (КЛ − КП) / 2 = КЛ − МО = МО − КП</td></tr>
+      <tr><td class="l">Симметричная (±), 0 в зените</td><td>зенитные системы</td><td>МЗ = (КЛ + КП) / 2</td><td>z = (КЛ − КП) / 2;&nbsp; ν = 90° − z</td></tr>
+      <tr><td class="l">Четвертная 0–90°, нули в горизонте</td><td>старые оптические</td><td>МО = ±(КЛ − КП) / 2 **</td><td>ν = ±(КЛ + КП) / 2 **</td></tr>
+      <tr><td class="l">Четвертная 0–90°, нули в зените</td><td>тахеометры-высотомеры</td><td>МЗ = (КЛ − КП) / 2</td><td>z = (КЛ + КП) / 2;&nbsp; ν = 90° − z</td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--muted); margin-top:8px;">* При вычислениях к отсчётам, меньшим 90°, прибавляют 360°.&nbsp;&nbsp;** Шкала без знаков: знак приписывают по положению цели — выше горизонта «+», ниже «−».</p>
+  </div>
+
+  <h2>4. Ключевые понятия</h2>
+  <div class="panel">
+    <p><b class="mo">Место нуля (МО)</b> — отсчёт по вертикальному кругу, когда визирная ось трубы горизонтальна, а пузырёк уровня при алидаде вертикального круга находится в нуль-пункте. У приборов с нулём в зените аналогичная величина называется <b class="zz">местом зенита (МЗ)</b> — отсчёт при отвесном положении визирной оси. В идеале МО (МЗ) = 0, но из-за неточной юстировки прибора нулевой диаметр лимба фактически смещён — именно это смещение показывает розовый луч на схеме.</p>
+    <p style="margin-top:8px;"><b class="kl">КЛ (круг лево)</b> и <b class="kp">КП (круг право)</b> — два положения теодолита: вертикальный круг находится слева или справа от наблюдателя. Труба переводится через зенит, и цель визируется повторно. Измерение при двух кругах — основной приём <b>исключения влияния МО</b> и контроля качества измерений: колебание МО на станции не должно превышать двойной точности отсчётного устройства (для 2Т30 — 1′).</p>
+  </div>
+
+  <h2>5. Порядок измерения на станции</h2>
+  <div class="steps">
+    <div class="step"><b>Установка.</b> Теодолит центрируют над точкой и горизонтируют по уровню (ось вращения прибора приводят в отвесное положение).</div>
+    <div class="step"><b>Визирование при КЛ.</b> При круге «лево» наводят среднюю горизонтальную нить сетки точно на цель, приводят пузырёк уровня вертикального круга в нуль-пункт и берут отсчёт <b class="kl">КЛ</b>.</div>
+    <div class="step"><b>Перевод трубы через зенит.</b> Трубу переводят через зенит, алидаду поворачивают на 180° — прибор в положении «круг право».</div>
+    <div class="step"><b>Визирование при КП.</b> Повторно наводят на ту же цель и берут отсчёт <b class="kp">КП</b>.</div>
+    <div class="step"><b>Вычисления.</b> По формулам, соответствующим оцифровке лимба данного прибора (см. таблицу выше), находят <b class="mo">МО</b> и <b class="nu">ν</b>. Контроль: постоянство МО между целями подтверждает качество измерений.</div>
+  </div>
+
+  <h2>6. Пример вычислений (теодолит 2Т30)</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Величина</th><th>Отсчёт / результат</th><th>Формула</th></tr>
+      <tr><td>КЛ</td><td>+4° 32,5′</td><td>отсчёт при круге «лево»</td></tr>
+      <tr><td>КП</td><td>−4° 30,5′</td><td>отсчёт при круге «право»</td></tr>
+      <tr><td><b class="mo">МО</b></td><td>+0° 01,0′</td><td>(КЛ + КП) / 2 = (4°32,5′ − 4°30,5′)/2</td></tr>
+      <tr><td><b class="nu">ν</b></td><td>+4° 31,5′</td><td>(КЛ − КП) / 2 = (4°32,5′ + 4°30,5′)/2</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <b>Зачем это нужно?</b> Вертикальные углы применяются в тригонометрическом нивелировании — для вычисления превышений h = d·tg ν (где d — горизонтальное проложение), при передаче высот на сооружения, определении высоты недоступных объектов и приведении наклонных расстояний к горизонту.
+  </div>
+</div>
+
+<script>
+(function(){
+  const px = 150, py = 200;          // trunnion axis on screen
+  const EX = 60;                     // exaggeration factor for MO on scene
+  const $ = id => document.getElementById(id);
+
+  const sight = $('sight'), arc = $('arc'), arcLabel = $('arcLabel');
+  const telescope = $('telescope');
+  const targetPt = $('targetPt'), targetTxt = $('targetTxt'), pole = $('pole');
+  const dial = $('dial'), dialReading = $('dialReading'), indexPtr = $('indexPtr');
+  const microG = $('microG'), microCaption = $('microCaption'), microDesc = $('microDesc');
+  const nuSlider = $('nuSlider'), moSlider = $('moSlider');
+  const nuSign = $('nuSign'), nuDeg = $('nuDeg'), nuMin = $('nuMin');
+  const moSign = $('moSign'), moMinIn = $('moMinIn');
+  const nuVal = $('nuVal'), moVal = $('moVal'), moName = $('moName');
+  const btnKL = $('btnKL'), btnKP = $('btnKP');
+  const readout = $('readout'), formulaBox = $('formulaBox'), typeDesc = $('typeDesc');
+  const typeSelect = $('typeSelect');
+  const zenithGroup = $('zenithGroup'), horizonTxt = $('horizonTxt');
+  const zeroLine = $('zeroLine'), zeroDot = $('zeroDot'), zeroTxt = $('zeroTxt'), zeroTxt2 = $('zeroTxt2');
+
+  let mode = 'KL';
+
+  // ---------- math helpers ----------
+  const n360 = x => ((x % 360) + 360) % 360;
+  const n180 = x => { x = n360(x); return x > 180 ? x - 360 : x; };
+  const fold90 = x => { const q = n360(x) % 180; return Math.min(q, 180 - q); };
+
+  function fmt(deg, signed = true){
+    const sign = deg < 0 ? '−' : (signed ? '+' : '');
+    const abs = Math.abs(deg);
+    let D = Math.floor(abs);
+    let m = Math.round((abs - D) * 60);
+    if (m === 60) { D += 1; m = 0; }
+    return `${sign}${D}° ${String(m).padStart(2,'0')}′`;
+  }
+  const fmtMin = mins => `${mins < 0 ? '−' : (mins > 0 ? '+' : '')}${Math.abs(mins)}′`;
+
+  // ---------- digitization types ----------
+  // theta = physical rotation of the circle's zero diameter relative to the fixed index
+  const TYPES = {
+    circ: {
+      name: 'Круговая 0–360° (Т30)',
+      zero: 'horizon', signedScale: false,
+      desc: 'Сплошная оцифровка от 0° до 360°. При горизонтальной трубе отсчёт ≈ 0° (КЛ) и ≈ 180° (КП). При вычислениях к отсчётам меньше 90° прибавляют 360°.',
+      label: a => a,
+      theta: (nu, mo, m) => m === 'KL' ? nu + mo : mo - nu - 180,
+      reading: th => n360(th),
+      fmtR: r => fmt(r, false),
+      compute(rL, rP){
+        const aL = rL < 90 ? rL + 360 : rL;
+        const aP = rP < 90 ? rP + 360 : rP;
+        const moRaw = (aL + aP + 180) / 2;
+        return { mo: n180(moRaw), nu: n180(aL - moRaw) };
+      },
+      rows: c => [
+        ['МО = (КЛ + КП + 180°) / 2', fmt(c.mo), 'mo'],
+        ['ν = КЛ − МО', fmt(c.nu), 'nu']
+      ],
+      formula: '<div class="big">МО = (КЛ + КП + 180°) / 2</div><div class="big">ν = КЛ − МО = (КЛ − КП − 180°) / 2</div><div class="small">к отсчётам, меньшим 90°, прибавляют 360°</div>'
+    },
+    symH: {
+      name: 'Симметричная, 0 в горизонте (2Т30)',
+      zero: 'horizon', signedScale: true,
+      desc: 'Секторная шкала со знаками «+» и «−», нуль — в горизонте. Отсчёт непосредственно равен ν + МО (при КЛ). Применяется в 2Т30, 2Т5К.',
+      label: a => a <= 180 ? a : a - 360,
+      theta: (nu, mo, m) => m === 'KL' ? nu + mo : mo - nu,
+      reading: th => n180(th),
+      fmtR: r => fmt(r, true),
+      compute: (rL, rP) => ({ mo: (rL + rP) / 2, nu: (rL - rP) / 2 }),
+      rows: c => [
+        ['МО = (КЛ + КП) / 2', fmt(c.mo), 'mo'],
+        ['ν = (КЛ − КП) / 2', fmt(c.nu), 'nu']
+      ],
+      formula: '<div class="big">МО = (КЛ + КП) / 2&nbsp;&nbsp;&nbsp;ν = (КЛ − КП) / 2</div><div class="small">контроль: ν = КЛ − МО = МО − КП</div>'
+    },
+    symZ: {
+      name: 'Симметричная, 0 в зените',
+      zero: 'zenith', signedScale: true,
+      desc: 'Шкала со знаками, нуль направлен в зенит. Отсчёт — зенитное расстояние z = 90° − ν (плюс место зенита МЗ). Погрешность нуля называется местом зенита.',
+      label: a => a <= 180 ? a : a - 360,
+      theta: (nu, mo, m) => m === 'KL' ? (90 - nu) + mo : mo - (90 - nu),
+      reading: th => n180(th),
+      fmtR: r => fmt(r, true),
+      compute(rL, rP){
+        const mz = (rL + rP) / 2, z = (rL - rP) / 2;
+        return { mo: mz, z, nu: 90 - z };
+      },
+      rows: c => [
+        ['МЗ = (КЛ + КП) / 2', fmt(c.mo), 'mo'],
+        ['z = (КЛ − КП) / 2', fmt(c.z, false), 'zz'],
+        ['ν = 90° − z', fmt(c.nu), 'nu']
+      ],
+      formula: '<div class="big">МЗ = (КЛ + КП) / 2&nbsp;&nbsp;&nbsp;z = (КЛ − КП) / 2</div><div class="big">ν = 90° − z</div>'
+    },
+    quadH: {
+      name: 'Четвертная 0–90°, нули в горизонте',
+      zero: 'horizon', signedScale: false,
+      desc: 'Деления 0–90° в каждой четверти без знаков; нулевые штрихи — в горизонте, 90° — в зените и надире. Знак угла приписывают по положению цели относительно горизонта.',
+      label: a => fold90(a),
+      theta: (nu, mo, m) => m === 'KL' ? nu + mo : mo - nu,
+      reading: th => fold90(th),
+      fmtR: r => fmt(r, false),
+      compute(rL, rP, nu){
+        const s = nu >= 0 ? 1 : -1;
+        return { mo: s * (rL - rP) / 2, nu: s * (rL + rP) / 2, s };
+      },
+      rows: c => [
+        ['МО = ±(КЛ − КП) / 2', fmt(c.mo), 'mo'],
+        ['ν = ±(КЛ + КП) / 2', fmt(c.nu), 'nu'],
+        ['Знак (цель ' + (c.s > 0 ? 'выше' : 'ниже') + ' горизонта)', c.s > 0 ? '«+»' : '«−»', 'muted']
+      ],
+      formula: '<div class="big">ν = ±(КЛ + КП) / 2&nbsp;&nbsp;&nbsp;МО = ±(КЛ − КП) / 2</div><div class="small">шкала без знаков: знак приписывают по положению цели (выше горизонта — «+»)</div>'
+    },
+    quadZ: {
+      name: 'Четвертная 0–90°, нули в зените',
+      zero: 'zenith', signedScale: false,
+      desc: 'Деления 0–90° без знаков; нулевые штрихи — в зените и надире, 90° — в горизонте. Отсчёт — зенитное расстояние в пределах четверти. При ν < 0 (z > 90°) отсчёт переходит в соседнюю четверть.',
+      label: a => fold90(a),
+      theta: (nu, mo, m) => m === 'KL' ? (90 - nu) + mo : mo - (90 - nu),
+      reading: th => fold90(th),
+      fmtR: r => fmt(r, false),
+      compute(rL, rP, nu){
+        let z, mz;
+        if (nu >= 0){ z = (rL + rP) / 2; mz = (rL - rP) / 2; }
+        else { z = 180 - (rL + rP) / 2; mz = (rP - rL) / 2; } // переход через 90°
+        return { mo: mz, z, nu: 90 - z, wrap: nu < 0 };
+      },
+      rows: c => {
+        const r = [
+          ['МЗ = (КЛ − КП) / 2', fmt(c.mo), 'mo'],
+          ['z = (КЛ + КП) / 2', fmt(c.z, false), 'zz'],
+          ['ν = 90° − z', fmt(c.nu), 'nu']
+        ];
+        if (c.wrap) r.push(['z > 90°: учтён переход через 90°', 'z = 180° − (КЛ+КП)/2', 'muted']);
+        return r;
+      },
+      formula: '<div class="big">z = (КЛ + КП) / 2&nbsp;&nbsp;&nbsp;МЗ = (КЛ − КП) / 2</div><div class="big">ν = 90° − z</div><div class="small">при z > 90° учитывают переход отсчёта в соседнюю четверть</div>'
+    }
+  };
+
+  // ---------- dial ----------
+  // Лимб неподвижен и закреплён по типу оцифровки: нулевой диаметр — в горизонте
+  // или в зените. Оцифровка «разворачивается» так, чтобы подвижный индекс,
+  // связанный с трубой, давал правильный отсчёт; при КП направление оцифровки
+  // зеркально (наблюдатель видит круг с другой стороны).
+  function buildDial(type, m){
+    const isZen = type.zero === 'zenith';
+    let s = '';
+    for(let a = 0; a < 360; a += 10){
+      const major = a % 30 === 0;
+      const r1 = major ? 58 : 64, r2 = 70;
+      const rad = a * Math.PI / 180;
+      const x1 = r1 * Math.sin(rad), y1 = -r1 * Math.cos(rad);
+      const x2 = r2 * Math.sin(rad), y2 = -r2 * Math.cos(rad);
+      s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#94a3b8" stroke-width="${major ? 2 : 1}"/>`;
+      if(major){
+        const xr = 46 * Math.sin(rad), yr = -46 * Math.cos(rad) + 4;
+        // t — значение лимба в точке a (зависит от положения нуля и круга КЛ/КП)
+        let t;
+        if (isZen) t = (m === 'KL') ? a : n360(-a);
+        else       t = (m === 'KL') ? n360(90 - a) : n360(a - 90);
+        const v = type.label(t);
+        const txt = (v < 0) ? '−' + Math.abs(v) : String(v);
+        const zero = (v === 0);
+        s += `<text x="${xr}" y="${yr}" fill="${zero ? '#e879f9' : '#cbd5e1'}" font-size="10" font-weight="${zero ? 'bold' : 'normal'}" text-anchor="middle">${txt}</text>`;
+      }
+    }
+    dial.innerHTML = s;
+  }
+
+  // Поворот лимба зависит ТОЛЬКО от места нуля (зенита); утрирован ×60 для наглядности
+  function dialRotation(mo){
+    const moX = mo * EX;
+    if (typeSelect.value === 'circ') return mode === 'KL' ? moX : 180 - moX;
+    const isZen = TYPES[typeSelect.value].zero === 'zenith';
+    if (isZen) return mode === 'KL' ? -moX : moX;
+    return mode === 'KL' ? moX : -moX;
+  }
+
+  // ---------- render ----------
+  function render(){
+    const type = TYPES[typeSelect.value];
+    const nuTotalMin = Math.round(parseFloat(nuSlider.value)); // slider is in arc-minutes
+    const nu = nuTotalMin / 60;
+    const moMin = Math.round(parseFloat(moSlider.value));
+    const mo = moMin / 60;
+    const isZen = type.zero === 'zenith';
+
+    // sync manual inputs (unless user is typing in them)
+    if (document.activeElement !== nuDeg && document.activeElement !== nuMin && document.activeElement !== nuSign){
+      nuSign.value = nuTotalMin < 0 ? '-1' : '1';
+      nuDeg.value = Math.floor(Math.abs(nuTotalMin) / 60);
+      nuMin.value = Math.abs(nuTotalMin) % 60;
+    }
+    if (document.activeElement !== moMinIn && document.activeElement !== moSign){
+      moSign.value = moMin < 0 ? '-1' : '1';
+      moMinIn.value = Math.abs(moMin);
+    }
+
+    // labels
+    moName.textContent = isZen ? 'Место зенита МЗ (погрешность)' : 'Место нуля МО (погрешность)';
+    nuVal.textContent = fmt(nu);
+    moVal.textContent = fmtMin(moMin);
+    typeDesc.textContent = type.desc;
+
+    // readings
+    const thL = type.theta(nu, mo, 'KL');
+    const thP = type.theta(nu, mo, 'KP');
+    const rL = type.reading(thL);
+    const rP = type.reading(thP);
+    const c = type.compute(rL, rP, nu);
+
+    // readout table
+    let html =
+      `<div class="row"><span class="kl">Отсчёт при КЛ</span><b class="kl">${type.fmtR(rL)}</b></div>` +
+      `<div class="row"><span class="kp">Отсчёт при КП</span><b class="kp">${type.fmtR(rP)}</b></div>`;
+    for(const [lab, val, cls] of type.rows(c)){
+      const cc = cls === 'muted' ? 'style="color:var(--muted);font-size:13px;"' : `class="${cls}"`;
+      html += `<div class="row"><span ${cc}>${lab}</span><b ${cc}>${val}</b></div>`;
+    }
+    html += `<div class="hint">Истинные значения (по ползункам): ν = ${fmt(nu)}, ${isZen ? 'МЗ' : 'МО'} = ${fmtMin(moMin)} — сравните с вычисленными.</div>`;
+    readout.innerHTML = html;
+    formulaBox.innerHTML = type.formula;
+
+    // scene: sight line
+    const rad = nu * Math.PI / 180;
+    const len = 470;
+    sight.setAttribute('x2', px + len * Math.cos(rad));
+    sight.setAttribute('y2', py - len * Math.sin(rad));
+
+    // target follows the sight; keep it inside the view
+    const t = Math.tan(rad);
+    let tx = 560;
+    if (Math.abs(t) > 1e-6){
+      const lim = nu > 0 ? (py - 30) / t : (348 - py) / (-t);
+      tx = Math.min(560, px + lim);
+    }
+    const ty = py - (tx - px) * t;
+    targetPt.setAttribute('cx', tx); targetPt.setAttribute('cy', ty);
+    targetTxt.setAttribute('x', tx + 14); targetTxt.setAttribute('y', ty + 4);
+    pole.setAttribute('x1', tx); pole.setAttribute('x2', tx);
+    pole.setAttribute('y1', 360); pole.setAttribute('y2', Math.min(Math.max(ty, 20), 360));
+
+    // telescope
+    telescope.setAttribute('transform', `rotate(${-nu} ${px} ${py})`);
+
+    // angle arc
+    const r = 90;
+    if (Math.abs(nu) > 0.5){
+      const bx = px + r * Math.cos(rad), by = py - r * Math.sin(rad);
+      arc.setAttribute('d', `M ${px + r} ${py} A ${r} ${r} 0 0 ${nu >= 0 ? 0 : 1} ${bx} ${by}`);
+      arcLabel.textContent = 'ν = ' + fmt(nu);
+      arcLabel.setAttribute('x', px + 100);
+      arcLabel.setAttribute('y', py - (nu > 0 ? 18 : -30));
+      arc.style.display = arcLabel.style.display = '';
+    } else {
+      arc.style.display = arcLabel.style.display = 'none';
+    }
+
+    // ideal zero direction
+    zenithGroup.style.display = isZen ? '' : 'none';
+    horizonTxt.textContent = isZen ? 'горизонт (z = 90°)' : 'горизонт (ν = 0°)';
+
+    // actual zero-reading direction (exaggerated x60)
+    let zAng; // screen angle from +x axis, degrees CCW
+    if (isZen) zAng = 90 + mo * EX;   // reading 0 when z = −МЗ (beyond zenith by МЗ)
+    else       zAng = -mo * EX;       // reading 0 when ν = −МО
+    const zRad = zAng * Math.PI / 180;
+    const zLen = isZen ? 168 : 250;
+    const zx = px + zLen * Math.cos(zRad), zy = py - zLen * Math.sin(zRad);
+    zeroLine.setAttribute('x2', zx); zeroLine.setAttribute('y2', zy);
+    zeroDot.setAttribute('cx', zx); zeroDot.setAttribute('cy', zy);
+    if (isZen){
+      zeroTxt.setAttribute('x', zx + (mo >= 0 ? -108 : 10)); zeroTxt.setAttribute('y', zy + 2);
+      zeroTxt2.setAttribute('x', zx + (mo >= 0 ? -108 : 10)); zeroTxt2.setAttribute('y', zy + 16);
+    } else {
+      zeroTxt.setAttribute('x', zx + 8); zeroTxt.setAttribute('y', zy + (mo >= 0 ? 16 : -18));
+      zeroTxt2.setAttribute('x', zx + 8); zeroTxt2.setAttribute('y', zy + (mo >= 0 ? 30 : -4));
+    }
+    if (moMin === 0){
+      zeroTxt.textContent = 'отсчёт 0 — совпадает с ' + (isZen ? 'зенитом' : 'горизонтом');
+      zeroTxt2.textContent = `(${isZen ? 'МЗ' : 'МО'} = 0)`;
+    } else {
+      zeroTxt.textContent = `фактический отсчёт 0 (${isZen ? 'МЗ' : 'МО'} = ${fmtMin(moMin)})`;
+      zeroTxt2.textContent = 'наклон утрирован ×60';
+    }
+
+    // dial: limb is FIXED by digitization type (rotates only with МО, exaggerated ×60),
+    // while the reading index moves together with the telescope
+    const rCur = mode === 'KL' ? rL : rP;
+    buildDial(type, mode);
+    dial.setAttribute('transform', `rotate(${dialRotation(mo)})`);
+    indexPtr.setAttribute('transform', `rotate(${-nu})`);
+    dialReading.textContent = (mode === 'KL' ? 'КЛ: ' : 'КП: ') + type.fmtR(rCur);
+    dialReading.setAttribute('fill', mode === 'KL' ? '#4ade80' : '#f87171');
+
+    // microscope field of view
+    microRender(type, rCur);
+  }
+
+  // ---------- reading microscope ----------
+  // Штриховая система (Т30): неподвижный индекс, лимб оцифрован через 1°, деления по 10′
+  function strokeWin(yc, letter, val, labelFn){
+    const pm = 2.6, cx = 310, xL = 145, xR = 475;
+    let s = `<rect x="${xL}" y="${yc-33}" width="${xR-xL}" height="64" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>`;
+    s += `<text x="${xL-16}" y="${yc+8}" font-size="19" font-weight="bold" fill="#0f172a" text-anchor="middle">${letter}</text>`;
+    const total = val * 60; // minutes
+    const start = Math.ceil((total - 70) / 10) * 10;
+    for(let a = start; a <= total + 70; a += 10){
+      const x = cx + (a - total) * pm;
+      if (x < xL + 4 || x > xR - 4) continue;
+      const mm = ((a % 60) + 60) % 60;
+      const isDeg = mm === 0;
+      const isHalf = mm === 30;
+      // штрихи: градусный — самый длинный, 30′ — удлинённый, остальные — короткие
+      const top = isDeg ? yc - 16 : (isHalf ? yc - 6 : yc + 6);
+      s += `<line x1="${x}" y1="${yc+27}" x2="${x}" y2="${top}" stroke="#0f172a" stroke-width="${isDeg ? 2.2 : (isHalf ? 1.6 : 1.2)}"/>`;
+      if (isDeg){
+        s += `<text x="${x}" y="${yc-20}" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">${labelFn(Math.round(a/60))}</text>`;
+      }
+    }
+    // fixed index (red)
+    s += `<line x1="${cx}" y1="${yc-33}" x2="${cx}" y2="${yc+27}" stroke="#dc2626" stroke-width="1.6"/>`;
+    return s;
+  }
+
+  // Шкаловая система (2Т30, 4Т30П): неподвижная шкала 0–6 (60′), индексом служит штрих лимба
+  // Подписи шкалы только по краям: 0 и 6 (верхний ряд), −6 и −0 (нижний ряд)
+  function scaleWin(yc, letter, val, signedLimb){
+    const x0 = 165, pm = 4.85, xL = 145, xR = 475; // 60' -> 291 px
+    let s = `<rect x="${xL}" y="${yc-36}" width="${xR-xL}" height="70" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>`;
+    s += `<text x="${xL-16}" y="${yc+8}" font-size="19" font-weight="bold" fill="#0f172a" text-anchor="middle">${letter}</text>`;
+    // fixed scale: ticks every 5', big ticks every 10', labels only at the ends
+    for(let m = 0; m <= 60; m += 5){
+      const x = x0 + m * pm;
+      const big = m % 10 === 0;
+      s += `<line x1="${x}" y1="${big ? yc-12 : yc-5}" x2="${x}" y2="${yc+7}" stroke="#0f172a" stroke-width="${big ? 1.7 : 1}"/>`;
+    }
+    // end labels: top row 0…6, bottom row −6…−0
+    s += `<text x="${x0}" y="${yc-17}" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">0</text>`;
+    s += `<text x="${x0+60*pm}" y="${yc-17}" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">6</text>`;
+    s += `<text x="${x0}" y="${yc+25}" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">−6</text>`;
+    s += `<text x="${x0+60*pm}" y="${yc+25}" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">−0</text>`;
+    // moving limb degree strokes: stroke d at p=(val-d)*60'; negative labels: d -> "−(−d−1)"
+    const D0 = Math.floor(val + 1e-9);
+    for(const d of [D0-1, D0, D0+1]){
+      if (!signedLimb && d < 0) continue;
+      const p = (val - d) * 60;
+      if (p < -4 || p > 64) continue;
+      const lab = d >= 0 ? String(d) : '−' + (-d - 1);
+      const x = x0 + p * pm;
+      s += `<line x1="${x}" y1="${yc-24}" x2="${x}" y2="${yc+13}" stroke="#0f172a" stroke-width="2.6"/>`;
+      s += `<text x="${x+9}" y="${yc-27}" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle">${lab}</text>`;
+    }
+    return s;
+  }
+
+  function microRender(type, rV){
+    const isStroke = typeSelect.value === 'circ';
+    let s = '';
+    if (isStroke){
+      s += strokeWin(95, 'В', rV, d => String(n360(d)));
+      s += strokeWin(210, 'Г', 70 + 4/60, d => String(n360(d)));
+      microCaption.textContent = `Штриховой микроскоп (Т30) — отсчёт по В (${mode === 'KL' ? 'КЛ' : 'КП'}): ${type.fmtR(rV)}`;
+      microDesc.textContent = 'Штриховая система отсчитывания: лимб оцифрован через 1°, цена деления 10′, штрих 30′ удлинён. Отсчёт берут по положению неподвижного индекса (красный штрих): доли деления оценивают на глаз с точностью до 1′. Окно В — вертикальный круг, Г — горизонтальный (для примера зафиксирован на 70°04′).';
+    } else {
+      s += scaleWin(95, 'В', rV, type.signedScale);
+      s += scaleWin(210, 'Г', 127 + 5.5/60, false);
+      microCaption.textContent = `Шкаловый микроскоп (2Т30П, 4Т30П) — отсчёт по В (${mode === 'KL' ? 'КЛ' : 'КП'}): ${type.fmtR(rV)}`;
+      microDesc.textContent = 'Шкаловая система отсчитывания: в окне видна неподвижная шкала длиной 60′ (цена деления 5′, подписи только по краям: 0 и 6 сверху, −6 и −0 снизу), а индексом служит штрих лимба с номером градуса. Отсчёт = градус штриха + минуты по шкале (точность 0,5′). ' + (type.signedScale ? 'Если номер градуса со знаком «−», минуты отсчитывают по нижнему ряду (справа налево). ' : 'У четвертной оцифровки штрихи лимба без знака «−», но нижний ряд шкалы также нанесён. ') + 'Окно Г — горизонтальный круг (для примера зафиксирован на 127°05,5′).';
+    }
+    microG.innerHTML = s;
+    microCaption.setAttribute('fill', mode === 'KL' ? '#4ade80' : '#f87171');
+  }
+
+  function rebuild(){ render(); }
+
+  function clamp(v, lo, hi){ v = Number(v); return isNaN(v) ? lo : Math.min(hi, Math.max(lo, v)); }
+  function applyManualNu(){
+    const s = Number(nuSign.value);
+    const d = clamp(nuDeg.value, 0, 40);
+    const m = clamp(nuMin.value, 0, 59);
+    let total = s * (d * 60 + m);
+    total = Math.min(2400, Math.max(-1500, total));
+    nuSlider.value = total;
+    render();
+  }
+  function applyManualMo(){
+    const s = Number(moSign.value);
+    const m = clamp(moMinIn.value, 0, 10);
+    moSlider.value = s * m;
+    render();
+  }
+
+  typeSelect.addEventListener('change', rebuild);
+  nuSlider.addEventListener('input', render);
+  moSlider.addEventListener('input', render);
+  [nuSign, nuDeg, nuMin].forEach(el => { el.addEventListener('input', applyManualNu); el.addEventListener('change', applyManualNu); });
+  [moSign, moMinIn].forEach(el => { el.addEventListener('input', applyManualMo); el.addEventListener('change', applyManualMo); });
+  btnKL.addEventListener('click', () => {
+    mode = 'KL'; btnKL.className = 'btn active-kl'; btnKP.className = 'btn'; render();
+  });
+  btnKP.addEventListener('click', () => {
+    mode = 'KP'; btnKP.className = 'btn active-kp'; btnKL.className = 'btn'; render();
+  });
+
+  rebuild();
+})();
+</script>
+</body>
+</html>
