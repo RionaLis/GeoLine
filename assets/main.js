@@ -1,0 +1,14 @@
+
+(function(){
+ const root=document.body.dataset.root||'.';
+ const header=`<header class="site-header"><div class="container header-inner"><a class="brand" href="${root}/index.html"><span class="brand-mark">GEO</span><span>Учебник по геодезии</span></a><nav class="main-nav" id="nav"><a href="${root}/index.html">Главная</a><a href="${root}/courses/index.html">Курсы</a><a href="${root}/index.html#about">О проекте</a></nav><button class="search-trigger" id="searchOpen">Найти тему <span>Ctrl K</span></button><button class="menu-btn" id="menuBtn" aria-label="Меню">☰</button></div></header>`;
+ const footer=`<footer class="site-footer"><div class="container footer-inner"><div><div class="footer-brand">Учебник по геодезии</div><div class="footer-small">Открытые учебные материалы для последовательного изучения геодезии.</div></div><div class="footer-small">© <span id="year"></span> · Статическая учебная версия</div></div></footer>`;
+ const overlay=`<div class="search-overlay" id="searchOverlay"><div class="search-panel"><div class="search-input-wrap"><input class="search-input" id="searchInput" placeholder="Название темы или курса…" autocomplete="off"><button class="search-close" id="searchClose">Esc</button></div><div class="search-results" id="searchResults"><div class="empty">Начните вводить запрос</div></div></div></div>`;
+ document.body.insertAdjacentHTML('afterbegin',header);document.body.insertAdjacentHTML('beforeend',footer+overlay);
+ document.getElementById('year').textContent=new Date().getFullYear();
+ const ov=document.getElementById('searchOverlay'),input=document.getElementById('searchInput'),results=document.getElementById('searchResults');
+ function open(){ov.classList.add('open');setTimeout(()=>input.focus(),20)} function close(){ov.classList.remove('open')}
+ document.getElementById('searchOpen').onclick=open;document.getElementById('searchClose').onclick=close;document.getElementById('menuBtn').onclick=()=>document.getElementById('nav').classList.toggle('open');
+ ov.onclick=e=>{if(e.target===ov)close()};document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();open()}if(e.key==='Escape')close()});
+ input.oninput=()=>{const q=input.value.trim().toLowerCase();if(!q){results.innerHTML='<div class="empty">Начните вводить запрос</div>';return}const found=(window.SEARCH_DATA||[]).filter(x=>(x.title+' '+x.desc+' '+x.course).toLowerCase().includes(q));results.innerHTML=found.length?found.map(x=>`<a class="search-item" href="${root}/${x.url}"><b>${x.title}</b><small>${x.course} · ${x.desc}</small></a>`).join(''):'<div class="empty">Ничего не найдено</div>'}
+})();
