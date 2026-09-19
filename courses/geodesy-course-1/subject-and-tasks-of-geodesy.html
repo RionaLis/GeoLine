@@ -1,3 +1,2098 @@
 <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Предмет и задачи геодезии: научные и производственные задачи, структура геодезической науки, классификация разделов и геодезическое инструментоведение.">
+  <title>Предмет и задачи геодезии — ГеоЛиния</title>
+  <link href="../../assets/style.css" rel="stylesheet">
+  <link href="../../assets/lesson-site.css" rel="stylesheet">
+  <style>
+    /* ==== Фирменная палитра и типографика урока ==== */
+    :root {
+      --gl-dark: #063f3b;
+      --gl-dark2: #07554e;
+      --gl-accent: #ff7136;
+      --gl-accent-light: #fff3ec;
+      --gl-accent-hover: #e85d22;
+      --gl-teal: #087267;
+      --gl-teal-light: #eaf5f2;
+      --gl-teal-dark: #054841;
+      --gl-blue: #1681ca;
+      --gl-blue-light: #edf7fd;
+      --gl-ink: #092c33;
+      --gl-muted: #5e7771;
+      --gl-card-border: #d5e3de;
+      --gl-card-bg: #ffffff;
+      --gl-radius: 16px;
+      --gl-shadow: 0 16px 42px rgba(18, 54, 49, 0.08);
+    }
 
-<html lang="ru"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Предмет и задачи геодезии — учебный материал ГеоЛинии" name="description"/><title>Предмет и задачи геодезии — ГеоЛиния</title><link href="../../assets/style.css" rel="stylesheet"/><link href="../../assets/lesson-site.css" rel="stylesheet"/></head><body class="gl-placeholder-page"><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="Эмблема ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav><button aria-label="Открыть меню" class="gl-menu-button" type="button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar gl-block-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div><section class="gl-course-block open"><button aria-expanded="true" class="gl-block-toggle" type="button"><span>Тема 01. Введение в геодезию</span><i>⌄</i></button><div class="gl-block-lessons"><a class="active" data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html">Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html">Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html">Краткая история геодезических приборов</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html">Понятие о форме и размерах Земли</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 02. Геодезическое оборудование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html">Современные геодезические приборы</a><a data-lesson="distance-measurement" href="distance-measurement.html">Измерение расстояний</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html">Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-checks" href="theodolite-checks.html">Теодолиты: поверки и юстировки</a><a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html">Измерение горизонтальных углов теодолитом</a><a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html">Измерение вертикальных углов теодолитом</a><a data-lesson="levels-classification-and-design" href="levels-classification-and-design.html">Нивелиры: классификация, устройство и принцип работы</a><a data-lesson="level-checks-and-adjustments" href="level-checks-and-adjustments.html">Нивелиры: поверки и юстировки</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 03. Топографические карты и планы</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="cartographic-projections" href="cartographic-projections.html">Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html">Проекция Гаусса-Крюгера</a><a data-lesson="plan-map-profile" href="plan-map-profile.html">Топографические карты и планы</a><a data-lesson="topographic-symbols" href="topographic-symbols.html">Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html">Использование ЛМП и ТГТ</a><a data-lesson="landform-types" href="landform-types.html">Рельеф</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html">Цифровые модели местности</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 04. Системы координат и ориентирование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html">Геодезическая система координат</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html">Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html">Передача дирекционных углов</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 05. Топографическая съёмка местности</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="inaccessible-distance" href="inaccessible-distance.html">Определение недоступного расстояния</a><a data-lesson="survey-control" href="survey-control.html">Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html">Пункты государственной геодезической сети</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html">Вычисление ведомости координат</a></div></section><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="page-hero compact"><div class="container"><div class="breadcrumbs"><a href="../../index.html">Главная</a> / <a href="index.html">Геодезия. Курс 1</a> / Урок 1</div><div class="eyebrow">Урок 01 · Материал готовится</div><h1>Предмет и задачи геодезии</h1><p>Адрес страницы уже зарегистрирован в курсе и поиске. Позже замените этот файл готовым учебным материалом с тем же именем.</p></div></section><section class="section"><div class="container"><article class="article"><h2>Страница подготовлена</h2><p>Файл для этого урока уже находится в правильной папке. Название файла:</p><div class="note"><code>subject-and-tasks-of-geodesy.html</code></div><p>При добавлении готового материала сохраните это имя файла, чтобы ссылки курса продолжили работать.</p></article></div></section></main></div><script>document.querySelector('[data-lesson="subject-and-tasks-of-geodesy"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')}</script><script src="../../assets/lesson-blocks.js"></script></body></html>
+    .subject-lesson {
+      background: #f4f8f6;
+    }
+
+    /* Шапка урока */
+    .subj-meta {
+      background: linear-gradient(135deg, #043f3b 0%, #07554e 65%, #0a6960 100%);
+      color: #fff;
+      border-radius: 20px;
+      padding: 30px 32px 0;
+      margin: 0 0 26px;
+      box-shadow: 0 18px 46px rgba(18, 54, 49, 0.14);
+      position: relative;
+      overflow: hidden;
+    }
+    .subj-meta::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      right: -80px;
+      top: -120px;
+      box-shadow: 0 0 0 45px rgba(255, 255, 255, 0.03), 0 0 0 90px rgba(255, 255, 255, 0.02);
+      pointer-events: none;
+    }
+    .subj-meta .gl-lesson-number {
+      font: 600 12px 'Roboto Mono', monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #ff9162;
+      margin-bottom: 8px;
+    }
+    .subj-meta h1 {
+      font: 800 clamp(26px, 3.8vw, 42px)/1.12 Manrope, Arial, sans-serif !important;
+      letter-spacing: -.03em !important;
+      color: #fff !important;
+      margin: 0 0 10px !important;
+    }
+    .subj-meta .subj-subtitle {
+      max-width: 860px;
+      margin: 0 0 22px;
+      color: #c9ded9;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .subj-meta .gl-tabs {
+      justify-content: flex-start;
+      gap: 8px;
+    }
+
+    /* Широкое поле содержимого: на треть шире стандартной рамки сайта —
+       поле вкладок ~1195 px → ~1595 px; контейнер и карточка — на всю ширину */
+    .subject-lesson .gl-lesson-layout {
+      width: min(1859px, 100%);
+    }
+    .subject-lesson .gl-lesson-content .container {
+      width: 100%;
+    }
+
+    /* Карточки и вкладки */
+    .subj-article {
+      max-width: none;
+    }
+    .gl-tab-panel {
+      display: none;
+      background: var(--gl-card-bg);
+      border: 1px solid var(--gl-card-border);
+      border-radius: 18px;
+      padding: 32px 34px;
+      box-shadow: var(--gl-shadow);
+      margin-bottom: 24px;
+    }
+    .gl-tab-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Цели раздела */
+    .learning-goal {
+      border-left: 4px solid var(--gl-accent);
+      background: var(--gl-accent-light);
+      padding: 18px 22px;
+      border-radius: 0 14px 14px 0;
+      margin: 0 0 30px;
+    }
+    .learning-goal span {
+      font: 700 11px 'Roboto Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: #d95c29;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .learning-goal p {
+      margin: 0;
+      color: #4a2818;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    /* Карточки с метриками */
+    .stat-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--gl-card-border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(18, 54, 49, 0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(18, 54, 49, 0.08);
+    }
+    .stat-card .stat-icon {
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .stat-card .stat-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gl-dark);
+      margin-bottom: 6px;
+    }
+    .stat-card p {
+      font-size: 13.5px !important;
+      line-height: 1.45 !important;
+      color: var(--gl-muted);
+      margin: 0;
+    }
+
+    /* Цитата и закон */
+    .quote-box {
+      border-left: 4px solid var(--gl-teal);
+      background: var(--gl-teal-light);
+      padding: 20px 24px;
+      border-radius: 0 14px 14px 0;
+      margin: 24px 0;
+      position: relative;
+    }
+    .quote-box .quote-badge {
+      display: inline-block;
+      font: 700 10px 'Roboto Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: var(--gl-teal);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .quote-box blockquote {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #0b453e;
+      margin: 0 0 10px;
+      font-style: italic;
+    }
+    .quote-box .quote-author {
+      font-size: 13px;
+      font-weight: 700;
+      color: #086157;
+      text-align: right;
+      margin: 0;
+    }
+
+    /* Сравнение */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 26px 0;
+    }
+    .compare-card {
+      background: #fff;
+      border: 1px solid var(--gl-card-border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: 0 6px 20px rgba(18, 54, 49, 0.05);
+      border-top: 4px solid var(--gl-teal);
+      position: relative;
+    }
+    .compare-card.accent {
+      border-top-color: var(--gl-accent);
+    }
+    .compare-card .compare-tag {
+      font: 700 11px 'Roboto Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gl-teal);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .compare-card.accent .compare-tag {
+      color: var(--gl-accent);
+    }
+    .compare-card h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--gl-dark);
+      margin: 0 0 12px;
+    }
+    .compare-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .compare-card li {
+      margin-bottom: 8px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: #21433f;
+    }
+
+    /* Интерактивный каталог 14 разделов */
+    .branches-interactive {
+      background: #fafcfb;
+      border: 1px solid var(--gl-card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .branches-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .filter-chip {
+      background: #fff;
+      border: 1px solid var(--gl-card-border);
+      color: var(--gl-dark);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-chip:hover {
+      background: #ebf5f2;
+      border-color: var(--gl-teal);
+    }
+    .filter-chip.active {
+      background: var(--gl-teal);
+      color: #fff;
+      border-color: var(--gl-teal);
+    }
+    .branches-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Задачи: две колонки — слева научные, справа производственные */
+    .tasks-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .tasks-col {
+      background: #fafcfb;
+      border: 1px solid #e3ede9;
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .tasks-col-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--gl-dark);
+      padding: 4px 6px 12px;
+    }
+    .tasks-col-title::before {
+      content: "";
+      flex: none;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .tasks-col-title.sci::before { background: #1681ca; }
+    .tasks-col-title.prod::before { background: #1a9a5c; }
+    .tasks-col-title span {
+      margin-left: auto;
+      font: 700 11px 'Roboto Mono', monospace;
+      color: #7d938d;
+      background: #eef4f2;
+      border-radius: 99px;
+      padding: 2px 9px;
+    }
+    .tasks-col .branches-grid {
+      gap: 10px;
+    }
+    /* Разделы: плитка в 3 колонки */
+    .branches-grid.tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+    .tiles-grid .branch-head {
+      flex-wrap: wrap;
+    }
+    .branch-item {
+      background: #fff;
+      border: 1px solid #dce8e4;
+      border-radius: 13px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .branch-item:hover {
+      border-color: var(--gl-teal);
+      box-shadow: 0 4px 14px rgba(18, 54, 49, 0.07);
+    }
+    .branch-item.open {
+      border-color: var(--gl-teal);
+      box-shadow: 0 8px 22px rgba(18, 54, 49, 0.09);
+    }
+    .branch-head {
+      width: 100%;
+      background: none;
+      border: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 18px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+    }
+    .branch-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--gl-dark);
+      line-height: 1.3;
+      flex: 1;
+      min-width: 180px;
+    }
+    .branch-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font: 600 10px 'Roboto Mono', monospace;
+      text-transform: uppercase;
+      background: #eef4f2;
+      color: var(--gl-teal);
+      width: max-content;
+      white-space: nowrap;
+    }
+    .branch-chevron {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ebf5f2;
+      color: var(--gl-teal);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      transition: transform 0.35s ease, background 0.2s, color 0.2s;
+    }
+    .branch-item.open .branch-chevron {
+      transform: rotate(180deg);
+      background: var(--gl-teal);
+      color: #fff;
+    }
+    .branch-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s ease;
+    }
+    .branch-item.open .branch-body {
+      grid-template-rows: 1fr;
+    }
+    .branch-body-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .branch-body-content {
+      padding: 16px 20px 20px;
+      border-top: 1px dashed #dce8e4;
+    }
+    .branch-lead {
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      color: #3d5a54;
+      margin: 0 0 6px;
+    }
+    .branch-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 10px;
+      margin: 14px 0 2px;
+    }
+    .branch-info-cell {
+      background: #fafcfb;
+      border: 1px solid #e3ede9;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .branch-info-cell h5 {
+      margin: 0 0 7px;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gl-teal);
+    }
+    .branch-info-cell p,
+    .branch-info-cell ul {
+      font-size: 13px !important;
+      line-height: 1.55 !important;
+      color: #4b6660;
+      margin: 0;
+    }
+    .branch-info-cell ul {
+      padding-left: 18px;
+    }
+    .branch-info-cell li {
+      margin-bottom: 4px;
+    }
+    .branch-badge.sci {
+      background: #e3eefc;
+      color: #1657b8;
+    }
+    .branch-badge.prod {
+      background: #e6f6ec;
+      color: #1a7f4b;
+    }
+
+    /* Интерактивный тест */
+    .quiz-container {
+      margin: 28px 0;
+    }
+    .quiz-question-card {
+      background: #fff;
+      border: 1px solid var(--gl-card-border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(18, 54, 49, 0.04);
+    }
+    .quiz-q-num {
+      font: 700 12px 'Roboto Mono', monospace;
+      color: var(--gl-accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .quiz-q-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gl-dark);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .quiz-options {
+      display: grid;
+      gap: 8px;
+    }
+    .quiz-opt-btn {
+      text-align: left;
+      background: #f8fbfa;
+      border: 1.5px solid #dbe8e4;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font: 500 14.5px Manrope, Arial, sans-serif;
+      color: var(--gl-ink);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quiz-opt-btn:hover:not(.disabled) {
+      background: #edf7f4;
+      border-color: var(--gl-teal);
+    }
+    .quiz-opt-btn.correct {
+      background: #e6f7ef !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+      font-weight: 700;
+    }
+    .quiz-opt-btn.wrong {
+      background: #fef2f2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b !important;
+    }
+    .quiz-feedback {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      display: none;
+    }
+    .quiz-feedback.show {
+      display: block;
+    }
+    .quiz-feedback.correct-fb {
+      background: #edfbf4;
+      color: #086b4f;
+      border-left: 3px solid #10b981;
+    }
+    .quiz-feedback.wrong-fb {
+      background: #fff5f5;
+      color: #9b2c2c;
+      border-left: 3px solid #ef4444;
+    }
+
+    .quiz-score-bar {
+      background: linear-gradient(135deg, #074a44, #0b695e);
+      color: #fff;
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .quiz-score-text {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .quiz-reset-btn {
+      background: var(--gl-accent);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font: 700 13px Manrope, Arial, sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .quiz-reset-btn:hover {
+      background: var(--gl-accent-hover);
+    }
+
+    /* Флеш-карточки терминов */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .flashcard {
+      background: #fff;
+      border: 1px solid var(--gl-card-border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(18, 54, 49, 0.04);
+      cursor: pointer;
+      transition: all 0.2s;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .flashcard:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(18, 54, 49, 0.08);
+      border-color: var(--gl-teal);
+    }
+    .flashcard-term {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gl-dark);
+      margin-bottom: 6px;
+    }
+    .flashcard-hint {
+      font-size: 12.5px;
+      color: var(--gl-muted);
+      font-style: italic;
+    }
+    .flashcard-def {
+      display: none;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #174a42;
+      margin-top: 8px;
+      border-top: 1px dashed #cfe0db;
+      padding-top: 8px;
+    }
+    .flashcard.flipped {
+      background: var(--gl-teal-light);
+      border-color: var(--gl-teal);
+    }
+    .flashcard.flipped .flashcard-def {
+      display: block;
+    }
+    .flashcard.flipped .flashcard-hint {
+      display: none;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 860px) {
+      .stat-grid-3, .compare-grid, .branch-info-grid {
+        grid-template-columns: 1fr;
+      }
+      .tasks-columns {
+        grid-template-columns: 1fr;
+      }
+      .branch-head {
+        flex-wrap: wrap;
+        padding: 13px 14px;
+      }
+      .subj-meta {
+        padding: 22px 18px 0;
+      }
+      .gl-tab-panel {
+        padding: 22px 18px;
+      }
+    }
+    @media (max-width: 1340px) {
+      .branches-grid.tiles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .branches-grid.tiles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="gl-placeholder-page subject-lesson">
+
+<!-- Фирменная шапка сайта -->
+<header class="gl-sitebar">
+  <a class="gl-brand" href="../../index.html">
+    <img alt="Эмблема ГеоЛиния" src="../../uploads/common/geoline-logo.png">
+    <span>ГеоЛиния <small>GeoLine</small></span>
+  </a>
+  <nav>
+    <a href="../../index.html">Главная</a>
+    <a href="../index.html">Курсы</a>
+    <a href="index.html">Геодезия. Курс 1</a>
+    <a href="../../index.html#about">О проекте</a>
+  </nav>
+  <button aria-label="Открыть меню" class="gl-menu-button" type="button">☰</button>
+</header>
+
+<div class="gl-lesson-layout">
+
+<!-- Боковое меню курса -->
+<aside class="gl-sidebar gl-block-sidebar">
+  <div class="gl-sidebar-label">Геодезия. Курс 1</div>
+  <section class="gl-course-block open">
+    <button aria-expanded="true" class="gl-block-toggle" type="button"><span>Тема 01. Введение в геодезию</span><i>⌄</i></button>
+    <div class="gl-block-lessons">
+      <a class="active" data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html">Предмет и задачи геодезии</a>
+      <a data-lesson="history-of-geodesy" href="history-of-geodesy.html">Краткие сведения из истории геодезии</a>
+      <a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html">Краткая история геодезических приборов</a>
+      <a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html">Форма и размеры Земли</a>
+    </div>
+  </section>
+  <section class="gl-course-block">
+    <button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 02. Геодезическое оборудование</span><i>⌄</i></button>
+    <div class="gl-block-lessons">
+      <a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html">Современные геодезические приборы</a>
+      <a data-lesson="distance-measurement" href="distance-measurement.html">Измерение расстояний</a>
+      <a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html">Теодолиты: классификация, устройство и принцип работы</a>
+      <a data-lesson="theodolite-checks" href="theodolite-checks.html">Теодолиты: поверки и юстировки</a>
+      <a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html">Измерение горизонтальных углов теодолитом</a>
+      <a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html">Измерение вертикальных углов теодолитом</a>
+      <a data-lesson="levels-classification-and-design" href="levels-classification-and-design.html">Нивелиры: классификация, устройство и принцип работы</a>
+      <a data-lesson="level-checks-and-adjustments" href="level-checks-and-adjustments.html">Нивелиры: поверки и юстировки</a>
+    </div>
+  </section>
+  <section class="gl-course-block">
+    <button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 03. Топографические карты и планы</span><i>⌄</i></button>
+    <div class="gl-block-lessons">
+      <a data-lesson="cartographic-projections" href="cartographic-projections.html">Картографические проекции</a>
+      <a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html">Проекция Гаусса-Крюгера</a>
+      <a data-lesson="plan-map-profile" href="plan-map-profile.html">Топографические карты и планы</a>
+      <a data-lesson="topographic-symbols" href="topographic-symbols.html">Топографические условные знаки</a>
+      <a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html">Использование ЛМП и ТГТ</a>
+      <a data-lesson="landform-types" href="landform-types.html">Рельеф</a>
+      <a data-lesson="digital-terrain-models" href="digital-terrain-models.html">Цифровые модели местности</a>
+    </div>
+  </section>
+  <section class="gl-course-block">
+    <button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 04. Системы координат и ориентирование</span><i>⌄</i></button>
+    <div class="gl-block-lessons">
+      <a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html">Геодезическая система координат</a>
+      <a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html">Ориентирование линий на карте</a>
+      <a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи</a>
+      <a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html">Передача дирекционных углов</a>
+    </div>
+  </section>
+  <section class="gl-course-block">
+    <button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 05. Топографическая съёмка местности</span><i>⌄</i></button>
+    <div class="gl-block-lessons">
+      <a data-lesson="inaccessible-distance" href="inaccessible-distance.html">Определение недоступного расстояния</a>
+      <a data-lesson="survey-control" href="survey-control.html">Съёмочное обоснование</a>
+      <a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html">Пункты государственной геодезической сети</a>
+      <a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html">Вычисление ведомости координат</a>
+    </div>
+  </section>
+  <a class="gl-course-link" href="index.html">← Страница курса</a>
+</aside>
+
+<!-- Основной контент урока -->
+<main class="gl-lesson-content">
+
+  <!-- Шапка урока с вкладками -->
+  <section class="gl-lesson-meta subj-meta">
+    <div class="gl-lesson-number">Геодезия. Курс 1 · Урок 01</div>
+    <h1>Предмет и задачи геодезии</h1>
+    <p class="subj-subtitle">Фундаментальные основы науки о Земле: определение фигуры и гравитационного поля планеты, пространственные координаты, структура геодезической науки и геодезическое инструментоведение.</p>
+    <div class="gl-tabs" role="tablist" aria-label="Разделы урока">
+      <button class="active" data-gl-tab="sub-0" type="button">Что такое геодезия</button>
+      <button data-gl-tab="sub-1" type="button">Задачи геодезии</button>
+      <button data-gl-tab="sub-2" type="button">Разделы геодезии</button>
+      <button data-gl-tab="sub-3" type="button">Самопроверка</button>
+    </div>
+  </section>
+
+  <section class="section lesson-section">
+    <div class="container">
+      <article class="article subj-article">
+
+        <!-- ================= ВКЛАДКА 1: ЧТО ТАКОЕ ГЕОДЕЗИЯ ================= -->
+        <div class="card gl-tab-panel active" data-gl-panel="sub-0">
+          <section class="learning-goal">
+            <span>Цель первого раздела</span>
+            <p>Усвоить сущность геодезии как фундаментальной науки и инженерной практики, понять происхождение термина, познакомиться с нормативным определением по ФЗ № 431-ФЗ и разобрать связи геодезии со смежными дисциплинами.</p>
+          </section>
+
+          <h2>Геометрия, география, картография… Геодезия?!</h2>
+          <p>Человечеству с древнейших времен требовалось измерять земельные участки, возводить грандиозные сооружения, определять положение границ и ориентироваться в пространстве. Исторически геодезия и практическая геометрия развивались параллельно, взаимно обогащая друг друга.</p>
+
+          <div class="stat-grid-3">
+            <div class="stat-card">
+              <span class="stat-icon">🏛️</span>
+              <div class="stat-title">Этимология</div>
+              <p>От др.-греч. <b>γεωδαισία</b> (<i>γῆ</i> — «Земля» + <i>δαίζω</i> — «делю, разделяю»), дословно — <b>«землеразделение»</b>.</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🌍</span>
+              <div class="stat-title">В широком смысле</div>
+              <p>Точная наука, объектом изучения которой являются <b>физическая поверхность</b> и <b>внешнее гравитационное поле Земли</b> (и других планет).</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">📐</span>
+              <div class="stat-title">В узком смысле</div>
+              <p>Техника и методы <b>угловых, линейных и высотных измерений</b> на местности для построения планов, карт и цифровых моделей.</p>
+            </div>
+          </div>
+
+          <div class="quote-box">
+            <span class="quote-badge">Законодательное определение</span>
+            <blockquote>
+              «<b>Геодезия</b> — область отношений, возникающих в процессе научной, образовательной, производственной и иной деятельности по определению фигуры, гравитационного поля Земли, координат и высот точек земной поверхности и пространственных объектов, а также изменений во времени указанных координат и высот».
+            </blockquote>
+            <p class="quote-author">— Федеральный закон от 30.12.2015 г. № 431-ФЗ «О геодезии, картографии и пространственных данных»</p>
+          </div>
+
+          <h3>Место геодезии в системе естественных и технических наук</h3>
+          <p>Геодезия занимает уникальное пограничное положение на стыке фундаментального естествознания, математики и прикладной инженерии:</p>
+
+          <div class="compare-grid">
+            <div class="compare-card">
+              <span class="compare-tag">Фундаментальные связи</span>
+              <h3>Науки о Земле и Космосе</h3>
+              <ul>
+                <li><b>Астрономия:</b> определение координат и азимутов по небесным светилам, связь небесной и земной систем отсчёта.</li>
+                <li><b>Геофизика и гравиметрия:</b> изучение внутреннего строения планеты, плотностных неоднородностей и вариаций силы тяжести.</li>
+                <li><b>Океанология:</b> изучение среднего уровня моря, циркуляции океана, батиметрии дна и динамики шельфа.</li>
+                <li><b>Космонавтика:</b> орбитальное движение ИСЗ, спутниковая навигация и дистанционное зондирование.</li>
+              </ul>
+            </div>
+            <div class="compare-card accent">
+              <span class="compare-tag">Прикладные связи</span>
+              <h3>Инженерия и Информационные технологии</h3>
+              <ul>
+                <li><b>Математика:</b> сферическая геометрия, теория вероятностей, метод наименьших квадратов и матричная алгебра.</li>
+                <li><b>Картография и ГИС:</b> преобразование сферической поверхности на плоскость в проекциях, цифровые карты местности.</li>
+                <li><b>Строительство и архитектура:</b> вынос проектов в натуру, контроль монтажа и мониторинг деформаций зданий и мостов.</li>
+                <li><b>Приборостроение:</b> оптика, лазерная техника, микроэлектроника и робототехника.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="fact orange">
+            <b>Важный вывод</b>
+            <p>Геодезия изучает не просто статическую геометрию планеты, но и <b>динамику изменений во времени (4D-геодезия)</b>: подвижки тектонических плит, осадки сооружений, вариации вращения Земли и колебания уровня океана.</p>
+          </div>
+        </div>
+
+        <!-- ================= ВКЛАДКА 2: ЗАДАЧИ ГЕОДЕЗИИ ================= -->
+        <div class="card gl-tab-panel" data-gl-panel="sub-1">
+          <section class="learning-goal">
+            <span>Цель второго раздела</span>
+            <p>Чётко разграничивать научные и производственные задачи геодезии, понять фундаментальное значение изучения формы Земли и гравитационного поля, а также изучить спектр прикладных задач народного хозяйства и обороны.</p>
+          </section>
+
+          <h2>Научные и производственные задачи геодезии</h2>
+          <p>Все задачи геодезии традиционно подразделяют на две взаимосвязанные ветви: <b>научные (фундаментальные)</b> и <b>производственные (практические)</b>.</p>
+
+
+          <p><b>Кликните по задаче</b>, чтобы ниже раскрылось её подробное пояснение: слева собраны научные задачи, справа — производственные.</p>
+
+          <!-- Интерактивный каталог задач: кликните по задаче, чтобы раскрыть пояснение -->
+          <div class="branches-interactive">
+            <div class="tasks-columns">
+            <div class="tasks-col">
+              <div class="tasks-col-title sci">Научные задачи <span>5</span></div>
+              <div class="branches-grid">
+
+              <!-- 1. Главная научная задача -->
+              <div class="branch-item" data-category="science">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Определение фигуры, размеров Земли и её гравитационного поля</span>
+                  <span class="branch-badge sci">Главная научная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Главная научная задача геодезии</b> — определение фигуры (формы), геометрических размеров Земли и параметров её внешнего гравитационного поля в глобальном и региональном масштабах.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Земля не является шаром: её форма описывается геоидом и общим земным эллипсоидом с большой полуосью ≈ 6 378 137 м и сжатием ≈ 1:298,3. Задача — с максимально возможной точностью определить эти параметры и высоты квазигеоида.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Исторически — градусные измерения треугольниками; сегодня — спутниковые методы (ГНСС, лазерная дальнометрия SLR, радиоинтерферометрия VLBI), гравиметрия и спутниковая альтиметрия.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Точные параметры эллипсоида — фундамент всех систем координат, картографических проекций и инженерных расчётов на планете.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Внутреннее строение Земли -->
+              <div class="branch-item" data-category="science">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Исследование внутреннего строения Земли</span>
+                  <span class="branch-badge sci">Научная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Определение плотностных неоднородностей в мантии и литосфере Земли по аномалиям силы тяжести и геодинамическим данным.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Геодезические измерения — независимый источник информации о недрах планеты наряду с сейсмологией: гравитационные аномалии отражают распределение масс в коре и мантии.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Гравиметрическая съёмка, спутниковая градиентометрия (GOCE), анализ формы геоида и его возмущений.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Понимание тектонических процессов, поиск месторождений полезных ископаемых, оценка напряжённого состояния земной коры.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Движения земной коры -->
+              <div class="branch-item" data-category="science">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Изучение горизонтальных и вертикальных движений земной коры</span>
+                  <span class="branch-badge sci">Научная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Высокоточные повторные измерения деформаций земной коры: тектонические плиты движутся со скоростями от 1 до 10 см в год.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Современная геодинамика фиксирует медленные смещения блоков коры, которые накапливают напряжения и проявляются в землетрясениях и вулканизме.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Повторные ГНСС-кампании и постоянно действующие станции, высокоточное нивелирование, наклономеры и деформографы.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Мониторинг сейсмоопасных регионов и вулканов, безопасность АЭС, ГЭС и других критически важных сооружений.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Уровень морей и океанов -->
+              <div class="branch-item" data-category="science">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Изучение колебаний уровня морей и океанов</span>
+                  <span class="branch-badge sci">Научная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Фиксация вековых изменений уровня Мирового океана, разностей высот уровней отдельных морей и смещения береговых линий.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Уровень океана меняется из-за таяния ледников и климатических факторов, а разные моря имеют различные уровни (например, Каспийское и Чёрное море отличаются на десятки метров).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Футштоки и мареографы (уровнемерные посты), спутниковая альтиметрия, повторное нивелирование вдоль берегов.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Установление единой высотной основы страны (Балтийская система высот 1977 г.), мониторинг климата, берегозащитные мероприятия.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Движение полюсов -->
+              <div class="branch-item" data-category="science">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Изучение движения полюсов и вращения Земли</span>
+                  <span class="branch-badge sci">Научная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Измерение прецессии и нутации земной оси, её колебаний в теле планеты (движение полюса Чандлера) и неравномерности суточного вращения Земли.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Ось вращения Земли смещается в теле планеты на несколько метров, а продолжительность суток непостоянна. Эти параметры влияют на все астрономо-геодезические измерения.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>РСДБ-наблюдения квазаров (VLBI), лазерная дальнометрия спутников (SLR), глобальные ГНСС-сети, службы времени и частоты.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Точная космическая навигация, эфемеридное обеспечение, всемирное координированное время UTC и координатные системы ITRF/ICRF.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+            </div>
+            <div class="tasks-col">
+              <div class="tasks-col-title prod">Производственные задачи <span>6</span></div>
+              <div class="branches-grid">
+
+              <!-- 6. Координаты точек -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Определение пространственных координат точек</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Определение пространственного положения (координат X, Y, H) точек земной поверхности и объектов на ней в единых государственных и международных системах координат.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Координаты определяются в государственных системах ГСК-2011 и ПЗ-90.11, международных WGS 84, ITRF, а также в местных (условных) системах с пересчётом между ними.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Спутниковые ГНСС-измерения, триангуляция и полигонометрия, тахеометрические ходы, привязка к пунктам опорных сетей.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Юридически значимое положение границ участков, объектов недвижимости и инфраструктуры; основа всех кадастров и ГИС.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 7. Опорные сети -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Создание опорных геодезических сетей</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Построение государственных геодезических сетей — каркаса из закреплённых на местности пунктов с точно известными координатами и высотами.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Сеть строится по принципу «от общего к частному»: фундаментальная астрономо-геодезическая сеть (ФАГС), высокоточная (ВГС) и спутниковая геодезическая сеть 1 класса (СГС-1), далее сети сгущения и съёмочное обоснование.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Статические ГНСС-измерения, высокоточное нивелирование I–II классов, закрепление пунктов центрами и реперами, геодезические знаки.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Единая координатная основа всех съёмок, инженерных изысканий и кадастровых работ на территории страны.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 8. Картографирование -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Топографическое картографирование территории</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Составление топографических карт и планов местности масштабов от 1:500 до 1:1 000 000, а также цифровых моделей рельефа (ЦМР) и местности (ЦММ).</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Планы (крупные масштабы) и карты (мелкие) отображают ситуацию и рельеф; цифровые модели служат основой современных ГИС и автоматизированного проектирования.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Тахеометрическая и нивелирная съёмка, аэрофотосъёмка и съёмка с БПЛА, лазерное сканирование, данные дистанционного зондирования Земли.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Основа градостроительства, проектирования дорог и коммуникаций, ведения государственного кадастра и обороны.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 9. Строительство -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Инженерно-геодезическое обеспечение строительства</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Геодезическое сопровождение всех стадий жизненного цикла сооружений: изыскания, вынос проекта в натуру, контроль монтажа, исполнительные съёмки и мониторинг осадок и деформаций.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>От точности разбивочных работ зависит геометрия сооружения: вынесенные в натуру оси и отметки должны совпадать с проектом в пределах миллиметров.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Электронные тахеометры, ГНСС в режиме RTK, высокоточные цифровые нивелиры, приборы вертикального проектирования, лазерные сканеры.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Безопасность и качество зданий, мостов, тоннелей, ГЭС и АЭС; своевременное выявление деформаций при эксплуатации.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 10. Кадастр и недра -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Кадастр, землеустройство и недропользование</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Установление и восстановление границ земельных участков, кадастровые работы, а также маркшейдерско-геодезическое обеспечение добычи полезных ископаемых.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Межевание превращает юридическое описание участка в закреплённые на местности границы; при недропользовании геодезия обеспечивает разбивку горных выработок и съёмку подземных горных работ.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>ГНСС-роверы в режиме RTK, тахеометры, кадастровые съёмки с привязкой к опорным сетям, маркшейдерские приборы.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Государственный кадастр недвижимости, оборот земель, налогобложение, безопасное ведение горных работ.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 11. Оборона -->
+              <div class="branch-item" data-category="production">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Обеспечение обороны и безопасности государства</span>
+                  <span class="branch-badge prod">Производственная</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead">Предоставление геодезических данных для нужд обороны государства, навигации авиации, флота, высокоточного оружия и космической деятельности.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Суть задачи</h5>
+                          <p>Топографические карты специальных изданий, координаты целей и стартовых позиций, закрытые системы координат и гравиметрические данные для баллистических расчётов.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Военно-топографические съёмки, спутниковая навигация (в том числе закрытые сигналы ГЛОНАСС), аэрокосмическая съёмка, специальные геодезические сети.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Практическое значение</h5>
+                          <p>Обороноспособность страны, точность навигации и целеуказания, планирование операций и космический мониторинг.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= ВКЛАДКА 3: РАЗДЕЛЫ ГЕОДЕЗИИ ================= -->
+        <div class="card gl-tab-panel" data-gl-panel="sub-2">
+          <section class="learning-goal">
+            <span>Цель третьего раздела</span>
+            <p>Ознакомиться со структурой геодезической науки: раскрыть подробные характеристики 14 ключевых разделов (включая геодезическое инструментоведение), понять предмет, задачи, методы и области применения каждого направления.</p>
+          </section>
+
+          <h2>Разделы современной геодезии</h2>
+          <p>Современная геодезия — это разветвлённая система взаимосвязанных научных и прикладных дисциплин. <b>Кликните по названию раздела</b>, чтобы ниже раскрылась подробная информация о нём. Используйте фильтры, чтобы сгруппировать направления по областям применения:</p>
+
+                    <!-- Интерактивный каталог разделов: кликните по разделу, чтобы раскрыть подробности -->
+          <div class="branches-interactive">
+            <div class="branches-filter-bar">
+              <button class="filter-chip active" data-filter="all" type="button">Все 14 разделов</button>
+              <button class="filter-chip" data-filter="fundamental" type="button">Фундаментальные</button>
+              <button class="filter-chip" data-filter="applied" type="button">Инженерно-прикладные</button>
+              <button class="filter-chip" data-filter="space" type="button">Космические и ДЗЗ</button>
+              <button class="filter-chip" data-filter="marine" type="button">Морские и водные</button>
+              <button class="filter-chip" data-filter="instrument" type="button">Приборы и метрология</button>
+            </div>
+
+            <div class="branches-grid tiles-grid" id="branchesGrid">
+
+              <!-- Топография -->
+              <div class="branch-item" data-category="fundamental applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Геодезия (топография)</span>
+                  <span class="branch-badge">Локальные съемки</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Геодезия в узком смысле слова (топография)</b> — научно-техническая дисциплина, рассматривающая методы и технику измерений на местности в локальных районах для построения цифровых моделей местности, топографических планов и карт.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Физическая поверхность Земли и расположенные на ней объекты (ситуация и рельеф) в пределах небольших территорий, где кривизной Земли пренебрегают или учитывают её введением поправок.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>наземные съёмки: горизонтальная (теодолитная), вертикальная (нивелирование), комбинированная тахеометрическая;</li>
+                            <li>создание топографических планов масштабов 1:500 — 1:10 000;</li>
+                            <li>построение цифровых моделей местности (ЦММ) и рельефа (ЦМР).</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Электронные тахеометры, ГНСС-роверы в режиме RTK, нивелиры, беспилотные воздушные суда с фотокамерами, лазерные сканеры.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Градостроительство и кадастр недвижимости, проектирование дорог, трубопроводов и коммуникаций, инженерные изыскания под строительство.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Высшая геодезия -->
+              <div class="branch-item" data-category="fundamental">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Высшая геодезия</span>
+                  <span class="branch-badge">Глобальная основа</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Высшая геодезия</b> — раздел геодезии, рассматривающий методы и технику измерений для определения поверхности всей Земли или значительных её частей, построения опорных геодезических сетей и изучения гравитационного поля в единой системе координат.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Фигура Земли (геоид, общий земной эллипсоид), её внешнее гравитационное поле и изменения геометрии и динамики земной поверхности в глобальном масштабе.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>установление и поддержание государственных систем координат (ГСК-2011, ПЗ-90.11) и систем высот (Балтийская система 1977 г.);</li>
+                            <li>построение государственных геодезических сетей: ФАГС, ВГС, СГС-1;</li>
+                            <li>определение параметров земного эллипсоида и высот квазигеоида;</li>
+                            <li>изучение движений земной коры и вращения Земли.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Статические ГНСС-измерения, высокоточное нивелирование I–II классов, астрономические определения, гравиметрия, лазерная дальнометрия спутников (SLR) и радиоинтерферометрия (VLBI).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Единая координатная основа всех видов съёмок и ГИС, оборона и космическая деятельность, геодинамический мониторинг территории страны.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Геодезическая гравиметрия -->
+              <div class="branch-item" data-category="fundamental">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Геодезическая гравиметрия</span>
+                  <span class="branch-badge">Поле тяжести</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Геодезическая гравиметрия</b> — раздел геодезии, изучающий внешнее гравитационное поле Земли и его изменения в пространстве и времени по результатам измерений ускорения силы тяжести.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Величина и направление силы тяжести на физической поверхности Земли и вблизи неё; гравитационные аномалии, вызванные неоднородностями строения земной коры.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>измерение ускорения силы тяжести абсолютным и относительным методами;</li>
+                            <li>построение глобальных и региональных моделей гравитационного поля и геоида (EGM2008);</li>
+                            <li>изучение приливных и тектонических изменений поля во времени;</li>
+                            <li>гравиметрическое редуцирование геодезических измерений с физической поверхности на эллипсоид.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Наземные пружинные и кварцевые гравиметры, абсолютные баллистические гравиметры, морские и авиационные гравиметрические комплексы, спутниковая альтиметрия и градиентометрия (GRACE, GOCE).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Уточнение фигуры Земли и высот геоида, поиски месторождений нефти, газа и руд, изучение внутреннего строения планеты, метрология.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Геодезическая астрономия -->
+              <div class="branch-item" data-category="fundamental space">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Геодезическая астрономия</span>
+                  <span class="branch-badge">Светила и координаты</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Геодезическая астрономия</b> — раздел геодезии, изучающий методы определения координат точек земной поверхности в пространстве (широт и долгот) и азимутов направлений из наблюдений небесных светил — звёзд и Солнца.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Взаимная связь между координатами небесных светил и координатами точек земной поверхности; теория и техника высокоточных астрономических наблюдений.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>определение астрономических широт и долгот пунктов;</li>
+                            <li>определение астрономических азимутов направлений (пункты Лапласа);</li>
+                            <li>определение уклонений отвесных линий;</li>
+                            <li>участие в служе времени и изучении неравномерности вращения Земли.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Астрономические теодолиты, зенит-телескопы и пассажные инструменты, призменные астролябии, приёмники точного времени, фундаментальные звёздные каталоги.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Ориентирование государственных геодезических сетей, автономное определение координат в экспедициях и в море, изучение движения полюсов.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Космическая геодезия -->
+              <div class="branch-item" data-category="fundamental space">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Космическая геодезия</span>
+                  <span class="branch-badge">Орбиты и динамика</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Космическая геодезия</b> — раздел геодезии, рассматривающий теорию движения небесных объектов и их спутников, в том числе искусственных спутников Земли (ИСЗ), для решения геометрических и динамических задач геодезии.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Орбитальное движение ИСЗ и его связь с параметрами гравитационного поля и системами координат; геометрия цепочки «Земля — спутник — наблюдатель».</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>геометрические задачи: построение глобальных сетей по наблюдениям спутников, лазерная дальнометрия (SLR), радиоинтерферометрия со сверхдлинными базами (VLBI);</li>
+                            <li>динамические задачи: определение параметров гравитационного поля по возмущениям орбит;</li>
+                            <li>установление и поддержание земных и небесных систем отсчёта (ITRF, ICRF);</li>
+                            <li>контроль вращения Земли и движения полюсов.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Лазерные дальномерные станции, радиотелескопы РСДБ, доплеровые системы (DORIS), спутниковые альтиметры и градиентометрические миссии (GRACE, GOCE).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Глобальные геодезические сети и системы координат, модели геопотенциала, геодинамический мониторинг планеты, навигация в дальнем космосе.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Спутниковая геодезия -->
+              <div class="branch-item" data-category="space applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Спутниковая геодезия</span>
+                  <span class="branch-badge">ГНСС / GNSS</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Спутниковая геодезия</b> — направление геодезии, рассматривающее теорию и методы использования ИСЗ — глобальных навигационных спутниковых систем (ГЛОНАСС, GPS, Galileo, BeiDou) — для высокоточного координатного обеспечения и решения практических задач.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Алгоритмы обработки кодовых и фазовых спутниковых измерений; источники погрешностей (ионосфера, тропосфера, многолучёвость) и способы их компенсации.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>абсолютное и относительное позиционирование; режимы Static, Kinematic, RTK, PPK, PPP;</li>
+                            <li>создание спутниковых геодезических сетей и сетей постоянно действующих базовых станций (CORS);</li>
+                            <li>передача точного времени и синхронизация систем;</li>
+                            <li>мониторинг движений земной коры и сооружений в реальном времени.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Многочастотные ГНСС-приёмники, антенны Choke Ring, базовые станции и сервисы дифференциальных поправок, программные комплексы постобработки.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Государственные геодезические сети, кадастровые съёмки в режиме RTK, навигация транспорта и БПЛА, точное земледелие, геоинформационные системы.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Морская геодезия -->
+              <div class="branch-item" data-category="marine applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Морская геодезия</span>
+                  <span class="branch-badge">Морские акватории</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Морская геодезия</b> — раздел геодезии, решающий научные и прикладные задачи на море: определение формы поверхности и гравитационного поля в океанах, навигационно-геодезическое обеспечение работ на шельфе.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Топография морской поверхности, рельеф дна и придонное пространство, положение объектов и сооружений на шельфе и в открытом море.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>определение высот морской поверхности по альтиметрическим данным;</li>
+                            <li>координатная привязка буровых платформ, подводных трубопроводов и кабелей;</li>
+                            <li>создание морских геодезических сетей и съёмка шельфа;</li>
+                            <li>навигационно-гидрографическое обеспечение морских операций.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Спутниковая альтиметрия, морские гравиметры, эхолоты, комплексы ГНСС/INS, необитаемые подводные аппараты с гидроакустическими системами навигации (USBL, LBL).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Освоение шельфа и добыча углеводородов, демаркация морских границ по Конвенции ООН по морскому праву, строительство портовых сооружений, военное дело.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Гидрография -->
+              <div class="branch-item" data-category="marine applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Гидрография</span>
+                  <span class="branch-badge">Рельеф дна и навигация</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Гидрография</b> — наука, изучающая жидкую оболочку Земли — океаны, моря, реки и озёра, их берега и рельеф дна — в целях обеспечения безопасности судоходства и водного строительства.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Глубины и рельеф дна, гидрологический режим (течения, приливы, колебания уровня воды), береговая полоса и навигационные опасности.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>промерные работы: измерение глубин и съёмка рельефа дна;</li>
+                            <li>съёмка береговой полосы и съёмка навигационных опасностей;</li>
+                            <li>составление морских навигационных карт и лоций;</li>
+                            <li>контроль глубин судоходных каналов и подходов к портам.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Одно- и многолучевые эхолоты (MBES), гидролокаторы бокового обзора, профилографы, батиметрические лидары, донные марки и станции приливных наблюдений.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Безопасность мореплавания, дноуглубительные и портовые работы, поиск затонувших объектов, военно-морской флот, подводная археология.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Навигация -->
+              <div class="branch-item" data-category="applied space">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Навигация</span>
+                  <span class="branch-badge">Движение и маршруты</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Навигация</b> — область науки и техники, изучающая методы и технологии оперативного определения местоположения, скорости и ориентации движущихся объектов (наземных, морских, воздушных, космических) и проложения маршрутов.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Процесс непрерывного определения позиции и параметров движения объекта — курса, скорости, ускорений — в реальном времени с требуемой точностью.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>позиционирование подвижных объектов в реальном времени;</li>
+                            <li>счисление пути и коррекция по внешним сигналам и ориентирам;</li>
+                            <li>комплексирование спутниковых (ГНСС) и инерциальных (ИНС) данных;</li>
+                            <li>маршрутное планирование и проводка по фарватерам и трассам.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>ГНСС-приёмники, инерциальные навигационные системы, доплеровские измерители скорости, радиомаяки, эхолоты, электронные навигационные карты (ECDIS).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Транспорт и логистика, авиация и флот, беспилотные автомобили и БПЛА, мобильные навигационные приложения, военное дело.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ДЗЗ и Фотограмметрия -->
+              <div class="branch-item" data-category="space applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">ДЗЗ и фотограмметрия</span>
+                  <span class="branch-badge">Аэрофото и БПЛА</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Дистанционное зондирование Земли (ДЗЗ) и фотограмметрия</b> — решение задач измерений по аэрофото- и космическим снимкам (в том числе с беспилотных воздушных судов — БВС) для получения карт, планов, 3D-моделей и обмеров зданий.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Геометрические и радиометрические закономерности построения снимков; методы восстановления формы, размеров и пространственного положения объектов по их изображениям.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>аэрофотосъёмка и космическая съёмка, планирование залётов;</li>
+                            <li>фотограмметрическая обработка: внутреннее, взаимное и внешнее ориентирование снимков;</li>
+                            <li>создание ортофотопланов, ЦМР и трёхмерных моделей местности;</li>
+                            <li>дешифрирование снимков и мониторинг изменений территории.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Метрические аэрофотокамеры, БПЛА, космические аппараты ДЗЗ, цифровые фотограмметрические станции и программные комплексы (Agisoft Metashape, Pix4D).</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Крупномасштабное картографирование, кадастр недвижимости, мониторинг сельского хозяйства и лесов, ликвидация последствий ЧС, обмеры зданий и BIM-моделирование.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Инженерная геодезия -->
+              <div class="branch-item" data-category="applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Инженерная (прикладная) геодезия</span>
+                  <span class="branch-badge">Строительство и монтаж</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Инженерная (прикладная) геодезия</b> — раздел геодезии, разрабатывающий методы геодезических работ при изысканиях, проектировании, строительстве и эксплуатации инженерных сооружений, монтаже промышленного оборудования и разведке недр.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Геометрия инженерных сооружений на всех этапах жизненного цикла — от изысканий и выноса проекта в натуру до мониторинга деформаций при эксплуатации.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>инженерно-геодезические изыскания и создание строительных сетей;</li>
+                            <li>разбивочные работы: вынос в натуру осей, отметок и габаритов сооружений;</li>
+                            <li>исполнительные съёмки и контроль геометрии монтажа;</li>
+                            <li>мониторинг осадок, кренов и деформаций зданий и оборудования.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Электронные тахеометры, ГНСС-приёмники в режиме RTK, высокоточные и цифровые нивелиры, приборы вертикального проектирования, лазерные сканеры.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Промышленное и гражданское строительство, мосты и тоннели, ГЭС и АЭС, монтаж технологического оборудования, разведка и добыча полезных ископаемых.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Картография -->
+              <div class="branch-item" data-category="applied fundamental">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Картография</span>
+                  <span class="branch-badge">Проекции и карты</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Картография</b> — наука об исследовании, моделировании и отображении пространственного расположения объектов и явлений природы и общества; рассматривает методы математических преобразований, позволяющих изобразить сферическую земную поверхность на плоскости, а также методы составления и издания карт.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Земная поверхность как объект картографирования, картографические проекции, знаковые системы и способы изображения, теория картографической генерализации.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>выбор проекций (Гаусса-Крюгера, UTM), масштабов и разграфки с номенклатурой листов;</li>
+                            <li>составление, оформление и издание карт и атласов;</li>
+                            <li>картографическая генерализация содержания;</li>
+                            <li>создание электронных карт и слоёв геоинформационных систем.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>ГИС-пакеты (QGIS, ArcGIS), издательские картографические системы, базы пространственных данных, технологии веб-картографии.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Топографические и тематические карты всех масштабов, навигационные атласы, электронные картографические сервисы, образование, наука и управление территориями.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Геодезическая метрология -->
+              <div class="branch-item" data-category="instrument">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Геодезическая метрология</span>
+                  <span class="branch-badge">Единство измерений</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Геодезическая метрология</b> — комплекс научных, технических и нормативных вопросов по обеспечению единства и требуемой точности геодезических измерений, включая разработку эталонов, методик калибровки и поверок средств измерений.</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Метрологические характеристики геодезических приборов и методик измерений; передача размера единиц величин (длины, угла, ускорения) от эталонов к рабочим средствам измерений.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>создание и поддержание государственных эталонов единиц величин;</li>
+                            <li>разработка поверочных схем и методик поверки и калибровки;</li>
+                            <li>утверждение типов средств измерений, аккредитация лабораторий (ФЗ № 102-ФЗ «Об обеспечении единства измерений»);</li>
+                            <li>метрологический контроль и надзор за геодезическими работами.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Эталонные компараторы и интерферометры, экзаменаторы и коллиматоры, эталонные линейные базисы, геодезические полигоны, имитаторы ГНСС-сигналов.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Поверка и калибровка теодолитов, нивелиров, тахеометров и ГНСС-приёмников в аккредитованных лабораториях, метрологическое сопровождение инженерных изысканий.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Геодезическое инструментоведение -->
+              <div class="branch-item" data-category="instrument applied">
+                <button class="branch-head" type="button" aria-expanded="false">
+                  <span class="branch-title">Геодезическое инструментоведение</span>
+                  <span class="branch-badge">Приборы и оптико-электроника</span>
+                  <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+                <div class="branch-body">
+                  <div class="branch-body-inner">
+                    <div class="branch-body-content">
+                      <p class="branch-lead"><b>Геодезическое инструментоведение</b> (прибороведение) — научная и инженерная дисциплина, исследующая принципы устройства, теорию работы, методы конструирования, исследования, поверки, юстировки и условия эксплуатации приборов и систем, применяемых для геодезических измерений. Подробно приборы изучаются в Теме 02 «Геодезическое оборудование».</p>
+                      <div class="branch-info-grid">
+                        <div class="branch-info-cell">
+                          <h5>Предмет изучения</h5>
+                          <p>Конструкция приборов, их оптико-механические и электронные узлы, система основных осей, источники инструментальных погрешностей и способы их учёта и устранения.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Основные задачи</h5>
+                          <ul>
+                            <li>классификация приборов: угломерные, высотомерные, линейно-измерительные, электронные тахеометры, ГНСС-аппаратура, лазерные сканеры;</li>
+                            <li>исследование, испытание, поверка и юстировка приборов;</li>
+                            <li>разработка и внедрение автоматизированных измерительных систем.</li>
+                          </ul>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Методы и средства</h5>
+                          <p>Теодолиты, нивелиры, светодальномеры, тахеометры, ГНСС-приёмники, сканеры; юстировочные винты, эталонные компараторы и поверочные лаборатории.</p>
+                        </div>
+                        <div class="branch-info-cell">
+                          <h5>Применение</h5>
+                          <p>Метрологически исправные приборы для всех видов геодезических работ; приборостроительные предприятия и аккредитованные лаборатории поверки.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= ВКЛАДКА 4: САМОПРОВЕРКА И ТЕСТ ================= -->
+        <div class="card gl-tab-panel" data-gl-panel="sub-3">
+          <section class="learning-goal">
+            <span>Итоговый контроль знаний</span>
+            <p>Проверьте, насколько хорошо вы усвоили предмет, научные и производственные задачи геодезии, а также классификацию разделов и принципы геодезического инструментоведения.</p>
+          </section>
+
+          <h2>Интерактивный тест для самопроверки</h2>
+          <p>Ответьте на 7 вопросов. Результат и подробные объяснения появятся мгновенно после выбора варианта:</p>
+
+          <div class="quiz-container" id="quizApp">
+            <!-- Вопросы генерируются через JS -->
+          </div>
+
+          <div class="quiz-score-bar" id="scoreBar">
+            <div class="quiz-score-text">Отвечено вопросов: <span id="answeredCount">0</span> из 7 | Правильно: <span id="correctCount">0</span></div>
+            <button class="quiz-reset-btn" id="resetQuizBtn" type="button">Пройти тест заново</button>
+          </div>
+
+          <h3 style="margin-top:40px;">Ключевые термины урока (нажмите на карточку для открытия)</h3>
+          <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Геодезия</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Точная наука об определении формы, размеров и гравитационного поля Земли, координат объектов и их изменений во времени.</div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Главная научная задача</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Изучение фигуры, геометрических размеров Земли и её внешнего гравитационного поля.</div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Геодезическое инструментоведение</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Раздел геодезии, изучающий физические основы, устройство, оптико-электронику, поверки, юстировки и эксплуатацию геодезических приборов.</div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Поверка прибора</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Экспериментальная проверка соблюдения правильного геометрического взаимного расположения осей и узлов прибора.</div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Юстировка</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Процесс регулировки и исправления механических/оптических узлов прибора для устранения обнаруженных инструментальных погрешностей.</div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+              <div>
+                <div class="flashcard-term">Визирная ось</div>
+                <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
+              </div>
+              <div class="flashcard-def">Воображаемая прямая линия, проходящая через оптический центр объектива и центр перекрестия сетки нитей зрительной трубы.</div>
+            </div>
+          </div>
+
+          <!-- Итоговая памятка -->
+          <section class="summary">
+            <h2>Коротко о главном</h2>
+            <ol>
+              <li><span>01</span><b>Геодезия</b> происходит от греч. «землеразделение» и изучает физическую поверхность, гравитационное поле и координаты объектов (ФЗ № 431-ФЗ).</li>
+              <li><span>02</span><b>Главная научная задача</b> — изучение фигуры Земли и гравитационного поля; производственные задачи — координаты, карты, строительство и оборона.</li>
+              <li><span>03</span>Современная геодезия насчитывает <b>14 тесно связанных разделов</b>: от высшей геодезии и гравиметрии до спутниковых технологий, ДЗЗ и гидрографии.</li>
+              <li><span>04</span><b>Геодезическое инструментоведение</b> изучает физику, устройство, поверки и юстировки приборов (теодолитов, нивелиров, тахеометров, ГНСС-приёмников, лазерных сканеров).</li>
+            </ol>
+          </section>
+        </div>
+
+        <!-- Кнопка перехода к следующему уроку -->
+        <div class="next-lesson">
+          <span>Следующий урок курса</span>
+          <a href="history-of-geodesy.html">Краткие сведения из истории геодезии →</a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<!-- Скрипты переключения вкладок, интерактивных блоков и теста -->
+<script>
+(function(){
+  // Переключение вкладок
+  const root = document.querySelector('.gl-lesson-content');
+  const tabs = [...root.querySelectorAll('[data-gl-tab]')];
+  const panels = [...root.querySelectorAll('[data-gl-panel]')];
+
+  function showTab(id){
+    tabs.forEach(t => {
+      const on = (t.dataset.glTab === id);
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    panels.forEach(p => {
+      p.classList.toggle('active', p.dataset.glPanel === id);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.glTab)));
+
+  // Каталоги-аккордеоны (разделы геодезии и задачи)
+  document.querySelectorAll('.branches-interactive').forEach(box => {
+    const chips = box.querySelectorAll('.filter-chip');
+    const items = box.querySelectorAll('.branch-item');
+
+    // Фильтр элементов каталога
+    chips.forEach(chip => {
+      chip.addEventListener('click', function(){
+        chips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+
+        items.forEach(item => {
+          const cats = item.dataset.category || '';
+          const show = (filter === 'all') || cats.split(' ').includes(filter);
+          item.style.display = show ? 'block' : 'none';
+          if (!show) {
+            item.classList.remove('open');
+            const h = item.querySelector('.branch-head');
+            if (h) h.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    });
+
+    // Аккордеон: клик по элементу раскрывает подробную информацию ниже
+    // (независимо в каждой сетке/колонке)
+    box.querySelectorAll('.branches-grid').forEach(grid => {
+      const gridItems = [...grid.querySelectorAll('.branch-item')];
+      gridItems.forEach(item => {
+        const head = item.querySelector('.branch-head');
+        if (!head) return;
+        head.addEventListener('click', () => {
+          const willOpen = !item.classList.contains('open');
+          gridItems.forEach(other => {
+            other.classList.remove('open');
+            const otherHead = other.querySelector('.branch-head');
+            if (otherHead) otherHead.setAttribute('aria-expanded', 'false');
+          });
+          if (willOpen) {
+            item.classList.add('open');
+            head.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  });
+
+  // Интерактивный тест
+  const quizData = [
+    {
+      q: 'Что дословно означает древнегреческое слово «γεωδαισία» (геодезия)?',
+      options: [
+        'Измерение окружности Земли',
+        'Землеразделение',
+        'Картографирование суши',
+        'Изучение земных недр'
+      ],
+      correct: 1,
+      explain: 'Верно! Слово γεωδαισία образовано от γῆ (Земля) и δαίζω (делю, разделяю) — дословно «землеразделение».'
+    },
+    {
+      q: 'В чём заключается главная научная задача геодезии?',
+      options: [
+        'В составлении туристических карт и навигационных атласов',
+        'В изучении формы и размеров Земли и её внешнего гравитационного поля',
+        'В измерении границ земельных участков для кадастра',
+        'В разработке строительных норм и правил'
+      ],
+      correct: 1,
+      explain: 'Верно! Главная научная задача геодезии — определение фигуры, геометрических параметров Земли и её внешнего гравитационного поля.'
+    },
+    {
+      q: 'Какой Федеральный закон в РФ регулирует отношения в области геодезии, картографии и пространственных данных?',
+      options: [
+        'Федеральный закон № 218-ФЗ',
+        'Федеральный закон № 431-ФЗ',
+        'Федеральный закон № 102-ФЗ',
+        'Федеральный закон № 384-ФЗ'
+      ],
+      correct: 1,
+      explain: 'Верно! Это Федеральный закон от 30.12.2015 г. № 431-ФЗ «О геодезии, картографии и пространственных данных...».'
+    },
+    {
+      q: 'Какой раздел геодезии исследует физические основы, оптико-электронику, теорию погрешностей, поверки и юстировки приборов?',
+      options: [
+        'Геодезическая астрономия',
+        'Геодезическое инструментоведение',
+        'Морская геодезия',
+        'Картография'
+      ],
+      correct: 1,
+      explain: 'Верно! Геодезическое инструментоведение изучает конструкцию, принципы действия, поверки и юстировки измерительных средств.'
+    },
+    {
+      q: 'Чем принципиально отличается поверка геодезического прибора от его юстировки?',
+      options: [
+        'Поверка выполняется на заводе, а юстировка только в поле',
+        'Поверка — это выявление соблюдения геометрических условий, а юстировка — их устранение и регулировка',
+        'Поверка измеряет углы, а юстировка измеряет расстояния',
+        'Это абсолютно одинаковые термины'
+      ],
+      correct: 1,
+      explain: 'Верно! Поверка проверяет соответствие геометрических условий допуску, а юстировка регулировочными винтами исправляет погрешности.'
+    },
+    {
+      q: 'Какая ось геодезического угломерного прибора соединяет центр объектива и перекрестие сетки нитей?',
+      options: [
+        'Вертикальная ось вращения прибора (ZZ\')',
+        'Горизонтальная ось вращения зрительной трубы (HH\')',
+        'Визирная ось зрительной трубы (VV\')',
+        'Ось цилиндрического уровня (LL\')'
+      ],
+      correct: 2,
+      explain: 'Верно! Визирная ось (VV\') — это воображаемая прямая линия через оптический центр объектива и центр сетки нитей.'
+    },
+    {
+      q: 'К какому классу задач относится геодезический мониторинг осадок и деформаций плотины гидроэлектростанции (ГЭС)?',
+      options: [
+        'Геодезическая астрономия',
+        'Инженерная (прикладная) геодезия',
+        'Гидрография',
+        'Космическая геодезия'
+      ],
+      correct: 1,
+      explain: 'Верно! Контроль деформаций и осадок сооружений на всех этапах строительства и эксплуатации относится к инженерной (прикладной) геодезии.'
+    }
+  ];
+
+  let answeredCount = 0;
+  let correctCount = 0;
+  const quizApp = document.getElementById('quizApp');
+
+  function renderQuiz(){
+    quizApp.innerHTML = '';
+    answeredCount = 0;
+    correctCount = 0;
+    document.getElementById('answeredCount').textContent = '0';
+    document.getElementById('correctCount').textContent = '0';
+
+    quizData.forEach((item, qIdx) => {
+      const qCard = document.createElement('div');
+      qCard.className = 'quiz-question-card';
+
+      const qNum = document.createElement('div');
+      qNum.className = 'quiz-q-num';
+      qNum.textContent = `Вопрос ${qIdx + 1} из ${quizData.length}`;
+      qCard.appendChild(qNum);
+
+      const qText = document.createElement('div');
+      qText.className = 'quiz-q-text';
+      qText.textContent = item.q;
+      qCard.appendChild(qText);
+
+      const optList = document.createElement('div');
+      optList.className = 'quiz-options';
+
+      const feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+
+      item.options.forEach((optText, oIdx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz-opt-btn';
+        btn.textContent = optText;
+
+        btn.addEventListener('click', function(){
+          if (qCard.dataset.answered === 'true') return;
+          qCard.dataset.answered = 'true';
+          answeredCount++;
+
+          const allBtns = optList.querySelectorAll('.quiz-opt-btn');
+          allBtns.forEach(b => b.classList.add('disabled'));
+
+          if (oIdx === item.correct) {
+            btn.classList.add('correct');
+            feedback.className = 'quiz-feedback show correct-fb';
+            feedback.innerHTML = `<b>Правильно!</b> ${item.explain}`;
+            correctCount++;
+          } else {
+            btn.classList.add('wrong');
+            allBtns[item.correct].classList.add('correct');
+            feedback.className = 'quiz-feedback show wrong-fb';
+            feedback.innerHTML = `<b>Неверно.</b> ${item.explain}`;
+          }
+
+          document.getElementById('answeredCount').textContent = String(answeredCount);
+          document.getElementById('correctCount').textContent = String(correctCount);
+        });
+
+        optList.appendChild(btn);
+      });
+
+      qCard.appendChild(optList);
+      qCard.appendChild(feedback);
+      quizApp.appendChild(qCard);
+    });
+  }
+
+  renderQuiz();
+
+  document.getElementById('resetQuizBtn').addEventListener('click', renderQuiz);
+
+  // Меню для мобильных
+  const mb = document.querySelector('.gl-menu-button');
+  const nv = document.querySelector('.gl-sitebar nav');
+  if (mb && nv) {
+    mb.onclick = function(){ nv.classList.toggle('open'); };
+  }
+})();
+</script>
+<script src="../../assets/lesson-blocks.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3d9b0bf1f1a1f50',t:'MTc4OTgzMjQ0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
