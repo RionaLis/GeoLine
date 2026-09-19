@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Небесная сфера · интерактивный урок</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Небесная сфера и системы координат — ГеоЛиния</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 :root{
@@ -105,337 +106,306 @@ td .sym{display:inline;min-width:0;text-align:left}
 .footer-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#08302b;display:grid;place-items:center;font:800 15px "Roboto Mono"}
 .footer-small{font:12px "Roboto Mono",monospace;max-width:460px}
 </style>
-<link rel="stylesheet" href="../../assets/lesson-site.css">
-<style>.gl-lesson-content .tabs-wrap{top:76px}.gl-lesson-content{min-width:0}.gl-lesson-content>.page-hero{border-radius:16px 16px 0 0}@media(max-width:900px){.gl-lesson-content .tabs-wrap{top:66px}}</style>
-</head>
-<body><header class="gl-sitebar">
-  <a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a>
-  <nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезическая астрономия</a><a href="../../index.html#about">О проекте</a></nav>
-  <button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button>
-</header>
-<div class="gl-lesson-layout">
-<aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии</div><a class="active" href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a class="gl-course-link" href="index.html">← Все темы курса</a></aside>
-<main class="gl-lesson-content">
-
-<header class="page-hero">
-  <div class="container">
-    <div class="breadcrumbs">GeoLine · Астрономия / <span>Небесная сфера</span></div>
-    <div class="eyebrow">Интерактивный урок</div>
-    <h1>Небесная сфера, её <em>элементы</em> и системы координат</h1>
-    <p>Точки и круги небесной сферы и четыре системы небесных координат: горизонтная, первая и вторая экваториальные и эклиптическая. Схемы можно вращать вправо-влево и настраивать ползунками.</p>
-  </div>
-</header>
-
-<div class="tabs-wrap">
-  <div class="container">
-    <div class="tabs" id="tabs">
-      <button class="tab active" data-view="intro">Небесная сфера</button>
-      <button class="tab" data-view="elements">Точки и круги</button>
-      <button class="tab" data-view="hor">Горизонтная</button>
-      <button class="tab" data-view="eq1">I экваториальная</button>
-      <button class="tab" data-view="eq2">II экваториальная</button>
-      <button class="tab" data-view="ecl">Эклиптическая</button>
-      <button class="tab" data-view="compare">Сводка</button>
-    </div>
-  </div>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/></head>
+<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Курс астрономии</a><a href="../../index.html#contacts">Контакты</a></nav><button aria-label="Открыть меню" class="gl-menu-button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии · 3 урока</div><a href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a href="coord-time-links.html"><span>02</span>Связи систем координат и времени</a><a href="time-systems.html"><span>03</span>Системы измерения времени в астрономии</a><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Основы геодезической астрономии · Урок 01</div><h1>Небесная сфера и системы координат</h1><div class="tabs-wrap gl-tabs">
+<div class="container">
+<div class="tabs" id="tabs">
+<button class="tab active" data-view="intro">Небесная сфера</button>
+<button class="tab" data-view="elements">Точки и круги</button>
+<button class="tab" data-view="hor">Горизонтная</button>
+<button class="tab" data-view="eq1">I экваториальная</button>
+<button class="tab" data-view="eq2">II экваториальная</button>
+<button class="tab" data-view="ecl">Эклиптическая</button>
+<button class="tab" data-view="compare">Сводка</button>
 </div>
+</div>
+</div></section>
+<header class="page-hero">
+<div class="container">
+<div class="breadcrumbs">GeoLine · Астрономия / <span>Небесная сфера</span></div>
+<div class="eyebrow">Интерактивный урок</div>
+<h1 class="gl-original-title">Небесная сфера, её <em>элементы</em> и системы координат</h1>
+<p>Точки и круги небесной сферы и четыре системы небесных координат: горизонтная, первая и вторая экваториальные и эклиптическая. Схемы можно вращать вправо-влево и настраивать ползунками.</p>
+</div>
+</header>
 
 <div class="section">
 <div class="container">
-
-  <!-- ================= INTRO ================= -->
-  <section class="view active" id="intro">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-intro"></div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите сферу, чтобы вращать</span>
-            <div class="rot-tools">
-              <button class="rot-btn" data-rot="-1" title="Повернуть влево">‹</button>
-              <button class="rot-btn" data-rot="reset" title="Исходное положение">↺</button>
-              <button class="rot-btn" data-rot="1" title="Повернуть вправо">›</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Что такое небесная сфера?</h2>
-        <p class="lead"><b>Небесная сфера</b> — воображаемая сфера произвольного (чаще бесконечного) радиуса с центром в точке наблюдений, на которую проецируются все небесные объекты.</p>
-        <p class="lead">Реальные расстояния до светил огромны и различны, но на сфере важно лишь <b>направление</b> на объект. Поэтому положение светила задаётся не тремя координатами, а всего двумя углами — как точка на глобусе.</p>
-        <h3>Зачем она нужна</h3>
-        <ul class="legend">
-          <li><span class="dot" style="background:var(--accent)"></span><span>Удобно описывать <b>видимые положения и движения</b> Солнца, Луны, планет и звёзд.</span></li>
-          <li><span class="dot" style="background:#5aa9ff"></span><span>Небо кажется вращающимся вокруг <b>оси мира</b> (следствие вращения Земли) — сфера отражает это наглядно.</span></li>
-          <li><span class="dot" style="background:#4fd6b0"></span><span>Позволяет ввести <b>системы координат</b> для точного указания места светила.</span></li>
-        </ul>
-        <h3>Два вида вращения</h3>
-        <p class="lead"><b>Суточное</b> вращение сферы (с востока на запад, за ≈24 часа) — следствие вращения Земли. <b>Годичное</b> движение Солнца по эклиптике — следствие обращения Земли вокруг Солнца.</p>
-        <div class="note"><b>Стартовое положение:</b> точка севера <b>N</b> слева, зенит <b>Z</b> вверху, центр сферы <b>O</b> — в точке наблюдений. Высота полюса мира над горизонтом равна географической широте: h<sub>P</sub> = φ.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ELEMENTS ================= -->
-  <section class="view" id="elements">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-elem"></div>
-          <div class="toggle-row" id="elem-toggles"></div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите, чтобы вращать</span>
-            <div class="rot-tools">
-              <button class="rot-btn" data-rot="-1">‹</button>
-              <button class="rot-btn" data-rot="reset">↺</button>
-              <button class="rot-btn" data-rot="1">›</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Основные точки и круги</h2>
-        <p class="lead">Включайте переключатели на схеме, чтобы подсвечивать элементы.</p>
-
-        <h3>Линии</h3>
-        <ul class="legend">
-          <li><span class="sym">ZZ′</span><span><b>Отвесная линия</b> — прямая, совпадающая с направлением вектора силы тяжести в точке наблюдений.</span></li>
-          <li><span class="sym">PP′</span><span><b>Ось мира</b> — линия, проведённая через точку наблюдений параллельно оси вращения Земли.</span></li>
-          <li><span class="sym">NS</span><span><b>Полуденная линия</b> — прямая, образующаяся при пересечении плоскости истинного (астрономического) меридиана наблюдателя с плоскостью его истинного (математического) горизонта.</span></li>
-        </ul>
-
-        <h3>Главные точки</h3>
-        <ul class="legend">
-          <li><span class="sym" style="color:#e7f2ef;background:#0f172a;border-radius:5px">O</span><span><b>Центр небесной сферы.</b> Чаще всего — точка наблюдений.</span></li>
-          <li><span class="sym">Z</span><span><b>Зенит</b> — точка пересечения верхней половины отвесной линии (направления вектора силы тяжести) в месте наблюдения с небесной сферой. Находится непосредственно над головой наблюдателя.</span></li>
-          <li><span class="sym">Z′</span><span><b>Надир</b> — точка пересечения нижней половины отвесной линии в месте наблюдения с небесной сферой. Диаметрально противоположна зениту и находится под ногами наблюдателя.</span></li>
-          <li><span class="sym">P, P′</span><span><b>Северный и южный полюсы мира.</b></span></li>
-          <li><span class="sym">N, S</span><span><b>Точки севера и юга</b> — пересечение небесного меридиана с математическим горизонтом.</span></li>
-          <li><span class="sym">E, W</span><span><b>Точки востока и запада</b> — пересечение небесного экватора с математическим горизонтом.</span></li>
-          <li><span class="sym">♈ ♎</span><span><b>Точки равноденствий</b> — весеннего (♈) и осеннего (♎); пересечение эклиптики с экватором.</span></li>
-        </ul>
-
-        <h3>Основные круги</h3>
-        <ul class="legend">
-          <li><span class="dot" style="background:#4fd6b0"></span><span><b>Математический горизонт</b> — большой круг, перпендикулярный отвесной линии (плоскость ⟂ ZZ′).</span></li>
-          <li><span class="dot" style="background:#5aa9ff"></span><span><b>Небесный экватор</b> — большой круг ⟂ оси мира PP′; делит сферу на северное и южное полушария.</span></li>
-          <li><span class="dot" style="background:#ffd15c"></span><span><b>Небесный меридиан</b> — круг через P, Z, S, P′, N; плоскость содержит ось мира и отвес.</span></li>
-          <li><span class="dot" style="background:#ff7a43"></span><span><b>Эклиптика</b> — видимый годовой путь Солнца; наклонена к экватору на ε ≈ 23°26′.</span></li>
-          <li><span class="dot" style="background:#7ee6ff"></span><span><b>Первый вертикал</b> — большой круг через зенит, надир и точки E, W; перпендикулярен меридиану.</span></li>
-          <li><span class="dot" style="background:#ffa9d4"></span><span><b>Суточная параллель</b> — малый круг, параллельный экватору, по которому светило совершает суточное движение.</span></li>
-          <li><span class="dot" style="background:#8ce0c0"></span><span><b>Альмукантарат</b> — малый круг, параллельный горизонту (линия равной высоты светила).</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= HORIZONTAL ================= -->
-  <section class="view" id="hor">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-hor"></div>
-          <div class="two">
-            <div><span class="slider-lab">Азимут A: <span class="val" id="hor-A-val">120°</span></span>
-              <input type="range" min="0" max="360" value="120" class="slider" id="hor-A"></div>
-            <div><span class="slider-lab">Высота h: <span class="val" id="hor-h-val">35°</span></span>
-              <input type="range" min="-30" max="90" value="35" class="slider" id="hor-h"></div>
-          </div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите, чтобы вращать</span>
-            <div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Горизонтная система</h2>
-        <p class="lead"><b>Основной круг:</b> математический горизонт. <b>Начальный круг:</b> небесный меридиан.</p>
-        <h3>Координаты</h3>
-        <ul class="legend">
-          <li><span class="sym">A</span><span><b>Астрономический азимут</b> — угол, отсчитываемый в плоскости математического горизонта от точки юга S по ходу часовой стрелки. Изменяется от 0° до 360°.</span></li>
-          <li><span class="sym">h</span><span><b>Высота</b> — угол, отсчитываемый вдоль вертикала, проходящего через светило, от математического горизонта до светила. Изменяется от 0° до ±90°.</span></li>
-          <li><span class="sym">z</span><span><b>Зенитное расстояние</b> — дополнение высоты; угол, отсчитываемый вдоль вертикала, проходящего через светило, от точки зенита до светила.</span></li>
-        </ul>
-        <div class="formula">z = 90° − h &nbsp;&nbsp;|&nbsp;&nbsp; координаты: (A, h)</div>
-        <div class="note">Координаты <b>непрерывно меняются</b> из-за суточного вращения и <b>зависят от места</b> наблюдателя. Круг равной высоты — <b>альмукантарат</b>, круг высоты через зенит — <b>вертикал</b>.</div>
-        <h3>Область применения</h3>
-        <p class="lead">Непосредственные наблюдения и измерения с земной поверхности: наведение телескопов и теодолитов, геодезия, ориентирование.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= EQ1 ================= -->
-  <section class="view" id="eq1">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-eq1"></div>
-          <div class="two">
-            <div><span class="slider-lab">Часовой угол t: <span class="val" id="eq1-t-val">3ʰ</span></span>
-              <input type="range" min="0" max="24" value="3" step="0.5" class="slider" id="eq1-t"></div>
-            <div><span class="slider-lab">Склонение δ: <span class="val" id="eq1-d-val">30°</span></span>
-              <input type="range" min="-60" max="80" value="30" class="slider" id="eq1-d"></div>
-          </div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите, чтобы вращать</span>
-            <div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Первая экваториальная система</h2>
-        <p class="lead"><b>Основной круг:</b> небесный экватор. <b>Начальный круг:</b> небесный меридиан.</p>
-        <h3>Координаты</h3>
-        <ul class="legend">
-          <li><span class="sym">t</span><span><b>Часовой угол</b> — угол, отсчитываемый в плоскости небесного экватора от верхней точки экватора Q до круга склонения светила по ходу часовой стрелки. Измеряется в часах, изменяется от 0ʰ до 24ʰ.</span></li>
-          <li><span class="sym">δ</span><span><b>Склонение</b> — угол, отсчитываемый вдоль круга склонений светила от небесного экватора до светила. Изменяется от 0° до ±90°.</span></li>
-        </ul>
-        <div class="formula">t = s − α &nbsp;&nbsp;(s — звёздное время, α — прямое восхождение)</div>
-        <div class="note">Часовой угол <b>равномерно растёт со временем</b>. Малый круг, по которому светило движется за сутки, — <b>суточная параллель</b>.</div>
-        <h3>Область применения</h3>
-        <p class="lead">Служба времени и определение звёздного времени, наблюдения суточного движения светил, работа с экваториальной монтировкой телескопа.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= EQ2 ================= -->
-  <section class="view" id="eq2">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-eq2"></div>
-          <div class="two">
-            <div><span class="slider-lab">Прямое восхождение α: <span class="val" id="eq2-a-val">6ʰ</span></span>
-              <input type="range" min="0" max="24" value="6" step="0.5" class="slider" id="eq2-a"></div>
-            <div><span class="slider-lab">Склонение δ: <span class="val" id="eq2-d-val">25°</span></span>
-              <input type="range" min="-60" max="80" value="25" class="slider" id="eq2-d"></div>
-          </div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите, чтобы вращать</span>
-            <div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Вторая экваториальная система</h2>
-        <p class="lead"><b>Основной круг:</b> небесный экватор. <b>Начальный круг:</b> колюр равноденствий.</p>
-        <h3>Координаты</h3>
-        <ul class="legend">
-          <li><span class="sym">α</span><span><b>Прямое восхождение</b> — угол, отсчитываемый в плоскости небесного экватора от точки весеннего равноденствия γ до круга склонения светила против хода часовой стрелки. Измеряется в часах, изменяется от 0ʰ до 24ʰ.</span></li>
-          <li><span class="sym">δ</span><span><b>Склонение</b> — угол, отсчитываемый вдоль круга склонений светила от небесного экватора до светила. Изменяется от 0° до ±90°.</span></li>
-        </ul>
-        <div class="formula">координаты (α, δ) — «адрес» звезды в каталогах · t = s − α</div>
-        <div class="note">Координаты <b>не зависят ни от места, ни от времени</b> (медленно меняются лишь из-за прецессии).</div>
-        <h3>Область применения</h3>
-        <p class="lead">Звёздные каталоги и звёздные карты, составление эфемерид, точное указание положений светил, астрометрия.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ECLIPTIC ================= -->
-  <section class="view" id="ecl">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-ecl"></div>
-          <div class="two">
-            <div><span class="slider-lab">Эклипт. долгота λ: <span class="val" id="ecl-l-val">60°</span></span>
-              <input type="range" min="0" max="360" value="60" class="slider" id="ecl-l"></div>
-            <div><span class="slider-lab">Эклипт. широта β: <span class="val" id="ecl-b-val">15°</span></span>
-              <input type="range" min="-60" max="60" value="15" class="slider" id="ecl-b"></div>
-          </div>
-          <div class="controls" style="padding:0 8px 8px">
-            <span class="hint">↔ Перетащите, чтобы вращать</span>
-            <div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Эклиптическая система</h2>
-        <p class="lead"><b>Основной круг:</b> эклиптика. <b>Начальный круг:</b> колюр равноденствий.</p>
-        <h3>Координаты</h3>
-        <ul class="legend">
-          <li><span class="sym">λ</span><span><b>Эклиптическая долгота</b> — угол, отсчитываемый в плоскости эклиптики от точки весеннего равноденствия γ до круга широт, проходящего через светило. Изменяется от 0° до 360°.</span></li>
-          <li><span class="sym">β</span><span><b>Эклиптическая широта</b> — угол, отсчитываемый вдоль круга широт, проходящего через светило, от плоскости эклиптики до светила. Изменяется от 0° до ±90°.</span></li>
-        </ul>
-        <div class="formula">Солнце: β ≈ 0°, λ растёт на ≈ 1° в сутки</div>
-        <div class="note">Планеты и Луна движутся близко к эклиптике, поэтому их широты малы. Полюсы эклиптики (Π) отстоят от полюсов мира на угол ε ≈ 23°26′.</div>
-        <h3>Область применения</h3>
-        <p class="lead">Описание движения тел Солнечной системы (Солнца, Луны, планет, комет, астероидов), теория движения планет, изучение прецессии.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= COMPARE ================= -->
-  <section class="view" id="compare">
-    <div class="grid">
-      <div>
-        <div class="embed-wrap">
-          <div class="sphere-box" id="svg-all"></div>
-          <div class="toggle-row" id="all-toggles"></div>
-          <div class="controls" style="padding:6px 8px 8px">
-            <span class="hint">↔ Стрелки вращают сферу · перетащите звезду ★ по видимой стороне</span>
-            <div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
-          </div>
-          <div class="sys-legend" id="all-legend"></div>
-        </div>
-      </div>
-      <div class="article">
-        <h2>Пересчёт координат звезды</h2>
-        <p class="lead">Двигайте звезду ★ по видимой стороне сферы (или вращайте сферу стрелками) — координаты во всех системах пересчитываются автоматически.</p>
-        <div class="coord-grid" id="coord-readout"></div>
-        <h3>Формулы связи систем координат</h3>
-        <div class="formula">
-          z = 90° − h<br>
-          t = s − α &nbsp;&nbsp;(s — звёздное время)<br>
-          sin h = sin φ·sin δ + cos φ·cos δ·cos t<br>
-          sin δ = sin φ·sin h − cos φ·cos h·cos A<br>
-          sin δ = sin β·cos ε + cos β·sin ε·sin λ<br>
+<!-- ================= INTRO ================= -->
+<section class="view active" id="intro">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-intro"></div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите сферу, чтобы вращать</span>
+<div class="rot-tools">
+<button class="rot-btn" data-rot="-1" title="Повернуть влево">‹</button>
+<button class="rot-btn" data-rot="reset" title="Исходное положение">↺</button>
+<button class="rot-btn" data-rot="1" title="Повернуть вправо">›</button>
+</div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Что такое небесная сфера?</h2>
+<p class="lead"><b>Небесная сфера</b> — воображаемая сфера произвольного (чаще бесконечного) радиуса с центром в точке наблюдений, на которую проецируются все небесные объекты.</p>
+<p class="lead">Реальные расстояния до светил огромны и различны, но на сфере важно лишь <b>направление</b> на объект. Поэтому положение светила задаётся не тремя координатами, а всего двумя углами — как точка на глобусе.</p>
+<h3>Зачем она нужна</h3>
+<ul class="legend">
+<li><span class="dot" style="background:var(--accent)"></span><span>Удобно описывать <b>видимые положения и движения</b> Солнца, Луны, планет и звёзд.</span></li>
+<li><span class="dot" style="background:#5aa9ff"></span><span>Небо кажется вращающимся вокруг <b>оси мира</b> (следствие вращения Земли) — сфера отражает это наглядно.</span></li>
+<li><span class="dot" style="background:#4fd6b0"></span><span>Позволяет ввести <b>системы координат</b> для точного указания места светила.</span></li>
+</ul>
+<h3>Два вида вращения</h3>
+<p class="lead"><b>Суточное</b> вращение сферы (с востока на запад, за ≈24 часа) — следствие вращения Земли. <b>Годичное</b> движение Солнца по эклиптике — следствие обращения Земли вокруг Солнца.</p>
+<div class="note"><b>Стартовое положение:</b> точка севера <b>N</b> слева, зенит <b>Z</b> вверху, центр сферы <b>O</b> — в точке наблюдений. Высота полюса мира над горизонтом равна географической широте: h<sub>P</sub> = φ.</div>
+</div>
+</div>
+</section>
+<!-- ================= ELEMENTS ================= -->
+<section class="view" id="elements">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-elem"></div>
+<div class="toggle-row" id="elem-toggles"></div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите, чтобы вращать</span>
+<div class="rot-tools">
+<button class="rot-btn" data-rot="-1">‹</button>
+<button class="rot-btn" data-rot="reset">↺</button>
+<button class="rot-btn" data-rot="1">›</button>
+</div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Основные точки и круги</h2>
+<p class="lead">Включайте переключатели на схеме, чтобы подсвечивать элементы.</p>
+<h3>Линии</h3>
+<ul class="legend">
+<li><span class="sym">ZZ′</span><span><b>Отвесная линия</b> — прямая, совпадающая с направлением вектора силы тяжести в точке наблюдений.</span></li>
+<li><span class="sym">PP′</span><span><b>Ось мира</b> — линия, проведённая через точку наблюдений параллельно оси вращения Земли.</span></li>
+<li><span class="sym">NS</span><span><b>Полуденная линия</b> — прямая, образующаяся при пересечении плоскости истинного (астрономического) меридиана наблюдателя с плоскостью его истинного (математического) горизонта.</span></li>
+</ul>
+<h3>Главные точки</h3>
+<ul class="legend">
+<li><span class="sym" style="color:#e7f2ef;background:#0f172a;border-radius:5px">O</span><span><b>Центр небесной сферы.</b> Чаще всего — точка наблюдений.</span></li>
+<li><span class="sym">Z</span><span><b>Зенит</b> — точка пересечения верхней половины отвесной линии (направления вектора силы тяжести) в месте наблюдения с небесной сферой. Находится непосредственно над головой наблюдателя.</span></li>
+<li><span class="sym">Z′</span><span><b>Надир</b> — точка пересечения нижней половины отвесной линии в месте наблюдения с небесной сферой. Диаметрально противоположна зениту и находится под ногами наблюдателя.</span></li>
+<li><span class="sym">P, P′</span><span><b>Северный и южный полюсы мира.</b></span></li>
+<li><span class="sym">N, S</span><span><b>Точки севера и юга</b> — пересечение небесного меридиана с математическим горизонтом.</span></li>
+<li><span class="sym">E, W</span><span><b>Точки востока и запада</b> — пересечение небесного экватора с математическим горизонтом.</span></li>
+<li><span class="sym">♈ ♎</span><span><b>Точки равноденствий</b> — весеннего (♈) и осеннего (♎); пересечение эклиптики с экватором.</span></li>
+</ul>
+<h3>Основные круги</h3>
+<ul class="legend">
+<li><span class="dot" style="background:#4fd6b0"></span><span><b>Математический горизонт</b> — большой круг, перпендикулярный отвесной линии (плоскость ⟂ ZZ′).</span></li>
+<li><span class="dot" style="background:#5aa9ff"></span><span><b>Небесный экватор</b> — большой круг ⟂ оси мира PP′; делит сферу на северное и южное полушария.</span></li>
+<li><span class="dot" style="background:#ffd15c"></span><span><b>Небесный меридиан</b> — круг через P, Z, S, P′, N; плоскость содержит ось мира и отвес.</span></li>
+<li><span class="dot" style="background:#ff7a43"></span><span><b>Эклиптика</b> — видимый годовой путь Солнца; наклонена к экватору на ε ≈ 23°26′.</span></li>
+<li><span class="dot" style="background:#7ee6ff"></span><span><b>Первый вертикал</b> — большой круг через зенит, надир и точки E, W; перпендикулярен меридиану.</span></li>
+<li><span class="dot" style="background:#ffa9d4"></span><span><b>Суточная параллель</b> — малый круг, параллельный экватору, по которому светило совершает суточное движение.</span></li>
+<li><span class="dot" style="background:#8ce0c0"></span><span><b>Альмукантарат</b> — малый круг, параллельный горизонту (линия равной высоты светила).</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ================= HORIZONTAL ================= -->
+<section class="view" id="hor">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-hor"></div>
+<div class="two">
+<div><span class="slider-lab">Азимут A: <span class="val" id="hor-A-val">120°</span></span>
+<input class="slider" id="hor-A" max="360" min="0" type="range" value="120"/></div>
+<div><span class="slider-lab">Высота h: <span class="val" id="hor-h-val">35°</span></span>
+<input class="slider" id="hor-h" max="90" min="-30" type="range" value="35"/></div>
+</div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите, чтобы вращать</span>
+<div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Горизонтная система</h2>
+<p class="lead"><b>Основной круг:</b> математический горизонт. <b>Начальный круг:</b> небесный меридиан.</p>
+<h3>Координаты</h3>
+<ul class="legend">
+<li><span class="sym">A</span><span><b>Астрономический азимут</b> — угол, отсчитываемый в плоскости математического горизонта от точки юга S по ходу часовой стрелки. Изменяется от 0° до 360°.</span></li>
+<li><span class="sym">h</span><span><b>Высота</b> — угол, отсчитываемый вдоль вертикала, проходящего через светило, от математического горизонта до светила. Изменяется от 0° до ±90°.</span></li>
+<li><span class="sym">z</span><span><b>Зенитное расстояние</b> — дополнение высоты; угол, отсчитываемый вдоль вертикала, проходящего через светило, от точки зенита до светила.</span></li>
+</ul>
+<div class="formula">z = 90° − h   |   координаты: (A, h)</div>
+<div class="note">Координаты <b>непрерывно меняются</b> из-за суточного вращения и <b>зависят от места</b> наблюдателя. Круг равной высоты — <b>альмукантарат</b>, круг высоты через зенит — <b>вертикал</b>.</div>
+<h3>Область применения</h3>
+<p class="lead">Непосредственные наблюдения и измерения с земной поверхности: наведение телескопов и теодолитов, геодезия, ориентирование.</p>
+</div>
+</div>
+</section>
+<!-- ================= EQ1 ================= -->
+<section class="view" id="eq1">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-eq1"></div>
+<div class="two">
+<div><span class="slider-lab">Часовой угол t: <span class="val" id="eq1-t-val">3ʰ</span></span>
+<input class="slider" id="eq1-t" max="24" min="0" step="0.5" type="range" value="3"/></div>
+<div><span class="slider-lab">Склонение δ: <span class="val" id="eq1-d-val">30°</span></span>
+<input class="slider" id="eq1-d" max="80" min="-60" type="range" value="30"/></div>
+</div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите, чтобы вращать</span>
+<div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Первая экваториальная система</h2>
+<p class="lead"><b>Основной круг:</b> небесный экватор. <b>Начальный круг:</b> небесный меридиан.</p>
+<h3>Координаты</h3>
+<ul class="legend">
+<li><span class="sym">t</span><span><b>Часовой угол</b> — угол, отсчитываемый в плоскости небесного экватора от верхней точки экватора Q до круга склонения светила по ходу часовой стрелки. Измеряется в часах, изменяется от 0ʰ до 24ʰ.</span></li>
+<li><span class="sym">δ</span><span><b>Склонение</b> — угол, отсчитываемый вдоль круга склонений светила от небесного экватора до светила. Изменяется от 0° до ±90°.</span></li>
+</ul>
+<div class="formula">t = s − α   (s — звёздное время, α — прямое восхождение)</div>
+<div class="note">Часовой угол <b>равномерно растёт со временем</b>. Малый круг, по которому светило движется за сутки, — <b>суточная параллель</b>.</div>
+<h3>Область применения</h3>
+<p class="lead">Служба времени и определение звёздного времени, наблюдения суточного движения светил, работа с экваториальной монтировкой телескопа.</p>
+</div>
+</div>
+</section>
+<!-- ================= EQ2 ================= -->
+<section class="view" id="eq2">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-eq2"></div>
+<div class="two">
+<div><span class="slider-lab">Прямое восхождение α: <span class="val" id="eq2-a-val">6ʰ</span></span>
+<input class="slider" id="eq2-a" max="24" min="0" step="0.5" type="range" value="6"/></div>
+<div><span class="slider-lab">Склонение δ: <span class="val" id="eq2-d-val">25°</span></span>
+<input class="slider" id="eq2-d" max="80" min="-60" type="range" value="25"/></div>
+</div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите, чтобы вращать</span>
+<div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Вторая экваториальная система</h2>
+<p class="lead"><b>Основной круг:</b> небесный экватор. <b>Начальный круг:</b> колюр равноденствий.</p>
+<h3>Координаты</h3>
+<ul class="legend">
+<li><span class="sym">α</span><span><b>Прямое восхождение</b> — угол, отсчитываемый в плоскости небесного экватора от точки весеннего равноденствия γ до круга склонения светила против хода часовой стрелки. Измеряется в часах, изменяется от 0ʰ до 24ʰ.</span></li>
+<li><span class="sym">δ</span><span><b>Склонение</b> — угол, отсчитываемый вдоль круга склонений светила от небесного экватора до светила. Изменяется от 0° до ±90°.</span></li>
+</ul>
+<div class="formula">координаты (α, δ) — «адрес» звезды в каталогах · t = s − α</div>
+<div class="note">Координаты <b>не зависят ни от места, ни от времени</b> (медленно меняются лишь из-за прецессии).</div>
+<h3>Область применения</h3>
+<p class="lead">Звёздные каталоги и звёздные карты, составление эфемерид, точное указание положений светил, астрометрия.</p>
+</div>
+</div>
+</section>
+<!-- ================= ECLIPTIC ================= -->
+<section class="view" id="ecl">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-ecl"></div>
+<div class="two">
+<div><span class="slider-lab">Эклипт. долгота λ: <span class="val" id="ecl-l-val">60°</span></span>
+<input class="slider" id="ecl-l" max="360" min="0" type="range" value="60"/></div>
+<div><span class="slider-lab">Эклипт. широта β: <span class="val" id="ecl-b-val">15°</span></span>
+<input class="slider" id="ecl-b" max="60" min="-60" type="range" value="15"/></div>
+</div>
+<div class="controls" style="padding:0 8px 8px">
+<span class="hint">↔ Перетащите, чтобы вращать</span>
+<div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
+</div>
+</div>
+</div>
+<div class="article">
+<h2>Эклиптическая система</h2>
+<p class="lead"><b>Основной круг:</b> эклиптика. <b>Начальный круг:</b> колюр равноденствий.</p>
+<h3>Координаты</h3>
+<ul class="legend">
+<li><span class="sym">λ</span><span><b>Эклиптическая долгота</b> — угол, отсчитываемый в плоскости эклиптики от точки весеннего равноденствия γ до круга широт, проходящего через светило. Изменяется от 0° до 360°.</span></li>
+<li><span class="sym">β</span><span><b>Эклиптическая широта</b> — угол, отсчитываемый вдоль круга широт, проходящего через светило, от плоскости эклиптики до светила. Изменяется от 0° до ±90°.</span></li>
+</ul>
+<div class="formula">Солнце: β ≈ 0°, λ растёт на ≈ 1° в сутки</div>
+<div class="note">Планеты и Луна движутся близко к эклиптике, поэтому их широты малы. Полюсы эклиптики (Π) отстоят от полюсов мира на угол ε ≈ 23°26′.</div>
+<h3>Область применения</h3>
+<p class="lead">Описание движения тел Солнечной системы (Солнца, Луны, планет, комет, астероидов), теория движения планет, изучение прецессии.</p>
+</div>
+</div>
+</section>
+<!-- ================= COMPARE ================= -->
+<section class="view" id="compare">
+<div class="grid">
+<div>
+<div class="embed-wrap">
+<div class="sphere-box" id="svg-all"></div>
+<div class="toggle-row" id="all-toggles"></div>
+<div class="controls" style="padding:6px 8px 8px">
+<span class="hint">↔ Стрелки вращают сферу · перетащите звезду ★ по видимой стороне</span>
+<div class="rot-tools"><button class="rot-btn" data-rot="-1">‹</button><button class="rot-btn" data-rot="reset">↺</button><button class="rot-btn" data-rot="1">›</button></div>
+</div>
+<div class="sys-legend" id="all-legend"></div>
+</div>
+</div>
+<div class="article">
+<h2>Пересчёт координат звезды</h2>
+<p class="lead">Двигайте звезду ★ по видимой стороне сферы (или вращайте сферу стрелками) — координаты во всех системах пересчитываются автоматически.</p>
+<div class="coord-grid" id="coord-readout"></div>
+<h3>Формулы связи систем координат</h3>
+<div class="formula">
+          z = 90° − h<br/>
+          t = s − α   (s — звёздное время)<br/>
+          sin h = sin φ·sin δ + cos φ·cos δ·cos t<br/>
+          sin δ = sin φ·sin h − cos φ·cos h·cos A<br/>
+          sin δ = sin β·cos ε + cos β·sin ε·sin λ<br/>
           sin β = sin δ·cos ε − cos δ·sin ε·sin α
         </div>
-        <p class="k">φ — широта места (здесь φ = 45°), ε ≈ 23°26′ — наклон эклиптики.</p>
-      </div>
-    </div>
-    <div class="article" style="margin-top:24px">
-      <h2>Сводная таблица систем координат</h2>
-      <div style="overflow-x:auto">
-      <table>
-        <tr><th>Система</th><th>Основной круг</th><th>Начальный круг</th><th>Координаты</th><th>Область применения</th></tr>
-        <tr>
-          <td><b>Горизонтная</b></td><td>Математический горизонт</td><td>Небесный меридиан</td>
-          <td>Азимут <span class="sym">A</span> (0–360°), высота <span class="sym">h</span> (0…±90°), z = 90°−h</td>
-          <td>Наблюдения и измерения с земли, геодезия, ориентирование</td>
-        </tr>
-        <tr>
-          <td><b>I экваториальная</b></td><td>Небесный экватор</td><td>Небесный меридиан</td>
-          <td>Часовой угол <span class="sym">t</span> (0ʰ–24ʰ), склонение <span class="sym">δ</span> (0…±90°)</td>
-          <td>Служба времени, суточное движение светил</td>
-        </tr>
-        <tr>
-          <td><b>II экваториальная</b></td><td>Небесный экватор</td><td>Колюр равноденствий</td>
-          <td>Прямое восхожд. <span class="sym">α</span> (0ʰ–24ʰ), склонение <span class="sym">δ</span> (0…±90°)</td>
-          <td>Звёздные каталоги и карты, астрометрия, эфемериды</td>
-        </tr>
-        <tr>
-          <td><b>Эклиптическая</b></td><td>Эклиптика</td><td>Колюр равноденствий</td>
-          <td>Долгота <span class="sym">λ</span> (0–360°), широта <span class="sym">β</span> (0…±90°)</td>
-          <td>Движение тел Солнечной системы, теория движения планет</td>
-        </tr>
-      </table>
-      </div>
-    </div>
-  </section>
-
+<p class="k">φ — широта места (здесь φ = 45°), ε ≈ 23°26′ — наклон эклиптики.</p>
 </div>
 </div>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand"><span class="footer-mark">GL</span> GeoLine · Астрономия</div>
-    <div class="footer-small">Интерактивный урок: небесная сфера и системы небесных координат. Перетаскивайте схемы для вращения, двигайте ползунки координат.</div>
-  </div>
-</footer>
-
+<div class="article" style="margin-top:24px">
+<h2>Сводная таблица систем координат</h2>
+<div style="overflow-x:auto">
+<table>
+<tr><th>Система</th><th>Основной круг</th><th>Начальный круг</th><th>Координаты</th><th>Область применения</th></tr>
+<tr>
+<td><b>Горизонтная</b></td><td>Математический горизонт</td><td>Небесный меридиан</td>
+<td>Азимут <span class="sym">A</span> (0–360°), высота <span class="sym">h</span> (0…±90°), z = 90°−h</td>
+<td>Наблюдения и измерения с земли, геодезия, ориентирование</td>
+</tr>
+<tr>
+<td><b>I экваториальная</b></td><td>Небесный экватор</td><td>Небесный меридиан</td>
+<td>Часовой угол <span class="sym">t</span> (0ʰ–24ʰ), склонение <span class="sym">δ</span> (0…±90°)</td>
+<td>Служба времени, суточное движение светил</td>
+</tr>
+<tr>
+<td><b>II экваториальная</b></td><td>Небесный экватор</td><td>Колюр равноденствий</td>
+<td>Прямое восхожд. <span class="sym">α</span> (0ʰ–24ʰ), склонение <span class="sym">δ</span> (0…±90°)</td>
+<td>Звёздные каталоги и карты, астрометрия, эфемериды</td>
+</tr>
+<tr>
+<td><b>Эклиптическая</b></td><td>Эклиптика</td><td>Колюр равноденствий</td>
+<td>Долгота <span class="sym">λ</span> (0–360°), широта <span class="sym">β</span> (0…±90°)</td>
+<td>Движение тел Солнечной системы, теория движения планет</td>
+</tr>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
 <script>
 /* ================= view rotation state ================= */
 const D2R=Math.PI/180;
@@ -879,5 +849,5 @@ buildAllToggles();
 buildAllLegend();
 redrawAll();
 </script>
-</main></div><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
+</main></div><footer class="gl-footer"><div><b>ГеоЛиния · Основы геодезической астрономии</b><small>Интерактивный учебный материал</small></div><div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};var a=document.querySelector('.gl-sidebar a[href="celestial-sphere.html"]');if(a)a.classList.add('active');})();</script></body>
 </html>

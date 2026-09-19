@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Измерение вертикальных углов теодолитом</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Измерение вертикальных углов теодолитом — ГеоЛиния</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
   :root{
@@ -132,223 +133,210 @@
   .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--muted); margin-top:8px;}
   .legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:5px; vertical-align:middle;}
 </style>
-<link rel="stylesheet" href="../../assets/lesson-site.css">
+<link href="../../assets/lesson-site.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="gl-sitebar">
-  <a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a>
-  <nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
-  <button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button>
+<a class="gl-brand" href="../../index.html"><img alt="Эмблема ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a>
+<nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
+<button aria-label="Открыть меню" class="gl-menu-button" type="button">☰</button>
 </header>
-<div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div>
-<a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>01</span>Горизонтальные углы</a>
-<a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>02</span>Вертикальные углы</a>
-<a class="gl-course-link" href="index.html">← Все темы курса</a></aside><main class="gl-lesson-content"><div class="wrap">
-  <h1>📐 Принцип измерения <span>вертикальных углов</span> теодолитом</h1>
-  <p class="sub">Интерактивная схема: наклоняйте зрительную трубу, переключайте круг «лево / право», выбирайте тип оцифровки лимба и наблюдайте, как из отсчётов КЛ и КП получается угол наклона ν и место нуля МО.</p>
-
-  <h2>1. Суть принципа</h2>
-  <div class="panel">
-    <p>Вертикальный угол (угол наклона <b class="nu">ν</b>) — это угол в вертикальной плоскости между <b>горизонтальной линией визирования</b> и направлением на наблюдаемую точку. Он измеряется с помощью <b>вертикального круга</b> теодолита — стеклянного лимба с градусными делениями, жёстко закреплённого на оси зрительной трубы и вращающегося <i>вместе с ней</i>. Отсчётный индекс при этом остаётся неподвижным (его положение контролируется цилиндрическим уровнем или компенсатором). Поэтому при наклоне трубы отсчёт по вертикальному кругу изменяется ровно на величину угла наклона.</p>
-    <p style="margin-top:8px;">Угол <b class="nu">ν</b> считается <b style="color:var(--green)">положительным</b>, если цель выше горизонта (угол возвышения), и <b style="color:var(--red)">отрицательным</b>, если ниже (угол понижения). У приборов с нулём в зените непосредственно измеряется <b class="zz">зенитное расстояние z</b>, а угол наклона получают как ν = 90° − z.</p>
-  </div>
-
-  <h2>2. Интерактивная модель</h2>
-  <div class="grid">
-    <div class="panel">
-      <h3>Схема визирования и вертикальный круг</h3>
-      <svg viewBox="0 0 620 438" id="scene">
-        <!-- ground -->
-        <rect x="0" y="360" width="620" height="78" fill="#14532d"/>
-        <line x1="0" y1="360" x2="620" y2="360" stroke="#22c55e" stroke-width="2"/>
-        <!-- tripod -->
-        <g stroke="#64748b" stroke-width="5" stroke-linecap="round">
-          <line x1="150" y1="245" x2="115" y2="360"/>
-          <line x1="150" y1="245" x2="185" y2="360"/>
-          <line x1="150" y1="245" x2="150" y2="360"/>
-        </g>
-        <rect x="128" y="232" width="44" height="14" rx="4" fill="#475569"/>
-        <!-- theodolite body -->
-        <rect x="136" y="196" width="28" height="38" rx="5" fill="#ff7136" opacity="0.9"/>
-        <!-- horizon line -->
-        <line x1="150" y1="200" x2="600" y2="200" stroke="#8aa19b" stroke-width="1.5" stroke-dasharray="7 6"/>
-        <text id="horizonTxt" x="598" y="192" fill="#657674" font-size="12" text-anchor="end">горизонт (ν = 0°)</text>
-        <!-- zenith line (for zenith-zero digitization) -->
-        <g id="zenithGroup" style="display:none;">
-          <line x1="150" y1="200" x2="150" y2="28" stroke="#8aa19b" stroke-width="1.5" stroke-dasharray="7 6"/>
-          <text x="158" y="38" fill="#657674" font-size="12">зенит (z = 0)</text>
-        </g>
-        <!-- actual zero-reading direction -->
-        <g id="zeroGroup">
-          <line id="zeroLine" x1="150" y1="200" x2="410" y2="200" stroke="#c026d3" stroke-width="2" stroke-dasharray="4 4"/>
-          <circle id="zeroDot" cx="410" cy="200" r="4" fill="#c026d3"/>
-          <text id="zeroTxt" x="415" y="215" fill="#c026d3" font-size="12">отсчёт 0</text>
-          <text id="zeroTxt2" x="415" y="230" fill="#c026d3" font-size="11" opacity="0.8"></text>
-        </g>
-        <!-- line of sight -->
-        <line id="sight" x1="150" y1="200" x2="600" y2="200" stroke="#d97706" stroke-width="2.5"/>
-        <!-- angle arc -->
-        <path id="arc" d="" fill="none" stroke="#d97706" stroke-width="2"/>
-        <text id="arcLabel" x="290" y="190" fill="#d97706" font-size="16" font-weight="bold">ν</text>
-        <!-- theodolite standards (columns supporting the trunnion axis) -->
-        <rect x="133" y="200" width="7" height="34" rx="2" fill="#de501a"/>
-        <rect x="160" y="200" width="7" height="34" rx="2" fill="#de501a"/>
-        <!-- telescope with vertical circle (limb rotates together with the tube) -->
-        <g id="telescope">
-          <!-- vertical circle limb on the trunnion axis -->
-          <circle cx="150" cy="200" r="19" fill="#e7f6f1" stroke="#0a655d" stroke-width="2.5"/>
-          <g stroke="#0a655d" stroke-width="1.2">
-            <line x1="150" y1="183" x2="150" y2="188"/>
-            <line x1="150" y1="212" x2="150" y2="217"/>
-            <line x1="133" y1="200" x2="138" y2="200"/>
-            <line x1="162" y1="200" x2="167" y2="200"/>
-            <line x1="138" y1="188" x2="141.5" y2="191.5"/>
-            <line x1="162" y1="188" x2="158.5" y2="191.5"/>
-            <line x1="138" y1="212" x2="141.5" y2="208.5"/>
-            <line x1="162" y1="212" x2="158.5" y2="208.5"/>
-          </g>
-          <!-- zero-diameter mark of the limb -->
-          <circle cx="164.5" cy="200" r="2" fill="#c026d3"/>
-          <!-- telescope tube (accent green) -->
-          <rect x="112" y="192.5" width="76" height="15" rx="5" fill="#0a655d"/>
-          <rect x="182" y="189.5" width="10" height="21" rx="3" fill="#07534d"/>
-          <rect x="108" y="194.5" width="6" height="11" rx="2" fill="#063f3b"/>
-          <!-- trunnion axis -->
-          <circle cx="150" cy="200" r="5" fill="#063f3b" stroke="#e7f6f1" stroke-width="2"/>
-        </g>
-        <text x="60" y="207" fill="#0a655d" font-size="11" text-anchor="end">верт. круг</text>
-        <line x1="63" y1="203" x2="128" y2="201" stroke="#0a655d" stroke-width="1" stroke-dasharray="3 3"/>
-        <!-- target -->
-        <g id="target">
-          <line id="pole" x1="560" y1="360" x2="560" y2="120" stroke="#dc2626" stroke-width="5"/>
-          <circle id="targetPt" cx="560" cy="120" r="9" fill="#facc15" stroke="#dc2626" stroke-width="3"/>
-          <text id="targetTxt" x="576" y="124" fill="#b45309" font-size="13">цель</text>
-        </g>
-        <!-- vertical circle (schematic dial): limb is fixed, index moves with the tube -->
-        <g transform="translate(320,305)">
-          <circle r="72" fill="#063f3b" stroke="#0a655d" stroke-width="2"/>
-          <g id="dial"></g>
-          <!-- moving reading index (rotates with the telescope) -->
-          <g id="indexPtr">
-            <line x1="0" y1="0" x2="56" y2="0" stroke="#ff7136" stroke-width="2.5"/>
-            <polygon points="69,0 55,-6 55,6" fill="#ff7136"/>
-          </g>
-          <circle r="6" fill="#043632" stroke="#8fbab3" stroke-width="2"/>
-          <text x="0" y="-92" fill="#0a655d" font-size="12" text-anchor="middle">отсчётный индекс движется с трубой</text>
-          <rect x="-78" y="86" width="156" height="24" rx="8" fill="#f4f8f6" stroke="#d5e3de" stroke-width="1"/>
-          <text id="dialReading" x="0" y="103" fill="#092c33" font-size="15" font-weight="bold" text-anchor="middle">отсчёт</text>
-        </g>
-      </svg>
-      <div class="legend">
-        <span><i style="background:#d97706"></i>визирная ось</span>
-        <span><i style="background:#8aa19b"></i>нулевое направление (идеальное)</span>
-        <span><i style="background:#c026d3"></i>фактическое направление отсчёта 0 (при КЛ)</span>
-        <span><i style="background:#ff7136"></i>отсчётный индекс</span>
-      </div>
-      <p style="font-size:12.5px; color:var(--muted); margin-top:6px;">⚠️ Наклон розового луча «отсчёт 0» и поворот лимба от МО показаны с увеличением в 60 раз — иначе место нуля в несколько минут дуги было бы неразличимо на схеме.</p>
-      <p style="font-size:12.5px; color:var(--muted); margin-top:4px;">ℹ️ Большой круг показан «в системе лимба»: шкала закреплена согласно выбранной оцифровке (0 — в горизонте или в зените), по ней движется отсчётный индекс, связанный с трубой. При наличии МО (МZ) весь лимб повёрнут на эту величину — видно, что нулевой штрих (розовый) не совпадает с идеальным нулевым направлением. При переходе на КП оцифровка разворачивается зеркально: наблюдатель видит круг с другой стороны.</p>
-
-      <h3 style="margin-top:18px;">Поле зрения отсчётного микроскопа</h3>
-      <svg viewBox="0 0 620 342" id="microSvg">
-        <defs>
-          <clipPath id="microClip"><circle cx="310" cy="155" r="140"/></clipPath>
-        </defs>
-        <circle cx="310" cy="155" r="146" fill="#0b1220" stroke="#475569" stroke-width="5"/>
-        <circle cx="310" cy="155" r="140" fill="#111827"/>
-        <g id="microG" clip-path="url(#microClip)"></g>
-        <text id="microCaption" x="310" y="334" text-anchor="middle" font-size="14" fill="#e2e8f0" font-weight="bold"></text>
-      </svg>
-      <p id="microDesc" style="font-size:12.5px; color:var(--muted); margin-top:4px;"></p>
-    </div>
-
-    <div class="panel controls">
-      <h3>Управление</h3>
-      <div class="ctrl">
-        <label for="typeSelect" style="margin-bottom:6px;">Тип оцифровки вертикального круга</label>
-        <select id="typeSelect">
-          <option value="circ">Круговая 0–360° (Т30)</option>
-          <option value="symH" selected>Симметричная, 0 в горизонте (2Т30)</option>
-          <option value="symZ">Симметричная, 0 в зените</option>
-          <option value="quadH">Четвертная 0–90°, нули в горизонте</option>
-          <option value="quadZ">Четвертная 0–90°, нули в зените</option>
-        </select>
-        <div class="typeDesc" id="typeDesc"></div>
-      </div>
-      <div class="ctrl">
-        <label>Угол наклона на цель ν <b id="nuVal">+15° 00′</b></label>
-        <input type="range" id="nuSlider" min="-1500" max="2400" step="1" value="900">
-        <div class="manual">
-          <select id="nuSign"><option value="1">+</option><option value="-1">−</option></select>
-          <input type="number" id="nuDeg" min="0" max="40" step="1" value="15">°
-          <input type="number" id="nuMin" min="0" max="59" step="1" value="0">′
-        </div>
-      </div>
-      <div class="ctrl">
-        <label><span id="moName">Место нуля МО (погрешность)</span> <b id="moVal">0′</b></label>
-        <input type="range" id="moSlider" min="-10" max="10" step="1" value="0">
-        <div class="manual">
-          <select id="moSign"><option value="1">+</option><option value="-1">−</option></select>
-          <input type="number" id="moMinIn" min="0" max="10" step="1" value="0">′
-        </div>
-      </div>
-      <div class="btns">
-        <button class="btn active-kl" id="btnKL">Круг лево (КЛ)</button>
-        <button class="btn" id="btnKP">Круг право (КП)</button>
-      </div>
-      <div class="readout" id="readout"></div>
-      <div class="formula" id="formulaBox"></div>
-      <p style="font-size:13px; color:var(--muted);">💡 Как бы вы ни меняли МО и тип оцифровки, полусумма/полуразность отсчётов при двух кругах всегда «расщепляет» результат на приборную погрешность (МО или МZ) и чистый угол. В этом и состоит смысл измерения при КЛ и КП.</p>
-    </div>
-  </div>
-
-  <h2>3. Типы оцифровки лимба и рабочие формулы</h2>
-  <div class="panel">
-    <table>
-      <tr><th>Оцифровка</th><th>Пример прибора</th><th>Место нуля / зенита</th><th>Угол наклона</th></tr>
-      <tr><td class="l">Круговая 0–360°</td><td>Т30</td><td>МО = (КЛ + КП + 180°) / 2 *</td><td>ν = КЛ − МО = (КЛ − КП − 180°) / 2 *</td></tr>
-      <tr><td class="l">Симметричная (±), 0 в горизонте</td><td>2Т30, 2Т5К</td><td>МО = (КЛ + КП) / 2</td><td>ν = (КЛ − КП) / 2 = КЛ − МО = МО − КП</td></tr>
-      <tr><td class="l">Симметричная (±), 0 в зените</td><td>зенитные системы</td><td>МZ = (КЛ + КП) / 2</td><td>z = (КЛ − КП) / 2;&nbsp; ν = 90° − z</td></tr>
-      <tr><td class="l">Четвертная 0–90°, нули в горизонте</td><td>старые оптические</td><td>МО = ±(КЛ − КП) / 2 **</td><td>ν = ±(КЛ + КП) / 2 **</td></tr>
-      <tr><td class="l">Четвертная 0–90°, нули в зените</td><td>тахеометры-высотомеры</td><td>МZ = (КЛ − КП) / 2</td><td>z = (КЛ + КП) / 2;&nbsp; ν = 90° − z</td></tr>
-    </table>
-    <p style="font-size:13px; color:var(--muted); margin-top:8px;">* При вычислениях к отсчётам, меньшим 90°, прибавляют 360°.&nbsp;&nbsp;** Шкала без знаков: знак приписывают по положению цели — выше горизонта «+», ниже «−».</p>
-  </div>
-
-  <h2>4. Ключевые понятия</h2>
-  <div class="panel">
-    <p><b class="mo">Место нуля (МО)</b> — отсчёт по вертикальному кругу, когда визирная ось трубы горизонтальна, а пузырёк уровня при алидаде вертикального круга находится в нуль-пункте. У приборов с нулём в зените аналогичная величина называется <b class="zz">местом зенита (МZ)</b> — отсчёт при отвесном положении визирной оси. В идеале МО (МZ) = 0, но из-за неточной юстировки прибора нулевой диаметр лимба фактически смещён — именно это смещение показывает розовый луч на схеме.</p>
-    <p style="margin-top:8px;"><b class="kl">КЛ (круг лево)</b> и <b class="kp">КП (круг право)</b> — два положения теодолита: вертикальный круг находится слева или справа от наблюдателя. Труба переводится через зенит, и цель визируется повторно. Измерение при двух кругах — основной приём <b>исключения влияния МО</b> и контроля качества измерений: колебание МО на станции не должно превышать двойной точности отсчётного устройства (для 2Т30 — 1′).</p>
-  </div>
-
-  <h2>5. Порядок измерения на станции</h2>
-  <div class="steps">
-    <div class="step"><b>Установка.</b> Теодолит центрируют над точкой и горизонтируют по уровню (ось вращения прибора приводят в отвесное положение).</div>
-    <div class="step"><b>Визирование при КЛ.</b> При круге «лево» наводят среднюю горизонтальную нить сетки точно на цель, приводят пузырёк уровня вертикального круга в нуль-пункт и берут отсчёт <b class="kl">КЛ</b>.</div>
-    <div class="step"><b>Перевод трубы через зенит.</b> Трубу переводят через зенит, алидаду поворачивают на 180° — прибор в положении «круг право».</div>
-    <div class="step"><b>Визирование при КП.</b> Повторно наводят на ту же цель и берут отсчёт <b class="kp">КП</b>.</div>
-    <div class="step"><b>Вычисления.</b> По формулам, соответствующим оцифровке лимба данного прибора (см. таблицу выше), находят <b class="mo">МО</b> и <b class="nu">ν</b>. Контроль: постоянство МО между целями подтверждает качество измерений.</div>
-  </div>
-
-  <h2>6. Пример вычислений (теодолит 2Т30)</h2>
-  <div class="panel">
-    <table>
-      <tr><th>Величина</th><th>Отсчёт / результат</th><th>Формула</th></tr>
-      <tr><td>КЛ</td><td>+4° 32,5′</td><td>отсчёт при круге «лево»</td></tr>
-      <tr><td>КП</td><td>−4° 30,5′</td><td>отсчёт при круге «право»</td></tr>
-      <tr><td><b class="mo">МО</b></td><td>+0° 01,0′</td><td>(КЛ + КП) / 2 = (4°32,5′ − 4°30,5′)/2</td></tr>
-      <tr><td><b class="nu">ν</b></td><td>+4° 31,5′</td><td>(КЛ − КП) / 2 = (4°32,5′ + 4°30,5′)/2</td></tr>
-    </table>
-  </div>
-
-  <div class="note">
-    <b>Зачем это нужно?</b> Вертикальные углы применяются в тригонометрическом нивелировании — для вычисления превышений h = d·tg ν (где d — горизонтальное проложение), при передаче высот на сооружения, определении высоты недоступных объектов и приведении наклонных расстояний к горизонту.
-  </div>
+<div class="gl-lesson-layout"><aside class="gl-sidebar gl-block-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 01. Введение в геодезию</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html">Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html">Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html">Краткая история геодезических приборов</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html">Понятие о форме и размерах Земли</a></div></section><section class="gl-course-block open"><button aria-expanded="true" class="gl-block-toggle" type="button"><span>Тема 02. Геодезическое оборудование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html">Современные геодезические приборы</a><a data-lesson="distance-measurement" href="distance-measurement.html">Измерение расстояний</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html">Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-checks" href="theodolite-checks.html">Теодолиты: поверки и юстировки</a><a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html">Измерение горизонтальных углов теодолитом</a><a class="active" data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html">Измерение вертикальных углов теодолитом</a><a data-lesson="levels-classification-and-design" href="levels-classification-and-design.html">Нивелиры: классификация, устройство и принцип работы</a><a data-lesson="level-checks-and-adjustments" href="level-checks-and-adjustments.html">Нивелиры: поверки и юстировки</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 03. Топографические карты и планы</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="cartographic-projections" href="cartographic-projections.html">Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html">Проекция Гаусса-Крюгера</a><a data-lesson="plan-map-profile" href="plan-map-profile.html">Топографические карты и планы</a><a data-lesson="topographic-symbols" href="topographic-symbols.html">Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html">Использование ЛМП и ТГТ</a><a data-lesson="landform-types" href="landform-types.html">Рельеф</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html">Цифровые модели местности</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 04. Системы координат и ориентирование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html">Геодезическая система координат</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html">Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html">Передача дирекционных углов</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 05. Топографическая съёмка местности</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="inaccessible-distance" href="inaccessible-distance.html">Определение недоступного расстояния</a><a data-lesson="survey-control" href="survey-control.html">Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html">Пункты государственной геодезической сети</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html">Вычисление ведомости координат</a></div></section><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Геодезия. Курс 1 · Урок 07</div><h1>Измерение вертикальных углов теодолитом</h1><div class="gl-tabs" role="tablist"><button class="active" data-gl-tab="v0" type="button">Суть принципа</button><button class="" data-gl-tab="v1" type="button">Интерактивная модель</button><button class="" data-gl-tab="v2" type="button">Типы оцифровки лимба и рабочие формулы</button><button class="" data-gl-tab="v3" type="button">Ключевые понятия</button><button class="" data-gl-tab="v4" type="button">Порядок измерения на станции</button><button class="" data-gl-tab="v5" type="button">Пример вычислений (теодолит 2Т30)</button></div></section><div class="wrap">
+<h1 class="gl-original-title">📐 Принцип измерения <span>вертикальных углов</span> теодолитом</h1>
+<p class="sub">Интерактивная схема: наклоняйте зрительную трубу, переключайте круг «лево / право», выбирайте тип оцифровки лимба и наблюдайте, как из отсчётов КЛ и КП получается угол наклона ν и место нуля МО.</p>
+<section class="gl-tab-panel" data-gl-panel="v0"><h2>1. Суть принципа</h2>
+<div class="panel">
+<p>Вертикальный угол (угол наклона <b class="nu">ν</b>) — это угол в вертикальной плоскости между <b>горизонтальной линией визирования</b> и направлением на наблюдаемую точку. Он измеряется с помощью <b>вертикального круга</b> теодолита — стеклянного лимба с градусными делениями, жёстко закреплённого на оси зрительной трубы и вращающегося <i>вместе с ней</i>. Отсчётный индекс при этом остаётся неподвижным (его положение контролируется цилиндрическим уровнем или компенсатором). Поэтому при наклоне трубы отсчёт по вертикальному кругу изменяется ровно на величину угла наклона.</p>
+<p style="margin-top:8px;">Угол <b class="nu">ν</b> считается <b style="color:var(--green)">положительным</b>, если цель выше горизонта (угол возвышения), и <b style="color:var(--red)">отрицательным</b>, если ниже (угол понижения). У приборов с нулём в зените непосредственно измеряется <b class="zz">зенитное расстояние z</b>, а угол наклона получают как ν = 90° − z.</p>
 </div>
-</main></div><div class="gl-footer">
-  <div><b>ГеоЛиния</b><span>Интерактивные материалы по инженерной геодезии</span></div>
-  <div><span>Принцип измерения вертикальных углов теодолитом</span></div>
+</section><section class="gl-tab-panel" data-gl-panel="v1"><h2>2. Интерактивная модель</h2>
+<div class="grid">
+<div class="panel">
+<h3>Схема визирования и вертикальный круг</h3>
+<svg id="scene" viewbox="0 0 620 438">
+<!-- ground -->
+<rect fill="#14532d" height="78" width="620" x="0" y="360"></rect>
+<line stroke="#22c55e" stroke-width="2" x1="0" x2="620" y1="360" y2="360"></line>
+<!-- tripod -->
+<g stroke="#64748b" stroke-linecap="round" stroke-width="5">
+<line x1="150" x2="115" y1="245" y2="360"></line>
+<line x1="150" x2="185" y1="245" y2="360"></line>
+<line x1="150" x2="150" y1="245" y2="360"></line>
+</g>
+<rect fill="#475569" height="14" rx="4" width="44" x="128" y="232"></rect>
+<!-- theodolite body -->
+<rect fill="#ff7136" height="38" opacity="0.9" rx="5" width="28" x="136" y="196"></rect>
+<!-- horizon line -->
+<line stroke="#8aa19b" stroke-dasharray="7 6" stroke-width="1.5" x1="150" x2="600" y1="200" y2="200"></line>
+<text fill="#657674" font-size="12" id="horizonTxt" text-anchor="end" x="598" y="192">горизонт (ν = 0°)</text>
+<!-- zenith line (for zenith-zero digitization) -->
+<g id="zenithGroup" style="display:none;">
+<line stroke="#8aa19b" stroke-dasharray="7 6" stroke-width="1.5" x1="150" x2="150" y1="200" y2="28"></line>
+<text fill="#657674" font-size="12" x="158" y="38">зенит (z = 0)</text>
+</g>
+<!-- actual zero-reading direction -->
+<g id="zeroGroup">
+<line id="zeroLine" stroke="#c026d3" stroke-dasharray="4 4" stroke-width="2" x1="150" x2="410" y1="200" y2="200"></line>
+<circle cx="410" cy="200" fill="#c026d3" id="zeroDot" r="4"></circle>
+<text fill="#c026d3" font-size="12" id="zeroTxt" x="415" y="215">отсчёт 0</text>
+<text fill="#c026d3" font-size="11" id="zeroTxt2" opacity="0.8" x="415" y="230"></text>
+</g>
+<!-- line of sight -->
+<line id="sight" stroke="#d97706" stroke-width="2.5" x1="150" x2="600" y1="200" y2="200"></line>
+<!-- angle arc -->
+<path d="" fill="none" id="arc" stroke="#d97706" stroke-width="2"></path>
+<text fill="#d97706" font-size="16" font-weight="bold" id="arcLabel" x="290" y="190">ν</text>
+<!-- theodolite standards (columns supporting the trunnion axis) -->
+<rect fill="#de501a" height="34" rx="2" width="7" x="133" y="200"></rect>
+<rect fill="#de501a" height="34" rx="2" width="7" x="160" y="200"></rect>
+<!-- telescope with vertical circle (limb rotates together with the tube) -->
+<g id="telescope">
+<!-- vertical circle limb on the trunnion axis -->
+<circle cx="150" cy="200" fill="#e7f6f1" r="19" stroke="#0a655d" stroke-width="2.5"></circle>
+<g stroke="#0a655d" stroke-width="1.2">
+<line x1="150" x2="150" y1="183" y2="188"></line>
+<line x1="150" x2="150" y1="212" y2="217"></line>
+<line x1="133" x2="138" y1="200" y2="200"></line>
+<line x1="162" x2="167" y1="200" y2="200"></line>
+<line x1="138" x2="141.5" y1="188" y2="191.5"></line>
+<line x1="162" x2="158.5" y1="188" y2="191.5"></line>
+<line x1="138" x2="141.5" y1="212" y2="208.5"></line>
+<line x1="162" x2="158.5" y1="212" y2="208.5"></line>
+</g>
+<!-- zero-diameter mark of the limb -->
+<circle cx="164.5" cy="200" fill="#c026d3" r="2"></circle>
+<!-- telescope tube (accent green) -->
+<rect fill="#0a655d" height="15" rx="5" width="76" x="112" y="192.5"></rect>
+<rect fill="#07534d" height="21" rx="3" width="10" x="182" y="189.5"></rect>
+<rect fill="#063f3b" height="11" rx="2" width="6" x="108" y="194.5"></rect>
+<!-- trunnion axis -->
+<circle cx="150" cy="200" fill="#063f3b" r="5" stroke="#e7f6f1" stroke-width="2"></circle>
+</g>
+<text fill="#0a655d" font-size="11" text-anchor="end" x="60" y="207">верт. круг</text>
+<line stroke="#0a655d" stroke-dasharray="3 3" stroke-width="1" x1="63" x2="128" y1="203" y2="201"></line>
+<!-- target -->
+<g id="target">
+<line id="pole" stroke="#dc2626" stroke-width="5" x1="560" x2="560" y1="360" y2="120"></line>
+<circle cx="560" cy="120" fill="#facc15" id="targetPt" r="9" stroke="#dc2626" stroke-width="3"></circle>
+<text fill="#b45309" font-size="13" id="targetTxt" x="576" y="124">цель</text>
+</g>
+<!-- vertical circle (schematic dial): limb is fixed, index moves with the tube -->
+<g transform="translate(320,305)">
+<circle fill="#063f3b" r="72" stroke="#0a655d" stroke-width="2"></circle>
+<g id="dial"></g>
+<!-- moving reading index (rotates with the telescope) -->
+<g id="indexPtr">
+<line stroke="#ff7136" stroke-width="2.5" x1="0" x2="56" y1="0" y2="0"></line>
+<polygon fill="#ff7136" points="69,0 55,-6 55,6"></polygon>
+</g>
+<circle fill="#043632" r="6" stroke="#8fbab3" stroke-width="2"></circle>
+<text fill="#0a655d" font-size="12" text-anchor="middle" x="0" y="-92">отсчётный индекс движется с трубой</text>
+<rect fill="#f4f8f6" height="24" rx="8" stroke="#d5e3de" stroke-width="1" width="156" x="-78" y="86"></rect>
+<text fill="#092c33" font-size="15" font-weight="bold" id="dialReading" text-anchor="middle" x="0" y="103">отсчёт</text>
+</g>
+</svg>
+<div class="legend">
+<span><i style="background:#d97706"></i>визирная ось</span>
+<span><i style="background:#8aa19b"></i>нулевое направление (идеальное)</span>
+<span><i style="background:#c026d3"></i>фактическое направление отсчёта 0 (при КЛ)</span>
+<span><i style="background:#ff7136"></i>отсчётный индекс</span>
 </div>
-
+<p style="font-size:12.5px; color:var(--muted); margin-top:6px;">⚠️ Наклон розового луча «отсчёт 0» и поворот лимба от МО показаны с увеличением в 60 раз — иначе место нуля в несколько минут дуги было бы неразличимо на схеме.</p>
+<p style="font-size:12.5px; color:var(--muted); margin-top:4px;">ℹ️ Большой круг показан «в системе лимба»: шкала закреплена согласно выбранной оцифровке (0 — в горизонте или в зените), по ней движется отсчётный индекс, связанный с трубой. При наличии МО (МZ) весь лимб повёрнут на эту величину — видно, что нулевой штрих (розовый) не совпадает с идеальным нулевым направлением. При переходе на КП оцифровка разворачивается зеркально: наблюдатель видит круг с другой стороны.</p>
+<h3 style="margin-top:18px;">Поле зрения отсчётного микроскопа</h3>
+<svg id="microSvg" viewbox="0 0 620 342">
+<defs>
+<clippath id="microClip"><circle cx="310" cy="155" r="140"></circle></clippath>
+</defs>
+<circle cx="310" cy="155" fill="#0b1220" r="146" stroke="#475569" stroke-width="5"></circle>
+<circle cx="310" cy="155" fill="#111827" r="140"></circle>
+<g clip-path="url(#microClip)" id="microG"></g>
+<text fill="#e2e8f0" font-size="14" font-weight="bold" id="microCaption" text-anchor="middle" x="310" y="334"></text>
+</svg>
+<p id="microDesc" style="font-size:12.5px; color:var(--muted); margin-top:4px;"></p>
+</div>
+<div class="panel controls">
+<h3>Управление</h3>
+<div class="ctrl">
+<label for="typeSelect" style="margin-bottom:6px;">Тип оцифровки вертикального круга</label>
+<select id="typeSelect">
+<option value="circ">Круговая 0–360° (Т30)</option>
+<option selected="" value="symH">Симметричная, 0 в горизонте (2Т30)</option>
+<option value="symZ">Симметричная, 0 в зените</option>
+<option value="quadH">Четвертная 0–90°, нули в горизонте</option>
+<option value="quadZ">Четвертная 0–90°, нули в зените</option>
+</select>
+<div class="typeDesc" id="typeDesc"></div>
+</div>
+<div class="ctrl">
+<label>Угол наклона на цель ν <b id="nuVal">+15° 00′</b></label>
+<input id="nuSlider" max="2400" min="-1500" step="1" type="range" value="900"/>
+<div class="manual">
+<select id="nuSign"><option value="1">+</option><option value="-1">−</option></select>
+<input id="nuDeg" max="40" min="0" step="1" type="number" value="15"/>°
+          <input id="nuMin" max="59" min="0" step="1" type="number" value="0"/>′
+        </div>
+</div>
+<div class="ctrl">
+<label><span id="moName">Место нуля МО (погрешность)</span> <b id="moVal">0′</b></label>
+<input id="moSlider" max="10" min="-10" step="1" type="range" value="0"/>
+<div class="manual">
+<select id="moSign"><option value="1">+</option><option value="-1">−</option></select>
+<input id="moMinIn" max="10" min="0" step="1" type="number" value="0"/>′
+        </div>
+</div>
+<div class="btns">
+<button class="btn active-kl" id="btnKL">Круг лево (КЛ)</button>
+<button class="btn" id="btnKP">Круг право (КП)</button>
+</div>
+<div class="readout" id="readout"></div>
+<div class="formula" id="formulaBox"></div>
+<p style="font-size:13px; color:var(--muted);">💡 Как бы вы ни меняли МО и тип оцифровки, полусумма/полуразность отсчётов при двух кругах всегда «расщепляет» результат на приборную погрешность (МО или МZ) и чистый угол. В этом и состоит смысл измерения при КЛ и КП.</p>
+</div>
+</div>
+</section><section class="gl-tab-panel" data-gl-panel="v2"><h2>3. Типы оцифровки лимба и рабочие формулы</h2>
+<div class="panel">
+<table>
+<tr><th>Оцифровка</th><th>Пример прибора</th><th>Место нуля / зенита</th><th>Угол наклона</th></tr>
+<tr><td class="l">Круговая 0–360°</td><td>Т30</td><td>МО = (КЛ + КП + 180°) / 2 *</td><td>ν = КЛ − МО = (КЛ − КП − 180°) / 2 *</td></tr>
+<tr><td class="l">Симметричная (±), 0 в горизонте</td><td>2Т30, 2Т5К</td><td>МО = (КЛ + КП) / 2</td><td>ν = (КЛ − КП) / 2 = КЛ − МО = МО − КП</td></tr>
+<tr><td class="l">Симметричная (±), 0 в зените</td><td>зенитные системы</td><td>МZ = (КЛ + КП) / 2</td><td>z = (КЛ − КП) / 2;  ν = 90° − z</td></tr>
+<tr><td class="l">Четвертная 0–90°, нули в горизонте</td><td>старые оптические</td><td>МО = ±(КЛ − КП) / 2 **</td><td>ν = ±(КЛ + КП) / 2 **</td></tr>
+<tr><td class="l">Четвертная 0–90°, нули в зените</td><td>тахеометры-высотомеры</td><td>МZ = (КЛ − КП) / 2</td><td>z = (КЛ + КП) / 2;  ν = 90° − z</td></tr>
+</table>
+<p style="font-size:13px; color:var(--muted); margin-top:8px;">* При вычислениях к отсчётам, меньшим 90°, прибавляют 360°.  ** Шкала без знаков: знак приписывают по положению цели — выше горизонта «+», ниже «−».</p>
+</div>
+</section><section class="gl-tab-panel" data-gl-panel="v3"><h2>4. Ключевые понятия</h2>
+<div class="panel">
+<p><b class="mo">Место нуля (МО)</b> — отсчёт по вертикальному кругу, когда визирная ось трубы горизонтальна, а пузырёк уровня при алидаде вертикального круга находится в нуль-пункте. У приборов с нулём в зените аналогичная величина называется <b class="zz">местом зенита (МZ)</b> — отсчёт при отвесном положении визирной оси. В идеале МО (МZ) = 0, но из-за неточной юстировки прибора нулевой диаметр лимба фактически смещён — именно это смещение показывает розовый луч на схеме.</p>
+<p style="margin-top:8px;"><b class="kl">КЛ (круг лево)</b> и <b class="kp">КП (круг право)</b> — два положения теодолита: вертикальный круг находится слева или справа от наблюдателя. Труба переводится через зенит, и цель визируется повторно. Измерение при двух кругах — основной приём <b>исключения влияния МО</b> и контроля качества измерений: колебание МО на станции не должно превышать двойной точности отсчётного устройства (для 2Т30 — 1′).</p>
+</div>
+</section><section class="gl-tab-panel" data-gl-panel="v4"><h2>5. Порядок измерения на станции</h2>
+<div class="steps">
+<div class="step"><b>Установка.</b> Теодолит центрируют над точкой и горизонтируют по уровню (ось вращения прибора приводят в отвесное положение).</div>
+<div class="step"><b>Визирование при КЛ.</b> При круге «лево» наводят среднюю горизонтальную нить сетки точно на цель, приводят пузырёк уровня вертикального круга в нуль-пункт и берут отсчёт <b class="kl">КЛ</b>.</div>
+<div class="step"><b>Перевод трубы через зенит.</b> Трубу переводят через зенит, алидаду поворачивают на 180° — прибор в положении «круг право».</div>
+<div class="step"><b>Визирование при КП.</b> Повторно наводят на ту же цель и берут отсчёт <b class="kp">КП</b>.</div>
+<div class="step"><b>Вычисления.</b> По формулам, соответствующим оцифровке лимба данного прибора (см. таблицу выше), находят <b class="mo">МО</b> и <b class="nu">ν</b>. Контроль: постоянство МО между целями подтверждает качество измерений.</div>
+</div>
+</section><section class="gl-tab-panel" data-gl-panel="v5"><h2>6. Пример вычислений (теодолит 2Т30)</h2>
+<div class="panel">
+<table>
+<tr><th>Величина</th><th>Отсчёт / результат</th><th>Формула</th></tr>
+<tr><td>КЛ</td><td>+4° 32,5′</td><td>отсчёт при круге «лево»</td></tr>
+<tr><td>КП</td><td>−4° 30,5′</td><td>отсчёт при круге «право»</td></tr>
+<tr><td><b class="mo">МО</b></td><td>+0° 01,0′</td><td>(КЛ + КП) / 2 = (4°32,5′ − 4°30,5′)/2</td></tr>
+<tr><td><b class="nu">ν</b></td><td>+4° 31,5′</td><td>(КЛ − КП) / 2 = (4°32,5′ + 4°30,5′)/2</td></tr>
+</table>
+</div>
+<div class="note">
+<b>Зачем это нужно?</b> Вертикальные углы применяются в тригонометрическом нивелировании — для вычисления превышений h = d·tg ν (где d — горизонтальное проложение), при передаче высот на сооружения, определении высоты недоступных объектов и приведении наклонных расстояний к горизонту.
+  </div>
+</section></div>
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></main></div><div class="gl-footer">
+<div><b>ГеоЛиния</b><span>Интерактивные материалы по инженерной геодезии</span></div>
+<div><span>Принцип измерения вертикальных углов теодолитом</span></div>
+</div>
 <script>
 (function(){
   const px = 150, py = 200;          // trunnion axis on screen
@@ -804,5 +792,5 @@
   rebuild();
 })();
 </script>
-<script>(function(){document.querySelector('[data-lesson="theodolite-vertical-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
+<script>(function(){document.querySelector('[data-lesson="theodolite-vertical-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script><script src="../../assets/lesson-blocks.js"></script></body>
 </html>

@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Комбинаторика: правила суммы и произведения, перестановки, сочетания, размещения и размещения с повторениями — интерактивный урок с примерами из геодезии.">
-<title>Комбинаторика: перестановки, размещения, сочетания — ГеоЛиния</title>
-<link rel="stylesheet" href="../../assets/style.css">
-<link rel="stylesheet" href="../../assets/lesson-site.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Комбинаторика: правила суммы и произведения, перестановки, сочетания, размещения и размещения с повторениями — интерактивный урок с примерами из геодезии." name="description"/>
+<title>Комбинаторика — ГеоЛиния</title>
+<link href="../../assets/style.css" rel="stylesheet"/>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/>
 <style>
 /* ===== Урок «Основы теории вероятностей» · стили в дизайне ГеоЛинии =====
    Все классы урока имеют префикс lp- и не конфликтуют с style.css / lesson-site.css */
@@ -182,202 +183,171 @@ html{scroll-behavior:smooth}
 </head>
 <body data-root="../..">
 <div class="gl-lesson-layout">
-
 <aside class="gl-sidebar">
 <div class="gl-sidebar-label">Уроки курса</div>
 <a href="probability-basics.html"><span>01</span>Основы теории вероятностей: основные понятия</a>
-<a href="combinatorics-basics.html" class="active"><span>02</span>Комбинаторика: перестановки, размещения, сочетания</a>
+<a class="active" href="combinatorics-basics.html"><span>02</span>Комбинаторика: перестановки, размещения, сочетания</a>
 <a href="probability-theorems.html"><span>03</span>Вероятность события. Условная вероятность. Сложение и умножение</a>
 <!-- Следующие уроки добавляйте по этому шаблону (span — номер урока):
 <a href="имя-файла.html"><span>04</span>Название следующего урока</a>
 -->
 <a class="gl-course-link" href="index.html"><span>←</span>Курс 02 · Теория погрешностей</a>
 </aside>
-
-<div class="gl-lesson-content">
+<div class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Теория погрешностей · Урок 02</div><h1>Комбинаторика</h1><nav aria-label="Содержание урока" class="lp-toc gl-tabs">
+<span class="lp-toc-label">Разделы</span>
+<button class="active" data-gl-tab="intro" type="button"><b>1</b>Введение</button>
+<button class="" data-gl-tab="rules" type="button"><b>2</b>Два правила</button>
+<button class="" data-gl-tab="perms" type="button"><b>3</b>Перестановки</button>
+<button class="" data-gl-tab="combos" type="button"><b>4</b>Сочетания</button>
+<button class="" data-gl-tab="arrs" type="button"><b>5</b>Размещения</button>
+<button class="" data-gl-tab="reps" type="button"><b>6</b>С повторениями</button>
+<button class="" data-gl-tab="choose" type="button"><b>7</b>Выбор схемы</button>
+<button class="" data-gl-tab="quiz" type="button"><b>8</b>Проверь себя</button>
+</nav></section>
 <article class="lp">
-
 <header class="lp-hero">
-  <div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🧮</div>
-  <div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🔁</div>
-  <div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
-  <div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 02</div>
-  <h1>Комбинаторика: перестановки, размещения, сочетания</h1>
-  <p class="lp-sub">Искусство пересчитывать комбинации: правила суммы и произведения, перестановки, сочетания, размещения и размещения с повторениями. Это фундамент для подсчёта вероятностей — но в самом уроке вероятностей ещё нет: только счёт.</p>
-  <div class="lp-chips">
-    <span class="lp-chip">➕ Правила суммы и произведения</span>
-    <span class="lp-chip">🔁 Перестановки · n!</span>
-    <span class="lp-chip">🤝 Сочетания · C(n, k)</span>
-    <span class="lp-chip">🥇 Размещения · A(n, k)</span>
-    <span class="lp-chip">♻️ Размещения с повторениями · nᵏ</span>
-  </div>
+<div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🧮</div>
+<div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🔁</div>
+<div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
+<div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 02</div>
+<h1 class="gl-original-title">Комбинаторика: перестановки, размещения, сочетания</h1>
+<p class="lp-sub">Искусство пересчитывать комбинации: правила суммы и произведения, перестановки, сочетания, размещения и размещения с повторениями. Это фундамент для подсчёта вероятностей — но в самом уроке вероятностей ещё нет: только счёт.</p>
+<div class="lp-chips">
+<span class="lp-chip">➕ Правила суммы и произведения</span>
+<span class="lp-chip">🔁 Перестановки · n!</span>
+<span class="lp-chip">🤝 Сочетания · C(n, k)</span>
+<span class="lp-chip">🥇 Размещения · A(n, k)</span>
+<span class="lp-chip">♻️ Размещения с повторениями · nᵏ</span>
+</div>
 </header>
 
-<nav class="lp-toc" aria-label="Содержание урока">
- <span class="lp-toc-label">Разделы</span>
- <a href="#intro" title="Зачем пересчитывать комбинации"><b>1</b>Введение</a>
- <a href="#rules" title="Правила суммы и произведения"><b>2</b>Два правила</a>
- <a href="#perms" title="Перестановки"><b>3</b>Перестановки</a>
- <a href="#combos" title="Сочетания"><b>4</b>Сочетания</a>
- <a href="#arrs" title="Размещения"><b>5</b>Размещения</a>
- <a href="#reps" title="Размещения с повторениями"><b>6</b>С повторениями</a>
- <a href="#choose" title="Как выбрать схему: сводка"><b>7</b>Выбор схемы</a>
- <a href="#quiz" title="Проверь себя"><b>8</b>Проверь себя</a>
-</nav>
-
-<section class="lp-section" id="intro">
+<section class="lp-section gl-tab-panel" data-gl-panel="intro" id="intro">
 <h2 class="lp-h2"><span class="lp-num">1</span>Зачем пересчитывать комбинации?</h2>
 <p class="lp-lead">В следующем уроке появится формула классической вероятности P(A) = M/N: чтобы ею пользоваться, нужно уметь находить числа M и N — количество «благоприятствующих» и всех возможных исходов. Когда исходов сотни и тысячи, их не перечисляют, а пересчитывают по правилам комбинаторики.</p>
-
 <div class="lp-def"><span class="lp-term">Комбинаторика</span> — раздел математики, изучающий способы подсчёта количества комбинаций, которые можно составить из элементов заданных множеств. В учебнике Голубева её понятия вводятся именно как инструмент для вычисления M и N в формуле вероятности.</div>
-
 <div class="lp-note lp-note-info">🎯 <b>Задача этого урока</b> — научиться отвечать на вопрос «сколькими способами?» для четырёх типовых схем выбора: перестановки, сочетания, размещения и размещения с повторениями. Все примеры — из карт, костей, быта и геодезии; формулы вероятности появятся только в уроке 03.</div>
 </section>
-
-<section class="lp-section" id="rules">
+<section class="lp-section gl-tab-panel" data-gl-panel="rules" id="rules">
 <h2 class="lp-h2"><span class="lp-num">2</span>Два базовых правила: сумма и произведение</h2>
 <p class="lp-lead">Прежде чем знакомиться с готовыми формулами, освоим два правила, из которых они выводятся.</p>
-
-<div class="lp-def"><b>Правило суммы.</b> Если объект можно выбрать k способами, а другой объект — l способами, причём выборы не пересекаются, то выбрать «один или другой» можно k + l способами.<br>
+<div class="lp-def"><b>Правило суммы.</b> Если объект можно выбрать k способами, а другой объект — l способами, причём выборы не пересекаются, то выбрать «один или другой» можно k + l способами.<br/>
 <b>Правило произведения.</b> Если первый этап выбора можно выполнить k способами, а второй — l способами, то оба этапа вместе (пара «первый и второй») можно выполнить k · l способами.</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🃏 Карты · сумма</div><h4>Дамы и короли</h4><p>Дам — 4 способа, королей — 4, выборы не пересекаются: «дама или король» — 4 + 4 = 8 карт.</p></div>
- <div class="lp-tile"><div class="lp-dom">🎲 Кости · произведение</div><h4>36 пар очков</h4><p>У первой кости 6 исходов, у второй 6: пар 6 · 6 = 36. Именно так в уроке 01 возникло пространство Ω из 36 клеток.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия · произведение</div><h4>Прибор × наблюдатель</h4><p>2 тахеометра и 3 наблюдателя дают 2 · 3 = 6 возможных связок «прибор + наблюдатель» для программы измерений.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия · произведение</div><h4>Знаки погрешностей</h4><p>У каждого из 3 измерений — 2 возможных знака погрешности: всего 2 · 2 · 2 = 8 комбинаций знаков (с ними поработаем в разделе 6).</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты · сумма</div><h4>Дамы и короли</h4><p>Дам — 4 способа, королей — 4, выборы не пересекаются: «дама или король» — 4 + 4 = 8 карт.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кости · произведение</div><h4>36 пар очков</h4><p>У первой кости 6 исходов, у второй 6: пар 6 · 6 = 36. Именно так в уроке 01 возникло пространство Ω из 36 клеток.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия · произведение</div><h4>Прибор × наблюдатель</h4><p>2 тахеометра и 3 наблюдателя дают 2 · 3 = 6 возможных связок «прибор + наблюдатель» для программы измерений.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия · произведение</div><h4>Знаки погрешностей</h4><p>У каждого из 3 измерений — 2 возможных знака погрешности: всего 2 · 2 · 2 = 8 комбинаций знаков (с ними поработаем в разделе 6).</p></div>
 </div>
-
 <div class="lp-note">⚠️ Правило суммы требует <b>непересечения</b> выбора: «дама или король» — 8 карт, но «дама или пика» — уже не 4 + 9 = 13: дама пик считается в обоих списках, и её надо учесть один раз (об этом — урок 03, теорема сложения). Правило произведения требует <b>независимости этапов</b>: число вариантов второго этапа не должно зависеть от того, как прошёл первый.</div>
 </section>
-
-<section class="lp-section" id="perms">
+<section class="lp-section gl-tab-panel" data-gl-panel="perms" id="perms">
 <h2 class="lp-h2"><span class="lp-num">3</span>Перестановки</h2>
 <p class="lp-lead">Первая схема: используем все элементы множества и меняем только их порядок.</p>
-
 <div class="lp-def"><span class="lp-term">Перестановки</span> — комбинации из n элементов, отличающиеся только расположением (порядком) элементов внутри комбинации. Число перестановок из n элементов:</div>
 <div class="lp-formula">Pₙ = n! = 1 · 2 · 3 · … · n</div>
 <p>Для множества {а, b, с} перестановок шесть: (а, b, с); (а, c, b); (b, a, c); (b, с, а); (с, а, b); (с, b, а) — ровно 3! = 6. Почему так: на первое место претендуют n элементов, на второе — осталось n − 1, на третье — n − 2… итого n · (n−1) · (n−2) · … · 1 — правило произведения в действии.</p>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Маршрут обхода пунктов</h4><p>Обойти 4 репера, побывав в каждом по разу: 4! = 24 возможных маршрута. Выбор кратчайшего обхода — классическая задача оптимизации геодезических работ.</p></div>
- <div class="lp-tile"><div class="lp-dom">📖 Учебник · слово ГЕОИД</div><h4>5! = 120</h4><p>На карточках буквы Г, Е, О, И, Д. Выкладывая их в случайном порядке, получаем одну из 5! = 120 перестановок — слово «ГЕОИД» среди них ровно одно.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Порядок в руке</h4><p>Порядок, в котором приходят карты, — перестановка: даже 6 карт можно получить 6! = 720 различными порядками.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Маршрут обхода пунктов</h4><p>Обойти 4 репера, побывав в каждом по разу: 4! = 24 возможных маршрута. Выбор кратчайшего обхода — классическая задача оптимизации геодезических работ.</p></div>
+<div class="lp-tile"><div class="lp-dom">📖 Учебник · слово ГЕОИД</div><h4>5! = 120</h4><p>На карточках буквы Г, Е, О, И, Д. Выкладывая их в случайном порядке, получаем одну из 5! = 120 перестановок — слово «ГЕОИД» среди них ровно одно.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Порядок в руке</h4><p>Порядок, в котором приходят карты, — перестановка: даже 6 карт можно получить 6! = 720 различными порядками.</p></div>
 </div>
-
 <div class="lp-demo">
 <h3>🔀 Демо 1. Карточки «Г, Е, О, И, Д»: сколько перестановок?</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Перемешивайте карточки и выкладывайте в случайном порядке. Каждая выкладка — одна из 5! = 120 перестановок; «попасть» в слово ГЕОИД — значит выбрать ровно одну конкретную из них.</p>
 <div class="lp-ctrl">
- <button class="lp-btn lp-btn--accent" id="permMix" type="button">🔀 Перемешать и выложить</button>
- <button class="lp-btn lp-btn--ghost" id="permReset" type="button">Сброс счёта</button>
- <button class="lp-btn lp-btn--ghost" id="permAll" type="button">📋 Показать все 120</button>
+<button class="lp-btn lp-btn--accent" id="permMix" type="button">🔀 Перемешать и выложить</button>
+<button class="lp-btn lp-btn--ghost" id="permReset" type="button">Сброс счёта</button>
+<button class="lp-btn lp-btn--ghost" id="permAll" type="button">📋 Показать все 120</button>
 </div>
 <div class="lp-out" id="permOut" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;min-height:64px"><span style="color:#8aa69d">Нажмите «Перемешать и выложить»…</span></div>
 <div class="lp-stats" id="permStats"></div>
 <div class="lp-permlist" id="permList"></div>
 <div class="lp-small" style="margin-top:8px">Факториал растёт стремительно: 5! = 120, 7! = 5040, 10! = 3 628 800. Поэтому «угадать» случайную перестановку из многих элементов так трудно.</div>
 </div>
-
 <div class="lp-note">💡 <b>Перестановки с повторяющимися элементами.</b> Если среди n элементов есть одинаковые (например, две буквы «А» в наборе К, А, Р, Т, А), часть перестановок неразличима: слово «КАРТА» получится двумя способами (буквы «А» меняются местами). В учебнике такие случаи разбираются прямым подсчётом — специальная формула нам пока не понадобится.</div>
 </section>
-
-<section class="lp-section" id="combos">
+<section class="lp-section gl-tab-panel" data-gl-panel="combos" id="combos">
 <h2 class="lp-h2"><span class="lp-num">4</span>Сочетания</h2>
 <p class="lp-lead">Вторая схема: выбираем часть множества, и порядок внутри выбора не важен.</p>
-
 <div class="lp-def"><span class="lp-term">Сочетания</span> — комбинации из n элементов по k в каждой группе, причём расположение элементов внутри группы безразлично (группы, различающиеся только порядком, считаются одной и той же комбинацией). Число сочетаний:</div>
 <div class="lp-formula">C(n, k) = <span class="lp-frac"><span>n!</span><span>k! · (n − k)!</span></span></div>
 <p>Из {а, b, с} по два элемента: (а, b); (а, с); (b, с) — всего C(3, 2) = 3!/(2!·1!) = 3 комбинации: пары (а, b) и (b, а) — одна и та же.</p>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Бригада из 2 наблюдателей</h4><p>Из 5 наблюдателей выбрать двоих в ночную смену: C(5, 2) = 10 вариантов — кто с кем в паре, а не кто главный.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Урна с «шарами» из учебника</h4><p>В урне 2 белых и 3 чёрных шара; вынимают два. Всего пар: C(5, 2) = 10; пар «два чёрных»: C(3, 2) = 3. Эти числа пригодятся в уроке 03 для вероятности.</p></div>
- <div class="lp-tile"><div class="lp-dom">🎲 Спортлото</div><h4>5 из 36</h4><p>Зачеркнуть 5 чисел из 36 можно C(36, 5) = 376 992 способами — сочетания, потому что порядок зачёркивания безразличен.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Бригада из 2 наблюдателей</h4><p>Из 5 наблюдателей выбрать двоих в ночную смену: C(5, 2) = 10 вариантов — кто с кем в паре, а не кто главный.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Урна с «шарами» из учебника</h4><p>В урне 2 белых и 3 чёрных шара; вынимают два. Всего пар: C(5, 2) = 10; пар «два чёрных»: C(3, 2) = 3. Эти числа пригодятся в уроке 03 для вероятности.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Спортлото</div><h4>5 из 36</h4><p>Зачеркнуть 5 чисел из 36 можно C(36, 5) = 376 992 способами — сочетания, потому что порядок зачёркивания безразличен.</p></div>
 </div>
-
 <div class="lp-demo">
 <h3>👷 Демо 2. Бригада наблюдателей: сочетания и размещения</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Пять наблюдателей: <b>А</b>нна, <b>Б</b>орис, <b>В</b>ера, <b>Г</b>леб, <b>Д</b>арья. Формируем бригаду — порядок не важен, значит, работаем с сочетаниями. Каждый чип — одно сочетание.</p>
 <div class="lp-ctrl">
- <div class="lp-seg" id="comboSeg"><button class="on" data-k="2" type="button">Бригада из 2</button><button data-k="3" type="button">Бригада из 3</button></div>
- <button class="lp-btn lp-btn--accent" id="comboPick" type="button">🎲 Выбрать бригаду случайно</button>
+<div class="lp-seg" id="comboSeg"><button class="on" data-k="2" type="button">Бригада из 2</button><button data-k="3" type="button">Бригада из 3</button></div>
+<button class="lp-btn lp-btn--accent" id="comboPick" type="button">🎲 Выбрать бригаду случайно</button>
 </div>
 <div class="lp-pairlist" id="comboList"></div>
 <div class="lp-stats" id="comboStats"></div>
 <div class="lp-status" id="comboOut">Нажмите «Выбрать бригаду случайно» — подсветится одно из сочетаний.</div>
 </div>
 </section>
-
-<section class="lp-section" id="arrs">
+<section class="lp-section gl-tab-panel" data-gl-panel="arrs" id="arrs">
 <h2 class="lp-h2"><span class="lp-num">5</span>Размещения</h2>
 <p class="lp-lead">Третья схема: выбираем часть множества, и порядок внутри выбора важен.</p>
-
 <div class="lp-def"><span class="lp-term">Размещения</span> — комбинации из n элементов по k в каждой группе, когда изменение положения элемента в группе приводит к образованию новой комбинации (элементы внутри группы не повторяются). Число размещений:</div>
 <div class="lp-formula">A(n, k) = <span class="lp-frac"><span>n!</span><span>(n − k)!</span></span> = n · (n − 1) · … · (n − k + 1)</div>
 <p>Из {а, b, с} по два: (а, b), (b, а), (а, с), (с, а), (b, с), (с, b) — A(3, 2) = 6: пары, различающиеся порядком, считаются разными.</p>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">📖 Учебник · слово ГИД</div><h4>A(5, 3) = 60</h4><p>Из карточек Г, Е, О, И, Д вынимают три и раскладывают в порядке появления: A(5, 3) = 5!/(5−3)! = 60 упорядоченных комбинаций; слово «ГИД» — ровно одна.</p></div>
- <div class="lp-tile"><div class="lp-dom">📞 Быт · забытый номер</div><h4>A(10, 3) = 720</h4><p>Абонент забыл три последние разные цифры номера: упорядоченных комбинаций из 10 цифр по 3 — 10 · 9 · 8 = 720.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Старший и помощник</h4><p>Из 5 наблюдателей назначить старшего и помощника: A(5, 2) = 20 вариантов — роли различны, порядок важен.</p></div>
+<div class="lp-tile"><div class="lp-dom">📖 Учебник · слово ГИД</div><h4>A(5, 3) = 60</h4><p>Из карточек Г, Е, О, И, Д вынимают три и раскладывают в порядке появления: A(5, 3) = 5!/(5−3)! = 60 упорядоченных комбинаций; слово «ГИД» — ровно одна.</p></div>
+<div class="lp-tile"><div class="lp-dom">📞 Быт · забытый номер</div><h4>A(10, 3) = 720</h4><p>Абонент забыл три последние разные цифры номера: упорядоченных комбинаций из 10 цифр по 3 — 10 · 9 · 8 = 720.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Старший и помощник</h4><p>Из 5 наблюдателей назначить старшего и помощника: A(5, 2) = 20 вариантов — роли различны, порядок важен.</p></div>
 </div>
-
 <div class="lp-note lp-note-good">🔑 <b>Связь сочетаний и размещений:</b> каждое сочетание из k элементов порождает k! размещений (внутри выбранной группы элементы можно переставлять). Отсюда A(n, k) = C(n, k) · k! — проверьте: A(5, 2) = 20 = 10 · 2!. Вопрос «порядок важен или нет?» и решает, какой формулой пользоваться.</div>
 </section>
-
-<section class="lp-section" id="reps">
+<section class="lp-section gl-tab-panel" data-gl-panel="reps" id="reps">
 <h2 class="lp-h2"><span class="lp-num">6</span>Размещения с повторениями</h2>
 <p class="lp-lead">Четвёртая схема: элементы в комбинации могут повторяться.</p>
-
 <div class="lp-def"><span class="lp-term">Размещения с повторениями</span> — комбинации из n элементов по k в каждой группе, когда элементы в группе могут повторяться. Их число:</div>
 <div class="lp-formula">Aⁿ(k) = nᵏ</div>
 <p>На каждом из k мест может оказаться любой из n элементов — правило произведения: n · n · … · n = nᵏ. Для {а, b, с} по два: (а, а), (а, b), (b, а), (а, с), (с, а), (b, b), (b, с), (с, b), (с, с) — 3² = 9.</p>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия · учебник</div><h4>Знаки погрешностей</h4><p>Три измерения угла, у каждого — знак погрешности «+» или «−»: комбинаций знаков 2³ = 8. Комбинация (− − −) — «все три отрицательные» — ровно одна из восьми.</p></div>
- <div class="lp-tile"><div class="lp-dom">🔐 Быт · кодовый замок</div><h4>10³ = 1000</h4><p>Трёхзначный код, цифры могут повторяться: 10 · 10 · 10 = 1000 вариантов. Если цифры не повторяются — уже размещения без повторений: A(10, 3) = 720.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>С возвратом</h4><p>Извлекаем карту, запоминаем, возвращаем — три раза: комбинаций 36³ = 46 656. Без возврата было бы 36 · 35 · 34.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия · учебник</div><h4>Знаки погрешностей</h4><p>Три измерения угла, у каждого — знак погрешности «+» или «−»: комбинаций знаков 2³ = 8. Комбинация (− − −) — «все три отрицательные» — ровно одна из восьми.</p></div>
+<div class="lp-tile"><div class="lp-dom">🔐 Быт · кодовый замок</div><h4>10³ = 1000</h4><p>Трёхзначный код, цифры могут повторяться: 10 · 10 · 10 = 1000 вариантов. Если цифры не повторяются — уже размещения без повторений: A(10, 3) = 720.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>С возвратом</h4><p>Извлекаем карту, запоминаем, возвращаем — три раза: комбинаций 36³ = 46 656. Без возврата было бы 36 · 35 · 34.</p></div>
 </div>
-
 <div class="lp-demo">
 <h3>➖➕ Демо 3. Знаки погрешностей: 2ᵏ комбинаций</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Выберите число измерений k — и увидите все 2ᵏ комбинаций знаков погрешностей (размещения с повторениями из двух «элементов»: + и −). Комбинация «все отрицательные» подсвечена.</p>
 <div class="lp-ctrl">
- <div class="lp-seg" id="signSeg"><button type="button" data-k="2">2 измерения</button><button class="on" type="button" data-k="3">3 измерения</button><button type="button" data-k="4">4 измерения</button></div>
+<div class="lp-seg" id="signSeg"><button data-k="2" type="button">2 измерения</button><button class="on" data-k="3" type="button">3 измерения</button><button data-k="4" type="button">4 измерения</button></div>
 </div>
 <div class="lp-pairlist" id="signList"></div>
 <div class="lp-status" id="signOut"></div>
 </div>
 </section>
-
-<section class="lp-section" id="choose">
+<section class="lp-section gl-tab-panel" data-gl-panel="choose" id="choose">
 <h2 class="lp-h2"><span class="lp-num">7</span>Как выбрать схему: сводка</h2>
 <p class="lp-lead">Все четыре схемы отвечают на один вопрос: «сколькими способами?» — но на разных условиях. Два вопроса помогают не перепутать формулы.</p>
-
 <div class="lp-fig">
- <div class="lp-figitem">
- <svg width="640" height="240" viewBox="0 0 640 240">
-  <text x="320" y="26" text-anchor="middle" font-size="14.5" font-weight="800" fill="#0c3833">Что выбираем?</text>
-  <rect x="130" y="44" width="380" height="42" rx="10" fill="#e9f5f1" stroke="#12907b" stroke-width="2"/>
-  <text x="320" y="70" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0b6b5e">Все n элементов, меняем только порядок</text>
-  <text x="540" y="70" font-size="13.5" font-weight="800" fill="#075c52" font-family="Roboto Mono,monospace">Pₙ = n!</text>
-  <rect x="60" y="110" width="250" height="42" rx="10" fill="#fff4ec" stroke="#ff7136" stroke-width="2"/>
-  <text x="185" y="130" text-anchor="middle" font-size="12.8" font-weight="700" fill="#b45309">k из n · порядок ВАЖЕН</text>
-  <text x="185" y="146" text-anchor="middle" font-size="11.5" fill="#9a5b2f">элементы не повторяются</text>
-  <text x="325" y="136" font-size="13" font-weight="800" fill="#e45f27" font-family="Roboto Mono,monospace">A(n,k)</text>
-  <rect x="330" y="110" width="250" height="42" rx="10" fill="#eef5f2" stroke="#075c52" stroke-width="2"/>
-  <text x="455" y="130" text-anchor="middle" font-size="12.8" font-weight="700" fill="#075c52">k из n · порядок НЕ важен</text>
-  <text x="455" y="146" text-anchor="middle" font-size="11.5" fill="#5c716b">просто выбираем группу</text>
-  <text x="598" y="136" font-size="13" font-weight="800" fill="#075c52" font-family="Roboto Mono,monospace" text-anchor="end">C(n,k)</text>
-  <rect x="130" y="176" width="380" height="42" rx="10" fill="#f4f8f6" stroke="#7a918b" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="320" y="196" text-anchor="middle" font-size="12.8" font-weight="700" fill="#3f544b">k из n · элементы могут ПОВТОРЯТЬСЯ</text>
-  <text x="320" y="212" text-anchor="middle" font-size="11.5" fill="#7a918b">порядок важен, как в коде или серии знаков</text>
-  <text x="540" y="200" font-size="13.5" font-weight="800" fill="#5c716b" font-family="Roboto Mono,monospace">nᵏ</text>
- </svg>
- <figcaption>Два вопроса: «используем все элементы или часть?» и «важен ли порядок / возможны ли повторения?» — однозначно выбирают формулу</figcaption></div>
+<div class="lp-figitem">
+<svg height="240" viewbox="0 0 640 240" width="640">
+<text fill="#0c3833" font-size="14.5" font-weight="800" text-anchor="middle" x="320" y="26">Что выбираем?</text>
+<rect fill="#e9f5f1" height="42" rx="10" stroke="#12907b" stroke-width="2" width="380" x="130" y="44"></rect>
+<text fill="#0b6b5e" font-size="13.5" font-weight="700" text-anchor="middle" x="320" y="70">Все n элементов, меняем только порядок</text>
+<text fill="#075c52" font-family="Roboto Mono,monospace" font-size="13.5" font-weight="800" x="540" y="70">Pₙ = n!</text>
+<rect fill="#fff4ec" height="42" rx="10" stroke="#ff7136" stroke-width="2" width="250" x="60" y="110"></rect>
+<text fill="#b45309" font-size="12.8" font-weight="700" text-anchor="middle" x="185" y="130">k из n · порядок ВАЖЕН</text>
+<text fill="#9a5b2f" font-size="11.5" text-anchor="middle" x="185" y="146">элементы не повторяются</text>
+<text fill="#e45f27" font-family="Roboto Mono,monospace" font-size="13" font-weight="800" x="325" y="136">A(n,k)</text>
+<rect fill="#eef5f2" height="42" rx="10" stroke="#075c52" stroke-width="2" width="250" x="330" y="110"></rect>
+<text fill="#075c52" font-size="12.8" font-weight="700" text-anchor="middle" x="455" y="130">k из n · порядок НЕ важен</text>
+<text fill="#5c716b" font-size="11.5" text-anchor="middle" x="455" y="146">просто выбираем группу</text>
+<text fill="#075c52" font-family="Roboto Mono,monospace" font-size="13" font-weight="800" text-anchor="end" x="598" y="136">C(n,k)</text>
+<rect fill="#f4f8f6" height="42" rx="10" stroke="#7a918b" stroke-dasharray="6 4" stroke-width="2" width="380" x="130" y="176"></rect>
+<text fill="#3f544b" font-size="12.8" font-weight="700" text-anchor="middle" x="320" y="196">k из n · элементы могут ПОВТОРЯТЬСЯ</text>
+<text fill="#7a918b" font-size="11.5" text-anchor="middle" x="320" y="212">порядок важен, как в коде или серии знаков</text>
+<text fill="#5c716b" font-family="Roboto Mono,monospace" font-size="13.5" font-weight="800" x="540" y="200">nᵏ</text>
+</svg>
+<figcaption>Два вопроса: «используем все элементы или часть?» и «важен ли порядок / возможны ли повторения?» — однозначно выбирают формулу</figcaption></div>
 </div>
-
 <table class="lp-table">
 <tr><th>Схема</th><th>Вопрос</th><th>Формула</th><th>Пример (n = 5, k = 2)</th></tr>
 <tr><td><b>Перестановки</b></td><td>сколько порядков у всех n элементов?</td><td>Pₙ = n!</td><td>5! = 120</td></tr>
@@ -385,41 +355,34 @@ html{scroll-behavior:smooth}
 <tr><td><b>Сочетания</b></td><td>k из n, порядок не важен</td><td>C(n, k) = n!/(k!(n−k)!)</td><td>C(5, 2) = 10</td></tr>
 <tr><td><b>Размещения с повторениями</b></td><td>k из n, повторения возможны</td><td>nᵏ</td><td>5² = 25</td></tr>
 </table>
-
 <div class="lp-demo">
 <h3>🧮 Демо 4. Комбинаторный калькулятор</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Выберите n (размер множества) и k (размер выборки) — калькулятор покажет все четыре числа. Сверяйтесь с таблицей выше, чтобы понять, какое из них отвечает на ваш вопрос.</p>
 <div class="lp-ctrl">
- <div><label class="lp-label">Всего элементов n</label>
-  <select class="lp-select" id="calcN"></select></div>
- <div><label class="lp-label">Выбираем k</label>
-  <select class="lp-select" id="calcK"></select></div>
+<div><label class="lp-label">Всего элементов n</label>
+<select class="lp-select" id="calcN"></select></div>
+<div><label class="lp-label">Выбираем k</label>
+<select class="lp-select" id="calcK"></select></div>
 </div>
 <div class="lp-stats" id="calcOut"></div>
 <div class="lp-status" id="calcHint"></div>
 </div>
-
 <div class="lp-note lp-note-good">🔗 <b>Мост к вероятности.</b> В уроке 03 появится формула P(A) = M/N: N — число всех возможных комбинаций, M — число благоприятствующих. Например, для задачи о слове ГЕОИД: N = 5! = 120 перестановок, M = 1 — и вероятность сложить слово равна 1/120. Комбинаторика — это «калькулятор» для M и N.</div>
 </section>
-
-<section class="lp-section" id="quiz">
+<section class="lp-section gl-tab-panel" data-gl-panel="quiz" id="quiz">
 <h2 class="lp-h2"><span class="lp-num">8</span>Проверь себя</h2>
 <p class="lp-lead">Восемь вопросов по комбинаторике. Отвечайте — пояснение появится сразу.</p>
 <div class="lp-status" id="quizScore">Отвечено: 0 из 8 · Правильно: 0</div>
 <div id="quizBox"></div>
 </section>
-
 <div class="lp-foot">
 <div><b>Конспект «Комбинаторика», часть 2 — перестановки, размещения, сочетания.</b></div>
 <div style="margin-top:6px">Далее: вероятность события — классическая формула P = M/N, условная вероятность, теоремы сложения и умножения.</div>
-<div style="margin-top:8px" class="lp-small">Определения и примеры сверены с учебником: Голубев В.В. «Геодезия. Теория математической обработки геодезических измерений» (МИИГАиК, 2016), §1.1.</div>
+<div class="lp-small" style="margin-top:8px">Определения и примеры сверены с учебником: Голубев В.В. «Геодезия. Теория математической обработки геодезических измерений» (МИИГАиК, 2016), §1.1.</div>
 </div>
-
 </article>
-</div><!-- /.gl-lesson-content -->
-
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></div><!-- /.gl-lesson-content -->
 </div><!-- /gl-lesson-layout -->
-
 <script src="../../assets/search-data.js"></script>
 <script src="../../assets/main.js"></script>
 <script>

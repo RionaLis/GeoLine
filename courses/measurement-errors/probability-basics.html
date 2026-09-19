@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Основы теории вероятностей: случайный эксперимент, пространство исходов, типы событий, генеральная совокупность и выборка — интерактивный урок с примерами из геодезии.">
-<title>Основы теории вероятностей: основные понятия — ГеоЛиния</title>
-<link rel="stylesheet" href="../../assets/style.css">
-<link rel="stylesheet" href="../../assets/lesson-site.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Основы теории вероятностей: случайный эксперимент, пространство исходов, типы событий, генеральная совокупность и выборка — интерактивный урок с примерами из геодезии." name="description"/>
+<title>Основы теории вероятностей — ГеоЛиния</title>
+<link href="../../assets/style.css" rel="stylesheet"/>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/>
 <style>
 /* ===== Урок «Основы теории вероятностей» · стили в дизайне ГеоЛинии =====
    Все классы урока имеют префикс lp- и не конфликтуют с style.css / lesson-site.css */
@@ -161,10 +162,9 @@ html{scroll-behavior:smooth}
 </head>
 <body data-root="../..">
 <div class="gl-lesson-layout">
-
 <aside class="gl-sidebar">
 <div class="gl-sidebar-label">Уроки курса</div>
-<a href="probability-basics.html" class="active"><span>01</span>Основы теории вероятностей: основные понятия</a>
+<a class="active" href="probability-basics.html"><span>01</span>Основы теории вероятностей: основные понятия</a>
 <a href="combinatorics-basics.html"><span>02</span>Комбинаторика: перестановки, размещения, сочетания</a>
 <a href="probability-theorems.html"><span>03</span>Вероятность события. Условная вероятность. Сложение и умножение</a>
 <!-- Следующие уроки добавляйте по этому шаблону (span — номер урока):
@@ -172,123 +172,105 @@ html{scroll-behavior:smooth}
 -->
 <a class="gl-course-link" href="index.html"><span>←</span>Курс 02 · Теория погрешностей</a>
 </aside>
-
-<div class="gl-lesson-content">
+<div class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Теория погрешностей · Урок 01</div><h1>Основы теории вероятностей</h1><nav aria-label="Содержание урока" class="lp-toc gl-tabs">
+<span class="lp-toc-label">Разделы</span>
+<button class="active" data-gl-tab="intro" type="button"><b>1</b>Введение</button>
+<button class="" data-gl-tab="exp" type="button"><b>2</b>Эксперимент</button>
+<button class="" data-gl-tab="outcomes" type="button"><b>3</b>Исходы и Ω</button>
+<button class="" data-gl-tab="events" type="button"><b>4</b>Событие</button>
+<button class="" data-gl-tab="types" type="button"><b>5</b>Типы событий</button>
+<button class="" data-gl-tab="sample" type="button"><b>6</b>Выборка</button>
+<button class="" data-gl-tab="geodesy" type="button"><b>7</b>Геодезия</button>
+<button class="" data-gl-tab="lab" type="button"><b>8</b>Лаборатория</button>
+<button class="" data-gl-tab="quiz" type="button"><b>9</b>Проверь себя</button>
+</nav></section>
 <article class="lp">
-
 <header class="lp-hero">
-  <div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🎲</div>
-  <div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🃏</div>
-  <div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
-  <div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 01</div>
-  <h1>Основы теории вероятностей</h1>
-  <p class="lp-sub">Случайный эксперимент, элементарные исходы, события и их типы, генеральная совокупность и выборка — на примерах игральных карт и костей, бытовых ситуаций и, конечно, геодезии. Чисел-вероятностей в этой части ещё нет: сначала освоим язык и понятия.</p>
-  <div class="lp-chips">
-    <span class="lp-chip">🎯 Случайный эксперимент</span>
-    <span class="lp-chip">🃏 События и их типы</span>
-    <span class="lp-chip">🌍 Совокупность и выборка</span>
-    <span class="lp-chip">📐 Примеры из геодезии</span>
-    <span class="lp-chip">🔬 Интерактивная лаборатория</span>
-  </div>
+<div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🎲</div>
+<div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🃏</div>
+<div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
+<div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 01</div>
+<h1 class="gl-original-title">Основы теории вероятностей</h1>
+<p class="lp-sub">Случайный эксперимент, элементарные исходы, события и их типы, генеральная совокупность и выборка — на примерах игральных карт и костей, бытовых ситуаций и, конечно, геодезии. Чисел-вероятностей в этой части ещё нет: сначала освоим язык и понятия.</p>
+<div class="lp-chips">
+<span class="lp-chip">🎯 Случайный эксперимент</span>
+<span class="lp-chip">🃏 События и их типы</span>
+<span class="lp-chip">🌍 Совокупность и выборка</span>
+<span class="lp-chip">📐 Примеры из геодезии</span>
+<span class="lp-chip">🔬 Интерактивная лаборатория</span>
+</div>
 </header>
 
-<nav class="lp-toc" aria-label="Содержание урока">
- <span class="lp-toc-label">Разделы</span>
- <a href="#intro" title="Зачем случайность изучать математически?"><b>1</b>Введение</a>
- <a href="#exp" title="Случайный эксперимент (испытание)"><b>2</b>Эксперимент</a>
- <a href="#outcomes" title="Элементарные исходы и пространство Ω"><b>3</b>Исходы и Ω</a>
- <a href="#events" title="Случайное событие"><b>4</b>Событие</a>
- <a href="#types" title="Типы событий"><b>5</b>Типы событий</a>
- <a href="#sample" title="Генеральная совокупность и выборка"><b>6</b>Выборка</a>
- <a href="#geodesy" title="Словарь: теория вероятностей ↔ геодезия"><b>7</b>Геодезия</a>
- <a href="#lab" title="Лаборатория: интерактивные демо"><b>8</b>Лаборатория</a>
- <a href="#quiz" title="Проверь себя"><b>9</b>Проверь себя</a>
-</nav>
-
-<section class="lp-section" id="intro">
+<section class="lp-section gl-tab-panel" data-gl-panel="intro" id="intro">
 <h2 class="lp-h2"><span class="lp-num">1</span>Зачем случайность изучать математически?</h2>
 <p class="lp-lead">В быту «случайно» — значит непредсказуемо и маловероятно. В математике случайное — то, что при повторении в схожих условиях даёт разные исходы, но в массе эти исходы подчиняются устойчивым закономерностям.</p>
-
 <div class="lp-def"><span class="lp-term">Теория вероятностей</span> — математическая дисциплина, которая изучает случайные явления и устанавливает их закономерности при массовых проявлениях. Её ближайший союзник — <span class="lp-term">математическая статистика</span> — раздел математики, посвящённый методам систематизации, обработки и использования статистических данных.</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-ico">🎯</div><h4>Единичное явление</h4><p>Исход непредсказуем. Монета упадёт орлом или решкой — заранее не узнать. Погрешность конкретного измерения угла — +12″ или −3″ — тоже.</p></div>
- <div class="lp-tile"><div class="lp-ico">📈</div><h4>Массовое явление (серия)</h4><p>Проявляется закономерность: доли исходов в длинной серии стабилизируются, разброс погрешностей измерений устойчив, среднее «прижимается» к истинному значению.</p></div>
- <div class="lp-tile"><div class="lp-ico">📐</div><h4>Почему это важно геодезисту</h4><p>Любой результат измерения содержит случайную погрешность. Поэтому вся теория точности — допуски, средние квадратические погрешности, уравнивание, метод наименьших квадратов — построена на теории вероятностей и статистике.</p></div>
+<div class="lp-tile"><div class="lp-ico">🎯</div><h4>Единичное явление</h4><p>Исход непредсказуем. Монета упадёт орлом или решкой — заранее не узнать. Погрешность конкретного измерения угла — +12″ или −3″ — тоже.</p></div>
+<div class="lp-tile"><div class="lp-ico">📈</div><h4>Массовое явление (серия)</h4><p>Проявляется закономерность: доли исходов в длинной серии стабилизируются, разброс погрешностей измерений устойчив, среднее «прижимается» к истинному значению.</p></div>
+<div class="lp-tile"><div class="lp-ico">📐</div><h4>Почему это важно геодезисту</h4><p>Любой результат измерения содержит случайную погрешность. Поэтому вся теория точности — допуски, средние квадратические погрешности, уравнивание, метод наименьших квадратов — построена на теории вероятностей и статистике.</p></div>
 </div>
-
 <div class="lp-note">💡 <b>План этой части:</b> освоить язык теории вероятностей — эксперимент, исход, пространство исходов, событие и его типы, генеральная совокупность и выборка. Считать комбинации научимся в уроке 02 (комбинаторика), а сами вероятности (числа от 0 до 1) — в уроке 03.</div>
 </section>
-
-<section class="lp-section" id="exp">
+<section class="lp-section gl-tab-panel" data-gl-panel="exp" id="exp">
 <h2 class="lp-h2"><span class="lp-num">2</span>Случайный эксперимент (испытание)</h2>
 <p class="lp-lead">Всё начинается с эксперимента. Нет испытания — нет ни исходов, ни событий.</p>
-
 <div class="lp-def">В теории вероятностей любое наблюдение случайного явления при определённых условиях называют <span class="lp-term">опытом</span>, <span class="lp-term">экспериментом</span> или <span class="lp-term">испытанием</span>, а результат эксперимента — <span class="lp-term">событием</span> или <span class="lp-term">исходом</span>. У случайного испытания исход заранее неизвестен — в этом и состоит случайность.</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-ico">♻️</div><h4>Признак 1. Повторяемость</h4><p>Условия можно воспроизвести снова и снова: подбросить монету ещё раз, измерить угол следующим приёмом.</p></div>
- <div class="lp-tile"><div class="lp-ico">📋</div><h4>Признак 2. Известны возможные исходы</h4><p>Множество «что вообще может случиться» перечислимо заранее: орёл/решка, 1–6 очков, одна из 36 карт.</p></div>
- <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Признак 3. Исход не предопределён</h4><p>Какой исход произойдёт — до опыта неизвестно. В этом и состоит случайность.</p></div>
+<div class="lp-tile"><div class="lp-ico">♻️</div><h4>Признак 1. Повторяемость</h4><p>Условия можно воспроизвести снова и снова: подбросить монету ещё раз, измерить угол следующим приёмом.</p></div>
+<div class="lp-tile"><div class="lp-ico">📋</div><h4>Признак 2. Известны возможные исходы</h4><p>Множество «что вообще может случиться» перечислимо заранее: орёл/решка, 1–6 очков, одна из 36 карт.</p></div>
+<div class="lp-tile"><div class="lp-ico">🎲</div><h4>Признак 3. Исход не предопределён</h4><p>Какой исход произойдёт — до опыта неизвестно. В этом и состоит случайность.</p></div>
 </div>
-
 <h3>Примеры случайных экспериментов</h3>
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🪙</div><h4>Подбрасывание монеты</h4><p>Исход — орёл или решка.</p></div>
- <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🎲</div><h4>Бросок игральной кости</h4><p>Исход — число очков от 1 до 6.</p></div>
- <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🃏</div><h4>Извлечение карты из колоды</h4><p>Исход — одна из 36 карт (в полной колоде — 52).</p></div>
- <div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🚌</div><h4>Прибытие автобуса</h4><p>Придёт вовремя, опоздает на минуту, на пять… — точно не предскажешь.</p></div>
- <div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🌦️</div><h4>Наблюдение погоды завтра</h4><p>Пройдёт ли завтра над районом дождь — узнаем только завтра.</p></div>
- <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Измерение угла теодолитом</h4><p>Один приём измерения горизонтального угла даст значение со случайной погрешностью.</p></div>
- <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">🛰️</div><h4>Спутниковое определение координат</h4><p>Каждое ГНСС-наблюдение пункта даёт координаты со случайным отклонением.</p></div>
+<div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🪙</div><h4>Подбрасывание монеты</h4><p>Исход — орёл или решка.</p></div>
+<div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🎲</div><h4>Бросок игральной кости</h4><p>Исход — число очков от 1 до 6.</p></div>
+<div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🃏</div><h4>Извлечение карты из колоды</h4><p>Исход — одна из 36 карт (в полной колоде — 52).</p></div>
+<div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🚌</div><h4>Прибытие автобуса</h4><p>Придёт вовремя, опоздает на минуту, на пять… — точно не предскажешь.</p></div>
+<div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🌦️</div><h4>Наблюдение погоды завтра</h4><p>Пройдёт ли завтра над районом дождь — узнаем только завтра.</p></div>
+<div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Измерение угла теодолитом</h4><p>Один приём измерения горизонтального угла даст значение со случайной погрешностью.</p></div>
+<div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">🛰️</div><h4>Спутниковое определение координат</h4><p>Каждое ГНСС-наблюдение пункта даёт координаты со случайным отклонением.</p></div>
 </div>
-
 <div class="lp-note">ℹ️ «Эксперимент» — широкий термин. Это может быть и <b>активное действие</b> (бросок, извлечение карты, измерение), и <b>пассивное наблюдение</b> (погода, приход автобуса). Существенны только три признака, перечисленные выше.</div>
-
 <h3>А что не является случайным экспериментом?</h3>
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-ico">🧮</div><h4>«Сколько будет 2 + 2?»</h4><p>Исход однозначен — случайности нет.</p></div>
- <div class="lp-tile"><div class="lp-ico">🌅</div><h4>«Взойдёт ли солнце завтра?»</h4><p>Исход предопределён законами небесной механики — случайным экспериментом это не является.</p></div>
- <div class="lp-tile"><div class="lp-ico">📜</div><h4>«Какая длина моста по проекту?»</h4><p>Чтение значения из документа — не испытание. А вот <b>измерение</b> фактической длины — уже случайный эксперимент: результат содержит погрешность.</p></div>
+<div class="lp-tile"><div class="lp-ico">🧮</div><h4>«Сколько будет 2 + 2?»</h4><p>Исход однозначен — случайности нет.</p></div>
+<div class="lp-tile"><div class="lp-ico">🌅</div><h4>«Взойдёт ли солнце завтра?»</h4><p>Исход предопределён законами небесной механики — случайным экспериментом это не является.</p></div>
+<div class="lp-tile"><div class="lp-ico">📜</div><h4>«Какая длина моста по проекту?»</h4><p>Чтение значения из документа — не испытание. А вот <b>измерение</b> фактической длины — уже случайный эксперимент: результат содержит погрешность.</p></div>
 </div>
 </section>
-
-<section class="lp-section" id="outcomes">
+<section class="lp-section gl-tab-panel" data-gl-panel="outcomes" id="outcomes">
 <h2 class="lp-h2"><span class="lp-num">3</span>Элементарные исходы и пространство Ω</h2>
 <p class="lp-lead">Проведя испытание, получаем один конкретный результат. Все возможные результаты вместе образуют «арену», на которой живут события.</p>
-
-<div class="lp-def"><span class="lp-term">Элементарный исход</span> (обозначается греческой буквой <b>ω</b> — «омега малая») — один конкретный, далее неразложимый результат случайного эксперимента.<br>
+<div class="lp-def"><span class="lp-term">Элементарный исход</span> (обозначается греческой буквой <b>ω</b> — «омега малая») — один конкретный, далее неразложимый результат случайного эксперимента.<br/>
 <span class="lp-term">Пространство элементарных исходов</span> (<b>Ω</b> — «омега большое») — множество <b>всех</b> возможных элементарных исходов данного эксперимента.</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">Монета</div><div class="lp-ico">🪙</div><h4>Ω = {орёл; решка}</h4><p>2 исхода (классически считаем, что на ребро монета не встаёт).</p>
- <svg width="150" height="62" viewBox="0 0 150 62"><circle cx="36" cy="24" r="20" fill="#fbbf24" stroke="#b45309" stroke-width="3"/><text x="36" y="31" text-anchor="middle" font-size="17" font-weight="800" fill="#7c2d12">О</text><circle cx="92" cy="24" r="20" fill="#fbbf24" stroke="#b45309" stroke-width="3"/><text x="92" y="31" text-anchor="middle" font-size="17" font-weight="800" fill="#7c2d12">Р</text><text x="36" y="56" text-anchor="middle" font-size="11" fill="#7a918b">орёл</text><text x="92" y="56" text-anchor="middle" font-size="11" fill="#7a918b">решка</text></svg></div>
- <div class="lp-tile"><div class="lp-dom">Один кубик</div><div class="lp-ico">🎲</div><h4>Ω = {1, 2, 3, 4, 5, 6}</h4><p>6 исходов — по одному на каждую грань.</p><div id="omegaDice" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px"></div></div>
- <div class="lp-tile"><div class="lp-dom">Два кубика</div><div class="lp-ico">🎲🎲</div><h4>Ω = {(1;1), (1;2), …, (6;6)}</h4><p>36 упорядоченных пар: важно, что выпало на первом кубике и что на втором. Разбор — в интерактиве ниже.</p></div>
- <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Ω — непрерывное множество значений</h4><p>Исход измерения — число, например 63°15′12,4″. Всех мыслимых значений бесконечно много: они заполняют интервал вокруг истинного значения угла.</p></div>
- <div class="lp-tile"><div class="lp-dom">Карты</div><div class="lp-ico">🃏</div><h4>Ω = 36 карт</h4><p>9 рангов (6, 7, 8, 9, 10, В, Д, К, Т) × 4 масти. Все 36 исходов показаны ниже.</p></div>
+<div class="lp-tile"><div class="lp-dom">Монета</div><div class="lp-ico">🪙</div><h4>Ω = {орёл; решка}</h4><p>2 исхода (классически считаем, что на ребро монета не встаёт).</p>
+<svg height="62" viewbox="0 0 150 62" width="150"><circle cx="36" cy="24" fill="#fbbf24" r="20" stroke="#b45309" stroke-width="3"></circle><text fill="#7c2d12" font-size="17" font-weight="800" text-anchor="middle" x="36" y="31">О</text><circle cx="92" cy="24" fill="#fbbf24" r="20" stroke="#b45309" stroke-width="3"></circle><text fill="#7c2d12" font-size="17" font-weight="800" text-anchor="middle" x="92" y="31">Р</text><text fill="#7a918b" font-size="11" text-anchor="middle" x="36" y="56">орёл</text><text fill="#7a918b" font-size="11" text-anchor="middle" x="92" y="56">решка</text></svg></div>
+<div class="lp-tile"><div class="lp-dom">Один кубик</div><div class="lp-ico">🎲</div><h4>Ω = {1, 2, 3, 4, 5, 6}</h4><p>6 исходов — по одному на каждую грань.</p><div id="omegaDice" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px"></div></div>
+<div class="lp-tile"><div class="lp-dom">Два кубика</div><div class="lp-ico">🎲🎲</div><h4>Ω = {(1;1), (1;2), …, (6;6)}</h4><p>36 упорядоченных пар: важно, что выпало на первом кубике и что на втором. Разбор — в интерактиве ниже.</p></div>
+<div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Ω — непрерывное множество значений</h4><p>Исход измерения — число, например 63°15′12,4″. Всех мыслимых значений бесконечно много: они заполняют интервал вокруг истинного значения угла.</p></div>
+<div class="lp-tile"><div class="lp-dom">Карты</div><div class="lp-ico">🃏</div><h4>Ω = 36 карт</h4><p>9 рангов (6, 7, 8, 9, 10, В, Д, К, Т) × 4 масти. Все 36 исходов показаны ниже.</p></div>
 </div>
-
 <div class="lp-fig">
- <div class="lp-figitem"><div class="lp-cardrow" id="omegaCards"></div>
- <figcaption>Пространство исходов для извлечения карты из 36-картной колоды: 36 элементарных исходов</figcaption></div>
- <div class="lp-figitem">
- <svg width="480" height="132" viewBox="0 0 480 132">
-  <line x1="20" y1="80" x2="460" y2="80" stroke="#5c716b" stroke-width="2"/>
-  <path d="M460 80 l-9 -4 v8 z" fill="#5c716b"/><path d="M20 80 l9 -4 v8 z" fill="#5c716b"/>
-  <line x1="120" y1="74" x2="120" y2="86" stroke="#5c716b" stroke-width="2"/>
-  <line x1="240" y1="74" x2="240" y2="86" stroke="#5c716b" stroke-width="2"/>
-  <line x1="360" y1="74" x2="360" y2="86" stroke="#5c716b" stroke-width="2"/>
-  <text x="120" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°14′40″</text>
-  <text x="240" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°15′00″</text>
-  <text x="360" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°15′20″</text>
-  <line x1="240" y1="18" x2="240" y2="72" stroke="#ff7136" stroke-width="2" stroke-dasharray="5 4"/>
-  <text x="240" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="#e45f27">истинное значение угла</text>
-  <circle cx="150" cy="50" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="168" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="186" cy="44" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="200" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="212" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="222" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="230" cy="46" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="236" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="241" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="247" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="253" cy="46" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="261" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="271" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="285" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="303" cy="44" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="326" cy="52" r="4.5" fill="#075c52" fill-opacity=".8"/>
- </svg>
- <figcaption>Пространство исходов измерения угла — непрерывное: точки-исходы заполняют числовую ось вокруг истинного значения</figcaption></div>
+<div class="lp-figitem"><div class="lp-cardrow" id="omegaCards"></div>
+<figcaption>Пространство исходов для извлечения карты из 36-картной колоды: 36 элементарных исходов</figcaption></div>
+<div class="lp-figitem">
+<svg height="132" viewbox="0 0 480 132" width="480">
+<line stroke="#5c716b" stroke-width="2" x1="20" x2="460" y1="80" y2="80"></line>
+<path d="M460 80 l-9 -4 v8 z" fill="#5c716b"></path><path d="M20 80 l9 -4 v8 z" fill="#5c716b"></path>
+<line stroke="#5c716b" stroke-width="2" x1="120" x2="120" y1="74" y2="86"></line>
+<line stroke="#5c716b" stroke-width="2" x1="240" x2="240" y1="74" y2="86"></line>
+<line stroke="#5c716b" stroke-width="2" x1="360" x2="360" y1="74" y2="86"></line>
+<text fill="#7a918b" font-size="12" text-anchor="middle" x="120" y="104">63°14′40″</text>
+<text fill="#7a918b" font-size="12" text-anchor="middle" x="240" y="104">63°15′00″</text>
+<text fill="#7a918b" font-size="12" text-anchor="middle" x="360" y="104">63°15′20″</text>
+<line stroke="#ff7136" stroke-dasharray="5 4" stroke-width="2" x1="240" x2="240" y1="18" y2="72"></line>
+<text fill="#e45f27" font-size="12" font-weight="700" text-anchor="middle" x="240" y="14">истинное значение угла</text>
+<circle cx="150" cy="50" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="168" cy="58" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="186" cy="44" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="200" cy="56" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="212" cy="42" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="222" cy="58" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="230" cy="46" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="236" cy="56" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="241" cy="42" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="247" cy="56" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="253" cy="46" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="261" cy="58" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="271" cy="42" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="285" cy="56" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="303" cy="44" fill="#075c52" fill-opacity=".8" r="4.5"></circle><circle cx="326" cy="52" fill="#075c52" fill-opacity=".8" r="4.5"></circle>
+</svg>
+<figcaption>Пространство исходов измерения угла — непрерывное: точки-исходы заполняют числовую ось вокруг истинного значения</figcaption></div>
 </div>
-
 <h3>Каким бывает пространство Ω</h3>
 <table class="lp-table">
 <tr><th>Тип Ω</th><th>Что это значит</th><th>Примеры</th></tr>
@@ -296,83 +278,72 @@ html{scroll-behavior:smooth}
 <tr><td><b>Счётное</b></td><td>Исходов бесконечно много, но их можно перенумеровать</td><td>Сколько автобусов пройдёт, пока не придёт нужный; номер приёма, на котором случится первый промах</td></tr>
 <tr><td><b>Непрерывное</b></td><td>Исходы заполняют интервал(ы) числовой оси</td><td>Результаты измерений, погрешности, координаты — «родной дом» геодезии</td></tr>
 </table>
-
 <div class="lp-demo">
 <h3>🎲🔍 Два кубика: пространство из 36 исходов</h3>
 <p style="margin:4px 0 10px;font-size:14.4px">Бросаем <b>две</b> кости. Исход — упорядоченная пара чисел (первая; вторая), например (2; 5). В клетках указана сумма очков. Наведите курсор на клетку; кнопки подсвечивают клетки, образующие события.</p>
 <div class="lp-ctrl">
- <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="sum7" type="button">Сумма равна 7</button>
- <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="bothEven" type="button">Оба числа чётные</button>
- <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="any6" type="button">Хотя бы одна шестёрка</button>
- <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="none" type="button">Сброс подсветки</button>
+<button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="sum7" type="button">Сумма равна 7</button>
+<button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="bothEven" type="button">Оба числа чётные</button>
+<button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="any6" type="button">Хотя бы одна шестёрка</button>
+<button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="none" type="button">Сброс подсветки</button>
 </div>
 <div class="lp-g2wrap"><div class="lp-g2" id="grid2"></div></div>
 <div class="lp-status" id="grid2status">Каждая клетка — один элементарный исход ω. Подсвеченные клетки — подмножество Ω, то есть <b>событие</b>. Наведите курсор на клетку.</div>
 </div>
 </section>
-
-<section class="lp-section" id="events">
+<section class="lp-section gl-tab-panel" data-gl-panel="events" id="events">
 <h2 class="lp-h2"><span class="lp-num">4</span>Случайное событие</h2>
 <p class="lp-lead">Событие — это утверждение об исходе испытания, которое после его проведения оказывается верным или неверным.</p>
-
 <div class="lp-def"><span class="lp-term">Случайное событие</span> (обозначается заглавными буквами <b>A, B, C…</b>) — любое подмножество <b>A ⊆ Ω</b> пространства элементарных исходов. Говорят: «событие A <b>наступило</b>», если испытание закончилось исходом ω ∈ A.</div>
-
 <div class="lp-fig">
- <div class="lp-figitem">
- <svg width="430" height="236" viewBox="0 0 430 236">
-  <rect x="12" y="12" width="406" height="212" rx="14" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
-  <text x="30" y="40" font-size="17" font-weight="800" fill="#7a918b">Ω</text>
-  <ellipse cx="285" cy="132" rx="108" ry="74" fill="rgba(7,92,82,.08)" stroke="#075c52" stroke-width="2.5" stroke-dasharray="7 5"/>
-  <text x="285" y="46" text-anchor="middle" font-size="14.5" font-weight="800" fill="#075c52">A = «чётное число»</text>
-  <circle cx="85" cy="84" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="85" y="89" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">1</text>
-  <circle cx="85" cy="182" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="85" y="187" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">3</text>
-  <circle cx="152" cy="133" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="152" y="138" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">5</text>
-  <circle cx="307" cy="84" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="307" y="89" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">2</text>
-  <circle cx="280" cy="182" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="280" y="187" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">4</text>
-  <circle cx="354" cy="133" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="354" y="138" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">6</text>
- </svg>
- <figcaption>Событие A = «выпало чётное число» = {2, 4, 6} — подмножество Ω = {1, …, 6}. Выпал исход 2, 4 или 6 — событие наступило</figcaption></div>
+<div class="lp-figitem">
+<svg height="236" viewbox="0 0 430 236" width="430">
+<rect fill="#f7fbf9" height="212" rx="14" stroke="#d5e3de" stroke-width="2" width="406" x="12" y="12"></rect>
+<text fill="#7a918b" font-size="17" font-weight="800" x="30" y="40">Ω</text>
+<ellipse cx="285" cy="132" fill="rgba(7,92,82,.08)" rx="108" ry="74" stroke="#075c52" stroke-dasharray="7 5" stroke-width="2.5"></ellipse>
+<text fill="#075c52" font-size="14.5" font-weight="800" text-anchor="middle" x="285" y="46">A = «чётное число»</text>
+<circle cx="85" cy="84" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="85" y="89">1</text>
+<circle cx="85" cy="182" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="85" y="187">3</text>
+<circle cx="152" cy="133" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="152" y="138">5</text>
+<circle cx="307" cy="84" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="307" y="89">2</text>
+<circle cx="280" cy="182" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="280" y="187">4</text>
+<circle cx="354" cy="133" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="354" y="138">6</text>
+</svg>
+<figcaption>Событие A = «выпало чётное число» = {2, 4, 6} — подмножество Ω = {1, …, 6}. Выпал исход 2, 4 или 6 — событие наступило</figcaption></div>
 </div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">Кубик</div><h4>A = «чётное число»</h4><p>A = {2, 4, 6} — <b>сложное</b> (составное) событие, а «выпала двойка» = {2} — <b>простое</b> (элементарное).</p></div>
- <div class="lp-tile"><div class="lp-dom">Карты</div><h4>B = «извлечён туз»</h4><p>B = {Т♠, Т♥, Т♦, Т♣}. Событие C = «извлечена пика» состоит из 9 исходов.</p></div>
- <div class="lp-tile"><div class="lp-dom">Быт</div><h4>«Завтра пойдёт дождь»</h4><p>Событие может быть выражено обычным предложением об исходе наблюдения: верным оно окажется или нет — узнаем завтра.</p></div>
- <div class="lp-tile"><div class="lp-dom">Геодезия</div><h4>D = «погрешность в допуске»</h4><p>D = {все исходы с Δ от −30″ до +30″} — бесконечное подмножество непрерывного Ω.</p></div>
+<div class="lp-tile"><div class="lp-dom">Кубик</div><h4>A = «чётное число»</h4><p>A = {2, 4, 6} — <b>сложное</b> (составное) событие, а «выпала двойка» = {2} — <b>простое</b> (элементарное).</p></div>
+<div class="lp-tile"><div class="lp-dom">Карты</div><h4>B = «извлечён туз»</h4><p>B = {Т♠, Т♥, Т♦, Т♣}. Событие C = «извлечена пика» состоит из 9 исходов.</p></div>
+<div class="lp-tile"><div class="lp-dom">Быт</div><h4>«Завтра пойдёт дождь»</h4><p>Событие может быть выражено обычным предложением об исходе наблюдения: верным оно окажется или нет — узнаем завтра.</p></div>
+<div class="lp-tile"><div class="lp-dom">Геодезия</div><h4>D = «погрешность в допуске»</h4><p>D = {все исходы с Δ от −30″ до +30″} — бесконечное подмножество непрерывного Ω.</p></div>
 </div>
-
 <div class="lp-note">ℹ️ <b>Терминология учебника.</b> У Голубева «событие» и «исход» — синонимы (результат эксперимента): события, которые нельзя представить комбинацией других, называются <b>простыми (элементарными)</b>, представимые комбинациями — <b>сложными</b>. Язык множеств, которым пользуемся мы («событие — подмножество Ω»), лишь уточняет ту же картину: сложное событие — объединение элементарных исходов.</div>
-
 <h3>Три «пограничных» вида событий</h3>
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-ico">✅</div><h4>Достоверное (совпадает с Ω)</h4><p>Наступает в любом испытании. «Кубик покажет число от 1 до 6», «результат измерения окажется каким-нибудь числом».</p></div>
- <div class="lp-tile"><div class="lp-ico">⛔</div><h4>Невозможное (пустое множество ∅)</h4><p>Не наступает никогда. «Кубик покажет 7 очков», «из 36-картной колоды извлекут джокера», «погрешность одновременно +5″ и −5″».</p></div>
- <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Собственно случайное</h4><p>Может наступить, может не наступить. «Выпадет 6», «карта — туз», «погрешность больше +20″».</p></div>
+<div class="lp-tile"><div class="lp-ico">✅</div><h4>Достоверное (совпадает с Ω)</h4><p>Наступает в любом испытании. «Кубик покажет число от 1 до 6», «результат измерения окажется каким-нибудь числом».</p></div>
+<div class="lp-tile"><div class="lp-ico">⛔</div><h4>Невозможное (пустое множество ∅)</h4><p>Не наступает никогда. «Кубик покажет 7 очков», «из 36-картной колоды извлекут джокера», «погрешность одновременно +5″ и −5″».</p></div>
+<div class="lp-tile"><div class="lp-ico">🎲</div><h4>Собственно случайное</h4><p>Может наступить, может не наступить. «Выпадет 6», «карта — туз», «погрешность больше +20″».</p></div>
 </div>
-
 <div class="lp-note lp-note-info">🔖 <b>Обозначения.</b> Здесь достоверное событие — это всё Ω, невозможное — пустое множество ∅. В учебнике В.В. Голубева для них приняты обозначения V и U соответственно.</div>
-
 <div class="lp-demo">
 <h3>🎲 Событие-подмножество: проверьте на кубике</h3>
 <div class="lp-ctrl">
- <div><label class="lp-label">Событие A</label>
- <select class="lp-select" id="miniSel">
-  <option value="0">«Выпало чётное» = {2, 4, 6}</option>
-  <option value="1">«Выпало не меньше 5» = {5, 6}</option>
-  <option value="2">«Выпала четвёрка» = {4} — элементарное</option>
-  <option value="3">«Выпало от 1 до 6» — достоверное</option>
-  <option value="4">«Выпало 7» — невозможное</option>
- </select></div>
- <button class="lp-btn lp-btn--accent" id="miniBtn" type="button">🎲 Бросить кубик</button>
+<div><label class="lp-label">Событие A</label>
+<select class="lp-select" id="miniSel">
+<option value="0">«Выпало чётное» = {2, 4, 6}</option>
+<option value="1">«Выпало не меньше 5» = {5, 6}</option>
+<option value="2">«Выпала четвёрка» = {4} — элементарное</option>
+<option value="3">«Выпало от 1 до 6» — достоверное</option>
+<option value="4">«Выпало 7» — невозможное</option>
+</select></div>
+<button class="lp-btn lp-btn--accent" id="miniBtn" type="button">🎲 Бросить кубик</button>
 </div>
 <div class="lp-out" id="miniOut" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><span style="color:#8aa69d">Нажмите «Бросить кубик» — увидите исход и факт наступления события.</span></div>
 </div>
 </section>
-
-<section class="lp-section" id="types">
+<section class="lp-section gl-tab-panel" data-gl-panel="types" id="types">
 <h2 class="lp-h2"><span class="lp-num">5</span>Типы событий</h2>
 <p class="lp-lead">События классифицируют сразу по нескольким независимым признакам — как погрешности в геодезии классифицируют по природе возникновения. Разберём признаки по очереди, а в конце соберём всё в таблицу.</p>
-
 <table class="lp-table">
 <tr><th>Признак классификации</th><th>Типы</th></tr>
 <tr><td><b>Состав события</b></td><td>простое, элементарное (один исход) · сложное, составное (несколько исходов)</td></tr>
@@ -380,122 +351,104 @@ html{scroll-behavior:smooth}
 <tr><td><b>Отношения пары событий</b></td><td>совместные / несовместные · противоположные · зависимые / независимые</td></tr>
 <tr><td><b>Свойства набора событий</b></td><td>полная группа · равновозможные · схема случаев (всё вместе)</td></tr>
 </table>
-
 <h3><span class="lp-h3num">5.1</span>Совместные и несовместные события</h3>
-<div class="lp-def"><b>Совместные события</b> — могут наступить в одном и том же испытании одновременно: их множества исходов пересекаются, A ∩ B ≠ ∅.<br>
+<div class="lp-def"><b>Совместные события</b> — могут наступить в одном и том же испытании одновременно: их множества исходов пересекаются, A ∩ B ≠ ∅.<br/>
 <b>Несовместные события</b> — исключают друг друга: одновременно наступить не могут, A ∩ B = ∅.</div>
-
 <div class="lp-fig">
- <div class="lp-figitem">
- <svg width="250" height="180" viewBox="0 0 250 180">
-  <rect x="10" y="10" width="230" height="160" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
-  <text x="220" y="34" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
-  <circle cx="95" cy="94" r="52" fill="rgba(14,143,119,.12)" stroke="#0e8f77" stroke-width="2.5"/>
-  <circle cx="155" cy="94" r="52" fill="rgba(255,113,54,.13)" stroke="#ff7136" stroke-width="2.5"/>
-  <text x="60" y="100" font-size="15" font-weight="800" fill="#0b6b5e">A</text>
-  <text x="192" y="100" font-size="15" font-weight="800" fill="#e45f27">B</text>
-  <text x="125" y="94" text-anchor="middle" font-size="11.5" font-weight="700" fill="#075c52">A∩B</text>
- </svg><figcaption><b>Совместные:</b> пересечение непусто — есть исходы «сразу для обоих»</figcaption></div>
- <div class="lp-figitem">
- <svg width="250" height="180" viewBox="0 0 250 180">
-  <rect x="10" y="10" width="230" height="160" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
-  <text x="220" y="34" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
-  <circle cx="80" cy="94" r="46" fill="rgba(14,143,119,.12)" stroke="#0e8f77" stroke-width="2.5"/>
-  <circle cx="172" cy="94" r="46" fill="rgba(255,113,54,.13)" stroke="#ff7136" stroke-width="2.5"/>
-  <text x="80" y="100" text-anchor="middle" font-size="15" font-weight="800" fill="#0b6b5e">A</text>
-  <text x="172" y="100" text-anchor="middle" font-size="15" font-weight="800" fill="#e45f27">B</text>
- </svg><figcaption><b>Несовместные:</b> A ∩ B = ∅ — вместе невозможны</figcaption></div>
+<div class="lp-figitem">
+<svg height="180" viewbox="0 0 250 180" width="250">
+<rect fill="#f7fbf9" height="160" rx="12" stroke="#d5e3de" stroke-width="2" width="230" x="10" y="10"></rect>
+<text fill="#7a918b" font-size="15" font-weight="800" x="220" y="34">Ω</text>
+<circle cx="95" cy="94" fill="rgba(14,143,119,.12)" r="52" stroke="#0e8f77" stroke-width="2.5"></circle>
+<circle cx="155" cy="94" fill="rgba(255,113,54,.13)" r="52" stroke="#ff7136" stroke-width="2.5"></circle>
+<text fill="#0b6b5e" font-size="15" font-weight="800" x="60" y="100">A</text>
+<text fill="#e45f27" font-size="15" font-weight="800" x="192" y="100">B</text>
+<text fill="#075c52" font-size="11.5" font-weight="700" text-anchor="middle" x="125" y="94">A∩B</text>
+</svg><figcaption><b>Совместные:</b> пересечение непусто — есть исходы «сразу для обоих»</figcaption></div>
+<div class="lp-figitem">
+<svg height="180" viewbox="0 0 250 180" width="250">
+<rect fill="#f7fbf9" height="160" rx="12" stroke="#d5e3de" stroke-width="2" width="230" x="10" y="10"></rect>
+<text fill="#7a918b" font-size="15" font-weight="800" x="220" y="34">Ω</text>
+<circle cx="80" cy="94" fill="rgba(14,143,119,.12)" r="46" stroke="#0e8f77" stroke-width="2.5"></circle>
+<circle cx="172" cy="94" fill="rgba(255,113,54,.13)" r="46" stroke="#ff7136" stroke-width="2.5"></circle>
+<text fill="#0b6b5e" font-size="15" font-weight="800" text-anchor="middle" x="80" y="100">A</text>
+<text fill="#e45f27" font-size="15" font-weight="800" text-anchor="middle" x="172" y="100">B</text>
+</svg><figcaption><b>Несовместные:</b> A ∩ B = ∅ — вместе невозможны</figcaption></div>
 </div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Совместные: «туз» и «красная масть»</h4><p>Если пришёл Т♥ или Т♦ — оба события наступили сразу.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Несовместные: «дама» и «король»</h4><p>Одна извлечённая карта не может быть одновременно и дамой, и королём. Также несовместны «красная масть» и «чёрная масть».</p></div>
- <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Оба варианта</h4><p>Совместные: «чётное» и «больше 3» — общие исходы 4 и 6. Несовместные: «чётное» и «нечётное».</p></div>
- <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Погода и транспорт</h4><p>Совместные: «идёт дождь» и «дует ветер». Несовместные: «автобус пришёл вовремя» и «автобус опоздал на 10 минут».</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Погрешности</h4><p>Совместные: «Δ &gt; 0» и «|Δ| &lt; 10″» — например, Δ = +6″. Несовместные: «Δ &gt; 0» и «Δ &lt; 0» — у погрешности один знак.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Совместные: «туз» и «красная масть»</h4><p>Если пришёл Т♥ или Т♦ — оба события наступили сразу.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Несовместные: «дама» и «король»</h4><p>Одна извлечённая карта не может быть одновременно и дамой, и королём. Также несовместны «красная масть» и «чёрная масть».</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Оба варианта</h4><p>Совместные: «чётное» и «больше 3» — общие исходы 4 и 6. Несовместные: «чётное» и «нечётное».</p></div>
+<div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Погода и транспорт</h4><p>Совместные: «идёт дождь» и «дует ветер». Несовместные: «автобус пришёл вовремя» и «автобус опоздал на 10 минут».</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Погрешности</h4><p>Совместные: «Δ &gt; 0» и «|Δ| &lt; 10″» — например, Δ = +6″. Несовместные: «Δ &gt; 0» и «Δ &lt; 0» — у погрешности один знак.</p></div>
 </div>
-
 <div class="lp-note">⚠️ <b>Несовместность — про одно и то же испытание.</b> События «при первом броске выпал орёл» и «при втором броске выпала решка» — совместные: это разные испытания, они спокойно происходят вместе. Точно так же совместны «при первом приёме Δ &gt; 0» и «при втором приёме Δ &lt; 0».</div>
-
 <h3><span class="lp-h3num">5.2</span>Противоположные события</h3>
 <div class="lp-def"><span class="lp-term">Противоположное событие</span> к A — событие <b>Ā</b> («не A»), которое наступает тогда и только тогда, когда A не наступает. Пара A и Ā всегда несовместна и образует простейшую полную группу: в испытании произойдёт ровно одно из двух.</div>
-
 <div class="lp-fig">
- <div class="lp-figitem">
- <svg width="430" height="190" viewBox="0 0 430 190">
-  <rect x="12" y="12" width="406" height="166" rx="14" fill="#e9f5f1" stroke="#d5e3de" stroke-width="2"/>
-  <circle cx="125" cy="95" r="60" fill="rgba(14,143,119,.28)" stroke="#0e8f77" stroke-width="2.5"/>
-  <text x="125" y="102" text-anchor="middle" font-size="18" font-weight="800" fill="#0b6b5e">A</text>
-  <text x="300" y="88" text-anchor="middle" font-size="16" font-weight="800" fill="#3f544b">Ā («не A»)</text>
-  <text x="300" y="110" text-anchor="middle" font-size="12.5" fill="#7a918b">всё, что вне A, внутри Ω</text>
-  <text x="30" y="38" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
- </svg>
- <figcaption>Ā — дополнение A до всего пространства Ω: A ∪ Ā = Ω, A ∩ Ā = ∅</figcaption></div>
+<div class="lp-figitem">
+<svg height="190" viewbox="0 0 430 190" width="430">
+<rect fill="#e9f5f1" height="166" rx="14" stroke="#d5e3de" stroke-width="2" width="406" x="12" y="12"></rect>
+<circle cx="125" cy="95" fill="rgba(14,143,119,.28)" r="60" stroke="#0e8f77" stroke-width="2.5"></circle>
+<text fill="#0b6b5e" font-size="18" font-weight="800" text-anchor="middle" x="125" y="102">A</text>
+<text fill="#3f544b" font-size="16" font-weight="800" text-anchor="middle" x="300" y="88">Ā («не A»)</text>
+<text fill="#7a918b" font-size="12.5" text-anchor="middle" x="300" y="110">всё, что вне A, внутри Ω</text>
+<text fill="#7a918b" font-size="15" font-weight="800" x="30" y="38">Ω</text>
+</svg>
+<figcaption>Ā — дополнение A до всего пространства Ω: A ∪ Ā = Ω, A ∩ Ā = ∅</figcaption></div>
 </div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>«Орёл» ↔ «решка»</h4><p>Для одного броска — классическая пара противоположных событий.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>«Туз» ↔ «не туз»</h4><p>К «не тузу» относятся любые 32 карты из 36.</p></div>
- <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>«Дождь будет» ↔ «дождя не будет»</h4><p>Одно из двух обязательно окажется верным завтра.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Допуск и брак</h4><p>«Измерение в допуске» ↔ «вне допуска»; «есть грубая погрешность (промах)» ↔ «промаха нет».</p></div>
+<div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>«Орёл» ↔ «решка»</h4><p>Для одного броска — классическая пара противоположных событий.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>«Туз» ↔ «не туз»</h4><p>К «не тузу» относятся любые 32 карты из 36.</p></div>
+<div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>«Дождь будет» ↔ «дождя не будет»</h4><p>Одно из двух обязательно окажется верным завтра.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Допуск и брак</h4><p>«Измерение в допуске» ↔ «вне допуска»; «есть грубая погрешность (промах)» ↔ «промаха нет».</p></div>
 </div>
-
 <div class="lp-note">⚠️ Противоположное к «выпала шестёрка» — не «выпала единица», а «выпало любое число, кроме 6». Ā — это <b>всё остальное</b> пространство исходов.</div>
-
 <h3><span class="lp-h3num">5.3</span>Полная группа событий</h3>
 <div class="lp-def"><span class="lp-term">Полная группа событий</span> — совокупность событий, одно из которых в заданных условиях обязательно произойдёт. Как правило, события полной группы попарно несовместны — тогда в каждом испытании наступает ровно одно из них, а вместе их исходы покрывают всё Ω.</div>
-
 <div class="lp-fig">
- <div class="lp-figitem">
- <svg width="430" height="112" viewBox="0 0 430 112">
-  <rect x="12" y="8" width="406" height="94" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
-  <rect x="18" y="14" width="124" height="82" rx="8" fill="rgba(14,143,119,.16)"/>
-  <rect x="153" y="14" width="124" height="82" rx="8" fill="rgba(18,54,49,.09)"/>
-  <rect x="288" y="14" width="124" height="82" rx="8" fill="rgba(255,113,54,.16)"/>
-  <text x="80" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ &lt; 0</text>
-  <text x="215" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ = 0</text>
-  <text x="350" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ &gt; 0</text>
- </svg>
- <figcaption>Полная группа для погрешности одного измерения: знак «плюс», «минус» или ровно ноль — что-то одно обязательно реализуется</figcaption></div>
+<div class="lp-figitem">
+<svg height="112" viewbox="0 0 430 112" width="430">
+<rect fill="#f7fbf9" height="94" rx="12" stroke="#d5e3de" stroke-width="2" width="406" x="12" y="8"></rect>
+<rect fill="rgba(14,143,119,.16)" height="82" rx="8" width="124" x="18" y="14"></rect>
+<rect fill="rgba(18,54,49,.09)" height="82" rx="8" width="124" x="153" y="14"></rect>
+<rect fill="rgba(255,113,54,.16)" height="82" rx="8" width="124" x="288" y="14"></rect>
+<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="80" y="60">Δ &lt; 0</text>
+<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="215" y="60">Δ = 0</text>
+<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="350" y="60">Δ &gt; 0</text>
+</svg>
+<figcaption>Полная группа для погрешности одного измерения: знак «плюс», «минус» или ровно ноль — что-то одно обязательно реализуется</figcaption></div>
 </div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>{«орёл», «решка»}</h4><p>Полная группа из двух событий для одного броска.</p></div>
- <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>{«1»}, {«2»}, …, {«6»}</h4><p>Шесть одноэлементных событий — полная группа: выпадает ровно одна грань.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешности</h4><p>{«Δ &lt; 0»}, {«Δ = 0»}, {«Δ &gt; 0»} — полная группа. На практике ноль почти не встречается, но логически возможен.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Пара противоположных</h4><p>{«в допуске», «вне допуска»} — простейшая полная группа: ровно одно из двух обязательно верно.</p></div>
+<div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>{«орёл», «решка»}</h4><p>Полная группа из двух событий для одного броска.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>{«1»}, {«2»}, …, {«6»}</h4><p>Шесть одноэлементных событий — полная группа: выпадает ровно одна грань.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешности</h4><p>{«Δ &lt; 0»}, {«Δ = 0»}, {«Δ &gt; 0»} — полная группа. На практике ноль почти не встречается, но логически возможен.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Пара противоположных</h4><p>{«в допуске», «вне допуска»} — простейшая полная группа: ровно одно из двух обязательно верно.</p></div>
 </div>
-
 <h3><span class="lp-h3num">5.4</span>Равновозможные события</h3>
 <div class="lp-def"><span class="lp-term">Равновозможные события</span> — события, которые при заданных условиях имеют одинаковые шансы появления. Обычно это следствие симметрии условий испытания (однородная колода, правильная кость).</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Симметричная кость</h4><p>{«1»}, …, {«6»} равновозможны — геометрическая и физическая симметрия кубика.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Перетасованная колода</h4><p>До извлечения все 36 карт «равноправны»: ни у одной карты нет преимущества быть извлечённой.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Симметрия и асимметрия погрешностей</h4><p>У исправного прибора «+» и «−» случайной погрешности примерно равновозможны. Но малые |Δ| встречаются чаще больших — исходы <b>неравновозможны</b>.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Симметричная кость</h4><p>{«1»}, …, {«6»} равновозможны — геометрическая и физическая симметрия кубика.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Перетасованная колода</h4><p>До извлечения все 36 карт «равноправны»: ни у одной карты нет преимущества быть извлечённой.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Симметрия и асимметрия погрешностей</h4><p>У исправного прибора «+» и «−» случайной погрешности примерно равновозможны. Но малые |Δ| встречаются чаще больших — исходы <b>неравновозможны</b>.</p></div>
 </div>
-
 <div class="lp-note">⚠️ Равновозможность — свойство условий (симметрии), а не нашего незнания. «Мы не знаем, что будет» ≠ «все исходы одинаково возможны»: гнутая монета даёт неравновозможные исходы, хотя мы о них ничего не знаем.</div>
-
 <h3><span class="lp-h3num">5.5</span>Схема случаев</h3>
 <div class="lp-def"><span class="lp-term">Схема случаев</span> — совокупность равновозможных, несовместных событий, образующих полную группу. Каждый такой «случай» — один равновозможный исход испытания.</div>
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Шесть случаев</h4><p>{«1»}, …, {«6»} — равновозможны, несовместны и образуют полную группу: классическая схема случаев.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Тридцать шесть случаев</h4><p>Извлечение одной карты из хорошо перетасованной колоды — 36 равновозможных исходов.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешностей</h4><p>Для исправного прибора «+» и «−» случайной погрешности близки к схеме из двух случаев — но строго равновозможными их можно считать лишь в идеализации.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Шесть случаев</h4><p>{«1»}, …, {«6»} — равновозможны, несовместны и образуют полную группу: классическая схема случаев.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Тридцать шесть случаев</h4><p>Извлечение одной карты из хорошо перетасованной колоды — 36 равновозможных исходов.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешностей</h4><p>Для исправного прибора «+» и «−» случайной погрешности близки к схеме из двух случаев — но строго равновозможными их можно считать лишь в идеализации.</p></div>
 </div>
 <div class="lp-note lp-note-info">🔗 Понятие понадобится в уроке 03: классическая формула вероятности P = M/N работает именно <b>в условиях схемы случаев</b>.</div>
-
 <h3><span class="lp-h3num">5.6</span>Зависимые и независимые события — понятийно</h3>
 <div class="lp-def">События <span class="lp-term">независимы</span>, если факт наступления одного ничего не меняет в ожиданиях относительно другого; <span class="lp-term">зависимы</span> — если меняет. Строгие определения и числовую меру связи даст условная вероятность — в одной из следующих частей.</div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Два броска — независимы</h4><p>Кубик «не помнит» предыдущий результат: второй бросок происходит в тех же условиях, что и первый.</p></div>
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Без возврата — зависимы</h4><p>«Первая карта — туз» и «вторая карта — туз» при извлечении без возврата: после первого туза в колоде тузов меньше. С возвратом карты — независимы.</p></div>
- <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Причина и следствие</h4><p>«Прошёл ливень» и «тротуар мокрый» — зависимы: первое сильно меняет ожидания насчёт второго.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Приёмы и систематика</h4><p>Повторные приёмы исправным прибором — практически независимы. Но измерения, искажённые одной и той же неисправностью (общая систематическая погрешность), — зависимы: у них общая причина.</p></div>
+<div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Два броска — независимы</h4><p>Кубик «не помнит» предыдущий результат: второй бросок происходит в тех же условиях, что и первый.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Без возврата — зависимы</h4><p>«Первая карта — туз» и «вторая карта — туз» при извлечении без возврата: после первого туза в колоде тузов меньше. С возвратом карты — независимы.</p></div>
+<div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Причина и следствие</h4><p>«Прошёл ливень» и «тротуар мокрый» — зависимы: первое сильно меняет ожидания насчёт второго.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Приёмы и систематика</h4><p>Повторные приёмы исправным прибором — практически независимы. Но измерения, искажённые одной и той же неисправностью (общая систематическая погрешность), — зависимы: у них общая причина.</p></div>
 </div>
-
 <h3><span class="lp-h3num">5.7</span>Сводная таблица классификации</h3>
 <table class="lp-table">
 <tr><th>Признак</th><th>Типы</th><th>Суть</th><th>Пример: кубик</th><th>Пример: геодезия</th></tr>
@@ -509,35 +462,26 @@ html{scroll-behavior:smooth}
 </table>
 <p class="lp-small">* для непрерывного Ω «элементарный исход» — точечное значение; отдельные точечные события там имеют нулевую «массу» — об этом поговорим в части о вероятности.</p>
 </section>
-
-<section class="lp-section" id="sample">
+<section class="lp-section gl-tab-panel" data-gl-panel="sample" id="sample">
 <h2 class="lp-h2"><span class="lp-num">6</span>Генеральная совокупность и выборка</h2>
 <p class="lp-lead">Понятия, связывающие «идеальный мир» всех возможных наблюдений с реальным миром тех данных, что у нас есть.</p>
-
-<div class="lp-def"><span class="lp-term">Генеральная совокупность</span> — множество всех возможных значений случайной величины (всех мыслимых наблюдений).<br>
+<div class="lp-def"><span class="lp-term">Генеральная совокупность</span> — множество всех возможных значений случайной величины (всех мыслимых наблюдений).<br/>
 <span class="lp-term">Выборка</span> — любое конечное подмножество x₁, x₂, …, xₙ генеральной совокупности, полученное в результате наблюдений; число элементов n — <span class="lp-term">объём выборки</span>.</div>
-
 <div id="popviz"></div>
 <div style="text-align:center;margin-top:4px"><button class="lp-btn lp-btn--sm lp-btn--ghost" id="btnResample" type="button">🎲 Сформировать другую выборку</button></div>
-
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Колода как совокупность</h4><p>Генеральная совокупность — все 36 карт колоды. Извлекли 5 карт — получили выборку объёма n = 5. Извлечение с возвратом и без возврата — два способа формировать выборку.</p></div>
- <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Опрос жителей</h4><p>Совокупность — все жители города. Выборка — те, кого реально опросили. Опрос «только утром у вокзала» даёт перекошенную, нерепрезентативную выборку.</p></div>
- <div class="lp-tile"><div class="lp-dom">🏭 Быт</div><h4>Контроль качества</h4><p>Партия из 10 000 деталей — совокупность. Проверенные 200 деталей — выборка, по которой судят о всей партии.</p></div>
- <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Серия приёмов</h4><p>Совокупность — гипотетически бесконечный ряд всех мыслимых измерений данной величины данным прибором и методом. Выборка — фактически выполненные n приёмов. По выборке оценивают точность (разброс) и отыскивают промахи.</p></div>
+<div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Колода как совокупность</h4><p>Генеральная совокупность — все 36 карт колоды. Извлекли 5 карт — получили выборку объёма n = 5. Извлечение с возвратом и без возврата — два способа формировать выборку.</p></div>
+<div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Опрос жителей</h4><p>Совокупность — все жители города. Выборка — те, кого реально опросили. Опрос «только утром у вокзала» даёт перекошенную, нерепрезентативную выборку.</p></div>
+<div class="lp-tile"><div class="lp-dom">🏭 Быт</div><h4>Контроль качества</h4><p>Партия из 10 000 деталей — совокупность. Проверенные 200 деталей — выборка, по которой судят о всей партии.</p></div>
+<div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Серия приёмов</h4><p>Совокупность — гипотетически бесконечный ряд всех мыслимых измерений данной величины данным прибором и методом. Выборка — фактически выполненные n приёмов. По выборке оценивают точность (разброс) и отыскивают промахи.</p></div>
 </div>
-
 <div class="lp-note lp-note-info">🧮 <b>Ω и генеральная совокупность — разные вещи.</b> Ω — множество исходов <b>одного</b> испытания. Выборка — серия результатов <b>нескольких</b> испытаний. Для честного кубика Ω = {1, …, 6}, а выборка из 50 бросков — конкретный ряд из 50 чисел.</div>
-
 <div class="lp-note lp-note-good">🔑 <b>Главная идея статистики:</b> характеристики генеральной совокупности (например, «истинное» среднее погрешностей) неизвестны — их <b>оценивают по выборке</b>. Вся точностная документация в геодезии (СКО прибора, допуски, доверительные интервалы) — это выводы от выборки к совокупности.</div>
-
 <div class="lp-note">📏 <b>Представительная (репрезентативная) выборка</b> — выборка, элементы которой выбраны случайно на всём диапазоне существования случайной величины. В геодезии этого добиваются методикой: разные приёмы, разное время и условия видимости, разные наблюдатели — а не «10 отсчётов подряд одним движением руки». <b>Повторная</b> выборка состоит из независимых элементов (извлечение с возвратом), <b>бесповторная</b> — из зависимых (без возврата). Любую функцию от наблюдённых значений (например, среднее арифметическое) называют <b>статистикой</b>.</div>
 </section>
-
-<section class="lp-section" id="geodesy">
+<section class="lp-section gl-tab-panel" data-gl-panel="geodesy" id="geodesy">
 <h2 class="lp-h2"><span class="lp-num">7</span>Словарь: теория вероятностей ↔ геодезия</h2>
 <p class="lp-lead">В геодезии случайность — не абстракция, а рабочая реальность: колебание изображения в зрительной трубе, округление отсчёта, рефракция, влияние атмосферы на ГНСС. Не случайно классическая теория погрешностей измерений (Гаусс, метод наименьших квадратов) — по сути прикладная теория вероятностей.</p>
-
 <table class="lp-table">
 <tr><th>Понятие теории вероятностей</th><th>Аналог в геодезии</th><th>Пример</th></tr>
 <tr><td><b>Случайный эксперимент</b></td><td>Одно измерение (приём, отсчёт, наблюдение)</td><td>Измерение горизонтального угла 63°15′ одним приёмом теодолитом</td></tr>
@@ -551,114 +495,107 @@ html{scroll-behavior:smooth}
 <tr><td><b>Генеральная совокупность</b></td><td>Бесконечный мыслимый ряд измерений</td><td>«Все» возможные приёмы наблюдения этого угла этим теодолитом в этих условиях</td></tr>
 <tr><td><b>Выборка</b></td><td>Фактически выполненная серия</td><td>6 приёмов по программе наблюдений</td></tr>
 </table>
-
 <h3>Три вида погрешностей измерений — на языке событий</h3>
 <div class="lp-grid">
- <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Случайная погрешность</h4><p>Неустранимая «шумовая» составляющая: в каждом измерении непредсказуема по знаку и величине. У исправного прибора «плюс» и «минус» симметричны, малые значения встречаются чаще больших. Главный «персонаж» теории вероятностей в геодезии.</p></div>
- <div class="lp-tile"><div class="lp-ico">⚙️</div><h4>Систематическая погрешность</h4><p>Неслучайный сдвиг: коллимационная ошибка, остаточная рефракция, неточная длина мерного прибора. Повторениями не ослабляется — «ломает» симметрию случайности. Борются методикой (КП/КЛ, поверки) и введением поправок.</p></div>
- <div class="lp-tile"><div class="lp-ico">💥</div><h4>Грубая погрешность (промах)</h4><p>Редкое событие-«выброс»: просчёт наблюдателя, толчок штатива, ошибка в журнале. Результат явно выпадает из нормальной совокупности — его выявляют и бракуют.</p></div>
+<div class="lp-tile"><div class="lp-ico">🎲</div><h4>Случайная погрешность</h4><p>Неустранимая «шумовая» составляющая: в каждом измерении непредсказуема по знаку и величине. У исправного прибора «плюс» и «минус» симметричны, малые значения встречаются чаще больших. Главный «персонаж» теории вероятностей в геодезии.</p></div>
+<div class="lp-tile"><div class="lp-ico">⚙️</div><h4>Систематическая погрешность</h4><p>Неслучайный сдвиг: коллимационная ошибка, остаточная рефракция, неточная длина мерного прибора. Повторениями не ослабляется — «ломает» симметрию случайности. Борются методикой (КП/КЛ, поверки) и введением поправок.</p></div>
+<div class="lp-tile"><div class="lp-ico">💥</div><h4>Грубая погрешность (промах)</h4><p>Редкое событие-«выброс»: просчёт наблюдателя, толчок штатива, ошибка в журнале. Результат явно выпадает из нормальной совокупности — его выявляют и бракуют.</p></div>
 </div>
-
 <div class="lp-note">💡 Мы пока не считаем вероятности, но уже видим главное: <b>«малая случайная погрешность» — частое событие, «промах» — редкое</b>. Как превращать «частое/редкое» в число — тема следующей части.</div>
 </section>
-
-<section class="lp-section" id="lab">
+<section class="lp-section gl-tab-panel" data-gl-panel="lab" id="lab">
 <h2 class="lp-h2"><span class="lp-num">8</span>Лаборатория: потрогайте понятия руками</h2>
 <p class="lp-lead">Все демо работают без единой формулы вероятности: мы лишь проводим испытания и фиксируем, какие события наступили.</p>
-
 <div class="lp-demo" id="demoCards">
 <h3>🃏 Демо 1. Колода: события при извлечении карт</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Генеральная совокупность — колода из 36 карт. Каждое извлечение — испытание; извлечённые карты — выборка. Выберите два события и следите, наступают ли они — по отдельности и вместе.</p>
 <div class="lp-ctrl">
- <div><label class="lp-label">Событие A</label>
-  <select class="lp-select" id="selA">
-   <option value="tuz" selected>Туз</option>
-   <option value="dama">Дама</option>
-   <option value="korol">Король</option>
-   <option value="red">Красная масть</option>
-   <option value="black">Чёрная масть</option>
-   <option value="pika">Пиковая масть</option>
-   <option value="kartinka">Картинка (В, Д, К)</option>
-  </select></div>
- <div><label class="lp-label">Событие B</label>
-  <select class="lp-select" id="selB">
-   <option value="tuz">Туз</option>
-   <option value="dama">Дама</option>
-   <option value="korol">Король</option>
-   <option value="red" selected>Красная масть</option>
-   <option value="black">Чёрная масть</option>
-   <option value="pika">Пиковая масть</option>
-   <option value="kartinka">Картинка (В, Д, К)</option>
-  </select></div>
- <button class="lp-btn lp-btn--accent" id="btnDraw" type="button">🃏 Извлечь карту</button>
- <button class="lp-btn lp-btn--ghost" id="btnDraw5" type="button">Извлечь 5</button>
- <button class="lp-btn lp-btn--ghost" id="btnShuffle" type="button">🔄 Перетасовать</button>
+<div><label class="lp-label">Событие A</label>
+<select class="lp-select" id="selA">
+<option selected="" value="tuz">Туз</option>
+<option value="dama">Дама</option>
+<option value="korol">Король</option>
+<option value="red">Красная масть</option>
+<option value="black">Чёрная масть</option>
+<option value="pika">Пиковая масть</option>
+<option value="kartinka">Картинка (В, Д, К)</option>
+</select></div>
+<div><label class="lp-label">Событие B</label>
+<select class="lp-select" id="selB">
+<option value="tuz">Туз</option>
+<option value="dama">Дама</option>
+<option value="korol">Король</option>
+<option selected="" value="red">Красная масть</option>
+<option value="black">Чёрная масть</option>
+<option value="pika">Пиковая масть</option>
+<option value="kartinka">Картинка (В, Д, К)</option>
+</select></div>
+<button class="lp-btn lp-btn--accent" id="btnDraw" type="button">🃏 Извлечь карту</button>
+<button class="lp-btn lp-btn--ghost" id="btnDraw5" type="button">Извлечь 5</button>
+<button class="lp-btn lp-btn--ghost" id="btnShuffle" type="button">🔄 Перетасовать</button>
 </div>
 <div class="lp-status" id="compatBanner"></div>
 <div class="lp-out" style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
- <div id="cardOut"></div>
- <div style="flex:1;min-width:250px">
-  <div id="cardMsg" class="lp-status">Нажмите «Извлечь карту».</div>
-  <div id="cardCounts" style="font-size:13.6px;color:#3f544b"></div>
- </div>
+<div id="cardOut"></div>
+<div style="flex:1;min-width:250px">
+<div class="lp-status" id="cardMsg">Нажмите «Извлечь карту».</div>
+<div id="cardCounts" style="font-size:13.6px;color:#3f544b"></div>
+</div>
 </div>
 <div><label class="lp-label" style="margin-top:14px">Выборка (извлечённые карты)</label><div class="lp-cardrow" id="sampleStrip"><span style="color:#8aa69d;font-size:13.5px">пока пусто</span></div></div>
 <div class="lp-small" id="deckInfo" style="margin-top:8px"></div>
 </div>
-
 <div class="lp-demo" id="demoDice">
 <h3>🎲 Демо 2. Кубик или два: события при бросках</h3>
 <div class="lp-ctrl">
- <div class="lp-seg" id="diceMode"><button class="on" data-m="1" type="button">Один кубик</button><button data-m="2" type="button">Два кубика</button></div>
- <button class="lp-btn lp-btn--accent" id="btnRoll" type="button">🎲 Бросить</button>
- <button class="lp-btn lp-btn--ghost" id="btnRoll20" type="button">Ещё 20 раз</button>
- <button class="lp-btn lp-btn--ghost" id="btnDiceReset" type="button">Сброс</button>
+<div class="lp-seg" id="diceMode"><button class="on" data-m="1" type="button">Один кубик</button><button data-m="2" type="button">Два кубика</button></div>
+<button class="lp-btn lp-btn--accent" id="btnRoll" type="button">🎲 Бросить</button>
+<button class="lp-btn lp-btn--ghost" id="btnRoll20" type="button">Ещё 20 раз</button>
+<button class="lp-btn lp-btn--ghost" id="btnDiceReset" type="button">Сброс</button>
 </div>
 <div class="lp-out" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
- <div id="diceOut" style="display:flex;gap:10px;align-items:center;min-height:60px"><span style="color:#8aa69d">Бросьте кубик…</span></div>
- <div style="flex:1;min-width:240px"><div class="lp-flags" id="diceEvents" style="margin:0"></div></div>
+<div id="diceOut" style="display:flex;gap:10px;align-items:center;min-height:60px"><span style="color:#8aa69d">Бросьте кубик…</span></div>
+<div style="flex:1;min-width:240px"><div class="lp-flags" id="diceEvents" style="margin:0"></div></div>
 </div>
 <div class="lp-small">Испытаний выполнено: <b id="diceN">0</b></div>
 <div class="lp-hist" id="diceHist"></div>
 <div class="lp-small" style="margin-top:8px">Мы лишь фиксируем факты наступления событий. Насколько часто они наступают и что из этого следует — предмет следующей части (вероятность).</div>
 </div>
-
 <div class="lp-demo" id="demoVenn">
 <h3>⭕ Демо 3. Диаграмма Эйлера–Венна: события как множества</h3>
 <div class="lp-ctrl">
- <div><label class="lp-label">Пример</label>
-  <select class="lp-select" id="vennPreset">
-   <option value="0">Карты: A — «туз», B — «пика»</option>
-   <option value="1">Карты: A — «дама», B — «король»</option>
-   <option value="2">Кубик: A — «чётное», B — «не меньше 5»</option>
-   <option value="3">Геодезия: A — «Δ &gt; 0», B — «|Δ| ≤ 15″»</option>
-  </select></div>
+<div><label class="lp-label">Пример</label>
+<select class="lp-select" id="vennPreset">
+<option value="0">Карты: A — «туз», B — «пика»</option>
+<option value="1">Карты: A — «дама», B — «король»</option>
+<option value="2">Кубик: A — «чётное», B — «не меньше 5»</option>
+<option value="3">Геодезия: A — «Δ &gt; 0», B — «|Δ| ≤ 15″»</option>
+</select></div>
 </div>
 <div class="lp-vennbtns" id="vennBtns">
- <button class="lp-vbtn" data-r="A" type="button">A</button>
- <button class="lp-vbtn" data-r="B" type="button">B</button>
- <button class="lp-vbtn on" data-r="AB" type="button">A∩B — оба сразу</button>
- <button class="lp-vbtn" data-r="UN" type="button">A∪B — хотя бы одно</button>
- <button class="lp-vbtn" data-r="AO" type="button">только A (A\B)</button>
- <button class="lp-vbtn" data-r="NA" type="button">не A (Ā)</button>
+<button class="lp-vbtn" data-r="A" type="button">A</button>
+<button class="lp-vbtn" data-r="B" type="button">B</button>
+<button class="lp-vbtn on" data-r="AB" type="button">A∩B — оба сразу</button>
+<button class="lp-vbtn" data-r="UN" type="button">A∪B — хотя бы одно</button>
+<button class="lp-vbtn" data-r="AO" type="button">только A (A\B)</button>
+<button class="lp-vbtn" data-r="NA" type="button">не A (Ā)</button>
 </div>
 <div id="vennSvgWrap"></div>
 <div id="vennCaption"></div>
 </div>
-
 <div class="lp-demo" id="demoGeo">
 <h3>📐 Демо 4. Теодолит: серия приёмов измерения угла</h3>
 <p style="font-size:14.3px;margin:2px 0 12px">Условное истинное значение угла — <b>63°15′00,0″</b>. Каждый приём даёт результат со случайной погрешностью Δ; изредка случается грубая погрешность (промах). Понаблюдайте, как ведёт себя выборка при росте числа приёмов.</p>
 <div class="lp-ctrl">
- <div><label class="lp-label">Прибор</label>
-  <select class="lp-select" id="geoSigma">
-   <option value="5">Образцовый (разброс ≈ 5″)</option>
-   <option value="15" selected>Рабочий (разброс ≈ 15″)</option>
-   <option value="30">Изношенный (разброс ≈ 30″)</option>
-  </select></div>
- <button class="lp-btn lp-btn--accent" id="btnMeasure" type="button">📐 Выполнить приём</button>
- <button class="lp-btn lp-btn--ghost" id="btnSeries6" type="button">Серия из 6 приёмов</button>
- <button class="lp-btn lp-btn--ghost" id="btnGeoReset" type="button">Сброс</button>
+<div><label class="lp-label">Прибор</label>
+<select class="lp-select" id="geoSigma">
+<option value="5">Образцовый (разброс ≈ 5″)</option>
+<option selected="" value="15">Рабочий (разброс ≈ 15″)</option>
+<option value="30">Изношенный (разброс ≈ 30″)</option>
+</select></div>
+<button class="lp-btn lp-btn--accent" id="btnMeasure" type="button">📐 Выполнить приём</button>
+<button class="lp-btn lp-btn--ghost" id="btnSeries6" type="button">Серия из 6 приёмов</button>
+<button class="lp-btn lp-btn--ghost" id="btnGeoReset" type="button">Сброс</button>
 </div>
 <div class="lp-status" id="geoLast">Измерений пока нет.</div>
 <div class="lp-flags" id="geoFlags" style="margin-top:4px"></div>
@@ -667,25 +604,20 @@ html{scroll-behavior:smooth}
 <div class="lp-small" style="margin-top:8px">Каждая точка — погрешность одного приёма (элемент выборки). Все мыслимые приёмы этим прибором — генеральная совокупность. Зелёная зона — допуск |Δ| ≤ 15″; за красной границей |Δ| &gt; 45″ — промах.</div>
 </div>
 </section>
-
-<section class="lp-section" id="quiz">
+<section class="lp-section gl-tab-panel" data-gl-panel="quiz" id="quiz">
 <h2 class="lp-h2"><span class="lp-num">9</span>Проверь себя</h2>
 <p class="lp-lead">Восемь вопросов по материалу части 1. Отвечайте — пояснение появится сразу.</p>
 <div class="lp-status" id="quizScore">Отвечено: 0 из 8 · Правильно: 0</div>
 <div id="quizBox"></div>
 </section>
-
 <div class="lp-foot">
 <div><b>Конспект «Основы теории вероятностей», часть 1 — основные понятия.</b></div>
 <div style="margin-top:6px">Далее в серии: комбинаторика · вероятность события, условная вероятность и теоремы сложения/умножения · случайные величины и их характеристики · точность измерений в геодезии.</div>
-<div style="margin-top:8px" class="lp-small">Определения сверены с учебником: Голубев В.В. «Геодезия. Теория математической обработки геодезических измерений» (МИИГАиК, 2016), §1.1, §2.1.</div>
+<div class="lp-small" style="margin-top:8px">Определения сверены с учебником: Голубев В.В. «Геодезия. Теория математической обработки геодезических измерений» (МИИГАиК, 2016), §1.1, §2.1.</div>
 </div>
-
 </article>
-</div><!-- /.gl-lesson-content -->
-
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></div><!-- /.gl-lesson-content -->
 </div><!-- /gl-lesson-layout -->
-
 <script src="../../assets/search-data.js"></script>
 <script src="../../assets/main.js"></script>
 <script>

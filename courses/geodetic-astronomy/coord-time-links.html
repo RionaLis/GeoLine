@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Связи систем координат и времени — ГеоЛиния</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
+:root{
+  --dark:#063f3b; --dark2:#07554e; --accent:#ff7136; --accent-d:#de501a;
+  --ink:#092c33; --paper:#f4f8f6; --white:#fff; --line:#d5e3de; --muted:#657674;
+  --radius:18px; --shadow:0 18px 50px rgba(18,54,49,.10);
+  --hor:#0f9d78; --eq:#1f74d8; --eq2:#8a4bd8; --ecl:#e8541b; --time:#c98800;
+  --cat:#8a4bd8; --meas:#e8541b; --det:#0a7d63;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{width:min(1200px,calc(100% - 40px));margin:auto}
+
+.page-hero{background:linear-gradient(135deg,#043f3b,#07554e);color:#fff;padding:52px 0 46px;position:relative;overflow:hidden}
+.page-hero:before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:42px 42px}
+.page-hero .container{position:relative}
+.breadcrumbs{font:12px "Roboto Mono",monospace;color:#8fb0a8;margin-bottom:20px;letter-spacing:.04em}
+.breadcrumbs span{color:#e7f2ef}
+.eyebrow{font:500 12px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.page-hero h1{font-size:clamp(30px,4.6vw,50px);line-height:1.05;letter-spacing:-.04em;margin:0 0 16px;max-width:920px}
+.page-hero h1 em{color:var(--accent);font-style:normal}
+.page-hero p{color:#bcd2cd;max-width:780px;margin:0;font-size:17px}
+
+.tabs-wrap{background:rgba(6,63,59,.98);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.09)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0}
+.tab{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#dbeae6;
+  padding:9px 15px;border-radius:11px;cursor:pointer;font:600 14px Manrope,Arial;transition:.18s;white-space:nowrap}
+.tab:hover{border-color:var(--accent);color:#fff}
+.tab.active{background:var(--accent);color:#0a2c26;border-color:var(--accent);font-weight:800}
+
+.section{padding:34px 0 70px}
+.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+/* links/critical: keep the left column (sphere + projections) narrower so both
+   the 3D sphere and its projections are visible together without being tiny */
+.grid-links{grid-template-columns:minmax(520px,1.28fr) .72fr}
+@media(max-width:1040px){.grid-links{grid-template-columns:1fr}}
+.leftstack{display:flex;flex-direction:column;gap:18px;position:sticky;top:70px}
+@media(max-width:1040px){.leftstack{position:static}}
+/* cap the interactive sphere so a whole tab fits one screen on desktop */
+.spherebox{max-height:52vh}
+.view{display:none;animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.article{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;box-shadow:var(--shadow)}
+.article h2{font-size:26px;letter-spacing:-.025em;margin:0 0 8px}
+.article h3{font:800 12.5px "Roboto Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-d);margin:24px 0 8px}
+.lead{color:#3a534e;font-size:15.5px;margin:0 0 8px}
+.article p,.article li{color:#3a534e;font-size:15px}
+
+.panel{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);padding:14px}
+.panel svg{display:block;width:100%;height:auto}
+.cap{font:500 12.5px "Roboto Mono",monospace;color:var(--muted);text-align:center;margin-top:8px}
+.subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.subtab{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13.5px Manrope;transition:.15s}
+.subtab:hover{border-color:var(--accent)}
+.subtab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+
+ul.legend{list-style:none;margin:6px 0 0;padding:0;font-size:14.5px}
+ul.legend li{display:flex;gap:11px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+ul.legend li:last-child{border-bottom:0}
+.sym{min-width:54px;font-weight:800;text-align:left;font-family:"Cambria Math",Georgia,serif;font-size:16px;color:var(--accent-d)}
+.k{color:var(--muted);font-size:13px}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
+  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;color:#0d5a4c;overflow-x:auto;line-height:1.95}
+.note{border-left:3px solid var(--accent);background:#fff2ec;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px;color:#7a4326}
+.roletag{display:inline-block;font:700 12px "Roboto Mono",monospace;padding:3px 10px;border-radius:99px;margin:3px 6px 3px 0;border:1.5px solid}
+.role-cat{color:var(--cat);border-color:var(--cat);background:#f4ecfb}
+.role-meas{color:var(--meas);border-color:var(--meas);background:#fdece2}
+.role-det{color:var(--det);border-color:var(--det);background:#e3f4ed}
+
+.ctrl{margin:12px 4px 2px}
+.ctrl label{font:500 13px "Roboto Mono",monospace;color:#49635e;display:block;margin-bottom:4px}
+.slider{width:100%;accent-color:var(--accent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.two{grid-template-columns:1fr}}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:620px){.three{grid-template-columns:1fr}}
+
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:520px){.readout{grid-template-columns:1fr}}
+.rcard{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#f6faf8}
+.rcard b{display:block;font-size:11.5px;color:var(--muted);font-family:"Roboto Mono",monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.rcard .big{font:700 17px "Roboto Mono",monospace;color:var(--ink)}
+.rcard.hor{border-color:#9fdcc9} .rcard.hor .big{color:var(--hor)}
+.rcard.eq{border-color:#a9c9f0} .rcard.eq .big{color:var(--eq)}
+.rcard.eq2{border-color:#c9b6ef} .rcard.eq2 .big{color:var(--eq2)}
+.rcard.ecl{border-color:#f4c1a6} .rcard.ecl .big{color:var(--ecl)}
+.rcard.time{border-color:#eccf8f} .rcard.time .big{color:var(--time)}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:#3a534e}
+th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.field span{font:500 11.5px "Roboto Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.field input,.field select{font:600 15px "Roboto Mono",monospace;border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;color:var(--ink);background:#fff}
+.btn{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13px Manrope;transition:.15s}
+.btn:hover{border-color:var(--accent);background:#fff2ec;color:var(--accent-d)}
+.btn.primary{background:var(--accent);color:#0a2c26;border-color:var(--accent)}
+.arrows{display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(2,34px);gap:5px;justify-content:center;margin:6px auto}
+.arrows .btn{padding:0;font-size:16px;display:grid;place-items:center}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.hint{font:500 12px "Roboto Mono",monospace;color:#8aa39c;text-align:center;margin-top:4px}
+.spherebox{touch-action:none;cursor:grab}
+.spherebox:active{cursor:grabbing}
+
+.site-footer{background:#043632;color:#a9bdb8;padding:30px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.footer-brand{color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
+.footer-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#08302b;display:grid;place-items:center;font:800 15px "Roboto Mono"}
+.footer-small{font:12px "Roboto Mono",monospace;max-width:460px}
+</style>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/></head>
+<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Курс астрономии</a><a href="../../index.html#contacts">Контакты</a></nav><button aria-label="Открыть меню" class="gl-menu-button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии · 3 урока</div><a href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a href="coord-time-links.html"><span>02</span>Связи систем координат и времени</a><a href="time-systems.html"><span>03</span>Системы измерения времени в астрономии</a><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Основы геодезической астрономии · Урок 02</div><h1>Связи систем координат и времени</h1><div class="tabs-wrap gl-tabs">
+<div class="container">
+<div class="tabs" id="tabs">
+<button class="tab active" data-view="overview">Общая карта связей</button>
+<button class="tab" data-view="links">Связующие параметры</button>
+<button class="tab" data-view="time">Время: солнечное, звёздное, UTC</button>
+<button class="tab" data-view="calc">Калькулятор перехода</button>
+<button class="tab" data-view="critical">Особые положения светил</button>
+<button class="tab" data-view="cases">Когда что нужно</button>
+</div>
+</div>
+</div></section>
+<header class="page-hero">
+<div class="container">
+<div class="breadcrumbs">GeoLine · Астрономия / <span>Связи систем координат и времени</span></div>
+<div class="eyebrow">Интерактивный урок · связка</div>
+<h1 class="gl-original-title">Связи <em>систем координат</em> и <em>времени</em></h1>
+<p>Как одно и то же светило описывается в четырёх системах координат, какими параметрами эти системы связаны между собой и как время (солнечное, звёздное и всемирное) вместе с широтой и долготой позволяет перейти от карты неба к тому, что реально видно над горизонтом.</p>
+</div>
+</header>
+
+<div class="section">
+<div class="container">
+<!-- ============ OVERVIEW ============ -->
+<section class="view active" id="overview">
+<div class="grid">
+<div class="panel">
+<div id="svg-graph"></div>
+<div class="cap">Граф связей: узлы — системы координат и времени, рёбра — параметры перехода</div>
+</div>
+<div class="article">
+<h2>Единая картина</h2>
+<p class="lead">Положение светила задаёт одно направление на небесной сфере. Каждая система координат описывает его своей парой чисел, а между системами существуют строгие взаимно-однозначные преобразования. Все входящие в них величины делятся по роли на три группы:</p>
+<p style="margin:10px 0 4px">
+<span class="roletag role-cat">каталожные</span>
+<span class="roletag role-meas">измеряемые</span>
+<span class="roletag role-det">определяемые</span>
+</p>
+<ul class="legend">
+<li><span class="sym" style="color:var(--cat)">α, δ, β, λ⊙, S₀</span><span><b>Каталожные</b> — берутся из звёздного каталога и астрономического ежегодника: прямое восхождение α, склонение δ, эклиптические λ, β и звёздное время в гринвичскую полночь S₀.</span></li>
+<li><span class="sym" style="color:var(--meas)">A, z (h), T</span><span><b>Измеряемые</b> — то, что наблюдатель получает инструментами: азимут A, зенитное расстояние z (или высота h = 90°−z) и момент по всемирному времени T = UT.</span></li>
+<li><span class="sym" style="color:var(--det)">φ, λ</span><span><b>Определяемые</b> — искомые в геодезии величины: астрономическая широта φ и долгота λ пункта.</span></li>
+</ul>
+<div class="note"><b>Звёздное время S и часовой угол t — вычисляемые (промежуточные) величины.</b> Их <u>не измеряют напрямую и не берут из каталога</u>:
+          <br/>• <b>S = S₀ + UT·k + λ</b> — местное звёздное время собирается из каталожного S₀ (ежегодник), измеренного момента UT (часы) и измеренной долготы λ пункта;
+          <br/>• <b>t = S − α</b> — часовой угол получается вычитанием каталожного прямого восхождения α из S.
+          <br/>Поэтому на графе и S, и t показаны серым — это «пересадочные станции» между тем, что дано, и тем, что ищут. Решение параллактического треугольника по измеренным (A, z) и каталожным (α, δ, S₀) величинам даёт искомые φ и λ.</div>
+</div>
+</div>
+</section>
+<!-- ============ LINKS (connecting parameters) ============ -->
+<section class="view" id="links">
+<div class="subtabs" id="link-subtabs">
+<button class="subtab active" data-l="phi">φ · горизонтная ↔ I экваториальная</button>
+<button class="subtab" data-l="S">S · I ↔ II экваториальная</button>
+<button class="subtab" data-l="eps">ε · экваториальная ↔ эклиптическая</button>
+</div>
+<div class="grid grid-links">
+<div class="leftstack">
+<div class="panel">
+<svg class="spherebox" id="svg-sphere" style="max-width:420px;margin:0 auto" viewbox="0 0 400 360"></svg>
+<div class="row" style="justify-content:center;gap:6px">
+<button class="btn" id="ar-left">◀ повернуть</button><button class="btn" id="ar-reset">↺ сброс</button><button class="btn" id="ar-right">повернуть ▶</button>
+</div>
+<div class="hint">поворачивайте сферу стрелками · перетаскивайте звезду ★ по видимой стороне</div>
+<div id="link-sliders"></div>
+</div>
+<div class="panel">
+<div class="three">
+<div><div id="svg-pm"></div></div>
+<div><div id="svg-ph"></div></div>
+<div><div id="svg-pe"></div></div>
+</div>
+<div class="cap">Проекции на три главных круга — на каждом отмечены широта φ и координаты в соответствующей системе</div>
+</div>
+</div>
+<div class="article" id="link-article"></div>
+</div>
+</section>
+<!-- ============ TIME ============ -->
+<section class="view" id="time">
+<div class="grid">
+<div class="panel">
+<div id="svg-time"></div>
+<div class="field" style="margin-top:12px"><span>Дата (UT)</span><input id="t-date" type="date" value="2026-09-17"/></div>
+<div class="ctrl"><label>Всемирное время UT: <span class="val" id="t-ut-val">21ʰ00ᵐ</span></label>
+<input class="slider" id="t-ut" max="24" min="0" step="0.25" type="range" value="21"/></div>
+<div class="ctrl"><label>Долгота λ (E+): <span class="val" id="t-lon-val">+37.6°</span></label>
+<input class="slider" id="t-lon" max="180" min="-180" step="0.1" type="range" value="37.6"/></div>
+<div class="ctrl"><label>Прямое восхождение α: <span class="val" id="t-alpha-val">18.6ʰ</span></label>
+<input class="slider" id="t-alpha" max="24" min="0" step="0.1" type="range" value="18.6"/></div>
+</div>
+<div class="article">
+<h2>Три шкалы времени и звёздное время</h2>
+<p class="lead">В астрономии одновременно работают три «часа», связанные простыми соотношениями:</p>
+<ul class="legend">
+<li><span class="sym" style="color:var(--time)">T⊙</span><span><b>Среднее солнечное время</b> — по среднему Солнцу; на нём построена гражданская жизнь. Сутки = 24ʰ.</span></li>
+<li><span class="sym" style="color:var(--eq)">S</span><span><b>Звёздное время</b> — часовой угол точки весеннего равноденствия γ. Звёздные сутки короче солнечных на 3ᵐ56ˢ (23ʰ56ᵐ04ˢ).</span></li>
+<li><span class="sym" style="color:var(--eq2)">UTC</span><span><b>Всемирное координированное время</b> — атомная шкала, удерживаемая близко к UT1 (среднему солнечному на Гринвиче) вставкой секунд координации.</span></li>
+</ul>
+<h3>Звёздное время через каталожное S₀</h3>
+<p class="lead">В ежегоднике на каждую дату дано <b>S₀ — гринвичское звёздное время в полночь UT</b>. Местное звёздное время на момент UT и долготе λ:</p>
+<div class="formula">S = S₀ + UT · k + λ,  k = 1,0027379<br/>
+          GMST = S₀ + UT · k  (на Гринвиче)<br/>
+          S = GMST + λ  (λ в часах, E+)<br/>
+          t = S − α</div>
+<p class="lead">Множитель k = 366,2422/365,2422 переводит промежуток солнечного времени в звёздное. Отсюда часовой угол любого светила t = S − α — то, что нужно для наведения инструмента.</p>
+<h3>Кто есть кто в этой цепочке</h3>
+<ul class="legend">
+<li><span class="sym" style="color:var(--time)">кат.</span><span><b>Каталожные</b> (берём из ежегодника/каталога): звёздное время в гринвичскую полночь <b>S₀</b> и прямое восхождение светила <b>α</b>.</span></li>
+<li><span class="sym" style="color:var(--eq)">изм.</span><span><b>Измеряемые</b> (получаем на месте): <b>дата и UT</b> по часам и <b>долгота λ</b> пункта наблюдения.</span></li>
+<li><span class="sym" style="color:var(--hor)">опр.</span><span><b>Определяемые</b> (вычисляем): местное звёздное время <b>S</b> и часовой угол <b>t = S − α</b>.</span></li>
+</ul>
+<p class="lead"><b>Роль долготы λ.</b> Именно λ переводит гринвичское звёздное время (GMST) в местное: сдвигая точку отсчёта на λ, мы получаем S для своего меридиана.</p>
+<h3>Как читать рисунок</h3>
+<p class="lead"><b>Вверху — вид с северного полюса мира.</b> Небо вращается по часовой стрелке, а часовой угол любого направления — это дуга по экватору <b>от меридиана наблюдателя (вверх) по часовой стрелке</b>. Поэтому все времена превращаются в углы, которые видно сразу: S — до точки ♈, α — от ♈ до звезды, t — до звезды, λ — до гринвичского меридиана. Отсюда наглядно: большая дуга <b>S = t + α</b>, то есть <b>t = S − α</b>.</p>
+<p class="lead"><b>Внизу — из чего складывается S.</b> Полоса показывает сумму трёх вкладов: каталожное <b>S₀</b> (жёлтый) + ход часов <b>UT·k</b> (синий) + поправка на вашу долготу <b>λ</b> (зелёный). Их сумма и есть местное звёздное время S.</p>
+<div class="readout">
+<div class="rcard time"><b>S₀ (полночь UT)</b><div class="big" id="o-s0">—</div></div>
+<div class="rcard time"><b>GMST (Гринвич)</b><div class="big" id="o-gmst">—</div></div>
+<div class="rcard eq"><b>Местное звёздное S</b><div class="big" id="o-lst">—</div></div>
+<div class="rcard eq"><b>Часовой угол t</b><div class="big" id="o-t">—</div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ CALCULATOR ============ -->
+<section class="view" id="calc">
+<div class="grid">
+<div class="panel">
+<svg class="spherebox" id="svg-calc" style="max-width:440px;margin:0 auto" viewbox="0 0 400 360"></svg>
+<div class="row" style="justify-content:center;gap:6px">
+<button class="btn" id="car-left">◀ повернуть</button><button class="btn" id="car-reset">↺ сброс</button><button class="btn" id="car-right">повернуть ▶</button>
+</div>
+<div class="hint">построенная сфера с введённым светилом · поворот стрелками</div>
+</div>
+<div class="article">
+<h2>Калькулятор перехода</h2>
+<p class="lead">Резюме урока: выберите исходную и конечную системы, задайте координаты и время — переход выполнится, а слева построится небесная сфера с этим светилом.</p>
+<div class="two">
+<div class="field"><span>Из системы</span>
+<select id="c-from">
+<option value="eq2">II экваториальная (α, δ)</option>
+<option value="eq1">I экваториальная (t, δ)</option>
+<option value="hor">горизонтная (A, h)</option>
+<option value="ecl">эклиптическая (λ, β)</option>
+</select></div>
+<div class="field"><span>В систему</span>
+<select id="c-to">
+<option value="hor">горизонтная (A, h)</option>
+<option value="eq1">I экваториальная (t, δ)</option>
+<option value="eq2">II экваториальная (α, δ)</option>
+<option value="ecl">эклиптическая (λ, β)</option>
+</select></div>
+</div>
+<div class="two">
+<div class="ctrl"><label><span id="c-x1-lab">α, часы</span>: <span class="val" id="c-x1-val">4.0ʰ</span></label>
+<input class="slider" id="c-x1" max="24" min="0" step="0.1" type="range" value="4"/></div>
+<div class="ctrl"><label><span id="c-x2-lab">δ, градусы</span>: <span class="val" id="c-x2-val">+35°</span></label>
+<input class="slider" id="c-x2" max="90" min="-90" step="1" type="range" value="35"/></div>
+</div>
+<div class="two">
+<div class="ctrl"><label>Широта φ: <span class="val" id="c-phi-val">56°</span></label>
+<input class="slider" id="c-phi" max="90" min="-90" step="1" type="range" value="56"/></div>
+<div class="ctrl"><label>Звёздное время S: <span class="val" id="c-s-val">6.0ʰ</span></label>
+<input class="slider" id="c-s" max="24" min="0" step="0.1" type="range" value="6"/></div>
+</div>
+<div class="rcard" style="margin:12px 0;border-color:var(--accent);background:#fff2ec">
+<b id="c-res-lab">Результат</b><div class="big" id="c-res" style="color:var(--accent-d)">—</div>
+</div>
+<div class="readout">
+<div class="rcard eq2"><b>II экваториальная (α, δ)</b><div class="big" id="o-eq2">—</div></div>
+<div class="rcard eq"><b>I экваториальная (t, δ)</b><div class="big" id="o-eq1">—</div></div>
+<div class="rcard hor"><b>Горизонтная (A, h)</b><div class="big" id="o-hor">—</div></div>
+<div class="rcard ecl"><b>Эклиптическая (λ, β)</b><div class="big" id="o-ecl">—</div></div>
+</div>
+<div class="note" id="c-vis">—</div>
+</div>
+</div>
+</section>
+<!-- ============ CRITICAL POSITIONS ============ -->
+<section class="view" id="critical">
+<div class="grid grid-links">
+<div class="panel">
+<svg class="spherebox" id="svg-crit" style="max-width:400px;margin:0 auto" viewbox="0 0 400 360"></svg>
+<div class="row" style="justify-content:center;gap:6px">
+<button class="btn" id="cr-left">◀ повернуть</button><button class="btn" id="cr-reset">↺ сброс</button><button class="btn" id="cr-right">повернуть ▶</button>
+</div>
+<div class="row" id="crit-btns" style="margin-top:6px"></div>
+<div class="two" style="margin-top:8px">
+<div class="ctrl"><label>Широта φ: <span class="val" id="cr-phi-val">56°</span></label>
+<input class="slider" id="cr-phi" max="90" min="0" step="1" type="range" value="56"/></div>
+<div class="ctrl"><label>Склонение δ: <span class="val" id="cr-dec-val">20°</span></label>
+<input class="slider" id="cr-dec" max="90" min="-90" step="1" type="range" value="20"/></div>
+</div>
+<div class="three" style="margin-top:12px">
+<div><div id="svg-crm"></div></div>
+<div><div id="svg-crh"></div></div>
+<div><div id="svg-cre"></div></div>
+</div>
+<div class="cap" id="crit-cap">Особые точки суточного пути светила — на сфере и в проекциях на главные круги</div>
+</div>
+<div class="article">
+<h2>Особые положения светил</h2>
+<p class="lead">На суточном пути есть несколько характерных моментов, координаты которых вычисляются напрямую из широты φ и склонения δ. Выберите положение — на схеме подсветится точка, а справа появятся её координаты.</p>
+<div id="crit-text"></div>
+<div class="readout">
+<div class="rcard eq"><b>Часовой угол t</b><div class="big" id="cr-t">—</div></div>
+<div class="rcard hor"><b>Высота h</b><div class="big" id="cr-h">—</div></div>
+<div class="rcard eq2"><b>Азимут A</b><div class="big" id="cr-A">—</div></div>
+<div class="rcard time"><b>Условие</b><div class="big" id="cr-cond">—</div></div>
+</div>
+<div class="note" id="cr-note">—</div>
+</div>
+</div>
+</section>
+<!-- ============ CASES ============ -->
+<section class="view" id="cases">
+<div class="article">
+<h2>Когда какой переход нужен</h2>
+<div style="overflow-x:auto">
+<table>
+<tr><th>Задача</th><th>Что дано</th><th>Что нужно</th><th>Переход · параметры</th></tr>
+<tr><td>Навести телескоп на звезду из каталога</td><td>(α, δ), дата, UT, λ, φ</td><td>(A, h) или (t, δ)</td><td>UT→S, t = S − α, затем по φ → (A, h)</td></tr>
+<tr><td>Определить, видна ли звезда сейчас</td><td>(α, δ), S, φ</td><td>высота h &gt; 0?</td><td>t = S − α → h(φ, δ, t)</td></tr>
+<tr><td>Определить широту и долготу пункта</td><td>измеренные (A, z), (α, δ, S₀)</td><td>(φ, λ)</td><td>параллактический треугольник; λ из S − S₀ − UT·k</td></tr>
+<tr><td>Записать наблюдение в каталог</td><td>(A, h), φ, S</td><td>(α, δ)</td><td>(A,h)→(t,δ) по φ, α = S − t</td></tr>
+<tr><td>Рассчитать движение планеты/Луны</td><td>(λ, β), ε</td><td>(α, δ)</td><td>поворот на ε вокруг линии равноденствий</td></tr>
+<tr><td>Составить карту звёздного неба</td><td>каталог (α, δ)</td><td>(λ, β) или (A, h)</td><td>ε для эклиптики; S, φ для горизонта</td></tr>
+<tr><td>Служба времени / часовой угол Солнца</td><td>дата, UT, λ</td><td>S, затем t</td><td>UT→GMST→LST, t = S − α</td></tr>
+</table>
+</div>
+<h3>Главная цепочка переходов</h3>
+<div class="formula" style="text-align:center">
+        дата, UT, λ  →  <b>S</b>  —(t = S − α)→  <b>t, δ</b>  —(φ)→  <b>A, h</b><br/>
+        (α, δ)  ⇄(ε)⇄  (λ, β)
+      </div>
+<div class="note">Каждая стрелка обратима. Эта сеть переходов позволяет от неизменных «адресов» звёзд в каталоге (α, δ) прийти к тому, что реально видно над горизонтом (A, h) — в нужный момент и в нужной точке Земли, а из измерений — обратно к широте и долготе пункта.</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+/* =============== math core =============== */
+const D2R=Math.PI/180,R2D=180/Math.PI,TAU=Math.PI*2;
+const S_=Math.sin,C_=Math.cos,ASIN=Math.asin,AT2=Math.atan2,ACOS=Math.acos,TAN=Math.tan;
+const EPS=23.4392911;
+function w360(x){return ((x%360)+360)%360;}
+function w24(x){return ((x%24)+24)%24;}
+function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+function el(id){return document.getElementById(id);}
+function svg(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block">${inner}</svg>`;}
+function hm(hours){hours=w24(hours);let h=Math.floor(hours);let m=Math.round((hours-h)*60);if(m===60){m=0;h=(h+1)%24;}return h+'ʰ'+String(m).padStart(2,'0')+'ᵐ';}
+function dm(deg){const s=deg<0?'−':'+';deg=Math.abs(deg);let d=Math.floor(deg);let m=Math.round((deg-d)*60);if(m===60){m=0;d++;}return s+d+'°'+String(m).padStart(2,'0')+'′';}
+function d360(deg){deg=w360(deg);let d=Math.floor(deg);let m=Math.round((deg-d)*60);if(m===60){m=0;d++;}return d+'°'+String(m).padStart(2,'0')+'′';}
+
+// I equatorial (t hours, dec deg) <-> horizontal (A deg from South->West, h deg)
+function eq2hor(th,dec,phi){const H=th*15*D2R,d=dec*D2R,f=phi*D2R;
+  const h=ASIN(S_(f)*S_(d)+C_(f)*C_(d)*C_(H));
+  const A=AT2(C_(d)*S_(H), S_(f)*C_(d)*C_(H)-C_(f)*S_(d));
+  return {A:w360(A*R2D),h:h*R2D};}
+function hor2eq(A,h,phi){const a=A*D2R,hh=h*D2R,f=phi*D2R;
+  const d=ASIN(S_(f)*S_(hh)-C_(f)*C_(hh)*C_(a));
+  const H=AT2(C_(hh)*S_(a), S_(f)*C_(hh)*C_(a)+C_(f)*S_(hh));
+  return {t:w24(H*R2D/15),dec:d*R2D};}
+// ecliptic (lam,bet deg) <-> II equatorial (alpha hours, dec deg)
+function ecl2eq(lam,bet){const l=lam*D2R,b=bet*D2R,e=EPS*D2R;
+  const d=ASIN(S_(b)*C_(e)+C_(b)*S_(e)*S_(l));
+  const a=AT2(C_(b)*S_(l)*C_(e)-S_(b)*S_(e), C_(b)*C_(l));
+  return {alpha:w360(a*R2D)/15,dec:d*R2D};}
+function eq2ecl(ah,dec){const a=ah*15*D2R,d=dec*D2R,e=EPS*D2R;
+  const b=ASIN(S_(d)*C_(e)-C_(d)*S_(e)*S_(a));
+  const l=AT2(S_(d)*S_(e)+C_(d)*C_(e)*S_(a), C_(d)*C_(a));
+  return {lam:w360(l*R2D),beta:b*R2D};}
+// time
+function jd(y,m,d,H){const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;
+  const jdn=d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+  return jdn+(H-12)/24;}
+function gmst(y,m,d,H){const Dd=jd(y,m,d,H)-2451545.0;return w24(18.697374558+24.06570982441908*Dd);}
+
+/* =============== 3D engine (ported from celestial-sphere lesson) ===============
+   world frame: x=East, y=Up(Zenith), z=South.  View: PITCH 16° from ABOVE,
+   BASE_YAW so that N is left and Z is on top (same ракурс as the sphere lesson). */
+const PITCH=16*D2R, BASE_YAW=58*D2R;
+function makeRot(tiltX,rotY){const cx=C_(tiltX),sx=S_(tiltX),cy=C_(rotY),sy=S_(rotY);
+  return function(v){let x=v[0]*cy+v[2]*sy;let z=-v[0]*sy+v[2]*cy;let y=v[1];
+    return [x, y*cx-z*sx, y*sx+z*cx];};}
+function projPt(p,cx,cy,R){return [cx+p[0]*R, cy-p[1]*R, p[2]];}
+function screenToDir(sx,sy,cx,cy,R,yaw,pitch){
+  pitch=(pitch===undefined?PITCH:pitch);
+  let rx=(sx-cx)/R, ry=(cy-sy)/R, r2=rx*rx+ry*ry;
+  if(r2>1){const f=1/Math.sqrt(r2);rx*=f;ry*=f;r2=1;}
+  const rz=Math.sqrt(Math.max(0,1-r2));
+  const cpx=C_(pitch),spx=S_(pitch),cyw=C_(yaw),syw=S_(yaw);
+  const x1=rx, y1=ry*cpx+rz*spx, z1=-ry*spx+rz*cpx;
+  return norm([x1*cyw - z1*syw, y1, x1*syw + z1*cyw]);}
+/* vector helpers */
+function cross(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+function norm(a){const m=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/m,a[1]/m,a[2]/m];}
+function dotv(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+function angv(a,b){return Math.acos(clamp(dotv(a,b),-1,1));}
+function signedAngle(a,b,ax){return Math.atan2(dotv(ax,cross(a,b)),dotv(a,b));}
+function wrap2pi(x){x%=TAU;if(x<0)x+=TAU;return x;}
+function projOnPlane(v,n){return norm([v[0]-dotv(v,n)*n[0],v[1]-dotv(v,n)*n[1],v[2]-dotv(v,n)*n[2]]);}
+function planeVectors(normal){let n=norm(normal);let a=Math.abs(n[0])<0.9?[1,0,0]:[0,1,0];let u=norm(cross(n,a));let v=norm(cross(n,u));return[u,v];}
+function rotateAround(v,axis,a){const k=norm(axis);const c=C_(a),s=S_(a);const kv=cross(k,v);const kd=dotv(k,v);
+  return[v[0]*c+kv[0]*s+k[0]*kd*(1-c),v[1]*c+kv[1]*s+k[1]*kd*(1-c),v[2]*c+kv[2]*s+k[2]*kd*(1-c)];}
+function slerp(a,b,t){const dp=clamp(dotv(a,b),-1,1);const om=Math.acos(dp);const s=Math.sin(om)||1e-6;
+  return norm([a[0]*Math.sin((1-t)*om)/s+b[0]*Math.sin(t*om)/s,a[1]*Math.sin((1-t)*om)/s+b[1]*Math.sin(t*om)/s,a[2]*Math.sin((1-t)*om)/s+b[2]*Math.sin(t*om)/s]);}
+function circlePts(u,v,steps){const pts=[];for(let i=0;i<=steps;i++){const a=i/steps*TAU;
+  pts.push([u[0]*C_(a)+v[0]*S_(a),u[1]*C_(a)+v[1]*S_(a),u[2]*C_(a)+v[2]*S_(a)]);}return pts;}
+function smallCirclePts(axis,rho,steps){steps=steps||120;const a=norm(axis);const [u,v]=planeVectors(a);
+  const ca=C_(rho),sa=S_(rho);const pts=[];
+  for(let i=0;i<=steps;i++){const t=i/steps*TAU;const cu=C_(t),su=S_(t);
+    pts.push([a[0]*ca+(u[0]*cu+v[0]*su)*sa,a[1]*ca+(u[1]*cu+v[1]*su)*sa,a[2]*ca+(u[2]*cu+v[2]*su)*sa]);}return pts;}
+
+/* world direction from equatorial (t,dec) / horizontal (A,h) in CEL frame (E,Up,S) */
+function eqVecCel(t,dec,phi){const th=t*15*D2R,d=dec*D2R,f=phi*D2R;
+  const eQ=[0,-S_(f),C_(f)],eW=[-1,0,0],eP=[0,C_(f),S_(f)];   // (E,N,U) basis
+  const v=[C_(d)*C_(th)*eQ[0]+C_(d)*S_(th)*eW[0]+S_(d)*eP[0],
+           C_(d)*C_(th)*eQ[1]+C_(d)*S_(th)*eW[1]+S_(d)*eP[1],
+           C_(d)*C_(th)*eQ[2]+C_(d)*S_(th)*eW[2]+S_(d)*eP[2]];
+  return [v[0],v[2],-v[1]];}                                   // remap (E,N,U)->(E,U,S)
+function horVecCel(A,h){A*=D2R;h*=D2R;return [-S_(A)*C_(h), S_(h), C_(A)*C_(h)];}
+
+/* renderer: instance holds view state (yaw,pitch) and draw target */
+function makeScene(cx,cy,R,yaw,pitch){
+  pitch=(pitch===undefined?PITCH:pitch);
+  const ROT=makeRot(pitch,yaw);
+  const S={cx,cy,R,yaw,pitch,ROT};
+  S.P=v=>projPt(ROT(v),cx,cy,R);
+  S.loop=(pts,color,width,dash)=>{
+    const A=pts.map(p=>S.P(p));let front='',back='',fo=false,bo=false;
+    for(const p of A){const seg=p[0].toFixed(1)+' '+p[1].toFixed(1);
+      if(p[2]>=0){front+=(fo?'L':'M')+seg+' ';fo=true;bo=false;}else{back+=(bo?'L':'M')+seg+' ';bo=true;fo=false;}}
+    const da=dash?`stroke-dasharray="${dash}"`:'';
+    return `<path d="${back}" fill="none" stroke="${color}" stroke-width="${width}" opacity="0.28" stroke-dasharray="${dash||'3 4'}"/>`+
+           `<path d="${front}" fill="none" stroke="${color}" stroke-width="${width}" opacity="0.98" ${da}/>`;};
+  S.circle=(u,v,color,w,dash)=>S.loop(circlePts(u,v,120),color,w,dash);
+  S.small=(axis,rho,color,w,dash)=>S.loop(smallCirclePts(axis,rho),color,w,dash);
+  S.arc=(a,b,color,width,dash)=>{const angle=angv(a,b);const n=Math.max(2,Math.round(angle/Math.PI*60));let d='';
+    for(let i=0;i<=n;i++){const v=slerp(a,b,i/n);const p=S.P(v);d+=(i===0?'M':'L')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}
+    const da=dash?`stroke-dasharray="${dash}"`:'';return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${width}" ${da} opacity="0.97"/>`;};
+  // arc drawn by ROTATING `start` around `axis` by a SIGNED angle (radians): keeps
+  // the true direction and can exceed 180° — required for A, t, α, λ arcs.
+  S.arcRot=(start,axis,delta,color,width,dash)=>{const n=Math.max(2,Math.round(Math.abs(delta)/Math.PI*80));let d='';
+    for(let i=0;i<=n;i++){const v=rotateAround(start,axis,delta*i/n);const p=S.P(v);d+=(i===0?'M':'L')+p[0].toFixed(1)+' '+p[1].toFixed(1)+' ';}
+    const da=dash?`stroke-dasharray="${dash}"`:'';return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${width}" ${da} opacity="0.97"/>`;};
+  S.line=(a,b,color,w,dash)=>{const pa=S.P(a),pb=S.P(b);const da=dash?`stroke-dasharray="${dash}"`:'';
+    return `<line x1="${pa[0].toFixed(1)}" y1="${pa[1].toFixed(1)}" x2="${pb[0].toFixed(1)}" y2="${pb[1].toFixed(1)}" stroke="${color}" stroke-width="${w}" ${da} opacity="0.7"/>`;};
+  S.dot=(v,color,r)=>{r=r||4;const p=S.P(v);const o=p[2]>=0?1:0.4;
+    return `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${r}" fill="${color}" opacity="${o}" stroke="#fff" stroke-width="1"/>`;};
+  S.label=(v,txt,color,dx,dy,size)=>{dx=dx||8;dy=dy||-8;size=size||12;const p=S.P(v);const o=p[2]>=0?1:0.45;
+    return `<text x="${(p[0]+dx).toFixed(1)}" y="${(p[1]+dy).toFixed(1)}" fill="${color}" font-size="${size}" font-family="Georgia,serif" font-weight="700" opacity="${o}">${txt}</text>`;};
+  S.labelMid=(a,b,txt,color)=>{const m=norm([a[0]+b[0],a[1]+b[1],a[2]+b[2]]);const p=S.P(m);const o=p[2]>=0?1:0.45;
+    return `<text x="${p[0].toFixed(1)}" y="${(p[1]-6).toFixed(1)}" fill="${color}" font-size="13" font-family="Georgia,serif" font-weight="800" opacity="${o}">${txt}</text>`;};
+  // label at the rotational midpoint of a signed arc (start rotated by delta/2 around axis)
+  S.labelRot=(start,axis,delta,txt,color)=>{const m=rotateAround(start,axis,delta/2);const p=S.P(m);const o=p[2]>=0?1:0.45;
+    return `<text x="${p[0].toFixed(1)}" y="${(p[1]-6).toFixed(1)}" fill="${color}" font-size="13" font-family="Georgia,serif" font-weight="800" opacity="${o}">${txt}</text>`;};
+  S.star=(v)=>{const p=S.P(v);const o=p[2]>=0?1:0.4;
+    return `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="6" fill="#1a2233" stroke="#fff" stroke-width="1.5" opacity="${o}"/>`+
+      S.label(v,'★','#1a2233',7,-7,14);};
+  S.bg=(sub)=>`<defs><radialGradient id="glg" cx="40%" cy="32%" r="75%">
+    <stop offset="0%" stop-color="#f4fbff"/><stop offset="55%" stop-color="#dceffb"/><stop offset="100%" stop-color="#bcdcf0"/></radialGradient></defs>
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#glg)" stroke="#8fb8d6" stroke-width="1.2"/>
+    <ellipse cx="${cx-R*0.32}" cy="${cy-R*0.36}" rx="${R*0.5}" ry="${R*0.34}" fill="#fff" opacity="0.35"/>`+
+    (sub?`<text x="${cx}" y="${cy-R+14}" text-anchor="middle" fill="#4a6b7a" font-size="11.5" font-family="Roboto Mono,monospace">${sub}</text>`:'');
+  return S;
+}
+/* colors matching the celestial-sphere lesson */
+const C={hor:'#0f9d78',eq:'#1f74d8',eq2:'#8a4bd8',mer:'#c98800',ecl:'#e8541b',card:'#d63a97',col:'#4b5563'};
+/* fixed world points (CEL frame) */
+const ZEN=[0,1,0],NAD=[0,-1,0],EAST=[1,0,0],WEST=[-1,0,0],NORTH=[0,0,-1],SOUTH=[0,0,1];
+function npole(phi){return norm([0,S_(phi*D2R),-C_(phi*D2R)]);}
+function spole(phi){const p=npole(phi);return[-p[0],-p[1],-p[2]];}
+function gammaVec(phi,S){return eqVecCel(S,0,phi);}       // γ has hour angle = S
+function upperEqPoint(phi){let v=norm(cross(npole(phi),EAST));if(v[1]<0)v=[-v[0],-v[1],-v[2]];return v;} // Q
+function eclPole(phi,S,eps){eps=(eps===undefined?EPS:eps);return rotateAround(npole(phi),gammaVec(phi,S),eps*D2R);}
+/* read all coordinate systems from a CEL-frame star vector */
+function starCoords(star,phi,S,eps){star=norm(star);eps=(eps===undefined?EPS:eps);
+  const NP=npole(phi);
+  const h=R2D*ASIN(clamp(dotv(star,ZEN),-1,1));
+  const A=w360(R2D*Math.atan2(-star[0],star[2]));
+  const dec=R2D*ASIN(clamp(dotv(star,NP),-1,1));
+  const Q=upperEqPoint(phi);const se=projOnPlane(star,NP);
+  const t=wrap2pi(-signedAngle(Q,se,NP))/TAU*24;
+  const g=projOnPlane(gammaVec(phi,S),NP);
+  const alpha=wrap2pi(signedAngle(g,se,NP))/TAU*24;
+  const ep=eclPole(phi,S,eps);const beta=R2D*ASIN(clamp(dotv(star,ep),-1,1));
+  const sc=projOnPlane(star,ep);const gl=projOnPlane(gammaVec(phi,S),ep);
+  const lam=w360(R2D*wrap2pi(signedAngle(gl,sc,ep)));
+  return {A,h,z:90-h,dec,t,alpha,beta,lam};
+}
+
+/* =============== OVERVIEW graph =============== */
+function drawGraph(){
+  const W=500,H=500;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  const N={
+    time:{x:250,y:56,t:['Время'],co:[['T = UT','var(--meas)'],['S₀','var(--cat)']],c:'#c98800',fill:'#fbf1d8'},
+    geo:{x:250,y:170,t:['Географические'],co:[['φ','var(--det)'],['λ','var(--det)']],c:'#0a7d63',fill:'#e3f4ed'},
+    eq2:{x:120,y:290,t:['II экваториальная'],co:[['α','var(--cat)'],['δ','var(--cat)']],c:'#8a4bd8',fill:'#f2ecfb'},
+    ecl:{x:380,y:290,t:['Эклиптическая'],co:[['λ','var(--cat)'],['β','var(--cat)']],c:'#e8541b',fill:'#fdece2'},
+    eq1:{x:120,y:410,t:['I экваториальная'],co:[['t','#7d8f8a'],['δ','var(--cat)']],c:'#1f74d8',fill:'#e6effc'},
+    hor:{x:380,y:410,t:['Горизонтная'],co:[['A','var(--meas)'],['h / z','var(--meas)']],c:'#0f9d78',fill:'#e6f6f0'},
+  };
+  function node(n){const w=168,h=52;
+    let inner=`<rect x="${n.x-w/2}" y="${n.y-h/2}" width="${w}" height="${h}" rx="12" fill="${n.fill}" stroke="${n.c}" stroke-width="2"/>`+
+      `<text x="${n.x}" y="${n.y-6}" text-anchor="middle" fill="${n.c}" font-size="14.5" font-family="Manrope" font-weight="800">${n.t[0]}</text>`+
+      `<text x="${n.x}" y="${n.y+14}" text-anchor="middle" font-size="13" font-family="Roboto Mono" font-weight="700">`+
+      n.co.map((c,i)=>`<tspan fill="${c[1]}">${c[0]}${i<n.co.length-1?' , ':''}</tspan>`).join('')+`</text>`;
+    return inner;}
+  function edge(a,b,label,col,dashed){
+    // route around: use straight line between nearest edges
+    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;const w=label.length*8+16;
+    return `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${col||'#b7cbc4'}" stroke-width="2.4"${dashed?' stroke-dasharray="5 4"':''}/>`+
+      `<rect x="${mx-w/2}" y="${my-13}" width="${w}" height="24" rx="10" fill="#fff" stroke="${col||'#b7cbc4'}" stroke-width="1.6"/>`+
+      `<text x="${mx}" y="${my+4}" text-anchor="middle" fill="${col||'#516b64'}" font-size="13" font-family="Roboto Mono" font-weight="700">${label}</text>`;}
+  s+=edge(N.time,N.geo,'S₀, UT, λ','#c98800');
+  s+=edge(N.geo,N.eq2,'S','#7d8f8a');
+  s+=edge(N.eq2,N.ecl,'ε','#e8541b');
+  s+=edge(N.eq2,N.eq1,'t = S − α','#7d8f8a');
+  s+=edge(N.eq1,N.hor,'φ','#0a7d63');
+  Object.values(N).forEach(n=>s+=node(n));
+  // role legend
+  s+=`<g font-family="Roboto Mono" font-size="11.5">
+     <rect x="332" y="42" width="156" height="86" rx="10" fill="#fff" stroke="#d5e3de"/>
+     <circle cx="348" cy="62" r="5" fill="var(--cat)"/><text x="360" y="66" fill="#4a5a56">каталожные</text>
+     <circle cx="348" cy="84" r="5" fill="var(--meas)"/><text x="360" y="88" fill="#4a5a56">измеряемые</text>
+     <circle cx="348" cy="106" r="5" fill="var(--det)"/><text x="360" y="110" fill="#4a5a56">определяемые</text></g>`;
+  el('svg-graph').innerHTML=svg(W,H,s);
+}
+
+/* =============== LINKS: rotatable spheres + projections =============== */
+let linkMode='phi';
+const LS={
+  phi:{phi:45, yaw:BASE_YAW, star:eqVecCel(2.5,35,45)},
+  S:{phi:45, S:6, yaw:BASE_YAW, star:eqVecCel(w24(6-3.5),35,45)},
+  eps:{phi:45, S:6, eps:EPS, yaw:BASE_YAW, star:eqVecCel(w24(6-3),20,45)},
+};
+const linkArticles={
+  phi:()=>`<h2>φ · горизонтная ↔ I экваториальная</h2>
+    <p class="lead">Обе системы построены на одной сфере, но на разных основных кругах: горизонтная — на математическом горизонте, экваториальная — на небесном экваторе. Их взаимный наклон равен широте: <b>высота полюса мира h<sub>P</sub> = φ</b>.</p>
+    <div class="formula">sin h = sin φ · sin δ + cos φ · cos δ · cos t<br>
+      sin δ = sin φ · sin h − cos φ · cos h · cos A</div>
+    <p class="lead">Двигайте ползунок широты (в обе стороны — северное и южное полушарие) и перетаскивайте звезду. На проекциях внизу видно, как одни и те же положения читаются как (A, h) на горизонте и как (t, δ) на экваторе, а связывает их угол φ.</p>`,
+  S:()=>`<h2>S · I ↔ II экваториальная</h2>
+    <p class="lead">У обеих экваториальных систем общий основной круг — небесный экватор — и общая координата δ. Различаются началом отсчёта долготной координаты: часовой угол t идёт от меридиана, прямое восхождение α — от точки γ. Их связывает звёздное время:</p>
+    <div class="formula">S = t + α &nbsp;⟹&nbsp; t = S − α</div>
+    <p class="lead">Ползунок звёздного времени S поворачивает всю картину относительно точки γ: при S = α светило кульминирует (t = 0). Ползунок широты меняет наклон экватора к горизонту.</p>`,
+  eps:()=>`<h2>ε · экваториальная ↔ эклиптическая</h2>
+    <p class="lead">Эклиптика наклонена к небесному экватору на угол ε ≈ 23°26′; пересекаются они в точках равноденствий γ и ♎. Поворот на ε вокруг линии равноденствий переводит (α, δ) в (λ, β).</p>
+    <div class="formula">sin δ = sin β · cos ε + cos β · sin ε · sin λ<br>
+      sin β = sin δ · cos ε − cos δ · sin ε · sin α</div>
+    <p class="lead">Перетаскивайте светило: на проекциях видно, как его долгота λ отсчитывается по эклиптике от γ, а прямое восхождение α — по экватору от γ; разницу создаёт наклон ε.</p>`,
+};
+function buildLinkSliders(){
+  const st=LS[linkMode];let h='';
+  h+=`<div class="ctrl"><label>Широта φ: <span class="val" id="ls-phi-val">${st.phi}°</span></label>
+      <input type="range" min="-90" max="90" value="${st.phi}" step="1" class="slider" id="ls-phi"></div>`;
+  if(linkMode==='S'||linkMode==='eps'){
+    h+=`<div class="ctrl"><label>Звёздное время S: <span class="val" id="ls-s-val">${st.S.toFixed(1)}ʰ</span></label>
+      <input type="range" min="0" max="24" value="${st.S}" step="0.1" class="slider" id="ls-s"></div>`;
+  }
+  if(linkMode==='eps'){
+    h+=`<div class="ctrl"><label>Наклон эклиптики ε: <span class="val" id="ls-eps-val">${dm(st.eps)}</span></label>
+      <input type="range" min="0" max="45" value="${st.eps}" step="0.1" class="slider" id="ls-eps"></div>`;
+    h+=`<div class="hint" style="margin-top:8px;text-align:left;line-height:1.5">
+      <b>Постоянна ли ε?</b> Строго — нет. Наклон оси Земли <b>медленно уменьшается</b> примерно на 47″ за столетие
+      (вековой ход из-за возмущений от планет), а сверху накладывается периодическое <b>нутационное</b> колебание амплитудой ±9″.
+      Сейчас ε ≈ 23°26′ ≈ 23,44°. На интервалах в несколько лет ε считают практически постоянной.
+      Подвигайте ползунок — видно, как при ε = 0 эклиптика совпала бы с экватором (λ = α, β = δ).</div>`;
+  }
+  el('link-sliders').innerHTML=h;
+  el('ls-phi').addEventListener('input',()=>{st.phi=+el('ls-phi').value;el('ls-phi-val').textContent=st.phi+'°';drawLinks();});
+  if(el('ls-s'))el('ls-s').addEventListener('input',()=>{st.S=+el('ls-s').value;el('ls-s-val').textContent=st.S.toFixed(1)+'ʰ';drawLinks();});
+  if(el('ls-eps'))el('ls-eps').addEventListener('input',()=>{st.eps=+el('ls-eps').value;el('ls-eps-val').textContent=dm(st.eps);drawLinks();});
+}
+function drawSphere(){
+  const st=LS[linkMode];
+  const W=400,H=360,cx=200,cy=185,R=150;
+  const sc=makeScene(cx,cy,R,st.yaw);
+  const phi=st.phi, NP=npole(phi), Q=upperEqPoint(phi);
+  const star=st.star;
+  const EPSv=(st.eps===undefined?EPS:st.eps);
+  const cc=starCoords(star,phi,st.S===undefined?0:st.S,EPSv);
+  const [HU,HV]=planeVectors(ZEN), [EU,EV]=planeVectors(NP), [MU,MV]=planeVectors(EAST);
+  let s=sc.bg(linkTitles[linkMode]);
+  // base circles
+  s+=sc.circle(HU,HV,C.hor,2.2);                      // horizon
+  s+=sc.circle(EU,EV,C.eq,2.2);                       // equator
+  s+=sc.circle(MU,MV,C.mer,1.7);               // meridian: visible side solid, far side auto-dashed
+  s+=sc.line(ZEN,NAD,C.mer,1,'3 3');
+  s+=sc.line(NP,spole(phi),C.eq,1,'3 3');
+  // ecliptic on the eps tab
+  if(linkMode==='eps'){const ep=eclPole(phi,st.S,EPSv);const [XU,XV]=planeVectors(ep);
+    s+=sc.circle(XU,XV,C.ecl,2.2);s+=sc.dot(ep,C.ecl,3.5)+sc.label(ep,'Π',C.ecl,6,-4,12);}
+  // key points + NESW
+  s+=sc.dot([0,0,0],'#1a2233',3)+sc.label([0,0,0],'O','#1a2233',7,4,12);
+  s+=sc.dot(ZEN,C.mer)+sc.label(ZEN,'Z','#b07d00',6,-6);
+  s+=sc.dot(NP,C.eq)+sc.label(NP,'P',C.eq,-16,-4);
+  s+=sc.dot(NORTH,C.card,3.2)+sc.label(NORTH,'N',C.card,-15,2,11);
+  s+=sc.dot(EAST,C.card,3.2)+sc.label(EAST,'E',C.card,6,2,11);
+  s+=sc.dot(SOUTH,C.card,3.2)+sc.label(SOUTH,'S',C.card,7,2,11);
+  s+=sc.dot(WEST,C.card,3.2)+sc.label(WEST,'W',C.card,6,2,11);
+  // gamma point (S/eps tabs)
+  if(linkMode==='S'||linkMode==='eps'){const g=gammaVec(phi,st.S);s+=sc.dot(g,C.ecl,4)+sc.label(g,'♈',C.ecl,6,-4,13);}
+  // coordinate constructions on the sphere (arcs like the summary tab)
+  if(linkMode==='phi'){
+    // horizontal: A along horizon from S to foot (rotate around zenith by −A), h up to star
+    const foot=norm([star[0],0,star[2]]);
+    s+=sc.arcRot(SOUTH,ZEN,-cc.A*D2R,C.hor,3.2)+sc.arc(foot,star,C.hor,3.2);
+    s+=sc.dot(foot,C.hor,3)+sc.labelRot(SOUTH,ZEN,-cc.A*D2R,'A',C.hor)+sc.labelMid(foot,star,'h',C.hor);
+    // equatorial I: t from Q (rotate around pole by −t), dec up
+    const onEq=projOnPlane(star,NP);
+    s+=sc.arcRot(Q,NP,-cc.t*15*D2R,C.eq,3.2)+sc.arc(onEq,star,C.eq,3.2);
+    s+=sc.dot(Q,C.eq,3)+sc.label(Q,'Q',C.eq,6,-4,11);
+    s+=sc.dot(onEq,C.eq,3)+sc.labelRot(Q,NP,-cc.t*15*D2R,'t',C.eq)+sc.labelMid(onEq,star,'δ',C.eq);
+  } else if(linkMode==='S'){
+    const g=gammaVec(phi,st.S);const onEq=projOnPlane(star,NP);const ge=projOnPlane(g,NP);
+    // t from Q (−t), alpha from gamma (+α), both along equator; dec up
+    s+=sc.arcRot(Q,NP,-cc.t*15*D2R,C.eq,3.2);s+=sc.labelRot(Q,NP,-cc.t*15*D2R,'t',C.eq);
+    s+=sc.arcRot(ge,NP,cc.alpha*15*D2R,C.eq2,3.2);s+=sc.labelRot(ge,NP,cc.alpha*15*D2R,'α',C.eq2);
+    s+=sc.arc(onEq,star,C.eq,3.2)+sc.labelMid(onEq,star,'δ',C.eq);
+    s+=sc.dot(Q,C.eq,3)+sc.label(Q,'Q',C.eq,6,-4,11)+sc.dot(onEq,C.eq,3);
+  } else {
+    // eps: alpha along equator from gamma (+α); lambda along ecliptic from gamma (+λ); beta up to star
+    const g=gammaVec(phi,st.S);const ep=eclPole(phi,st.S,EPSv);
+    const onEq=projOnPlane(star,NP), ge=projOnPlane(g,NP);
+    const onEcl=projOnPlane(star,ep), gc=projOnPlane(g,ep);
+    s+=sc.arcRot(ge,NP,cc.alpha*15*D2R,C.eq2,3.2)+sc.labelRot(ge,NP,cc.alpha*15*D2R,'α',C.eq2)+sc.arc(onEq,star,C.eq2,3.2)+sc.labelMid(onEq,star,'δ',C.eq2);
+    s+=sc.arcRot(gc,ep,cc.lam*D2R,C.ecl,3.2)+sc.labelRot(gc,ep,cc.lam*D2R,'λ',C.ecl)+sc.arc(onEcl,star,C.ecl,3.2)+sc.labelMid(onEcl,star,'β',C.ecl);
+    s+=sc.dot(onEq,C.eq2,3)+sc.dot(onEcl,C.ecl,3);
+  }
+  // the star (draggable), highlighted
+  const sp=sc.P(star);
+  s+=`<circle cx="${sp[0].toFixed(1)}" cy="${sp[1].toFixed(1)}" r="8.5" fill="none" stroke="#ff7136" stroke-width="2"/>`;
+  s+=sc.star(star);
+  el('svg-sphere').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${s}</svg>`;
+  drawProjections(cc);
+}
+const linkTitles={phi:'горизонтная (A, h) и I экваториальная (t, δ)',S:'I (t, δ) и II (α, δ) экваториальные',eps:'экваториальная (α, δ) и эклиптическая (λ, β)'};
+/* ---- three flat projection panels (with φ and coordinates) ---- */
+function drawProjections(cc){
+  const st=LS[linkMode];const phi=st.phi;
+  el('svg-pm').innerHTML=projMeridian(cc,phi);
+  el('svg-ph').innerHTML = linkMode==='eps' ? projEcliptic(cc,st) : projHorizon(cc);
+  el('svg-pe').innerHTML=projEquator(cc,st);
+}
+/* --- ecliptic projection (eps tab): face-on to the ecliptic plane, viewed from
+   its pole Π. λ is a TRUE arc from γ (dashed baseline); star at radius cos β. --- */
+function projEcliptic(cc,st){
+  const W=155,H=185,cx=77,cy=92,R=58;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="10"/>`;
+  s+=`<text x="${cx}" y="14" text-anchor="middle" fill="#516b64" font-size="10.5" font-family="Roboto Mono" font-weight="700">на эклиптику</text>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${C.ecl}" stroke-width="1.6"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="2.6" fill="${C.ecl}"/><text x="${cx+4}" y="${cy-3}" fill="${C.ecl}" font-size="8.5" font-family="Roboto Mono">Π</text>`;
+  const aGam=-Math.PI/2;              // put γ at top
+  const G=[cx+R*Math.cos(aGam),cy+R*Math.sin(aGam)];
+  s+=`<line x1="${cx}" y1="${cy}" x2="${G[0]}" y2="${G[1]}" stroke="${C.ecl}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${G[0]}" y="${G[1]-3}" text-anchor="middle" fill="${C.ecl}" font-size="10" font-family="Georgia">♈</text>`;
+  const rr=Math.max(C_(cc.beta*D2R),0.03)*R;
+  const aL=aGam+cc.lam*D2R;const P=[cx+rr*Math.cos(aL),cy+rr*Math.sin(aL)];
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(aL)}" y2="${cy+R*Math.sin(aL)}" stroke="#1a2233" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>`;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${P[0]}" y2="${P[1]}" stroke="#1a2233" stroke-width="1.3"/>`;
+  s+=`<circle cx="${P[0].toFixed(1)}" cy="${P[1].toFixed(1)}" r="4.5" fill="#1a2233" stroke="#fff"/>`;
+  s+=`<path d="${arcPathDir(cx,cy,20,aGam,cc.lam*D2R)}" fill="none" stroke="${C.ecl}" stroke-width="1.8"/>`;
+  const am=aGam+cc.lam*D2R/2;s+=`<text x="${cx+27*Math.cos(am)}" y="${cy+27*Math.sin(am)+4}" text-anchor="middle" fill="${C.ecl}" font-size="12" font-family="Georgia" font-weight="700">λ</text>`;
+  s+=`<text x="${cx}" y="${H-19}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">λ=${d360(cc.lam)}</text>`;
+  s+=`<text x="${cx}" y="${H-6}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">β=${dm(cc.beta)} · r∝cos β</text>`;
+  return svg(W,H,s);
+}
+/* --- meridian projection: face-on to the celestial meridian.
+   Shows φ (pole altitude), h (from horizon) and δ (from equator) as TRUE arcs;
+   the horizon and equator baselines from which they are read are DASHED. --- */
+function projMeridian(cc,phi){
+  const W=155,H=185,cx=77,cy=92,R=60;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="10"/>`;
+  s+=`<text x="${cx}" y="14" text-anchor="middle" fill="#516b64" font-size="10.5" font-family="Roboto Mono" font-weight="700">на меридиан</text>`;
+  // the meridian itself is a SOLID circle
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${C.mer}" stroke-width="1.8"/>`;
+  const f=phi*D2R, A=cc.A*D2R, h=cc.h*D2R, dec=cc.dec*D2R;
+  // 3D frame inside the meridian plane: x=South(right), y=Up(zenith), z=East(dropped)
+  const Sc=[1,0,0],Zc=[0,1,0];
+  const Pv=[-C_(f),S_(f),0];              // north pole, altitude φ over N horizon
+  const Qv=[S_(f),C_(f),0];              // equator crossing, altitude 90−φ over S
+  const star3=[C_(h)*C_(A), S_(h), -C_(h)*S_(A)];   // true star direction
+  const map=p=>[cx+R*p[0], cy-R*p[1]];   // orthographic drop of East component
+  // horizon N–S diameter (SOLID, green)
+  s+=`<line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="${C.hor}" stroke-width="1.8"/>`;
+  s+=`<text x="${cx-R+1}" y="${cy+12}" fill="#0a5a4a" font-size="10" font-family="Roboto Mono">N</text>`;
+  s+=`<text x="${cx+R-8}" y="${cy+12}" fill="#0a5a4a" font-size="10" font-family="Roboto Mono">S</text>`;
+  // zenith / nadir
+  s+=`<circle cx="${cx}" cy="${cy-R}" r="2.4" fill="${C.mer}"/><text x="${cx+3}" y="${cy-R+2}" fill="#b07d00" font-size="9" font-family="Roboto Mono">Z</text>`;
+  s+=`<circle cx="${cx}" cy="${cy+R}" r="2" fill="${C.mer}"/><text x="${cx+3}" y="${cy+R-2}" fill="#b07d00" font-size="8" font-family="Roboto Mono">Z′</text>`;
+  // equator diameter QQ′ (SOLID, blue)
+  const Q=map(Qv),Qo=map([-Qv[0],-Qv[1],0]);
+  s+=`<line x1="${Q[0].toFixed(1)}" y1="${Q[1].toFixed(1)}" x2="${Qo[0].toFixed(1)}" y2="${Qo[1].toFixed(1)}" stroke="${C.eq}" stroke-width="1.6"/>`;
+  s+=`<text x="${Q[0]+3}" y="${Q[1]}" fill="${C.eq}" font-size="8.5" font-family="Roboto Mono">Q</text>`;
+  // polar axis P–P′ (SOLID, thin blue), P over the north horizon
+  const P=map(Pv),Po=map([-Pv[0],-Pv[1],0]);
+  s+=`<line x1="${P[0].toFixed(1)}" y1="${P[1].toFixed(1)}" x2="${Po[0].toFixed(1)}" y2="${Po[1].toFixed(1)}" stroke="${C.eq}" stroke-width="1.2"/>`;
+  s+=`<circle cx="${P[0].toFixed(1)}" cy="${P[1].toFixed(1)}" r="2.6" fill="${C.eq}"/><text x="${P[0]-2}" y="${P[1]-4}" fill="${C.eq}" font-size="9" font-family="Roboto Mono">P</text>`;
+  s+=`<circle cx="${Po[0].toFixed(1)}" cy="${Po[1].toFixed(1)}" r="2.2" fill="${C.eq}"/><text x="${Po[0]+3}" y="${Po[1]+9}" fill="${C.eq}" font-size="8" font-family="Roboto Mono">P′</text>`;
+  // centre O
+  s+=`<circle cx="${cx}" cy="${cy}" r="2.4" fill="#1a2233"/><text x="${cx-4}" y="${cy+13}" fill="#1a2233" font-size="9" font-family="Roboto Mono">O</text>`;
+  // φ = altitude of the north pole = angle NOP (vertex O, from N ray UP to pole ray P)
+  s+=`<path d="${arcPath(cx,cy,26,Math.PI,Math.PI+f)}" fill="none" stroke="${C.card}" stroke-width="2"/>`;
+  const pmL=[cx+37*Math.cos(Math.PI+f/2), cy+37*Math.sin(Math.PI+f/2)];
+  s+=`<text x="${pmL[0]-2}" y="${pmL[1]+2}" fill="${C.card}" font-size="13" font-family="Georgia" font-weight="700">φ</text>`;
+  // dotted projection of the great circle with normal n (color)
+  function circleProj(n,color){n=norm(n);const a=Math.abs(n[1])<0.9?[0,1,0]:[1,0,0];
+    const u=norm(cross(n,a)),v=norm(cross(n,u));let d='';
+    for(let i=0;i<=72;i++){const th=i/72*TAU;const p=[u[0]*C_(th)+v[0]*S_(th),u[1]*C_(th)+v[1]*S_(th),u[2]*C_(th)+v[2]*S_(th)];
+      const q=map(p);d+=(i===0?'M':'L')+q[0].toFixed(1)+' '+q[1].toFixed(1)+' ';}
+    return `<path d="${d}Z" fill="none" stroke="${color}" stroke-width="1.2" stroke-dasharray="1 3"/>`;}
+  // shorter great-circle arc between two unit vectors, mapped orthographically
+  function arc2(a,b,color,w){a=norm(a);b=norm(b);const ang=Math.acos(clamp(dotv(a,b),-1,1));const n=Math.max(2,Math.round(ang/Math.PI*40));let d='';
+    for(let i=0;i<=n;i++){const v=slerp(a,b,i/n);const q=map(v);d+=(i===0?'M':'L')+q[0].toFixed(1)+' '+q[1].toFixed(1)+' ';}
+    return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${w}"/>`;}
+  // vertical circle through the star (Z, star, nadir) — dotted green
+  s+=circleProj(cross(Zc,star3),C.hor);
+  // circle of declination (hour circle) through the star (P, star, P′) — dotted blue
+  s+=circleProj(cross(Pv,star3),C.eq);
+  // corresponding coordinates as TRUE arcs to the star:
+  const footH=norm([star3[0],0,star3[2]]);         // horizon foot (on vertical circle)
+  const onEqM=norm([star3[0]-dotv(star3,Pv)*Pv[0], star3[1]-dotv(star3,Pv)*Pv[1], star3[2]-dotv(star3,Pv)*Pv[2]]); // equator foot (on hour circle)
+  s+=arc2(onEqM,star3,C.eq,2.2);                    // δ from equator to star
+  s+=arc2(footH,star3,C.hor,2.2);                   // h from horizon to star
+  const mD=map(slerp(onEqM,star3,0.5)),mH=map(slerp(footH,star3,0.5));
+  s+=`<text x="${mD[0]+4}" y="${mD[1]}" fill="${C.eq}" font-size="11" font-family="Georgia" font-weight="700">δ</text>`;
+  s+=`<text x="${mH[0]-11}" y="${mH[1]+2}" fill="${C.hor}" font-size="11" font-family="Georgia" font-weight="700">h</text>`;
+  // the star at its true (interior) projected position
+  const st=map(star3);
+  s+=`<circle cx="${st[0].toFixed(1)}" cy="${st[1].toFixed(1)}" r="4.5" fill="#1a2233" stroke="#fff"/>`;
+  s+=`<text x="${cx}" y="${H-19}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">φ=${phi}°  h=${dm(cc.h)}</text>`;
+  s+=`<text x="${cx}" y="${H-6}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">δ=${dm(cc.dec)}</text>`;
+  return svg(W,H,s);
+}
+/* --- horizon projection: face-on (top-down) to the horizon circle.
+   A is a TRUE arc from the S baseline (dashed); star at radius cos h. --- */
+function projHorizon(cc){
+  const W=155,H=185,cx=77,cy=92,R=58;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="10"/>`;
+  s+=`<text x="${cx}" y="14" text-anchor="middle" fill="#516b64" font-size="10.5" font-family="Roboto Mono" font-weight="700">на горизонт</text>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${C.hor}" stroke-width="1.6"/>`;
+  function azXY(a,r){const ang=Math.PI/2-a*D2R;return [cx+r*Math.cos(ang),cy+r*Math.sin(ang)];}
+  [['S',0],['W',90],['N',180],['E',270]].forEach(c=>{const p=azXY(c[1],R+9);s+=`<text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" fill="#0a5a4a" font-size="10" font-family="Roboto Mono">${c[0]}</text>`;});
+  s+=`<circle cx="${cx}" cy="${cy}" r="2" fill="${C.mer}"/>`;
+  // dashed baseline to South (origin of azimuth)
+  const Sp=azXY(0,R);
+  s+=`<line x1="${cx}" y1="${cy}" x2="${Sp[0]}" y2="${Sp[1]}" stroke="${C.mer}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+  if(cc.h>-0.5){const rr=Math.max(C_(cc.h*D2R),0.03)*R;const p=azXY(cc.A,rr);
+    // A arc from S baseline along the horizon (true direction, may exceed 180°)
+    s+=`<path d="${arcPathDir(cx,cy,17,Math.PI/2,-cc.A*D2R)}" fill="none" stroke="${C.hor}" stroke-width="1.8"/>`;
+    const am=Math.PI/2-cc.A*D2R/2;s+=`<text x="${cx+25*Math.cos(am)}" y="${cy+25*Math.sin(am)+4}" text-anchor="middle" fill="${C.hor}" font-size="12" font-family="Georgia" font-weight="700">A</text>`;
+    s+=`<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="#1a2233" stroke-width="1.2"/>`;
+    s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4.5" fill="#1a2233" stroke="#fff"/>`;
+  }else{s+=`<text x="${cx}" y="${cy+3}" text-anchor="middle" fill="#9fb8c7" font-size="9" font-family="Roboto Mono">под гор.</text>`;}
+  s+=`<text x="${cx}" y="${H-19}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">A=${d360(cc.A)}</text>`;
+  s+=`<text x="${cx}" y="${H-6}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">h=${dm(cc.h)} · r∝cos h</text>`;
+  return svg(W,H,s);
+}
+/* --- equator projection: face-on to the celestial equator (viewed from N pole).
+   t (from meridian Q) and α (from γ) are TRUE arcs; both baselines DASHED;
+   star at radius cos δ. --- */
+function projEquator(cc,st,showAlpha){
+  showAlpha=(showAlpha===undefined? (linkMode!=='phi') : showAlpha);
+  const W=155,H=185,cx=77,cy=92,R=58;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="10"/>`;
+  s+=`<text x="${cx}" y="14" text-anchor="middle" fill="#516b64" font-size="10.5" font-family="Roboto Mono" font-weight="700">на экватор</text>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${C.eq}" stroke-width="1.6"/>`;
+  const aMer=-Math.PI/2;
+  s+=`<circle cx="${cx}" cy="${cy}" r="2.6" fill="${C.eq}"/><text x="${cx+4}" y="${cy-3}" fill="${C.eq}" font-size="8.5" font-family="Roboto Mono">P</text>`;
+  function ang(hh){return aMer + hh*15*D2R;}
+  // meridian baseline to Q (DASHED)
+  const Q=[cx+R*Math.cos(aMer),cy+R*Math.sin(aMer)];
+  s+=`<line x1="${cx}" y1="${cy}" x2="${Q[0]}" y2="${Q[1]}" stroke="${C.mer}" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${Q[0]}" y="${Q[1]-3}" text-anchor="middle" fill="${C.mer}" font-size="8.5" font-family="Roboto Mono">Q</text>`;
+  // star at hour angle t, radius cos δ
+  const rr=Math.max(C_(cc.dec*D2R),0.03)*R;
+  const aS=ang(cc.t);const P=[cx+rr*Math.cos(aS),cy+rr*Math.sin(aS)];
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(aS)}" y2="${cy+R*Math.sin(aS)}" stroke="#1a2233" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>`;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${P[0]}" y2="${P[1]}" stroke="#1a2233" stroke-width="1.3"/>`;
+  s+=`<circle cx="${P[0].toFixed(1)}" cy="${P[1].toFixed(1)}" r="4.5" fill="#1a2233" stroke="#fff"/>`;
+  // t arc from meridian (true direction, may exceed 180°)
+  s+=`<path d="${arcPathDir(cx,cy,18,aMer,cc.t*15*D2R)}" fill="none" stroke="${C.eq}" stroke-width="1.7"/>`;
+  let am=aMer+cc.t*15*D2R/2;s+=`<text x="${cx+24*Math.cos(am)}" y="${cy+24*Math.sin(am)+4}" text-anchor="middle" fill="${C.eq}" font-size="12" font-family="Georgia" font-weight="700">t</text>`;
+  if(showAlpha){
+    // γ baseline (DASHED) and α arc from γ (true direction −α reaches the star)
+    const aGam=ang(st.S);const G=[cx+R*Math.cos(aGam),cy+R*Math.sin(aGam)];
+    s+=`<line x1="${cx}" y1="${cy}" x2="${G[0]}" y2="${G[1]}" stroke="${C.ecl}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+    s+=`<circle cx="${G[0].toFixed(1)}" cy="${G[1].toFixed(1)}" r="3.5" fill="${C.ecl}"/><text x="${G[0]}" y="${G[1]-4}" text-anchor="middle" fill="${C.ecl}" font-size="10" font-family="Georgia">♈</text>`;
+    s+=`<path d="${arcPathDir(cx,cy,32,aGam,-cc.alpha*15*D2R)}" fill="none" stroke="${C.eq2}" stroke-width="1.7"/>`;
+    am=aGam-cc.alpha*15*D2R/2;s+=`<text x="${cx+38*Math.cos(am)}" y="${cy+38*Math.sin(am)+4}" text-anchor="middle" fill="${C.eq2}" font-size="11" font-family="Georgia" font-weight="700">α</text>`;
+  }
+  s+=`<text x="${cx}" y="${H-19}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">t=${hm(cc.t)}${showAlpha?'  α='+hm(cc.alpha):''}</text>`;
+  s+=`<text x="${cx}" y="${H-6}" text-anchor="middle" fill="#3a534e" font-size="9" font-family="Roboto Mono">δ=${dm(cc.dec)} · r∝cos δ</text>`;
+  return svg(W,H,s);
+}
+function arcPath(cx,cy,r,a0,a1){
+  const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+  let da=a1-a0;while(da<=-Math.PI)da+=TAU;while(da>Math.PI)da-=TAU;
+  const large=Math.abs(da)>Math.PI?1:0, sweep=da>0?1:0;
+  return `M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 ${large} ${sweep} ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+}
+/* directional arc: from angle a0, sweeping by SIGNED delta (radians), any magnitude
+   up to 2π. Drawn as a polyline so it is always geometrically correct (a coordinate
+   like A=270° traces the true 270° arc, not the 90° shortcut). */
+function arcPathDir(cx,cy,r,a0,delta){
+  const n=Math.max(2,Math.round(Math.abs(delta)/Math.PI*90));let d='';
+  for(let i=0;i<=n;i++){const a=a0+delta*i/n;d+=(i===0?'M ':'L ')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)+' ';}
+  return d;
+}
+function drawLinks(){el('link-article').innerHTML=linkArticles[linkMode]();drawSphere();}
+function buildLinkSubtabs(){
+  el('link-subtabs').querySelectorAll('.subtab').forEach(b=>b.onclick=()=>{
+    linkMode=b.dataset.l;
+    el('link-subtabs').querySelectorAll('.subtab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');buildLinkSliders();drawLinks();});
+}
+// sphere rotation arrows + star drag (CEL frame; yaw only, pitch fixed like the sphere lesson)
+function bindSphere(){
+  el('ar-left').onclick=()=>{LS[linkMode].yaw-=15*D2R;drawLinks();};
+  el('ar-right').onclick=()=>{LS[linkMode].yaw+=15*D2R;drawLinks();};
+  el('ar-reset').onclick=()=>{LS[linkMode].yaw=BASE_YAW;drawLinks();};
+  const sv=el('svg-sphere');let dragging=false;
+  function place(ev){const r=sv.getBoundingClientRect();
+    const sx=(ev.clientX-r.left)/r.width*400, sy=(ev.clientY-r.top)/r.height*360;
+    LS[linkMode].star=screenToDir(sx,sy,200,185,150,LS[linkMode].yaw);drawLinks();}
+  sv.addEventListener('pointerdown',e=>{dragging=true;sv.setPointerCapture(e.pointerId);place(e);});
+  sv.addEventListener('pointermove',e=>{if(dragging)place(e);});
+  sv.addEventListener('pointerup',()=>dragging=false);
+  sv.addEventListener('pointercancel',()=>dragging=false);
+}
+
+/* =============== TIME =============== */
+function drawTimeView(){
+  const dateStr=el('t-date').value;
+  const UT=+el('t-ut').value, lon=+el('t-lon').value, alpha=+el('t-alpha').value;
+  el('t-ut-val').textContent=hm(UT);
+  el('t-lon-val').textContent=(lon>=0?'+':'−')+Math.abs(lon).toFixed(1)+'°';
+  el('t-alpha-val').textContent=alpha.toFixed(1)+'ʰ';
+  const [Y,Mo,Da]=dateStr.split('-').map(Number);
+  const S0=gmst(Y,Mo,Da,0);
+  const k=1.00273790935;
+  const S0tom=gmst(Y,Mo,Da+1,0);           // tabulated S₀ for the next date (0ʰ UT)
+  const G=w24(S0+UT*k);
+  const LST=w24(G+lon/15);
+  const t=w24(LST-alpha);
+  el('o-s0').textContent=hm(S0);
+  el('o-gmst').textContent=hm(G);
+  el('o-lst').textContent=hm(LST);
+  el('o-t').textContent=hm(t);
+  const CE='#c98800',CB='#1f74d8',CG='#0f9d78',CA='#8a4bd8',CR='#e8541b';
+  // =========================================================================
+  //  Part A — top-down "hour-angle" view (looking down the north pole).
+  //  Everything here is an ANGLE you can literally see: the sky turns clockwise,
+  //  hour angle is measured clockwise from a meridian. So t, S, α, λ are arcs,
+  //  and the identity  t = S − α  is just "the big arc = two smaller arcs".
+  // =========================================================================
+  const W=470,H=500,cx=W/2,cy=150,R=118;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  s+=`<text x="${cx}" y="20" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Вид с северного полюса мира · часовой угол = дуга по экватору</text>`;
+  // direction of measurement (sky turns clockwise here): position at hour angle H
+  const pos=(Hh,r)=>[cx+r*Math.sin(Hh*15*D2R), cy-r*Math.cos(Hh*15*D2R)];
+  const ray=(Hh,r,col,wd,dash)=>{const p=pos(Hh,r);return `<line x1="${cx}" y1="${cy}" x2="${p[0].toFixed(1)}" y2="${p[1].toFixed(1)}" stroke="${col}" stroke-width="${wd}" ${dash?`stroke-dasharray="${dash}"`:''}/>`;};
+  // equator disc
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${CB}" stroke-width="1.6"/>`;
+  for(let k=0;k<24;k++){const p1=pos(k,R-6),p2=pos(k,R);s+=`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#cfe0ec" stroke-width="${k%6===0?1.6:0.7}"/>`;}
+  // rotation arrow
+  s+=`<path d="${arcPath(cx,cy,R+10,-0.5,0.5)}" fill="none" stroke="#b7c7d0" stroke-width="1.2"/>`;
+  const arw=pos(2,R+10);s+=`<text x="${arw[0]+8}" y="${arw[1]}" fill="#9fb0aa" font-size="9" font-family="Roboto Mono">вращение неба ↻</text>`;
+  // arc helper: from hour H0, sweeping clockwise by (H1−H0) hours (true direction)
+  const arcH=(H0,H1,r)=>arcPathDir(cx,cy,r,(H0*15-90)*D2R,((H1-H0+24)%24)*15*D2R);
+  // --- rays ---
+  // observer's meridian (up, H=0) — solid dark
+  s+=ray(0,R,'#092c33',2.4);
+  s+=`<circle cx="${cx}" cy="${cy-R}" r="3.5" fill="#092c33"/><text x="${cx}" y="${cy-R-8}" text-anchor="middle" fill="#092c33" font-size="10.5" font-family="Roboto Mono" font-weight="700">меридиан наблюдателя</text>`;
+  // Greenwich meridian at hour angle λ from local — dashed orange-brown
+  s+=ray(lon/15,R,CE,1.8,'5 3');
+  const gm=pos(lon/15,R);s+=`<circle cx="${gm[0]}" cy="${gm[1]}" r="3" fill="${CE}"/><text x="${gm[0]+ (lon>=0?6:-40)}" y="${gm[1]-4}" fill="${CE}" font-size="9" font-family="Roboto Mono">Гринвич</text>`;
+  // gamma point at hour angle S — orange
+  s+=ray(LST,R,CR,2,'');
+  const gp=pos(LST,R);s+=`<circle cx="${gp[0]}" cy="${gp[1]}" r="4" fill="${CR}"/><text x="${gp[0]+6}" y="${gp[1]+4}" fill="${CR}" font-size="13" font-family="Georgia" font-weight="700">♈</text>`;
+  // star at hour angle t — dark
+  s+=ray(t,R,'#1a2233',2);
+  const sp=pos(t,R);s+=`<circle cx="${sp[0]}" cy="${sp[1]}" r="5" fill="#1a2233" stroke="#fff" stroke-width="1.4"/><text x="${sp[0]+7}" y="${sp[1]}" fill="#1a2233" font-size="12" font-family="Georgia" font-weight="700">★</text>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="4.5" fill="#092c33"/>`;
+  // --- arcs (nested radii) : t (local→star), α (star→γ), S (local→γ), λ (local→Greenwich) ---
+  // midpoint (in hours, clockwise) for each arc's label
+  const mid=(H0,H1)=>w24(H0+((H1-H0+24)%24)/2);
+  s+=`<path d="${arcH(0,t,42)}" fill="none" stroke="${CA}" stroke-width="2.4"/>`;
+  let m=pos(mid(0,t),52);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CA}" font-size="13" font-family="Georgia" font-weight="700">t</text>`;
+  s+=`<path d="${arcH(t,LST,42)}" fill="none" stroke="${CB}" stroke-width="2.4"/>`;
+  m=pos(mid(t,LST),52);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CB}" font-size="13" font-family="Georgia" font-weight="700">α</text>`;
+  s+=`<path d="${arcH(0,LST,R-6)}" fill="none" stroke="${CR}" stroke-width="2" stroke-dasharray="2 2"/>`;
+  m=pos(mid(0,LST),R-18);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CR}" font-size="13" font-family="Georgia" font-weight="700">S</text>`;
+  if(Math.abs(lon)>0.5){const lh=lon/15;s+=`<path d="${arcH(0,lh,24)}" fill="none" stroke="${CE}" stroke-width="2"/>`;
+    m=pos(mid(0,lh),32);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CE}" font-size="12" font-family="Georgia" font-weight="700">λ</text>`;}
+  // identity caption
+  s+=`<text x="${cx}" y="${cy+R+26}" text-anchor="middle" fill="#243b36" font-size="13" font-family="Roboto Mono" font-weight="700">большая дуга S  =  t  +  α   ⟹   t = S − α</text>`;
+  // =========================================================================
+  //  Part B — INTERPOLATION scale: the almanac tabulates S₀ only at 0ʰ UT of
+  //  each date. To get the sidereal time at our moment we interpolate between
+  //  today's S₀ and tomorrow's S₀ across the fraction UT/24 of the day.
+  // =========================================================================
+  const bx=46,bw=W-92,by=cy+R+52;
+  const frac=UT/24;
+  // sidereal grows a bit more than 24ʰ over a solar day: span = 24·k = 24ʰ03ᵐ57ˢ
+  const span=w24(S0tom-S0)||(24*(k-1));    // ≈ 3ᵐ56ˢ visible jump; use fractional part
+  const dayGain=24*(k-1);                    // 3ᵐ56ˢ extra per solar day
+  s+=`<text x="${cx}" y="${by-14}" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Интерполяция звёздного времени по каталогу</text>`;
+  s+=`<text x="${cx}" y="${by-1}" text-anchor="middle" fill="#8aa0a0" font-size="9.5" font-family="Roboto Mono">в ежегоднике S₀ дано на 0ʰ UT — промежуточное значение находим долей UT/24</text>`;
+  const ty=by+16;
+  // horizontal axis (one solar day)
+  s+=`<line x1="${bx}" y1="${ty}" x2="${bx+bw}" y2="${ty}" stroke="#c3d3ce" stroke-width="1.4"/>`;
+  // ticks 0..24 UT
+  for(let u=0;u<=24;u+=6){const x=bx+bw*u/24;s+=`<line x1="${x}" y1="${ty-4}" x2="${x}" y2="${ty+4}" stroke="#b7cbc4" stroke-width="1"/>`+
+    `<text x="${x}" y="${ty+16}" text-anchor="middle" fill="#9fb0aa" font-size="9" font-family="Roboto Mono">${u}ʰ</text>`;}
+  // two catalog anchor points (today & tomorrow at 0ʰ UT)
+  s+=`<circle cx="${bx}" cy="${ty}" r="4.5" fill="${CE}" stroke="#fff" stroke-width="1.4"/>`+
+     `<text x="${bx}" y="${ty-10}" text-anchor="middle" fill="${CE}" font-size="9" font-family="Roboto Mono">S₀ (сегодня)</text>`+
+     `<text x="${bx}" y="${ty+30}" text-anchor="middle" fill="${CE}" font-size="8.5" font-family="Roboto Mono">${hm(S0)}</text>`;
+  s+=`<circle cx="${bx+bw}" cy="${ty}" r="4.5" fill="${CE}" stroke="#fff" stroke-width="1.4"/>`+
+     `<text x="${bx+bw}" y="${ty-10}" text-anchor="middle" fill="${CE}" font-size="9" font-family="Roboto Mono">S₀ (завтра)</text>`+
+     `<text x="${bx+bw}" y="${ty+30}" text-anchor="middle" fill="${CE}" font-size="8.5" font-family="Roboto Mono">${hm(S0tom)}</text>`;
+  // interpolation slider position at UT
+  const xu=bx+bw*frac;
+  s+=`<line x1="${xu}" y1="${ty-26}" x2="${xu}" y2="${ty+22}" stroke="${CG}" stroke-width="1.4" stroke-dasharray="3 3"/>`;
+  s+=`<circle cx="${xu}" cy="${ty}" r="5" fill="${CG}" stroke="#fff" stroke-width="1.5"/>`;
+  s+=`<text x="${xu}" y="${ty-30}" text-anchor="middle" fill="${CG}" font-size="10" font-family="Roboto Mono" font-weight="700">UT=${hm(UT)}</text>`;
+  // interpolation formula & result
+  s+=`<text x="${cx}" y="${ty+50}" text-anchor="middle" fill="#243b36" font-size="11.5" font-family="Roboto Mono" font-weight="700">GMST = S₀ + UT·k = ${hm(S0)} + ${hm(UT)}·1,00274 = ${hm(G)}</text>`;
+  s+=`<text x="${cx}" y="${ty+66}" text-anchor="middle" fill="#516b64" font-size="10" font-family="Roboto Mono">за солнечные сутки звёздное время убегает на +${hm(dayGain)} (≈3ᵐ56ˢ)</text>`;
+  s+=`<text x="${cx}" y="${ty+86}" text-anchor="middle" fill="#092c33" font-size="12.5" font-family="Roboto Mono" font-weight="700">S = GMST + λ = ${hm(LST)}  ·  t = S − α = ${hm(t)}</text>`;
+  // role legend row
+  const roles=[['S₀, α — из каталога',CE],['дата, UT, λ — измеряем',CB],['S, t — вычисляем',CG]];
+  let lx=52;const ly=ty+108;
+  roles.forEach(r=>{s+=`<rect x="${lx}" y="${ly-9}" width="11" height="11" rx="2.5" fill="${r[1]}"/><text x="${lx+16}" y="${ly}" fill="#3a534e" font-size="9.5" font-family="Roboto Mono">${r[0]}</text>`;lx+=138;});
+  el('svg-time').innerHTML=svg(W,H,s);
+}
+
+/* =============== CALCULATOR =============== */
+const modeLabels={eq2:['α, часы','δ, градусы'],eq1:['t, часы','δ, градусы'],hor:['A, градусы (от юга)','h, градусы'],ecl:['λ, градусы','β, градусы']};
+// per-SK slider ranges + value formatters for the two coordinate sliders
+const modeRanges={
+  eq2:[{min:0,max:24,step:0.1,fmt:hm},{min:-90,max:90,step:1,fmt:dm}],
+  eq1:[{min:0,max:24,step:0.1,fmt:hm},{min:-90,max:90,step:1,fmt:dm}],
+  hor:[{min:0,max:360,step:1,fmt:d360},{min:-90,max:90,step:1,fmt:dm}],
+  ecl:[{min:0,max:360,step:1,fmt:d360},{min:-90,max:90,step:1,fmt:dm}],
+};
+function applyCalcRanges(mode){
+  const r=modeRanges[mode];
+  ['c-x1','c-x2'].forEach((id,i)=>{const inp=el(id);inp.min=r[i].min;inp.max=r[i].max;inp.step=r[i].step;});
+}
+const CALC={yaw:BASE_YAW};
+function calcUpdate(){
+  const phi=+el('c-phi').value, S=+el('c-s').value;
+  const from=el('c-from').value, to=el('c-to').value;
+  el('c-phi-val').textContent=phi+'°';
+  el('c-s-val').textContent=S.toFixed(1)+'ʰ';
+  el('c-x1-lab').textContent=modeLabels[from][0];
+  el('c-x2-lab').textContent=modeLabels[from][1];
+  const x1=+el('c-x1').value, x2=+el('c-x2').value;
+  el('c-x1-val').textContent=modeRanges[from][0].fmt(x1);
+  el('c-x2-val').textContent=modeRanges[from][1].fmt(x2);
+  let alpha,dec,t,A,h,lam,beta;
+  if(from==='eq2'){alpha=x1;dec=x2;t=w24(S-alpha);const r=eq2hor(t,dec,phi);A=r.A;h=r.h;const e=eq2ecl(alpha,dec);lam=e.lam;beta=e.beta;}
+  else if(from==='eq1'){t=x1;dec=x2;alpha=w24(S-t);const r=eq2hor(t,dec,phi);A=r.A;h=r.h;const e=eq2ecl(alpha,dec);lam=e.lam;beta=e.beta;}
+  else if(from==='hor'){A=x1;h=x2;const r=hor2eq(A,h,phi);t=r.t;dec=r.dec;alpha=w24(S-t);const e=eq2ecl(alpha,dec);lam=e.lam;beta=e.beta;}
+  else{lam=x1;beta=x2;const r=ecl2eq(lam,beta);alpha=r.alpha;dec=r.dec;t=w24(S-alpha);const rr=eq2hor(t,dec,phi);A=rr.A;h=rr.h;}
+  el('o-eq2').textContent='α '+hm(alpha)+'  δ '+dm(dec);
+  el('o-eq1').textContent='t '+hm(t)+'  δ '+dm(dec);
+  el('o-hor').textContent='A '+d360(A)+'  h '+dm(h);
+  el('o-ecl').textContent='λ '+d360(lam)+'  β '+dm(beta);
+  const resmap={eq2:'α '+hm(alpha)+'  δ '+dm(dec),eq1:'t '+hm(t)+'  δ '+dm(dec),hor:'A '+d360(A)+'  h '+dm(h),ecl:'λ '+d360(lam)+'  β '+dm(beta)};
+  const namemap={eq2:'II экваториальная',eq1:'I экваториальная',hor:'горизонтная',ecl:'эклиптическая'};
+  el('c-res-lab').textContent='Результат → '+namemap[to];
+  el('c-res').textContent=resmap[to];
+  el('c-vis').innerHTML = h>0 ? `Светило <b>над горизонтом</b> (h = ${dm(h)}).` : `Светило <b>под горизонтом</b> (h = ${dm(h)}).`;
+  drawCalcSphere(phi,t,dec,S);
+}
+function drawCalcSphere(phi,t,dec,S){
+  const W=400,H=360,cx=200,cy=185,R=150;
+  const sc=makeScene(cx,cy,R,CALC.yaw);
+  const NP=npole(phi),Q=upperEqPoint(phi);
+  const [HU,HV]=planeVectors(ZEN),[EU,EV]=planeVectors(NP),[MU,MV]=planeVectors(EAST);
+  const star=eqVecCel(t,dec,phi);const cc=starCoords(star,phi,S);
+  const g=gammaVec(phi,S);
+  let s=sc.bg('построенная сфера · A, h, t, δ, α, S');
+  s+=sc.circle(HU,HV,C.hor,2.2);
+  s+=sc.circle(EU,EV,C.eq,2.2);
+  s+=sc.circle(MU,MV,C.mer,1.7);               // meridian: visible side solid, far side auto-dashed
+  s+=sc.small(NP,(90-dec)*D2R,C.ecl,1.5,'2 3');   // diurnal parallel
+  s+=sc.line(ZEN,NAD,C.mer,1,'3 3');
+  s+=sc.line(NP,spole(phi),C.eq,1,'3 3');
+  s+=sc.dot([0,0,0],'#1a2233',3)+sc.label([0,0,0],'O','#1a2233',7,4,11);
+  s+=sc.dot(ZEN,C.mer)+sc.label(ZEN,'Z','#b07d00',6,-6);
+  s+=sc.dot(NP,C.eq)+sc.label(NP,'P',C.eq,-16,-4);
+  s+=sc.dot(NORTH,C.card,3.2)+sc.label(NORTH,'N',C.card,-15,2,11);
+  s+=sc.dot(EAST,C.card,3.2)+sc.label(EAST,'E',C.card,6,2,11);
+  s+=sc.dot(SOUTH,C.card,3.2)+sc.label(SOUTH,'S',C.card,7,2,11);
+  s+=sc.dot(WEST,C.card,3.2)+sc.label(WEST,'W',C.card,6,2,11);
+  // arcs: A,h and t,δ  (A and t are longitudinal → directional rotation arcs)
+  const foot=norm([star[0],0,star[2]]);
+  s+=sc.arcRot(SOUTH,ZEN,-cc.A*D2R,C.hor,3)+sc.arc(foot,star,C.hor,3)+sc.labelRot(SOUTH,ZEN,-cc.A*D2R,'A',C.hor)+sc.labelMid(foot,star,'h',C.hor);
+  const onEq=projOnPlane(star,NP);const ge=projOnPlane(g,NP);
+  // t from meridian Q (−t); S from Q to γ (−S); α from γ to star (+α) — all on the equator
+  s+=sc.arcRot(Q,NP,-cc.t*15*D2R,C.eq,3)+sc.arc(onEq,star,C.eq,3)+sc.dot(Q,C.eq,3)+sc.label(Q,'Q',C.eq,6,-4,11)+sc.labelRot(Q,NP,-cc.t*15*D2R,'t',C.eq)+sc.labelMid(onEq,star,'δ',C.eq);
+  s+=sc.arcRot(Q,NP,-S*15*D2R,C.mer,2.4,'4 3')+sc.labelRot(Q,NP,-S*15*D2R,'S',C.mer);
+  s+=sc.arcRot(ge,NP,cc.alpha*15*D2R,C.eq2,2.6)+sc.labelRot(ge,NP,cc.alpha*15*D2R,'α',C.eq2);
+  s+=sc.dot(g,C.ecl,4)+sc.label(g,'♈',C.ecl,6,-4,13);
+  const sp=sc.P(star);
+  s+=`<circle cx="${sp[0].toFixed(1)}" cy="${sp[1].toFixed(1)}" r="8.5" fill="none" stroke="#ff7136" stroke-width="2"/>`+sc.star(star);
+  el('svg-calc').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${s}</svg>`;
+}
+
+/* =============== CRITICAL POSITIONS =============== */
+let crit='upper';
+const critDefs=[['upper','Верхняя кульминация'],['lower','Нижняя кульминация'],['rise','Восход / заход'],['prime','Первый вертикал'],['elong','Элонгация']];
+function critCompute(pos,phi,dec){
+  const f=phi*D2R,d=dec*D2R;
+  if(pos==='upper'){const r=eq2hor(0,dec,phi);return {exists:true,t:0,h:r.h,A:r.A,cond:'t = 0',
+    note:`Верхняя кульминация — прохождение небесного меридиана; высота максимальна: <b>h = 90° − |φ − δ| = ${r.h.toFixed(1)}°</b>.`};}
+  if(pos==='lower'){const r=eq2hor(12,dec,phi);return {exists:true,t:12,h:r.h,A:r.A,cond:'t = 12ʰ',
+    note:`Нижняя кульминация — прохождение меридиана под полюсом; высота минимальна: <b>h = δ + φ − 90° = ${r.h.toFixed(1)}°</b>. Если h > 0 — светило незаходящее.`};}
+  if(pos==='rise'){const cost=-TAN(f)*TAN(d);
+    if(Math.abs(cost)>1)return {exists:false,cond:'|−tg φ·tg δ| > 1',note:cost<-1?'Светило <b>незаходящее</b>: параллель целиком над горизонтом.':'Светило <b>невосходящее</b>: параллель целиком под горизонтом.'};
+    const t0=R2D*ACOS(cost)/15;const r=eq2hor(t0,dec,phi);
+    return {exists:true,t:t0,h:0,A:r.A,cond:'h = 0',
+      note:`Восход/заход — пересечение горизонта (h = 0): <b>cos t = −tg φ · tg δ ⟹ t = ±${t0.toFixed(2)}ʰ</b>. Азимут: cos A = −sin δ / cos φ, A = ${d360(r.A)} (восход) и симметрично на западе.`};}
+  if(pos==='prime'){if(!(phi>0&&dec>0&&dec<phi))return {exists:false,cond:'0 < δ < φ не выполнено',note:'Первый вертикал (восток–зенит–запад) светило пересекает только при <b>0 < δ < φ</b>.'};
+    const h=R2D*ASIN(S_(d)/S_(f));const t0=R2D*ACOS(TAN(d)/TAN(f))/15;
+    return {exists:true,t:t0,h:h,A:90,cond:'A = 90°/270°',
+      note:`Первый вертикал — светило точно на востоке/западе (A = 90°/270°): <b>sin h = sin δ / sin φ</b>, h = ${h.toFixed(1)}°; cos t = tg δ / tg φ, t = ±${t0.toFixed(2)}ʰ.`};}
+  if(pos==='elong'){if(!(dec>phi&&phi>0))return {exists:false,cond:'δ > φ не выполнено',note:'Элонгация (наибольший азимут) бывает только у <b>приполярных</b> светил (δ > φ).'};
+    const A=R2D*ASIN(C_(d)/C_(f));const t0=R2D*ACOS(TAN(f)/TAN(d))/15;const h=R2D*ASIN(S_(f)/S_(d));
+    return {exists:true,t:t0,h:h,A:180-A,cond:'наибольший A',
+      note:`Элонгация — наибольшее удаление по азимуту (вертикал касается параллели, угол при светиле 90°): <b>sin A = cos δ / cos φ</b>, A = ${A.toFixed(1)}° от севера; sin h = sin φ / sin δ, h = ${h.toFixed(1)}°; cos t = tg φ / tg δ, t = ±${t0.toFixed(2)}ʰ.`};}
+}
+function buildCritBtns(){
+  el('crit-btns').innerHTML=critDefs.map(d=>`<button class="btn ${crit===d[0]?'primary':''}" data-c="${d[0]}">${d[1]}</button>`).join('');
+  el('crit-btns').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{crit=b.dataset.c;buildCritBtns();drawCrit();});
+}
+const CRIT={yaw:BASE_YAW};
+function drawCrit(){
+  const phi=+el('cr-phi').value, dec=+el('cr-dec').value;
+  el('cr-phi-val').textContent=phi+'°';el('cr-dec-val').textContent=dec+'°';
+  const res=critCompute(crit,phi,dec);
+  if(res.exists){el('cr-t').textContent=hm(w24(res.t));el('cr-h').textContent=dm(res.h);el('cr-A').textContent=d360(res.A);}
+  else{el('cr-t').textContent='—';el('cr-h').textContent='—';el('cr-A').textContent='—';}
+  el('cr-cond').textContent=res.cond;el('cr-note').innerHTML=res.note;
+  el('crit-cap').textContent=critDefs.find(d=>d[0]===crit)[1]+' — на сфере и в проекциях';
+  // ---- celestial sphere (makeScene), same ракурс as the rest of the lesson ----
+  const W=400,H=360,cx=200,cy=185,R=150;
+  const sc=makeScene(cx,cy,R,CRIT.yaw);
+  const NP=npole(phi),Q=upperEqPoint(phi);
+  const [HU,HV]=planeVectors(ZEN),[EU,EV]=planeVectors(NP),[MU,MV]=planeVectors(EAST);
+  let s=sc.bg(critDefs.find(d=>d[0]===crit)[1]);
+  s+=sc.circle(HU,HV,C.hor,2.2);
+  s+=sc.circle(EU,EV,C.eq,2.2);
+  s+=sc.circle(MU,MV,C.mer,1.7);               // meridian: visible side solid, far side auto-dashed
+  s+=sc.small(NP,(90-dec)*D2R,C.ecl,1.7,'2 3');       // diurnal parallel (whole path)
+  s+=sc.line(ZEN,NAD,C.mer,1,'3 3');
+  s+=sc.line(NP,spole(phi),C.eq,1,'3 3');
+  s+=sc.dot([0,0,0],'#1a2233',3)+sc.label([0,0,0],'O','#1a2233',7,4,11);
+  s+=sc.dot(ZEN,C.mer)+sc.label(ZEN,'Z','#b07d00',6,-6);
+  s+=sc.dot(NP,C.eq)+sc.label(NP,'P',C.eq,-16,-4);
+  s+=sc.dot(NORTH,C.card,3.2)+sc.label(NORTH,'N',C.card,-15,2,11);
+  s+=sc.dot(EAST,C.card,3.2)+sc.label(EAST,'E',C.card,6,2,11);
+  s+=sc.dot(SOUTH,C.card,3.2)+sc.label(SOUTH,'S',C.card,7,2,11);
+  s+=sc.dot(WEST,C.card,3.2)+sc.label(WEST,'W',C.card,6,2,11);
+  let critStar=null;
+  // draw one critical point: azimuth A along horizon (green), altitude h up (green),
+  // hour angle t along equator (blue) and δ up to the star (blue). Guarded against
+  // degenerate feet (star near zenith / on the pole) so nothing turns into a mess.
+  function markVec(A,h,primary){const v=horVecCel(A,h);let out='';
+    const cv=starCoords(v,phi,0);
+    const horC=Math.hypot(v[0],v[2]);                 // horizontal component length
+    // --- horizon system (A is longitudinal → directional arc around zenith) ---
+    if(horC>0.02){const foot=norm([v[0],0,v[2]]);
+      out+=sc.arcRot(SOUTH,ZEN,-cv.A*D2R,C.hor,2.6)+sc.arc(foot,v,C.hor,2.6);
+      if(primary){out+=sc.dot(foot,C.hor,2.5)+sc.labelRot(SOUTH,ZEN,-cv.A*D2R,'A',C.hor)+sc.labelMid(foot,v,'h',C.hor);}
+    }else if(primary){out+=sc.labelMid(ZEN,v,'h',C.hor);}   // star at zenith: only h matters
+    // --- equatorial system (only for the primary point, to avoid clutter) ---
+    if(primary){
+      const onEq=projOnPlane(v,NP);
+      if(Math.hypot(onEq[0]-v[0],onEq[1]-v[1],onEq[2]-v[2])>0.001){
+        out+=sc.arcRot(Q,NP,-cv.t*15*D2R,C.eq,2.4)+sc.arc(onEq,v,C.eq,2.4);
+        out+=sc.dot(Q,C.eq,2.5)+sc.label(Q,'Q',C.eq,6,-4,10)+sc.dot(onEq,C.eq,2.5)
+            +sc.labelRot(Q,NP,-cv.t*15*D2R,'t',C.eq)+sc.labelMid(onEq,v,'δ',C.eq);
+      }
+    }
+    const p=sc.P(v);
+    out+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="8.5" fill="none" stroke="#ff7136" stroke-width="2"/>`+sc.star(v);
+    return {out,v};}
+  if(res.exists){
+    const m1=markVec(res.A,res.h,true);s+=m1.out;critStar=m1.v;
+    if(crit==='rise'||crit==='prime'||crit==='elong'){const m2=markVec(360-res.A,res.h,false);s+=m2.out;}
+  }else{
+    s+=`<text x="${cx}" y="${cy}" text-anchor="middle" fill="#c05a3a" font-size="13" font-family="Roboto Mono">положение не существует</text>`;
+  }
+  el('svg-crit').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${s}</svg>`;
+  // ---- projections onto the three main circles ----
+  if(res.exists){const cc=starCoords(critStar,phi,0);
+    el('svg-crm').innerHTML=projMeridian(cc,phi);
+    el('svg-crh').innerHTML=projHorizon(cc);
+    el('svg-cre').innerHTML=projEquatorCrit(cc);
+  }else{
+    const empty='<div style="height:150px;display:flex;align-items:center;justify-content:center;color:#9fb8c7;font-family:Roboto Mono;font-size:10px">нет точки</div>';
+    el('svg-crm').innerHTML=empty;el('svg-crh').innerHTML=empty;el('svg-cre').innerHTML=empty;
+  }
+}
+/* equator projection for critical points: t from meridian only (no γ) */
+function projEquatorCrit(cc){return projEquator(cc,{S:0},false);}
+
+/* =============== plumbing =============== */
+const redraws={overview:drawGraph,links:drawLinks,time:drawTimeView,calc:calcUpdate,critical:drawCrit,cases:()=>{}};
+function activeView(){return document.querySelector('.tab.active').dataset.view;}
+el('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  b.classList.add('active');el(b.dataset.view).classList.add('active');
+  const f=redraws[b.dataset.view];if(f)f();});
+
+// links interactions
+buildLinkSubtabs();buildLinkSliders();
+bindSphere();
+// time
+['t-date','t-ut','t-lon','t-alpha'].forEach(id=>el(id).addEventListener('input',drawTimeView));
+// calc
+['c-from','c-to','c-x1','c-x2','c-phi','c-s'].forEach(id=>el(id).addEventListener('input',calcUpdate));
+el('c-from').addEventListener('change',()=>{const m=el('c-from').value;const seeds={eq2:[4,35],eq1:[2,35],hor:[120,40],ecl:[60,10]};applyCalcRanges(m);el('c-x1').value=seeds[m][0];el('c-x2').value=seeds[m][1];calcUpdate();});
+applyCalcRanges(el('c-from').value);
+el('car-left').onclick=()=>{CALC.yaw-=15*D2R;calcUpdate();};
+el('car-right').onclick=()=>{CALC.yaw+=15*D2R;calcUpdate();};
+el('car-reset').onclick=()=>{CALC.yaw=BASE_YAW;calcUpdate();};
+// critical
+['cr-phi','cr-dec'].forEach(id=>el(id).addEventListener('input',drawCrit));
+el('cr-left').onclick=()=>{CRIT.yaw-=15*D2R;drawCrit();};
+el('cr-right').onclick=()=>{CRIT.yaw+=15*D2R;drawCrit();};
+el('cr-reset').onclick=()=>{CRIT.yaw=BASE_YAW;drawCrit();};
+buildCritBtns();
+
+// initial
+drawGraph();drawLinks();drawTimeView();calcUpdate();drawCrit();
+</script>
+</main></div><footer class="gl-footer"><div><b>ГеоЛиния · Основы геодезической астрономии</b><small>Интерактивный учебный материал</small></div><div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};var a=document.querySelector('.gl-sidebar a[href="coord-time-links.html"]');if(a)a.classList.add('active');})();</script></body>
+</html>

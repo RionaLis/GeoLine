@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Принцип измерения горизонтальных углов теодолитом</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Измерение горизонтальных углов теодолитом — ГеоЛиния</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
   /* ==== Палитра ГеоЛинии ==== */
@@ -155,257 +156,239 @@
   .gl-footer a{color:#9db8b2;text-decoration:none}
   @media(max-width:700px){.gl-sitebar nav a:not(:last-child){display:none}.gl-sitebar{gap:10px}.gl-footer{display:grid}.gl-footer>div:last-child{opacity:.7}}
 </style>
-<link rel="stylesheet" href="../../assets/lesson-site.css">
+<link href="../../assets/lesson-site.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="gl-sitebar">
-  <a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a>
-  <nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
-  <button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button>
+<a class="gl-brand" href="../../index.html"><img alt="Эмблема ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a>
+<nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav>
+<button aria-label="Открыть меню" class="gl-menu-button" type="button">☰</button>
 </header>
-<div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div>
-<a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>01</span>Горизонтальные углы</a>
-<a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>02</span>Вертикальные углы</a>
-<a class="gl-course-link" href="index.html">← Все темы курса</a></aside><main class="gl-lesson-content"><div class="wrap">
-
-<h1>Принцип измерения <em>горизонтальных углов</em> теодолитом</h1>
+<div class="gl-lesson-layout"><aside class="gl-sidebar gl-block-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 01. Введение в геодезию</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html">Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html">Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html">Краткая история геодезических приборов</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html">Понятие о форме и размерах Земли</a></div></section><section class="gl-course-block open"><button aria-expanded="true" class="gl-block-toggle" type="button"><span>Тема 02. Геодезическое оборудование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html">Современные геодезические приборы</a><a data-lesson="distance-measurement" href="distance-measurement.html">Измерение расстояний</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html">Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-checks" href="theodolite-checks.html">Теодолиты: поверки и юстировки</a><a class="active" data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html">Измерение горизонтальных углов теодолитом</a><a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html">Измерение вертикальных углов теодолитом</a><a data-lesson="levels-classification-and-design" href="levels-classification-and-design.html">Нивелиры: классификация, устройство и принцип работы</a><a data-lesson="level-checks-and-adjustments" href="level-checks-and-adjustments.html">Нивелиры: поверки и юстировки</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 03. Топографические карты и планы</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="cartographic-projections" href="cartographic-projections.html">Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html">Проекция Гаусса-Крюгера</a><a data-lesson="plan-map-profile" href="plan-map-profile.html">Топографические карты и планы</a><a data-lesson="topographic-symbols" href="topographic-symbols.html">Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html">Использование ЛМП и ТГТ</a><a data-lesson="landform-types" href="landform-types.html">Рельеф</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html">Цифровые модели местности</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 04. Системы координат и ориентирование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html">Геодезическая система координат</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html">Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html">Передача дирекционных углов</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 05. Топографическая съёмка местности</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="inaccessible-distance" href="inaccessible-distance.html">Определение недоступного расстояния</a><a data-lesson="survey-control" href="survey-control.html">Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html">Пункты государственной геодезической сети</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html">Вычисление ведомости координат</a></div></section><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Геодезия. Курс 1 · Урок 06</div><h1>Измерение горизонтальных углов теодолитом</h1><div class="gl-tabs" role="tablist"><button class="active" data-gl-tab="h0" type="button">Схема измерения</button><button class="" data-gl-tab="h1" type="button">Журнал и порядок</button><button class="" data-gl-tab="h2" type="button">Вычисления</button><button class="" data-gl-tab="h3" type="button">Тренажёр</button><button class="" data-gl-tab="h4" type="button">Контроль</button></div></section><div class="wrap">
+<h1 class="gl-original-title">Принцип измерения <em>горизонтальных углов</em> теодолитом</h1>
 <p class="subtitle">Интерактивная модель · Станция B, левая цель C, правая цель A · β = a − c · полный приём КЛ + КП</p>
-
 <!-- ================= 1. СУТЬ ================= -->
-<div class="card">
-  <h2><span class="num">1</span>В чём суть измерения</h2>
-  <div class="grid">
-    <div>
-      <p><b><i>Горизонтальным углом</i></b> называют горизонтальную проекцию угла, образованного
+<div class="card gl-tab-panel" data-gl-panel="h0">
+<h2><span class="num">1</span>В чём суть измерения</h2>
+<div class="grid">
+<div>
+<p><b><i>Горизонтальным углом</i></b> называют горизонтальную проекцию угла, образованного
       точками местности, на уровенную поверхность.</p>
-      <p style="margin-top:8px;">При визировании на цель берут отсчёт по лимбу горизонтального круга,
+<p style="margin-top:8px;">При визировании на цель берут отсчёт по лимбу горизонтального круга,
       который покажет направление на цель относительно нуля лимба. Если при одной и той же установке
       прибора взять по отсчёту на две цели, то по разности между отсчётами можно вычислить
       горизонтальный угол между этими целями.</p>
-      <p style="margin-top:8px;">Теодолит устанавливают в вершине угла — на станции <span class="hl-r">B</span> (над колышком,
+<p style="margin-top:8px;">Теодолит устанавливают в вершине угла — на станции <span class="hl-r">B</span> (над колышком,
       закреплённым в земле). На концах сторон угла выставляют вехи: <span class="hl">C</span> — левая цель,
       <span class="hl-g">A</span> — правая цель.</p>
-      <p style="margin-top:8px;">Внутри теодолита находится <b>лимб</b> — горизонтальный круг с делениями 0…360°.
+<p style="margin-top:8px;">Внутри теодолита находится <b>лимб</b> — горизонтальный круг с делениями 0…360°.
       Наводя трубу поочерёдно на цели, снимают <b>отсчёты</b> по лимбу через отсчётный микроскоп:</p>
-      <div class="formula">
+<div class="formula">
         β = a − c
-        <small>a — отсчёт на правую цель A, c — отсчёт на левую цель C.<br>
+        <small>a — отсчёт на правую цель A, c — отсчёт на левую цель C.<br/>
         Если a &lt; c, то β = a − c + 360°</small>
-      </div>
-      <ul>
-        <li>Измеряется не пространственный угол между визирными лучами, а угол между их <span class="hl-b">проекциями на горизонтальную плоскость</span>;</li>
-        <li>Угол по лимбу отсчитывается <b>по ходу часовой стрелки</b> — от левой цели к правой;</li>
-        <li>Наводить трубу нужно на <span class="hl">низ вехи</span> — так меньше ошибка от её наклона.</li>
-      </ul>
-    </div>
-    <div>
-      <!-- вид горизонтального лимба сверху (как image-1) -->
-      <svg viewBox="0 0 340 330">
-        <g id="limbFig"></g>
-      </svg>
-      <p style="text-align:center;color:var(--muted);font-size:12px;margin-top:6px;">
+</div>
+<ul>
+<li>Измеряется не пространственный угол между визирными лучами, а угол между их <span class="hl-b">проекциями на горизонтальную плоскость</span>;</li>
+<li>Угол по лимбу отсчитывается <b>по ходу часовой стрелки</b> — от левой цели к правой;</li>
+<li>Наводить трубу нужно на <span class="hl">низ вехи</span> — так меньше ошибка от её наклона.</li>
+</ul>
+</div>
+<div>
+<!-- вид горизонтального лимба сверху (как image-1) -->
+<svg viewbox="0 0 340 330">
+<g id="limbFig"></g>
+</svg>
+<p style="text-align:center;color:var(--muted);font-size:12px;margin-top:6px;">
         Горизонтальный круг (лимб) — вид сверху: отсчёты c и a показаны дугами
         от нуля лимба до соответствующих целей; β = a − c.
       </p>
-    </div>
-  </div>
 </div>
-
+</div>
+</div>
 <!-- ================= 3. ПОРЯДОК РАБОТЫ ================= -->
-<div class="card">
-  <h2><span class="num">2</span>Порядок измерения горизонтального угла полным приёмом</h2>
-  <div class="grid">
-    <div>
-      <ol class="steps">
-        <li><b>Приведение в рабочее положение</b>:<br>
-        <i>Центрирование прибора</i> — установка вертикальной оси прибора над вершиной измеряемого угла.<br>
-        <i>Горизонтирование прибора</i> — приведение вертикальной оси прибора в отвесное положение с помощью подъёмных винтов и цилиндрического уровня.</li>
-        <li><b>Первый полуприём (КЛ)</b> — при положении круг лево наводят на правую цель <span class="hl-g">A</span>, берут отсчёт a₁ по микроскопу и записывают в журнал; затем на левую <span class="hl">C</span> — отсчёт c₁. Вычисляют угол полуприёма β′ = a₁ − c₁.</li>
-        <li><b>Между полуприёмами</b> — трубу переводят через зенит (теперь положение круг право) и <span class="hl">сбивают лимб на 1–2°</span>, чтобы отсчёты второго полуприёма пришлись на другие штрихи лимба.</li>
-        <li><b>Второй полуприём (КП)</b> — при положении круг право повторяют: отсчёт a₂, затем c₂; вычисляют β″ = a₂ − c₂.</li>
-        <li><b>Контроль и результат</b> — расхождение |β′ − β″| ≤ 2t (двойная точность отсчёта); β = (β′ + β″) / 2.</li>
-      </ol>
-    </div>
-    <div>
-      <p><b>Пример заполнения журнала:</b></p>
-      <table class="journal">
-        <tr>
-          <th rowspan="2">№<br>станции</th>
-          <th rowspan="2">Точка<br>наблюдения</th>
-          <th rowspan="2">Положение<br>вертикального<br>круга</th>
-          <th colspan="2">Отсчёт по<br>горизонтальному кругу</th>
-          <th colspan="2">Величина угла<br>в полуприёме</th>
-          <th colspan="2">Средняя<br>величина угла</th>
-        </tr>
-        <tr><th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th></tr>
-        <tr>
-          <td rowspan="4" class="jstation">B</td>
-          <td class="jlabel">A</td><td class="jlabel" rowspan="2">КЛ</td>
-          <td>122</td><td>34</td>
-          <td rowspan="2">67</td><td rowspan="2">18</td>
-          <td rowspan="4">67</td><td rowspan="4">17,0</td>
-        </tr>
-        <tr><td class="jlabel">C</td><td>55</td><td>16</td></tr>
-        <tr>
-          <td class="jlabel">A</td><td class="jlabel" rowspan="2">КП</td>
-          <td>303</td><td>30</td>
-          <td rowspan="2">67</td><td rowspan="2">16</td>
-        </tr>
-        <tr><td class="jlabel">C</td><td>236</td><td>14</td></tr>
-      </table>
-      <p style="font-size:13px;color:var(--muted);margin-top:6px;">
+<div class="card gl-tab-panel" data-gl-panel="h1">
+<h2><span class="num">2</span>Порядок измерения горизонтального угла полным приёмом</h2>
+<div class="grid">
+<div>
+<ol class="steps">
+<li><b>Приведение в рабочее положение</b>:<br/>
+<i>Центрирование прибора</i> — установка вертикальной оси прибора над вершиной измеряемого угла.<br/>
+<i>Горизонтирование прибора</i> — приведение вертикальной оси прибора в отвесное положение с помощью подъёмных винтов и цилиндрического уровня.</li>
+<li><b>Первый полуприём (КЛ)</b> — при положении круг лево наводят на правую цель <span class="hl-g">A</span>, берут отсчёт a₁ по микроскопу и записывают в журнал; затем на левую <span class="hl">C</span> — отсчёт c₁. Вычисляют угол полуприёма β′ = a₁ − c₁.</li>
+<li><b>Между полуприёмами</b> — трубу переводят через зенит (теперь положение круг право) и <span class="hl">сбивают лимб на 1–2°</span>, чтобы отсчёты второго полуприёма пришлись на другие штрихи лимба.</li>
+<li><b>Второй полуприём (КП)</b> — при положении круг право повторяют: отсчёт a₂, затем c₂; вычисляют β″ = a₂ − c₂.</li>
+<li><b>Контроль и результат</b> — расхождение |β′ − β″| ≤ 2t (двойная точность отсчёта); β = (β′ + β″) / 2.</li>
+</ol>
+</div>
+<div>
+<p><b>Пример заполнения журнала:</b></p>
+<table class="journal">
+<tr>
+<th rowspan="2">№<br/>станции</th>
+<th rowspan="2">Точка<br/>наблюдения</th>
+<th rowspan="2">Положение<br/>вертикального<br/>круга</th>
+<th colspan="2">Отсчёт по<br/>горизонтальному кругу</th>
+<th colspan="2">Величина угла<br/>в полуприёме</th>
+<th colspan="2">Средняя<br/>величина угла</th>
+</tr>
+<tr><th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th></tr>
+<tr>
+<td class="jstation" rowspan="4">B</td>
+<td class="jlabel">A</td><td class="jlabel" rowspan="2">КЛ</td>
+<td>122</td><td>34</td>
+<td rowspan="2">67</td><td rowspan="2">18</td>
+<td rowspan="4">67</td><td rowspan="4">17,0</td>
+</tr>
+<tr><td class="jlabel">C</td><td>55</td><td>16</td></tr>
+<tr>
+<td class="jlabel">A</td><td class="jlabel" rowspan="2">КП</td>
+<td>303</td><td>30</td>
+<td rowspan="2">67</td><td rowspan="2">16</td>
+</tr>
+<tr><td class="jlabel">C</td><td>236</td><td>14</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted);margin-top:6px;">
         Отсчёты и углы полуприёмов — до целой минуты; до 0,1′ (…,0 или …,5) записывается только среднее.
         В примере расхождение между полуприёмами составило 2′ — на пределе допуска (2t = 2′), приём принят.
       </p>
-      <div class="note">
-        <b>Зачем два полуприёма?</b> Измерение при КЛ и КП исключает влияние
+<div class="note">
+<b>Зачем два полуприёма?</b> Измерение при КЛ и КП исключает влияние
         <span class="hl">коллимационной ошибки</span> и наклона оси вращения трубы,
         а сбивка лимба между полуприёмами ослабляет ошибки его делений.
         Отсчёты при КП отличаются от КЛ примерно на 180° (плюс сбивка лимба) — это нормально:
         угол β от этого не меняется.
       </div>
-    </div>
-  </div>
 </div>
-
+</div>
+</div>
 <!-- ================= 2. ИНТЕРАКТИВНАЯ МОДЕЛЬ ================= -->
-<div class="card">
-  <h2><span class="num">3</span>Интерактивная модель: полный приём (вид сбоку)</h2>
-
-  <div class="instr-row" id="instrRow">
-    <div class="instr-btn" data-id="t30"><b>Т30</b><span>штриховой микроскоп · отсчёт до 1′</span></div>
-    <div class="instr-btn active" data-id="t2t30"><b>2Т30 / 4Т30П</b><span>шкаловой микроскоп · отсчёт до 1′</span></div>
-    <div class="instr-btn" data-id="t5"><b>Т5</b><span>шкаловой микроскоп · отсчёт до 0,1′</span></div>
-  </div>
-
-  <div class="limb-row">
-    <span class="mode-badge" id="modeBadge">КЛ — положение круг лево</span>
-    <span style="font-size:13px;color:var(--muted);">Ориентировка лимба устанавливается случайно при приведении прибора в рабочее положение и сбивается на 1–2° при переходе к КП.</span>
-  </div>
-
-  <div class="controls">
-    <button class="setup" id="btnSetup">1. Привести в рабочее положение</button>
-    <button id="btnA">2. КЛ: навести на A (правая)</button>
-    <button id="btnC">3. КЛ: навести на C (левая)</button>
-    <button class="kp" id="btnKP" disabled>4. Через зенит → КП (сбить лимб на 1–2°)</button>
-    <button class="rec" id="btnRecord">✍ Записать в журнал</button>
-    <button class="rec" id="btnCalc">🖩 Вычислить</button>
-    <button class="secondary" id="btnReset">Сброс</button>
-  </div>
-
-  <div class="model-flex">
-    <div class="scene-box">
-      <svg id="scene" viewBox="0 0 680 460"></svg>
-      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:6px;">
+<div class="card gl-tab-panel" data-gl-panel="h2">
+<h2><span class="num">3</span>Интерактивная модель: полный приём (вид сбоку)</h2>
+<div class="instr-row" id="instrRow">
+<div class="instr-btn" data-id="t30"><b>Т30</b><span>штриховой микроскоп · отсчёт до 1′</span></div>
+<div class="instr-btn active" data-id="t2t30"><b>2Т30 / 4Т30П</b><span>шкаловой микроскоп · отсчёт до 1′</span></div>
+<div class="instr-btn" data-id="t5"><b>Т5</b><span>шкаловой микроскоп · отсчёт до 0,1′</span></div>
+</div>
+<div class="limb-row">
+<span class="mode-badge" id="modeBadge">КЛ — положение круг лево</span>
+<span style="font-size:13px;color:var(--muted);">Ориентировка лимба устанавливается случайно при приведении прибора в рабочее положение и сбивается на 1–2° при переходе к КП.</span>
+</div>
+<div class="controls">
+<button class="setup" id="btnSetup">1. Привести в рабочее положение</button>
+<button id="btnA">2. КЛ: навести на A (правая)</button>
+<button id="btnC">3. КЛ: навести на C (левая)</button>
+<button class="kp" disabled="" id="btnKP">4. Через зенит → КП (сбить лимб на 1–2°)</button>
+<button class="rec" id="btnRecord">✍ Записать в журнал</button>
+<button class="rec" id="btnCalc">🖩 Вычислить</button>
+<button class="secondary" id="btnReset">Сброс</button>
+</div>
+<div class="model-flex">
+<div class="scene-box">
+<svg id="scene" viewbox="0 0 680 460"></svg>
+<p style="text-align:center;color:var(--muted);font-size:13px;margin-top:6px;">
         Вехи <b style="color:#b45309;">C</b> и <b style="color:#15803d;">A</b> можно <b>перетаскивать мышью</b>.
         При снятии отсчётов моделируются случайные погрешности наблюдателя, изредка — грубый промах.
         Голубые пунктирные линии на земле — <b>проекции визирных лучей</b> на горизонтальную плоскость;
         между ними — измеряемый угол <b style="color:#dc2626;">β</b>.
       </p>
-    </div>
-    <div class="side-col">
-      <div class="opt-box">
-        <h3>Горизонтальный круг (вид сверху)</h3>
-        <div id="limbScheme"></div>
-      </div>
-      <div class="opt-box">
-        <h3>Поле зрения трубы</h3>
-        <div id="fov"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="opt-box" style="max-width:600px;margin:16px auto 0;">
-    <h3>Отсчётный микроскоп</h3>
-    <div id="micro"></div>
-    <div class="digital" id="microDigital">—<small>возьмите отсчёт самостоятельно и сверьте</small></div>
-  </div>
-
-  <h3 style="text-align:center;color:var(--dark);font-size:18px;font-weight:800;letter-spacing:-.02em;margin-top:20px;">Журнал измерения горизонтальных углов</h3>
-  <table class="journal" id="journal">
-    <tr>
-      <th rowspan="2">№<br>станции</th>
-      <th rowspan="2">Точка<br>наблюдения</th>
-      <th rowspan="2">Положение<br>вертикального<br>круга</th>
-      <th colspan="2">Отсчёт по<br>горизонтальному кругу</th>
-      <th colspan="2">Величина угла<br>в полуприёме</th>
-      <th colspan="2">Средняя<br>величина угла</th>
-    </tr>
-    <tr>
-      <th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th>
-    </tr>
-    <tr>
-      <td rowspan="4" class="jstation">B</td>
-      <td class="jlabel">A</td>
-      <td class="jlabel" rowspan="2">КЛ</td>
-      <td id="jA1d"></td><td id="jA1m"></td>
-      <td rowspan="2" id="jB1d"></td><td rowspan="2" id="jB1m"></td>
-      <td rowspan="4" id="jMd"></td><td rowspan="4" id="jMm"></td>
-    </tr>
-    <tr>
-      <td class="jlabel">C</td>
-      <td id="jC1d"></td><td id="jC1m"></td>
-    </tr>
-    <tr>
-      <td class="jlabel">A</td>
-      <td class="jlabel" rowspan="2">КП</td>
-      <td id="jA2d"></td><td id="jA2m"></td>
-      <td rowspan="2" id="jB2d"></td><td rowspan="2" id="jB2m"></td>
-    </tr>
-    <tr>
-      <td class="jlabel">C</td>
-      <td id="jC2d"></td><td id="jC2m"></td>
-    </tr>
-  </table>
-  <div id="jControl" style="text-align:center;font-size:13px;color:var(--muted);margin-top:6px;"></div>
-  <div class="status" id="status">Прибор стоит в стороне от колышка, площадка наклонена. Выполните пункт 1 — приведение в рабочее положение.</div>
 </div>
-
+<div class="side-col">
+<div class="opt-box">
+<h3>Горизонтальный круг (вид сверху)</h3>
+<div id="limbScheme"></div>
+</div>
+<div class="opt-box">
+<h3>Поле зрения трубы</h3>
+<div id="fov"></div>
+</div>
+</div>
+</div>
+<div class="opt-box" style="max-width:600px;margin:16px auto 0;">
+<h3>Отсчётный микроскоп</h3>
+<div id="micro"></div>
+<div class="digital" id="microDigital">—<small>возьмите отсчёт самостоятельно и сверьте</small></div>
+</div>
+<h3 style="text-align:center;color:var(--dark);font-size:18px;font-weight:800;letter-spacing:-.02em;margin-top:20px;">Журнал измерения горизонтальных углов</h3>
+<table class="journal" id="journal">
+<tr>
+<th rowspan="2">№<br/>станции</th>
+<th rowspan="2">Точка<br/>наблюдения</th>
+<th rowspan="2">Положение<br/>вертикального<br/>круга</th>
+<th colspan="2">Отсчёт по<br/>горизонтальному кругу</th>
+<th colspan="2">Величина угла<br/>в полуприёме</th>
+<th colspan="2">Средняя<br/>величина угла</th>
+</tr>
+<tr>
+<th>°</th><th>′</th><th>°</th><th>′</th><th>°</th><th>′</th>
+</tr>
+<tr>
+<td class="jstation" rowspan="4">B</td>
+<td class="jlabel">A</td>
+<td class="jlabel" rowspan="2">КЛ</td>
+<td id="jA1d"></td><td id="jA1m"></td>
+<td id="jB1d" rowspan="2"></td><td id="jB1m" rowspan="2"></td>
+<td id="jMd" rowspan="4"></td><td id="jMm" rowspan="4"></td>
+</tr>
+<tr>
+<td class="jlabel">C</td>
+<td id="jC1d"></td><td id="jC1m"></td>
+</tr>
+<tr>
+<td class="jlabel">A</td>
+<td class="jlabel" rowspan="2">КП</td>
+<td id="jA2d"></td><td id="jA2m"></td>
+<td id="jB2d" rowspan="2"></td><td id="jB2m" rowspan="2"></td>
+</tr>
+<tr>
+<td class="jlabel">C</td>
+<td id="jC2d"></td><td id="jC2m"></td>
+</tr>
+</table>
+<div id="jControl" style="text-align:center;font-size:13px;color:var(--muted);margin-top:6px;"></div>
+<div class="status" id="status">Прибор стоит в стороне от колышка, площадка наклонена. Выполните пункт 1 — приведение в рабочее положение.</div>
+</div>
 <!-- ================= 4. ОТСЧЁТНЫЕ УСТРОЙСТВА ================= -->
-<div class="card">
-  <h2><span class="num">4</span>Отсчётные устройства теодолитов</h2>
-  <table>
-    <tr><th>Теодолит</th><th>Устройство</th><th>Цена деления лимба</th><th>Отсчёт</th><th>Допуск 2t</th></tr>
-    <tr><td><b>Т30</b></td><td>Штриховой микроскоп: неподвижный индекс-штрих, отсчёт между штрихами (10′) оценивается на глаз</td><td>10′</td><td>до 1′</td><td>2′</td></tr>
-    <tr><td><b>2Т30 / 4Т30П</b></td><td>Шкаловой микроскоп: шкала 0–6 (деления по 5′), градусный штрих лимба «читается» по шкале</td><td>1°</td><td>до 1′</td><td>2′</td></tr>
-    <tr><td><b>Т5</b></td><td>Шкаловой микроскоп: шкала на 60 делений по 1′, десятые доли минуты — на глаз</td><td>1°</td><td>до 0,1′</td><td>0,2′</td></tr>
-  </table>
-  <div class="note">
+<div class="card gl-tab-panel" data-gl-panel="h3">
+<h2><span class="num">4</span>Отсчётные устройства теодолитов</h2>
+<table>
+<tr><th>Теодолит</th><th>Устройство</th><th>Цена деления лимба</th><th>Отсчёт</th><th>Допуск 2t</th></tr>
+<tr><td><b>Т30</b></td><td>Штриховой микроскоп: неподвижный индекс-штрих, отсчёт между штрихами (10′) оценивается на глаз</td><td>10′</td><td>до 1′</td><td>2′</td></tr>
+<tr><td><b>2Т30 / 4Т30П</b></td><td>Шкаловой микроскоп: шкала 0–6 (деления по 5′), градусный штрих лимба «читается» по шкале</td><td>1°</td><td>до 1′</td><td>2′</td></tr>
+<tr><td><b>Т5</b></td><td>Шкаловой микроскоп: шкала на 60 делений по 1′, десятые доли минуты — на глаз</td><td>1°</td><td>до 0,1′</td><td>0,2′</td></tr>
+</table>
+<div class="note">
     У всей серии Т30 (Т30, 2Т30, 4Т30П) отсчёты берутся <b>до целой минуты</b>;
     до десятых долей минуты (…,0′ или …,5′) вычисляется только <b>среднее значение угла</b> из двух полуприёмов.
   </div>
-  <div class="note">
+<div class="note">
     Переключайте тип теодолита в модели выше — окно микроскопа, точность отсчёта и допуск контроля изменятся.
   </div>
 </div>
-
 <!-- ================= 5. ЗАПОМНИТЬ ================= -->
-<div class="card">
-  <h2><span class="num">5</span>Главное, что нужно запомнить</h2>
-  <ul>
-    <li>Сначала — <span class="hl-g">центрирование по отвесу над колышком</span> и <span class="hl-g">горизонтирование по уровню</span>, только потом измерения.</li>
-    <li>Горизонтальный угол — это угол между <span class="hl-b">проекциями визирных лучей</span> на горизонтальную плоскость.</li>
-    <li>Угол получается как <span class="hl-r">разность двух отсчётов</span>: β = a − c (правая цель минус левая); если a &lt; c — прибавляем 360°.</li>
-    <li>Наводить трубу — на <span class="hl">низ вехи</span>, биссектором сетки нитей.</li>
-    <li>Полный приём = полуприём при КЛ + полуприём при КП; между ними трубу переводят через зенит и <span class="hl">сбивают лимб на 1–2°</span>.</li>
-    <li>Контроль: |β′ − β″| ≤ 2t; результат — среднее из двух полуприёмов.</li>
-    <li>У серии Т30 отсчёты берутся <span class="hl">до целой минуты</span>; до 0,1′ (…,0 или …,5) вычисляется только среднее значение угла.</li>
-  </ul>
+<div class="card gl-tab-panel" data-gl-panel="h4">
+<h2><span class="num">5</span>Главное, что нужно запомнить</h2>
+<ul>
+<li>Сначала — <span class="hl-g">центрирование по отвесу над колышком</span> и <span class="hl-g">горизонтирование по уровню</span>, только потом измерения.</li>
+<li>Горизонтальный угол — это угол между <span class="hl-b">проекциями визирных лучей</span> на горизонтальную плоскость.</li>
+<li>Угол получается как <span class="hl-r">разность двух отсчётов</span>: β = a − c (правая цель минус левая); если a &lt; c — прибавляем 360°.</li>
+<li>Наводить трубу — на <span class="hl">низ вехи</span>, биссектором сетки нитей.</li>
+<li>Полный приём = полуприём при КЛ + полуприём при КП; между ними трубу переводят через зенит и <span class="hl">сбивают лимб на 1–2°</span>.</li>
+<li>Контроль: |β′ − β″| ≤ 2t; результат — среднее из двух полуприёмов.</li>
+<li>У серии Т30 отсчёты берутся <span class="hl">до целой минуты</span>; до 0,1′ (…,0 или …,5) вычисляется только среднее значение угла.</li>
+</ul>
 </div>
-
 </div>
-
-</main></div><footer class="gl-footer">
-  <div>
-    <b>ГеоЛиния</b>
-    <span>Интерактивные материалы по инженерной геодезии</span>
-  </div>
-  <div>
-    <b>Урок</b>
-    <span>Измерение горизонтальных углов теодолитом · полный приём КЛ + КП</span>
-  </div>
-</footer>
-
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></main></div><footer class="gl-footer">
+<div>
+<b>ГеоЛиния</b>
+<span>Интерактивные материалы по инженерной геодезии</span>
+</div>
+<div>
+<b>Урок</b>
+<span>Измерение горизонтальных углов теодолитом · полный приём КЛ + КП</span>
+</div>
+<div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer>
 <script>
 (function(){
 'use strict';
@@ -1363,5 +1346,5 @@ updateModeUI();
 renderAll();
 })();
 </script>
-<script>(function(){document.querySelector('[data-lesson="theodolite-horizontal-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
+<script>(function(){document.querySelector('[data-lesson="theodolite-horizontal-angles"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script><script src="../../assets/lesson-blocks.js"></script></body>
 </html>

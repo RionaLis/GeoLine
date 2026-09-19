@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Системы измерения времени в астрономии — ГеоЛиния</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
+:root{
+  --dark:#063f3b; --dark2:#07554e; --accent:#ff7136; --accent-d:#de501a;
+  --ink:#092c33; --paper:#f4f8f6; --white:#fff; --line:#d5e3de; --muted:#657674;
+  --radius:18px; --shadow:0 18px 50px rgba(18,54,49,.10);
+  --sun:#f2a52b; --mean:#1f74d8; --star:#8a4bd8; --atom:#0f9d78; --moon:#7a8aa0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{width:min(1200px,calc(100% - 40px));margin:auto}
+.mono{font-family:"Roboto Mono",monospace}
+
+.page-hero{background:linear-gradient(135deg,#043f3b,#07554e);color:#fff;padding:52px 0 46px;position:relative;overflow:hidden}
+.page-hero:before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:42px 42px}
+.page-hero .container{position:relative}
+.breadcrumbs{font:12px "Roboto Mono",monospace;color:#8fb0a8;margin-bottom:20px;letter-spacing:.04em}
+.breadcrumbs span{color:#e7f2ef}
+.eyebrow{font:500 12px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.page-hero h1{font-size:clamp(30px,4.6vw,50px);line-height:1.05;letter-spacing:-.04em;margin:0 0 16px;max-width:920px}
+.page-hero h1 em{color:var(--accent);font-style:normal}
+.page-hero p{color:#bcd2cd;max-width:740px;margin:0;font-size:17px}
+
+.tabs-wrap{background:rgba(6,63,59,.98);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.09)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0}
+.tab{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#dbeae6;
+  padding:9px 15px;border-radius:11px;cursor:pointer;font:600 13.5px Manrope,Arial;transition:.18s;white-space:nowrap}
+.tab:hover{border-color:var(--accent);color:#fff}
+.tab.active{background:var(--accent);color:#0a2c26;border-color:var(--accent);font-weight:800}
+
+.section{padding:34px 0 70px}
+.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.view{display:none;animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.article{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;box-shadow:var(--shadow)}
+.article h2{font-size:26px;letter-spacing:-.025em;margin:0 0 8px}
+.article h3{font:800 12px "Roboto Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-d);margin:24px 0 8px}
+.lead{color:#435b56;font-size:15px;margin:0 0 8px}
+.article p,.article li{color:#435b56}
+
+.panel{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);padding:14px}
+.panel svg{display:block;width:100%;height:auto}
+.cap{font:500 11.5px "Roboto Mono",monospace;color:var(--muted);text-align:center;margin-top:8px}
+
+ul.legend{list-style:none;margin:6px 0 0;padding:0;font-size:14px}
+ul.legend li{display:flex;gap:11px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line)}
+ul.legend li:last-child{border-bottom:0}
+.sym{min-width:60px;font-weight:800;text-align:left;font-family:"Cambria Math",Georgia,serif;font-size:15px;color:var(--accent-d)}
+.dot{width:12px;height:12px;border-radius:50%;margin-top:5px;flex:0 0 auto}
+.k{color:var(--muted);font-size:13px}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
+  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16px;color:#0d5a4c;overflow-x:auto;line-height:1.9}
+.note{border-left:3px solid var(--accent);background:#fff2ec;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:13.5px;color:#7a4326}
+
+.ctrl{margin:12px 4px 2px}
+.ctrl label{font:500 12px "Roboto Mono",monospace;color:#49635e;display:block;margin-bottom:4px}
+.slider{width:100%;accent-color:var(--accent)}
+.val{color:var(--accent-d);font-weight:700;font-family:"Roboto Mono",monospace}
+.btn{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;border-radius:10px;padding:9px 15px;cursor:pointer;font:700 13px Manrope;transition:.15s}
+.btn:hover{border-color:var(--accent);background:#fff2ec;color:var(--accent-d)}
+.btn.primary{background:var(--accent);color:#0a2c26;border-color:var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:520px){.readout{grid-template-columns:1fr}}
+.rcard{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#f6faf8}
+.rcard b{display:block;font-size:12px;color:var(--muted);font-family:"Roboto Mono",monospace;margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.rcard .big{font:700 20px "Roboto Mono",monospace;color:var(--ink)}
+.rcard .big.sun{color:var(--accent-d)} .rcard .big.mean{color:var(--mean)} .rcard .big.star{color:var(--star)} .rcard .big.atom{color:var(--atom)}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:#435b56}
+th{color:var(--accent-d);font:800 11px "Roboto Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+td .sym{display:inline;min-width:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+.chip{font:500 12px "Roboto Mono",monospace;border:1px solid var(--line);background:#eef4f2;color:#49635e;padding:7px 12px;border-radius:99px;cursor:pointer;transition:.15s;user-select:none}
+.chip.on{color:#fff;font-weight:600;border-color:transparent}
+
+.conv{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.conv input[type=number],.conv input[type=text]{font:600 15px "Roboto Mono",monospace;border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:4px}
+.field span{font:500 11px "Roboto Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+.site-footer{background:#043632;color:#a9bdb8;padding:30px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.footer-brand{color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
+.footer-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#08302b;display:grid;place-items:center;font:800 15px "Roboto Mono"}
+.footer-small{font:12px "Roboto Mono",monospace;max-width:460px}
+</style>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/></head>
+<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Курс астрономии</a><a href="../../index.html#contacts">Контакты</a></nav><button aria-label="Открыть меню" class="gl-menu-button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии · 3 урока</div><a href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a href="coord-time-links.html"><span>02</span>Связи систем координат и времени</a><a href="time-systems.html"><span>03</span>Системы измерения времени в астрономии</a><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Основы геодезической астрономии · Урок 03</div><h1>Системы измерения времени в астрономии</h1><div class="tabs-wrap gl-tabs">
+<div class="container">
+<div class="tabs" id="tabs">
+<button class="tab active" data-view="map">Карта систем</button>
+<button class="tab" data-view="true">Истинное солнечное</button>
+<button class="tab" data-view="mean">Среднее · уравнение времени</button>
+<button class="tab" data-view="local">Местное и всемирное</button>
+<button class="tab" data-view="sid">Звёздное время</button>
+<button class="tab" data-view="atomic">Атомное · TAI/UTC/TT</button>
+<button class="tab" data-view="periods">Месяцы и год</button>
+</div>
+</div>
+</div></section>
+<header class="page-hero">
+<div class="container">
+<div class="breadcrumbs">GeoLine · Астрономия / <span>Системы измерения времени</span></div>
+<div class="eyebrow">Интерактивный урок · Лекция 3</div>
+<h1 class="gl-original-title">Системы измерения <em>времени</em> в астрономии</h1>
+<p>От часового угла Солнца до атомных часов: солнечное, звёздное, всемирное, атомное и динамическое время, уравнение времени, а также синодический и сидерический месяцы и тропический год.</p>
+</div>
+</header>
+
+<div class="section">
+<div class="container">
+<!-- ============ MAP ============ -->
+<section class="view active" id="map">
+<div class="grid">
+<div class="panel">
+<div id="svg-map"></div>
+<div class="cap">Классификация систем счёта времени · наведите/нажмите на узел</div>
+</div>
+<div class="article">
+<h2>Три «часовых механизма» природы</h2>
+<p class="lead">В основе любой системы времени лежит какой-то <b>периодический процесс</b>. В астрономии их три:</p>
+<ul class="legend">
+<li><span class="dot" style="background:var(--sun)"></span><span><b>Вращение Земли относительно Солнца</b> → солнечное время (истинное и среднее), а также всемирное время.</span></li>
+<li><span class="dot" style="background:var(--star)"></span><span><b>Вращение Земли относительно звёзд</b> (точки весеннего равноденствия γ) → звёздное время.</span></li>
+<li><span class="dot" style="background:var(--atom)"></span><span><b>Атомные переходы и движение небесных тел</b> → атомное (TAI), эфемеридное (ET) и земное динамическое время (TT), а также компромиссное UTC.</span></li>
+</ul>
+<div class="note">Первые две шкалы <b>неравномерны</b>, потому что вращение Земли непостоянно. Равномерную шкалу дают только атомные часы — поэтому на них сегодня опирается всё точное время.</div>
+<h3>Что мы изучим</h3>
+<p class="lead">Истинное и среднее солнечное время, уравнение времени, местное и всемирное время (UT0–UT2, UTC), звёздное время и его связь с солнечным, атомное и динамическое время, а также синодический/сидерический месяцы и тропический год.</p>
+</div>
+</div>
+</section>
+<!-- ============ TRUE SOLAR ============ -->
+<section class="view" id="true">
+<div class="grid">
+<div class="panel">
+<div id="svg-true"></div>
+<div class="ctrl">
+<label>Часовой угол Солнца t<sub>☉</sub>: <span class="val" id="true-t-val">0ʰ</span></label>
+<input class="slider" id="true-t" max="12" min="-12" step="0.25" type="range" value="0"/>
+</div>
+<div class="readout">
+<div class="rcard"><b>Часовой угол t<sub>☉</sub></b><div class="big sun" id="true-ha">0ʰ 00ᵐ</div></div>
+<div class="rcard"><b>Истинное время T<sub>ист</sub></b><div class="big sun" id="true-T">12ʰ 00ᵐ</div></div>
+</div>
+<div class="cap">Полдень — верхняя кульминация Солнца, полночь — нижняя</div>
+</div>
+<div class="article">
+<h2>Истинное солнечное время</h2>
+<p class="lead">Истинное солнечное время в данный момент равно <b>часовому углу центра диска Солнца плюс 12 часов</b>:</p>
+<div class="formula">T<sub>ист</sub> = t<sub>☉</sub> + 12ʰ</div>
+<p class="lead"><b>Физический смысл:</b> полдень (12:00) наступает в момент верхней кульминации Солнца, а полночь — в момент нижней кульминации.</p>
+<h3>Проблемы истинного времени</h3>
+<ul class="legend">
+<li><span class="dot" style="background:var(--accent)"></span><span><b>Неравномерность солнечных суток</b> — промежуток между двумя последовательными верхними кульминациями Солнца непостоянен.</span></li>
+<li><span class="dot" style="background:var(--accent)"></span><span><b>Сложность измерения</b> — прямое определение часового угла Солнца затруднено из-за его большого углового размера.</span></li>
+</ul>
+<h3>Причины неравномерности</h3>
+<ul class="legend">
+<li><span class="dot" style="background:var(--mean)"></span><span><b>Эллиптичность земной орбиты</b> (второй закон Кеплера).</span></li>
+<li><span class="dot" style="background:var(--mean)"></span><span><b>Наклон эклиптики</b> к небесному экватору.</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ============ MEAN + EQUATION OF TIME ============ -->
+<section class="view" id="mean">
+<div class="grid">
+<div class="panel">
+<div id="svg-eot"></div>
+<div class="ctrl">
+<label>Дата: <span class="val" id="eot-date-val">21 марта</span></label>
+<input class="slider" id="eot-date" max="364" min="0" step="1" type="range" value="79"/>
+</div>
+<div class="readout">
+<div class="rcard"><b>Уравнение времени η</b><div class="big mean" id="eot-val">0.0 мин</div></div>
+<div class="rcard"><b>Склонение Солнца δ<sub>☉</sub></b><div class="big sun" id="eot-dec">0.0°</div></div>
+</div>
+<div class="row"><button class="btn" id="eot-mode">Показать аналемму ∞</button></div>
+<div class="cap" id="eot-cap">Годовой ход уравнения времени η = T<sub>ср</sub> − T<sub>ист</sub></div>
+</div>
+<div class="article">
+<h2>Среднее солнечное время</h2>
+<p class="lead">Чтобы преодолеть неравномерность, вводят <b>среднее солнце</b> — фиктивную точку, движущуюся <b>равномерно по небесному экватору</b> со средней скоростью истинного Солнца. Это равномерная шкала, лежащая в основе гражданского времяисчисления.</p>
+<div class="formula">T<sub>ср</sub> = t<sub>ср.☉</sub> + 12ʰ</div>
+<h3>Уравнение времени</h3>
+<p class="lead">Разность между средним и истинным солнечным временем:</p>
+<div class="formula">η = T<sub>ср</sub> − T<sub>ист</sub></div>
+<p class="lead">В течение года η изменяется примерно от <b>−14,3 мин</b> (11 февраля) до <b>+16,3 мин</b> (3 ноября). В четырёх точках — около <b>15 апреля, 14 июня, 1 сентября и 25 декабря</b> — оно обращается в ноль.</p>
+<div class="note"><b>Аналемма</b> — фигура в форме «8», которую вычерчивает Солнце, если фотографировать его в одно и то же среднее время в течение года. По горизонтали — уравнение времени, по вертикали — склонение Солнца.</div>
+</div>
+</div>
+</section>
+<!-- ============ LOCAL + UNIVERSAL ============ -->
+<section class="view" id="local">
+<div class="grid">
+<div class="panel">
+<div id="svg-local"></div>
+<div class="ctrl">
+<label>Долгота места λ: <span class="val" id="loc-lon-val">+37,6° (Москва)</span></label>
+<input class="slider" id="loc-lon" max="180" min="-180" step="1" type="range" value="38"/>
+</div>
+<div class="readout">
+<div class="rcard"><b>Всемирное время UT1</b><div class="big" id="loc-ut">12ʰ 00ᵐ</div></div>
+<div class="rcard"><b>Местное среднее время</b><div class="big mean" id="loc-lt">14ʰ 30ᵐ</div></div>
+</div>
+<div class="cap">Разность местных времён = разность долгот (1ʰ = 15°)</div>
+</div>
+<div class="article">
+<h2>Местное и всемирное время</h2>
+<p class="lead"><b>Местное среднее время</b> — среднее солнечное время на конкретном меридиане. Разность местных времён на двух меридианах равна разности их долгот в часовой мере:</p>
+<div class="formula">ΔT = Δλ   (1ʰ = 15°)</div>
+<h3>Всемирное время (Universal Time)</h3>
+<ul class="legend">
+<li><span class="sym">UT0</span><span>Первичное всемирное время — среднее солнечное время на гринвичском меридиане <b>прямо из наблюдений</b> (часовых углов звёзд), без поправок. Зависит от движения полюсов Земли и ошибок координат обсерватории.</span></li>
+<li><span class="sym">UT1</span><span>Уточнённое: <b>UT1 = UT0 + Δλ<sub>p</sub></b> (поправка за движение полюсов). Пропорционально углу вращения Земли относительно далёких квазаров — мера фактического вращения Земли; используется в навигации, астрономии, геодезии.</span></li>
+<li><span class="sym">UT2</span><span>Сглаженное: <b>UT2 = UT1 + ΔT<sub>s</sub></b> (поправка за сезонные вариации скорости вращения Земли). Сейчас имеет в основном исторический интерес.</span></li>
+</ul>
+<div class="note">UT1 представляет собой <b>истинное солнечное время на гринвичском меридиане</b> (в смысле среднего солнца) и отражает реальное — неравномерное — вращение Земли.</div>
+</div>
+</div>
+</section>
+<!-- ============ SIDEREAL ============ -->
+<section class="view" id="sid">
+<div class="grid">
+<div class="panel">
+<div id="svg-sid"></div>
+<div class="ctrl">
+<label>Поворот Земли вокруг оси: <span class="val" id="sid-phi-val">0°</span></label>
+<input class="slider" id="sid-phi" max="410" min="0" step="1" type="range" value="0"/>
+</div>
+<div class="row">
+<button class="btn primary" id="sid-play">▶ Анимация</button>
+<button class="btn" id="sid-star">↦ Звёздные сутки</button>
+<button class="btn" id="sid-sun">↦ Солнечные сутки</button>
+<button class="btn" id="sid-reset">↺ Сброс</button>
+</div>
+<div class="readout">
+<div class="rcard"><b>Оборот относит. звёзд</b><div class="big star" id="sid-rstar">0°</div></div>
+<div class="rcard"><b>Оборот относит. Солнца</b><div class="big sun" id="sid-rsun">0°</div></div>
+</div>
+<div class="cap" id="sid-cap">Орбитальное движение показано увеличенно, чтобы эффект был виден</div>
+</div>
+<div class="article">
+<h2>Звёздное время</h2>
+<p class="lead">Звёздное время равно <b>часовому углу точки весеннего равноденствия γ</b>:</p>
+<div class="formula">S = t<sub>γ</sub>   |   t = S − α</div>
+<p class="lead"><b>Звёздные сутки</b> — промежуток между двумя последовательными верхними кульминациями точки γ на одном меридиане. Звёздное время напрямую отражает вращение Земли относительно инерциального пространства (звёзд).</p>
+<h3>Особенности</h3>
+<ul class="legend">
+<li><span class="dot" style="background:var(--star)"></span><span>Звёздные сутки <b>короче солнечных на ≈ 3ᵐ 56ˢ</b>.</span></li>
+<li><span class="dot" style="background:var(--star)"></span><span>За год проходит примерно <b>на одни звёздные сутки больше</b>, чем солнечных.</span></li>
+<li><span class="dot" style="background:var(--star)"></span><span>Уравнение <b>t = S − α</b> позволяет рассчитывать видимое положение звёзд.</span></li>
+</ul>
+<h3>Связь звёздного и солнечного времени</h3>
+<div class="formula">1 ср.сут = 1,00273790935 звёздн. сут<br/>S = S₀ + UT1·(1 + μ) + λ,  μ = 1/365,2422</div>
+<p class="k">S — местное звёздное время, S₀ — звёздное время в Гринвиче в 0ʰ UT1, λ — долгота места.</p>
+</div>
+</div>
+</section>
+<!-- ============ ATOMIC ============ -->
+<section class="view" id="atomic">
+<div class="grid">
+<div class="panel">
+<div id="svg-atomic"></div>
+<div class="cap">Иерархия эталонных шкал: от цезиевого стандарта к гражданскому UTC</div>
+<h3 style="font:800 12px 'Roboto Mono';color:var(--accent-d);text-transform:uppercase;letter-spacing:.1em;margin:18px 4px 6px">Конвертер шкал</h3>
+<div class="conv">
+<div class="field"><span>UTC (гражданское), чч:мм:сс</span><input id="cv-utc" type="text" value="12:00:00"/></div>
+<div class="field"><span>ΔAT = TAI − UTC, целые секунды (2025: 37)</span><input id="cv-dat" type="number" value="37"/></div>
+</div>
+<div class="readout" style="margin-top:12px">
+<div class="rcard"><b>TAI (атомное)</b><div class="big atom" id="cv-tai">12:00:37</div></div>
+<div class="rcard"><b>TT (земное динамич.)</b><div class="big atom" id="cv-tt">12:01:09.184</div></div>
+</div>
+</div>
+<div class="article">
+<h2>Атомное и динамическое время</h2>
+<h3>TAI — международное атомное время</h3>
+<p class="lead">Первичная эталонная шкала на основе атомных часов. Секунда SI = <b>9 192 631 770 периодов</b> излучения перехода между двумя сверхтонкими уровнями основного состояния атома <b>цезия-133</b>. TAI — усреднение сотен цезиевых часов по всему миру с релятивистскими поправками: идеально равномерна и не зависит от вращения Земли.</p>
+<h3>TT — земное динамическое время</h3>
+<p class="lead">Современная замена эфемеридного времени (введено в 1984, с 1991 — «земное время» TT):</p>
+<div class="formula">TT = TAI + 32,184ˢ</div>
+<p class="lead">Константа обеспечивает непрерывность с эфемеридным временем (ET), которое до 1984 г. определяли по наблюдениям Луны и планет.</p>
+<h3>UTC — всемирное координированное время</h3>
+<p class="lead">Компромисс между атомным временем и вращением Земли для гражданских целей. Та же секунда SI, что и TAI, но отличается на <b>целое число секунд</b>:</p>
+<div class="formula">UTC = TAI − ΔAT  (на 2025 г. ΔAT = 37ˢ)</div>
+<div class="note">Чтобы |UTC − UT1| не превышала <b>0,9 с</b>, в UTC периодически вводят <b>високосную секунду</b> (leap second). Решение принимает Международная служба вращения Земли (IERS).</div>
+</div>
+</div>
+</section>
+<!-- ============ PERIODS ============ -->
+<section class="view" id="periods">
+<div class="grid">
+<div class="panel">
+<div id="svg-periods"></div>
+<div class="chips" id="per-chips"></div>
+<div class="row">
+<button class="btn primary" id="per-play">▶ Анимация</button>
+<button class="btn" id="per-reset">↺ Сброс</button>
+</div>
+<div class="cap" id="per-cap">Выберите явление и запустите анимацию</div>
+</div>
+<div class="article">
+<h2>Месяцы и год</h2>
+<h3>Синодический месяц</h3>
+<p class="lead">Промежуток между двумя одинаковыми фазами Луны (от новолуния до новолуния) — период смены лунных фаз. Период, за который Луна возвращается на ту же позицию относительно линии Солнце–Земля.</p>
+<div class="formula">T<sub>синод</sub> = 29,530588 сут</div>
+<p class="k">Непостоянен из-за эллиптичности лунной орбиты (e = 0,0549), возмущений Солнца и наклона орбиты к эклиптике.</p>
+<h3>Сидерический месяц</h3>
+<p class="lead">Период обращения Луны вокруг Земли относительно далёких звёзд — истинный орбитальный период в инерциальной системе отсчёта.</p>
+<div class="formula">T<sub>сидер</sub> = 27,321661 сут</div>
+<h3>Тропический год</h3>
+<p class="lead">Промежуток между двумя последовательными прохождениями Солнца через точку весеннего равноденствия — период возвращения Солнца в ту же точку относительно земного экватора.</p>
+<div class="formula">T<sub>троп</sub> = 365,2421897 сут</div>
+<div class="note">Из-за <b>прецессии</b> земной оси тропический год примерно на <b>20 минут короче</b> сидерического года. Синодический месяц длиннее сидерического — Луне нужно «догнать» ушедшее по орбите Солнце.</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+/* =============== helpers =============== */
+const D2R=Math.PI/180, TAU=Math.PI*2;
+function el(id){return document.getElementById(id);}
+function svg(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block">${inner}</svg>`;}
+function hm(hours){hours=((hours%24)+24)%24;let h=Math.floor(hours);let m=Math.round((hours-h)*60);if(m===60){m=0;h=(h+1)%24;}return h+'ʰ '+String(m).padStart(2,'0')+'ᵐ';}
+function hms3(hours){hours=((hours%24)+24)%24;let h=Math.floor(hours);let mf=(hours-h)*60;let m=Math.floor(mf);let s=(mf-m)*60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+s.toFixed(0).padStart(2,'0');}
+
+/* =============== MAP: classification flowchart (as in the presentation) =============== */
+function buildTree(){
+  const W=920,H=620;
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  // rounded box with word-wrapped centered text
+  function box(x,y,w,h,lines,opt){opt=opt||{};
+    const fill=opt.fill||'#fff', stroke=opt.stroke||'#2f6f8f', tc=opt.tc||'#123', fs=opt.fs||14, bold=opt.bold?800:500;
+    let t='';const n=lines.length;const lh=fs+3;const y0=y+h/2-(n-1)*lh/2;
+    lines.forEach((ln,i)=>{t+=`<text x="${x+w/2}" y="${y0+i*lh}" text-anchor="middle" dominant-baseline="central" fill="${tc}" font-size="${fs}" font-family="Manrope,Arial" font-weight="${bold}">${ln}</text>`;});
+    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/>`+t;
+  }
+  // orthogonal connector from bottom-center of A to top-center of B with arrow head
+  function conn(ax,ay,bx,by,c){c=c||'#2f6f8f';const my=(ay+by)/2;
+    return `<path d="M${ax} ${ay} V ${my} H ${bx} V ${by-7}" fill="none" stroke="${c}" stroke-width="1.6"/>`+
+      `<path d="M${bx-5} ${by-7} L${bx} ${by} L${bx+5} ${by-7} Z" fill="${c}"/>`;
+  }
+  // multi-segment wire ending with a RIGHTward arrow head
+  function wire(pts,c){c=c||'#2f6f8f';let d='M'+pts[0][0]+' '+pts[0][1];for(let i=1;i<pts.length;i++)d+=' L'+pts[i][0]+' '+pts[i][1];
+    const [ex,ey]=pts[pts.length-1];return `<path d="${d}" fill="none" stroke="${c}" stroke-width="1.6"/>`+`<path d="M${ex-7} ${ey-5} L${ex} ${ey} L${ex-7} ${ey+5} Z" fill="${c}"/>`;}
+
+  const C={sun:{fill:'#fff7ec',stroke:'#e0952a',tc:'#7a4310'}, sid:{fill:'#f2ecfb',stroke:'#8a4bd8',tc:'#5a2ea8'},
+           eph:{fill:'#eef3f1',stroke:'#8aa39c',tc:'#516b64'}, atom:{fill:'#e6f6f0',stroke:'#0f9d78',tc:'#0a5a4a'},
+           root:{fill:'#063f3b',stroke:'#063f3b',tc:'#eafaf4'}};
+
+  // ---- level 0: root
+  const root={x:W/2-120,y:14,w:240,h:56};
+  s+=box(root.x,root.y,root.w,root.h,['Процесс, лежащий','в основе счёта времени'],{...C.root,bold:1,fs:14});
+
+  // ---- level 1: four branches
+  const L1y=118,h1=58;
+  const sid ={x:16,       y:L1y,w:160,h:h1};
+  const sun ={x:210,      y:L1y,w:230,h:h1};
+  const eph ={x:474,      y:L1y,w:180,h:h1};
+  const atom={x:704,      y:L1y,w:180,h:h1};
+  const rc=root.x+root.w/2, rb=root.y+root.h;
+  s+=conn(rc,rb,sid.x+sid.w/2,sid.y);
+  s+=conn(rc,rb,sun.x+sun.w/2,sun.y);
+  s+=conn(rc,rb,eph.x+eph.w/2,eph.y);
+  s+=conn(rc,rb,atom.x+atom.w/2,atom.y);
+  s+=box(sid.x,sid.y,sid.w,sid.h,['Звёздное','время (ST, S)'],{...C.sid,bold:1});
+  s+=box(sun.x,sun.y,sun.w,sun.h,['Солнечное время (T)'],{...C.sun,bold:1});
+  s+=box(eph.x,eph.y,eph.w,eph.h,['Эфемеридное','время (ET) (устар.)'],{...C.eph,bold:1});
+  s+=box(atom.x,atom.y,atom.w,atom.h,['Атомное','время'],{...C.atom,bold:1});
+
+  // ---- level 2 under solar: true & mean
+  const L2y=232,h2=62;
+  const strue={x:236,y:L2y,w:120,h:h2};
+  const smean={x:372,y:L2y,w:120,h:h2};
+  s+=conn(sun.x+sun.w/2,sun.y+sun.h,strue.x+strue.w/2,strue.y,'#e0952a');
+  s+=conn(sun.x+sun.w/2,sun.y+sun.h,smean.x+smean.w/2,smean.y,'#e0952a');
+  s+=box(strue.x,strue.y,strue.w,strue.h,['Истинное','солнечное','время (Tист)'],{...C.sun});
+  s+=box(smean.x,smean.y,smean.w,smean.h,['Среднее','солнечное','время (Tср)'],{...C.sun});
+
+  // under eph & atom -> TDT/TT, TAI
+  const tt ={x:474,y:L2y+6,w:180,h:50};
+  const tai={x:704,y:L2y+6,w:180,h:50};
+  s+=conn(eph.x+eph.w/2,eph.y+eph.h,tt.x+tt.w/2,tt.y,'#8aa39c');
+  s+=conn(atom.x+atom.w/2,atom.y+atom.h,tt.x+tt.w/2,tt.y,'#0f9d78');   // both feed dynamic (as in slide eph & atom -> TDT)
+  s+=conn(atom.x+atom.w/2,atom.y+atom.h,tai.x+tai.w/2,tai.y,'#0f9d78');
+  s+=box(tt.x,tt.y,tt.w,tt.h,['Земное динамическое','время (TDT/TT)'],{...C.atom});
+  s+=box(tai.x,tai.y,tai.w,tai.h,['Международное','атомное время (TAI)'],{...C.atom});
+
+  // ---- level 3 under mean: local & universal
+  const L3y=348,h3=68;
+  const loc={x:236,y:L3y,w:120,h:h3};
+  const uni={x:372,y:L3y,w:120,h:h3};
+  s+=conn(smean.x+smean.w/2,smean.y+smean.h,loc.x+loc.w/2,loc.y,'#e0952a');
+  s+=conn(smean.x+smean.w/2,smean.y+smean.h,uni.x+uni.w/2,uni.y,'#e0952a');
+  s+=box(loc.x,loc.y,loc.w,loc.h,['Местное','среднее','солнечное','время'],{...C.sun,fs:12});
+  s+=box(uni.x,uni.y,uni.w,uni.h,['Всемирное','время (на','Гринвичском','меридиане)'],{...C.sun,fs:12});
+
+  // ---- level 4 under universal: UT0 UT1 UT2
+  const L4y=456,h4=54;
+  const ut0={x:220,y:L4y,w:74,h:h4};
+  const ut1={x:302,y:L4y,w:74,h:h4};
+  const ut2={x:384,y:L4y,w:84,h:h4};
+  const uc=uni.x+uni.w/2, ub=uni.y+uni.h;
+  s+=conn(uc,ub,ut0.x+ut0.w/2,ut0.y,'#e0952a');
+  s+=conn(uc,ub,ut1.x+ut1.w/2,ut1.y,'#e0952a');
+  s+=conn(uc,ub,ut2.x+ut2.w/2,ut2.y,'#e0952a');
+  s+=box(ut0.x,ut0.y,ut0.w,ut0.h,['UT0'],{...C.sun,bold:1});
+  s+=box(ut1.x,ut1.y,ut1.w,ut1.h,['UT1'],{...C.sun,bold:1});
+  s+=box(ut2.x,ut2.y,ut2.w,ut2.h,['UT2','(устар.)'],{...C.sun,fs:12});
+
+  // ---- UTC (fed by TAI from above and by UT via long wire)
+  const utc={x:694,y:L3y,w:200,h:h3};
+  s+=conn(tai.x+tai.w/2,tai.y+tai.h,utc.x+utc.w/2,utc.y,'#0f9d78');
+  s+=box(utc.x,utc.y,utc.w,utc.h,['Всемирное','координированное','время (UTC)'],{...C.atom,bold:1});
+  // long wire from bottom of UT block to UTC left side (arrow points right into UTC)
+  s+=wire([[ut2.x+ut2.w/2,L4y+h4],[ut2.x+ut2.w/2,H-46],[utc.x-30,H-46],[utc.x-30,utc.y+utc.h/2],[utc.x,utc.y+utc.h/2]],'#2f6f8f');
+
+  // legend
+  s+=`<text x="16" y="${H-14}" fill="#8aa39c" font-size="11" font-family="Roboto Mono">Оранжевое — солнечные шкалы · фиолетовое — звёздное · зелёное — атомные/динамические</text>`;
+  return svg(W,H,s);
+}
+
+/* =============== TRUE SOLAR: sundial clock =============== */
+function drawTrue(){
+  const t=+el('true-t').value;                 // hour angle in hours (-12..12)
+  const T=(t+12);                              // true solar time
+  el('true-t-val').textContent=hmLabel(t);
+  el('true-ha').textContent=hmLabel(t);
+  el('true-T').textContent=hm(T);
+  const W=440,H=330,cx=W/2,cy=175,Rr=120;
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#eef6fb" rx="12"/>`;
+  // horizon
+  s+=`<line x1="30" y1="${cy}" x2="${W-30}" y2="${cy}" stroke="#9fb8c7" stroke-width="2"/>`;
+  s+=`<text x="40" y="${cy+18}" fill="#5a7182" font-size="11" font-family="Roboto Mono">горизонт</text>`;
+  // sky arc
+  s+=`<path d="M${cx-Rr} ${cy} A ${Rr} ${Rr} 0 0 1 ${cx+Rr} ${cy}" fill="#dceffb" stroke="#bcdcf0"/>`;
+  // meridian (noon) vertical
+  s+=`<line x1="${cx}" y1="${cy-Rr-8}" x2="${cx}" y2="${cy}" stroke="#c98800" stroke-width="1.4" stroke-dasharray="4 4"/>`;
+  s+=`<text x="${cx}" y="${cy-Rr-14}" text-anchor="middle" fill="#c98800" font-size="10.5" font-family="Roboto Mono">меридиан (полдень)</text>`;
+  // hour angle measured from meridian toward west (positive = afternoon). Map t hours to angle.
+  const ang=(t/12)*90;                          // degrees from meridian
+  const a=(90-ang)*D2R;                          // convert: t=0 -> top
+  const sx=cx+Rr*Math.cos(a)*Math.sign(1), sy=cy-Rr*Math.sin(a);
+  // sun position along arc (only above horizon shown; below -> night)
+  const above=Math.abs(t)<6;
+  const sunx=cx+Rr*Math.sin(ang*D2R), suny=cy-Rr*Math.cos(ang*D2R);
+  // draw gnomon
+  s+=`<line x1="${cx}" y1="${cy}" x2="${sunx}" y2="${suny}" stroke="#f2a52b" stroke-width="2" opacity="${above?1:.3}"/>`;
+  // sun
+  if(above){
+    s+=`<circle cx="${sunx}" cy="${suny}" r="15" fill="#f2a52b"/>`;
+    for(let i=0;i<12;i++){const ra=i/12*TAU;s+=`<line x1="${sunx+Math.cos(ra)*18}" y1="${suny+Math.sin(ra)*18}" x2="${sunx+Math.cos(ra)*23}" y2="${suny+Math.sin(ra)*23}" stroke="#f2a52b" stroke-width="2"/>`;}
+  }else{
+    s+=`<circle cx="${cx}" cy="${cy+70}" r="13" fill="#9fb8c7"/><text x="${cx}" y="${cy+95}" text-anchor="middle" fill="#5a7182" font-size="11" font-family="Roboto Mono">Солнце под горизонтом — ночь</text>`;
+  }
+  // hour angle arc label
+  if(above){
+    const mx=cx+40*Math.sin(ang/2*D2R), my=cy-Rr+30-40*Math.cos(ang/2*D2R);
+    s+=`<text x="${cx+ (t>=0? 18:-52)}" y="${cy-Rr+34}" fill="#8a4a08" font-size="12" font-family="Georgia" font-weight="700">t☉ = ${hmLabel(t)}</text>`;
+  }
+  // big clock readout
+  s+=`<text x="${cx}" y="${cy+120}" text-anchor="middle" fill="#8a4a08" font-size="22" font-family="Roboto Mono" font-weight="700">Tист = ${hm(T)}</text>`;
+  el('svg-true').innerHTML=svg(W,H,s);
+}
+function hmLabel(t){const sign=t<0?'−':(t>0?'+':'');const at=Math.abs(t);let h=Math.floor(at);let m=Math.round((at-h)*60);if(m===60){m=0;h++;}return sign+h+'ʰ '+String(m).padStart(2,'0')+'ᵐ';}
+
+/* =============== EQUATION OF TIME =============== */
+// classic approximation, minutes (apparent - mean numeric range matches lecture: -14.3..+16.3)
+function eot(N){const B=TAU*(N-81)/364;return 9.87*Math.sin(2*B)-7.53*Math.cos(B)-1.5*Math.sin(B);}
+function solarDec(N){return -23.44*Math.cos(TAU*(N+10)/365);}
+const MONTHS=['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+const MDAYS=[31,28,31,30,31,30,31,31,30,31,30,31];
+function dateLabel(N){let d=N;for(let m=0;m<12;m++){if(d<MDAYS[m])return (d+1)+' '+({янв:'января',фев:'февраля',мар:'марта',апр:'апреля',май:'мая',июн:'июня',июл:'июля',авг:'августа',сен:'сентября',окт:'октября',ноя:'ноября',дек:'декабря'})[MONTHS[m]];d-=MDAYS[m];}return '';}
+let eotMode='curve';
+function drawEot(){
+  const N=+el('eot-date').value;
+  const e=eot(N), dec=solarDec(N);
+  el('eot-date-val').textContent=dateLabel(N);
+  el('eot-val').textContent=(e>=0?'+':'−')+Math.abs(e).toFixed(1)+' мин';
+  el('eot-dec').textContent=(dec>=0?'+':'−')+Math.abs(dec).toFixed(1)+'°';
+  const W=440,H=330;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  if(eotMode==='curve'){
+    const L=42,R=W-14,T=20,Bt=H-40, midY=(T+Bt)/2;
+    // axes
+    s+=`<line x1="${L}" y1="${midY}" x2="${R}" y2="${midY}" stroke="#c3d5cf" stroke-width="1"/>`;
+    s+=`<line x1="${L}" y1="${T}" x2="${L}" y2="${Bt}" stroke="#c3d5cf" stroke-width="1"/>`;
+    // y grid -14..+16
+    for(let v=-15;v<=15;v+=5){const y=midY - v/18*(Bt-T)/2;s+=`<line x1="${L}" y1="${y}" x2="${R}" y2="${y}" stroke="#eef3f1"/><text x="${L-6}" y="${y+3}" text-anchor="end" fill="#8aa39c" font-size="9" font-family="Roboto Mono">${v>0?'+':''}${v}</text>`;}
+    // month ticks
+    let acc=0;for(let m=0;m<12;m++){const x=L+(acc/365)*(R-L);s+=`<text x="${x+4}" y="${Bt+14}" fill="#8aa39c" font-size="8.5" font-family="Roboto Mono">${MONTHS[m]}</text>`;acc+=MDAYS[m];}
+    // curve
+    let d='';for(let n=0;n<=364;n+=2){const x=L+(n/365)*(R-L);const y=midY - eot(n)/18*(Bt-T)/2;d+=(n===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    s+=`<path d="${d}" fill="none" stroke="#1f74d8" stroke-width="2.4"/>`;
+    // marker
+    const mx=L+(N/365)*(R-L), my=midY - e/18*(Bt-T)/2;
+    s+=`<line x1="${mx}" y1="${T}" x2="${mx}" y2="${Bt}" stroke="#de501a" stroke-width="1" stroke-dasharray="3 3"/>`;
+    s+=`<circle cx="${mx}" cy="${my}" r="5.5" fill="#de501a" stroke="#fff" stroke-width="1.5"/>`;
+    s+=`<text x="${L+4}" y="${T+12}" fill="#657674" font-size="9.5" font-family="Roboto Mono">η, мин</text>`;
+  }else{
+    // analemma: x = EoT (min), y = declination
+    const cx=W/2, sx=10, T=24,Bt=H-24;
+    s+=`<line x1="${cx}" y1="${T}" x2="${cx}" y2="${Bt}" stroke="#eef3f1"/>`;
+    s+=`<line x1="30" y1="${(T+Bt)/2}" x2="${W-30}" y2="${(T+Bt)/2}" stroke="#eef3f1"/>`;
+    let d='';for(let n=0;n<=365;n+=2){const x=cx+eot(n)*sx;const y=(T+Bt)/2 - solarDec(n)/24*(Bt-T)/2;d+=(n===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    s+=`<path d="${d}Z" fill="none" stroke="#8a4bd8" stroke-width="2.2"/>`;
+    const mx=cx+e*sx, my=(T+Bt)/2 - dec/24*(Bt-T)/2;
+    s+=`<circle cx="${mx}" cy="${my}" r="6" fill="#de501a" stroke="#fff" stroke-width="1.5"/>`;
+    s+=`<circle cx="${mx}" cy="${my}" r="3" fill="#f2a52b"/>`;
+    s+=`<text x="${cx}" y="${T-6}" text-anchor="middle" fill="#657674" font-size="9.5" font-family="Roboto Mono">↑ δ Солнца</text>`;
+    s+=`<text x="${W-34}" y="${(T+Bt)/2-6}" text-anchor="end" fill="#657674" font-size="9.5" font-family="Roboto Mono">η →</text>`;
+  }
+  el('svg-eot').innerHTML=svg(W,H,s);
+}
+
+/* =============== LOCAL / UNIVERSAL =============== */
+function drawLocal(){
+  const lon=+el('loc-lon').value;
+  const UT=12;                                  // fix reference UT1 = 12h for illustration
+  const local=UT + lon/15;
+  el('loc-lon-val').textContent=(lon>=0?'+':'−')+Math.abs(lon).toFixed(1)+'°'+(Math.abs(lon-37.6)<1?' (Москва)':'');
+  el('loc-ut').textContent=hm(UT);
+  el('loc-lt').textContent=hm(local);
+  const W=440,H=330,cx=W/2,cy=165,Rr=110;
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#eef6fb" rx="12"/>`;
+  // Earth
+  s+=`<circle cx="${cx}" cy="${cy}" r="${Rr}" fill="#cbe7f7" stroke="#8fb8d6"/>`;
+  // meridians grid
+  for(let L=-180;L<=180;L+=30){const ex=cx+Rr*Math.sin(L*D2R);s+=`<ellipse cx="${cx}" cy="${cy}" rx="${Math.abs(Rr*Math.sin(L*D2R))}" ry="${Rr}" fill="none" stroke="#a9cee4" stroke-width="0.6"/>`;}
+  // Greenwich meridian (0)
+  s+=`<line x1="${cx}" y1="${cy-Rr}" x2="${cx}" y2="${cy+Rr}" stroke="#0f9d78" stroke-width="2"/>`;
+  s+=`<text x="${cx}" y="${cy-Rr-8}" text-anchor="middle" fill="#0a5a4a" font-size="10.5" font-family="Roboto Mono">Гринвич λ=0</text>`;
+  // local meridian
+  const lx=cx+Rr*Math.sin(lon*D2R);
+  s+=`<ellipse cx="${cx}" cy="${cy}" rx="${Math.abs(Rr*Math.sin(lon*D2R))}" ry="${Rr}" fill="none" stroke="#de501a" stroke-width="2"/>`;
+  s+=`<circle cx="${lx}" cy="${cy}" r="4.5" fill="#de501a"/>`;
+  // sun direction (from UT noon over greenwich)
+  s+=`<text x="${cx}" y="${cy+Rr+22}" text-anchor="middle" fill="#5a7182" font-size="11" font-family="Roboto Mono">λ = ${(lon>=0?'+':'−')+Math.abs(lon)}°  →  ΔT = ${hmSigned(lon/15)}</text>`;
+  el('svg-local').innerHTML=svg(W,H,s);
+}
+function hmSigned(t){const sign=t<0?'−':'+';const at=Math.abs(t);let h=Math.floor(at);let m=Math.round((at-h)*60);if(m===60){m=0;h++;}return sign+h+'ʰ '+String(m).padStart(2,'0')+'ᵐ';}
+
+/* =============== SIDEREAL: why the sidereal day is shorter ===============
+   Sun is fixed at the centre. As the Earth spins, its meridian (flag) returns
+   to the STAR direction after 360° (sidereal day). But during that day the Earth
+   has moved along its orbit, so the Sun's direction has shifted — the meridian
+   must turn a bit MORE to face the Sun again (solar day). Orbit is exaggerated. */
+const SID_EXAG=40;                       // orbital degrees per one sidereal rotation (exaggerated)
+const SID_STAR=360;                      // sidereal day
+const SID_SUN=360/(1-SID_EXAG/360);      // solar day ≈ 405°
+let sidRot=0, sidAnim=null, sidHold=0;
+function drawSid(){
+  const rot=+el('sid-phi').value; sidRot=rot;
+  const W=440,H=360, cx=150, cy=180, R=96;
+  const theta=(rot/360)*SID_EXAG*D2R;    // orbital progress (radians)
+  const aE=Math.PI+theta;                // Earth orbital angle (starts left of Sun)
+  const Ex=cx+R*Math.cos(aE), Ey=cy+R*Math.sin(aE);
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#0b1230" rx="12"/>`;
+  for(let i=0;i<60;i++){const x=(i*71)%W,y=(i*143)%H;s+=`<circle cx="${x}" cy="${y}" r="${(i%3)*0.4+0.3}" fill="#cfe0ff" opacity="0.4"/>`;}
+  // orbit
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2a3560" stroke-width="1" stroke-dasharray="4 6"/>`;
+  // parallel star rays coming from the right ("infinitely far")
+  for(let k=-2;k<=2;k++){const yy=cy+k*22;s+=`<line x1="${W-8}" y1="${yy}" x2="${Ex+40}" y2="${yy}" stroke="#3a5a90" stroke-width="1" stroke-dasharray="2 5" opacity="0.5"/>`;}
+  s+=`<text x="${W-10}" y="${cy-52}" text-anchor="end" fill="#5aa9ff" font-size="11" font-family="Roboto Mono">★ звезда (лучи параллельны)</text>`;
+  // Sun (fixed centre)
+  s+=`<circle cx="${cx}" cy="${cy}" r="17" fill="#f2a52b"/>`;
+  for(let i=0;i<12;i++){const ra=i/12*TAU;s+=`<line x1="${cx+Math.cos(ra)*21}" y1="${cy+Math.sin(ra)*21}" x2="${cx+Math.cos(ra)*27}" y2="${cy+Math.sin(ra)*27}" stroke="#f2a52b" stroke-width="2"/>`;}
+  s+=`<text x="${cx}" y="${cy+40}" text-anchor="middle" fill="#f2a52b" font-size="11" font-family="Roboto Mono">Солнце</text>`;
+  // reference rays from Earth
+  const starAbs=0;                        // direction Earth -> star (to the right, fixed)
+  const sunAbs=Math.atan2(cy-Ey, cx-Ex);  // direction Earth -> Sun
+  s+=`<line x1="${Ex}" y1="${Ey}" x2="${Ex+92*Math.cos(starAbs)}" y2="${Ey+92*Math.sin(starAbs)}" stroke="#5aa9ff" stroke-width="1.6" stroke-dasharray="4 3"/>`;
+  s+=`<line x1="${Ex}" y1="${Ey}" x2="${cx}" y2="${cy}" stroke="#f2c368" stroke-width="1.6" stroke-dasharray="4 3"/>`;
+  // daily-shift arc between star-dir and sun-dir
+  const aStar=starAbs, aSun=sunAbs;
+  s+=`<path d="M ${Ex+40*Math.cos(aStar)} ${Ey+40*Math.sin(aStar)} A 40 40 0 0 ${aSun<aStar?1:0} ${Ex+40*Math.cos(aSun)} ${Ey+40*Math.sin(aSun)}" fill="none" stroke="#ff7136" stroke-width="2"/>`;
+  // meridian flag on Earth
+  const mAbs=(180+rot)*D2R;
+  const mx=Ex+30*Math.cos(mAbs), my=Ey+30*Math.sin(mAbs);
+  s+=`<circle cx="${Ex}" cy="${Ey}" r="16" fill="#2f7fd0" stroke="#8fc2f0"/>`;
+  s+=`<line x1="${Ex}" y1="${Ey}" x2="${mx}" y2="${my}" stroke="#ffd36b" stroke-width="3.5"/>`;
+  s+=`<circle cx="${mx}" cy="${my}" r="4" fill="#ffe08a"/>`;
+  // stage badge
+  function badge(txt,col){return `<rect x="${W-4-9*txt.length}" y="10" width="${9*txt.length}" height="24" rx="6" fill="${col}"/><text x="${W-8-9*txt.length/2}" y="26" text-anchor="middle" fill="#0b1230" font-size="12" font-family="Roboto Mono" font-weight="700">${txt}</text>`;}
+  let stage;
+  if(rot<356) stage='Оборот идёт…';
+  else if(rot<364){stage='★ звёздные сутки: 360°';s+=badge('★ ЗВЁЗДНЫЕ СУТКИ','#8ab6ff');}
+  else if(rot<SID_SUN-4) stage='Солнце сместилось — доворачиваем';
+  else {stage='☀ солнечные сутки';s+=badge('☀ СОЛНЕЧНЫЕ СУТКИ','#f2c368');}
+  // readouts
+  el('sid-phi-val').textContent=rot+'°';
+  el('sid-rstar').textContent=Math.min(rot,360).toFixed(0)+'°'+(rot>=360?' ✓':'');
+  const relSun=rot*(1-SID_EXAG/360);
+  el('sid-rsun').textContent=relSun.toFixed(0)+'°'+(relSun>=359?' ✓':'');
+  // bottom strip
+  s+=`<rect x="12" y="${H-52}" width="${W-24}" height="40" rx="8" fill="#131c3f" stroke="#2a356b"/>`;
+  s+=`<text x="22" y="${H-34}" fill="#ffd36b" font-size="11.5" font-family="Roboto Mono" font-weight="700">${stage}</text>`;
+  s+=`<text x="22" y="${H-18}" fill="#b7a6ef" font-size="10.5" font-family="Roboto Mono">Разница ≈ 3ᵐ56ˢ в сутки · оранжевая дуга = смещение Солнца за сутки</text>`;
+  el('svg-sid').innerHTML=svg(W,H,s);
+}
+const SID_HOLD_FRAMES=70;   // ~1.2 s pause at each key moment
+function sidTick(){
+  if(sidHold>0){                      // currently paused on a key moment
+    sidHold--;
+    sidAnim=requestAnimationFrame(sidTick);
+    return;
+  }
+  const before=sidRot;
+  sidRot+=1.1;
+  // stop-and-hold when we cross the sidereal day (360°) or the solar day (~405°)
+  if(before<SID_STAR && sidRot>=SID_STAR){sidRot=SID_STAR;sidHold=SID_HOLD_FRAMES;}
+  else if(before<SID_SUN && sidRot>=SID_SUN){sidRot=SID_SUN;sidHold=SID_HOLD_FRAMES;}
+  else if(sidRot>SID_SUN+6){sidRot=0;sidHold=SID_HOLD_FRAMES;}   // brief pause at restart
+  el('sid-phi').value=Math.round(sidRot); drawSid();
+  sidAnim=requestAnimationFrame(sidTick);
+}
+
+/* =============== ATOMIC hierarchy + converter =============== */
+function drawAtomic(){
+  const W=440,H=250;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  function box(x,y,w,h,t,sub,fill,tc){return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="${fill}"/>`+
+    `<text x="${x+w/2}" y="${y+18}" text-anchor="middle" fill="${tc}" font-size="12" font-family="Manrope" font-weight="800">${t}</text>`+
+    `<text x="${x+w/2}" y="${y+34}" text-anchor="middle" fill="${tc}" font-size="9" font-family="Roboto Mono" opacity="0.85">${sub}</text>`;}
+  function arr(x1,y1,x2,y2,txt){return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#0f9d78" stroke-width="1.8" marker-end="url(#ah)"/>`+
+    (txt?`<text x="${(x1+x2)/2}" y="${(y1+y2)/2-6}" text-anchor="middle" fill="#0a5a4a" font-size="9.5" font-family="Roboto Mono">${txt}</text>`:'');}
+  s=`<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#0f9d78"/></marker></defs>`+s;
+  s+=box(W/2-70,14,140,44,'Цезий-133','9 192 631 770 периодов = 1 с','#063f3b','#eafaf4');
+  s+=arr(W/2,58,W/2,86);
+  s+=box(W/2-70,88,140,44,'TAI','идеально равномерна','#0f9d78','#fff');
+  s+=arr(W/2-40,132, 90,168,'−ΔAT');
+  s+=arr(W/2+40,132, W-90,168,'+32,184ˢ');
+  s+=box(20,170,150,44,'UTC','гражданское, +leap sec','#35b98e','#06302a');
+  s+=box(W-170,170,150,44,'TT (TDT)','динамическое','#35b98e','#06302a');
+  el('svg-atomic').innerHTML=svg(W,H,s);
+  convert();
+}
+function parseHMS(str){const m=(str||'').split(':').map(Number);if(m.some(isNaN)||m.length<2)return null;return (m[0]||0)*3600+(m[1]||0)*60+(m[2]||0);}
+function fmtHMS(sec){sec=((sec%86400)+86400)%86400;const h=Math.floor(sec/3600),mn=Math.floor((sec%3600)/60),s=sec%60;
+  return String(h).padStart(2,'0')+':'+String(mn).padStart(2,'0')+':'+(Number.isInteger(s)?String(s).padStart(2,'0'):s.toFixed(3).padStart(6,'0'));}
+function convert(){
+  const utc=parseHMS(el('cv-utc').value);const dat=+el('cv-dat').value;
+  if(utc===null){el('cv-tai').textContent='—';el('cv-tt').textContent='—';return;}
+  const tai=utc+dat;const tt=tai+32.184;
+  el('cv-tai').textContent=fmtHMS(tai);
+  el('cv-tt').textContent=fmtHMS(tt);
+}
+
+/* =============== PERIODS: orbital animations =============== */
+const PERIODS=[
+  {k:'sidm', t:'Сидерический месяц', v:27.321661,  c:'#8a4bd8'},
+  {k:'synm', t:'Синодический месяц', v:29.530588,  c:'#f2a52b'},
+  {k:'cmp',  t:'Сравнить месяцы',    v:29.530588,  c:'#2f7fd0'},
+  {k:'trop', t:'Тропический год',    v:365.2421897,c:'#0f9d78'},
+];
+let perMode='synm', perT=0, perAnim=null;    // perT is progress 0..1 of one full period
+function buildPerChips(){
+  el('per-chips').innerHTML=PERIODS.map(p=>`<span class="chip ${perMode===p.k?'on':''}" data-k="${p.k}" style="${perMode===p.k?`background:${p.c}`:''}">${p.t}</span>`).join('');
+  el('per-chips').querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{perMode=ch.dataset.k;perT=0;buildPerChips();drawPeriods();});
+}
+function moonPhaseIcon(x,y,r,frac){ // frac 0=new,0.5=full
+  // simple day/night terminator disk
+  let s=`<circle cx="${x}" cy="${y}" r="${r}" fill="#3a4256"/>`;
+  const k=Math.cos(frac*TAU); // -1..1
+  const lit=`<path d="M ${x} ${y-r} A ${r} ${r} 0 0 ${frac<0.5?1:0} ${x} ${y+r} A ${Math.abs(r*k)} ${r} 0 0 ${(frac<0.5)===(k>0)?0:1} ${x} ${y-r} Z" fill="#f2efe6"/>`;
+  return s+lit+`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#c3d5cf" stroke-width="0.8"/>`;
+}
+/* orbit-motion exaggeration so the Sun's direction visibly shifts during a month */
+const MONTH_ORBIT_EXAG=6;   // Earth advances ~ (27.3/365)*360 * exag ... we tune directly below
+function drawPeriods(){
+  const p=PERIODS.find(x=>x.k===perMode);
+  const W=440,H=360;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#0b1230" rx="12"/>`;
+  for(let i=0;i<60;i++){const x=(i*71)%W,y=(i*143)%H;s+=`<circle cx="${x}" cy="${y}" r="${(i%3)*0.4+0.3}" fill="#cfe0ff" opacity="0.4"/>`;}
+  el('per-cap').textContent = perMode==='cmp'
+    ? 'Обе Луны стартуют вместе (новолуние). Сидерическая финиширует раньше'
+    : p.t+' — '+p.v.toFixed(6)+' сут';
+
+  if(perMode==='cmp'){
+    // One Earth; two Moons sharing the same orbit. Both start at new moon (toward Sun).
+    // Time axis: perT 0..1 spans ONE synodic month. Sun's direction advances by E_ADV over it.
+    const E_ADV=42;                                  // Earth orbital deg over one synodic month (exaggerated)
+    const Sun={x:64,y:H/2}, Rorb=150;
+    const eAng=(perT*E_ADV)*D2R;
+    const Ex=Sun.x+Rorb*Math.cos(eAng), Ey=Sun.y+Rorb*Math.sin(eAng);
+    // Sun
+    s+=`<circle cx="${Sun.x}" cy="${Sun.y}" r="15" fill="#f2a52b"/>`;
+    for(let i=0;i<12;i++){const ra=i/12*TAU;s+=`<line x1="${Sun.x+Math.cos(ra)*19}" y1="${Sun.y+Math.sin(ra)*19}" x2="${Sun.x+Math.cos(ra)*25}" y2="${Sun.y+Math.sin(ra)*25}" stroke="#f2a52b" stroke-width="2"/>`;}
+    s+=`<text x="${Sun.x}" y="${Sun.y+32}" text-anchor="middle" fill="#f2a52b" font-size="10" font-family="Roboto Mono">Солнце</text>`;
+    // Moon orbit
+    const Rm=54;
+    s+=`<circle cx="${Ex}" cy="${Ey}" r="${Rm}" fill="none" stroke="#2a3560" stroke-dasharray="3 5"/>`;
+    // reference directions from Earth
+    const toSun=Math.atan2(Sun.y-Ey,Sun.x-Ex);
+    s+=`<line x1="${Ex}" y1="${Ey}" x2="${Ex+(Rm+34)*Math.cos(toSun)}" y2="${Ey+(Rm+34)*Math.sin(toSun)}" stroke="#f2c368" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+    s+=`<line x1="${Ex}" y1="${Ey}" x2="${Ex+Rm+42}" y2="${Ey}" stroke="#5aa9ff" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+    s+=`<text x="${Ex+Rm+44}" y="${Ey+4}" fill="#5aa9ff" font-size="10" font-family="Roboto Mono">→ ★</text>`;
+    // Both Moons turn vs STARS at the SAME constant rate.
+    // Sidereal completes 360° vs stars at perT = 360/(360+E_ADV) (=sidFrac).
+    // Synodic completes 360° vs Sun at perT = 1.
+    const sidFrac=360/(360+E_ADV);
+    const turnRate=(360+E_ADV);                       // deg vs stars over full perT=1
+    const commonAbs=perT*turnRate*D2R;                // both moons share this angle...
+    // ...but we FREEZE each moon once it has completed its own definition.
+    const sidAbs=Math.min(commonAbs, sidFrac*turnRate*D2R);
+    const synAbs=Math.min(commonAbs, turnRate*D2R);
+    const sidAng=Math.PI+sidAbs, synAng=Math.PI+synAbs;
+    const SidX=Ex+Rm*Math.cos(sidAng), SidY=Ey+Rm*Math.sin(sidAng);
+    const SynX=Ex+Rm*Math.cos(synAng), SynY=Ey+Rm*Math.sin(synAng);
+    // trails
+    function trailPath(maxAbs,col){let d='';for(let a=0;a<=maxAbs;a+=0.05){d+=(d===''?'M':'L')+(Ex+Rm*Math.cos(Math.PI+a)).toFixed(1)+' '+(Ey+Rm*Math.sin(Math.PI+a)).toFixed(1)+' ';}return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2.5" opacity="0.4"/>`;}
+    s+=trailPath(synAbs,'#f2a52b');
+    // Earth
+    s+=`<circle cx="${Ex}" cy="${Ey}" r="12" fill="#2f7fd0" stroke="#8fc2f0"/>`;
+    s+=`<text x="${Ex}" y="${Ey+26}" text-anchor="middle" fill="#8fc2f0" font-size="10" font-family="Roboto Mono">Земля</text>`;
+    // sidereal Moon (violet) + synodic Moon (orange)
+    const phSid=(((sidAng-toSun)/TAU)%1+1)%1, phSyn=(((synAng-toSun)/TAU)%1+1)%1;
+    s+=moonPhaseIcon(SidX,SidY,8,phSid);
+    s+=`<circle cx="${SidX}" cy="${SidY}" r="11" fill="none" stroke="#b98cff" stroke-width="2.5"/>`;
+    s+=moonPhaseIcon(SynX,SynY,8,phSyn);
+    s+=`<circle cx="${SynX}" cy="${SynY}" r="11" fill="none" stroke="#f2a52b" stroke-width="2.5"/>`;
+    // stage markers
+    const sidDone=commonAbs>=sidFrac*turnRate*D2R-1e-6;
+    const synDone=commonAbs>=turnRate*D2R-1e-6;
+    if(sidDone && !synDone)s+=`<text x="${W/2}" y="24" text-anchor="middle" fill="#b98cff" font-size="12" font-family="Roboto Mono" font-weight="700">★ сидерическая финишировала — синодическая ещё догоняет Солнце</text>`;
+    if(synDone)s+=`<text x="${W/2}" y="24" text-anchor="middle" fill="#f2c368" font-size="12" font-family="Roboto Mono" font-weight="700">☀ синодическая финишировала (та же фаза)</text>`;
+    // legend / day counters
+    const daysSid=27.321661, daysSyn=29.530588;
+    const dNow=perT*daysSyn;
+    s+=`<rect x="12" y="${H-64}" width="${W-24}" height="52" rx="8" fill="#131c3f" stroke="#2a356b"/>`;
+    s+=`<circle cx="26" cy="${H-46}" r="5" fill="none" stroke="#b98cff" stroke-width="2.5"/><text x="38" y="${H-42}" fill="#cbb9f5" font-size="10.5" font-family="Roboto Mono">Сидерич.: 27,32 сут ${sidDone?'✓':''}</text>`;
+    s+=`<circle cx="26" cy="${H-28}" r="5" fill="none" stroke="#f2a52b" stroke-width="2.5"/><text x="38" y="${H-24}" fill="#f4c986" font-size="10.5" font-family="Roboto Mono">Синодич.: 29,53 сут ${synDone?'✓':''}</text>`;
+    s+=`<text x="${W-20}" y="${H-34}" text-anchor="end" fill="#9fb0c0" font-size="11" font-family="Roboto Mono">≈ ${dNow.toFixed(1)} сут</text>`;
+    s+=`<text x="${W-20}" y="${H-18}" text-anchor="end" fill="#8aa39c" font-size="9.5" font-family="Roboto Mono">разница ≈ 2,2 сут</text>`;
+    el('svg-periods').innerHTML=svg(W,H,s);
+    return;
+  }
+
+  if(perMode==='trop'){
+    // Sun center, Earth on orbit, spinning; equinox reference direction fixed
+    const cx=W/2, cy=176, R=120;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2a3560" stroke-dasharray="4 6"/>`;
+    s+=`<line x1="${cx}" y1="${cy}" x2="${cx+R+26}" y2="${cy}" stroke="#0f9d78" stroke-width="1.4" stroke-dasharray="3 3"/>`;
+    s+=`<text x="${cx+R+30}" y="${cy+4}" fill="#3fd6a6" font-size="13" font-family="Roboto Mono">♈</text>`;
+    s+=`<circle cx="${cx}" cy="${cy}" r="18" fill="#f2a52b"/>`;
+    for(let i=0;i<12;i++){const ra=i/12*TAU;s+=`<line x1="${cx+Math.cos(ra)*22}" y1="${cy+Math.sin(ra)*22}" x2="${cx+Math.cos(ra)*28}" y2="${cy+Math.sin(ra)*28}" stroke="#f2a52b" stroke-width="2"/>`;}
+    const ang=perT*TAU;
+    const ex=cx+R*Math.cos(ang), ey=cy+R*Math.sin(ang);
+    let trail='';for(let a=0;a<=ang;a+=0.05){trail+=(trail===''?'M':'L')+(cx+R*Math.cos(a)).toFixed(1)+' '+(cy+R*Math.sin(a)).toFixed(1)+' ';}
+    s+=`<path d="${trail}" fill="none" stroke="#0f9d78" stroke-width="3" opacity="0.55"/>`;
+    // spinning Earth (many turns/year)
+    const spin=perT*TAU*24;
+    s+=`<circle cx="${ex}" cy="${ey}" r="11" fill="#2f7fd0" stroke="#8fc2f0"/>`;
+    s+=`<line x1="${ex}" y1="${ey}" x2="${ex+11*Math.cos(spin)}" y2="${ey+11*Math.sin(spin)}" stroke="#ffd36b" stroke-width="2"/>`;
+    s+=`<text x="${ex}" y="${ey-15}" text-anchor="middle" fill="#8fc2f0" font-size="10" font-family="Roboto Mono">Земля</text>`;
+    if(perT>=0.999)s+=`<text x="${cx}" y="${cy+R+40}" text-anchor="middle" fill="#3fd6a6" font-size="12" font-family="Roboto Mono" font-weight="700">✓ Солнце снова в точке ♈ — тропический год</text>`;
+    else s+=`<text x="${cx}" y="${cy+R+40}" text-anchor="middle" fill="#9fb0c0" font-size="11" font-family="Roboto Mono">Возврат Солнца к точке весеннего равноденствия ♈</text>`;
+    s+=`<text x="16" y="${H-14}" fill="#8aa39c" font-size="10" font-family="Roboto Mono">Из-за прецессии тропический год на ≈20 мин короче сидерического</text>`;
+    el('svg-periods').innerHTML=svg(W,H,s);
+    return;
+  }
+
+  /* --- Moon months: Sun (small, left) + Earth (orbits a little) + Moon (orbits Earth) --- */
+  const isSid=(perMode==='sidm');
+  // total Moon revolution needed:
+  //  sidereal -> 360° relative to stars;  synodic -> 360° relative to Sun (Sun also moved)
+  // We EXAGGERATE Earth's orbital motion. Earth advances E_ADV degrees over ONE synodic month.
+  const E_ADV=42;                    // Earth orbital degrees during one synodic month (exaggerated)
+  // Moon angular speed vs stars is constant. Over synodic month Moon turns 360 + E_ADV (deg vs stars).
+  // sidereal fraction of synodic = 360 / (360+E_ADV)
+  const sidFrac=360/(360+E_ADV);
+  const Sun={x:70,y:H/2};
+  const Rorb=150;                    // Earth "orbit" radius (Earth stays right of Sun, moves along arc)
+  // Earth orbital angle: starts at 0 (directly right of Sun). Advances with perT.
+  // For synodic we sweep full period; for sidereal we stop earlier (sidFrac of the sweep speed matched to Moon)
+  // We param the animation so a FULL run (perT:0->1) = the chosen month.
+  const moonTurnsVsStars = isSid ? 1 : (360+E_ADV)/360;     // revolutions vs stars during this month
+  const earthAdvanceDeg  = isSid ? E_ADV*sidFrac : E_ADV;   // Earth advance during this month
+  const eAng = (perT*earthAdvanceDeg)*D2R;                  // Earth orbital position
+  const Ex=Sun.x+Rorb*Math.cos(eAng), Ey=Sun.y+Rorb*Math.sin(eAng);
+  // Sun graphic
+  s+=`<circle cx="${Sun.x}" cy="${Sun.y}" r="16" fill="#f2a52b"/>`;
+  for(let i=0;i<12;i++){const ra=i/12*TAU;s+=`<line x1="${Sun.x+Math.cos(ra)*20}" y1="${Sun.y+Math.sin(ra)*20}" x2="${Sun.x+Math.cos(ra)*26}" y2="${Sun.y+Math.sin(ra)*26}" stroke="#f2a52b" stroke-width="2"/>`;}
+  s+=`<text x="${Sun.x}" y="${Sun.y+34}" text-anchor="middle" fill="#f2a52b" font-size="10" font-family="Roboto Mono">Солнце</text>`;
+  // Earth orbit arc (faint)
+  s+=`<path d="M ${Sun.x+Rorb} ${Sun.y} A ${Rorb} ${Rorb} 0 0 1 ${Sun.x+Rorb*Math.cos(E_ADV*D2R)} ${Sun.y+Rorb*Math.sin(E_ADV*D2R)}" fill="none" stroke="#2a3560" stroke-width="1" stroke-dasharray="3 5"/>`;
+  // Moon orbit around Earth
+  const Rm=52;
+  s+=`<circle cx="${Ex}" cy="${Ey}" r="${Rm}" fill="none" stroke="#2a3560" stroke-dasharray="3 5"/>`;
+  // Direction Earth->Sun (yellow) and Earth->star (blue, fixed = +x since stars at infinity)
+  const toSun=Math.atan2(Sun.y-Ey,Sun.x-Ex);
+  s+=`<line x1="${Ex}" y1="${Ey}" x2="${Ex+ (Rm+30)*Math.cos(toSun)}" y2="${Ey+(Rm+30)*Math.sin(toSun)}" stroke="#f2c368" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+  s+=`<line x1="${Ex}" y1="${Ey}" x2="${Ex+Rm+38}" y2="${Ey}" stroke="#5aa9ff" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${Ex+Rm+40}" y="${Ey+4}" fill="#5aa9ff" font-size="10" font-family="Roboto Mono">→ ★</text>`;
+  // Moon position: turns vs STARS at constant rate. Absolute Moon angle vs +x:
+  const moonAbs = perT*moonTurnsVsStars*TAU;            // measured from +x (star ref), starts at 0 (new moon, toward Sun which is to the LEFT? -> actually Sun is left)
+  // NOTE: Sun is to the LEFT of Earth (toward -x). New moon = Moon between Earth and Sun = toward Sun.
+  // To make "new moon at start", offset Moon start to point toward Sun (angle ~180°).
+  const mAng = Math.PI + moonAbs;
+  const Mx=Ex+Rm*Math.cos(mAng), My=Ey+Rm*Math.sin(mAng);
+  // trail
+  let trail='';for(let a=0;a<=moonAbs;a+=0.05){trail+=(trail===''?'M':'L')+(Ex+Rm*Math.cos(Math.PI+a)).toFixed(1)+' '+(Ey+Rm*Math.sin(Math.PI+a)).toFixed(1)+' ';}
+  s+=`<path d="${trail}" fill="none" stroke="${p.c}" stroke-width="2.5" opacity="0.5"/>`;
+  // Earth (spinning)
+  s+=`<circle cx="${Ex}" cy="${Ey}" r="12" fill="#2f7fd0" stroke="#8fc2f0"/>`;
+  s+=`<text x="${Ex}" y="${Ey+26}" text-anchor="middle" fill="#8fc2f0" font-size="10" font-family="Roboto Mono">Земля</text>`;
+  // Moon with correct phase: phase from Sun-Earth-Moon angle
+  const phase=(((mAng-toSun)/TAU)%1+1)%1;   // 0 = new (toward sun), 0.5 = full
+  s+=moonPhaseIcon(Mx,My,9,phase);
+  // completion labels
+  if(perT>=0.999){
+    const msg=isSid?'✓ Луна снова в том же направлении к звезде':'✓ снова та же фаза (новолуние)';
+    s+=`<text x="${W/2}" y="26" text-anchor="middle" fill="${p.c}" font-size="12" font-family="Roboto Mono" font-weight="700">${msg}</text>`;
+  }
+  // bottom explainer
+  s+=`<rect x="12" y="${H-52}" width="${W-24}" height="40" rx="8" fill="#131c3f" stroke="#2a356b"/>`;
+  s+=`<text x="22" y="${H-34}" fill="#ffd36b" font-size="11" font-family="Roboto Mono" font-weight="700">${isSid?'Сидерический: оборот относительно звезды (★)':'Синодический: возврат к той же фазе (относит. Солнца)'}</text>`;
+  s+=`<text x="22" y="${H-18}" fill="#b7a6ef" font-size="10" font-family="Roboto Mono">${isSid?'27,32 сут — истинный орбитальный период':'29,53 сут — дольше: Луна догоняет ушедшее Солнце'}</text>`;
+  el('svg-periods').innerHTML=svg(W,H,s);
+}
+function perTick(){perT+=0.0035; if(perT>1){perT=1;cancelAnimationFrame(perAnim);perAnim=null;el('per-play').textContent='▶ Заново';} drawPeriods(); if(perAnim)perAnim=requestAnimationFrame(perTick);}
+
+/* =============== plumbing =============== */
+const redraws={map:()=>{el('svg-map').innerHTML=buildTree();},true:drawTrue,mean:drawEot,local:drawLocal,sid:drawSid,atomic:drawAtomic,periods:drawPeriods};
+function activeView(){return document.querySelector('.tab.active').dataset.view;}
+function redrawActive(){const f=redraws[activeView()];if(f)f();}
+
+el('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab');if(!b)return;
+  if(sidAnim){cancelAnimationFrame(sidAnim);sidAnim=null;el('sid-play').textContent='▶ Анимация';}
+  if(perAnim){cancelAnimationFrame(perAnim);perAnim=null;el('per-play').textContent='▶ Анимация';}
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  b.classList.add('active');el(b.dataset.view).classList.add('active');
+  redrawActive();
+});
+
+el('true-t').addEventListener('input',drawTrue);
+el('eot-date').addEventListener('input',drawEot);
+el('eot-mode').addEventListener('click',()=>{eotMode=eotMode==='curve'?'analemma':'curve';
+  el('eot-mode').textContent=eotMode==='curve'?'Показать аналемму ∞':'Показать график η(t)';
+  el('eot-cap').innerHTML=eotMode==='curve'?'Годовой ход уравнения времени η = T<sub>ср</sub> − T<sub>ист</sub>':'Аналемма: по горизонтали η, по вертикали склонение Солнца';
+  drawEot();});
+el('loc-lon').addEventListener('input',drawLocal);
+el('cv-utc').addEventListener('input',convert);
+el('cv-dat').addEventListener('input',convert);
+el('sid-phi').addEventListener('input',drawSid);
+el('sid-play').addEventListener('click',()=>{if(sidAnim){cancelAnimationFrame(sidAnim);sidAnim=null;el('sid-play').textContent='▶ Анимация';}else{el('sid-play').textContent='⏸ Пауза';sidTick();}});
+el('sid-star').addEventListener('click',()=>{if(sidAnim){cancelAnimationFrame(sidAnim);sidAnim=null;el('sid-play').textContent='▶ Анимация';}sidRot=SID_STAR;el('sid-phi').value=Math.round(SID_STAR);drawSid();});
+el('sid-sun').addEventListener('click',()=>{if(sidAnim){cancelAnimationFrame(sidAnim);sidAnim=null;el('sid-play').textContent='▶ Анимация';}sidRot=Math.round(SID_SUN);el('sid-phi').value=Math.round(SID_SUN);drawSid();});
+el('sid-reset').addEventListener('click',()=>{if(sidAnim){cancelAnimationFrame(sidAnim);sidAnim=null;el('sid-play').textContent='▶ Анимация';}sidRot=0;el('sid-phi').value=0;drawSid();});
+
+el('per-play').addEventListener('click',()=>{
+  if(perAnim){cancelAnimationFrame(perAnim);perAnim=null;el('per-play').textContent='▶ Анимация';}
+  else{if(perT>=1)perT=0;el('per-play').textContent='⏸ Пауза';perAnim=requestAnimationFrame(perTick);}
+});
+el('per-reset').addEventListener('click',()=>{if(perAnim){cancelAnimationFrame(perAnim);perAnim=null;}el('per-play').textContent='▶ Анимация';perT=0;drawPeriods();});
+buildPerChips();
+
+/* init all */
+el('svg-map').innerHTML=buildTree();
+drawTrue();drawEot();drawLocal();drawSid();drawAtomic();drawPeriods();
+</script>
+</main></div><footer class="gl-footer"><div><b>ГеоЛиния · Основы геодезической астрономии</b><small>Интерактивный учебный материал</small></div><div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};var a=document.querySelector('.gl-sidebar a[href="time-systems.html"]');if(a)a.classList.add('active');})();</script></body>
+</html>
