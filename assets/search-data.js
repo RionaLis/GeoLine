@@ -52,8 +52,8 @@ window.SEARCH_DATA = [
     "url": "courses/geodesy-course-1/history-of-geodetic-instruments.html"
   },
   {
-    "title": "Понятие о форме и размерах Земли",
-    "desc": "Тема 01. Введение в геодезию",
+    "title": "Форма и размеры Земли",
+    "desc": "Эллипсоид, геоид, размеры Земли и системы отсчёта высот",
     "course": "Геодезия. Курс 1",
     "url": "courses/geodesy-course-1/earth-shape-and-size.html"
   },
