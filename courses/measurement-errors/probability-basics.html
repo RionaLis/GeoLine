@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Основы теории вероятностей: случайный эксперимент, пространство исходов, типы событий, генеральная совокупность и выборка — интерактивный урок с примерами из геодезии.">
+<title>Основы теории вероятностей: основные понятия — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+<style>
+/* ===== Урок «Основы теории вероятностей» · стили в дизайне ГеоЛинии =====
+   Все классы урока имеют префикс lp- и не конфликтуют с style.css / lesson-site.css */
+html{scroll-behavior:smooth}
+.lp{max-width:1040px;font-family:Manrope,'Segoe UI',Arial,sans-serif;font-size:15.3px;line-height:1.62;color:#1c2b27}
+.lp b,.lp strong{color:#12332d}
+/* --- шапка урока --- */
+.lp-hero{position:relative;overflow:hidden;border-radius:18px;padding:36px 38px 32px;color:#fff;background:linear-gradient(135deg,#063f3b 0%,#0b6e62 60%,#158a72 100%);box-shadow:0 16px 36px rgba(6,63,59,.22);margin-bottom:26px}
+.lp-eyebrow{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#ffd9c2;padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+.lp-hero h1{margin:16px 0 10px;font-size:33px;line-height:1.18;letter-spacing:-.3px}
+.lp-sub{max-width:780px;font-size:15.4px;opacity:.93;margin:0 0 18px}
+.lp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lp-chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:600}
+.lp-deco{position:absolute;font-size:72px;opacity:.15;transform:rotate(-14deg);user-select:none;pointer-events:none}
+/* --- навигация по разделам урока (липкая полоса под шапкой урока) --- */
+.lp-toc{position:sticky;top:86px;z-index:900;display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border:1px solid #d5e3de;border-radius:14px;padding:9px 13px;margin:-14px 0 26px;box-shadow:0 6px 18px rgba(18,54,49,.07)}
+.lp-toc-label{font:600 10px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#7a918b;margin-right:7px}
+.lp-toc a{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12.6px;font-weight:700;color:#3f544b;text-decoration:none;border:1px solid transparent;white-space:nowrap}
+.lp-toc a b{font:700 10.5px 'Roboto Mono',ui-monospace,monospace;color:#91aaa4}
+.lp-toc a:hover{border-color:#075c52;color:#075c52}
+.lp-toc a.active{background:#e9f5f1;color:#075c52}
+.lp-toc a.active b{color:#ff7136}
+.lp-toc.is-stuck{box-shadow:0 10px 26px rgba(18,54,49,.14)}
+/* --- секции --- */
+.lp-section{background:#fff;border:1px solid #d5e3de;border-radius:16px;padding:30px 34px 28px;margin-bottom:26px;box-shadow:0 14px 38px rgba(18,54,49,.06);scroll-margin-top:150px}
+.lp-h2{display:flex;align-items:center;gap:14px;font-size:24px;margin:0 0 4px;letter-spacing:-.2px;color:#0c3833}
+.lp-num{flex:none;width:42px;height:42px;border-radius:12px;background:#075c52;color:#fff;display:flex;align-items:center;justify-content:center;font:800 16px 'Roboto Mono',ui-monospace,monospace}
+.lp-lead{color:#5c716b;font-size:15.2px;margin:2px 0 6px}
+.lp h3{font-size:18.5px;margin:28px 0 10px;color:#0c3833}
+.lp h4{margin:0 0 4px;font-size:15px;color:#12332d}
+.lp p{margin:10px 0}
+.lp a{color:#075c52;font-weight:600}
+.lp a:hover{color:#e45f27}
+.lp-h3num{display:inline-block;background:#e9f5f1;color:#075c52;border-radius:8px;font:800 12px 'Roboto Mono',ui-monospace,monospace;padding:2px 9px;margin-right:9px;vertical-align:2px}
+.lp-small{font-size:12.8px;color:#7a918b}
+/* --- определение --- */
+.lp-def{border-left:5px solid #075c52;background:#e9f5f1;border-radius:0 13px 13px 0;padding:14px 18px;margin:16px 0;font-size:15px}
+.lp-term{color:#075c52;font-weight:800}
+/* --- заметки --- */
+.lp-note{background:#f4f8f6;border:1px solid #dbe7e2;border-radius:13px;padding:12px 16px;margin:16px 0;font-size:14.3px}
+.lp-note-info{background:#e8f2f6;border-color:#c8dce6}
+.lp-note-good{background:#e9f5f1;border-color:#c6e4da}
+/* --- плитки --- */
+.lp-grid{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));margin:16px 0}
+.lp-tile{border:1px solid #e2ebe8;border-radius:13px;padding:13px 15px;background:#fbfdfc}
+.lp-tile:hover{border-color:#c9ded6}
+.lp-dom{font:700 10.5px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.07em;text-transform:uppercase;color:#7a918b}
+.lp-ico{font-size:23px;line-height:1.3}
+.lp-tile p{margin:4px 0 0;font-size:13.6px;color:#3f544b}
+/* --- таблицы --- */
+.lp-table{width:100%;border-collapse:collapse;font-size:13.8px;margin:14px 0}
+.lp-table th{background:#e9f5f1;text-align:left;padding:9px 12px;border:1px solid #d5e3de;font-size:13px;color:#0c3833}
+.lp-table td{padding:9px 12px;border:1px solid #e2ebe8;vertical-align:top}
+.lp-table tr:nth-child(even) td{background:#f7fbf9}
+.lp-table td b{color:#0c3833}
+/* --- иллюстрации --- */
+.lp-fig{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:18px 0}
+.lp-figitem{text-align:center}
+.lp-fig figcaption{font-size:12.8px;color:#7a918b;text-align:center;margin-top:7px;max-width:430px}
+.lp svg text{font-family:inherit}
+/* --- демо --- */
+.lp-demo{border:1.5px dashed #b9d6cc;border-radius:16px;padding:20px 22px;margin:20px 0;background:#f6fbf8}
+.lp-demo h3{margin:0 0 12px;display:flex;align-items:center;gap:10px;font-size:17.5px}
+.lp-ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0}
+.lp-out{margin-top:14px}
+.lp-status{font-size:14.2px;color:#3f544b;background:#fff;border:1px solid #e2ebe8;border-radius:11px;padding:9px 13px;margin:10px 0}
+/* --- кнопки --- */
+.lp-btn{display:inline-flex;align-items:center;gap:7px;background:#075c52;color:#fff;border:none;border-radius:11px;padding:10px 17px;font-size:14.3px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(6,63,59,.16);transition:background .15s,transform .15s}
+.lp-btn:hover{background:#063f3b;transform:translateY(-1px)}
+.lp-btn:active{transform:none}
+.lp-btn--accent{background:#ff7136;box-shadow:0 3px 10px rgba(255,113,54,.3)}
+.lp-btn--accent:hover{background:#e45f27}
+.lp-btn--ghost{background:#fff;color:#075c52;border:1.5px solid #bfd8d0;box-shadow:none}
+.lp-btn--ghost:hover{border-color:#075c52;background:#f4faf7}
+.lp-btn--ghost.on{background:#e9f5f1;border-color:#075c52}
+.lp-btn--sm{padding:7px 12px;font-size:13.2px;border-radius:9px}
+/* --- элементы управления --- */
+.lp-seg{display:inline-flex;background:#eef5f2;border:1px solid #d5e3de;border-radius:11px;padding:3px;gap:3px}
+.lp-seg button{border:none;background:transparent;padding:7px 13px;border-radius:8px;font-size:13.4px;font-weight:700;color:#5c716b;cursor:pointer;font-family:inherit}
+.lp-seg button.on{background:#fff;color:#075c52;box-shadow:0 1px 4px rgba(18,54,49,.14)}
+.lp-select{padding:9px 12px;border-radius:10px;border:1.5px solid #bfd8d0;background:#fff;font-size:14px;font-family:inherit;color:#1c2b27;max-width:100%}
+.lp-label{font-size:12.6px;font-weight:700;color:#5c716b;display:block;margin:0 0 5px}
+/* --- теги наступления --- */
+.lp-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:999px;font-size:12.4px;font-weight:700;margin:2px 4px 2px 0;border:1px solid transparent}
+.lp-tag--yes{background:#e9f5f1;color:#0b6b5e;border-color:#c6e4da}
+.lp-tag--no{background:#fdeeee;color:#b33636;border-color:#f2cfcf}
+.lp-tag--neu{background:#eef3f1;color:#5c716b;border-color:#dbe7e2}
+/* --- игральные карты --- */
+.lp-pcard{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1.5px solid #d5e3de;border-radius:10px;box-shadow:0 2px 7px rgba(18,54,49,.12);font-weight:800;line-height:1.05;user-select:none;flex:none}
+.lp-pcard .r{font-size:19px}.lp-pcard .s{font-size:21px;margin-top:2px}
+.lp-pcard.red{color:#d64c4c}.lp-pcard.black{color:#1c2b27}
+.lp-pcard.big{width:92px;height:130px}.lp-pcard.big .r{font-size:26px}.lp-pcard.big .s{font-size:30px}
+.lp-pcard.mini{width:36px;height:52px;border-radius:7px}.lp-pcard.mini .r{font-size:12.5px}.lp-pcard.mini .s{font-size:14px}
+.lp-cardrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* --- сетка двух кубиков --- */
+.lp-g2wrap{overflow-x:auto}
+.lp-g2{display:grid;grid-template-columns:34px repeat(6,minmax(40px,1fr));gap:5px;min-width:320px;max-width:520px;margin:12px auto}
+.lp-g2 .lp-hd{display:flex;align-items:center;justify-content:center;background:#e9f5f1;border-radius:9px;font-weight:800;font-size:13.5px;color:#0c3833}
+.lp-g2 .lp-cell{display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid #e2ebe8;border-radius:9px;min-height:40px;font-weight:700;font-size:14px;color:#3f544b;cursor:pointer}
+.lp-g2 .lp-cell.hl{background:linear-gradient(135deg,#0b6e62,#063f3b);border-color:transparent;color:#fff;box-shadow:0 3px 8px rgba(6,63,59,.3)}
+/* --- история бросков --- */
+.lp-hist{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lp-hh{background:#fff;border:1px solid #e2ebe8;border-radius:9px;padding:4px 9px;font-size:12.2px;font-weight:600;color:#3f544b;font-family:'Roboto Mono',ui-monospace,monospace}
+/* --- флаги событий --- */
+.lp-flags{display:grid;gap:8px;margin:12px 0}
+.lp-flag{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:9px 14px;font-size:14.2px}
+.lp-fname{font-weight:700;color:#12332d}
+.lp-fdef{color:#7a918b;font-size:12.4px;display:block;font-weight:500}
+/* --- венн --- */
+.lp-vennbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.lp-vbtn{border:1.5px solid #bfd8d0;background:#fff;color:#3f544b;border-radius:999px;padding:7px 15px;font-size:13.2px;font-weight:700;cursor:pointer;font-family:inherit}
+.lp-vbtn:hover{border-color:#075c52}
+.lp-vbtn.on{background:#075c52;color:#fff;border-color:transparent}
+#vennSvgWrap{display:flex;justify-content:center;margin-top:12px}
+#vennCaption{background:#fff;border:1px solid #e2ebe8;border-radius:14px;padding:13px 16px;font-size:14.4px;margin-top:12px}
+#vennCaption .ttl{color:#075c52}
+.lp-cchip{display:inline-block;padding:3px 10px;border-radius:9px;background:#fff;border:1px solid #e2ebe8;font-size:12.8px;font-weight:700;margin:2px 4px 2px 0;font-family:'Roboto Mono',ui-monospace,monospace}
+.lp-cchip.r{color:#d64c4c;border-color:#f2cfcf}
+.lp-cchip.b{color:#1c2b27}
+/* --- статистика --- */
+.lp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.lp-stat{background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:10px 13px;text-align:center}
+.lp-stat .v{font-size:17px;font-weight:800;color:#0c3833}
+.lp-stat .k{font-size:10.8px;color:#7a918b;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+#popviz{margin:16px 0 6px}
+/* --- тест --- */
+.lp-qq{border:1.5px solid #e2ebe8;border-radius:15px;padding:16px 18px;margin:14px 0;background:#fbfdfc}
+.lp-qh{font-weight:700;font-size:15px;margin:0 0 10px;color:#12332d}
+.lp-qh .lp-qn{color:#ff7136;font-family:'Roboto Mono',ui-monospace,monospace}
+.lp-opts{display:grid;gap:8px}
+.lp-opt{text-align:left;padding:10px 14px;border-radius:11px;border:1.5px solid #cfe0d9;background:#fff;cursor:pointer;font-size:14px;font-family:inherit;color:#1c2b27}
+.lp-opt:hover{border-color:#075c52}
+.lp-qq.done .lp-opt{cursor:default}
+.lp-qq.done .lp-opt:hover{border-color:#cfe0d9}
+.lp-opt.correct{border-color:#12907b;background:#e9f5f1;font-weight:600}
+.lp-opt.wrong{border-color:#d64c4c;background:#fdeeee}
+.lp-expl{display:none;margin-top:11px;background:#eef6f2;border:1px solid #cfe6dd;border-radius:11px;padding:10px 14px;font-size:13.5px}
+.lp-qq.done .lp-expl{display:block}
+#quizScore{font-weight:800;font-size:15px;color:#075c52}
+/* --- подвал урока --- */
+.lp-foot{margin-top:4px;text-align:center;color:#5c716b;font-size:13.4px;padding:6px 0 14px}
+.lp-foot b{color:#0c3833}
+@media(max-width:760px){
+.lp-hero{padding:26px 20px}
+.lp-hero h1{font-size:26px}
+.lp-section{padding:20px 16px;border-radius:13px;scroll-margin-top:20px}
+.lp-h2{font-size:20px}
+.lp-deco{display:none}
+.lp-toc{position:static;margin:0 0 20px}
+}
+</style>
+</head>
+<body data-root="../..">
+<div class="gl-lesson-layout">
+
+<aside class="gl-sidebar">
+<div class="gl-sidebar-label">Уроки курса</div>
+<a href="probability-basics.html" class="active"><span>01</span>Основы теории вероятностей: основные понятия</a>
+<a href="combinatorics-basics.html"><span>02</span>Комбинаторика: перестановки, размещения, сочетания</a>
+<a href="probability-theorems.html"><span>03</span>Вероятность события. Условная вероятность. Сложение и умножение</a>
+<!-- Следующие уроки добавляйте по этому шаблону (span — номер урока):
+<a href="имя-файла.html"><span>04</span>Название следующего урока</a>
+-->
+<a class="gl-course-link" href="index.html"><span>←</span>Курс 02 · Теория погрешностей</a>
+</aside>
+
+<div class="gl-lesson-content">
+<article class="lp">
+
+<header class="lp-hero">
+  <div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🎲</div>
+  <div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🃏</div>
+  <div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
+  <div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 01</div>
+  <h1>Основы теории вероятностей</h1>
+  <p class="lp-sub">Случайный эксперимент, элементарные исходы, события и их типы, генеральная совокупность и выборка — на примерах игральных карт и костей, бытовых ситуаций и, конечно, геодезии. Чисел-вероятностей в этой части ещё нет: сначала освоим язык и понятия.</p>
+  <div class="lp-chips">
+    <span class="lp-chip">🎯 Случайный эксперимент</span>
+    <span class="lp-chip">🃏 События и их типы</span>
+    <span class="lp-chip">🌍 Совокупность и выборка</span>
+    <span class="lp-chip">📐 Примеры из геодезии</span>
+    <span class="lp-chip">🔬 Интерактивная лаборатория</span>
+  </div>
+</header>
+
+<nav class="lp-toc" aria-label="Содержание урока">
+ <span class="lp-toc-label">Разделы</span>
+ <a href="#intro" title="Зачем случайность изучать математически?"><b>1</b>Введение</a>
+ <a href="#exp" title="Случайный эксперимент (испытание)"><b>2</b>Эксперимент</a>
+ <a href="#outcomes" title="Элементарные исходы и пространство Ω"><b>3</b>Исходы и Ω</a>
+ <a href="#events" title="Случайное событие"><b>4</b>Событие</a>
+ <a href="#types" title="Типы событий"><b>5</b>Типы событий</a>
+ <a href="#sample" title="Генеральная совокупность и выборка"><b>6</b>Выборка</a>
+ <a href="#geodesy" title="Словарь: теория вероятностей ↔ геодезия"><b>7</b>Геодезия</a>
+ <a href="#lab" title="Лаборатория: интерактивные демо"><b>8</b>Лаборатория</a>
+ <a href="#quiz" title="Проверь себя"><b>9</b>Проверь себя</a>
+</nav>
+
+<section class="lp-section" id="intro">
+<h2 class="lp-h2"><span class="lp-num">1</span>Зачем случайность изучать математически?</h2>
+<p class="lp-lead">В быту «случайно» — значит непредсказуемо и маловероятно. В математике случайное — то, что при повторении в схожих условиях даёт разные исходы, но в массе эти исходы подчиняются устойчивым закономерностям.</p>
+
+<div class="lp-def"><span class="lp-term">Теория вероятностей</span> — математическая дисциплина, которая изучает случайные явления и устанавливает их закономерности при массовых проявлениях. Её ближайший союзник — <span class="lp-term">математическая статистика</span> — раздел математики, посвящённый методам систематизации, обработки и использования статистических данных.</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-ico">🎯</div><h4>Единичное явление</h4><p>Исход непредсказуем. Монета упадёт орлом или решкой — заранее не узнать. Погрешность конкретного измерения угла — +12″ или −3″ — тоже.</p></div>
+ <div class="lp-tile"><div class="lp-ico">📈</div><h4>Массовое явление (серия)</h4><p>Проявляется закономерность: доли исходов в длинной серии стабилизируются, разброс погрешностей измерений устойчив, среднее «прижимается» к истинному значению.</p></div>
+ <div class="lp-tile"><div class="lp-ico">📐</div><h4>Почему это важно геодезисту</h4><p>Любой результат измерения содержит случайную погрешность. Поэтому вся теория точности — допуски, средние квадратические погрешности, уравнивание, метод наименьших квадратов — построена на теории вероятностей и статистике.</p></div>
+</div>
+
+<div class="lp-note">💡 <b>План этой части:</b> освоить язык теории вероятностей — эксперимент, исход, пространство исходов, событие и его типы, генеральная совокупность и выборка. Считать комбинации научимся в уроке 02 (комбинаторика), а сами вероятности (числа от 0 до 1) — в уроке 03.</div>
+</section>
+
+<section class="lp-section" id="exp">
+<h2 class="lp-h2"><span class="lp-num">2</span>Случайный эксперимент (испытание)</h2>
+<p class="lp-lead">Всё начинается с эксперимента. Нет испытания — нет ни исходов, ни событий.</p>
+
+<div class="lp-def">В теории вероятностей любое наблюдение случайного явления при определённых условиях называют <span class="lp-term">опытом</span>, <span class="lp-term">экспериментом</span> или <span class="lp-term">испытанием</span>, а результат эксперимента — <span class="lp-term">событием</span> или <span class="lp-term">исходом</span>. У случайного испытания исход заранее неизвестен — в этом и состоит случайность.</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-ico">♻️</div><h4>Признак 1. Повторяемость</h4><p>Условия можно воспроизвести снова и снова: подбросить монету ещё раз, измерить угол следующим приёмом.</p></div>
+ <div class="lp-tile"><div class="lp-ico">📋</div><h4>Признак 2. Известны возможные исходы</h4><p>Множество «что вообще может случиться» перечислимо заранее: орёл/решка, 1–6 очков, одна из 36 карт.</p></div>
+ <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Признак 3. Исход не предопределён</h4><p>Какой исход произойдёт — до опыта неизвестно. В этом и состоит случайность.</p></div>
+</div>
+
+<h3>Примеры случайных экспериментов</h3>
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🪙</div><h4>Подбрасывание монеты</h4><p>Исход — орёл или решка.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🎲</div><h4>Бросок игральной кости</h4><p>Исход — число очков от 1 до 6.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Классика</div><div class="lp-ico">🃏</div><h4>Извлечение карты из колоды</h4><p>Исход — одна из 36 карт (в полной колоде — 52).</p></div>
+ <div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🚌</div><h4>Прибытие автобуса</h4><p>Придёт вовремя, опоздает на минуту, на пять… — точно не предскажешь.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Быт</div><div class="lp-ico">🌦️</div><h4>Наблюдение погоды завтра</h4><p>Пройдёт ли завтра над районом дождь — узнаем только завтра.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Измерение угла теодолитом</h4><p>Один приём измерения горизонтального угла даст значение со случайной погрешностью.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">🛰️</div><h4>Спутниковое определение координат</h4><p>Каждое ГНСС-наблюдение пункта даёт координаты со случайным отклонением.</p></div>
+</div>
+
+<div class="lp-note">ℹ️ «Эксперимент» — широкий термин. Это может быть и <b>активное действие</b> (бросок, извлечение карты, измерение), и <b>пассивное наблюдение</b> (погода, приход автобуса). Существенны только три признака, перечисленные выше.</div>
+
+<h3>А что не является случайным экспериментом?</h3>
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-ico">🧮</div><h4>«Сколько будет 2 + 2?»</h4><p>Исход однозначен — случайности нет.</p></div>
+ <div class="lp-tile"><div class="lp-ico">🌅</div><h4>«Взойдёт ли солнце завтра?»</h4><p>Исход предопределён законами небесной механики — случайным экспериментом это не является.</p></div>
+ <div class="lp-tile"><div class="lp-ico">📜</div><h4>«Какая длина моста по проекту?»</h4><p>Чтение значения из документа — не испытание. А вот <b>измерение</b> фактической длины — уже случайный эксперимент: результат содержит погрешность.</p></div>
+</div>
+</section>
+
+<section class="lp-section" id="outcomes">
+<h2 class="lp-h2"><span class="lp-num">3</span>Элементарные исходы и пространство Ω</h2>
+<p class="lp-lead">Проведя испытание, получаем один конкретный результат. Все возможные результаты вместе образуют «арену», на которой живут события.</p>
+
+<div class="lp-def"><span class="lp-term">Элементарный исход</span> (обозначается греческой буквой <b>ω</b> — «омега малая») — один конкретный, далее неразложимый результат случайного эксперимента.<br>
+<span class="lp-term">Пространство элементарных исходов</span> (<b>Ω</b> — «омега большое») — множество <b>всех</b> возможных элементарных исходов данного эксперимента.</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">Монета</div><div class="lp-ico">🪙</div><h4>Ω = {орёл; решка}</h4><p>2 исхода (классически считаем, что на ребро монета не встаёт).</p>
+ <svg width="150" height="62" viewBox="0 0 150 62"><circle cx="36" cy="24" r="20" fill="#fbbf24" stroke="#b45309" stroke-width="3"/><text x="36" y="31" text-anchor="middle" font-size="17" font-weight="800" fill="#7c2d12">О</text><circle cx="92" cy="24" r="20" fill="#fbbf24" stroke="#b45309" stroke-width="3"/><text x="92" y="31" text-anchor="middle" font-size="17" font-weight="800" fill="#7c2d12">Р</text><text x="36" y="56" text-anchor="middle" font-size="11" fill="#7a918b">орёл</text><text x="92" y="56" text-anchor="middle" font-size="11" fill="#7a918b">решка</text></svg></div>
+ <div class="lp-tile"><div class="lp-dom">Один кубик</div><div class="lp-ico">🎲</div><h4>Ω = {1, 2, 3, 4, 5, 6}</h4><p>6 исходов — по одному на каждую грань.</p><div id="omegaDice" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px"></div></div>
+ <div class="lp-tile"><div class="lp-dom">Два кубика</div><div class="lp-ico">🎲🎲</div><h4>Ω = {(1;1), (1;2), …, (6;6)}</h4><p>36 упорядоченных пар: важно, что выпало на первом кубике и что на втором. Разбор — в интерактиве ниже.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Геодезия</div><div class="lp-ico">📐</div><h4>Ω — непрерывное множество значений</h4><p>Исход измерения — число, например 63°15′12,4″. Всех мыслимых значений бесконечно много: они заполняют интервал вокруг истинного значения угла.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Карты</div><div class="lp-ico">🃏</div><h4>Ω = 36 карт</h4><p>9 рангов (6, 7, 8, 9, 10, В, Д, К, Т) × 4 масти. Все 36 исходов показаны ниже.</p></div>
+</div>
+
+<div class="lp-fig">
+ <div class="lp-figitem"><div class="lp-cardrow" id="omegaCards"></div>
+ <figcaption>Пространство исходов для извлечения карты из 36-картной колоды: 36 элементарных исходов</figcaption></div>
+ <div class="lp-figitem">
+ <svg width="480" height="132" viewBox="0 0 480 132">
+  <line x1="20" y1="80" x2="460" y2="80" stroke="#5c716b" stroke-width="2"/>
+  <path d="M460 80 l-9 -4 v8 z" fill="#5c716b"/><path d="M20 80 l9 -4 v8 z" fill="#5c716b"/>
+  <line x1="120" y1="74" x2="120" y2="86" stroke="#5c716b" stroke-width="2"/>
+  <line x1="240" y1="74" x2="240" y2="86" stroke="#5c716b" stroke-width="2"/>
+  <line x1="360" y1="74" x2="360" y2="86" stroke="#5c716b" stroke-width="2"/>
+  <text x="120" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°14′40″</text>
+  <text x="240" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°15′00″</text>
+  <text x="360" y="104" text-anchor="middle" font-size="12" fill="#7a918b">63°15′20″</text>
+  <line x1="240" y1="18" x2="240" y2="72" stroke="#ff7136" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="240" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="#e45f27">истинное значение угла</text>
+  <circle cx="150" cy="50" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="168" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="186" cy="44" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="200" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="212" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="222" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="230" cy="46" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="236" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="241" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="247" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="253" cy="46" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="261" cy="58" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="271" cy="42" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="285" cy="56" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="303" cy="44" r="4.5" fill="#075c52" fill-opacity=".8"/><circle cx="326" cy="52" r="4.5" fill="#075c52" fill-opacity=".8"/>
+ </svg>
+ <figcaption>Пространство исходов измерения угла — непрерывное: точки-исходы заполняют числовую ось вокруг истинного значения</figcaption></div>
+</div>
+
+<h3>Каким бывает пространство Ω</h3>
+<table class="lp-table">
+<tr><th>Тип Ω</th><th>Что это значит</th><th>Примеры</th></tr>
+<tr><td><b>Конечное</b></td><td>Исходов конечное число</td><td>Монета (2 исхода), кубик (6), колода (36)</td></tr>
+<tr><td><b>Счётное</b></td><td>Исходов бесконечно много, но их можно перенумеровать</td><td>Сколько автобусов пройдёт, пока не придёт нужный; номер приёма, на котором случится первый промах</td></tr>
+<tr><td><b>Непрерывное</b></td><td>Исходы заполняют интервал(ы) числовой оси</td><td>Результаты измерений, погрешности, координаты — «родной дом» геодезии</td></tr>
+</table>
+
+<div class="lp-demo">
+<h3>🎲🔍 Два кубика: пространство из 36 исходов</h3>
+<p style="margin:4px 0 10px;font-size:14.4px">Бросаем <b>две</b> кости. Исход — упорядоченная пара чисел (первая; вторая), например (2; 5). В клетках указана сумма очков. Наведите курсор на клетку; кнопки подсвечивают клетки, образующие события.</p>
+<div class="lp-ctrl">
+ <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="sum7" type="button">Сумма равна 7</button>
+ <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="bothEven" type="button">Оба числа чётные</button>
+ <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="any6" type="button">Хотя бы одна шестёрка</button>
+ <button class="lp-btn lp-btn--sm lp-btn--ghost lp-g2btn" data-mode="none" type="button">Сброс подсветки</button>
+</div>
+<div class="lp-g2wrap"><div class="lp-g2" id="grid2"></div></div>
+<div class="lp-status" id="grid2status">Каждая клетка — один элементарный исход ω. Подсвеченные клетки — подмножество Ω, то есть <b>событие</b>. Наведите курсор на клетку.</div>
+</div>
+</section>
+
+<section class="lp-section" id="events">
+<h2 class="lp-h2"><span class="lp-num">4</span>Случайное событие</h2>
+<p class="lp-lead">Событие — это утверждение об исходе испытания, которое после его проведения оказывается верным или неверным.</p>
+
+<div class="lp-def"><span class="lp-term">Случайное событие</span> (обозначается заглавными буквами <b>A, B, C…</b>) — любое подмножество <b>A ⊆ Ω</b> пространства элементарных исходов. Говорят: «событие A <b>наступило</b>», если испытание закончилось исходом ω ∈ A.</div>
+
+<div class="lp-fig">
+ <div class="lp-figitem">
+ <svg width="430" height="236" viewBox="0 0 430 236">
+  <rect x="12" y="12" width="406" height="212" rx="14" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
+  <text x="30" y="40" font-size="17" font-weight="800" fill="#7a918b">Ω</text>
+  <ellipse cx="285" cy="132" rx="108" ry="74" fill="rgba(7,92,82,.08)" stroke="#075c52" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="285" y="46" text-anchor="middle" font-size="14.5" font-weight="800" fill="#075c52">A = «чётное число»</text>
+  <circle cx="85" cy="84" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="85" y="89" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">1</text>
+  <circle cx="85" cy="182" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="85" y="187" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">3</text>
+  <circle cx="152" cy="133" r="17" fill="#fff" stroke="#9db8b0" stroke-width="2"/><text x="152" y="138" text-anchor="middle" font-size="14" font-weight="800" fill="#3f544b">5</text>
+  <circle cx="307" cy="84" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="307" y="89" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">2</text>
+  <circle cx="280" cy="182" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="280" y="187" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">4</text>
+  <circle cx="354" cy="133" r="17" fill="#e9f5f1" stroke="#075c52" stroke-width="2.5"/><text x="354" y="138" text-anchor="middle" font-size="14" font-weight="800" fill="#075c52">6</text>
+ </svg>
+ <figcaption>Событие A = «выпало чётное число» = {2, 4, 6} — подмножество Ω = {1, …, 6}. Выпал исход 2, 4 или 6 — событие наступило</figcaption></div>
+</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">Кубик</div><h4>A = «чётное число»</h4><p>A = {2, 4, 6} — <b>сложное</b> (составное) событие, а «выпала двойка» = {2} — <b>простое</b> (элементарное).</p></div>
+ <div class="lp-tile"><div class="lp-dom">Карты</div><h4>B = «извлечён туз»</h4><p>B = {Т♠, Т♥, Т♦, Т♣}. Событие C = «извлечена пика» состоит из 9 исходов.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Быт</div><h4>«Завтра пойдёт дождь»</h4><p>Событие может быть выражено обычным предложением об исходе наблюдения: верным оно окажется или нет — узнаем завтра.</p></div>
+ <div class="lp-tile"><div class="lp-dom">Геодезия</div><h4>D = «погрешность в допуске»</h4><p>D = {все исходы с Δ от −30″ до +30″} — бесконечное подмножество непрерывного Ω.</p></div>
+</div>
+
+<div class="lp-note">ℹ️ <b>Терминология учебника.</b> У Голубева «событие» и «исход» — синонимы (результат эксперимента): события, которые нельзя представить комбинацией других, называются <b>простыми (элементарными)</b>, представимые комбинациями — <b>сложными</b>. Язык множеств, которым пользуемся мы («событие — подмножество Ω»), лишь уточняет ту же картину: сложное событие — объединение элементарных исходов.</div>
+
+<h3>Три «пограничных» вида событий</h3>
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-ico">✅</div><h4>Достоверное (совпадает с Ω)</h4><p>Наступает в любом испытании. «Кубик покажет число от 1 до 6», «результат измерения окажется каким-нибудь числом».</p></div>
+ <div class="lp-tile"><div class="lp-ico">⛔</div><h4>Невозможное (пустое множество ∅)</h4><p>Не наступает никогда. «Кубик покажет 7 очков», «из 36-картной колоды извлекут джокера», «погрешность одновременно +5″ и −5″».</p></div>
+ <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Собственно случайное</h4><p>Может наступить, может не наступить. «Выпадет 6», «карта — туз», «погрешность больше +20″».</p></div>
+</div>
+
+<div class="lp-note lp-note-info">🔖 <b>Обозначения.</b> Здесь достоверное событие — это всё Ω, невозможное — пустое множество ∅. В учебнике В.В. Голубева для них приняты обозначения V и U соответственно.</div>
+
+<div class="lp-demo">
+<h3>🎲 Событие-подмножество: проверьте на кубике</h3>
+<div class="lp-ctrl">
+ <div><label class="lp-label">Событие A</label>
+ <select class="lp-select" id="miniSel">
+  <option value="0">«Выпало чётное» = {2, 4, 6}</option>
+  <option value="1">«Выпало не меньше 5» = {5, 6}</option>
+  <option value="2">«Выпала четвёрка» = {4} — элементарное</option>
+  <option value="3">«Выпало от 1 до 6» — достоверное</option>
+  <option value="4">«Выпало 7» — невозможное</option>
+ </select></div>
+ <button class="lp-btn lp-btn--accent" id="miniBtn" type="button">🎲 Бросить кубик</button>
+</div>
+<div class="lp-out" id="miniOut" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><span style="color:#8aa69d">Нажмите «Бросить кубик» — увидите исход и факт наступления события.</span></div>
+</div>
+</section>
+
+<section class="lp-section" id="types">
+<h2 class="lp-h2"><span class="lp-num">5</span>Типы событий</h2>
+<p class="lp-lead">События классифицируют сразу по нескольким независимым признакам — как погрешности в геодезии классифицируют по природе возникновения. Разберём признаки по очереди, а в конце соберём всё в таблицу.</p>
+
+<table class="lp-table">
+<tr><th>Признак классификации</th><th>Типы</th></tr>
+<tr><td><b>Состав события</b></td><td>простое, элементарное (один исход) · сложное, составное (несколько исходов)</td></tr>
+<tr><td><b>Возможность наступления</b></td><td>достоверное (всегда) · невозможное (никогда) · случайное (может наступить или нет)</td></tr>
+<tr><td><b>Отношения пары событий</b></td><td>совместные / несовместные · противоположные · зависимые / независимые</td></tr>
+<tr><td><b>Свойства набора событий</b></td><td>полная группа · равновозможные · схема случаев (всё вместе)</td></tr>
+</table>
+
+<h3><span class="lp-h3num">5.1</span>Совместные и несовместные события</h3>
+<div class="lp-def"><b>Совместные события</b> — могут наступить в одном и том же испытании одновременно: их множества исходов пересекаются, A ∩ B ≠ ∅.<br>
+<b>Несовместные события</b> — исключают друг друга: одновременно наступить не могут, A ∩ B = ∅.</div>
+
+<div class="lp-fig">
+ <div class="lp-figitem">
+ <svg width="250" height="180" viewBox="0 0 250 180">
+  <rect x="10" y="10" width="230" height="160" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
+  <text x="220" y="34" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
+  <circle cx="95" cy="94" r="52" fill="rgba(14,143,119,.12)" stroke="#0e8f77" stroke-width="2.5"/>
+  <circle cx="155" cy="94" r="52" fill="rgba(255,113,54,.13)" stroke="#ff7136" stroke-width="2.5"/>
+  <text x="60" y="100" font-size="15" font-weight="800" fill="#0b6b5e">A</text>
+  <text x="192" y="100" font-size="15" font-weight="800" fill="#e45f27">B</text>
+  <text x="125" y="94" text-anchor="middle" font-size="11.5" font-weight="700" fill="#075c52">A∩B</text>
+ </svg><figcaption><b>Совместные:</b> пересечение непусто — есть исходы «сразу для обоих»</figcaption></div>
+ <div class="lp-figitem">
+ <svg width="250" height="180" viewBox="0 0 250 180">
+  <rect x="10" y="10" width="230" height="160" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
+  <text x="220" y="34" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
+  <circle cx="80" cy="94" r="46" fill="rgba(14,143,119,.12)" stroke="#0e8f77" stroke-width="2.5"/>
+  <circle cx="172" cy="94" r="46" fill="rgba(255,113,54,.13)" stroke="#ff7136" stroke-width="2.5"/>
+  <text x="80" y="100" text-anchor="middle" font-size="15" font-weight="800" fill="#0b6b5e">A</text>
+  <text x="172" y="100" text-anchor="middle" font-size="15" font-weight="800" fill="#e45f27">B</text>
+ </svg><figcaption><b>Несовместные:</b> A ∩ B = ∅ — вместе невозможны</figcaption></div>
+</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Совместные: «туз» и «красная масть»</h4><p>Если пришёл Т♥ или Т♦ — оба события наступили сразу.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Несовместные: «дама» и «король»</h4><p>Одна извлечённая карта не может быть одновременно и дамой, и королём. Также несовместны «красная масть» и «чёрная масть».</p></div>
+ <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Оба варианта</h4><p>Совместные: «чётное» и «больше 3» — общие исходы 4 и 6. Несовместные: «чётное» и «нечётное».</p></div>
+ <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Погода и транспорт</h4><p>Совместные: «идёт дождь» и «дует ветер». Несовместные: «автобус пришёл вовремя» и «автобус опоздал на 10 минут».</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Погрешности</h4><p>Совместные: «Δ &gt; 0» и «|Δ| &lt; 10″» — например, Δ = +6″. Несовместные: «Δ &gt; 0» и «Δ &lt; 0» — у погрешности один знак.</p></div>
+</div>
+
+<div class="lp-note">⚠️ <b>Несовместность — про одно и то же испытание.</b> События «при первом броске выпал орёл» и «при втором броске выпала решка» — совместные: это разные испытания, они спокойно происходят вместе. Точно так же совместны «при первом приёме Δ &gt; 0» и «при втором приёме Δ &lt; 0».</div>
+
+<h3><span class="lp-h3num">5.2</span>Противоположные события</h3>
+<div class="lp-def"><span class="lp-term">Противоположное событие</span> к A — событие <b>Ā</b> («не A»), которое наступает тогда и только тогда, когда A не наступает. Пара A и Ā всегда несовместна и образует простейшую полную группу: в испытании произойдёт ровно одно из двух.</div>
+
+<div class="lp-fig">
+ <div class="lp-figitem">
+ <svg width="430" height="190" viewBox="0 0 430 190">
+  <rect x="12" y="12" width="406" height="166" rx="14" fill="#e9f5f1" stroke="#d5e3de" stroke-width="2"/>
+  <circle cx="125" cy="95" r="60" fill="rgba(14,143,119,.28)" stroke="#0e8f77" stroke-width="2.5"/>
+  <text x="125" y="102" text-anchor="middle" font-size="18" font-weight="800" fill="#0b6b5e">A</text>
+  <text x="300" y="88" text-anchor="middle" font-size="16" font-weight="800" fill="#3f544b">Ā («не A»)</text>
+  <text x="300" y="110" text-anchor="middle" font-size="12.5" fill="#7a918b">всё, что вне A, внутри Ω</text>
+  <text x="30" y="38" font-size="15" font-weight="800" fill="#7a918b">Ω</text>
+ </svg>
+ <figcaption>Ā — дополнение A до всего пространства Ω: A ∪ Ā = Ω, A ∩ Ā = ∅</figcaption></div>
+</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>«Орёл» ↔ «решка»</h4><p>Для одного броска — классическая пара противоположных событий.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>«Туз» ↔ «не туз»</h4><p>К «не тузу» относятся любые 32 карты из 36.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>«Дождь будет» ↔ «дождя не будет»</h4><p>Одно из двух обязательно окажется верным завтра.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Допуск и брак</h4><p>«Измерение в допуске» ↔ «вне допуска»; «есть грубая погрешность (промах)» ↔ «промаха нет».</p></div>
+</div>
+
+<div class="lp-note">⚠️ Противоположное к «выпала шестёрка» — не «выпала единица», а «выпало любое число, кроме 6». Ā — это <b>всё остальное</b> пространство исходов.</div>
+
+<h3><span class="lp-h3num">5.3</span>Полная группа событий</h3>
+<div class="lp-def"><span class="lp-term">Полная группа событий</span> — совокупность событий, одно из которых в заданных условиях обязательно произойдёт. Как правило, события полной группы попарно несовместны — тогда в каждом испытании наступает ровно одно из них, а вместе их исходы покрывают всё Ω.</div>
+
+<div class="lp-fig">
+ <div class="lp-figitem">
+ <svg width="430" height="112" viewBox="0 0 430 112">
+  <rect x="12" y="8" width="406" height="94" rx="12" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>
+  <rect x="18" y="14" width="124" height="82" rx="8" fill="rgba(14,143,119,.16)"/>
+  <rect x="153" y="14" width="124" height="82" rx="8" fill="rgba(18,54,49,.09)"/>
+  <rect x="288" y="14" width="124" height="82" rx="8" fill="rgba(255,113,54,.16)"/>
+  <text x="80" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ &lt; 0</text>
+  <text x="215" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ = 0</text>
+  <text x="350" y="60" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f544b">Δ &gt; 0</text>
+ </svg>
+ <figcaption>Полная группа для погрешности одного измерения: знак «плюс», «минус» или ровно ноль — что-то одно обязательно реализуется</figcaption></div>
+</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🪙 Монета</div><h4>{«орёл», «решка»}</h4><p>Полная группа из двух событий для одного броска.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>{«1»}, {«2»}, …, {«6»}</h4><p>Шесть одноэлементных событий — полная группа: выпадает ровно одна грань.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешности</h4><p>{«Δ &lt; 0»}, {«Δ = 0»}, {«Δ &gt; 0»} — полная группа. На практике ноль почти не встречается, но логически возможен.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Пара противоположных</h4><p>{«в допуске», «вне допуска»} — простейшая полная группа: ровно одно из двух обязательно верно.</p></div>
+</div>
+
+<h3><span class="lp-h3num">5.4</span>Равновозможные события</h3>
+<div class="lp-def"><span class="lp-term">Равновозможные события</span> — события, которые при заданных условиях имеют одинаковые шансы появления. Обычно это следствие симметрии условий испытания (однородная колода, правильная кость).</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Симметричная кость</h4><p>{«1»}, …, {«6»} равновозможны — геометрическая и физическая симметрия кубика.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Перетасованная колода</h4><p>До извлечения все 36 карт «равноправны»: ни у одной карты нет преимущества быть извлечённой.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Симметрия и асимметрия погрешностей</h4><p>У исправного прибора «+» и «−» случайной погрешности примерно равновозможны. Но малые |Δ| встречаются чаще больших — исходы <b>неравновозможны</b>.</p></div>
+</div>
+
+<div class="lp-note">⚠️ Равновозможность — свойство условий (симметрии), а не нашего незнания. «Мы не знаем, что будет» ≠ «все исходы одинаково возможны»: гнутая монета даёт неравновозможные исходы, хотя мы о них ничего не знаем.</div>
+
+<h3><span class="lp-h3num">5.5</span>Схема случаев</h3>
+<div class="lp-def"><span class="lp-term">Схема случаев</span> — совокупность равновозможных, несовместных событий, образующих полную группу. Каждый такой «случай» — один равновозможный исход испытания.</div>
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Шесть случаев</h4><p>{«1»}, …, {«6»} — равновозможны, несовместны и образуют полную группу: классическая схема случаев.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Тридцать шесть случаев</h4><p>Извлечение одной карты из хорошо перетасованной колоды — 36 равновозможных исходов.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Знаки погрешностей</h4><p>Для исправного прибора «+» и «−» случайной погрешности близки к схеме из двух случаев — но строго равновозможными их можно считать лишь в идеализации.</p></div>
+</div>
+<div class="lp-note lp-note-info">🔗 Понятие понадобится в уроке 03: классическая формула вероятности P = M/N работает именно <b>в условиях схемы случаев</b>.</div>
+
+<h3><span class="lp-h3num">5.6</span>Зависимые и независимые события — понятийно</h3>
+<div class="lp-def">События <span class="lp-term">независимы</span>, если факт наступления одного ничего не меняет в ожиданиях относительно другого; <span class="lp-term">зависимы</span> — если меняет. Строгие определения и числовую меру связи даст условная вероятность — в одной из следующих частей.</div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🎲 Кубик</div><h4>Два броска — независимы</h4><p>Кубик «не помнит» предыдущий результат: второй бросок происходит в тех же условиях, что и первый.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Без возврата — зависимы</h4><p>«Первая карта — туз» и «вторая карта — туз» при извлечении без возврата: после первого туза в колоде тузов меньше. С возвратом карты — независимы.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Причина и следствие</h4><p>«Прошёл ливень» и «тротуар мокрый» — зависимы: первое сильно меняет ожидания насчёт второго.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Приёмы и систематика</h4><p>Повторные приёмы исправным прибором — практически независимы. Но измерения, искажённые одной и той же неисправностью (общая систематическая погрешность), — зависимы: у них общая причина.</p></div>
+</div>
+
+<h3><span class="lp-h3num">5.7</span>Сводная таблица классификации</h3>
+<table class="lp-table">
+<tr><th>Признак</th><th>Типы</th><th>Суть</th><th>Пример: кубик</th><th>Пример: геодезия</th></tr>
+<tr><td><b>Состав</b></td><td>простое (элементарное) / сложное (составное)</td><td>один исход / несколько исходов</td><td>«выпала 4» / «чётное» = {2, 4, 6}</td><td>«Δ = +7,2″»* / «|Δ| ≤ 30″»</td></tr>
+<tr><td><b>Возможность наступления</b></td><td>достоверное / невозможное / случайное</td><td>всегда / никогда / как повезёт</td><td>«от 1 до 6» / «выпало 7» / «выпало 6»</td><td>«погрешность — число» / «Δ одновременно + и −» / «Δ &gt; +20″»</td></tr>
+<tr><td><b>Совместность пары</b></td><td>совместные / несовместные</td><td>могут вместе / взаимоисключают</td><td>«чётное» и «≥ 5» / «чётное» и «нечётное»</td><td>«Δ &gt; 0» и «|Δ| &lt; 10″» / «Δ &gt; 0» и «Δ &lt; 0»</td></tr>
+<tr><td><b>Противоположность</b></td><td>A и Ā</td><td>«всё остальное» относительно A</td><td>«выпало 6» ↔ «не 6»</td><td>«в допуске» ↔ «вне допуска»</td></tr>
+<tr><td><b>Полнота набора</b></td><td>полная группа</td><td>одно из них обязательно наступит</td><td>{«1»}, …, {«6»}</td><td>{«Δ &lt; 0»}, {«Δ = 0»}, {«Δ &gt; 0»}</td></tr>
+<tr><td><b>Равновозможность</b></td><td>равновозможные / нет</td><td>симметрия условий</td><td>все грани равновозможны</td><td>малые |Δ| «предпочитительнее» больших — неравновозможны</td></tr>
+<tr><td><b>Связь пары</b></td><td>независимые / зависимые</td><td>одно не влияет на ожидания другого</td><td>два разных броска — независимы</td><td>повторные приёмы — независимы; общая систематика — зависимы</td></tr>
+</table>
+<p class="lp-small">* для непрерывного Ω «элементарный исход» — точечное значение; отдельные точечные события там имеют нулевую «массу» — об этом поговорим в части о вероятности.</p>
+</section>
+
+<section class="lp-section" id="sample">
+<h2 class="lp-h2"><span class="lp-num">6</span>Генеральная совокупность и выборка</h2>
+<p class="lp-lead">Понятия, связывающие «идеальный мир» всех возможных наблюдений с реальным миром тех данных, что у нас есть.</p>
+
+<div class="lp-def"><span class="lp-term">Генеральная совокупность</span> — множество всех возможных значений случайной величины (всех мыслимых наблюдений).<br>
+<span class="lp-term">Выборка</span> — любое конечное подмножество x₁, x₂, …, xₙ генеральной совокупности, полученное в результате наблюдений; число элементов n — <span class="lp-term">объём выборки</span>.</div>
+
+<div id="popviz"></div>
+<div style="text-align:center;margin-top:4px"><button class="lp-btn lp-btn--sm lp-btn--ghost" id="btnResample" type="button">🎲 Сформировать другую выборку</button></div>
+
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-dom">🃏 Карты</div><h4>Колода как совокупность</h4><p>Генеральная совокупность — все 36 карт колоды. Извлекли 5 карт — получили выборку объёма n = 5. Извлечение с возвратом и без возврата — два способа формировать выборку.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🏠 Быт</div><h4>Опрос жителей</h4><p>Совокупность — все жители города. Выборка — те, кого реально опросили. Опрос «только утром у вокзала» даёт перекошенную, нерепрезентативную выборку.</p></div>
+ <div class="lp-tile"><div class="lp-dom">🏭 Быт</div><h4>Контроль качества</h4><p>Партия из 10 000 деталей — совокупность. Проверенные 200 деталей — выборка, по которой судят о всей партии.</p></div>
+ <div class="lp-tile"><div class="lp-dom">📐 Геодезия</div><h4>Серия приёмов</h4><p>Совокупность — гипотетически бесконечный ряд всех мыслимых измерений данной величины данным прибором и методом. Выборка — фактически выполненные n приёмов. По выборке оценивают точность (разброс) и отыскивают промахи.</p></div>
+</div>
+
+<div class="lp-note lp-note-info">🧮 <b>Ω и генеральная совокупность — разные вещи.</b> Ω — множество исходов <b>одного</b> испытания. Выборка — серия результатов <b>нескольких</b> испытаний. Для честного кубика Ω = {1, …, 6}, а выборка из 50 бросков — конкретный ряд из 50 чисел.</div>
+
+<div class="lp-note lp-note-good">🔑 <b>Главная идея статистики:</b> характеристики генеральной совокупности (например, «истинное» среднее погрешностей) неизвестны — их <b>оценивают по выборке</b>. Вся точностная документация в геодезии (СКО прибора, допуски, доверительные интервалы) — это выводы от выборки к совокупности.</div>
+
+<div class="lp-note">📏 <b>Представительная (репрезентативная) выборка</b> — выборка, элементы которой выбраны случайно на всём диапазоне существования случайной величины. В геодезии этого добиваются методикой: разные приёмы, разное время и условия видимости, разные наблюдатели — а не «10 отсчётов подряд одним движением руки». <b>Повторная</b> выборка состоит из независимых элементов (извлечение с возвратом), <b>бесповторная</b> — из зависимых (без возврата). Любую функцию от наблюдённых значений (например, среднее арифметическое) называют <b>статистикой</b>.</div>
+</section>
+
+<section class="lp-section" id="geodesy">
+<h2 class="lp-h2"><span class="lp-num">7</span>Словарь: теория вероятностей ↔ геодезия</h2>
+<p class="lp-lead">В геодезии случайность — не абстракция, а рабочая реальность: колебание изображения в зрительной трубе, округление отсчёта, рефракция, влияние атмосферы на ГНСС. Не случайно классическая теория погрешностей измерений (Гаусс, метод наименьших квадратов) — по сути прикладная теория вероятностей.</p>
+
+<table class="lp-table">
+<tr><th>Понятие теории вероятностей</th><th>Аналог в геодезии</th><th>Пример</th></tr>
+<tr><td><b>Случайный эксперимент</b></td><td>Одно измерение (приём, отсчёт, наблюдение)</td><td>Измерение горизонтального угла 63°15′ одним приёмом теодолитом</td></tr>
+<tr><td><b>Элементарный исход ω</b></td><td>Конкретное значение результата (и его случайной погрешности)</td><td>Δ = +12,4″</td></tr>
+<tr><td><b>Пространство Ω</b></td><td>Все мыслимые результаты измерения при данном методе</td><td>Непрерывный интервал значений вокруг истинного угла</td></tr>
+<tr><td><b>Случайное событие</b></td><td>Проверяемое утверждение о результате измерения</td><td>«|Δ| ≤ 30″ — в допуске»</td></tr>
+<tr><td><b>Несовместные события</b></td><td>Взаимоисключающие варианты результата</td><td>«Δ &gt; 0» и «Δ &lt; 0»</td></tr>
+<tr><td><b>Противоположные события</b></td><td>Допуск / брак</td><td>«В допуске» ↔ «вне допуска»</td></tr>
+<tr><td><b>Полная группа</b></td><td>Исчерпывающая классификация результата</td><td>{«Δ &lt; −30″», «|Δ| ≤ 30″», «Δ &gt; +30″»}</td></tr>
+<tr><td><b>Равновозможность</b></td><td>Симметрия «плюса» и «минуса» случайных погрешностей исправного прибора</td><td>«+3″» и «−3″» — примерно равновозможны; «+3″» и «+53″» — нет</td></tr>
+<tr><td><b>Генеральная совокупность</b></td><td>Бесконечный мыслимый ряд измерений</td><td>«Все» возможные приёмы наблюдения этого угла этим теодолитом в этих условиях</td></tr>
+<tr><td><b>Выборка</b></td><td>Фактически выполненная серия</td><td>6 приёмов по программе наблюдений</td></tr>
+</table>
+
+<h3>Три вида погрешностей измерений — на языке событий</h3>
+<div class="lp-grid">
+ <div class="lp-tile"><div class="lp-ico">🎲</div><h4>Случайная погрешность</h4><p>Неустранимая «шумовая» составляющая: в каждом измерении непредсказуема по знаку и величине. У исправного прибора «плюс» и «минус» симметричны, малые значения встречаются чаще больших. Главный «персонаж» теории вероятностей в геодезии.</p></div>
+ <div class="lp-tile"><div class="lp-ico">⚙️</div><h4>Систематическая погрешность</h4><p>Неслучайный сдвиг: коллимационная ошибка, остаточная рефракция, неточная длина мерного прибора. Повторениями не ослабляется — «ломает» симметрию случайности. Борются методикой (КП/КЛ, поверки) и введением поправок.</p></div>
+ <div class="lp-tile"><div class="lp-ico">💥</div><h4>Грубая погрешность (промах)</h4><p>Редкое событие-«выброс»: просчёт наблюдателя, толчок штатива, ошибка в журнале. Результат явно выпадает из нормальной совокупности — его выявляют и бракуют.</p></div>
+</div>
+
+<div class="lp-note">💡 Мы пока не считаем вероятности, но уже видим главное: <b>«малая случайная погрешность» — частое событие, «промах» — редкое</b>. Как превращать «частое/редкое» в число — тема следующей части.</div>
+</section>
+
+<section class="lp-section" id="lab">
+<h2 class="lp-h2"><span class="lp-num">8</span>Лаборатория: потрогайте понятия руками</h2>
+<p class="lp-lead">Все демо работают без единой формулы вероятности: мы лишь проводим испытания и фиксируем, какие события наступили.</p>
+
+<div class="lp-demo" id="demoCards">
+<h3>🃏 Демо 1. Колода: события при извлечении карт</h3>
+<p style="font-size:14.3px;margin:2px 0 12px">Генеральная совокупность — колода из 36 карт. Каждое извлечение — испытание; извлечённые карты — выборка. Выберите два события и следите, наступают ли они — по отдельности и вместе.</p>
+<div class="lp-ctrl">
+ <div><label class="lp-label">Событие A</label>
+  <select class="lp-select" id="selA">
+   <option value="tuz" selected>Туз</option>
+   <option value="dama">Дама</option>
+   <option value="korol">Король</option>
+   <option value="red">Красная масть</option>
+   <option value="black">Чёрная масть</option>
+   <option value="pika">Пиковая масть</option>
+   <option value="kartinka">Картинка (В, Д, К)</option>
+  </select></div>
+ <div><label class="lp-label">Событие B</label>
+  <select class="lp-select" id="selB">
+   <option value="tuz">Туз</option>
+   <option value="dama">Дама</option>
+   <option value="korol">Король</option>
+   <option value="red" selected>Красная масть</option>
+   <option value="black">Чёрная масть</option>
+   <option value="pika">Пиковая масть</option>
+   <option value="kartinka">Картинка (В, Д, К)</option>
+  </select></div>
+ <button class="lp-btn lp-btn--accent" id="btnDraw" type="button">🃏 Извлечь карту</button>
+ <button class="lp-btn lp-btn--ghost" id="btnDraw5" type="button">Извлечь 5</button>
+ <button class="lp-btn lp-btn--ghost" id="btnShuffle" type="button">🔄 Перетасовать</button>
+</div>
+<div class="lp-status" id="compatBanner"></div>
+<div class="lp-out" style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+ <div id="cardOut"></div>
+ <div style="flex:1;min-width:250px">
+  <div id="cardMsg" class="lp-status">Нажмите «Извлечь карту».</div>
+  <div id="cardCounts" style="font-size:13.6px;color:#3f544b"></div>
+ </div>
+</div>
+<div><label class="lp-label" style="margin-top:14px">Выборка (извлечённые карты)</label><div class="lp-cardrow" id="sampleStrip"><span style="color:#8aa69d;font-size:13.5px">пока пусто</span></div></div>
+<div class="lp-small" id="deckInfo" style="margin-top:8px"></div>
+</div>
+
+<div class="lp-demo" id="demoDice">
+<h3>🎲 Демо 2. Кубик или два: события при бросках</h3>
+<div class="lp-ctrl">
+ <div class="lp-seg" id="diceMode"><button class="on" data-m="1" type="button">Один кубик</button><button data-m="2" type="button">Два кубика</button></div>
+ <button class="lp-btn lp-btn--accent" id="btnRoll" type="button">🎲 Бросить</button>
+ <button class="lp-btn lp-btn--ghost" id="btnRoll20" type="button">Ещё 20 раз</button>
+ <button class="lp-btn lp-btn--ghost" id="btnDiceReset" type="button">Сброс</button>
+</div>
+<div class="lp-out" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+ <div id="diceOut" style="display:flex;gap:10px;align-items:center;min-height:60px"><span style="color:#8aa69d">Бросьте кубик…</span></div>
+ <div style="flex:1;min-width:240px"><div class="lp-flags" id="diceEvents" style="margin:0"></div></div>
+</div>
+<div class="lp-small">Испытаний выполнено: <b id="diceN">0</b></div>
+<div class="lp-hist" id="diceHist"></div>
+<div class="lp-small" style="margin-top:8px">Мы лишь фиксируем факты наступления событий. Насколько часто они наступают и что из этого следует — предмет следующей части (вероятность).</div>
+</div>
+
+<div class="lp-demo" id="demoVenn">
+<h3>⭕ Демо 3. Диаграмма Эйлера–Венна: события как множества</h3>
+<div class="lp-ctrl">
+ <div><label class="lp-label">Пример</label>
+  <select class="lp-select" id="vennPreset">
+   <option value="0">Карты: A — «туз», B — «пика»</option>
+   <option value="1">Карты: A — «дама», B — «король»</option>
+   <option value="2">Кубик: A — «чётное», B — «не меньше 5»</option>
+   <option value="3">Геодезия: A — «Δ &gt; 0», B — «|Δ| ≤ 15″»</option>
+  </select></div>
+</div>
+<div class="lp-vennbtns" id="vennBtns">
+ <button class="lp-vbtn" data-r="A" type="button">A</button>
+ <button class="lp-vbtn" data-r="B" type="button">B</button>
+ <button class="lp-vbtn on" data-r="AB" type="button">A∩B — оба сразу</button>
+ <button class="lp-vbtn" data-r="UN" type="button">A∪B — хотя бы одно</button>
+ <button class="lp-vbtn" data-r="AO" type="button">только A (A\B)</button>
+ <button class="lp-vbtn" data-r="NA" type="button">не A (Ā)</button>
+</div>
+<div id="vennSvgWrap"></div>
+<div id="vennCaption"></div>
+</div>
+
+<div class="lp-demo" id="demoGeo">
+<h3>📐 Демо 4. Теодолит: серия приёмов измерения угла</h3>
+<p style="font-size:14.3px;margin:2px 0 12px">Условное истинное значение угла — <b>63°15′00,0″</b>. Каждый приём даёт результат со случайной погрешностью Δ; изредка случается грубая погрешность (промах). Понаблюдайте, как ведёт себя выборка при росте числа приёмов.</p>
+<div class="lp-ctrl">
+ <div><label class="lp-label">Прибор</label>
+  <select class="lp-select" id="geoSigma">
+   <option value="5">Образцовый (разброс ≈ 5″)</option>
+   <option value="15" selected>Рабочий (разброс ≈ 15″)</option>
+   <option value="30">Изношенный (разброс ≈ 30″)</option>
+  </select></div>
+ <button class="lp-btn lp-btn--accent" id="btnMeasure" type="button">📐 Выполнить приём</button>
+ <button class="lp-btn lp-btn--ghost" id="btnSeries6" type="button">Серия из 6 приёмов</button>
+ <button class="lp-btn lp-btn--ghost" id="btnGeoReset" type="button">Сброс</button>
+</div>
+<div class="lp-status" id="geoLast">Измерений пока нет.</div>
+<div class="lp-flags" id="geoFlags" style="margin-top:4px"></div>
+<div class="lp-stats" id="geoStats"></div>
+<div id="geoChartWrap"></div>
+<div class="lp-small" style="margin-top:8px">Каждая точка — погрешность одного приёма (элемент выборки). Все мыслимые приёмы этим прибором — генеральная совокупность. Зелёная зона — допуск |Δ| ≤ 15″; за красной границей |Δ| &gt; 45″ — промах.</div>
+</div>
+</section>
+
+<section class="lp-section" id="quiz">
+<h2 class="lp-h2"><span class="lp-num">9</span>Проверь себя</h2>
+<p class="lp-lead">Восемь вопросов по материалу части 1. Отвечайте — пояснение появится сразу.</p>
+<div class="lp-status" id="quizScore">Отвечено: 0 из 8 · Правильно: 0</div>
+<div id="quizBox"></div>
+</section>
+
+<div class="lp-foot">
+<div><b>Конспект «Основы теории вероятностей», часть 1 — основные понятия.</b></div>
+<div style="margin-top:6px">Далее в серии: комбинаторика · вероятность события, условная вероятность и теоремы сложения/умножения · случайные величины и их характеристики · точность измерений в геодезии.</div>
+<div style="margin-top:8px" class="lp-small">Определения сверены с учебником: Голубев В.В. «Геодезия. Теория математической обработки геодезических измерений» (МИИГАиК, 2016), §1.1, §2.1.</div>
+</div>
+
+</article>
+</div><!-- /.gl-lesson-content -->
+
+</div><!-- /gl-lesson-layout -->
+
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script>
+(function(){
+'use strict';
+function qs(s){return document.querySelector(s)}
+function qsa(s,root){return Array.prototype.slice.call((root||document).querySelectorAll(s))}
+function warn(e){try{console.warn(e)}catch(x){}}
+
+/* ---------- помощники: кубик и карты ---------- */
+var PIPS={1:[[30,30]],2:[[18,18],[42,42]],3:[[18,18],[30,30],[42,42]],4:[[18,18],[42,18],[18,42],[42,42]],5:[[18,18],[42,18],[30,30],[18,42],[42,42]],6:[[18,18],[42,18],[18,30],[42,30],[18,42],[42,42]]};
+function dieSVG(n,s){s=s||54;var c='';for(var k=0;k<PIPS[n].length;k++){var p=PIPS[n][k];c+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5.6" fill="#12332d"/>'}return '<svg viewBox="0 0 60 60" width="'+s+'" height="'+s+'" style="flex:none"><rect x="2" y="2" width="56" height="56" rx="12" fill="#ffffff" stroke="#c9d9d3" stroke-width="2.5"/>'+c+'</svg>'}
+var SUITS=[['♠','black'],['♣','black'],['♥','red'],['♦','red']];
+var RANKS=['6','7','8','9','10','В','Д','К','Т'];
+function fullDeck(){var d=[],i,j;for(i=0;i<SUITS.length;i++){for(j=0;j<RANKS.length;j++){d.push({r:RANKS[j],s:SUITS[i][0],c:SUITS[i][1]})}}return d}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function cardHTML(card,cls){return '<span class="lp-pcard '+cls+' '+card.c+'"><span class="r">'+card.r+'</span><span class="s">'+card.s+'</span></span>'}
+function cardName(card){return card.r+card.s}
+
+/* ---------- раздел 3: визуализация Ω ---------- */
+try{
+ qs('#omegaDice').innerHTML=[1,2,3,4,5,6].map(function(n){return dieSVG(n,34)}).join('');
+ qs('#omegaCards').innerHTML=fullDeck().map(function(c){return cardHTML(c,'mini')}).join('');
+}catch(e){warn(e)}
+
+/* ---------- раздел 3: сетка двух кубиков ---------- */
+try{
+ var g=qs('#grid2'),st=qs('#grid2status');
+ var html='<div class="lp-hd"></div>',i,j;
+ for(j=1;j<=6;j++)html+='<div class="lp-hd">'+j+'</div>';
+ for(i=1;i<=6;i++){html+='<div class="lp-hd">'+i+'</div>';
+  for(j=1;j<=6;j++)html+='<div class="lp-cell" data-i="'+i+'" data-j="'+j+'" data-s="'+(i+j)+'">'+(i+j)+'</div>';}
+ g.innerHTML=html;
+ qsa('#grid2 .lp-cell').forEach(function(c){
+  c.addEventListener('mouseenter',function(){
+   var a=+c.getAttribute('data-i'),b=+c.getAttribute('data-j');
+   st.innerHTML='Исход ('+a+'; '+b+'): на первом кубике '+a+', на втором '+b+'; сумма — '+(a+b)+'. Каждый такой исход — отдельный элемент ω в Ω из 36 клеток.';
+  });
+ });
+ var preds={sum7:function(a,b){return a+b===7},bothEven:function(a,b){return a%2===0&&b%2===0},any6:function(a,b){return a===6||b===6}};
+ var names={sum7:'«сумма очков равна 7»',bothEven:'«оба числа чётные»',any6:'«хотя бы на одном кубике шестёрка»'};
+ qsa('.lp-g2btn').forEach(function(b){
+  b.addEventListener('click',function(){
+   qsa('.lp-g2btn').forEach(function(x){x.classList.remove('on')});
+   b.classList.add('on');
+   var m=b.getAttribute('data-mode'),cnt=0;
+   qsa('#grid2 .lp-cell').forEach(function(c){
+    var a=+c.getAttribute('data-i'),bb=+c.getAttribute('data-j');
+    var on=(m!=='none')&&preds[m](a,bb);
+    c.classList.toggle('hl',on);if(on)cnt++;
+   });
+   st.innerHTML=(m==='none')?'Подсветка сброшена. Каждая клетка — элементарный исход ω из Ω.':'Подсвечено '+cnt+' исходов — вместе они образуют событие '+names[m]+'. Событие — это подмножество Ω.';
+  });
+ });
+}catch(e){warn(e)}
+
+/* ---------- раздел 4: мини-демо «событие-подмножество» ---------- */
+try{
+ var minis=[
+  {name:'«Выпало чётное»',set:[2,4,6]},
+  {name:'«Выпало не меньше 5»',set:[5,6]},
+  {name:'«Выпала четвёрка» (элементарное)',set:[4]},
+  {name:'«Выпало от 1 до 6» (достоверное)',set:[1,2,3,4,5,6]},
+  {name:'«Выпало 7» (невозможное)',set:[]}
+ ];
+ qs('#miniBtn').addEventListener('click',function(){
+  var v=1+Math.floor(Math.random()*6);
+  var ev=minis[+qs('#miniSel').value];
+  var hit=ev.set.indexOf(v)>=0;
+  qs('#miniOut').innerHTML=dieSVG(v,64)+
+   '<div style="flex:1;min-width:230px"><div style="font-size:15.3px">Выпало <b>'+v+'</b>. Событие '+ev.name+':</div>'+
+   '<div style="margin-top:6px">'+(hit?'<span class="lp-tag lp-tag--yes">✓ наступило — исход '+v+' принадлежит A</span>':'<span class="lp-tag lp-tag--no">✗ не наступило — исход '+v+' не принадлежит A</span>')+'</div></div>';
+ });
+}catch(e){warn(e)}
+
+/* ---------- лаборатория, демо 1: карты ---------- */
+try{
+ var EVENTS={
+  tuz:{name:'Туз',f:function(c){return c.r==='Т'}},
+  dama:{name:'Дама',f:function(c){return c.r==='Д'}},
+  korol:{name:'Король',f:function(c){return c.r==='К'}},
+  red:{name:'Красная масть',f:function(c){return c.c==='red'}},
+  black:{name:'Чёрная масть',f:function(c){return c.c==='black'}},
+  pika:{name:'Пиковая масть',f:function(c){return c.s==='♠'}},
+  kartinka:{name:'Картинка (В, Д, К)',f:function(c){return c.r==='В'||c.r==='Д'||c.r==='К'}}
+ };
+ var deck=shuffle(fullDeck()),drawn=[],cnt={a:0,b:0,ab:0};
+ function evOf(id){return EVENTS[qs(id).value]}
+ function banner(){
+  var va=qs('#selA').value,vb=qs('#selB').value,el=qs('#compatBanner');
+  if(va===vb){el.innerHTML='Вы выбрали одно и то же событие для A и B — выберите разные события, чтобы увидеть их отношение.';return}
+  var A=evOf('#selA'),B=evOf('#selB');
+  var inter=fullDeck().filter(function(c){return A.f(c)&&B.f(c)});
+  if(inter.length){el.innerHTML='Отношение пары: <span class="lp-tag lp-tag--yes">совместные</span> A∩B = '+inter.map(cardName).join(', ')+' — могут наступить в одном извлечении одновременно.'}
+  else{el.innerHTML='Отношение пары: <span class="lp-tag lp-tag--no">несовместные</span> A∩B = ∅ — одновременно в одном извлечении наступить не могут.'}
+ }
+ function updateCounts(){
+  var A=evOf('#selA'),B=evOf('#selB');
+  qs('#cardCounts').innerHTML='A («'+A.name+'»): <b>'+cnt.a+'</b> · B («'+B.name+'»): <b>'+cnt.b+'</b> · оба вместе: <b>'+cnt.ab+'</b> · извлечено: <b>'+drawn.length+'</b> из 36';
+ }
+ function renderSample(){
+  var el=qs('#sampleStrip');
+  if(!drawn.length){el.innerHTML='<span style="color:#8aa69d;font-size:13.5px">пока пусто</span>'}
+  else{el.innerHTML=drawn.slice(-12).map(function(c){return cardHTML(c,'mini')}).join('')+(drawn.length>12?'<span class="lp-small">+'+(drawn.length-12)+' ранее</span>':'')}
+  qs('#deckInfo').innerHTML='Генеральная совокупность — колода (36 карт) · осталось в колоде: '+deck.length+(deck.length===0?' — нужно перетасовать':'');
+ }
+ function resetSession(msg){deck=shuffle(fullDeck());drawn=[];cnt={a:0,b:0,ab:0};qs('#cardOut').innerHTML='';qs('#cardMsg').innerHTML=msg;banner();updateCounts();renderSample()}
+ function draw(n){
+  var A=evOf('#selA'),B=evOf('#selB'),last=null,reshuffled=false;
+  for(var k=0;k<n;k++){
+   if(!deck.length){deck=shuffle(fullDeck());drawn=[];cnt={a:0,b:0,ab:0};reshuffled=true}
+   var c=deck.pop();drawn.push(c);last=c;
+   var ha=A.f(c),hb=B.f(c);
+   if(ha)cnt.a++;if(hb)cnt.b++;if(ha&&hb)cnt.ab++;
+  }
+  qs('#cardOut').innerHTML=cardHTML(last,'big');
+  var ha=A.f(last),hb=B.f(last),msg='';
+  if(reshuffled)msg+='<span class="lp-tag lp-tag--neu">колода была исчерпана — перетасовали, счётчики обнулены</span><br>';
+  if(n>1)msg+='Извлечено карт: <b>'+n+'</b> (показана последняя). Смотрите счётчики и выборку ниже.<br>';
+  msg+='<b>Извлечена карта: '+cardName(last)+'</b><br>A («'+A.name+'»): '+(ha?'<span class="lp-tag lp-tag--yes">✓ наступило</span>':'<span class="lp-tag lp-tag--no">✗ не наступило</span>')+' &nbsp; B («'+B.name+'»): '+(hb?'<span class="lp-tag lp-tag--yes">✓ наступило</span>':'<span class="lp-tag lp-tag--no">✗ не наступило</span>');
+  if(ha&&hb)msg+='<br><b style="color:#0b6b5e">Оба события наступили в одном испытании — наглядная совместимость!</b>';
+  qs('#cardMsg').innerHTML=msg;
+  updateCounts();renderSample();
+ }
+ qs('#btnDraw').addEventListener('click',function(){draw(1)});
+ qs('#btnDraw5').addEventListener('click',function(){draw(5)});
+ qs('#btnShuffle').addEventListener('click',function(){resetSession('Колода перетасована — начинается новая выборка. Нажмите «Извлечь карту».')});
+ qs('#selA').addEventListener('change',function(){resetSession('События изменены: колода перетасована, счётчики обнулены.')});
+ qs('#selB').addEventListener('change',function(){resetSession('События изменены: колода перетасована, счётчики обнулены.')});
+ banner();updateCounts();renderSample();
+}catch(e){warn(e)}
+
+/* ---------- лаборатория, демо 2: кубики ---------- */
+try{
+ var mode=1,rollN=0,counts={},hist=[],lastVals=null;
+ var EV1=[
+  {name:'Чётное число',f:function(v){return v[0]%2===0}},
+  {name:'Число больше 3',f:function(v){return v[0]>3}},
+  {name:'Выпала шестёрка',f:function(v){return v[0]===6}}
+ ];
+ var EV2=[
+  {name:'Сумма очков ≥ 9',f:function(v){return v[0]+v[1]>=9}},
+  {name:'Дубль (числа равны)',f:function(v){return v[0]===v[1]}},
+  {name:'Хотя бы одна шестёрка',f:function(v){return v[0]===6||v[1]===6}},
+  {name:'Оба числа чётные',f:function(v){return v[0]%2===0&&v[1]%2===0}}
+ ];
+ function evs(){return mode===1?EV1:EV2}
+ function renderFlags(){
+  qs('#diceEvents').innerHTML=evs().map(function(e,i){
+   var cntx=rollN?(counts[i]||0)+' наступлений из '+rollN+' испытаний':'ещё не бросали';
+   var mark=lastVals?(e.f(lastVals)?'<span class="lp-tag lp-tag--yes">✓</span>':'<span class="lp-tag lp-tag--no">✗</span>'):'<span class="lp-tag lp-tag--neu">—</span>';
+   return '<div class="lp-flag"><span class="lp-fname">'+e.name+' <span class="lp-fdef">'+cntx+'</span></span>'+mark+'</div>';
+  }).join('');
+ }
+ function resetDice(){
+  counts={};rollN=0;hist=[];lastVals=null;
+  qs('#diceN').textContent='0';
+  qs('#diceOut').innerHTML='<span style="color:#8aa69d">Бросьте кубик…</span>';
+  qs('#diceHist').innerHTML='';
+  renderFlags();
+ }
+ function roll(n){
+  for(var k=0;k<n;k++){
+   var vals=[1+Math.floor(Math.random()*6)];
+   if(mode===2)vals.push(1+Math.floor(Math.random()*6));
+   rollN++;
+   evs().forEach(function(e,i){if(e.f(vals))counts[i]=(counts[i]||0)+1});
+   hist.unshift(vals);if(hist.length>24)hist.pop();
+   lastVals=vals;
+  }
+  qs('#diceN').textContent=rollN;
+  qs('#diceOut').innerHTML=lastVals.map(function(v){return dieSVG(v,56)}).join('')+(mode===2?'<div style="font-size:15px;font-weight:800;color:#0c3833">сумма '+(lastVals[0]+lastVals[1])+'</div>':'');
+  renderFlags();
+  qs('#diceHist').innerHTML=hist.map(function(v){return '<span class="lp-hh">'+(v.length===2?(v[0]+'+'+v[1]+'='+(v[0]+v[1])):v[0])+'</span>'}).join('');
+ }
+ qsa('#diceMode button').forEach(function(b){
+  b.addEventListener('click',function(){
+   qsa('#diceMode button').forEach(function(x){x.classList.remove('on')});
+   b.classList.add('on');mode=+b.getAttribute('data-m');resetDice();
+  });
+ });
+ qs('#btnRoll').addEventListener('click',function(){roll(1)});
+ qs('#btnRoll20').addEventListener('click',function(){roll(20)});
+ qs('#btnDiceReset').addEventListener('click',resetDice);
+ resetDice();
+}catch(e){warn(e)}
+
+/* ---------- лаборатория, демо 3: венн ---------- */
+try{
+ var PRESETS=[
+  {overlap:true,sentence:'События совместны: A∩B = {Т♠} — туз пик принадлежит обоим множествам.',
+   regions:{
+    A:{ttl:'A — «туз»',txt:'Исходы (карты), при которых наступает событие A:',chips:['Т♠','Т♥','Т♦','Т♣']},
+    B:{ttl:'B — «пика»',txt:'Карты пиковой масти:',chips:['6♠','7♠','8♠','9♠','10♠','В♠','Д♠','К♠','Т♠']},
+    AB:{ttl:'A∩B — «туз и одновременно пика»',txt:'Пересечение содержит ровно одну карту:',chips:['Т♠']},
+    UN:{ttl:'A∪B — «туз или пика»',txt:'4 туза + 9 пик − 1 общая карта = 12 карт:',chips:['Т♠','Т♥','Т♦','Т♣','6♠','7♠','8♠','9♠','10♠','В♠','Д♠','К♠']},
+    AO:{ttl:'A\\B — «туз, но не пика»',txt:'Тузы остальных мастей:',chips:['Т♥','Т♦','Т♣']},
+    NA:{ttl:'Ā — «не туз»',txt:'Дополнение: 36 − 4 = 32 карты:',chips:['все карты, кроме четырёх тузов (32 шт.)']}
+   }},
+  {overlap:false,sentence:'События несовместны: A∩B = ∅ — ни одна карта не является дамой и королём одновременно.',
+   regions:{
+    A:{ttl:'A — «дама»',txt:'Четыре дамы:',chips:['Д♠','Д♥','Д♦','Д♣']},
+    B:{ttl:'B — «король»',txt:'Четыре короля:',chips:['К♠','К♥','К♦','К♣']},
+    AB:{ttl:'A∩B — «дама и король сразу»',txt:'Пересечение пусто: таких карт в колоде нет. Одно извлечение не может дать оба события.',chips:['∅ — пусто']},
+    UN:{ttl:'A∪B — «дама или король»',txt:'4 + 4 − 0 = 8 карт:',chips:['Д♠','Д♥','Д♦','Д♣','К♠','К♥','К♦','К♣']},
+    AO:{ttl:'A\\B — «дама, но не король»',txt:'Дамы и так не короли — событие A целиком:',chips:['Д♠','Д♥','Д♦','Д♣']},
+    NA:{ttl:'Ā — «не дама»',txt:'Дополнение: 36 − 4 = 32 карты:',chips:['все карты, кроме четырёх дам (32 шт.)']}
+   }},
+  {overlap:true,sentence:'События совместны: исход 6 — одновременно чётный и не меньший 5.',
+   regions:{
+    A:{ttl:'A — «чётное»',txt:'A = {2, 4, 6}:',chips:['2','4','6']},
+    B:{ttl:'B — «не меньше 5»',txt:'B = {5, 6}:',chips:['5','6']},
+    AB:{ttl:'A∩B — «чётное и ≥ 5»',txt:'Пересечение: {6}:',chips:['6']},
+    UN:{ttl:'A∪B — «чётное или ≥ 5»',txt:'Объединение: {2, 4, 5, 6}:',chips:['2','4','5','6']},
+    AO:{ttl:'A\\B — «чётное, но меньше 5»',txt:'{2, 4}:',chips:['2','4']},
+    NA:{ttl:'Ā — «нечётное»',txt:'Дополнение A: {1, 3, 5}:',chips:['1','3','5']}
+   }},
+  {overlap:true,sentence:'События совместны: например, Δ = +7″ — и положительна (A), и в допуске (B).',
+   regions:{
+    A:{ttl:'A — «погрешность положительна»',txt:'Все исходы с Δ > 0:',chips:['Δ = +2″','Δ = +7″','Δ = +23″','…']},
+    B:{ttl:'B — «в допуске: |Δ| ≤ 15″»',txt:'Малые по модулю погрешности:',chips:['Δ = −9″','Δ = 0″','Δ = +7″','…']},
+    AB:{ttl:'A∩B — «положительная и в допуске»',txt:'Малые положительные погрешности: 0 < Δ ≤ +15″:',chips:['Δ = +2″','Δ = +7″','…']},
+    UN:{ttl:'A∪B — «положительная или в допуске»',txt:'Всё, кроме больших отрицательных погрешностей:',chips:['Δ = +2″','Δ = −9″','Δ = +23″','…']},
+    AO:{ttl:'A\\B — «положительная, но вне допуска»',txt:'Большие положительные: Δ > +15″:',chips:['Δ = +23″','…']},
+    NA:{ttl:'Ā — «неположительная»',txt:'Все исходы с Δ ≤ 0:',chips:['Δ = −9″','Δ = 0″','…']}
+   }}
+ ];
+ var curRegion='AB';
+ function chipClass(t){if(/[♥♦]/.test(t))return 'r';if(/[♠♣]/.test(t))return 'b';return ''}
+ function vennSVG(p,region){
+  var W=560,H=330;
+  var A=p.overlap?{cx:205,cy:172,r:112}:{cx:150,cy:172,r:100};
+  var B=p.overlap?{cx:355,cy:172,r:112}:{cx:408,cy:172,r:100};
+  function circ(c,extra){return '<circle cx="'+c.cx+'" cy="'+c.cy+'" r="'+c.r+'" '+extra+'/>'}
+  var s='<defs>';
+  s+='<clipPath id="clipB">'+circ(B,'')+'</clipPath>';
+  s+='<mask id="mNotB"><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#ffffff"/>'+circ(B,'fill="#000000"')+'</mask>';
+  s+='<mask id="mNotA"><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#ffffff"/>'+circ(A,'fill="#000000"')+'</mask>';
+  s+='</defs>';
+  s+='<rect x="15" y="15" width="'+(W-30)+'" height="'+(H-30)+'" rx="16" fill="#f7fbf9" stroke="#d5e3de" stroke-width="2"/>';
+  if(region==='NA')s+='<rect x="15" y="15" width="'+(W-30)+'" height="'+(H-30)+'" rx="16" fill="#8aa69d" fill-opacity=".32" mask="url(#mNotA)"/>';
+  s+=circ(A,'fill="rgba(14,143,119,.07)" stroke="#0e8f77" stroke-width="2.5"');
+  s+=circ(B,'fill="rgba(255,113,54,.08)" stroke="#ff7136" stroke-width="2.5"');
+  if(region==='A'||region==='UN')s+=circ(A,'fill="#12907b" fill-opacity=".45" mask="url(#mNotB)"');
+  if(region==='B'||region==='UN')s+=circ(B,'fill="#ff9a63" fill-opacity=".5" mask="url(#mNotA)"');
+  if(region==='A'||region==='B'||region==='UN'||region==='AB')s+=circ(A,'fill="#075c52" fill-opacity=".58" clip-path="url(#clipB)"');
+  if(region==='AO')s+=circ(A,'fill="#12907b" fill-opacity=".45" mask="url(#mNotB)"');
+  s+='<text x="34" y="44" font-size="17" font-weight="800" fill="#7a918b">Ω</text>';
+  s+='<text x="'+(A.cx-A.r-16)+'" y="'+(A.cy+7)+'" text-anchor="middle" font-size="19" font-weight="800" fill="#0b6b5e">A</text>';
+  s+='<text x="'+(B.cx+B.r+16)+'" y="'+(B.cy+7)+'" text-anchor="middle" font-size="19" font-weight="800" fill="#e45f27">B</text>';
+  if(p.overlap)s+='<text x="'+((A.cx+B.cx)/2)+'" y="'+(A.cy-118)+'" text-anchor="middle" font-size="13" font-weight="800" fill="#075c52">A∩B</text>';
+  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:560px">'+s+'</svg>';
+ }
+ function renderVenn(){
+  var p=PRESETS[+qs('#vennPreset').value];
+  qs('#vennSvgWrap').innerHTML=vennSVG(p,curRegion);
+  var r=p.regions[curRegion];
+  var chips=r.chips.map(function(t){return '<span class="lp-cchip '+chipClass(t)+'">'+t+'</span>'}).join('');
+  qs('#vennCaption').innerHTML='<span class="ttl">'+r.ttl+'</span><br>'+r.txt+'<div style="margin-top:6px">'+chips+'</div><div style="margin-top:8px;color:#5c716b">'+p.sentence+'</div>';
+ }
+ qsa('#vennBtns .lp-vbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+   qsa('#vennBtns .lp-vbtn').forEach(function(x){x.classList.remove('on')});
+   b.classList.add('on');curRegion=b.getAttribute('data-r');renderVenn();
+  });
+ });
+ qs('#vennPreset').addEventListener('change',renderVenn);
+ renderVenn();
+}catch(e){warn(e)}
+
+/* ---------- раздел 6: совокупность и выборка ---------- */
+try{
+ function renderPop(){
+  var W=680,H=290,i,s='<rect x="10" y="10" width="'+(W-20)+'" height="'+(H-20)+'" rx="18" fill="#e9f5f1" stroke="#075c52" stroke-width="2" stroke-dasharray="8 6"/>';
+  for(i=0;i<170;i++){
+   var x=40+Math.random()*(W-80),y=54+Math.random()*(H-124);
+   s+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3" fill="#8aa69d" fill-opacity=".55"/>';
+  }
+  var bw=210,bh=112;
+  var sx=Math.min(350+Math.random()*180,W-bw-24),sy=Math.min(120+Math.random()*90,H-bh-24);
+  s+='<rect x="'+sx.toFixed(0)+'" y="'+sy.toFixed(0)+'" width="'+bw+'" height="'+bh+'" rx="12" fill="none" stroke="#12907b" stroke-width="2.5" stroke-dasharray="7 5"/>';
+  for(i=0;i<12;i++){
+   s+='<circle cx="'+(sx+14+Math.random()*(bw-28)).toFixed(1)+'" cy="'+(sy+14+Math.random()*(bh-28)).toFixed(1)+'" r="4.6" fill="#12907b"/>';
+  }
+  s+='<text x="34" y="40" font-size="14.5" font-weight="800" fill="#075c52">ГЕНЕРАЛЬНАЯ СОВОКУПНОСТЬ — все объекты / все мыслимые наблюдения</text>';
+  s+='<text x="'+(sx+bw/2)+'" y="'+(sy-8)+'" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0b6b5e">ВЫБОРКА (n = 12)</text>';
+  qs('#popviz').innerHTML='<div style="overflow-x:auto"><svg viewBox="0 0 '+W+' '+H+'" width="100%" style="min-width:520px">'+s+'</svg></div>';
+ }
+ renderPop();
+ qs('#btnResample').addEventListener('click',renderPop);
+}catch(e){warn(e)}
+
+/* ---------- лаборатория, демо 4: теодолит ---------- */
+try{
+ var TRUE=63*3600+15*60;
+ function gauss(){var u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+ function fnum(x,d){return x.toFixed(d).replace('.',',')}
+ function fmtDelta(d){return (d<0?'−':'+')+fnum(Math.abs(d),1)+'″'}
+ function fmtDMS(t){var sign=t<0?'−':'';t=Math.abs(t);var deg=Math.floor(t/3600),m=Math.floor((t%3600)/60),sec=t%60;return sign+deg+'°'+(m<10?'0':'')+m+'′'+(sec<10?'0':'')+fnum(sec,1)+'″'}
+ var series=[];
+ function sim(){
+  var sigma=+qs('#geoSigma').value,d=gauss()*sigma;
+  if(Math.random()<0.04)d+=(Math.random()<.5?-1:1)*(50+Math.random()*50);
+  return Math.round(d*10)/10;
+ }
+ function zone(d){return Math.abs(d)<=15?'g':(Math.abs(d)<=45?'a':'r')}
+ function render(){
+  var n=series.length;
+  if(!n){qs('#geoLast').innerHTML='Измерений пока нет.';qs('#geoFlags').innerHTML='';qs('#geoStats').innerHTML='';qs('#geoChartWrap').innerHTML='';return}
+  var d=series[n-1];
+  qs('#geoLast').innerHTML='Приём № '+n+': измерено <b>'+fmtDMS(TRUE+d)+'</b> · погрешность Δ = <b>'+fmtDelta(d)+'</b>';
+  var fA=Math.abs(d)<=15,fB=d>0,fC=Math.abs(d)>45;
+  qs('#geoFlags').innerHTML=
+   '<div class="lp-flag"><span class="lp-fname">A — «в допуске: |Δ| ≤ 15″»</span>'+(fA?'<span class="lp-tag lp-tag--yes">✓</span>':'<span class="lp-tag lp-tag--no">✗</span>')+'</div>'+
+   '<div class="lp-flag"><span class="lp-fname">B — «погрешность положительна: Δ &gt; 0»</span>'+(fB?'<span class="lp-tag lp-tag--yes">✓</span>':'<span class="lp-tag lp-tag--no">✗</span>')+'</div>'+
+   '<div class="lp-flag"><span class="lp-fname">C — «промах: |Δ| &gt; 45″»</span>'+(fC?'<span class="lp-tag lp-tag--no">✓ (!)</span>':'<span class="lp-tag lp-tag--yes">✗</span>')+'</div>';
+  var sum=0,i;for(i=0;i<n;i++)sum+=series[i];
+  var mn=Math.min.apply(null,series),mx=Math.max.apply(null,series);
+  var ng=0,nr=0;for(i=0;i<n;i++){if(Math.abs(series[i])<=15)ng++;if(Math.abs(series[i])>45)nr++}
+  qs('#geoStats').innerHTML=
+   '<div class="lp-stat"><div class="v">'+n+'</div><div class="k">приёмов (объём выборки)</div></div>'+
+   '<div class="lp-stat"><div class="v">'+fmtDelta(sum/n)+'</div><div class="k">средняя погрешность выборки</div></div>'+
+   '<div class="lp-stat"><div class="v" style="font-size:14.5px">'+fmtDelta(mn)+' … '+fmtDelta(mx)+'</div><div class="k">размах погрешностей</div></div>'+
+   '<div class="lp-stat"><div class="v">'+ng+'</div><div class="k">в допуске</div></div>'+
+   '<div class="lp-stat"><div class="v" style="color:'+(nr?'#e14c4c':'#12907b')+'">'+nr+'</div><div class="k">промахов</div></div>';
+  var W=680,H=250,L=56,R=660,T=20,Bd=214,maxAbs=70;
+  function Y(v){return (T+Bd)/2-v*(Bd-T)/(2*maxAbs)}
+  var s='<rect x="'+L+'" y="'+Y(15).toFixed(1)+'" width="'+(R-L)+'" height="'+(Y(-15)-Y(15)).toFixed(1)+'" fill="#e2f4ec" fill-opacity=".6"/>';
+  var lines=[[45,'#e14c4c'],[15,'#12907b'],[-15,'#12907b'],[-45,'#e14c4c']];
+  for(i=0;i<lines.length;i++)s+='<line x1="'+L+'" y1="'+Y(lines[i][0]).toFixed(1)+'" x2="'+R+'" y2="'+Y(lines[i][0]).toFixed(1)+'" stroke="'+lines[i][1]+'" stroke-width="1.4" stroke-dasharray="6 5" stroke-opacity=".7"/>';
+  s+='<line x1="'+L+'" y1="'+Y(0)+'" x2="'+R+'" y2="'+Y(0)+'" stroke="#3f544b" stroke-width="1.6"/>';
+  var labs=[[45,'+45″'],[15,'+15″'],[0,'0'],[-15,'−15″'],[-45,'−45″']];
+  for(i=0;i<labs.length;i++)s+='<text x="'+(L-8)+'" y="'+(Y(labs[i][0])+4).toFixed(1)+'" font-size="12" fill="#7a918b" text-anchor="end">'+labs[i][1]+'</text>';
+  var show=series.slice(-60);
+  var M=Math.max(30,show.length),step=(R-L-16)/M;
+  for(i=0;i<show.length;i++){
+   var dv=Math.max(-68,Math.min(68,show[i]));
+   var x=L+8+(i+0.5)*step;
+   var col=zone(show[i])==='g'?'#12907b':(zone(show[i])==='a'?'#ff7136':'#e14c4c');
+   s+='<circle cx="'+x.toFixed(1)+'" cy="'+Y(dv).toFixed(1)+'" r="4.4" fill="'+col+'" fill-opacity=".85" stroke="#ffffff" stroke-width="1"/>';
+  }
+  s+='<text x="'+(L+R)/2+'" y="'+(H-4)+'" font-size="12.5" fill="#7a918b" text-anchor="middle">номер приёма →  (показаны последние '+show.length+' из '+series.length+')</text>';
+  qs('#geoChartWrap').innerHTML='<div style="overflow-x:auto"><svg viewBox="0 0 '+W+' '+H+'" width="100%" style="min-width:560px">'+s+'</svg></div>';
+ }
+ function add(k){for(var i=0;i<k;i++)series.push(sim());render()}
+ qs('#btnMeasure').addEventListener('click',function(){add(1)});
+ qs('#btnSeries6').addEventListener('click',function(){add(6)});
+ qs('#btnGeoReset').addEventListener('click',function(){series=[];render()});
+ render();
+}catch(e){warn(e)}
+
+/* ---------- тест ---------- */
+try{
+ var QUIZ=[
+  {q:'Какой из перечисленных процессов является случайным экспериментом?',
+   o:['Бросок игральной кости','Вычисление 2 + 2 на калькуляторе','Определение даты следующего Нового года','Чтение длины линии из каталога проекта'],c:0,
+   e:'У всех вариантов, кроме первого, исход однозначен и предопределён — отсутствует признак «исход неизвестен до опыта». Бросок кости удовлетворяет всем трём признакам: повторяемость, известные исходы 1–6, непредсказуемость.'},
+  {q:'Бросают один кубик. Какие два события совместны?',
+   o:['«Выпало чётное» и «выпало нечётное»','«Выпало чётное» и «выпало 6»','«Выпало 3» и «выпало 5»','«Выпало не больше 2» и «выпало не меньше 5»'],c:1,
+   e:'Исход 6 принадлежит обоим множествам: {2, 4, 6} ∩ {6} = {6} ≠ ∅ — события могут наступить в одном броске одновременно. У остальных пар пересечений нет.'},
+  {q:'Из колоды извлекли одну карту. События: «извлечена дама» и «извлечена пика». Какое утверждение верно?',
+   o:['События несовместны','События противоположны','События совместны — их пересечение это дама пик','События образуют полную группу'],c:2,
+   e:'Дама пик делает оба утверждения верными сразу: A∩B = {Д♠} ≠ ∅, значит события совместны. Противоположными они не являются: к «даме» противоположно событие «не дама», а не «пика».'},
+  {q:'Для одного броска монеты события «выпал орёл» и «выпала решка» — это…',
+   o:['Совместные события','Несовместные, но не противоположные','Противоположные события: несовместные, и одно из них обязательно наступит','Независимые события'],c:2,
+   e:'В одном броске монеты (не вставшей на ребро) обязательно выпадет орёл или решка — ровно одно из двух. Это пара противоположных событий.'},
+  {q:'Погрешность одного измерения угла: A — «Δ &gt; 0», B — «Δ &lt; 0», C — «Δ = 0». Что можно сказать о наборе {A, B, C}?',
+   o:['Это полная группа попарно несовместных событий','События A и B совместны','События A и B противоположны','Набор не является полной группой'],c:0,
+   e:'Погрешность обязательно окажется положительной, отрицательной или ровно нулевой — что-то одно; знаки взаимно исключают друг друга. Значит, это полная группа. A и B не противоположны: между ними «потерялся» случай C.'},
+  {q:'Наблюдатель выполнил 9 приёмов измерения угла и вычислил среднее. Что здесь выборка, а что — генеральная совокупность?',
+   o:['Выборка — 9 приёмов; совокупность — весь мыслимый ряд измерений этой величины данным прибором и методом','Наоборот: 9 приёмов — совокупность, а среднее — выборка','Выборка — показания прибора, совокупность — допуск','Здесь нет выборки: измерения точные'],c:0,
+   e:'Реально выполненные измерения — всегда лишь часть гипотетически бесконечного ряда возможных измерений. По выборке (9 приёмов) судят о «поведении» всей совокупности — в этом суть статистики.'},
+  {q:'События «в измерении есть грубая погрешность (промах)» и «в измерении нет грубой погрешности» — это…',
+   o:['Несовместные, но не противоположные','Совместные события','Зависимые события','Противоположные события'],c:3,
+   e:'«Есть промах» ↔ «нет промаха» — взаимоисключающие варианты, исчерпывающие все возможности: классическая пара противоположных событий и простейшая полная группа.'},
+  {q:'Кубик бросают дважды: A — «при первом броске выпала 6», B — «при втором броске выпала 6». Что верно?',
+   o:['События несовместны','События зависимы','Это события разных испытаний; они независимы и совместны','A влечёт наступление B'],c:2,
+   e:'Второй бросок «не знает» о первом — события независимы. При этом оба могут наступить сразу (6 и 6), то есть они совместны: несовместность — понятие про одно и то же испытание.'}
+ ];
+ var answered=0,correct=0;
+ var LETTERS=['а','б','в','г'];
+ qs('#quizBox').innerHTML=QUIZ.map(function(q,qi){
+  return '<div class="lp-qq" data-q="'+qi+'"><div class="lp-qh"><span class="lp-qn">Вопрос '+(qi+1)+'.</span> '+q.q+'</div><div class="lp-opts">'+
+   q.o.map(function(o,oi){return '<button class="lp-opt" data-o="'+oi+'" type="button">'+LETTERS[oi]+') '+o+'</button>'}).join('')+
+   '</div><div class="lp-expl">'+q.e+'</div></div>';
+ }).join('');
+ qsa('#quizBox .lp-qq').forEach(function(qq){
+  var qi=+qq.getAttribute('data-q'),q=QUIZ[qi];
+  qsa('.lp-opt',qq).forEach(function(btn){
+   btn.addEventListener('click',function(){
+    if(qq.classList.contains('done'))return;
+    qq.classList.add('done');
+    var oi=+btn.getAttribute('data-o');
+    qsa('.lp-opt',qq).forEach(function(o){
+     if(+o.getAttribute('data-o')===q.c)o.classList.add('correct');
+    });
+    if(oi!==q.c)btn.classList.add('wrong');
+    answered++;if(oi===q.c)correct++;
+    qs('#quizScore').textContent='Отвечено: '+answered+' из '+QUIZ.length+' · Правильно: '+correct+(answered===QUIZ.length?(' — '+Math.round(correct/QUIZ.length*100)+'% 🎉'):'');
+   });
+  });
+ });
+}catch(e){warn(e)}
+
+/* ---------- навигация по разделам урока: подсветка активного раздела ---------- */
+try{
+ var spyLinks=qsa('.lp-toc a[href^="#"]');
+ if(spyLinks.length){
+  var raf=false;
+  function spy(){
+   raf=false;
+   var cur=null;
+   spyLinks.forEach(function(a){
+    var el=document.getElementById(a.getAttribute('href').slice(1));
+    if(el&&el.getBoundingClientRect().top<=180)cur=a;
+   });
+   spyLinks.forEach(function(a){a.classList.toggle('active',a===cur)});
+  }
+  window.addEventListener('scroll',function(){if(!raf){raf=true;window.requestAnimationFrame(spy)}},{passive:true});
+  window.addEventListener('load',spy);
+  spy();
+ }
+}catch(e){warn(e)}
+
+/* ---------- тень, когда навигация «прилипла» под шапкой сайта ---------- */
+try{
+ var tocBar=qs('.lp-toc');
+ if(tocBar&&'IntersectionObserver' in window){
+  var tocOff=parseFloat(getComputedStyle(tocBar).top)||86;
+  var tocSent=document.createElement('div');
+  tocSent.style.cssText='height:1px;pointer-events:none';
+  tocBar.parentNode.insertBefore(tocSent,tocBar);
+  new IntersectionObserver(function(en){
+   tocBar.classList.toggle('is-stuck',!en[0].isIntersecting);
+  },{rootMargin:'-'+tocOff+'px 0px 0px 0px'}).observe(tocSent);
+ }
+}catch(e){warn(e)}
+
+})();
+</script>
+</body>
+</html>

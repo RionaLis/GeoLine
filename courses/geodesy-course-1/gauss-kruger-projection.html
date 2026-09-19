@@ -1,1 +1,2627 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Проекция Гаусса — Крюгера. Плоские геодезические координаты — учебный материал ГеоЛинии"><title>Проекция Гаусса — Крюгера. Плоские геодезические координаты — ГеоЛиния</title><link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/lesson-site.css"></head><body class="gl-placeholder-page"><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav><button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1 · 29 уроков</div><a data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html"><span>01</span>Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html"><span>02</span>Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html"><span>03</span>Краткая история геодезических приборов</a><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html"><span>04</span>Современные геодезические приборы и измерения на местности</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html"><span>05</span>Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>06</span>Измерение горизонтальных углов теодолитом</a><a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>07</span>Измерение вертикальных углов теодолитом</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html"><span>08</span>Понятие о форме и размерах Земли</a><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html"><span>09</span>Геодезическая система координат (геодезические широта, долгота, высота)</a><a data-lesson="cartographic-projections" href="cartographic-projections.html"><span>10</span>Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html"><span>11</span>Проекция Гаусса — Крюгера. Плоские геодезические координаты</a><a data-lesson="topographic-map-sheet-indexing" href="topographic-map-sheet-indexing.html"><span>12</span>Разграфка и номенклатура топографических карт</a><a data-lesson="plan-map-profile" href="plan-map-profile.html"><span>13</span>План, карта, профиль</a><a data-lesson="scale" href="scale.html"><span>14</span>Масштаб</a><a data-lesson="topographic-symbols" href="topographic-symbols.html"><span>15</span>Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html"><span>16</span>Использование ЛМП и ТГТ</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html"><span>17</span>Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html"><span>18</span>Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html"><span>19</span>Передача дирекционных углов</a><a data-lesson="landform-types" href="landform-types.html"><span>20</span>Формы рельефа</a><a data-lesson="contour-lines" href="contour-lines.html"><span>21</span>Горизонтали</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html"><span>22</span>Цифровые модели местности</a><a data-lesson="stadia-rangefinder" href="stadia-rangefinder.html"><span>23</span>Нитяный дальномер</a><a data-lesson="measuring-tape" href="measuring-tape.html"><span>24</span>Рулетка</a><a data-lesson="inaccessible-distance" href="inaccessible-distance.html"><span>25</span>Недоступное расстояние</a><a data-lesson="theodolite-checks" href="theodolite-checks.html"><span>26</span>Поверки теодолита</a><a data-lesson="survey-control" href="survey-control.html"><span>27</span>Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html"><span>28</span>Пункты ГГС</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html"><span>29</span>Вычисление ведомости координат</a><a class="gl-course-link" href="index.html">← Все темы курса</a></aside><main class="gl-lesson-content"><section class="page-hero compact"><div class="container"><div class="breadcrumbs"><a href="../../index.html">Главная</a> / <a href="index.html">Геодезия. Курс 1</a> / Урок 11</div><div class="eyebrow">Урок 11 · Материал готовится</div><h1>Проекция Гаусса — Крюгера. Плоские геодезические координаты</h1><p>Адрес страницы уже зарегистрирован в курсе и поиске. Позже замените этот файл готовым учебным материалом с тем же именем.</p></div></section><section class="section"><div class="container"><article class="article"><h2>Страница подготовлена</h2><p>Файл для этого урока уже находится в правильной папке. Название файла:</p><div class="note"><code>gauss-kruger-projection.html</code></div><p>При добавлении готового материала сохраните это имя файла, чтобы ссылки курса продолжили работать.</p></article></div></section></main></div><script>document.querySelector('[data-lesson="gauss-kruger-projection"]').classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')}</script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ГеоЛиния | Проекция Гаусса-Крюгера и номенклатура топографических карт</title>
+<style>
+/* =====================================================================
+   СВЕТЛАЯ ТЕМА В СТИЛИСТИКЕ GEOLINE (lesson-site.css & style.css)
+   ===================================================================== */
+:root {
+  --dark: #043935;
+  --dark2: #07554e;
+  --accent: #ff7136;
+  --accent-hover: #e8591c;
+  --accent-teal: #0a655d;
+  --accent-cyan: #0284c7;
+  --accent-amber: #d97706;
+  --accent-emerald: #059669;
+  --accent-rose: #dc2626;
+  --paper: #f4f8f6;
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-inner: #eef6f3;
+  --ink: #092c33;
+  --text-muted: #53706a;
+  --line: #d5e3de;
+  --line-strong: #b9d2cb;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --shadow: 0 10px 30px rgba(18, 54, 49, 0.07);
+  --shadow-lg: 0 16px 40px rgba(18, 54, 49, 0.12);
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* Header & Navigation */
+.module-header {
+  background: rgba(4, 57, 53, 0.98);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+  padding: 0.85rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(4, 57, 53, 0.18);
+}
+
+.header-inner {
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--accent), #ff9466);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(255, 113, 54, 0.45);
+}
+
+.brand-mark svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.2;
+}
+
+.brand-text h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.brand-text h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.brand-text p {
+  font-size: 0.85rem;
+  color: #a3c9c2;
+  font-family: var(--font-mono);
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(2, 36, 33, 0.6);
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.4rem;
+  background: transparent;
+  border: none;
+  color: #c0dfd9;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-tab.active {
+  color: #043935;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.nav-tab svg {
+  width: 20px;
+  height: 20px;
+}
+
+main {
+  flex: 1;
+  max-width: 1720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (max-width: 1050px) {
+  .fact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fact-grid > :nth-child(2) {
+    grid-column: span 2;
+    order: -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .fact-grid {
+    grid-template-columns: 1fr;
+  }
+  .fact-grid > :nth-child(2) {
+    grid-column: auto;
+    order: 0;
+  }
+}
+
+/* Grids */
+.grid-3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+}
+
+.grid-tab1-main {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr 0.8fr;
+  gap: 1.35rem;
+  align-items: stretch;
+}
+
+.grid-tab2-top {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+@media (max-width: 1300px) {
+  .grid-tab1-main {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-tab1-main > :nth-child(3) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 960px) {
+  .grid-3-col, .grid-tab1-main, .grid-tab2-top, .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .grid-tab1-main > :nth-child(3) {
+    grid-column: auto;
+  }
+}
+
+/* Light Cards & Containers */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  box-shadow: var(--shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2ebe8;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--dark);
+}
+
+.card-badge {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  background: #eaf5f2;
+  color: var(--accent-teal);
+  border: 1px solid #bfe0d7;
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+
+/* Canvas Area in Light Theme */
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #f8fafc;
+  border: 1.5px solid var(--line);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.04);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.canvas-hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  color: var(--ink);
+  pointer-events: none;
+  max-width: 320px;
+  line-height: 1.45;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.canvas-hud-title {
+  font-weight: 800;
+  color: var(--accent-teal);
+  margin-bottom: 0.25rem;
+  font-size: 0.92rem;
+}
+
+.canvas-overlay-ctrls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.canvas-overlay-ctrls > * {
+  pointer-events: auto;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.3rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: #eef5f2;
+  border-color: var(--accent-teal);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 800;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 14px rgba(255, 113, 54, 0.4);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+/* Controls & Form Elements in Light Theme */
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label span.val {
+  color: var(--accent-teal);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #d5e3de;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 113, 54, 0.5);
+  transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+input[type="text"], input[type="number"], select {
+  background: #ffffff;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 3px rgba(10, 101, 93, 0.15);
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chip {
+  padding: 0.35rem 0.75rem;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  background: #eef6f3;
+  color: var(--dark);
+  border-color: var(--accent-teal);
+}
+
+.chip.active {
+  background: #ffebe3;
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* Math formula & Info boxes in Light Theme */
+.formula-card {
+  background: #eef8f5;
+  border: 1.5px solid #c0dfd7;
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  position: relative;
+}
+
+.formula-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent-teal);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.math-eq {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--dark);
+  margin: 0.45rem 0;
+  background: #ffffff;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  border: 1px solid #d5e3de;
+}
+
+.info-box {
+  background: var(--card-inner);
+  border: 1px solid #d2e5df;
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.info-box p {
+  margin-bottom: 0.5rem;
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.stat-box {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.stat-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--accent-teal);
+}
+
+.stat-val.amber { color: var(--accent-amber); }
+.stat-val.emerald { color: var(--accent-emerald); }
+.stat-val.rose { color: var(--accent-rose); }
+.stat-val.orange { color: var(--accent); }
+
+.stat-lbl {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  font-weight: 700;
+}
+
+/* Badges for Coordinates */
+.badge-zone {
+  display: inline-block;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.badge-falsing {
+  display: inline-block;
+  background: #d97706;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.badge-true-y {
+  display: inline-block;
+  background: #059669;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.data-table th, .data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2ebe8;
+}
+
+.data-table th {
+  background: #eaf5f2;
+  color: var(--dark);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.data-table tr:hover td {
+  background: #f4fbf9;
+}
+
+.module-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  background: #ffffff;
+  padding: 1.1rem 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img src="../../uploads/common/geoline-logo.png" alt="Эмблема ГеоЛиния"><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav><button class="gl-menu-button" type="button" aria-label="Открыть меню">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1 · 29 уроков</div><a data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html"><span>01</span>Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html"><span>02</span>Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html"><span>03</span>Краткая история геодезических приборов</a><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html"><span>04</span>Современные геодезические приборы и измерения на местности</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html"><span>05</span>Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html"><span>06</span>Измерение горизонтальных углов теодолитом</a><a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html"><span>07</span>Измерение вертикальных углов теодолитом</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html"><span>08</span>Понятие о форме и размерах Земли</a><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html"><span>09</span>Геодезическая система координат (геодезические широта, долгота, высота)</a><a data-lesson="cartographic-projections" href="cartographic-projections.html"><span>10</span>Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html"><span>11</span>Проекция Гаусса — Крюгера. Плоские геодезические координаты</a><a data-lesson="topographic-map-sheet-indexing" href="topographic-map-sheet-indexing.html"><span>12</span>Разграфка и номенклатура топографических карт</a><a data-lesson="plan-map-profile" href="plan-map-profile.html"><span>13</span>План, карта, профиль</a><a data-lesson="scale" href="scale.html"><span>14</span>Масштаб</a><a data-lesson="topographic-symbols" href="topographic-symbols.html"><span>15</span>Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html"><span>16</span>Использование ЛМП и ТГТ</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html"><span>17</span>Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html"><span>18</span>Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html"><span>19</span>Передача дирекционных углов</a><a data-lesson="landform-types" href="landform-types.html"><span>20</span>Формы рельефа</a><a data-lesson="contour-lines" href="contour-lines.html"><span>21</span>Горизонтали</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html"><span>22</span>Цифровые модели местности</a><a data-lesson="stadia-rangefinder" href="stadia-rangefinder.html"><span>23</span>Нитяный дальномер</a><a data-lesson="measuring-tape" href="measuring-tape.html"><span>24</span>Рулетка</a><a data-lesson="inaccessible-distance" href="inaccessible-distance.html"><span>25</span>Недоступное расстояние</a><a data-lesson="theodolite-checks" href="theodolite-checks.html"><span>26</span>Поверки теодолита</a><a data-lesson="survey-control" href="survey-control.html"><span>27</span>Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html"><span>28</span>Пункты ГГС</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html"><span>29</span>Вычисление ведомости координат</a><a class="gl-course-link" href="index.html">← Все темы курса</a></aside><div class="gl-lesson-content">
+
+<div class="module-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <line x1="12" y1="3" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
+          <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>ГеоЛиния | <em>Проекция Гаусса — Крюгера</em></h1>
+        <p>Плоские координаты (X, Y) и номенклатура топографических карт</p>
+      </div>
+    </div>
+
+    <nav class="nav-tabs" id="mainNav">
+      <button class="nav-tab active" data-tab="tab-coords">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        1. Проекция Гаусса-Крюгера и координаты (X, Y)
+      </button>
+      <button class="nav-tab" data-tab="tab-nomenclature">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M15 21V9M3 15h18"/></svg>
+        2. Разграфка и номенклатура топографических карт
+      </button>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+  <!-- ================================================================= -->
+  <!-- TAB 1: GAUSS-KRUGER PROJECTION & RECTANGULAR COORDINATES (X, Y)   -->
+  <!-- ================================================================= -->
+  <section class="tab-content active" id="tab-coords">
+    
+    <!-- Top Theory Block (3 Cards strictly adhering to requirements) -->
+    <div class="grid-3-col" style="margin-bottom: 1.5rem;">
+      
+      <!-- Card 1: 1. Проекция и 60 зон (NO FORMULAS, earth ellipsoid) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">1. Проекция и 60 зон</div>
+          <span class="card-badge">Эллипсоид</span>
+        </div>
+        <div class="info-box" style="flex:1;">
+          <p>Поверхность <b>земного эллипсоида</b> делится меридианами на <b>60 шестиградусных зон</b>, нумерация которых ведется от Гринвичского меридиана на восток.</p>
+          <p>Каждая зона проецируется на боковую поверхность отдельного цилиндра, касающегося эллипсоида строго по ее среднему (осевому) меридиану.</p>
+          <p>Вдоль осевого меридиана проекция не имеет линейных искажений, а по мере удаления к краям зоны масштаб длин плавно возрастает.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: 2. Направление осей (NO QUADRANTS) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">2. Направление осей</div>
+          <span class="card-badge">Оси X и Y</span>
+        </div>
+        <div class="info-box" style="flex:1;">
+          <p>В каждой зоне создается независимая система плоских прямоугольных координат:</p>
+          <p>• <b>Ось абсцисс (X):</b> совпадает с проекцией осевого меридиана зоны и направлена на <b>север</b> (начало отсчета $X=0$ находится на экваторе).</p>
+          <p>• <b>Ось ординат (Y):</b> совпадает с линией экватора и направлена на <b>восток</b> (начало отсчета $y=0$ находится на осевом меридиане).</p>
+          <p>Значения $X$ отсчитываются от экватора к северу, а $y$ — от осевого меридиана на восток (со знаком плюс) и на запад (со знаком минус).</p>
+        </div>
+      </div>
+
+      <!-- Card 3: 3. Приведенная ордината (Clean formulas) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">3. Приведенная ордината</div>
+          <span class="card-badge">+500 км</span>
+        </div>
+        <div class="info-box" style="flex:1;">
+          <p>Чтобы исключить отрицательные значения ординат $y$ для точек к западу от осевого меридиана, начало отсчета искусственно сдвигают на <b>500 000 м (500 км)</b> на запад.</p>
+          <p>Для однозначного определения зоны слева к значению приписывают номер зоны $N$:</p>
+          <div class="math-eq" style="text-align:center;">
+            <b>Y = N · 10⁶ + 500 000 + y</b>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted);">где $N$ — номер зоны, $y$ — действительное расстояние до осевого меридиана.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Layout: 3 Columns (3D Left, Zone Center, Controls Right) -->
+    <div class="grid-tab1-main">
+      
+      <!-- LEFT COLUMN: Parameters of current zone on top + 3D Model Below -->
+      <div style="display:flex; flex-direction:column; gap:1.2rem;">
+        
+        <!-- Parameters of current zone RAISED TO TOP -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Параметры текущей зоны</div>
+            <span class="card-badge" id="c1ZoneBadgeTop">Зона 7</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.95rem;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e2ebe8; padding-bottom:0.4rem;">
+              <span>Номер зоны N:</span>
+              <b id="c1HudZone" style="color:var(--accent); font-family:var(--font-mono); font-size:1.15rem;">7</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e2ebe8; padding-bottom:0.4rem;">
+              <span>Осевой меридиан L₀:</span>
+              <b id="c1HudLon0" style="color:var(--accent-amber); font-family:var(--font-mono); font-size:1.05rem;">39° E</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e2ebe8; padding-bottom:0.4rem;">
+              <span>Западная граница:</span>
+              <b id="c1HudLonW" style="color:var(--dark); font-family:var(--font-mono);">36° E</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding-bottom:0.1rem;">
+              <span>Восточная граница:</span>
+              <b id="c1HudLonE" style="color:var(--dark); font-family:var(--font-mono);">42° E</b>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Globe with 60 zones below parameters -->
+        <div class="card" style="flex:1;">
+          <div class="card-header">
+            <div class="card-title">🌍 3D Модель эллипсоида</div>
+            <span class="card-badge" id="c1GlobeBadge">60 зон</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 340px;">
+            <canvas id="c1GlobeCanvas"></canvas>
+            <div class="canvas-overlay-ctrls">
+              <div class="btn-group">
+                <button class="btn btn-sm" id="c1BtnReset">Сброс вида</button>
+                <button class="btn btn-sm" id="c1BtnSpin">Вращение: ВЫКЛ</button>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted); background:rgba(255,255,255,0.9); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid var(--line);">
+                *Вращайте мышью
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CENTER COLUMN: Zone Projection (Clean without HUD overlay) + Decomposed Y and 3 stats below -->
+      <div style="display:flex; flex-direction:column; gap:1.2rem;">
+        
+        <div class="card" style="flex:1;">
+          <div class="card-header">
+            <div class="card-title">🗺️ Проекция зоны (X = 0 .. 10 000 км)</div>
+            <span class="card-badge" style="background:#ffebe3; color:var(--accent); border-color:#ffd2c2;">
+              Ось Y растянута в 15×
+            </span>
+          </div>
+
+          <div class="canvas-wrapper" style="height: 380px; cursor: crosshair;">
+            <canvas id="c1ZoneCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Cleaned "Расшифровка полной приведенной ординаты Y" (3 clear fields) -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Расшифровка полной приведенной ординаты Y</div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.85rem;">
+            
+            <!-- Prominent Decomposed Y Badge -->
+            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:800; display:flex; align-items:center; gap:0.4rem; justify-content:center; background:#eef6f3; padding:0.65rem; border-radius:var(--radius-sm); border:1px solid #d2e5df;">
+              <span class="badge-zone" id="c1DecompZone">7</span>
+              <span class="badge-falsing" id="c1DecompFalsing">413</span>
+              <span class="badge-true-y" id="c1DecompTrueY">188 м</span>
+            </div>
+
+            <!-- Exactly 3 Stat Boxes (X, Y, y) -->
+            <div class="stat-grid">
+              <div class="stat-box">
+                <div class="stat-val emerald" id="c1StatX">6 182 348 м</div>
+                <div class="stat-lbl">Абсцисса X (Север)</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val amber" id="c1StatY">7 413 188 м</div>
+                <div class="stat-lbl">Приведенная Y</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val rose" id="c1Stat_y">-86 812 м</div>
+                <div class="stat-lbl" id="c1Stat_y_lbl">Действительная y (Запад)</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Interactive Controls (Longitude scale 0..180) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⚙️ Управление точкой</div>
+        </div>
+
+        <div class="control-panel">
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Широта точки (B):</span>
+              <span class="val" id="c1LatVal">55.75° N</span>
+            </label>
+            <input type="range" id="c1LatSlider" min="0" max="85" step="0.1" value="55.75">
+            <div style="font-size:0.75rem; color:var(--text-muted); display:flex; justify-content:space-between;">
+              <span>0° (Экватор)</span>
+              <span>45° N</span>
+              <span>85° N (Север)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Долгота точки (L):</span>
+              <span class="val" id="c1LonVal">37.62° E</span>
+            </label>
+            <input type="range" id="c1LonSlider" min="0" max="180" step="0.1" value="37.62">
+            <div style="font-size:0.75rem; color:var(--text-muted); display:flex; justify-content:space-between;">
+              <span>0° (Гринвич)</span>
+              <span>90° E</span>
+              <span>180° E</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Быстрый выбор города (0° .. 180° E):</label>
+            <div class="chip-group" id="c1CityChips">
+              <span class="chip active" data-lat="55.7558" data-lon="37.6173">Москва (37.6°E)</span>
+              <span class="chip" data-lat="59.9343" data-lon="30.3351">СПб (30.3°E)</span>
+              <span class="chip" data-lat="55.0084" data-lon="82.9357">Новосибирск (82.9°E)</span>
+              <span class="chip" data-lat="56.8389" data-lon="60.6057">Екатеринбург (60.6°E)</span>
+              <span class="chip" data-lat="43.1155" data-lon="131.8855">Владивосток (131.9°E)</span>
+              <span class="chip" data-lat="43.6028" data-lon="39.7342">Сочи (39.7°E)</span>
+              <span class="chip" data-lat="41.2995" data-lon="69.2401">Ташкент (69.2°E)</span>
+              <span class="chip" data-lat="35.6762" data-lon="139.6503">Токио (139.7°E)</span>
+              <span class="chip" data-lat="48.8566" data-lon="2.3522">Париж (2.4°E)</span>
+            </div>
+          </div>
+
+          <div class="formula-card" style="margin-top:0.5rem;">
+            <div style="font-weight:800; font-size:0.9rem; color:var(--dark); margin-bottom:0.35rem;">Характеристики точки:</div>
+            <div style="font-size:0.88rem; color:var(--ink); display:flex; flex-direction:column; gap:0.3rem;">
+              <div>Широта B: <b id="c1DmsB" style="color:var(--accent-teal)">55° 45' 20.9" N</b></div>
+              <div>Долгота L: <b id="c1DmsL" style="color:var(--accent-teal)">37° 37' 02.3" E</b></div>
+              <div>Удаление от осевого: <b id="c1DistKm" style="color:var(--accent-rose)">86.81 км</b></div>
+              <div>Масштабный коэфф. m: <b id="c1ScaleM" style="color:var(--accent-amber)">1.0000924</b></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BLOCK: Interesting Fact (History of Gauss and Kruger) -->
+    <div class="card" style="margin-top: 1.5rem;">
+      <div class="card-header">
+        <div class="card-title">💡 Интересный факт: почему в названии проекции две фамилии?</div>
+        <span class="card-badge" style="background:#eef2ff; color:#4f46e5; border-color:#c7d2fe;">История геодезии</span>
+      </div>
+
+      <div class="fact-grid">
+        
+        <!-- Scientist 1: Gauss -->
+        <div style="background: var(--card-inner); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 1.1rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 140px; height: 175px; border-radius: var(--radius-sm); overflow: hidden; border: 2px solid var(--line-strong); box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 0.8rem; background:#fff;">
+            <img src="data:image/jpeg;base64,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PO0dDjoPrx6ioLHWFMSwXZywTYJVPLenbg//AF+nWrxaNpHywRM5JB9ueec9Dkjj3OKjVbml09iiy/vyMKTu5+XIzzzz16Hgds+tWUYq22QFR0DdCG54B6exI9D6iorh1WSRgqMhznDH6+349M8D1oe4i5lWRSB3UnPHPoM/njpT3EnY9m+AHxPTwpM+k60DPpE0mWYAl7d+m4f3lIAyOuMEV9QWNvoPiKxF7aFJo51EqNFISrjs3H+fWvz+067s4CDI+ZN2AYx1HA/P+WB613fwy+LGs+DtRMKSfadOeUGa2ZsKVJHKtxhueo6nrxVwm4uz2IqU1JXW59b3fh7w+98lxPaM1zbDfEHlcorgHaQM4zzXxN8cZAfjJ4jMoH72cBscdY0r680a/svHNjY6xperXQs4plleCMKD5i84k4J4B6dO4r5E/aCEb/GTXMFkEkqM+4Y2kxrn8P8AGrlLmVzCKcXZnnEvIyc+nJpJfvp1OVUn64qw0akEbsgHA/8ArUjQj7NFMGyV4YdCOTg/p/KpKaP0n/ZO/wCTdvBn/Xgf/Rj16lXlv7Jv/Ju3gz/rwP8A6MevUq3MAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAGyrvjZM4yMV5B4r+BnhjxJ4im13U7MzXsgVTIJ3X5VGAMAgdK9hopNXGm1seEP+zb4Idy50xwx6sLuYH/ANCqNv2ZvAbHJ0lief8Al7m/+Kr3uilyrsPnl3PAf+GYvAH/AECGP1u5v/iqeP2ZvAYkWQaSwZeAftc3pj+96V73RRyoOaXc8Dj/AGZPASSeYmkur4A3C8mz/wChVJP+zV4Fmm86TSfn9VuZV/QNXvFFHKg55dz5/wD+GXvh6X3nRiTnP/H3N/8AFUjfsu/DxmLHRTk9T9rm/wDiq+gaKfKhczPn6P8AZd+Hkbh00Uhgcg/a5v8A4qpz+zR4FIwdKY56k3UpJ/8AHq96oo5UHM+54Ef2Y/AJTb/Y5xjHF3N0/wC+qUfsy+AhgDSG+U5H+lzcf+PV75RS5UPml3PA/wDhmTwDg/8AEnJ+t3N/8VT/APhmnwLuDf2U2R0/0qXj/wAer3mijlXYOeXc8m8I/B3S/Ck8sugedZmZNkifaJHRh7qxIz74zWP4i/Z18G+IdXl1XV9NNxeShQ8guJUyFUKOFYDoBXuNFOyFdnz5/wAMtfDr/oCt/wCBk3/xdSxfsv8Aw6DKJNELJwCPtk3Qf8Dr36iiyC7Mjwd4d0rwn4ZsfDuiW32XTrGPy4It7PtGScZYknknqa16KKYgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" alt="Карл Фридрих Гаусс" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <b style="color: var(--dark); font-size: 1.05rem; line-height: 1.3;">Карл Фридрих Гаусс</b>
+          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem;">1777 — 1855</span>
+          <p style="font-size: 0.85rem; color: var(--ink); text-align: left; line-height: 1.45; margin-top: auto;">
+            Великий немецкий математик и астроном. Разработал <b>теоретические основы</b> конформного проецирования эллипсоида на цилиндр (1820–1830 гг.).
+          </p>
+        </div>
+
+        <!-- History Narrative -->
+        <div class="info-box" style="display: flex; flex-direction: column; justify-content: space-between; font-size: 0.95rem; line-height: 1.65;">
+          <div>
+            <h4 style="color: var(--accent-teal); margin-bottom: 0.6rem; font-size: 1.1rem; font-weight: 800;">
+              Слияние фундаментальной теории и инженерной практики
+            </h4>
+            <p>
+              В 1820–1830 годах <b>Карл Фридрих Гаусс</b> руководил масштабной триангуляцией Ганноверского королевства. Чтобы свести неизбежные угловые искажения к нулю, он математически обосновал метод поперечно-цилиндрической равноугольной (конформной) проекции. Однако Гаусс сформулировал общую теорию отображения поверхностей и не опубликовал удобных рабочих формул для массовых практических расчетов. Рукописи Гаусса долгое время оставались в архивах.
+            </p>
+            <p style="margin-top: 0.6rem;">
+              Спустя почти столетие, в 1912 и 1919 годах, немецкий геодезист <b>Луи Крюгер</b> (профессор Прусского геодезического института в Потсдаме) детально исследовал труды Гаусса и разработал строгие, вычислительно удобные формулы разложения в степенные ряды. Благодаря Крюгеру проекция стала доступным и высокоточным рабочим инструментом для каждого инженера-геодезиста.
+            </p>
+          </div>
+
+          <div style="background: #ffffff; border-left: 4px solid var(--accent); border-radius: 4px; padding: 0.75rem 1rem; margin-top: 0.8rem; border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+            <b style="color: var(--dark);">Итог:</b> <b>Гаусс</b> создал математическую идею проекции (1825 г.), а <b>Крюгер</b> превратил её в прикладную геодезическую методику (1912 г.). В 1928 г. система была принята в СССР и стала стандартом отечественной топографии.
+          </div>
+        </div>
+
+        <!-- Scientist 2: Kruger -->
+        <div style="background: var(--card-inner); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 1.1rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 140px; height: 175px; border-radius: var(--radius-sm); overflow: hidden; border: 2px solid var(--line-strong); box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 0.8rem; background:#fff;">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAF8ARUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD21FVhtbmnhVV/lHGKSNeafXEWL1pyjCg0ikegFKO4oEOJyRTqaOlLzTAetL3pik5qZelMApQvFKOtBIz1oATnv0o3dhTJWWP5mbj0zVWa9YnEagD170mBcZxGvzNtpjXcKgkMW/2ay5JJXPzNke9ICOAB70r2AvC7LLxHjnvUclxKWGCoHtUcfSkbCMDSbuBIJ5efnoE8vA3nmmfLySKVQOpwfT2oAkE8uQpYj3p32iQd+nfFRt93sDUZMoYbec9c+lAFxLtiRuXNSi4jIx0NUicdO1GAfwqosDTjcMoAIPPrUvSsdDj5lJzVqG4dSCxyPSmSXieKaDlcUiTRuuF61HGzSu+cBYyAMdzSuBFbXxuLoxQW0pgGczkYXPpzzVzAHIpSScZ49scUlES2KKDQgxR3qiBw6VXvrUXlq0H2iWDkESRtgqQQf5gVNkU4HipZRXtlulkkFxOkqEkqQuGwfWpZOmKcaQjIpWsOUuZ3M28z5nUUU+8UeZRQUVVJp6io1I6Zp6jnrSJHAGnKCAc0gJzS80wCnjB700qTxSr6UCHdxgU5WplLvCqSTxQBN3wetVLq68tgIyCfWq15dGdmjDFE9uDVflhyenpSbBEru0hJdiTSA4HPUfrTAQF6HNITmlcYvO/d29Kei96aCCOKN4VSSwGKYEqkUjbywx0qi+o28bEeapPsay7rWm3FYThRwDmgaVzoVZDy3X61LvXuVX0Ga4V9ZnLDdJyW45qG51aX5ZTvOATnpSuPkPQtwA6qc+9KQAuSRXAWGsGQK0rkbuQSa2bPU5Cv+uJHXGKLsVrHStjgjpRuA/Gs611NHX58Vcimik+4wqibEoIGaUUzNKCcUASGRsdcZ6Yp9nI1uoRjvycsarkk4B7U9WAI4zxQBpRyB+QwNSnpWXFIytkYq/DJvXHeqETrTTTgKa1AgzSryKbQGwcUFDup4pDwDmgcGh+aTApXZ+ccdqKbesFkGTRSLKqjI4XmnouGJweaSPK9DzUvUdakQg607GKQAA5p/f604iEB5pVBzmlApxOAPTvTAYzKoYtjA5rJvLxpfkX/AFYPUUaldbyVRvlz+dU2yQSCNvWk2Mnj56GpVIAqrE528dutS7iDjGKVwH7znBoJxz2qBSBIWxz05qR5EjDM5AVRk+1AJXFeZIIzJK4VQM1y2u+IEkUx2+7vkjJJ/KsPxH4pNzcyR2znyFOOCOayo7ZtTZPLRo3zyyOQSKZSiXBq0LhoESRJjyTIpAPfiopLmc4wN4cZLAYxXQ6RoNpbkeYzSuRzuYn+dblvpNnjBiUY5Ax1pFuyOBTMqJuJDoeCO9LIL6SVMI2wZwGHBr0JNHsg+/yQCemOlaUVpbbQvlqRjHIoJ5zym4F0oCLEoUc1Z0/UJ4oC0m4BeB25r0abTLEdYUPP92opNE01lIMCgHtTFznIWeqv9oiEnR1JPtW5a6grOpRiO1XH8P6eeFTHHUelUrjQDDKLm0YsIxjYx4NAcyN2zv0lxE7bWzx7ir4YDAGTn2rhrS9eGVUmVopRwB3rrdHvBOhB+8B3PP5UA1c0Mc5qMHnnpT+cZHIqNgc9MCncgfGe2asI5UZUniqqY7VMMjqKBWNG0l81ctwR2qcdOayUkKsCp49K0YJRIPQ4oEPf7tNHSpF5GKa2BxVAxAcrQSKTv7UEDmgEZ2pH516d6Ki1XAkXgHg96KhmgJ7VIh5PWo16+lSoM9zQA5fWnDk9eKaMdKUEDr0oJHD25rN1a8CEwRnJ7kVZvbkW8RK8sfu+1YW4mQlvvHmi40gYbiM8D0p6BTnPSm5LHB601mfBVTg4qWVYkDAMQvT+dPLjGTyahGQAW3EY5NABzwwFAiQHJrnPiNrJ0jw9Iyf6yX5RxXRjIGcg15x8bpyLOzgVc7mJzmqjuNHn1heytMQ+wJnJOK9R8JeSbNZSOccHFeV6FZmaVTJ9wMOv8Vem2J+w2aI7DB+6BTlozQ6a1mUOMgDPQ1pRSg5ya5S2lDMHMgAA45rUsrpSQM5OezCoJkmdCsnOMjAFO80hf8KpRMzBSGAqwAzdHHFMhxZOXJXHPNNLEfKQeO9MLsp6g1GzOxO1uetArFgOSOmKaxJXANQlwQBuINKrKowz0wsUtasI7uFpgn71Oh71keHtSe21DymVd2cO0nWulOMcNn8K5HX4Ra3/ANoV3AY5KhetBaZ6LkYBBGCAcfWkKljgdKr6XNFcadDOu7BjA5PpVtRkcHFFjN6EJ+Q4ApVO1eMnNBUK2CxOe9CoVGD+FFgCMMDwc5NWYXKyAjkDrUIyp7YNSKcc4z60xGpC4dQaftzzWfaShXweAavg5A5xmmhDXGOgphyODTznpnoaYfv49qYIx9Xz5iYx0NFGrnbInGeDRUGhKqjOc0+PrikU/LQrBTQD0HDhqHkWNSzYwBSD1rJ126PECEZP3qVwSKl5cNc3BcHAHAoUluCBnHWoEc7W+Xkd6fkb+RgD3pGlhwOOpyacCSelRkjPHAo3Y6GglkjEnjABoHqeT3psZ9s0pcE8CgVhSwIxyBXmPxp2tqGlwBuShYrnseK9Mz83zd/0ryX4zMV8UWnIx9lGP++qqG4IyNLkhhu4025xjC+ldXczb4QzHBUZHtXHaRE80i3GzBHc966Y7iPvKp29WonualqzlOQC7HjIwK07J2DAsCe+RxXPzahbabai5vnbrtCoevvT7TxzoiKdsRYdAHNJK4md7Z3I8oYJx0yTWhb3AOFypP0rgbbx7orosdxatCD0KMCK27HU9Ml8u6tb5XRiAFJ5PsKGmJnSLI+MYzzUu9sHaM1h3Woqq+ZGcgP9cCrtrqcbMBJNGgI78UdCLF0uH77cetH/AHwfeqb6lpS/fv4CCPm+cVH/AG1pJTC6hEgyB16ZoCxpxyAHGcjFZHiVUlgVmOFB696vRYZBJG6yBhkMpyCKoa8zfZgQNxC5IFMErGz4NlD6SEznymxg1uDpXJfD+SSS3uSSpjD4z3zXWr0p3JkG3npTiMrS9qUc8UCKrbl6DNOB4zk5qd4wRxTChUYzk0ALuDKMdav20gKjuRWcmc9easQMY3DZyCcUJisaPcn1pjKBzSkn1qC+WeS1YWzhJlIK5GcjvTuBl60Qrxk9wf50UzXWL+QxQ8hj+tFRc0sWVpcDPI59qap+andM0CluR3EqxQtKccD5c9zXMu7zStI/3mOTWprkpykCtkDk1mE4IPFI0WwvAGDSkEgkZpi/K3IB/GnMW34ByMdKAYq428jNAAIU9KeFI6ngjkVE7FQuTnnigROhAJxTevQ4/ClCHqeM0LkEgA0AIwfIPBHtxXlfxtil/tXTrtVYI0JiGR3BzXq0h2xmRvuqMt9Bk15F418TQ67puLWaJmjlymBhl/HpVw3ElqM8OwxjTISoI+XOSavORt/eFQo6+57VkaG6GwgkjaQMBhkY8NU+taiEtJWggidwPukYwfzpvVmhl6vEdauzC0yW1vAvzN6Cqclz4Z0+P7JbadDPJtwbi4JkYn2XgKKgXWJ9YsptMS3t7e5WPMTRKVMhBB2se/FZMOlztFIzAecDnaXC49Rg9cGrjFWAnhjgnuh/ocDx7uPLJjI+hycVMiSWWL6zuJ2gViHRuJIj2Deo96dYxPDaS7pWjOzPlNyshyOg7cZq9ZS20EE891ardfa9kNvayqQJmByWyOcAd6UnYDX0PW3n02W1kuQJWUlXL4O70rCvr3U7y7SJXYuFOeeEA6k+1eqaR4W0yTRFWfT7OUouNzW43AduQecevWuF1+xGltqejRRR+Z5IePYpBlQMSy5zzxipiK6ZzxkthNsaee7kU4DMdik98DrXV+HrK1vm2tDcWwOCWiuC4yOmVbpXF2drcXW6QBiT024wT2rvvCWmahbW8F8uolx5qxvayj5hzzg/SnKw7Ha+Gobix3QvIhjflJAMZ9sdvpWtdxGe3LrkYXkDvWLrN7NbXVq8FuJ1mlVJIy23BPJYe4reSbzImEWfLZeORk1mQ9B/gGFItPlddu55jn3rqFrkPBMmxJIdr8yN854ArrY+efTimZyJQR0pwHOaaOBmnA5GKLiBTg0jLznHNK4xSr83AFFwIivNB2gc5yORT8ADFNwSM9qALlpJ5keD1FTE4GM1QtZNkm0dDV58HpTuKxieICPMh5I4b+dFM8QsRNEOfuntRUmyRaXrmns6pGzt0AyaauCMVT1WXy4DGADv6g9hRcHG5j3jtOzSc5JzxURByucEVKCWyKGBCqMcHmkUtBoQAEhc05TjqcGnom5aUxkNkA9KBMFOe+aCAPmNOXHQcGnqq9CKBEZ5bAGeKBwMAYY08Lk7ugHrSAjHKkHNADSoKOrdGVl/MGvmoxLYyTPKcIbl0H+7k19NYGeeecn8sV4n8RPDv2G7eOJS3+lbsKM5Vjmqi7AZ0KGz8mOMtyNyk10GkR2s8wEsatL3+XjFU/EMS71+6oCqoIPIxWYl5JbMrQvyDgsaZZ0Os2kNq0ktrZxSM/DjBzn2ArgtXuZGmaGSyRVGSBIpDL9D1rpTrVzK2RukkzwM4qx/Zx1B0kugqK3LE9qcdAOR0+Z5Jwy2ybUxlmBIH511mgWfn366hdKypEMRhjncfb0FaN3b6PpWmSTqqM4HGWGCfpUXhSG5v4F1S8k8mBmIVQcLTk7gei6AfM0ptwZSe3tWT4n0GC92TRqVmi5R8c4rX0u5sksFRZkLN8p+YVPeKzASRlWKDO0H71Z6oSR5XNZxW9x/pNqY2DD5k+UH/aIrpNCn8hdyWrkhuJJJNwI9cV0EH2DUoWJjTglXQrkg1mSaRFbMfK3pz06ih6juWGjS7lS5nCMF+6D936j3rWtgShWPChVqlZRhUAdgw+nStRAiwkKpHy53A0XIkhvhK1ZLmQyMcxDaF9S3Oa62JMIDWNoLCW281Rw2CDjqPU1tRklAB2pmT1Hhuopy9KYFB56Y60/HGBQAqnigcHNKuNvSg5oAQgE5NM27icdKkXrzTWBJ4oAjIA4FXI28xM/hVVeuDUli21XQ+vFAGP4nLCWD6N/Oik8W5863/wB1v50VNzZGkpPpWPqkvm3p54VduK1mcpEZCO1Yjgtuc9znNK4yHBGQKchO3BHK0/YTjAoRPmORwaYApwOowf0px3bT2FKqgdOKQ5zhuRQJgg4ycGlThjuNSEIFAAphRSxIXkUEiDlCe26njHJIzmlVflpSD6UA2AB28YrlfFxlt9dtJI7cSrNEFO5cjdnArq1B8s1x3xMl1eCK0/sjT7m8llJTMS7gh7ZpoE7nH6zCwmlyPn3dCe1YF9Gg2/L854x2xW1epewXAj1GJoblVxIrc4Y4PWsrVJlSToScdOKuxoQWJRSJWRTg/wB6r5uZHXahCjrjrXOy3Mtu+QEERPbrVmHW7faSIm+ToR/FTcQH3tlf6tdpa26MEbgswIC9s1Q8V6xqMEq6ImIoLP5AF/iYDk/jV1PFcsAYQQ4DdQTWDeyi9uGndP3rtliOmfSnFPqBa0HV7yC4QmSSQswwoPf8a9Dg8Yalpup21k2m3F5DkAuHGTnrwK8uZXg2yAbCfu1d07U72O6Dx3MqSYxuLU5JbgeryRXVhr32m1DCC6O4oR9w/WunhbzYw0iYOe5zmvNtH127jgEeoSbtwwHBLFhXZaTrEEwjt/MBJHy5IGKzaFqb724lGY8LVy1tUCbMlsrg81QguGSGP96AcZJGDxWjZTs0fmuSI1GQcYzU2FI2NNgS1sI4Y87VGORVoDgY49agspvOgWRSCp9Kn684NMxHjkY/yafjApobgUuc0AOiHHNOYelC47UvFADVHNNPD/hUnFIRnmgCML8xpseUlDdu9SDqaY4ypGcHtQBl+KFJktzn+Fv50UviJh/o2Tk7T/OipsbInv222+G7msxSOVyNp/nV3VMnYo6Dk1TReRkAgUWKsBbCjGMGlVWZclcCgqFjBxkk9PSnZJHzE4oEGxdoIprrj7venY5z0xxinFSB/hQBFjGKeq5yfWnKo2k8/jSjjjFAmIg+XkjjilAoUcHPenYGOuKCbdwCjFTxPjPXioV45GfxqWPvx1poXU8f+JKG08YXYAALqsgH1FcdqExJ3EDOK9A+OFoqXljqKj5njaMn1IPH6V5wSZoxtf5RyBjkmrNEUXZXUq3zA9Q1Z80AjyF2hSc4rRuISHIJA4z1qlIPNAU5B7GtYjKcm5eVO0DvirNvgRp5kiopyWYHJNQtAxIB5ANPWFUYMUzz0xkU5AXZJbC7SCNiYii465z7mo2jtRK2xjIFPQ9Kv2X9lgqt1bOy+qjmu28P6d4auo18qCRGIyS61m3oBxNhLtyqxgNnAZDyB75rf06wuURXtQJGZ/mKwkkD613aeDNFukElshjl7Me9aujaathJJDk7kGDg8H8KjmC5ieBtEuTN5mozTbFP7uLOPxzXolpChlMZQFMYIPQ1lJEwuFOSRW5piEwtJ17ZxSIky5DEkUapEAiL0XFK2/HBo5xxThk0GQKTtwacOBSKO1LgHrQBIpwOnXinLgADtUYznBp69cUAPIB5pAFxwDTsdqFyOKAI8HcecVGwwTUzc9BzTCvWgDJ1fDGIccZ6/Wim6zxJGAOxoqLmyG3z5nYZzxUSHPQU+Q5nPAwTSYxzn5aCgflTxzTeCnTpzT8ZXIIxSbV555IpiEXIzznIpVxnjr6E0ilskEDPtSqjBicjJoAeMDIwKcBnjH400jDAEEmpCCFxkc0ANUKeM807AJA9KAir0FKBg0ENicMMAVInA4GfSmAY6U9nVIzI5VEUZLlhge9NEnG/F+K3k8LhJHAukk8yFANxIX7x+gHevEJJAgJDFWJ/CvV/DmqReKfiXq1wX32FtYm3gH8JVmwePUiuB8f+Frzw7fOy5m053JjmUZC5/hPpWkNXqao5W5uN5OeTmq8T/MMEjHvSSkqdpyARnkf1qJVH3jn6GtY7jNC3jaVwnr3Nben+Hbq5YfKhz0+bisOymCEE4IHb0rorLVEhXbFKd4AJT1qJN3A118EXiW6yEBf93kGug8P+E76FEVRtIOWLE4xUeh+JZvISM8oOqEc12uj+IraRNrIyqowCRxWUtxO5PYWf2S3KyuCAeQKzpJz/AGkGWNlB4Iz1qa81IzzMIiSoOe3NVkguLi7UyABc5z6VIkbunjgnBBz0at62Xy4EQDvk+9Zul25JQMQQozurXUcDg5NMhsX+GnKykcU0kYxS5Ipk2A/KMml4z1FJ1Xpk1IcEZwKAsB6Zpy/ezSYyKUYoCxLnI6YpcfyqMHNPz2FAWGDqeKRl4NP24NDHjGKTGYmrj96mfQ0VNqkZaRTx3orO5ZSAy2RTuMEGmoSzfLTmByD2oLEYAqFFG0jtmpWA44oYjqOKoREnBJwfSpQvHTg0nzY4x+NPBbaM4pgH4UuAw7Z9qaQcjtTlwH64oAUgUhQ4yCMVHdXMFqjSXU8cCDnc7AfzrkdY+JPhqyDR28k2pSr/AA26/Ln0LHFAmrnYvtjjaR2CqoySTgD8e1eU/FnxraXNqND0e83hmP2qVeMgfwA1zXjbxxqevv8AZlZLWx/591bl/wDePeuPlZiV2qADx9KtIFGx33wQv4bPxbNZyttmu7YCIE9XBzj8Rk16xrNtHcQSK8ayIeGVl4OfUV8xvc3NhfQXltNsmifcjjqCK978A+NLLxRpaozeTqUShZ4G/wDQx6iiUeqGzivFfgOxfzJdLd7STqYW5Rj7elee6lp19YOI7y1kiGcBmXj8DX0LqtujymQpg/yrOWxjuFKSRLJGRjay5H5URnYaPBBGygjaEbrnOc1YhVl+b5ySPXivYL7wDod4zN9ne3kf+KB8KD9DWTJ8MriLP2TVoyf+m0JyPy4NU5XC5xmmSygovzevHYema7XRw5wBJuDjIQnjFaNn8LtU8wONXtMHoFibiuk0/wCH6q0RvNSLqnXyo9v65qGDkrFLSYohyzKO45yCe4xXT6ZYSXGJWXyYh7ctV7SNB03TyHgt9zgctIdxzWkcj5s5ycCpIvfYxfFl8dC8MXl/boC8IQjI6ktj+VaOj3sWo6db3kDZSVNwOe/cV5t8cPE0C6Y+iW0oMhIa4YHIGOifWo/gz4i2wDSLiTCH5osno38Qz9Ka03DlPVQAetOI+XHpQMDI5z6d6Cc9KZAL0pykY56UgxtpwA49KQDl6ZoxSDrTj1pAKnenDApE6GlGD1NUAucn2pTjb3pgp4J2dKlgZ98Mup470VLcjLgELxRUlmQoO4/WpeMkfnSIP4uPxrjvEfxD0vS7lrS2ga/kBIZkYKgPcZPJP6Uolo7LDE8c0oAHBGM+1eWy/Fad022+iwo3rJOT+grnNV8d+I9SzG+oNbIWxshGwfmOauw+Rnt19eafYqWu723tx6ySAfz/AJVz+ofEDwnaHaNR+0uv8MCFs14TdTXMkpld3mJA3M5JJ/Emmbztxj5uuewqlEaieq6l8VYxuGmaWzEdGuH2/wDjtctqPxH8S3R2/bY7SPBysEYB/M1xxJfIXg98DjFJGgG5iP8AdyKaQ+UtXd9e38iyX1xLdc9ZXLY/DpVeXJIAPQ5HtSSOcDJOfTNNH3cnK9uaYDwUA3kZxwQfSqoKCQZB5PWpZiAMBufbvVaUuMdMfWmBLcgY3gD6HvUEEt1p19Fd2k5hmj+aORf4fb3HtUkoZ4ueeKcsBmttu05AyvrgU0xNXPUPB/xEttQUWWuYhumwFmx8kh/2h/C1d/bGIDdGRggHO7P6180iJmtjsjOU5kJ4wa2tH8X69ptutva3hMS42+YgbA9BntUShqS4n0KuwnII6dBWhAiqvPylh6dq8b0f4oyLOEvdMiEJxh45CGHrnOfyrbk+LmmFgIrK6Yhsb+NrfSp5SXFnqun/AHHQHIzVhAuRxXj918WJ7Zk/su1s7pZWJZZXZXQ+hAGKtWfxithaMLzSnN0pyEhf5ce5PemL2Z6wzKuSzYA5+Y4H515t4/8AiPBbGTTNEYT3JUiS4H3Yh6L6muO8aePtQ8Rxm2t3ksLORNzQqfn69GaszSdNv/FEtnpelabHD9nBWW5UYU553Ofp2HNIuMOU57Uri4mkKMWck73b1PrmtXwe2Pk5XuCD6Hit/wCKFjp/h+y0/wAN6eFklRDcXEzABpC3C59u4rmfC8m2QA7ue44rR/CUew+DfGG4fZNTYkfdjkx1+td7HJG6qyMrKehU5FeATuYp1eM8k9ua6LSfEV9YIq2tz8uD8hJIb147CsSJU7nsI5FPWuE0fx/EWEWpWgU9DJHyD+Fdjpuo2N8u61uY5BjJG7kfhTJcS5ilUetC8nrz9Kdt59KBPYFHpTlGBRjHQ04j1NMSGY5pcdRS0YPb8aQ2VZ1G/kUU+4TLDGaKBnlHxS8Um2V9Hs5djMP9IdfvAf3B7V5DcSF38zDj0A9Ku6ldC9u5JXlLOxy+7ruPJ5qpGyOh3jGBgYzzQdAQ8iRs4/3qXzUwFViDkc1WSRndo8bVBzjGc05tu/BIGBxx0PtVgS7C/IYkjmlcIpyQx4/Wo4XfaC3YENzSS84HUggrTQDI8byAWIHOKRnG3f1GeAakYqCGVscHgDpTW5UM3zYGeKZIzDA7iw55xmk3BjjHJGD81BXcd3PP5U5FYLksrHsAOKAI/kO5irZ6CoWC9SOasOgOVYEkjJ5xURww25Kn160ASWyeZGS38PaptPUlj6g8fSm2qDBG1iG4444qSMtHMYwp2kZHPagCPVopApZSNrf6xPesuQqFQrKreo/u+1dIDHOkiumWZMA55rCuIPImdGG5gecnrxVRAtaLqFtZSXC3dil5FNGUIZ9rpnnIPbp+tVdkXksfNiTj5UPJ69Pr71XwxPAIz6VLBtyFbHXBNWJjY3dCT5gHGVIHKnHWr9xdQS29siWqQmNfnYcmRvWqzQ7mCxoM9ufvCpVjEK5Od/bpx71DGi0k3lrFMFV1BAVX+UEjqvvxX0b4D1HRrrwfFfaZbpbWkanzIwP9Ww+8WHc+9fO1/d6de3FhGlvJawxKqTyBtzOc8tx7dq04PEEunyarpHh+eVtKvsDEy5cjuwPb0xUSFYPF2oyavrV/rEjblnY7FB3FVBwBVTSyYst8oAHBH8VGoqItO8tE4I57EVDpcbNCAA270z2p/ZGdPIY3gjlGNx+arNrMHfBiU7QAMd81nIwjgGfmz8u0c1ZtMxhGwMf0rIZqAZTJVgc8EHr7U6C4libfG7pIDgEHBWqqMykHKv3XParabZYgzHbIO5PFAzpNH8XazaL5VxItwo/56jH6112meMLKdUW5jaEnqV5WvLY2ABVxgnk9s1Yhk8pSBjPbmgnlParS+s7xM21zG/0PNWOSM8/jXj1veGPZIJXV/wDY4NdDpniu6t/llfzox2br+dFzNxO/Y9MU4HiudsPEGnTXJkknmhZkChGb93+HvW/CysoYMGUjrQS1YY43Gikfljj1ooKR8izlkYk/Lg9e5qCXJKoXOM8YrV1S3a3vrmGQHMcroMDpg1nbkY/N94HitTYitSVJDElwfzFP3CSXjgj19ajYbWk68d6IFycqCeakkuoPnzyeOdo60yQsrAcfMeDT4ojhnYNgULG0gPA+meaYEflu+7GBgc+1YsxuEkZd8m0N2PWt1AwGCcLnkgZqvKiA7/mznge9NAU7WK7VtxmKgDgE81bLcL/ETwSaUHMYZlAc9aWIOBuUZ7HjrTYDioYnLAHGagHDYIxUkilTu2kGmkEvkJntSAmtCysdp+U9z2qxdr80L4PXBIqvbcNuO0DvVmTcFQ7sgHt2pMBIWUyjKkADBJq6NKfVLmO302HdOVx8z7Q351SMjAMEKHHXcK0NLlhlm2yPIARtJBwfwoTsBgXMUltdPDIgDxMUYBs8/Wi2tTdXKW8UkUUjn5TJJsXPuabqcE1nfz2znlGzuH8YPT8agRNy7j27HvWqdxM0biD+zrmS18+3mlRipeIl1PHHI4PerOtanp9/p1rHa6XFaTwDEkqceZwByPrWLAN0ibmZELcnbnaO5rZl0tre0XUtOuEu7ONo1klfCN5nXbsJyR74pSQ0ZiKUX5sZ+9j8K1NDs3I87PuOafe3s3iXWEnktraIqoVxDHtBxxnFdE9rHb2qwooY46rWTA5/xAuAoPzEjPBpukblAI4bpz0xS62QzhQo4OD7VNpkX7lTIp29iKYFxECxkspyp7GnxzNEVwMqfvA+tTOnRsYXphe9RtgBuRjpjvUjNHTpFT5wWPON3UCrgdHwrDc2c1j2uVwse4Hdng8fjU76nFErtO4RkOCm3kVIzYGJUYOoBBGwEdOabFIIpNkmzGTzXMXHiCSZMRJsVeCSeTzWhZS+euVY5XlgWBoYM6XocmQEjsozxUSyssjEHIJzVexuR5ZK5BHX6VLI26LMYIJPzeq0kK1yRtQngvo4GA3ODkEdvau18G659ndbe4lZreXiPP8AA3v7V5nqsjtMkzTmRkHB6fhWzoMzxW4mcOxbrk4x7CpegnE9pcbiCDjIorC8P3V1faPBMSoIG3OeuKKXMZ8p4F8Rrb+z/G2pw+YxVrhmA9iMj+tc3OPMYypgbRXf/HXT2h8bPdAYW5t0k/EfKcflXAGQxIRlcHpkZrojsaXIHyxK5yM5FTIqoOZMFuoxVYMXn3L684q4kgVyc5OMZxTAcVIRVG7Pt3FP3Osi7FHA7nrSRt++JB3KBznvTMqNpLfP3GM0ASGTK7ggXPGAeBVIZ8zC4PPVjVhA5beQdvYVUnjaOYurkAnPTpQBZwQGKlSf0pA77sdu4HSpInMkZQYxwelNWMKxUhSAMjB60ANkc4Ax79aa0jly5XlscjtUk2CoCgDI6elQFsFQM8UAWYid5LF2+lSuMhm3Abcfe61FGDjk8H0qYFirENgsMfiOlJgTMqlVdwuDxyKbgROG+XdnKgDmnRXsbRLHd2zQHoJjypqZrRzEJbeRLiNRnKnkUgJZohrMMEXnRQyxt88rr2rBuBPFK6oFdUJXcF4bB61rWTtblDIQMgnaV+9VHWbSW0uWktyWglXdw3IPcVaEypL9qZkiNvLCXwQWUqD+dX7O0soY3bU4rieSRCIPIkC7G9W9RVy88Ralq+n2tjfzpNHajaimMKwA7Z/CodOtfOk85kGxWwAe1DbGjX8MWsVigaQMWkHUGtGf5y0p4HTOcZqmpaSQRh2POBhcbRUjxu+YxHlV6O3G6sgMXUhmf5ivqF7kVPZAtEoUfLnkZ4FR6ysUbY8xMv0AHNWdJGLbaY+DwOaoC0HRlUbdxzzkULGVUbM7gSSH6kVMg2RbQcsGyeO1Ro4yXO7J45HSpAdBEWUbRhh8xYHr7VI9nb3u77UoAPR8cg1HHIsCbnX92f4hyRVyCVJ4y6uCjDAIHBoGc3qOmSWhHyl1PUjn6Vo6Ckinkck4xjrWyiZUMAWZiFOemOlMa0Fs7SwDOGwN39aALMW6LYRxlsMo60y4umjuGHKnnr6UxQI25ccnjHO3NZ+rSiPEiEtkEZNIENuJvOu1izgs4yAOoroImIjGWzs6KO9c1obhp5LwpuK46nla2V3NyWyCc5JxUyGeheANctrbSpLe6IG2Tcgxzz1oqh4C0JdUtrqaRQArqq4PHSipIKP7Q9l/oWlakqtuErQNz2xkCvD52Pm5Iwp6AV9LfGbTRqPw71DYpaW2KXEZ91HP6Zr5lncnGOR/Cf1remxRelhIRtc84J6VajO0rjn39arRDBGFySat4ByAduD6dqtjHAZJJY5HenkDg4ye5FIoYbkUbz1HHGKSd1ii4l+cj7uKQx08roGWMAdOaRUV4MSMpB5NQQq77WOMN056mpwFQDAzQBVhPlOVBIXPHvV07CAw2jHWobiMyDcpAYdBTLdnMbKQDz360ASSbSmcg4xxUSphzv6fyp8gCj5TyevFEO4Sg7TtJwTQBdjgURvg5KnimhWy2R05qW32FW5bOehNLLGVJPc0mBfhZGsT02KuGVz3qKztlaEvAwhfdyUPH4il0yRpbSaNkUktxntU9vGNw7MDzzwaQFOZyW8rUCq4YBZ1GQfr6Vcs4rJBGuqLO9lvV38o8svPH5E0+aLemxvLcMc7ewA9ahgzDbfIy7A3+pZuoA52k/yp3EzO1yHSLnVyNCSZLTC7RITuBwN361djjaOIpEpQKBliOKZCbWyia5MZNxct0APy5zx9faoZVvLvcHmMcBH+rU849DTb0Gai3UTMkdvF9olXJLKeB+NTSRSyW7C6uZhuPyiAYA+uay7I7EKJgKgx7f8A66tGZyuUlDbF6uM1FgM67tre2BTYJGH8TEmrunNlEAbOByveodTdXV5CpYk/fxjB+lS6WoliAyBgYyOpp7Aahx5JA4J7imtFIIw2WLJwfoaVWXy1ZT07VYVf3XUMzfN97ioAjZQkI2soccgev1qJIZo28yxYAsNzQt0Y+w7Vanj3hWQck/dYUsbMWMW8ruOf8+lAE+mzm8HmBWjwfmUjG0j+dWrqUhlRiMS5O0U22QiI4UmRzg561kahN5urY3sNg28dqANIIiMVVRtI5z3rN8RWzR6a7KVABBGDnk1pxuBCH6EDHTOap61IZNPkY5RRg8jg0DKNiXtbYxc5cDeABWzpu8xAyBWQZGPSuZt5ZJ5hhdxIHIrqrZXZIbaML50pCBl6DtyKUgPV/h7aNb+GIZ2TY9y7SEZ7dqK37C1+xafbWg+fyolQnGOQKKgzbQl5areWc1pIoMc8TRsPqMV8e6tZSafqNxYysQ1tIYT7bScfzr7JQ9q+b/j/AKOdO8dS3kaBYdRjWcYHG4cN+uK2jowhqcDD0zjOO9W7cF1wSQD+dVoVCgbzgnoBUokyeOg/nWm5ZauJ0hHyruwOhrOLNK5Iyc9ARSy/vDk5Izk1atk2qH4PpSASIeUuAuT2HpU0Ydg0hA46j0ppAJ+XOR1pA5IZQQM9aAJQBkDII7mqsw8qbzBxGe/ariKSwbPGOcdM1BeB2O1s7QPu9qAGptY/7VNGTJgMODmks3wBEwG4d81Iy4+baOcgjFAEsDvkqQenUirBJ8rAXJH8XpVeKPlVVgfX2q2R8hCKW44HrSYCaIXd5F34GcmthoSo3L8wxnK9RWRo4UyygnYy9QeO9bI/dyMoBd2AAU8Z/pSApA7UYkDATkng81UuN8M8JVI5WQ5MZbhgvJq/eLKhbzVYKGAKggjjpVOBRJrEIkzkq2DjGMCgR6GiJ4msTMjWMdjJamRnUBdpA5Qg89uvX3rzaCbauxWG0dyDk+mfwrVjtbBEZZ4pVVsbipIB+o70s9sxVhbXG6LO0cdvpRcDIbzTkKPvc8HikZniG58Y6hVbrUlzDcWj52nA5qHzt3BAGe/egZG88k5ZmY49D3q/4flOwfeLqSSMc4qrJHleGDDbk8YIp+lOsMoZhtAGM+1NoDpYogyb0UEv19Pwqx5UK7Y3yvqAOKq20qmLKOTu+6AMYq5bYOW3ZbgA7uuazAtiBZMOnUDBAPaqkcG5h1DHPVc1oRKY3dCgBKg7h9aseV+7Ux55yFOetAXMtrhooC/J28MwPJ9Kqz2rRE3DHJblsDpS686DVIraMLhV3Pg5yavWTwhf37ZyMnP+FNqwFRXB4DZX2OKr3zkWFwh67erHNXtQh8grKigwt0Zaq3Jie3kAbIKkg/hSAoeH0SK2EzHDEEjZXc/DawOp+KbUzgvFBmVhjvXB6SHZI40bk5xngV7V8G7Ix6Xc3zAAyMYlPUnHf86LCk7I7ln5zt680Ukoy3eijlMLkKL3IzXnX7Quii+8Ixakq7pdPm3HA/5ZPwf15r0ZPriotX0+HU9KutOuAGiuIWjIPv0/XmqHe0j45RCFDZFOb5Vx1B71d1iwm03U7rTplPnW8rRuD2wePr0qooB+UkjHXFWnodFhkMT44Ix3zVl2ClcDp6UkCBCSc7feiQlec59iKBA7ndnOB9KI2yW2gc9TikXeMFiMenepAcqVI98YoAmjmKIyg7QevHJNQyuASTkinhh5ZGcovbrUcnIyqtj9KAZSl3JJvXGc5Fatri5gWUEE559qoSozL15qXSrj7LOISBsk+U0CRdjR1YhQM/xH1qZ1EfysuX4I54xSKH2lWGAvuPmpApkhbcGX9RSYxdLQy6hKq5G4cA9K187FLJIGVhjawyVx1rF0s/8AEw+WQqAvGBj5vSttVLb0zGeAzEtgg1LEyvMz7hLLGdvYYxn3qGA5121XcBuBBJ7ZBqXUJS0gdFkKY4DdV9c1n2CSy6tGYY5ZWVgz+Wudq55J9qfQDXuoQRIm4dAobk5/CqtlNNZ3SozttYA4f/8AVWldCSDEqJzlvmHTrz/Ss6WOOdEcSncQcgikFjSntredSYAjFlOSSeDn3rntTsTE5AYLg9MVdilkgO3fgbeeavu8d3Aof5WUjBPehOwzlSXX5SwBBq3ZOYzu4bJ5qW+tPmZiBnr8uOarWuFfaeB6YzVXA3BK0dv5iRGYnsp6U231GeFVNzZOsac70PI98VPYSbIyDtO48gE5/DFWpgNvmEFnPvkD61mBpaTqNpfj5p2BAAC4wR9a6CSKJYQQeFUvnHpXIWaW8tzmSNldcYZDgk10ayo0Uu2XkRHdub29KAscMkzSX8txI2Xkc49hmtaxkRWXfICDwSe1ZUCgq7bFJ7YPvViMBW2BQOeTmqeoGpDftbzNbSbZIW6bh0qK7VVhlCjcjISD6VW1YKVV9uDjBqvDMDbbefu8A9KQFbRg8s0VrFlpJZAka/7R4H4d6+nvDWnLpWgWdjgb4owHYd27n868T+B2hDU/EzXsif6PYnex7Fz0H5Zr3454457j0pmdV2ViGTrRSsMmigwsyFaeuO/ze1MUt6CnxnBz/KgqW54T+0JoJs9dt9bhXEV8m2Qqv/LRfX615dIm52KquMdFPT619UfELQF8ReF7nTVGZwPMt2PVZV6fn0/Gvl14HhldJVKOpKkehB6fzpx3N6crqwiqcENwewqKQgnB5PpTmycdiKYBubIOPWqKHBBjdnBzyD2pWIzkufTFM6EguRgilPXGT+NAEqKOSEyMdqa+8gAsMmlZuVwRmjJ6MpJ7GgQ1kIUDrjmq0w/iq2cjIPpzzULoTtw4/KgDRsWS6s1Y/wCsT5TVgAxoIDt9aytIk8m5CEHbJw3NbTiNEcyLmVjwfUdqQ7lO1BF95eN2Rwf73vW6qyLHLuCPGMDBWsN/3VyrDeg2cfN05rYt5GkgYqeuBnOS1JiGNFw6yBwwAXKv3HWpvC2mXOoXurQ2d/8AZYEsmlunVMu0afMUA9ziluUYwySFY1G7jB5OKh0LxRf+G7+e9s7a1kkkAQGdCcDPKj1BFK+gE+iahpkmqE63BNLZyj5hC/luhIB3r7+1aHjDQrrQ9RgezJu9OuYvPgmXgsp7MPWo4PEngibUYL1vBdx9paQfukut0A3HBZUIzkZPFaPxH1TVbfxCbbUbNbK1EKCwSH5k8rGeD3Y9x2osFzlLyFl5ZlAHGCMEVAsjA8Sdu/StFzHeIryMGJPG3qfes+9heNyVY9MUWGDvvVWKRqR1AGTiqkmFnUouNxpzFoyRnOO4PamyOSR1ZT7UwNnSxmNR0Y/xGtiTYRhAp3KMk9axtJ+d1LA7PQnNb08SZ35yuM89qlqwXM4LnOWZcHsKlnmMVg5TGMYJ70mJBEwkAQZ7HBJqtqsiKsSAqSeSAMYpIClAqbS3QY6VMzAAEldo64PJpIyrAts3cdqQkKwI2bcHgDmqFcuwAPEVfkY9c4qrHFJ5hiRTvboMdalsC67Q+Qo5yf8ACu/+E/huTUPEA1W5i3WtpzET0aQ9Py60Dvod78NPDieG/DMNnIM3cp864bHVyM7fwrplHO7OcjNPcE9cHnrSdKDlk+Z3IJvvUU6T71FA7EC/dpyAZqNB71Io+agJDumcV4H8b/DK6T4iGrWsRFnfnLKo4SYDkfQjmvfOvBrI8Z6FB4k8P3OmT4VpBuikI/1co+630zTHGVmfKZizmQ5HsKYRtyFDDPWtDVbK50/ULmxvF8ueBijr3GP8ev41nggAAlsn19KaOhiMMgkkHPGCOacicbQucfexQcgbhg47VIm7g45PUUxXE+UEErkCmI2wE7ePX0qRx1LcDpTDGFYKScE9qAHEZPUHPfFNIIyMjH05p/c9fxoRTJKFBUL6tSApMpxuU4I71u284ntonBZwqbSPfPNZ9xFkbsjjsO9S6OVTzYGdSGIZfrQAkxJvFByfl4rcslfyoi+/3QenrWLKVN7typA4GeK17QbUYbz04w3akwNMm2aJSpJkzyD0ArJ1W1E1ykQwXweMVqxttiV1bcoHQp7+tLJA0uoW6eZHGzTZyByARU3A5e1Fzo+sWmo28ayPbyrMo7Egjr7V31xLB4t8Dap9hSRb6C++2SpcXW92QdSgPKr0GBxxVMaLPfWLagywC3bIRmY7mA44ArK0i/uPCniBLy1djbBsXEceA0iHqMntTuIxLR3iYNHkk85/rir7FpyQxXJxlsV2HibwzaTwxaxoDrcW1wd7okqu8THkg7Rwo75rk4olt8q4O4kg7Tkfe9fTii5RmSokbMrMCc/lUTdBj1q9qMTY+RTgk5PpWcY2HBxxTWoXNbTHCOrLg/jW8Jmc7pCRgcFeRXNafwysDx6VsgsEyVGB1OeRmlJCLGY2jO8sSeQTzmsvWMf2gkSsGCL8xA6k1rRGMXCZiccYxnrXP3Mn2m+lkUkAudvuKUUFy7AhMJGPl9R1pkqqHXauDj86ktkdQpIJHpUjRgSKMZB6/wCAoYFjw3ZXOparb2NtF5ssxwmeg9Sa+kdB0yDSNJg0+3C7IlwSOpPc1x/wk8LrpOn/ANq3kf8AplyvyAjlE7fia7/nOTTRjOXRDSD6H8aawqQ0jCmyEV360Ur5z0opDuVEqVKiUVMowKAkKFA70MuV5GR3GcZpR1pWGeKZJ5R8dPCBvrY+ItPhLzxLi7RV5lQdD+HFeHp1HzDHXr196+xZUSSIxyKrIw2sD0IPavnr4seCZPDmpPqFjGf7LuXJBxxC5/gpo3hPSzOEG1eMLzxntSbSQQSOnynFSBQCFy2FPII707YSwUMS3bjtTLIuVxuXgdSBSuV3htoA7VMwUyYZyM1EyEEAg0gEVwyn5hx+dEajBz9cUEHdsAA9+9PCckFhkDpTAhmYD5VOSPakgkK3SO4GARSXA2v83G7p71CCSwwM80AaSA/2iAQWUZP51uW0eYgTgMMlie47VgxjN9u3NjAzjtXRWZiVQjbm38AikwLQiItVXKnBzyeKpXMxjuYwirhZ1JfHY8YrTKBIEj+dth+YAdqpaq+bASbFRYypBx3FZgP0y5FqH07VTemwEnm289v8xi57juPapPEMllrWsXFzplsbKxCLGglUgyEdW/HNWpwZJ1Ebhd6gfKMHBAIqQOHjEcyAlTgZ5ORQBD4S1e/8LyPGgN9pcu7z7XdtAB6sD1z7d66W/wDDml+JYV1Xw1cIxdifsu3aSw4wq9U6cseK5VisTlY84K7m+XcPwpLcT2uoPdaReyWM8qgyFTgSDIO1vUe1MVmZes6XfWU5W6tpoyQx+ZDtIz1B6c9vWstrcHI4LDOMHnivSm+IWr2kQj1vS7e+Ykl5YmwXYfcBUjAAz0FUpvFfhmUSM3hyXeq7VZrdDyIyMnHqxJ/AVSFzHA2wIYucge39K2rfBjUO5UNjINU9WvY73VnljtYrSPARI1TbgAYyfc45qzasuUU9T2NDKL9w3lszI+Aq1zducjceRyMemTW3qAEdlJ824lQDWNAwAxjjoMdzSiBqQSl4vJOc4wFHU16B8LfCI1W8XVdQRmsoGygIwJHHp7CsD4feG7rxBqKxRKy28bD7RKf4R/d+tfQFjbW9pax21tGI4Y12oo44otqZylbYnXJxuAGBjinYxSCnGqMRp4pDyKceRTfUUmBE45ooZRnqaKQ7lNalBOOlRJzT1PtQNj1Oad2zTU6U88CgkFPNVtW0+y1PT5rC+iElvKhV1PTnv9RVqjJB4OKY0fNXxE8F3vha96yzWEjYgn6/g1czjGCTnHdelfWGt6ZY6vp8tnqECzW8gwVYZwfUehrwHx/4HvvDNxJMUM2mM/7u4AzsHYNig3jNWszjZCAuCMAn0qFmH3dxbHYippkVHUE5yPXpTUwcgtn0yKCiL0YcEU5eCAFA5yT61I4+UDaA2ccUBVyEcfQ07gRSp5jDdz7YpYoSuWUAfWpFKhB8jZ9c0vLZw2aAC28wThg2CDyQK37MKBHK4xGG/wA8VgID5w2nbgjNbKC4aFWT5l3dKGBuhW+yjaHbc2Tz2qrrFo40suqKIiNx2Hd07H86gtbq4RhJLE7g9OccU+41RUtJYJYiFIO444x9KzAdCFa3tdrMzGIOTnHt/SiWCVpFaHaGcZyGz05/CtHwlo1trW9WmniS2t1kaKP77Ak8/QVZ17w89hpdvqdjczXFnJJ5ciuQWBzwR/gaBX1MqSK4k/fPJuaQcnIX9B0piYim2yokiYAPOSDT0JAYyuN56gLzirCW48wFpQD0B9qB3K+oGJ7dZmiG5cjn+dYrOqpgI2cknHp2rcvDGIAu0Mq7gSR973Nc/Kyq2TnA6VUXcVyncPmXeSRkcY5qxZGNsjLDPr1zULKrEMAfmGTgVcgQGL5tqj37UxkupPmzSMoQcjOBnirPhDw7e6/qcVlZxEgHMsuPlVfX6+1XtE8M6t4l1SK3sIFWGLHmyvwkeeOvc1754V8P6d4d0wWNhH2BklYfNKw/iP40opkSkugvhvRbHQdMjsbGLai9SerN3JrWA/yaF5607HNWYNtsMUvWigGkwA8Uw9zTz0pjHFJgQuTmikdgDRSAqpxUkYBqJTUq4xQULyDgEYp1IBg0vcUEj6Sl70UwHAkdCaiuIIbmJre4jWWJxh0YZBFSA07jtQM8X+IXwskiMmoeG4xJHkl7UnLr/u+o9q8seF4pTDPCVlQ4dSMFT9K+u65vxb4L0PxJG32qBYrrb8s8a4Yfl1oLjU6HzOyMGwqjn/apgKkMM/MxwOOld34r+G+vaQ7XFtF/aNqo/wBZEuGUe6/4VxZj8qco/wC6bod4xt+oPNBqpJkRRWZVU5BHFKAoOME/QVIdglBQNheuB1pQm9gQSB9aaBiWgDXBU8emR/WttYWaFBgDbx161ixNtuBt65rWe78qILvcngqwxwaGBpPbXZRYgqfKf72BioLiwnVHZ0KybTgZBzUkGqqYlidsnLFtwzkcYq8dSthAo8qJmAwD6GoQGd4UN9FsuNPu/smoWbbMvkrIjdm9RXQanca5r9tHY35s7W2imMj/AGZiN7euK53TLsRXcxHUBdxx71tR6nHIVK7lZkyTSFYZDpZs7gyGZyHU7d2D/wDXqK688zIzAJ/d2jOfXirrXasIyW2lsFeRnFJPND5TFo+RxuHJ5oGZUquEKtEwXJJZ+KwZ9scrBTn6V1t4bdY2MrGLK4Kjrn/Cq+jeENW1y626fZSSRnrO/wAka/Q9TQgsu5yJ3PuyGAAxnPFd58PvAGo606Xd2GstPyPncYeT2UHt716F4Q+Gek6UVvNRK6heKcqXXEcf+6vf8a7qJMbR0A6AdBVmcplTR9Ps9M09LKygWKFOAAOfqT3q6eaAOMn6UuKoxuIoxTqSloAO9JS0lJjFPSozyTSk5ph6mkwI360U2Q/NRSAqg4p6moQTupydakqRMCc9af6VBk+tPycdaoRMSfagE1GCfWlJIPWi4iQEd6dn3qNCTmndqdwHg9aRWLEnbtx+tMXrTiTkcmgQ/AI5z1z1rB8QeFNB11X/ALQ02JpG/wCWqDZJ+YreHQUjUXGpNHketfCB1DHRdUG0jiK5Tp7bhXF6t4F8V6VzPpEssYGfMgPmLX0eemaUDqQSPoaDVSPknyJoJStzFJG/cOpUj86sD98pRCpKkY4FfUt5ZWVyCLmzt5wB/wAtIwayZ/Bnha6w8miWgYnkou3+VJjUz5uzs2kLgkfMD7VMsxHzDJ3H7uM17+/wz8IzTMTYSJ3+SVhVc/DHwoH/ANRdkA9PtLUhuR4JazPG0xGRvPPzdMVP9uJn+UAZGAev6da+gLX4beD0TcdLEhyfvyMf61p2HhzQNPYi00eyjx0PlAn8zQLmPAtJ0nW9SZPsmk3czZADBcD8zXcaH8OdbmydQnhsUJ/1edz167GiqCi/KoHAHFCACixDmc3pHgrR7A7pojeSHGXm5/T+ldLHEsaBI40VF4UKMAfhS0tVFESkxaB1o/hoPSqEKcYwKSiigApDS01qQICcUmcmkNJ2pDF7U3Iyc0q9KY/emhEb/e6UU1mOaKko/9k=" alt="Луи Крюгер" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <b style="color: var(--dark); font-size: 1.05rem; line-height: 1.3;">Иоганн Генрих Луи Крюгер</b>
+          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem;">1857 — 1923</span>
+          <p style="font-size: 0.85rem; color: var(--ink); text-align: left; line-height: 1.45; margin-top: auto;">
+            Немецкий геодезист и математик. Вывел <b>рабочие формулы</b> разложения в ряды для практических вычислений на эллипсоиде (1912, 1919 гг.).
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- TAB 2: TOPOGRAPHIC MAP NOMENCLATURE (ON 3D ELLIPSOID & TIERS)    -->
+  <!-- ================================================================= -->
+  <section class="tab-content" id="tab-nomenclature">
+    
+    <!-- BLOCK 1: Basic 1:1 000 000 Sheet (Left: Text, Right: 3D Globe Ellipsoid with 4° belts & 6° columns) -->
+    <div class="grid-tab2-top">
+      
+      <!-- Left: Theory Text with Clean Formulas -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">1. Базовый лист масштаба 1:1 000 000 («Миллионка»)</div>
+          <span class="card-badge" id="nBadge1M">Лист N-37</span>
+        </div>
+        
+        <div class="info-box" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <p>В основе международной разграфки лежит лист карты масштаба <b>1:1 000 000</b> с размерами трапеции <b>4° по широте</b> и <b>6° по долготе</b>.</p>
+            <p>• <b>Пояса (ряды по широте через 4°):</b> обозначаются заглавными латинскими буквами от экватора к полюсам ($A, B, C, \dots, N, \dots, V$).</p>
+            <p>• <b>Колонны (по долготе через 6°):</b> нумеруются арабскими цифрами от меридиана 180° на восток от <b>1 до 60</b>.</p>
+            <p>• <b>Связь колонны с номером зоны Гаусса-Крюгера:</b></p>
+            <div class="math-eq" style="text-align:center;">
+              <b>Колонна = N_ГК + 30</b> &nbsp; (для восточного полушария, 0° .. 180° E)
+            </div>
+            <p>Номенклатура листа состоит из буквы пояса и номера колонны, разделенных дефисом: например, <b>N-37</b> (г. Москва).</p>
+          </div>
+
+          <div style="background:#ffffff; padding:0.75rem; border-radius:var(--radius-sm); border:1px solid var(--line); margin-top:0.6rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; flex-wrap:wrap; gap:0.4rem;">
+              <span>Выбранный лист: <b id="nHudNom1M" style="color:var(--accent); font-size:1.15rem;">N-37</b></span>
+              <span>Пояс: <b id="nHudBelt" style="color:var(--accent-teal)">N (52° .. 56° N)</b></span>
+              <span>Колонна: <b id="nHudCol" style="color:var(--accent-amber)">37 (36° .. 42° E)</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 3D Earth Ellipsoid with 4° belts & 6° columns -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🌐 Разграфка эллипсоида на пояса 4° и колонны 6°</div>
+          <span class="card-badge" style="background:#ffebe3; color:var(--accent); border-color:#ffd2c2;">
+            3D Эллипсоид
+          </span>
+        </div>
+
+        <div class="canvas-wrapper" style="height: 380px;">
+          <canvas id="n3DGlobeCanvas"></canvas>
+          
+          <div class="canvas-hud" style="right:10px; left:auto; max-width:280px;">
+            <div class="canvas-hud-title">Выбранный лист 1:1 000 000:</div>
+            <div>Широта B: <b id="n3DLat" style="color:var(--accent-teal)">55.76° N</b></div>
+            <div>Долгота L: <b id="n3DLon" style="color:var(--accent-teal)">37.62° E</b></div>
+            <div>Номенклатура: <b id="n3DSheet" style="color:var(--accent); font-size:1.1rem;">N-37</b></div>
+          </div>
+
+          <div class="canvas-overlay-ctrls">
+            <div class="btn-group">
+              <button class="btn btn-sm" id="n3DBtnReset">Сброс вида</button>
+              <button class="btn btn-sm" id="n3DBtnSpin">Вращение: ВЫКЛ</button>
+            </div>
+            <div style="font-size:0.75rem; color:var(--text-muted); background:rgba(255,255,255,0.9); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid var(--line);">
+              *Вращайте глобус мышью
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sliders to pick coordinates for nomenclature (0..180 longitude) -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">
+            <span>Широта точки (B):</span>
+            <span class="val" id="nLatVal">55.7558° N</span>
+          </label>
+          <input type="range" id="nLatSlider" min="0" max="84" step="0.05" value="55.7558">
+          <div style="font-size:0.75rem; color:var(--text-muted); display:flex; justify-content:space-between;">
+            <span>0° (Экватор)</span>
+            <span>42° N</span>
+            <span>84° N</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <span>Долгота точки (L):</span>
+            <span class="val" id="nLonVal">37.6173° E</span>
+          </label>
+          <input type="range" id="nLonSlider" min="0" max="180" step="0.05" value="37.6173">
+          <div style="font-size:0.75rem; color:var(--text-muted); display:flex; justify-content:space-between;">
+            <span>0° (Гринвич)</span>
+            <span>90° E</span>
+            <span>180° E</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2: Subdivision of 1:1 000 000 Sheet into 3 Columns (1:500k, 1:200k, 1:100k) -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <div class="card-header">
+        <div class="card-title">2. Деление листа миллионника на масштабы 1:500 000, 1:200 000 и 1:100 000</div>
+        <span class="card-badge">Ступень I</span>
+      </div>
+
+      <div class="grid-3-col">
+        
+        <!-- Column 1: 1:500 000 (4 sheets: А, Б, В, Г) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-teal); font-size:1.05rem;">1:500 000 (2° × 3°)</b>
+            <span class="badge-falsing" id="nBadge500k" style="font-size:0.95rem;">N-37-А</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas500k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:1 000 000 делится на <b>4 листа</b> (А, Б, В, Г)
+          </div>
+        </div>
+
+        <!-- Column 2: 1:200 000 (36 sheets: I..XXXVI) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-amber); font-size:1.05rem;">1:200 000 (40' × 1°)</b>
+            <span class="badge-falsing" id="nBadge200k" style="font-size:0.95rem;">N-37-II</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas200k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:1 000 000 делится на <b>36 листов</b> (I–XXXVI)
+          </div>
+        </div>
+
+        <!-- Column 3: 1:100 000 (144 sheets: 1..144) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-emerald); font-size:1.05rem;">1:100 000 (20' × 30')</b>
+            <span class="badge-true-y" id="nBadge100k" style="font-size:0.95rem;">N-37-4</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas100k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:1 000 000 делится на <b>144 листа</b> (1–144)
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOCK 3: Further Subdivisions of 1:100 000 Sheet (1:50 000, 1:25 000, 1:10 000) -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <div class="card-header">
+        <div class="card-title">3. Дальнейшее деление на крупные масштабы (1:50 000, 1:25 000, 1:10 000)</div>
+        <span class="card-badge">Ступень II</span>
+      </div>
+
+      <div class="grid-3-col">
+        
+        <!-- 1:50 000 (4 sheets of 1:100k: А, Б, В, Г) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-teal); font-size:1.05rem;">1:50 000 (10' × 15')</b>
+            <span class="badge-true-y" id="nBadge50k" style="font-size:0.95rem;">N-37-4-В</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas50k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:100 000 делится на <b>4 листа</b> (А, Б, В, Г)
+          </div>
+        </div>
+
+        <!-- 1:25 000 (4 sheets of 1:50k: а, б, в, г) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-amber); font-size:1.05rem;">1:25 000 (5' × 7'30")</b>
+            <span class="badge-true-y" id="nBadge25k" style="font-size:0.95rem;">N-37-4-В-а</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas25k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:50 000 делится на <b>4 листа</b> (а, б, в, г)
+          </div>
+        </div>
+
+        <!-- 1:10 000 (4 sheets of 1:25k: 1, 2, 3, 4) -->
+        <div class="card" style="background:var(--card-inner); padding:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <b style="color:var(--accent-emerald); font-size:1.05rem;">1:10 000 (2'30" × 3'45")</b>
+            <span class="badge-true-y" id="nBadge10k" style="font-size:0.95rem;">N-37-4-В-а-4</span>
+          </div>
+          <div class="canvas-wrapper" style="height: 250px;">
+            <canvas id="nCanvas10k"></canvas>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; text-align:center;">
+            Лист 1:25 000 делится на <b>4 листа</b> (1, 2, 3, 4)
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOCK 4: Complete Summary Table & Reverse Decoder -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📋 Сводная таблица номенклатур всех масштабов для текущей точки</div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Масштаб карты</th>
+            <th>Номенклатура листа</th>
+            <th>Размеры рамки ($\Delta B \times \Delta L$)</th>
+            <th>Широтные границы ($B_{\text{юг}} \dots B_{\text{сев}}$)</th>
+            <th>Долготные границы ($L_{\text{зап}} \dots L_{\text{вост}}$)</th>
+          </tr>
+        </thead>
+        <tbody id="nNomenclatureTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+
+      <!-- Reverse Decoder Tool -->
+      <div style="background:var(--card-inner); border:1.5px solid var(--line); border-radius:var(--radius-md); padding:1.2rem; margin-top:1rem;">
+        <div style="font-weight:800; font-size:1rem; color:var(--accent-teal); margin-bottom:0.6rem;">
+          🔍 Интерактивный обратный декодер (введите номенклатуру любого листа):
+        </div>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+          <input type="text" id="nDecoderInput" value="N-37-4-В-а-4" style="max-width:240px; font-weight:800; font-size:1.1rem; text-transform:uppercase;">
+          <button class="btn btn-primary" id="nBtnDecode">Декодировать координаты рамки</button>
+          <div id="nDecoderResult" style="font-size:0.95rem; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; flex:1;"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<div class="module-footer">
+  <div style="max-width:1720px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.8rem;">
+    <span>🎓 ГеоЛиния • Интерактивный образовательный модуль по геодезии и картографии</span>
+    <span style="color:var(--text-muted); font-family:var(--font-mono);">Проекция Гаусса-Крюгера • Плоские координаты (X, Y) • Номенклатура карт</span>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   CORE GEODETIC MATH & NOMENCLATURE CALCULATIONS
+   ===================================================================== */
+const a_krasovsky = 6378245.0;
+const f_krasovsky = 1.0 / 298.3;
+const e2_krasovsky = 2 * f_krasovsky - f_krasovsky * f_krasovsky;
+const ep2_krasovsky = e2_krasovsky / (1 - e2_krasovsky);
+
+let appState = {
+  latDeg: 55.7558,
+  lonDeg: 37.6173
+};
+
+function geodeticToGaussKruger(latDeg, lonDeg) {
+  let normLon = Math.max(0, Math.min(180, lonDeg));
+  let zone = Math.floor(normLon / 6.0) + 1;
+  if (normLon === 180) zone = 30;
+  if (zone > 60) zone = 60;
+  let lon0Deg = zone * 6 - 3;
+
+  const B = latDeg * Math.PI / 180;
+  const L = lonDeg * Math.PI / 180;
+  const L0 = lon0Deg * Math.PI / 180;
+  let l = L - L0;
+
+  const A0 = 1 + (3/4)*e2_krasovsky + (45/64)*Math.pow(e2_krasovsky, 2) + (175/256)*Math.pow(e2_krasovsky, 3);
+  const A2 = (3/4)*e2_krasovsky + (15/16)*Math.pow(e2_krasovsky, 2) + (525/512)*Math.pow(e2_krasovsky, 3);
+  const A4 = (15/64)*Math.pow(e2_krasovsky, 2) + (105/256)*Math.pow(e2_krasovsky, 3);
+  const A6 = (35/512)*Math.pow(e2_krasovsky, 3);
+
+  const X_arc = a_krasovsky * (1 - e2_krasovsky) * (A0 * B - (A2/2)*Math.sin(2*B) + (A4/4)*Math.sin(4*B) - (A6/6)*Math.sin(6*B));
+
+  const sinB = Math.sin(B);
+  const cosB = Math.cos(B);
+  const N_curv = a_krasovsky / Math.sqrt(1 - e2_krasovsky * sinB * sinB);
+  const t = Math.tan(B);
+  const t2 = t * t;
+  const eta2 = ep2_krasovsky * cosB * cosB;
+
+  const X = X_arc + (l*l / 2) * N_curv * sinB * cosB + (Math.pow(l, 4) / 24) * N_curv * sinB * Math.pow(cosB, 3) * (5 - t2 + 9*eta2);
+  const y = l * N_curv * cosB + (Math.pow(l, 3) / 6) * N_curv * Math.pow(cosB, 3) * (1 - t2 + eta2);
+  const Y_full = zone * 1000000 + 500000 + y;
+
+  const gammaDeg = (l * sinB) * 180 / Math.PI;
+  const m = 1.0 + (y*y) / (2 * N_curv * N_curv);
+
+  return {
+    zone,
+    lon0Deg,
+    lonW: (zone - 1) * 6,
+    lonE: zone * 6,
+    X,
+    y_true: y,
+    Y_full,
+    gammaDeg,
+    scale_m: m
+  };
+}
+
+// Exact Inverse Gauss-Kruger (Converts flat X, y back into geodetic Lat, Lon for point dragging)
+function inverseGaussKruger(X, y, zone) {
+  let lon0Deg = zone * 6 - 3;
+  const e1 = (1 - Math.sqrt(1 - e2_krasovsky)) / (1 + Math.sqrt(1 - e2_krasovsky));
+  const M0 = a_krasovsky * (1 - e2_krasovsky/4 - 3*e2_krasovsky*e2_krasovsky/64 - 5*Math.pow(e2_krasovsky, 3)/256);
+  const mu = X / M0;
+
+  const Bf = mu + (3*e1/2 - 27*Math.pow(e1, 3)/32)*Math.sin(2*mu) 
+                + (21*e1*e1/16 - 55*Math.pow(e1, 4)/32)*Math.sin(4*mu)
+                + (151*Math.pow(e1, 3)/96)*Math.sin(6*mu)
+                + (1097*Math.pow(e1, 4)/512)*Math.sin(8*mu);
+
+  const sinBf = Math.sin(Bf);
+  const cosBf = Math.cos(Bf);
+  const tanBf = Math.tan(Bf);
+  const Nf = a_krasovsky / Math.sqrt(1 - e2_krasovsky * sinBf * sinBf);
+  const Mf = a_krasovsky * (1 - e2_krasovsky) / Math.pow(1 - e2_krasovsky * sinBf * sinBf, 1.5);
+  const eta2 = ep2_krasovsky * cosBf * cosBf;
+  const tf2 = tanBf * tanBf;
+
+  const B = Bf - (tanBf / (2 * Mf * Nf)) * y * y 
+               + (tanBf / (24 * Mf * Math.pow(Nf, 3))) * (5 + 3*tf2 + eta2 - 9*eta2*tf2) * Math.pow(y, 4);
+
+  const l = (y / (Nf * cosBf)) - (Math.pow(y, 3) / (6 * Math.pow(Nf, 3) * cosBf)) * (1 + 2*tf2 + eta2)
+                              + (Math.pow(y, 5) / (120 * Math.pow(Nf, 5) * cosBf)) * (5 + 28*tf2 + 24*tf2*tf2);
+
+  const latDeg = Math.max(0, Math.min(85, B * 180 / Math.PI));
+  const lonDeg = Math.max(0, Math.min(180, lon0Deg + l * 180 / Math.PI));
+
+  return { latDeg, lonDeg };
+}
+
+function toDMS(deg, isLat = true) {
+  const hemi = isLat ? (deg >= 0 ? 'N' : 'S') : (deg >= 0 ? 'E' : 'W');
+  const absDeg = Math.abs(deg);
+  const d = Math.floor(absDeg);
+  const m = Math.floor((absDeg - d) * 60);
+  const s = ((absDeg - d - m/60) * 3600).toFixed(1);
+  return `${d}° ${m.toString().padStart(2, '0')}' ${s.padStart(4, '0')}" ${hemi}`;
+}
+
+function formatMeters(num) {
+  return Math.round(num).toLocaleString('ru-RU') + ' м';
+}
+
+function formatKm(num) {
+  return (num / 1000).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' км';
+}
+
+function resizeCanvasDPR(canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const w = Math.round(rect.width * dpr);
+  const h = Math.round(rect.height * dpr);
+  if (canvas.width !== w || canvas.height !== h) {
+    canvas.width = w;
+    canvas.height = h;
+  }
+  const ctx = canvas.getContext('2d');
+  ctx.resetTransform();
+  ctx.scale(dpr, dpr);
+  return { width: rect.width, height: rect.height };
+}
+
+/* =====================================================================
+   TAB 1: 3D GLOBE WITH 60 ZONES & TANGENT CYLINDER (LIGHT THEME)
+   ===================================================================== */
+const c1GlobeCanvas = document.getElementById('c1GlobeCanvas');
+const c1GlobeCtx = c1GlobeCanvas.getContext('2d');
+
+const c1ZoneCanvas = document.getElementById('c1ZoneCanvas');
+const c1ZoneCtx = c1ZoneCanvas.getContext('2d');
+
+let c1GlobeState = {
+  rotX: 22 * Math.PI / 180,
+  rotY: -39 * Math.PI / 180,
+  zoom: 1.05,
+  isDragging: false,
+  lastMouseX: 0,
+  lastMouseY: 0,
+  spin: false
+};
+
+const CONTINENTS_SIMPLIFIED = [
+  [[-9,36],[-9,43],[0,43],[3,47],[-4,48],[-1,50],[8,54],[10,58],[5,62],[15,68],[28,71],[40,68],[60,70],[75,73],[105,77],[140,72],[170,67],[180,65],[170,60],[142,50],[130,42],[122,30],[108,20],[105,10],[100,2],[96,16],[80,13],[70,22],[58,25],[50,13],[43,12],[40,-4],[35,-25],[20,-34],[18,-34],[12,-15],[9,5],[-17,15],[-17,21],[-10,28],[-5,36],[10,37],[25,31],[35,31],[36,36],[28,41],[15,41],[15,45],[0,41],[-9,36]],
+  [[-168,65],[-160,71],[-130,70],[-95,70],[-80,62],[-65,58],[-55,50],[-65,43],[-75,35],[-80,25],[-97,26],[-90,20],[-83,9],[-77,8],[-80,15],[-105,20],[-115,30],[-124,38],[-125,50],[-140,60],[-168,65]],
+  [[-77,8],[-60,5],[-50,0],[-35,-5],[-37,-12],[-40,-22],[-50,-30],[-55,-40],[-65,-55],[-75,-50],[-72,-35],[-77,-18],[-80,-5],[-77,8]],
+  [[114,-22],[122,-18],[130,-12],[142,-11],[146,-20],[153,-28],[150,-37],[140,-38],[130,-32],[115,-34],[113,-26],[114,-22]],
+  [[-45,60],[-30,68],[-20,75],[-25,82],[-55,83],[-60,76],[-50,68],[-45,60]]
+];
+
+function projectSphere(latDeg, lonDeg, rotX, rotY, radius, cx, cy) {
+  const lat = latDeg * Math.PI / 180;
+  const lon = lonDeg * Math.PI / 180;
+  let x = Math.cos(lat) * Math.sin(lon);
+  let y = -Math.sin(lat);
+  let z = Math.cos(lat) * Math.cos(lon);
+
+  let x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
+  let y1 = y;
+  let z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
+
+  let x2 = x1;
+  let y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+  let z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
+
+  return { px: cx + x2 * radius, py: cy + y2 * radius, visible: z2 > 0 };
+}
+
+function renderC1Globe() {
+  if (!c1GlobeCanvas) return;
+  const { width, height } = resizeCanvasDPR(c1GlobeCanvas);
+  c1GlobeCtx.clearRect(0, 0, width, height);
+
+  const cx = width / 2;
+  const cy = height / 2;
+  const radius = Math.min(width, height) * 0.4 * c1GlobeState.zoom;
+
+  // Globe Base Sphere (Light Ocean Blue)
+  const grad = c1GlobeCtx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, radius * 0.1, cx, cy, radius);
+  grad.addColorStop(0, '#e0f2fe');
+  grad.addColorStop(0.7, '#bae6fd');
+  grad.addColorStop(1, '#93c5fd');
+  c1GlobeCtx.fillStyle = grad;
+  c1GlobeCtx.beginPath();
+  c1GlobeCtx.arc(cx, cy, radius, 0, Math.PI * 2);
+  c1GlobeCtx.fill();
+  c1GlobeCtx.strokeStyle = 'rgba(2, 132, 199, 0.4)';
+  c1GlobeCtx.lineWidth = 2;
+  c1GlobeCtx.stroke();
+
+  // Parallels
+  c1GlobeCtx.strokeStyle = 'rgba(100, 116, 139, 0.25)';
+  c1GlobeCtx.lineWidth = 1;
+  for (let lat = -75; lat <= 75; lat += 15) {
+    c1GlobeCtx.beginPath();
+    let started = false;
+    for (let lon = -180; lon <= 180; lon += 3) {
+      const p = projectSphere(lat, lon, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { c1GlobeCtx.moveTo(p.px, p.py); started = true; }
+        else c1GlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    c1GlobeCtx.stroke();
+  }
+
+  // ALL 60 ZONES DRAWN & VISIBLE
+  c1GlobeCtx.strokeStyle = 'rgba(2, 132, 199, 0.3)';
+  c1GlobeCtx.lineWidth = 1.2;
+  for (let z = 1; z <= 60; z++) {
+    const lon = z * 6 - 180;
+    c1GlobeCtx.beginPath();
+    let started = false;
+    for (let lat = -88; lat <= 88; lat += 3) {
+      const p = projectSphere(lat, lon, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { c1GlobeCtx.moveTo(p.px, p.py); started = true; }
+        else c1GlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    c1GlobeCtx.stroke();
+  }
+
+  // Continents (Warm tan land)
+  c1GlobeCtx.fillStyle = '#fef3c7';
+  c1GlobeCtx.strokeStyle = '#d97706';
+  c1GlobeCtx.lineWidth = 1.2;
+  CONTINENTS_SIMPLIFIED.forEach(poly => {
+    c1GlobeCtx.beginPath();
+    let started = false;
+    for (let i = 0; i < poly.length; i++) {
+      const p = projectSphere(poly[i][1], poly[i][0], c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { c1GlobeCtx.moveTo(p.px, p.py); started = true; }
+        else c1GlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    c1GlobeCtx.stroke();
+  });
+
+  // Selected Zone Highlight (Orange)
+  const gk = geodeticToGaussKruger(appState.latDeg, appState.lonDeg);
+  c1GlobeCtx.fillStyle = 'rgba(255, 113, 54, 0.4)';
+  c1GlobeCtx.strokeStyle = '#ff7136';
+  c1GlobeCtx.lineWidth = 2.5;
+
+  c1GlobeCtx.beginPath();
+  let first = true;
+  for (let lat = -80; lat <= 80; lat += 4) {
+    const p = projectSphere(lat, gk.lonW, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+    if (p.visible) {
+      if (first) { c1GlobeCtx.moveTo(p.px, p.py); first = false; }
+      else c1GlobeCtx.lineTo(p.px, p.py);
+    }
+  }
+  for (let lat = 80; lat >= -80; lat -= 4) {
+    const p = projectSphere(lat, gk.lonE, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+    if (p.visible) {
+      if (first) { c1GlobeCtx.moveTo(p.px, p.py); first = false; }
+      else c1GlobeCtx.lineTo(p.px, p.py);
+    }
+  }
+  c1GlobeCtx.closePath();
+  c1GlobeCtx.fill();
+  c1GlobeCtx.stroke();
+
+  // Central Meridian (Rose Line)
+  c1GlobeCtx.strokeStyle = '#dc2626';
+  c1GlobeCtx.lineWidth = 3.5;
+  c1GlobeCtx.beginPath();
+  let startedCM = false;
+  for (let lat = -88; lat <= 88; lat += 2) {
+    const p = projectSphere(lat, gk.lon0Deg, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+    if (p.visible) {
+      if (!startedCM) { c1GlobeCtx.moveTo(p.px, p.py); startedCM = true; }
+      else c1GlobeCtx.lineTo(p.px, p.py);
+    } else startedCM = false;
+  }
+  c1GlobeCtx.stroke();
+
+  // Transverse Cylinder Outline
+  c1GlobeCtx.strokeStyle = 'rgba(2, 132, 199, 0.6)';
+  c1GlobeCtx.lineWidth = 1.8;
+  const cylRadius = radius * 1.02;
+  const cylH = radius * 2.2;
+  for (let i = -6; i <= 6; i++) {
+    const offset = (i / 6) * (cylH * 0.48);
+    c1GlobeCtx.beginPath();
+    for (let angle = 0; angle <= 360; angle += 15) {
+      const aRad = angle * Math.PI / 180;
+      const lat = Math.asin((offset / (cylH * 0.48)) * 0.95) * 180 / Math.PI;
+      const dLon = (aRad - Math.PI/2) * (180 / Math.PI) * 0.35;
+      const p = projectSphere(lat, gk.lon0Deg + dLon, c1GlobeState.rotX, c1GlobeState.rotY, cylRadius, cx, cy);
+      if (angle === 0) c1GlobeCtx.moveTo(p.px, p.py);
+      else c1GlobeCtx.lineTo(p.px, p.py);
+    }
+    c1GlobeCtx.stroke();
+  }
+
+  // Active Point P on Globe
+  const ptP = projectSphere(appState.latDeg, appState.lonDeg, c1GlobeState.rotX, c1GlobeState.rotY, radius, cx, cy);
+  if (ptP.visible) {
+    c1GlobeCtx.fillStyle = '#ff7136';
+    c1GlobeCtx.beginPath();
+    c1GlobeCtx.arc(ptP.px, ptP.py, 7, 0, Math.PI * 2);
+    c1GlobeCtx.fill();
+    c1GlobeCtx.strokeStyle = '#ffffff';
+    c1GlobeCtx.lineWidth = 2.5;
+    c1GlobeCtx.stroke();
+  }
+}
+
+// 2D Full Half-Zone in Light Theme (CLEAN VIEW - NO HUD OVERLAY BOX)
+function projectGK_dLon(latDeg, dLonDeg) {
+  const B = latDeg * Math.PI / 180;
+  const l = dLonDeg * Math.PI / 180;
+
+  const A0 = 1 + (3/4)*e2_krasovsky + (45/64)*Math.pow(e2_krasovsky, 2) + (175/256)*Math.pow(e2_krasovsky, 3);
+  const A2 = (3/4)*e2_krasovsky + (15/16)*Math.pow(e2_krasovsky, 2) + (525/512)*Math.pow(e2_krasovsky, 3);
+  const A4 = (15/64)*Math.pow(e2_krasovsky, 2) + (105/256)*Math.pow(e2_krasovsky, 3);
+  const A6 = (35/512)*Math.pow(e2_krasovsky, 3);
+
+  const X_arc = a_krasovsky * (1 - e2_krasovsky) * (A0 * B - (A2/2)*Math.sin(2*B) + (A4/4)*Math.sin(4*B) - (A6/6)*Math.sin(6*B));
+
+  const sinB = Math.sin(B);
+  const cosB = Math.cos(B);
+  const N_curv = a_krasovsky / Math.sqrt(1 - e2_krasovsky * sinB * sinB);
+  const t = Math.tan(B);
+  const t2 = t * t;
+  const eta2 = ep2_krasovsky * cosB * cosB;
+
+  const X = X_arc + (l*l / 2) * N_curv * sinB * cosB + (Math.pow(l, 4) / 24) * N_curv * sinB * Math.pow(cosB, 3) * (5 - t2 + 9*eta2);
+  const y = l * N_curv * cosB + (Math.pow(l, 3) / 6) * N_curv * Math.pow(cosB, 3) * (1 - t2 + eta2);
+  return { X, y };
+}
+
+function renderC1Zone() {
+  if (!c1ZoneCanvas) return;
+  const { width, height } = resizeCanvasDPR(c1ZoneCanvas);
+  c1ZoneCtx.clearRect(0, 0, width, height);
+
+  c1ZoneCtx.fillStyle = '#f8fafc';
+  c1ZoneCtx.fillRect(0, 0, width, height);
+
+  const cx = width / 2;
+  const paddingBottom = 48;
+  const paddingTop = 32;
+  const mapH = height - paddingBottom - paddingTop;
+  const cy = height - paddingBottom;
+
+  const pxPerKmX = mapH / 10000;
+  const pxPerKmY = (width * 0.72) / 700;
+
+  const gk = geodeticToGaussKruger(appState.latDeg, appState.lonDeg);
+
+  // Shaded Zone Body (Soft fill from West boundary to East boundary)
+  c1ZoneCtx.beginPath();
+  for (let lat = 0; lat <= 86; lat += 2) {
+    const res = projectGK_dLon(lat, -3);
+    const sx = cx + (res.y / 1000) * pxPerKmY;
+    const sy = cy - (res.X / 1000) * pxPerKmX;
+    if (lat === 0) c1ZoneCtx.moveTo(sx, sy);
+    else c1ZoneCtx.lineTo(sx, sy);
+  }
+  for (let lat = 86; lat >= 0; lat -= 2) {
+    const res = projectGK_dLon(lat, 3);
+    const sx = cx + (res.y / 1000) * pxPerKmY;
+    const sy = cy - (res.X / 1000) * pxPerKmX;
+    c1ZoneCtx.lineTo(sx, sy);
+  }
+  c1ZoneCtx.closePath();
+  c1ZoneCtx.fillStyle = 'rgba(10, 101, 93, 0.04)';
+  c1ZoneCtx.fill();
+
+  // Horizontal Grid Lines (Every 1000 km along X)
+  c1ZoneCtx.strokeStyle = '#e2e8f0';
+  c1ZoneCtx.lineWidth = 1;
+  c1ZoneCtx.font = 'bold 10px monospace';
+  c1ZoneCtx.fillStyle = '#64748b';
+
+  for (let xKm = 0; xKm <= 10000; xKm += 1000) {
+    const sy = cy - xKm * pxPerKmX;
+    c1ZoneCtx.beginPath();
+    c1ZoneCtx.moveTo(35, sy);
+    c1ZoneCtx.lineTo(width - 35, sy);
+    c1ZoneCtx.stroke();
+    c1ZoneCtx.fillText(`X=${xKm} км`, 4, sy + 4);
+  }
+
+  // Vertical Grid Lines (Every 100 km along y)
+  for (let yKm = -300; yKm <= 300; yKm += 100) {
+    const sx = cx + yKm * pxPerKmY;
+    c1ZoneCtx.beginPath();
+    c1ZoneCtx.moveTo(sx, paddingTop);
+    c1ZoneCtx.lineTo(sx, cy + 12);
+    c1ZoneCtx.stroke();
+    c1ZoneCtx.fillText(`${yKm > 0 ? '+' : ''}${yKm}`, sx - 12, cy + 22);
+  }
+
+  // Parallels (Curving arcs inside the zone)
+  c1ZoneCtx.strokeStyle = 'rgba(10, 101, 93, 0.35)';
+  c1ZoneCtx.lineWidth = 1.3;
+  for (let lat = 10; lat <= 80; lat += 10) {
+    c1ZoneCtx.beginPath();
+    let started = false;
+    for (let dLon = -3; dLon <= 3; dLon += 0.2) {
+      const res = projectGK_dLon(lat, dLon);
+      const sx = cx + (res.y / 1000) * pxPerKmY;
+      const sy = cy - (res.X / 1000) * pxPerKmX;
+      if (!started) { c1ZoneCtx.moveTo(sx, sy); started = true; }
+      else c1ZoneCtx.lineTo(sx, sy);
+    }
+    c1ZoneCtx.stroke();
+    const resMid = projectGK_dLon(lat, 0);
+    c1ZoneCtx.fillStyle = '#0a655d';
+    c1ZoneCtx.font = 'bold 10px monospace';
+    c1ZoneCtx.fillText(`${lat}°`, cx + (310 * pxPerKmY), cy - (resMid.X / 1000) * pxPerKmX + 4);
+  }
+
+  // Intermediate Meridians (-2°, -1°, +1°, +2°)
+  c1ZoneCtx.strokeStyle = 'rgba(10, 101, 93, 0.2)';
+  c1ZoneCtx.lineWidth = 1;
+  c1ZoneCtx.setLineDash([3, 3]);
+  [-2, -1, 1, 2].forEach(dLon => {
+    c1ZoneCtx.beginPath();
+    let started = false;
+    for (let lat = 0; lat <= 86; lat += 1) {
+      const res = projectGK_dLon(lat, dLon);
+      const sx = cx + (res.y / 1000) * pxPerKmY;
+      const sy = cy - (res.X / 1000) * pxPerKmX;
+      if (!started) { c1ZoneCtx.moveTo(sx, sy); started = true; }
+      else c1ZoneCtx.lineTo(sx, sy);
+    }
+    c1ZoneCtx.stroke();
+  });
+  c1ZoneCtx.setLineDash([]);
+
+  // 1. WEST BOUNDARY (Западная граница: L0 - 3°)
+  c1ZoneCtx.strokeStyle = '#ff7136';
+  c1ZoneCtx.lineWidth = 2.4;
+  c1ZoneCtx.beginPath();
+  for (let lat = 0; lat <= 87; lat += 0.5) {
+    const res = projectGK_dLon(lat, -3);
+    const sx = cx + (res.y / 1000) * pxPerKmY;
+    const sy = cy - (res.X / 1000) * pxPerKmX;
+    if (lat === 0) c1ZoneCtx.moveTo(sx, sy);
+    else c1ZoneCtx.lineTo(sx, sy);
+  }
+  c1ZoneCtx.stroke();
+
+  // 2. CENTRAL MERIDIAN (Осевой меридиан: L0)
+  c1ZoneCtx.strokeStyle = '#dc2626';
+  c1ZoneCtx.lineWidth = 3;
+  c1ZoneCtx.beginPath();
+  for (let lat = 0; lat <= 88; lat += 0.5) {
+    const res = projectGK_dLon(lat, 0);
+    const sx = cx + (res.y / 1000) * pxPerKmY;
+    const sy = cy - (res.X / 1000) * pxPerKmX;
+    if (lat === 0) c1ZoneCtx.moveTo(sx, sy);
+    else c1ZoneCtx.lineTo(sx, sy);
+  }
+  c1ZoneCtx.stroke();
+
+  // 3. EAST BOUNDARY (Восточная / Правая граница: L0 + 3°)
+  c1ZoneCtx.strokeStyle = '#ff7136';
+  c1ZoneCtx.lineWidth = 2.4;
+  c1ZoneCtx.beginPath();
+  for (let lat = 0; lat <= 87; lat += 0.5) {
+    const res = projectGK_dLon(lat, 3);
+    const sx = cx + (res.y / 1000) * pxPerKmY;
+    const sy = cy - (res.X / 1000) * pxPerKmX;
+    if (lat === 0) c1ZoneCtx.moveTo(sx, sy);
+    else c1ZoneCtx.lineTo(sx, sy);
+  }
+  c1ZoneCtx.stroke();
+
+  // Equator Line (X = 0)
+  c1ZoneCtx.strokeStyle = '#059669';
+  c1ZoneCtx.lineWidth = 3.5;
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(25, cy);
+  c1ZoneCtx.lineTo(width - 25, cy);
+  c1ZoneCtx.stroke();
+
+  // Axis & Boundary Titles at Bottom & Top
+  c1ZoneCtx.fillStyle = '#dc2626';
+  c1ZoneCtx.font = 'bold 12px sans-serif';
+  c1ZoneCtx.fillText('▲ +X (Север, Осевой меридиан L₀ = ' + gk.lon0Deg + '°)', cx - 95, 20);
+
+  c1ZoneCtx.fillStyle = '#059669';
+  c1ZoneCtx.fillText('► +Y (Восток, Экватор)', width - 165, cy - 8);
+
+  // Boundary text labels at bottom
+  c1ZoneCtx.font = 'bold 11px sans-serif';
+  c1ZoneCtx.fillStyle = '#ff7136';
+  const westBotX = cx - (334 * pxPerKmY);
+  c1ZoneCtx.fillText(`Зап. граница (${gk.lonW}° E)`, Math.max(10, westBotX - 45), cy + 36);
+
+  const eastBotX = cx + (334 * pxPerKmY);
+  c1ZoneCtx.fillText(`Вост. граница (${gk.lonE}° E)`, Math.min(width - 130, eastBotX - 55), cy + 36);
+
+  // Target Point P (Position calculated with true y from L0)
+  const ptX = cx + (gk.y_true / 1000) * pxPerKmY;
+  const ptY = cy - (gk.X / 1000) * pxPerKmX;
+
+  // DIMENSION BRACKETS
+  // 1. Distance from Equator (X)
+  const dimXPos = Math.min(ptX, cx) - 28;
+  c1ZoneCtx.strokeStyle = '#059669';
+  c1ZoneCtx.lineWidth = 2.5;
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(dimXPos, cy);
+  c1ZoneCtx.lineTo(dimXPos, ptY);
+  c1ZoneCtx.stroke();
+
+  c1ZoneCtx.fillStyle = '#059669';
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(dimXPos, cy);
+  c1ZoneCtx.lineTo(dimXPos - 5, cy - 10);
+  c1ZoneCtx.lineTo(dimXPos + 5, cy - 10);
+  c1ZoneCtx.closePath();
+  c1ZoneCtx.fill();
+
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(dimXPos, ptY);
+  c1ZoneCtx.lineTo(dimXPos - 5, ptY + 10);
+  c1ZoneCtx.lineTo(dimXPos + 5, ptY + 10);
+  c1ZoneCtx.closePath();
+  c1ZoneCtx.fill();
+
+  c1ZoneCtx.font = 'bold 11px monospace';
+  c1ZoneCtx.fillText(`X = ${formatKm(gk.X)}`, dimXPos - 116, (cy + ptY) / 2);
+
+  // 2. Distance from Central Meridian (y)
+  const dimYPos = ptY - 20;
+  c1ZoneCtx.strokeStyle = '#dc2626';
+  c1ZoneCtx.lineWidth = 2.5;
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(cx, dimYPos);
+  c1ZoneCtx.lineTo(ptX, dimYPos);
+  c1ZoneCtx.stroke();
+
+  c1ZoneCtx.fillStyle = '#dc2626';
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(cx, dimYPos);
+  c1ZoneCtx.lineTo(cx + (ptX > cx ? 10 : -10), dimYPos - 5);
+  c1ZoneCtx.lineTo(cx + (ptX > cx ? 10 : -10), dimYPos + 5);
+  c1ZoneCtx.closePath();
+  c1ZoneCtx.fill();
+
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(ptX, dimYPos);
+  c1ZoneCtx.lineTo(ptX + (ptX > cx ? -10 : 10), dimYPos - 5);
+  c1ZoneCtx.lineTo(ptX + (ptX > cx ? -10 : 10), dimYPos + 5);
+  c1ZoneCtx.closePath();
+  c1ZoneCtx.fill();
+
+  c1ZoneCtx.fillText(`y = ${formatKm(Math.abs(gk.y_true))} (${gk.y_true >= 0 ? 'к востоку' : 'к западу'})`, Math.min(cx, ptX) - 10, dimYPos - 8);
+
+  // Leader connection
+  c1ZoneCtx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+  c1ZoneCtx.lineWidth = 1.2;
+  c1ZoneCtx.setLineDash([3, 3]);
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.moveTo(ptX, ptY);
+  c1ZoneCtx.lineTo(dimXPos, ptY);
+  c1ZoneCtx.moveTo(ptX, ptY);
+  c1ZoneCtx.lineTo(ptX, dimYPos);
+  c1ZoneCtx.stroke();
+  c1ZoneCtx.setLineDash([]);
+
+  // Point Marker (with glowing pulse effect)
+  c1ZoneCtx.fillStyle = 'rgba(255, 113, 54, 0.3)';
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.arc(ptX, ptY, 14, 0, Math.PI * 2);
+  c1ZoneCtx.fill();
+
+  c1ZoneCtx.fillStyle = '#ff7136';
+  c1ZoneCtx.beginPath();
+  c1ZoneCtx.arc(ptX, ptY, 8, 0, Math.PI * 2);
+  c1ZoneCtx.fill();
+  c1ZoneCtx.strokeStyle = '#ffffff';
+  c1ZoneCtx.lineWidth = 2.5;
+  c1ZoneCtx.stroke();
+}
+
+function updateTab1() {
+  const lat = appState.latDeg;
+  const lon = appState.lonDeg;
+  const gk = geodeticToGaussKruger(lat, lon);
+
+  document.getElementById('c1LatVal').textContent = `${lat.toFixed(2)}° N (${toDMS(lat, true)})`;
+  document.getElementById('c1LonVal').textContent = `${lon.toFixed(2)}° E (${toDMS(lon, false)})`;
+
+  document.getElementById('c1ZoneBadgeTop').textContent = `Зона ${gk.zone}`;
+  document.getElementById('c1HudZone').textContent = gk.zone;
+  document.getElementById('c1HudLon0').textContent = `${gk.lon0Deg}° E`;
+  document.getElementById('c1HudLonW').textContent = `${gk.lonW}° E`;
+  document.getElementById('c1HudLonE').textContent = `${gk.lonE}° E`;
+
+  // Decomposed Y breakdown
+  document.getElementById('c1DecompZone').textContent = gk.zone;
+  const yFormatted = Math.round(gk.Y_full).toString();
+  document.getElementById('c1DecompFalsing').textContent = yFormatted.substring(1, 4);
+  document.getElementById('c1DecompTrueY').textContent = `${yFormatted.substring(4)} м`;
+
+  document.getElementById('c1StatX').textContent = formatMeters(gk.X);
+  document.getElementById('c1StatY').textContent = formatMeters(gk.Y_full);
+  document.getElementById('c1Stat_y').textContent = formatMeters(gk.y_true);
+  document.getElementById('c1Stat_y_lbl').textContent = `Действительная y (${gk.y_true >= 0 ? 'Восток' : 'Запад'})`;
+
+  document.getElementById('c1DmsB').textContent = toDMS(lat, true);
+  document.getElementById('c1DmsL').textContent = toDMS(lon, false);
+  document.getElementById('c1DistKm').textContent = `${formatKm(Math.abs(gk.y_true))} (${gk.y_true >= 0 ? 'Восток' : 'Запад'})`;
+  document.getElementById('c1ScaleM').textContent = gk.scale_m.toFixed(7);
+
+  renderC1Globe();
+  renderC1Zone();
+}
+
+/* =====================================================================
+   DIRECT POINT DRAGGING ON 2D ZONE CANVAS (TAB 1)
+   ===================================================================== */
+let isDraggingZonePoint = false;
+
+function handleZonePointDrag(e) {
+  const rect = c1ZoneCanvas.getBoundingClientRect();
+  const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+  const clientY = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : e.clientY;
+  const mouseX = clientX - rect.left;
+  const mouseY = clientY - rect.top;
+
+  const cx = rect.width / 2;
+  const paddingBottom = 45;
+  const paddingTop = 35;
+  const mapH = rect.height - paddingBottom - paddingTop;
+  const cy = rect.height - paddingBottom;
+
+  const pxPerKmX = mapH / 10000;
+  const pxPerKmY = (rect.width * 0.74) / 700;
+
+  const yKm = (mouseX - cx) / pxPerKmY;
+  const xKm = (cy - mouseY) / pxPerKmX;
+
+  const clampedX = Math.max(0, Math.min(9500, xKm)) * 1000;
+  const clampedY = Math.max(-330, Math.min(330, yKm)) * 1000;
+
+  const curZone = geodeticToGaussKruger(appState.latDeg, appState.lonDeg).zone;
+  const newCoords = inverseGaussKruger(clampedX, clampedY, curZone);
+
+  appState.latDeg = Math.max(0, Math.min(85, newCoords.latDeg));
+  appState.lonDeg = Math.max(0, Math.min(180, newCoords.lonDeg));
+
+  // Remove city chip active state on manual point dragging
+  document.querySelectorAll('#c1CityChips .chip').forEach(c => c.classList.remove('active'));
+
+  syncAll();
+}
+
+c1ZoneCanvas.addEventListener('mousedown', (e) => {
+  isDraggingZonePoint = true;
+  c1ZoneCanvas.style.cursor = 'grabbing';
+  handleZonePointDrag(e);
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (isDraggingZonePoint) {
+    handleZonePointDrag(e);
+  }
+});
+
+window.addEventListener('mouseup', () => {
+  if (isDraggingZonePoint) {
+    isDraggingZonePoint = false;
+    c1ZoneCanvas.style.cursor = 'crosshair';
+  }
+});
+
+c1ZoneCanvas.addEventListener('touchstart', (e) => {
+  isDraggingZonePoint = true;
+  handleZonePointDrag(e);
+  e.preventDefault();
+}, { passive: false });
+
+window.addEventListener('touchmove', (e) => {
+  if (isDraggingZonePoint) {
+    handleZonePointDrag(e);
+    e.preventDefault();
+  }
+}, { passive: false });
+
+window.addEventListener('touchend', () => {
+  isDraggingZonePoint = false;
+});
+
+// 3D Globe Interactions for Tab 1
+c1GlobeCanvas.addEventListener('mousedown', (e) => {
+  c1GlobeState.isDragging = true;
+  c1GlobeState.lastMouseX = e.clientX;
+  c1GlobeState.lastMouseY = e.clientY;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (c1GlobeState.isDragging) {
+    const dx = e.clientX - c1GlobeState.lastMouseX;
+    const dy = e.clientY - c1GlobeState.lastMouseY;
+    c1GlobeState.rotY += dx * 0.006;
+    c1GlobeState.rotX = Math.max(-1.4, Math.min(1.4, c1GlobeState.rotX - dy * 0.006));
+    c1GlobeState.lastMouseX = e.clientX;
+    c1GlobeState.lastMouseY = e.clientY;
+    renderC1Globe();
+  }
+});
+window.addEventListener('mouseup', () => { c1GlobeState.isDragging = false; });
+
+document.getElementById('c1BtnReset').addEventListener('click', () => {
+  c1GlobeState.rotX = 22 * Math.PI / 180;
+  const gk = geodeticToGaussKruger(appState.latDeg, appState.lonDeg);
+  c1GlobeState.rotY = -gk.lon0Deg * Math.PI / 180;
+  renderC1Globe();
+});
+
+document.getElementById('c1BtnSpin').addEventListener('click', (e) => {
+  c1GlobeState.spin = !c1GlobeState.spin;
+  e.target.textContent = `Вращение: ${c1GlobeState.spin ? 'ВКЛ' : 'ВЫКЛ'}`;
+});
+
+document.getElementById('c1LatSlider').addEventListener('input', (e) => {
+  appState.latDeg = parseFloat(e.target.value);
+  document.querySelectorAll('#c1CityChips .chip').forEach(c => c.classList.remove('active'));
+  syncAll();
+});
+
+document.getElementById('c1LonSlider').addEventListener('input', (e) => {
+  appState.lonDeg = parseFloat(e.target.value);
+  document.querySelectorAll('#c1CityChips .chip').forEach(c => c.classList.remove('active'));
+  syncAll();
+});
+
+document.querySelectorAll('#c1CityChips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#c1CityChips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    appState.latDeg = parseFloat(chip.dataset.lat);
+    appState.lonDeg = parseFloat(chip.dataset.lon);
+    syncAll();
+  });
+});
+
+/* =====================================================================
+   TAB 2: TOPOGRAPHIC MAP NOMENCLATURE (3D ELLIPSOID GLOBE & TIERS)
+   ===================================================================== */
+const n3DGlobeCanvas = document.getElementById('n3DGlobeCanvas');
+const n3DGlobeCtx = n3DGlobeCanvas.getContext('2d');
+
+let n3DGlobeState = {
+  rotX: 30 * Math.PI / 180,
+  rotY: -45 * Math.PI / 180,
+  zoom: 1.05,
+  isDragging: false,
+  lastMouseX: 0,
+  lastMouseY: 0,
+  spin: false
+};
+
+const nCanvas500k = document.getElementById('nCanvas500k');
+const nCtx500k = nCanvas500k.getContext('2d');
+
+const nCanvas200k = document.getElementById('nCanvas200k');
+const nCtx200k = nCanvas200k.getContext('2d');
+
+const nCanvas100k = document.getElementById('nCanvas100k');
+const nCtx100k = nCanvas100k.getContext('2d');
+
+const nCanvas50k = document.getElementById('nCanvas50k');
+const nCtx50k = nCanvas50k.getContext('2d');
+
+const nCanvas25k = document.getElementById('nCanvas25k');
+const nCtx25k = nCanvas25k.getContext('2d');
+
+const nCanvas10k = document.getElementById('nCanvas10k');
+const nCtx10k = nCanvas10k.getContext('2d');
+
+const ROMAN_NUMERALS = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+  "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
+  "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX",
+  "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI"];
+
+const LAT_LETTERS = "ABCDEFGHIJKLMNOPQRSTUV";
+
+function computeNomenclatureFull(latDeg, lonDeg) {
+  const rowIdx = Math.max(0, Math.min(21, Math.floor(latDeg / 4.0)));
+  const rowLetter = LAT_LETTERS[rowIdx];
+  const lat_s = rowIdx * 4.0;
+  const lat_n = (rowIdx + 1) * 4.0;
+
+  let normLon = Math.max(0, Math.min(180, lonDeg));
+  let zone = Math.floor(normLon / 6.0) + 1;
+  if (normLon === 180) zone = 30;
+  let col = zone + 30;
+
+  const lon_w = (zone - 1) * 6.0;
+  const lon_e = zone * 6.0;
+  const gkZone = zone;
+
+  const nom_1m = `${rowLetter}-${col}`;
+
+  // 1:500 000
+  const r500 = latDeg >= (lat_s + 2.0) ? 0 : 1;
+  const c500 = lonDeg < (lon_w + 3.0) ? 0 : 1;
+  const letters_500k = [["А", "Б"], ["В", "Г"]];
+  const nom_500k = `${nom_1m}-${letters_500k[r500][c500]}`;
+  const lat500_s = r500 === 0 ? lat_s + 2.0 : lat_s;
+  const lat500_n = r500 === 0 ? lat_n : lat_s + 2.0;
+  const lon500_w = c500 === 0 ? lon_w : lon_w + 3.0;
+  const lon500_e = c500 === 0 ? lon_w + 3.0 : lon_e;
+
+  // 1:200 000 (6x6)
+  const r200 = Math.min(5, Math.max(0, Math.floor((lat_n - latDeg) / (40.0/60.0))));
+  const c200 = Math.min(5, Math.max(0, Math.floor((lonDeg - lon_w) / 1.0)));
+  const num200 = r200 * 6 + c200 + 1;
+  const nom_200k = `${nom_1m}-${ROMAN_NUMERALS[num200]}`;
+  const lat200_n = lat_n - r200 * (40.0/60.0);
+  const lat200_s = lat200_n - (40.0/60.0);
+  const lon200_w = lon_w + c200 * 1.0;
+  const lon200_e = lon200_w + 1.0;
+
+  // 1:100 000 (12x12 = 144)
+  const r100 = Math.min(11, Math.max(0, Math.floor((lat_n - latDeg) / (20.0/60.0))));
+  const c100 = Math.min(11, Math.max(0, Math.floor((lonDeg - lon_w) / (30.0/60.0))));
+  const num100 = r100 * 12 + c100 + 1;
+  const nom_100k = `${nom_1m}-${num100}`;
+
+  const lat100_n = lat_n - r100 * (20.0/60.0);
+  const lat100_s = lat100_n - (20.0/60.0);
+  const lon100_w = lon_w + c100 * (30.0/60.0);
+  const lon100_e = lon100_w + (30.0/60.0);
+
+  // 1:50 000
+  const r50 = latDeg >= (lat100_s + 10.0/60.0) ? 0 : 1;
+  const c50 = lonDeg < (lon100_w + 15.0/60.0) ? 0 : 1;
+  const letters_50k = [["А", "Б"], ["В", "Г"]];
+  const nom_50k = `${nom_100k}-${letters_50k[r50][c50]}`;
+  const lat50_s = r50 === 0 ? lat100_s + 10.0/60.0 : lat100_s;
+  const lat50_n = r50 === 0 ? lat100_n : lat100_s + 10.0/60.0;
+  const lon50_w = c50 === 0 ? lon100_w : lon100_w + 15.0/60.0;
+  const lon50_e = c50 === 0 ? lon100_w + 15.0/60.0 : lon100_e;
+
+  // 1:25 000
+  const r25 = latDeg >= (lat50_s + 5.0/60.0) ? 0 : 1;
+  const c25 = lonDeg < (lon50_w + 7.5/60.0) ? 0 : 1;
+  const letters_25k = [["а", "б"], ["в", "г"]];
+  const nom_25k = `${nom_50k}-${letters_25k[r25][c25]}`;
+  const lat25_s = r25 === 0 ? lat50_s + 5.0/60.0 : lat50_s;
+  const lat25_n = r25 === 0 ? lat50_n : lat50_s + 5.0/60.0;
+  const lon25_w = c25 === 0 ? lon50_w : lon50_w + 7.5/60.0;
+  const lon25_e = c25 === 0 ? lon50_w + 7.5/60.0 : lon25_e;
+
+  // 1:10 000
+  const r10 = latDeg >= (lat25_s + 2.5/60.0) ? 0 : 1;
+  const c10 = lonDeg < (lon25_w + 3.75/60.0) ? 0 : 1;
+  const nums_10k = [["1", "2"], ["3", "4"]];
+  const nom_10k = `${nom_25k}-${nums_10k[r10][c10]}`;
+  const lat10_s = r10 === 0 ? lat25_s + 2.5/60.0 : lat25_s;
+  const lat10_n = r10 === 0 ? lat25_n : lat25_s + 2.5/60.0;
+  const lon10_w = c10 === 0 ? lon25_w : lon25_w + 3.75/60.0;
+  const lon10_e = c10 === 0 ? lon25_w + 3.75/60.0 : lon25_e;
+
+  return {
+    nom_1m, nom_500k, nom_200k, nom_100k, nom_50k, nom_25k, nom_10k,
+    rowIdx, rowLetter, col, gkZone,
+    r500, c500, r200, c200, num200, r100, c100, num100, r50, c50, r25, c25, r10, c10,
+    bounds_1m: { lat_s, lat_n, lon_w, lon_e },
+    bounds_500k: { lat_s: lat500_s, lat_n: lat500_n, lon_w: lon500_w, lon_e: lon500_e },
+    bounds_200k: { lat_s: lat200_s, lat_n: lat200_n, lon_w: lon200_w, lon_e: lon200_e },
+    bounds_100k: { lat_s: lat100_s, lat_n: lat100_n, lon_w: lon100_w, lon_e: lon100_e },
+    bounds_50k: { lat_s: lat50_s, lat_n: lat50_n, lon_w: lon50_w, lon_e: lon50_e },
+    bounds_25k: { lat_s: lat25_s, lat_n: lat25_n, lon_w: lon25_w, lon_e: lon25_e },
+    bounds_10k: { lat_s: lat10_s, lat_n: lat10_n, lon_w: lon10_w, lon_e: lon10_e }
+  };
+}
+
+// 3D Globe with 4° Belts & 6° Columns
+function renderN3DGlobe() {
+  if (!n3DGlobeCanvas) return;
+  const { width, height } = resizeCanvasDPR(n3DGlobeCanvas);
+  n3DGlobeCtx.clearRect(0, 0, width, height);
+
+  const cx = width / 2;
+  const cy = height / 2;
+  const radius = Math.min(width, height) * 0.4 * n3DGlobeState.zoom;
+
+  // Globe Base Sphere
+  const grad = n3DGlobeCtx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, radius * 0.1, cx, cy, radius);
+  grad.addColorStop(0, '#e0f2fe');
+  grad.addColorStop(0.7, '#bae6fd');
+  grad.addColorStop(1, '#93c5fd');
+  n3DGlobeCtx.fillStyle = grad;
+  n3DGlobeCtx.beginPath();
+  n3DGlobeCtx.arc(cx, cy, radius, 0, Math.PI * 2);
+  n3DGlobeCtx.fill();
+  n3DGlobeCtx.strokeStyle = 'rgba(2, 132, 199, 0.4)';
+  n3DGlobeCtx.lineWidth = 2;
+  n3DGlobeCtx.stroke();
+
+  // Continents
+  n3DGlobeCtx.fillStyle = '#fef3c7';
+  n3DGlobeCtx.strokeStyle = '#d97706';
+  n3DGlobeCtx.lineWidth = 1.2;
+  CONTINENTS_SIMPLIFIED.forEach(poly => {
+    n3DGlobeCtx.beginPath();
+    let started = false;
+    for (let i = 0; i < poly.length; i++) {
+      const p = projectSphere(poly[i][1], poly[i][0], n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { n3DGlobeCtx.moveTo(p.px, p.py); started = true; }
+        else n3DGlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    n3DGlobeCtx.stroke();
+  });
+
+  const nom = computeNomenclatureFull(appState.latDeg, appState.lonDeg);
+
+  // 1:1 000 000 Grid: Parallels every 4° (0° to 84°N)
+  n3DGlobeCtx.strokeStyle = 'rgba(10, 101, 93, 0.4)';
+  n3DGlobeCtx.lineWidth = 1;
+
+  for (let lat = 0; lat <= 84; lat += 4) {
+    n3DGlobeCtx.beginPath();
+    let started = false;
+    for (let lon = -180; lon <= 180; lon += 3) {
+      const p = projectSphere(lat, lon, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { n3DGlobeCtx.moveTo(p.px, p.py); started = true; }
+        else n3DGlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    n3DGlobeCtx.stroke();
+  }
+
+  // Meridians every 6° (Columns 1..60)
+  for (let c = 1; c <= 60; c++) {
+    const lon = c * 6 - 180;
+    n3DGlobeCtx.beginPath();
+    let started = false;
+    for (let lat = -88; lat <= 88; lat += 3) {
+      const p = projectSphere(lat, lon, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+      if (p.visible) {
+        if (!started) { n3DGlobeCtx.moveTo(p.px, p.py); started = true; }
+        else n3DGlobeCtx.lineTo(p.px, p.py);
+      } else started = false;
+    }
+    n3DGlobeCtx.stroke();
+  }
+
+  // Highlighted 1:1 000 000 Sheet (e.g. N-37) in bright orange on the 3D Ellipsoid
+  n3DGlobeCtx.fillStyle = 'rgba(255, 113, 54, 0.55)';
+  n3DGlobeCtx.strokeStyle = '#ff7136';
+  n3DGlobeCtx.lineWidth = 3;
+
+  n3DGlobeCtx.beginPath();
+  let firstPt = true;
+  for (let lat = nom.bounds_1m.lat_s; lat <= nom.bounds_1m.lat_n; lat += 0.5) {
+    const p = projectSphere(lat, nom.bounds_1m.lon_w, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible) {
+      if (firstPt) { n3DGlobeCtx.moveTo(p.px, p.py); firstPt = false; }
+      else n3DGlobeCtx.lineTo(p.px, p.py);
+    }
+  }
+  for (let lon = nom.bounds_1m.lon_w; lon <= nom.bounds_1m.lon_e; lon += 0.5) {
+    const p = projectSphere(nom.bounds_1m.lat_n, lon, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible) n3DGlobeCtx.lineTo(p.px, p.py);
+  }
+  for (let lat = nom.bounds_1m.lat_n; lat >= nom.bounds_1m.lat_s; lat -= 0.5) {
+    const p = projectSphere(lat, nom.bounds_1m.lon_e, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible) n3DGlobeCtx.lineTo(p.px, p.py);
+  }
+  for (let lon = nom.bounds_1m.lon_e; lon >= nom.bounds_1m.lon_w; lon -= 0.5) {
+    const p = projectSphere(nom.bounds_1m.lat_s, lon, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible) n3DGlobeCtx.lineTo(p.px, p.py);
+  }
+  n3DGlobeCtx.closePath();
+  n3DGlobeCtx.fill();
+  n3DGlobeCtx.stroke();
+
+  // Active Point on 3D Globe
+  const ptP = projectSphere(appState.latDeg, appState.lonDeg, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+  if (ptP.visible) {
+    n3DGlobeCtx.fillStyle = '#ff7136';
+    n3DGlobeCtx.beginPath();
+    n3DGlobeCtx.arc(ptP.px, ptP.py, 7, 0, Math.PI * 2);
+    n3DGlobeCtx.fill();
+    n3DGlobeCtx.strokeStyle = '#ffffff';
+    n3DGlobeCtx.lineWidth = 2.5;
+    n3DGlobeCtx.stroke();
+  }
+
+  // LABELS ON 3D GLOBE:
+  // Letters A..V in 1 column
+  n3DGlobeCtx.fillStyle = '#063f3b';
+  n3DGlobeCtx.font = 'bold 11px sans-serif';
+
+  const refLonL = 30.0;
+  for (let r = 0; r <= 21; r++) {
+    const latMid = r * 4.0 + 2.0;
+    const p = projectSphere(latMid, refLonL, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible) {
+      n3DGlobeCtx.fillText(LAT_LETTERS[r], p.px - 4, p.py + 4);
+    }
+  }
+
+  // Numbers 1..60 in 1 belt
+  const refLatC = 52.0;
+  for (let c = 1; c <= 60; c++) {
+    const lonMid = (c - 1) * 6.0 - 180.0 + 3.0;
+    const p = projectSphere(refLatC, lonMid, n3DGlobeState.rotX, n3DGlobeState.rotY, radius, cx, cy);
+    if (p.visible && c % 2 === 1) {
+      n3DGlobeCtx.fillText(`${c}`, p.px - 6, p.py + 4);
+    }
+  }
+}
+
+// Helper to draw clean grid boxes on canvases in Light Theme
+function drawSubdivBoxLight(ctx, canvas, rows, cols, activeR, activeC, labelsMatrix, bounds) {
+  const { width, height } = resizeCanvasDPR(canvas);
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, width, height);
+
+  const padX = 25;
+  const padY = 22;
+  const w = width - 2 * padX;
+  const h = height - 2 * padY;
+  const cellW = w / cols;
+  const cellH = h / rows;
+
+  ctx.font = rows >= 12 ? 'bold 9px monospace' : (rows >= 6 ? 'bold 12px monospace' : 'bold 16px sans-serif');
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = padX + c * cellW;
+      const y = padY + r * cellH;
+      const isActive = (r === activeR && c === activeC);
+
+      const label = labelsMatrix(r, c);
+
+      if (isActive) {
+        ctx.fillStyle = '#ffebe3';
+        ctx.fillRect(x, y, cellW, cellH);
+        ctx.strokeStyle = '#ff7136';
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(x, y, cellW, cellH);
+        ctx.fillStyle = '#ff7136';
+      } else {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x, y, cellW, cellH);
+        ctx.strokeStyle = '#d5e3de';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x, y, cellW, cellH);
+        ctx.fillStyle = '#53706a';
+      }
+
+      const textM = ctx.measureText(label);
+      ctx.fillText(label, x + (cellW - textM.width) / 2, y + cellH / 2 + (rows >= 12 ? 3 : 5));
+    }
+  }
+
+  // Outer frame
+  ctx.strokeStyle = '#0a655d';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(padX, padY, w, h);
+
+  // Corner bounds
+  ctx.fillStyle = '#0a655d';
+  ctx.font = 'bold 10px monospace';
+  ctx.fillText(toDMS(bounds.lat_n, true), padX, padY - 6);
+  ctx.fillText(toDMS(bounds.lat_s, true), padX, height - padY + 14);
+  ctx.fillText(toDMS(bounds.lon_w, false), padX - 8, height - padY + 14);
+  ctx.fillText(toDMS(bounds.lon_e, false), width - padX - 55, height - padY + 14);
+}
+
+function renderAllSubdivisions() {
+  const nom = computeNomenclatureFull(appState.latDeg, appState.lonDeg);
+
+  // 1:500 000 (2x2: А, Б, В, Г)
+  drawSubdivBoxLight(nCtx500k, nCanvas500k, 2, 2, nom.r500, nom.c500, 
+    (r, c) => [["А", "Б"], ["В", "Г"]][r][c], nom.bounds_1m);
+  document.getElementById('nBadge500k').textContent = nom.nom_500k;
+
+  // 1:200 000 (6x6: I..XXXVI)
+  drawSubdivBoxLight(nCtx200k, nCanvas200k, 6, 6, nom.r200, nom.c200, 
+    (r, c) => ROMAN_NUMERALS[r * 6 + c + 1], nom.bounds_1m);
+  document.getElementById('nBadge200k').textContent = nom.nom_200k;
+
+  // 1:100 000 (12x12: 1..144)
+  drawSubdivBoxLight(nCtx100k, nCanvas100k, 12, 12, nom.r100, nom.c100, 
+    (r, c) => `${r * 12 + c + 1}`, nom.bounds_1m);
+  document.getElementById('nBadge100k').textContent = nom.nom_100k;
+
+  // 1:50 000 (2x2 of 100k: А, Б, В, Г)
+  drawSubdivBoxLight(nCtx50k, nCanvas50k, 2, 2, nom.r50, nom.c50, 
+    (r, c) => [["А", "Б"], ["В", "Г"]][r][c], nom.bounds_100k);
+  document.getElementById('nBadge50k').textContent = nom.nom_50k;
+
+  // 1:25 000 (2x2 of 50k: а, б, в, г)
+  drawSubdivBoxLight(nCtx25k, nCanvas25k, 2, 2, nom.r25, nom.c25, 
+    (r, c) => [["а", "б"], ["в", "г"]][r][c], nom.bounds_50k);
+  document.getElementById('nBadge25k').textContent = nom.nom_25k;
+
+  // 1:10 000 (2x2 of 25k: 1, 2, 3, 4)
+  drawSubdivBoxLight(nCtx10k, nCanvas10k, 2, 2, nom.r10, nom.c10, 
+    (r, c) => [["1", "2"], ["3", "4"]][r][c], nom.bounds_25k);
+  document.getElementById('nBadge10k').textContent = nom.nom_10k;
+}
+
+function updateTab2Nomenclature() {
+  const nom = computeNomenclatureFull(appState.latDeg, appState.lonDeg);
+
+  document.getElementById('nLatVal').textContent = `${appState.latDeg.toFixed(4)}° N (${toDMS(appState.latDeg, true)})`;
+  document.getElementById('nLonVal').textContent = `${appState.lonDeg.toFixed(4)}° E (${toDMS(appState.lonDeg, false)})`;
+
+  document.getElementById('nBadge1M').textContent = `Лист ${nom.nom_1m}`;
+  document.getElementById('nHudNom1M').textContent = nom.nom_1m;
+  document.getElementById('nHudBelt').textContent = `${nom.rowLetter} (${nom.bounds_1m.lat_s}° .. ${nom.bounds_1m.lat_n}° N)`;
+  document.getElementById('nHudCol').textContent = `${nom.col} (${nom.bounds_1m.lon_w}° .. ${nom.bounds_1m.lon_e}° E)`;
+
+  document.getElementById('n3DLat').textContent = toDMS(appState.latDeg, true);
+  document.getElementById('n3DLon').textContent = toDMS(appState.lonDeg, false);
+  document.getElementById('n3DSheet').textContent = nom.nom_1m;
+
+  renderN3DGlobe();
+  renderAllSubdivisions();
+
+  // Populate Table
+  const tbody = document.getElementById('nNomenclatureTableBody');
+  tbody.innerHTML = `
+    <tr>
+      <td><b>1 : 1 000 000</b> (Миллионка)</td>
+      <td><span class="badge-zone">${nom.nom_1m}</span></td>
+      <td><b>4° × 6°</b></td>
+      <td>${nom.bounds_1m.lat_s}° 00' ... ${nom.bounds_1m.lat_n}° 00' N</td>
+      <td>${nom.bounds_1m.lon_w}° 00' ... ${nom.bounds_1m.lon_e}° 00' E</td>
+    </tr>
+    <tr>
+      <td><b>1 : 500 000</b> (4 листа А..Г)</td>
+      <td><span class="badge-falsing">${nom.nom_500k}</span></td>
+      <td><b>2° × 3°</b></td>
+      <td>${nom.bounds_500k.lat_s}° 00' ... ${nom.bounds_500k.lat_n}° 00' N</td>
+      <td>${nom.bounds_500k.lon_w}° 00' ... ${nom.bounds_500k.lon_e}° 00' E</td>
+    </tr>
+    <tr>
+      <td><b>1 : 200 000</b> (36 листов I..XXXVI)</td>
+      <td><span class="badge-falsing">${nom.nom_200k}</span></td>
+      <td><b>40' × 1° 00'</b></td>
+      <td>${toDMS(nom.bounds_200k.lat_s, true)} ... ${toDMS(nom.bounds_200k.lat_n, true)}</td>
+      <td>${toDMS(nom.bounds_200k.lon_w, false)} ... ${toDMS(nom.bounds_200k.lon_e, false)}</td>
+    </tr>
+    <tr>
+      <td><b>1 : 100 000</b> (144 листа 1..144)</td>
+      <td><span class="badge-true-y">${nom.nom_100k}</span></td>
+      <td><b>20' × 30'</b></td>
+      <td>${toDMS(nom.bounds_100k.lat_s, true)} ... ${toDMS(nom.bounds_100k.lat_n, true)}</td>
+      <td>${toDMS(nom.bounds_100k.lon_w, false)} ... ${toDMS(nom.bounds_100k.lon_e, false)}</td>
+    </tr>
+    <tr>
+      <td><b>1 : 50 000</b> (4 листа А..Г)</td>
+      <td><span class="badge-true-y">${nom.nom_50k}</span></td>
+      <td><b>10' × 15'</b></td>
+      <td>${toDMS(nom.bounds_50k.lat_s, true)} ... ${toDMS(nom.bounds_50k.lat_n, true)}</td>
+      <td>${toDMS(nom.bounds_50k.lon_w, false)} ... ${toDMS(nom.bounds_50k.lon_e, false)}</td>
+    </tr>
+    <tr>
+      <td><b>1 : 25 000</b> (4 листа а..г)</td>
+      <td><span class="badge-true-y">${nom.nom_25k}</span></td>
+      <td><b>5' × 7' 30"</b></td>
+      <td>${toDMS(nom.bounds_25k.lat_s, true)} ... ${toDMS(nom.bounds_25k.lat_n, true)}</td>
+      <td>${toDMS(nom.bounds_25k.lon_w, false)} ... ${toDMS(nom.bounds_25k.lon_e, false)}</td>
+    </tr>
+    <tr>
+      <td><b>1 : 10 000</b> (4 листа 1..4)</td>
+      <td><span class="badge-true-y">${nom.nom_10k}</span></td>
+      <td><b>2' 30" × 3' 45"</b></td>
+      <td>${toDMS(nom.bounds_10k.lat_s, true)} ... ${toDMS(nom.bounds_10k.lat_n, true)}</td>
+      <td>${toDMS(nom.bounds_10k.lon_w, false)} ... ${toDMS(nom.bounds_10k.lon_e, false)}</td>
+    </tr>
+  `;
+}
+
+// 3D Globe Interactions for Tab 2
+n3DGlobeCanvas.addEventListener('mousedown', (e) => {
+  n3DGlobeState.isDragging = true;
+  n3DGlobeState.lastMouseX = e.clientX;
+  n3DGlobeState.lastMouseY = e.clientY;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (n3DGlobeState.isDragging) {
+    const dx = e.clientX - n3DGlobeState.lastMouseX;
+    const dy = e.clientY - n3DGlobeState.lastMouseY;
+    n3DGlobeState.rotY += dx * 0.006;
+    n3DGlobeState.rotX = Math.max(-1.4, Math.min(1.4, n3DGlobeState.rotX - dy * 0.006));
+    n3DGlobeState.lastMouseX = e.clientX;
+    n3DGlobeState.lastMouseY = e.clientY;
+    renderN3DGlobe();
+  }
+});
+window.addEventListener('mouseup', () => { n3DGlobeState.isDragging = false; });
+
+document.getElementById('n3DBtnReset').addEventListener('click', () => {
+  n3DGlobeState.rotX = 30 * Math.PI / 180;
+  n3DGlobeState.rotY = -appState.lonDeg * Math.PI / 180;
+  renderN3DGlobe();
+});
+
+document.getElementById('n3DBtnSpin').addEventListener('click', (e) => {
+  n3DGlobeState.spin = !n3DGlobeState.spin;
+  e.target.textContent = `Вращение: ${n3DGlobeState.spin ? 'ВКЛ' : 'ВЫКЛ'}`;
+});
+
+// Reverse Decoder
+document.getElementById('nBtnDecode').addEventListener('click', () => {
+  const input = document.getElementById('nDecoderInput').value.trim().toUpperCase();
+  const resDiv = document.getElementById('nDecoderResult');
+
+  const parts = input.split('-');
+  if (parts.length < 2) {
+    resDiv.textContent = 'Ошибка формата (пример: N-37, N-37-144, N-37-А, N-37-4-В-а-4)';
+    return;
+  }
+
+  const rowLetter = parts[0];
+  const col = parseInt(parts[1]);
+  const rowIdx = LAT_LETTERS.indexOf(rowLetter);
+
+  if (rowIdx === -1 || isNaN(col) || col < 1 || col > 60) {
+    resDiv.textContent = 'Ошибка: неверный пояс или колонна (пример: N-37)';
+    return;
+  }
+
+  let lat_s = rowIdx * 4.0;
+  let lat_n = (rowIdx + 1) * 4.0;
+  let lon_w = (col - 1) * 6.0 - 180.0;
+  let lon_e = col * 6.0 - 180.0;
+  let scaleStr = '1:1 000 000';
+  let gkZone = col <= 30 ? col + 30 : col - 30;
+
+  if (parts.length >= 3) {
+    const p3 = parts[2];
+    if (['А', 'Б', 'В', 'Г', 'A', 'B', 'C', 'D'].includes(p3)) {
+      scaleStr = '1:500 000';
+      const isNorth = ['А', 'Б', 'A', 'B'].includes(p3);
+      const isWest = ['А', 'В', 'A', 'C'].includes(p3);
+      lat_s = isNorth ? lat_s + 2.0 : lat_s;
+      lat_n = isNorth ? lat_n : lat_s + 2.0;
+      lon_w = isWest ? lon_w : lon_w + 3.0;
+      lon_e = isWest ? lon_w + 3.0 : lon_e;
+    } else if (ROMAN_NUMERALS.includes(p3)) {
+      scaleStr = '1:200 000';
+      const num200 = ROMAN_NUMERALS.indexOf(p3);
+      const r = Math.floor((num200 - 1) / 6);
+      const c = (num200 - 1) % 6;
+      lat_n = lat_n - r * (40.0/60.0);
+      lat_s = lat_n - (40.0/60.0);
+      lon_w = lon_w + c * 1.0;
+      lon_e = lon_w + 1.0;
+    } else if (parseInt(p3) >= 1 && parseInt(p3) <= 144) {
+      scaleStr = '1:100 000';
+      const num100 = parseInt(p3);
+      const r = Math.floor((num100 - 1) / 12);
+      const c = (num100 - 1) % 12;
+      lat_n = lat_n - r * (20.0/60.0);
+      lat_s = lat_n - (20.0/60.0);
+      lon_w = lon_w + c * (30.0/60.0);
+      lon_e = lon_w + (30.0/60.0);
+
+      if (parts.length >= 4) {
+        scaleStr = '1:50 000';
+        const p4 = parts[3];
+        const isNorth = ['А', 'Б', 'A', 'B'].includes(p4);
+        const isWest = ['А', 'В', 'A', 'C'].includes(p4);
+        lat_s = isNorth ? lat_s + 10.0/60.0 : lat_s;
+        lat_n = isNorth ? lat_n : lat_s + 10.0/60.0;
+        lon_w = isWest ? lon_w + 15.0/60.0 : lon_w;
+        lon_e = isWest ? lon_w + 15.0/60.0 : lon_e;
+
+        if (parts.length >= 5) {
+          scaleStr = '1:25 000';
+          const p5 = parts[4].toLowerCase();
+          const isNorth25 = ['а', 'б', 'a', 'b'].includes(p5);
+          const isWest25 = ['а', 'в', 'a', 'c'].includes(p5);
+          lat_s = isNorth25 ? lat_s + 5.0/60.0 : lat_s;
+          lat_n = isNorth25 ? lat_n : lat_s + 5.0/60.0;
+          lon_w = isWest25 ? lon_w + 7.5/60.0 : lon_w;
+          lon_e = isWest25 ? lon_w + 7.5/60.0 : lon_e;
+
+          if (parts.length >= 6) {
+            scaleStr = '1:10 000';
+            const num10 = parseInt(parts[5]);
+            const isNorth10 = (num10 === 1 || num10 === 2);
+            const isWest10 = (num10 === 1 || num10 === 3);
+            lat_s = isNorth10 ? lat_s + 2.5/60.0 : lat_s;
+            lat_n = isNorth10 ? lat_n : lat_s + 2.5/60.0;
+            lon_w = isWest10 ? lon_w + 3.75/60.0 : lon_w;
+            lon_e = isWest10 ? lon_w + 3.75/60.0 : lon_e;
+          }
+        }
+      }
+    }
+  }
+
+  resDiv.innerHTML = `
+    <b>${scaleStr}</b> &nbsp;|&nbsp; B: [${toDMS(lat_s, true)} .. ${toDMS(lat_n, true)}] &nbsp;|&nbsp; L: [${toDMS(lon_w, false)} .. ${toDMS(lon_e, false)}] &nbsp;|&nbsp; Зона ГК: <b>№ ${gkZone}</b>
+  `;
+});
+
+document.getElementById('nLatSlider').addEventListener('input', (e) => {
+  appState.latDeg = parseFloat(e.target.value);
+  syncAll();
+});
+
+document.getElementById('nLonSlider').addEventListener('input', (e) => {
+  appState.lonDeg = parseFloat(e.target.value);
+  syncAll();
+});
+
+/* =====================================================================
+   SYNCHRONIZATION & INITIALIZATION
+   ===================================================================== */
+function syncAll() {
+  document.getElementById('c1LatSlider').value = appState.latDeg;
+  document.getElementById('c1LonSlider').value = appState.lonDeg;
+  document.getElementById('nLatSlider').value = appState.latDeg;
+  document.getElementById('nLonSlider').value = appState.lonDeg;
+
+  updateTab1();
+  updateTab2Nomenclature();
+}
+
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.tab);
+    if (target) {
+      target.classList.add('active');
+      if (tab.dataset.tab === 'tab-coords') updateTab1();
+      if (tab.dataset.tab === 'tab-nomenclature') updateTab2Nomenclature();
+    }
+  });
+});
+
+window.addEventListener('resize', () => {
+  renderC1Globe();
+  renderC1Zone();
+  renderN3DGlobe();
+  renderAllSubdivisions();
+});
+
+function mainGlobeLoop() {
+  let needsRender = false;
+  if (c1GlobeState.spin && !c1GlobeState.isDragging) {
+    c1GlobeState.rotY += 0.003;
+    renderC1Globe();
+  }
+  if (n3DGlobeState.spin && !n3DGlobeState.isDragging) {
+    n3DGlobeState.rotY += 0.003;
+    renderN3DGlobe();
+  }
+  requestAnimationFrame(mainGlobeLoop);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  syncAll();
+  mainGlobeLoop();
+});
+</script>
+</div></div><script>(function(){var a=document.querySelector('[data-lesson="gauss-kruger-projection"]');if(a)a.classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script></body>
+</html>
