@@ -47,6 +47,9 @@
 }
 .gl-block-lessons a:hover{background:var(--green-soft);color:#075c52}
 .gl-block-lessons a.active{border-left-color:var(--accent);background:var(--green-soft);color:#075c52;font-weight:700}
+.gl-course-block.gl-course-soon{border-bottom:1px solid #e2ebe8}
+.gl-course-block.gl-course-soon .gl-block-soon{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:12px 9px;border-radius:9px;color:#9db3ad;font:700 12.5px/1.35 Manrope,Arial,sans-serif}
+.gl-course-block.gl-course-soon .gl-block-soon em{font:500 9.5px var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.06em;color:#9db3ad;white-space:nowrap;margin-top:2px}
 .gl-sidebar .gl-course-link{
   display:block;margin-top:10px;padding:12px 9px 6px;border-top:1px solid #e2ebe8;
   color:#70857f;text-decoration:none;font-size:12px;font-weight:700;

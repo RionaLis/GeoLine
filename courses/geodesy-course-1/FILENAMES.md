@@ -29,7 +29,6 @@
 - **Картографические проекции** — `cartographic-projections.html`
 - **Проекция Гаусса-Крюгера** — `gauss-kruger-projection.html`
 - **Топографические карты и планы** — `plan-map-profile.html`
-- **Топографические условные знаки** — `topographic-symbols.html`
 - **Использование ЛМП и ТГТ** — `lmp-and-tgt.html`
 - **Рельеф** — `landform-types.html`
 - **Горизонтали** — `contour-lines.html`

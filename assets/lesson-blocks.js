@@ -13,6 +13,11 @@
     var file = (location.pathname.split('/').pop() || 'index.html').split('?')[0].split('#')[0];
     var html = '<div class="gl-sidebar-label">' + course.title + '</div>';
     course.topics.forEach(function(topic){
+      if (!topic.lessons.length) {
+        html += '<section class="gl-course-block gl-course-soon"><div class="gl-block-soon"><span>' +
+                topic.title + '</span><em>готовится</em></div></section>';
+        return;
+      }
       var open = false, links = '';
       topic.lessons.forEach(function(lesson){
         var active = lesson[0] === file;
