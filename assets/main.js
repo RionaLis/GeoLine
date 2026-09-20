@@ -91,4 +91,26 @@
   document.addEventListener('click', function(e){
     if (!e.target.closest('.header-search')) close();
   });
+
+  // ---- автоматический счётчик тем и уроков в карточках курсов ----
+  // работает на главной и в разделе «Курсы»: считает по courses-data.js
+  if (document.querySelector('.course-grid') && window.COURSES_DATA) {
+    var plural = function(n, one, few, many) {
+      var a = n % 10, b = n % 100;
+      return (a === 1 && b !== 11) ? one : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? few : many;
+    };
+    document.querySelectorAll('.course-card').forEach(function(card) {
+      var href = card.getAttribute('href') || '';
+      var key = href.replace(/^(\.\.\/)?(courses\/)?/, '').replace(/\/index\.html$/, '');
+      var data = window.COURSES_DATA[key];
+      if (!data || !data.topics || !data.topics.length) return;
+      var lessons = 0;
+      data.topics.forEach(function(t) { lessons += t.lessons.length; });
+      var meta = card.querySelector('.course-meta');
+      if (!meta) return;
+      meta.innerHTML = '<span class="chip">' + data.topics.length + ' ' +
+        plural(data.topics.length, 'тема', 'темы', 'тем') + '</span>' +
+        '<span class="chip">' + lessons + ' ' + plural(lessons, 'урок', 'урока', 'уроков') + '</span>';
+    });
+  }
 })();
