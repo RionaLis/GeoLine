@@ -4,41 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../assets/style.css" rel="stylesheet"/>
 <title>Небесная сфера и системы координат — ГеоЛиния</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
+500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 :root{
   --dark:#063f3b; --dark2:#07554e; --accent:#ff7136; --accent-d:#de501a;
   --ink:#092c33; --paper:#f4f8f6; --white:#fff; --line:#d5e3de; --muted:#657674;
   --radius:18px; --shadow:0 18px 50px rgba(18,54,49,.10);
   --panel:#0f172a;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{width:min(1200px,calc(100% - 40px));margin:auto}
 .mono{font-family:"Roboto Mono",monospace}
-
-/* ---- page hero ---- */
-.page-hero{background:linear-gradient(135deg,#043f3b,#07554e);color:#fff;padding:52px 0 46px;position:relative;overflow:hidden}
-.page-hero:before{content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:42px 42px}
-.page-hero .container{position:relative}
-.breadcrumbs{font:12px "Roboto Mono",monospace;color:#8fb0a8;margin-bottom:20px;letter-spacing:.04em}
-.breadcrumbs span{color:#e7f2ef}
-.eyebrow{font:500 12px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.page-hero h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.04em;margin:0 0 16px;max-width:900px}
-.page-hero h1 em{color:var(--accent);font-style:normal}
-.page-hero p{color:#bcd2cd;max-width:720px;margin:0;font-size:17px}
-
-/* ---- tabs ---- */
-.tabs-wrap{background:rgba(6,63,59,.98);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.09)}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0}
-.tab{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#dbeae6;
-  padding:9px 16px;border-radius:11px;cursor:pointer;font:600 13.5px Manrope,Arial;transition:.18s;white-space:nowrap}
-.tab:hover{border-color:var(--accent);color:#fff}
-.tab.active{background:var(--accent);color:#0a2c26;border-color:var(--accent);font-weight:800}
 
 .section{padding:34px 0 70px}
 .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
@@ -60,7 +36,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial
 .controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:12px}
 .controls .hint{font:500 11.5px "Roboto Mono",monospace;color:var(--muted)}
 .rot-tools{display:flex;gap:8px;margin-left:auto}
-.rot-btn{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;
+.rot-btn{border:1px solid var(--line);background:#eef4f2;color:#174c45;
   width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;transition:.15s;display:grid;place-items:center}
 .rot-btn:hover{border-color:var(--accent);background:#fff2ec;color:var(--accent-d)}
 
@@ -71,7 +47,7 @@ ul.legend li:last-child{border-bottom:0}
 .dot{width:12px;height:12px;border-radius:50%;margin-top:5px;flex:0 0 auto}
 .k{color:var(--muted);font-size:13px}
 .formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
-  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16px;color:#0d5a4c;overflow-x:auto}
+  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16px;color:#0a655d;overflow-x:auto}
 .note{border-left:3px solid var(--accent);background:#fff2ec;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:13.5px;color:#7a4326}
 
 .toggle-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding:0 6px 6px}
@@ -99,15 +75,13 @@ table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
 th,td{text-align:left;padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top;color:#435b56}
 th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:uppercase;letter-spacing:.07em}
 td .sym{display:inline;min-width:0;text-align:left}
-
-.site-footer{background:#043632;color:#a9bdb8;padding:30px 0}
-.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
-.footer-brand{color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
-.footer-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#08302b;display:grid;place-items:center;font:800 15px "Roboto Mono"}
-.footer-small{font:12px "Roboto Mono",monospace;max-width:460px}
 </style>
 <link href="../../assets/lesson-site.css" rel="stylesheet"/></head>
-<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Курс астрономии</a><a href="../../index.html#contacts">Контакты</a></nav><button aria-label="Открыть меню" class="gl-menu-button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии · 3 урока</div><a href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a href="coord-time-links.html"><span>02</span>Связи систем координат и времени</a><a href="time-systems.html"><span>03</span>Системы измерения времени в астрономии</a><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Основы геодезической астрономии · Урок 01</div><h1>Небесная сфера и системы координат</h1><div class="tabs-wrap gl-tabs">
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout"><aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside><main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-01">Тема 01. Небесная сфера и системы координат</a></div>
+<h1>Небесная сфера и системы координат</h1>
+<p class="gl-meta-summary">Точки и круги небесной сферы и четыре системы небесных координат: горизонтная, первая и вторая экваториальные и эклиптическая. Схемы можно вращать и настраивать ползунками.</p>
+<div class="tabs-wrap gl-tabs">
 <div class="container">
 <div class="tabs" id="tabs">
 <button class="tab active" data-view="intro">Небесная сфера</button>
@@ -120,14 +94,7 @@ td .sym{display:inline;min-width:0;text-align:left}
 </div>
 </div>
 </div></section>
-<header class="page-hero">
-<div class="container">
-<div class="breadcrumbs">GeoLine · Астрономия / <span>Небесная сфера</span></div>
-<div class="eyebrow">Интерактивный урок</div>
-<h1 class="gl-original-title">Небесная сфера, её <em>элементы</em> и системы координат</h1>
-<p>Точки и круги небесной сферы и четыре системы небесных координат: горизонтная, первая и вторая экваториальные и эклиптическая. Схемы можно вращать вправо-влево и настраивать ползунками.</p>
-</div>
-</header>
+<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#nebesnaya-sfera">Небесная сфера</a><a href="../../encyclopedia.html#gorizontnaya-sistema-koordinat">Горизонтная система координат</a><a href="../../encyclopedia.html#ekvatorialnaya-sistema-koordinat">Экваториальная система координат</a><a href="../../encyclopedia.html#ekliptika">Эклиптика</a><a href="../../encyclopedia.html#zenit">Зенит</a></nav>
 
 <div class="section">
 <div class="container">
@@ -849,5 +816,10 @@ buildAllToggles();
 buildAllLegend();
 redrawAll();
 </script>
-</main></div><footer class="gl-footer"><div><b>ГеоЛиния · Основы геодезической астрономии</b><small>Интерактивный учебный материал</small></div><div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};var a=document.querySelector('.gl-sidebar a[href="celestial-sphere.html"]');if(a)a.classList.add('active');})();</script></body>
+</main></div>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/lesson-blocks.js"></script>
+</body>
 </html>

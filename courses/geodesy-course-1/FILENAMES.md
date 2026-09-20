@@ -7,12 +7,15 @@
 - **Предмет и задачи геодезии** — `subject-and-tasks-of-geodesy.html`
 - **Краткие сведения из истории геодезии** — `history-of-geodesy.html`
 - **Краткая история геодезических приборов** — `history-of-geodetic-instruments.html`
-- **Понятие о форме и размерах Земли** — `earth-shape-and-size.html`
+- **Форма и размеры Земли** — `earth-shape-and-size.html`
 
 ## Тема 02. Геодезическое оборудование
 
 - **Современные геодезические приборы** — `modern-geodetic-instruments.html`
+- **ГНСС-оборудование: принцип работы** — `gnss-equipment.html`
 - **Измерение расстояний** — `distance-measurement.html`
+- **Измерение расстояний рулеткой** — `measuring-tape.html`
+- **Нитяный дальномер** — `stadia-rangefinder.html`
 - **Теодолиты: классификация, устройство и принцип работы** — `theodolites-classification-and-design.html`
 - **Теодолиты: поверки и юстировки** — `theodolite-checks.html`
 - **Измерение горизонтальных углов теодолитом** — `theodolite-horizontal-angles.html`
@@ -22,12 +25,14 @@
 
 ## Тема 03. Топографические карты и планы
 
+- **Ортогональная проекция** — `orthogonal-projection.html`
 - **Картографические проекции** — `cartographic-projections.html`
 - **Проекция Гаусса-Крюгера** — `gauss-kruger-projection.html`
 - **Топографические карты и планы** — `plan-map-profile.html`
 - **Топографические условные знаки** — `topographic-symbols.html`
 - **Использование ЛМП и ТГТ** — `lmp-and-tgt.html`
 - **Рельеф** — `landform-types.html`
+- **Горизонтали** — `contour-lines.html`
 - **Цифровые модели местности** — `digital-terrain-models.html`
 
 ## Тема 04. Системы координат и ориентирование

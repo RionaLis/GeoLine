@@ -9,35 +9,20 @@
 <link href="../../assets/style.css" rel="stylesheet"/>
 <link href="../../assets/lesson-site.css" rel="stylesheet"/>
 <style>
-/* ===== Урок «Основы теории вероятностей» · стили в дизайне ГеоЛинии =====
-   Все классы урока имеют префикс lp- и не конфликтуют с style.css / lesson-site.css */
-html{scroll-behavior:smooth}
-.lp{max-width:1040px;font-family:Manrope,'Segoe UI',Arial,sans-serif;font-size:15.3px;line-height:1.62;color:#1c2b27}
-.lp b,.lp strong{color:#12332d}
-/* --- шапка урока --- */
-.lp-hero{position:relative;overflow:hidden;border-radius:18px;padding:36px 38px 32px;color:#fff;background:linear-gradient(135deg,#063f3b 0%,#0b6e62 60%,#158a72 100%);box-shadow:0 16px 36px rgba(6,63,59,.22);margin-bottom:26px}
+.lp{max-width:1040px;font-family:Manrope,'Segoe UI',Arial,sans-serif;font-size:15.3px;line-height:1.62;color:#092c33}
+.lp b,.lp strong{color:#063f3b}
 .lp-eyebrow{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#ffd9c2;padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
-.lp-hero h1{margin:16px 0 10px;font-size:33px;line-height:1.18;letter-spacing:-.3px}
 .lp-sub{max-width:780px;font-size:15.4px;opacity:.93;margin:0 0 18px}
 .lp-chips{display:flex;flex-wrap:wrap;gap:8px}
 .lp-chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:600}
 .lp-deco{position:absolute;font-size:72px;opacity:.15;transform:rotate(-14deg);user-select:none;pointer-events:none}
-/* --- навигация по разделам урока (липкая полоса под шапкой урока) --- */
-.lp-toc{position:sticky;top:86px;z-index:900;display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border:1px solid #d5e3de;border-radius:14px;padding:9px 13px;margin:-14px 0 26px;box-shadow:0 6px 18px rgba(18,54,49,.07)}
-.lp-toc-label{font:600 10px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#7a918b;margin-right:7px}
-.lp-toc a{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12.6px;font-weight:700;color:#3f544b;text-decoration:none;border:1px solid transparent;white-space:nowrap}
-.lp-toc a b{font:700 10.5px 'Roboto Mono',ui-monospace,monospace;color:#91aaa4}
-.lp-toc a:hover{border-color:#075c52;color:#075c52}
-.lp-toc a.active{background:#e9f5f1;color:#075c52}
-.lp-toc a.active b{color:#ff7136}
-.lp-toc.is-stuck{box-shadow:0 10px 26px rgba(18,54,49,.14)}
 /* --- секции --- */
 .lp-section{background:#fff;border:1px solid #d5e3de;border-radius:16px;padding:30px 34px 28px;margin-bottom:26px;box-shadow:0 14px 38px rgba(18,54,49,.06);scroll-margin-top:150px}
-.lp-h2{display:flex;align-items:center;gap:14px;font-size:24px;margin:0 0 4px;letter-spacing:-.2px;color:#0c3833}
+.lp-h2{display:flex;align-items:center;gap:14px;font-size:24px;margin:0 0 4px;letter-spacing:-.2px;color:#043f3b}
 .lp-num{flex:none;width:42px;height:42px;border-radius:12px;background:#075c52;color:#fff;display:flex;align-items:center;justify-content:center;font:800 16px 'Roboto Mono',ui-monospace,monospace}
-.lp-lead{color:#5c716b;font-size:15.2px;margin:2px 0 6px}
-.lp h3{font-size:18.5px;margin:28px 0 10px;color:#0c3833}
-.lp h4{margin:0 0 4px;font-size:15px;color:#12332d}
+.lp-lead{color:#5c7370;font-size:15.2px;margin:2px 0 6px}
+.lp h3{font-size:18.5px;margin:28px 0 10px;color:#043f3b}
+.lp h4{margin:0 0 4px;font-size:15px;color:#063f3b}
 .lp p{margin:10px 0}
 .lp a{color:#075c52;font-weight:600}
 .lp a:hover{color:#e45f27}
@@ -56,13 +41,13 @@ html{scroll-behavior:smooth}
 .lp-tile:hover{border-color:#c9ded6}
 .lp-dom{font:700 10.5px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.07em;text-transform:uppercase;color:#7a918b}
 .lp-ico{font-size:23px;line-height:1.3}
-.lp-tile p{margin:4px 0 0;font-size:13.6px;color:#3f544b}
+.lp-tile p{margin:4px 0 0;font-size:13.6px;color:#435b56}
 /* --- таблицы --- */
 .lp-table{width:100%;border-collapse:collapse;font-size:13.8px;margin:14px 0}
-.lp-table th{background:#e9f5f1;text-align:left;padding:9px 12px;border:1px solid #d5e3de;font-size:13px;color:#0c3833}
+.lp-table th{background:#e9f5f1;text-align:left;padding:9px 12px;border:1px solid #d5e3de;font-size:13px;color:#043f3b}
 .lp-table td{padding:9px 12px;border:1px solid #e2ebe8;vertical-align:top}
 .lp-table tr:nth-child(even) td{background:#f7fbf9}
-.lp-table td b{color:#0c3833}
+.lp-table td b{color:#043f3b}
 /* --- иллюстрации --- */
 .lp-fig{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:18px 0}
 .lp-figitem{text-align:center}
@@ -73,7 +58,7 @@ html{scroll-behavior:smooth}
 .lp-demo h3{margin:0 0 12px;display:flex;align-items:center;gap:10px;font-size:17.5px}
 .lp-ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0}
 .lp-out{margin-top:14px}
-.lp-status{font-size:14.2px;color:#3f544b;background:#fff;border:1px solid #e2ebe8;border-radius:11px;padding:9px 13px;margin:10px 0}
+.lp-status{font-size:14.2px;color:#435b56;background:#fff;border:1px solid #e2ebe8;border-radius:11px;padding:9px 13px;margin:10px 0}
 /* --- кнопки --- */
 .lp-btn{display:inline-flex;align-items:center;gap:7px;background:#075c52;color:#fff;border:none;border-radius:11px;padding:10px 17px;font-size:14.3px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(6,63,59,.16);transition:background .15s,transform .15s}
 .lp-btn:hover{background:#063f3b;transform:translateY(-1px)}
@@ -86,39 +71,39 @@ html{scroll-behavior:smooth}
 .lp-btn--sm{padding:7px 12px;font-size:13.2px;border-radius:9px}
 /* --- элементы управления --- */
 .lp-seg{display:inline-flex;background:#eef5f2;border:1px solid #d5e3de;border-radius:11px;padding:3px;gap:3px}
-.lp-seg button{border:none;background:transparent;padding:7px 13px;border-radius:8px;font-size:13.4px;font-weight:700;color:#5c716b;cursor:pointer;font-family:inherit}
+.lp-seg button{border:none;background:transparent;padding:7px 13px;border-radius:8px;font-size:13.4px;font-weight:700;color:#5c7370;cursor:pointer;font-family:inherit}
 .lp-seg button.on{background:#fff;color:#075c52;box-shadow:0 1px 4px rgba(18,54,49,.14)}
-.lp-select{padding:9px 12px;border-radius:10px;border:1.5px solid #bfd8d0;background:#fff;font-size:14px;font-family:inherit;color:#1c2b27;max-width:100%}
-.lp-label{font-size:12.6px;font-weight:700;color:#5c716b;display:block;margin:0 0 5px}
+.lp-select{padding:9px 12px;border-radius:10px;border:1.5px solid #bfd8d0;background:#fff;font-size:14px;font-family:inherit;color:#092c33;max-width:100%}
+.lp-label{font-size:12.6px;font-weight:700;color:#5c7370;display:block;margin:0 0 5px}
 /* --- теги наступления --- */
 .lp-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:999px;font-size:12.4px;font-weight:700;margin:2px 4px 2px 0;border:1px solid transparent}
-.lp-tag--yes{background:#e9f5f1;color:#0b6b5e;border-color:#c6e4da}
+.lp-tag--yes{background:#e9f5f1;color:#0a655d;border-color:#c6e4da}
 .lp-tag--no{background:#fdeeee;color:#b33636;border-color:#f2cfcf}
-.lp-tag--neu{background:#eef3f1;color:#5c716b;border-color:#dbe7e2}
+.lp-tag--neu{background:#eef3f1;color:#5c7370;border-color:#dbe7e2}
 /* --- игральные карты --- */
 .lp-pcard{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1.5px solid #d5e3de;border-radius:10px;box-shadow:0 2px 7px rgba(18,54,49,.12);font-weight:800;line-height:1.05;user-select:none;flex:none}
 .lp-pcard .r{font-size:19px}.lp-pcard .s{font-size:21px;margin-top:2px}
-.lp-pcard.red{color:#d64c4c}.lp-pcard.black{color:#1c2b27}
+.lp-pcard.red{color:#d64c4c}.lp-pcard.black{color:#092c33}
 .lp-pcard.big{width:92px;height:130px}.lp-pcard.big .r{font-size:26px}.lp-pcard.big .s{font-size:30px}
 .lp-pcard.mini{width:36px;height:52px;border-radius:7px}.lp-pcard.mini .r{font-size:12.5px}.lp-pcard.mini .s{font-size:14px}
 .lp-cardrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 /* --- сетка двух кубиков --- */
 .lp-g2wrap{overflow-x:auto}
 .lp-g2{display:grid;grid-template-columns:34px repeat(6,minmax(40px,1fr));gap:5px;min-width:320px;max-width:520px;margin:12px auto}
-.lp-g2 .lp-hd{display:flex;align-items:center;justify-content:center;background:#e9f5f1;border-radius:9px;font-weight:800;font-size:13.5px;color:#0c3833}
-.lp-g2 .lp-cell{display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid #e2ebe8;border-radius:9px;min-height:40px;font-weight:700;font-size:14px;color:#3f544b;cursor:pointer}
-.lp-g2 .lp-cell.hl{background:linear-gradient(135deg,#0b6e62,#063f3b);border-color:transparent;color:#fff;box-shadow:0 3px 8px rgba(6,63,59,.3)}
+.lp-g2 .lp-hd{display:flex;align-items:center;justify-content:center;background:#e9f5f1;border-radius:9px;font-weight:800;font-size:13.5px;color:#043f3b}
+.lp-g2 .lp-cell{display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid #e2ebe8;border-radius:9px;min-height:40px;font-weight:700;font-size:14px;color:#435b56;cursor:pointer}
+.lp-g2 .lp-cell.hl{background:linear-gradient(135deg,#0a655d,#063f3b);border-color:transparent;color:#fff;box-shadow:0 3px 8px rgba(6,63,59,.3)}
 /* --- история бросков --- */
 .lp-hist{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.lp-hh{background:#fff;border:1px solid #e2ebe8;border-radius:9px;padding:4px 9px;font-size:12.2px;font-weight:600;color:#3f544b;font-family:'Roboto Mono',ui-monospace,monospace}
+.lp-hh{background:#fff;border:1px solid #e2ebe8;border-radius:9px;padding:4px 9px;font-size:12.2px;font-weight:600;color:#435b56;font-family:'Roboto Mono',ui-monospace,monospace}
 /* --- флаги событий --- */
 .lp-flags{display:grid;gap:8px;margin:12px 0}
 .lp-flag{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:9px 14px;font-size:14.2px}
-.lp-fname{font-weight:700;color:#12332d}
+.lp-fname{font-weight:700;color:#063f3b}
 .lp-fdef{color:#7a918b;font-size:12.4px;display:block;font-weight:500}
 /* --- венн --- */
 .lp-vennbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
-.lp-vbtn{border:1.5px solid #bfd8d0;background:#fff;color:#3f544b;border-radius:999px;padding:7px 15px;font-size:13.2px;font-weight:700;cursor:pointer;font-family:inherit}
+.lp-vbtn{border:1.5px solid #bfd8d0;background:#fff;color:#435b56;border-radius:999px;padding:7px 15px;font-size:13.2px;font-weight:700;cursor:pointer;font-family:inherit}
 .lp-vbtn:hover{border-color:#075c52}
 .lp-vbtn.on{background:#075c52;color:#fff;border-color:transparent}
 #vennSvgWrap{display:flex;justify-content:center;margin-top:12px}
@@ -126,53 +111,45 @@ html{scroll-behavior:smooth}
 #vennCaption .ttl{color:#075c52}
 .lp-cchip{display:inline-block;padding:3px 10px;border-radius:9px;background:#fff;border:1px solid #e2ebe8;font-size:12.8px;font-weight:700;margin:2px 4px 2px 0;font-family:'Roboto Mono',ui-monospace,monospace}
 .lp-cchip.r{color:#d64c4c;border-color:#f2cfcf}
-.lp-cchip.b{color:#1c2b27}
+.lp-cchip.b{color:#092c33}
 /* --- статистика --- */
 .lp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
 .lp-stat{background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:10px 13px;text-align:center}
-.lp-stat .v{font-size:17px;font-weight:800;color:#0c3833}
+.lp-stat .v{font-size:17px;font-weight:800;color:#043f3b}
 .lp-stat .k{font-size:10.8px;color:#7a918b;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
 #popviz{margin:16px 0 6px}
 /* --- тест --- */
 .lp-qq{border:1.5px solid #e2ebe8;border-radius:15px;padding:16px 18px;margin:14px 0;background:#fbfdfc}
-.lp-qh{font-weight:700;font-size:15px;margin:0 0 10px;color:#12332d}
+.lp-qh{font-weight:700;font-size:15px;margin:0 0 10px;color:#063f3b}
 .lp-qh .lp-qn{color:#ff7136;font-family:'Roboto Mono',ui-monospace,monospace}
 .lp-opts{display:grid;gap:8px}
-.lp-opt{text-align:left;padding:10px 14px;border-radius:11px;border:1.5px solid #cfe0d9;background:#fff;cursor:pointer;font-size:14px;font-family:inherit;color:#1c2b27}
+.lp-opt{text-align:left;padding:10px 14px;border-radius:11px;border:1.5px solid #cfe0d9;background:#fff;cursor:pointer;font-size:14px;font-family:inherit;color:#092c33}
 .lp-opt:hover{border-color:#075c52}
 .lp-qq.done .lp-opt{cursor:default}
 .lp-qq.done .lp-opt:hover{border-color:#cfe0d9}
-.lp-opt.correct{border-color:#12907b;background:#e9f5f1;font-weight:600}
+.lp-opt.correct{border-color:#0a655d;background:#e9f5f1;font-weight:600}
 .lp-opt.wrong{border-color:#d64c4c;background:#fdeeee}
 .lp-expl{display:none;margin-top:11px;background:#eef6f2;border:1px solid #cfe6dd;border-radius:11px;padding:10px 14px;font-size:13.5px}
 .lp-qq.done .lp-expl{display:block}
 #quizScore{font-weight:800;font-size:15px;color:#075c52}
 /* --- подвал урока --- */
-.lp-foot{margin-top:4px;text-align:center;color:#5c716b;font-size:13.4px;padding:6px 0 14px}
-.lp-foot b{color:#0c3833}
+.lp-foot{margin-top:4px;text-align:center;color:#5c7370;font-size:13.4px;padding:6px 0 14px}
+.lp-foot b{color:#043f3b}
 @media(max-width:760px){
-.lp-hero{padding:26px 20px}
-.lp-hero h1{font-size:26px}
 .lp-section{padding:20px 16px;border-radius:13px;scroll-margin-top:20px}
 .lp-h2{font-size:20px}
 .lp-deco{display:none}
-.lp-toc{position:static;margin:0 0 20px}
 }
 </style>
 </head>
-<body data-root="../..">
+<body class="gl-lesson" data-root="../.." data-page="courses">
 <div class="gl-lesson-layout">
-<aside class="gl-sidebar">
-<div class="gl-sidebar-label">Уроки курса</div>
-<a class="active" href="probability-basics.html"><span>01</span>Основы теории вероятностей: основные понятия</a>
-<a href="combinatorics-basics.html"><span>02</span>Комбинаторика: перестановки, размещения, сочетания</a>
-<a href="probability-theorems.html"><span>03</span>Вероятность события. Условная вероятность. Сложение и умножение</a>
-<!-- Следующие уроки добавляйте по этому шаблону (span — номер урока):
-<a href="имя-файла.html"><span>04</span>Название следующего урока</a>
--->
-<a class="gl-course-link" href="index.html"><span>←</span>Курс 02 · Теория погрешностей</a>
-</aside>
-<div class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Теория погрешностей · Урок 01</div><h1>Основы теории вероятностей</h1><nav aria-label="Содержание урока" class="lp-toc gl-tabs">
+<aside class="gl-sidebar" data-course="measurement-errors" aria-label="Разделы курса"></aside>
+<div class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Теория погрешностей</a><span class="gl-meta-sep">·</span><a href="index.html#topic-01">Тема 01. Случайные события</a></div>
+<h1>Основы теории вероятностей</h1>
+<p class="gl-meta-summary">Случайный эксперимент, элементарные исходы, события и их типы, генеральная совокупность и выборка — на примерах игральных карт и костей, бытовых ситуаций и геодезии. Сначала осваиваем язык и понятия: числа-вероятности появятся в следующих уроках.</p>
+<nav aria-label="Содержание урока" class="lp-toc gl-tabs">
 <span class="lp-toc-label">Разделы</span>
 <button class="active" data-gl-tab="intro" type="button"><b>1</b>Введение</button>
 <button class="" data-gl-tab="exp" type="button"><b>2</b>Эксперимент</button>
@@ -184,23 +161,9 @@ html{scroll-behavior:smooth}
 <button class="" data-gl-tab="lab" type="button"><b>8</b>Лаборатория</button>
 <button class="" data-gl-tab="quiz" type="button"><b>9</b>Проверь себя</button>
 </nav></section>
-<article class="lp">
-<header class="lp-hero">
-<div class="lp-deco" style="top:16px;right:24px;transform:rotate(12deg)">🎲</div>
-<div class="lp-deco" style="bottom:12px;right:210px;font-size:56px;transform:rotate(-10deg)">🃏</div>
-<div class="lp-deco" style="bottom:18px;left:44%;font-size:52px;transform:rotate(8deg)">📐</div>
-<div class="lp-eyebrow">Курс 02 · Теория погрешностей · Урок 01</div>
-<h1 class="gl-original-title">Основы теории вероятностей</h1>
-<p class="lp-sub">Случайный эксперимент, элементарные исходы, события и их типы, генеральная совокупность и выборка — на примерах игральных карт и костей, бытовых ситуаций и, конечно, геодезии. Чисел-вероятностей в этой части ещё нет: сначала освоим язык и понятия.</p>
-<div class="lp-chips">
-<span class="lp-chip">🎯 Случайный эксперимент</span>
-<span class="lp-chip">🃏 События и их типы</span>
-<span class="lp-chip">🌍 Совокупность и выборка</span>
-<span class="lp-chip">📐 Примеры из геодезии</span>
-<span class="lp-chip">🔬 Интерактивная лаборатория</span>
-</div>
-</header>
+<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#sluchainyi-eksperiment">Случайный эксперимент</a><a href="../../encyclopedia.html#elementarnyi-ishod">Элементарный исход</a><a href="../../encyclopedia.html#sobytie">Событие</a><a href="../../encyclopedia.html#generalnaya-sovokupnost">Генеральная совокупность</a><a href="../../encyclopedia.html#vyborka">Выборка</a></nav>
 
+<article class="lp">
 <section class="lp-section gl-tab-panel" data-gl-panel="intro" id="intro">
 <h2 class="lp-h2"><span class="lp-num">1</span>Зачем случайность изучать математически?</h2>
 <p class="lp-lead">В быту «случайно» — значит непредсказуемо и маловероятно. В математике случайное — то, что при повторении в схожих условиях даёт разные исходы, но в массе эти исходы подчиняются устойчивым закономерностям.</p>
@@ -257,11 +220,11 @@ html{scroll-behavior:smooth}
 <figcaption>Пространство исходов для извлечения карты из 36-картной колоды: 36 элементарных исходов</figcaption></div>
 <div class="lp-figitem">
 <svg height="132" viewbox="0 0 480 132" width="480">
-<line stroke="#5c716b" stroke-width="2" x1="20" x2="460" y1="80" y2="80"></line>
-<path d="M460 80 l-9 -4 v8 z" fill="#5c716b"></path><path d="M20 80 l9 -4 v8 z" fill="#5c716b"></path>
-<line stroke="#5c716b" stroke-width="2" x1="120" x2="120" y1="74" y2="86"></line>
-<line stroke="#5c716b" stroke-width="2" x1="240" x2="240" y1="74" y2="86"></line>
-<line stroke="#5c716b" stroke-width="2" x1="360" x2="360" y1="74" y2="86"></line>
+<line stroke="#5c7370" stroke-width="2" x1="20" x2="460" y1="80" y2="80"></line>
+<path d="M460 80 l-9 -4 v8 z" fill="#5c7370"></path><path d="M20 80 l9 -4 v8 z" fill="#5c7370"></path>
+<line stroke="#5c7370" stroke-width="2" x1="120" x2="120" y1="74" y2="86"></line>
+<line stroke="#5c7370" stroke-width="2" x1="240" x2="240" y1="74" y2="86"></line>
+<line stroke="#5c7370" stroke-width="2" x1="360" x2="360" y1="74" y2="86"></line>
 <text fill="#7a918b" font-size="12" text-anchor="middle" x="120" y="104">63°14′40″</text>
 <text fill="#7a918b" font-size="12" text-anchor="middle" x="240" y="104">63°15′00″</text>
 <text fill="#7a918b" font-size="12" text-anchor="middle" x="360" y="104">63°15′20″</text>
@@ -302,9 +265,9 @@ html{scroll-behavior:smooth}
 <text fill="#7a918b" font-size="17" font-weight="800" x="30" y="40">Ω</text>
 <ellipse cx="285" cy="132" fill="rgba(7,92,82,.08)" rx="108" ry="74" stroke="#075c52" stroke-dasharray="7 5" stroke-width="2.5"></ellipse>
 <text fill="#075c52" font-size="14.5" font-weight="800" text-anchor="middle" x="285" y="46">A = «чётное число»</text>
-<circle cx="85" cy="84" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="85" y="89">1</text>
-<circle cx="85" cy="182" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="85" y="187">3</text>
-<circle cx="152" cy="133" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#3f544b" font-size="14" font-weight="800" text-anchor="middle" x="152" y="138">5</text>
+<circle cx="85" cy="84" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#435b56" font-size="14" font-weight="800" text-anchor="middle" x="85" y="89">1</text>
+<circle cx="85" cy="182" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#435b56" font-size="14" font-weight="800" text-anchor="middle" x="85" y="187">3</text>
+<circle cx="152" cy="133" fill="#fff" r="17" stroke="#9db8b0" stroke-width="2"></circle><text fill="#435b56" font-size="14" font-weight="800" text-anchor="middle" x="152" y="138">5</text>
 <circle cx="307" cy="84" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="307" y="89">2</text>
 <circle cx="280" cy="182" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="280" y="187">4</text>
 <circle cx="354" cy="133" fill="#e9f5f1" r="17" stroke="#075c52" stroke-width="2.5"></circle><text fill="#075c52" font-size="14" font-weight="800" text-anchor="middle" x="354" y="138">6</text>
@@ -361,7 +324,7 @@ html{scroll-behavior:smooth}
 <text fill="#7a918b" font-size="15" font-weight="800" x="220" y="34">Ω</text>
 <circle cx="95" cy="94" fill="rgba(14,143,119,.12)" r="52" stroke="#0e8f77" stroke-width="2.5"></circle>
 <circle cx="155" cy="94" fill="rgba(255,113,54,.13)" r="52" stroke="#ff7136" stroke-width="2.5"></circle>
-<text fill="#0b6b5e" font-size="15" font-weight="800" x="60" y="100">A</text>
+<text fill="#0a655d" font-size="15" font-weight="800" x="60" y="100">A</text>
 <text fill="#e45f27" font-size="15" font-weight="800" x="192" y="100">B</text>
 <text fill="#075c52" font-size="11.5" font-weight="700" text-anchor="middle" x="125" y="94">A∩B</text>
 </svg><figcaption><b>Совместные:</b> пересечение непусто — есть исходы «сразу для обоих»</figcaption></div>
@@ -371,7 +334,7 @@ html{scroll-behavior:smooth}
 <text fill="#7a918b" font-size="15" font-weight="800" x="220" y="34">Ω</text>
 <circle cx="80" cy="94" fill="rgba(14,143,119,.12)" r="46" stroke="#0e8f77" stroke-width="2.5"></circle>
 <circle cx="172" cy="94" fill="rgba(255,113,54,.13)" r="46" stroke="#ff7136" stroke-width="2.5"></circle>
-<text fill="#0b6b5e" font-size="15" font-weight="800" text-anchor="middle" x="80" y="100">A</text>
+<text fill="#0a655d" font-size="15" font-weight="800" text-anchor="middle" x="80" y="100">A</text>
 <text fill="#e45f27" font-size="15" font-weight="800" text-anchor="middle" x="172" y="100">B</text>
 </svg><figcaption><b>Несовместные:</b> A ∩ B = ∅ — вместе невозможны</figcaption></div>
 </div>
@@ -390,8 +353,8 @@ html{scroll-behavior:smooth}
 <svg height="190" viewbox="0 0 430 190" width="430">
 <rect fill="#e9f5f1" height="166" rx="14" stroke="#d5e3de" stroke-width="2" width="406" x="12" y="12"></rect>
 <circle cx="125" cy="95" fill="rgba(14,143,119,.28)" r="60" stroke="#0e8f77" stroke-width="2.5"></circle>
-<text fill="#0b6b5e" font-size="18" font-weight="800" text-anchor="middle" x="125" y="102">A</text>
-<text fill="#3f544b" font-size="16" font-weight="800" text-anchor="middle" x="300" y="88">Ā («не A»)</text>
+<text fill="#0a655d" font-size="18" font-weight="800" text-anchor="middle" x="125" y="102">A</text>
+<text fill="#435b56" font-size="16" font-weight="800" text-anchor="middle" x="300" y="88">Ā («не A»)</text>
 <text fill="#7a918b" font-size="12.5" text-anchor="middle" x="300" y="110">всё, что вне A, внутри Ω</text>
 <text fill="#7a918b" font-size="15" font-weight="800" x="30" y="38">Ω</text>
 </svg>
@@ -413,9 +376,9 @@ html{scroll-behavior:smooth}
 <rect fill="rgba(14,143,119,.16)" height="82" rx="8" width="124" x="18" y="14"></rect>
 <rect fill="rgba(18,54,49,.09)" height="82" rx="8" width="124" x="153" y="14"></rect>
 <rect fill="rgba(255,113,54,.16)" height="82" rx="8" width="124" x="288" y="14"></rect>
-<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="80" y="60">Δ &lt; 0</text>
-<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="215" y="60">Δ = 0</text>
-<text fill="#3f544b" font-size="14.5" font-weight="700" text-anchor="middle" x="350" y="60">Δ &gt; 0</text>
+<text fill="#435b56" font-size="14.5" font-weight="700" text-anchor="middle" x="80" y="60">Δ &lt; 0</text>
+<text fill="#435b56" font-size="14.5" font-weight="700" text-anchor="middle" x="215" y="60">Δ = 0</text>
+<text fill="#435b56" font-size="14.5" font-weight="700" text-anchor="middle" x="350" y="60">Δ &gt; 0</text>
 </svg>
 <figcaption>Полная группа для погрешности одного измерения: знак «плюс», «минус» или ровно ноль — что-то одно обязательно реализуется</figcaption></div>
 </div>
@@ -539,7 +502,7 @@ html{scroll-behavior:smooth}
 <div id="cardOut"></div>
 <div style="flex:1;min-width:250px">
 <div class="lp-status" id="cardMsg">Нажмите «Извлечь карту».</div>
-<div id="cardCounts" style="font-size:13.6px;color:#3f544b"></div>
+<div id="cardCounts" style="font-size:13.6px;color:#435b56"></div>
 </div>
 </div>
 <div><label class="lp-label" style="margin-top:14px">Выборка (извлечённые карты)</label><div class="lp-cardrow" id="sampleStrip"><span style="color:#8aa69d;font-size:13.5px">пока пусто</span></div></div>
@@ -618,8 +581,6 @@ html{scroll-behavior:smooth}
 </article>
 <script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></div><!-- /.gl-lesson-content -->
 </div><!-- /gl-lesson-layout -->
-<script src="../../assets/search-data.js"></script>
-<script src="../../assets/main.js"></script>
 <script>
 (function(){
 'use strict';
@@ -629,7 +590,7 @@ function warn(e){try{console.warn(e)}catch(x){}}
 
 /* ---------- помощники: кубик и карты ---------- */
 var PIPS={1:[[30,30]],2:[[18,18],[42,42]],3:[[18,18],[30,30],[42,42]],4:[[18,18],[42,18],[18,42],[42,42]],5:[[18,18],[42,18],[30,30],[18,42],[42,42]],6:[[18,18],[42,18],[18,30],[42,30],[18,42],[42,42]]};
-function dieSVG(n,s){s=s||54;var c='';for(var k=0;k<PIPS[n].length;k++){var p=PIPS[n][k];c+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5.6" fill="#12332d"/>'}return '<svg viewBox="0 0 60 60" width="'+s+'" height="'+s+'" style="flex:none"><rect x="2" y="2" width="56" height="56" rx="12" fill="#ffffff" stroke="#c9d9d3" stroke-width="2.5"/>'+c+'</svg>'}
+function dieSVG(n,s){s=s||54;var c='';for(var k=0;k<PIPS[n].length;k++){var p=PIPS[n][k];c+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5.6" fill="#063f3b"/>'}return '<svg viewBox="0 0 60 60" width="'+s+'" height="'+s+'" style="flex:none"><rect x="2" y="2" width="56" height="56" rx="12" fill="#ffffff" stroke="#c9d9d3" stroke-width="2.5"/>'+c+'</svg>'}
 var SUITS=[['♠','black'],['♣','black'],['♥','red'],['♦','red']];
 var RANKS=['6','7','8','9','10','В','Д','К','Т'];
 function fullDeck(){var d=[],i,j;for(i=0;i<SUITS.length;i++){for(j=0;j<RANKS.length;j++){d.push({r:RANKS[j],s:SUITS[i][0],c:SUITS[i][1]})}}return d}
@@ -738,7 +699,7 @@ try{
   if(reshuffled)msg+='<span class="lp-tag lp-tag--neu">колода была исчерпана — перетасовали, счётчики обнулены</span><br>';
   if(n>1)msg+='Извлечено карт: <b>'+n+'</b> (показана последняя). Смотрите счётчики и выборку ниже.<br>';
   msg+='<b>Извлечена карта: '+cardName(last)+'</b><br>A («'+A.name+'»): '+(ha?'<span class="lp-tag lp-tag--yes">✓ наступило</span>':'<span class="lp-tag lp-tag--no">✗ не наступило</span>')+' &nbsp; B («'+B.name+'»): '+(hb?'<span class="lp-tag lp-tag--yes">✓ наступило</span>':'<span class="lp-tag lp-tag--no">✗ не наступило</span>');
-  if(ha&&hb)msg+='<br><b style="color:#0b6b5e">Оба события наступили в одном испытании — наглядная совместимость!</b>';
+  if(ha&&hb)msg+='<br><b style="color:#0a655d">Оба события наступили в одном испытании — наглядная совместимость!</b>';
   qs('#cardMsg').innerHTML=msg;
   updateCounts();renderSample();
  }
@@ -789,7 +750,7 @@ try{
    lastVals=vals;
   }
   qs('#diceN').textContent=rollN;
-  qs('#diceOut').innerHTML=lastVals.map(function(v){return dieSVG(v,56)}).join('')+(mode===2?'<div style="font-size:15px;font-weight:800;color:#0c3833">сумма '+(lastVals[0]+lastVals[1])+'</div>':'');
+  qs('#diceOut').innerHTML=lastVals.map(function(v){return dieSVG(v,56)}).join('')+(mode===2?'<div style="font-size:15px;font-weight:800;color:#043f3b">сумма '+(lastVals[0]+lastVals[1])+'</div>':'');
   renderFlags();
   qs('#diceHist').innerHTML=hist.map(function(v){return '<span class="lp-hh">'+(v.length===2?(v[0]+'+'+v[1]+'='+(v[0]+v[1])):v[0])+'</span>'}).join('');
  }
@@ -861,12 +822,12 @@ try{
   if(region==='NA')s+='<rect x="15" y="15" width="'+(W-30)+'" height="'+(H-30)+'" rx="16" fill="#8aa69d" fill-opacity=".32" mask="url(#mNotA)"/>';
   s+=circ(A,'fill="rgba(14,143,119,.07)" stroke="#0e8f77" stroke-width="2.5"');
   s+=circ(B,'fill="rgba(255,113,54,.08)" stroke="#ff7136" stroke-width="2.5"');
-  if(region==='A'||region==='UN')s+=circ(A,'fill="#12907b" fill-opacity=".45" mask="url(#mNotB)"');
+  if(region==='A'||region==='UN')s+=circ(A,'fill="#0a655d" fill-opacity=".45" mask="url(#mNotB)"');
   if(region==='B'||region==='UN')s+=circ(B,'fill="#ff9a63" fill-opacity=".5" mask="url(#mNotA)"');
   if(region==='A'||region==='B'||region==='UN'||region==='AB')s+=circ(A,'fill="#075c52" fill-opacity=".58" clip-path="url(#clipB)"');
-  if(region==='AO')s+=circ(A,'fill="#12907b" fill-opacity=".45" mask="url(#mNotB)"');
+  if(region==='AO')s+=circ(A,'fill="#0a655d" fill-opacity=".45" mask="url(#mNotB)"');
   s+='<text x="34" y="44" font-size="17" font-weight="800" fill="#7a918b">Ω</text>';
-  s+='<text x="'+(A.cx-A.r-16)+'" y="'+(A.cy+7)+'" text-anchor="middle" font-size="19" font-weight="800" fill="#0b6b5e">A</text>';
+  s+='<text x="'+(A.cx-A.r-16)+'" y="'+(A.cy+7)+'" text-anchor="middle" font-size="19" font-weight="800" fill="#0a655d">A</text>';
   s+='<text x="'+(B.cx+B.r+16)+'" y="'+(B.cy+7)+'" text-anchor="middle" font-size="19" font-weight="800" fill="#e45f27">B</text>';
   if(p.overlap)s+='<text x="'+((A.cx+B.cx)/2)+'" y="'+(A.cy-118)+'" text-anchor="middle" font-size="13" font-weight="800" fill="#075c52">A∩B</text>';
   return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:560px">'+s+'</svg>';
@@ -876,7 +837,7 @@ try{
   qs('#vennSvgWrap').innerHTML=vennSVG(p,curRegion);
   var r=p.regions[curRegion];
   var chips=r.chips.map(function(t){return '<span class="lp-cchip '+chipClass(t)+'">'+t+'</span>'}).join('');
-  qs('#vennCaption').innerHTML='<span class="ttl">'+r.ttl+'</span><br>'+r.txt+'<div style="margin-top:6px">'+chips+'</div><div style="margin-top:8px;color:#5c716b">'+p.sentence+'</div>';
+  qs('#vennCaption').innerHTML='<span class="ttl">'+r.ttl+'</span><br>'+r.txt+'<div style="margin-top:6px">'+chips+'</div><div style="margin-top:8px;color:#5c7370">'+p.sentence+'</div>';
  }
  qsa('#vennBtns .lp-vbtn').forEach(function(b){
   b.addEventListener('click',function(){
@@ -898,12 +859,12 @@ try{
   }
   var bw=210,bh=112;
   var sx=Math.min(350+Math.random()*180,W-bw-24),sy=Math.min(120+Math.random()*90,H-bh-24);
-  s+='<rect x="'+sx.toFixed(0)+'" y="'+sy.toFixed(0)+'" width="'+bw+'" height="'+bh+'" rx="12" fill="none" stroke="#12907b" stroke-width="2.5" stroke-dasharray="7 5"/>';
+  s+='<rect x="'+sx.toFixed(0)+'" y="'+sy.toFixed(0)+'" width="'+bw+'" height="'+bh+'" rx="12" fill="none" stroke="#0a655d" stroke-width="2.5" stroke-dasharray="7 5"/>';
   for(i=0;i<12;i++){
-   s+='<circle cx="'+(sx+14+Math.random()*(bw-28)).toFixed(1)+'" cy="'+(sy+14+Math.random()*(bh-28)).toFixed(1)+'" r="4.6" fill="#12907b"/>';
+   s+='<circle cx="'+(sx+14+Math.random()*(bw-28)).toFixed(1)+'" cy="'+(sy+14+Math.random()*(bh-28)).toFixed(1)+'" r="4.6" fill="#0a655d"/>';
   }
   s+='<text x="34" y="40" font-size="14.5" font-weight="800" fill="#075c52">ГЕНЕРАЛЬНАЯ СОВОКУПНОСТЬ — все объекты / все мыслимые наблюдения</text>';
-  s+='<text x="'+(sx+bw/2)+'" y="'+(sy-8)+'" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0b6b5e">ВЫБОРКА (n = 12)</text>';
+  s+='<text x="'+(sx+bw/2)+'" y="'+(sy-8)+'" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0a655d">ВЫБОРКА (n = 12)</text>';
   qs('#popviz').innerHTML='<div style="overflow-x:auto"><svg viewBox="0 0 '+W+' '+H+'" width="100%" style="min-width:520px">'+s+'</svg></div>';
  }
  renderPop();
@@ -942,13 +903,13 @@ try{
    '<div class="lp-stat"><div class="v">'+fmtDelta(sum/n)+'</div><div class="k">средняя погрешность выборки</div></div>'+
    '<div class="lp-stat"><div class="v" style="font-size:14.5px">'+fmtDelta(mn)+' … '+fmtDelta(mx)+'</div><div class="k">размах погрешностей</div></div>'+
    '<div class="lp-stat"><div class="v">'+ng+'</div><div class="k">в допуске</div></div>'+
-   '<div class="lp-stat"><div class="v" style="color:'+(nr?'#e14c4c':'#12907b')+'">'+nr+'</div><div class="k">промахов</div></div>';
+   '<div class="lp-stat"><div class="v" style="color:'+(nr?'#e14c4c':'#0a655d')+'">'+nr+'</div><div class="k">промахов</div></div>';
   var W=680,H=250,L=56,R=660,T=20,Bd=214,maxAbs=70;
   function Y(v){return (T+Bd)/2-v*(Bd-T)/(2*maxAbs)}
   var s='<rect x="'+L+'" y="'+Y(15).toFixed(1)+'" width="'+(R-L)+'" height="'+(Y(-15)-Y(15)).toFixed(1)+'" fill="#e2f4ec" fill-opacity=".6"/>';
-  var lines=[[45,'#e14c4c'],[15,'#12907b'],[-15,'#12907b'],[-45,'#e14c4c']];
+  var lines=[[45,'#e14c4c'],[15,'#0a655d'],[-15,'#0a655d'],[-45,'#e14c4c']];
   for(i=0;i<lines.length;i++)s+='<line x1="'+L+'" y1="'+Y(lines[i][0]).toFixed(1)+'" x2="'+R+'" y2="'+Y(lines[i][0]).toFixed(1)+'" stroke="'+lines[i][1]+'" stroke-width="1.4" stroke-dasharray="6 5" stroke-opacity=".7"/>';
-  s+='<line x1="'+L+'" y1="'+Y(0)+'" x2="'+R+'" y2="'+Y(0)+'" stroke="#3f544b" stroke-width="1.6"/>';
+  s+='<line x1="'+L+'" y1="'+Y(0)+'" x2="'+R+'" y2="'+Y(0)+'" stroke="#435b56" stroke-width="1.6"/>';
   var labs=[[45,'+45″'],[15,'+15″'],[0,'0'],[-15,'−15″'],[-45,'−45″']];
   for(i=0;i<labs.length;i++)s+='<text x="'+(L-8)+'" y="'+(Y(labs[i][0])+4).toFixed(1)+'" font-size="12" fill="#7a918b" text-anchor="end">'+labs[i][1]+'</text>';
   var show=series.slice(-60);
@@ -956,7 +917,7 @@ try{
   for(i=0;i<show.length;i++){
    var dv=Math.max(-68,Math.min(68,show[i]));
    var x=L+8+(i+0.5)*step;
-   var col=zone(show[i])==='g'?'#12907b':(zone(show[i])==='a'?'#ff7136':'#e14c4c');
+   var col=zone(show[i])==='g'?'#0a655d':(zone(show[i])==='a'?'#ff7136':'#e14c4c');
    s+='<circle cx="'+x.toFixed(1)+'" cy="'+Y(dv).toFixed(1)+'" r="4.4" fill="'+col+'" fill-opacity=".85" stroke="#ffffff" stroke-width="1"/>';
   }
   s+='<text x="'+(L+R)/2+'" y="'+(H-4)+'" font-size="12.5" fill="#7a918b" text-anchor="middle">номер приёма →  (показаны последние '+show.length+' из '+series.length+')</text>';
@@ -1058,5 +1019,9 @@ try{
 
 })();
 </script>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/lesson-blocks.js"></script>
 </body>
 </html>

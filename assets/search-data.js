@@ -194,5 +194,35 @@ window.SEARCH_DATA = [
     "desc": "Тема 05. Топографическая съёмка местности",
     "course": "Геодезия. Курс 1",
     "url": "courses/geodesy-course-1/coordinate-register-calculation.html"
+  },
+  {
+    "title": "ГНСС-оборудование: принцип работы",
+    "desc": "Принцип работы ГНСС-оборудования: антенна, приёмник, режимы измерений.",
+    "course": "Геодезия. Курс 1",
+    "url": "courses/geodesy-course-1/gnss-equipment.html"
+  },
+  {
+    "title": "Измерение расстояний рулеткой",
+    "desc": "Измерение расстояний рулеткой и лентой: створ, натяжение, поправки.",
+    "course": "Геодезия. Курс 1",
+    "url": "courses/geodesy-course-1/measuring-tape.html"
+  },
+  {
+    "title": "Нитяный дальномер",
+    "desc": "Нитяный дальномер: формула, коэффициент, работа с рейкой.",
+    "course": "Геодезия. Курс 1",
+    "url": "courses/geodesy-course-1/stadia-rangefinder.html"
+  },
+  {
+    "title": "Ортогональная проекция",
+    "desc": "Ортогональная проекция — основа изображения земной поверхности на плане.",
+    "course": "Геодезия. Курс 1",
+    "url": "courses/geodesy-course-1/orthogonal-projection.html"
+  },
+  {
+    "title": "Горизонтали",
+    "desc": "Горизонтали: свойства, высота сечения, бергштрихи.",
+    "course": "Геодезия. Курс 1",
+    "url": "courses/geodesy-course-1/contour-lines.html"
   }
 ];

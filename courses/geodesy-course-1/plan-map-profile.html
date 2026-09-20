@@ -4,31 +4,18 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="../../assets/style.css" rel="stylesheet"/>
 <title>Карта и план местности — ГеоЛиния</title>
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;color:#092c33;background:#f4f8f6;font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}
 .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
 h1,h2,h3{line-height:1.25;font-family:Georgia,"Times New Roman",serif}
 a{color:#07554e}
-/* hero */
-.hero{background:linear-gradient(160deg,#eaf8f4 0%,#d9eee8 60%,#c5e1d9 100%);border-bottom:1px solid #b9d2cb;padding:44px 0 34px}
-.hero h1{font-size:clamp(26px,4.2vw,42px);margin:0 0 10px;color:#3d2f18}
-.hero .sub{font-size:clamp(15px,2vw,18px);color:#5c5140;max-width:56em;margin:0}
-.hero .chips{margin-top:16px}
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(250,246,235,.94);backdrop-filter:blur(4px);border-bottom:1px solid #b9d2cb;display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px}
-nav a{text-decoration:none;font-size:14px;color:#5c4a2e;padding:5px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
-nav a:hover{background:#e2f2ed;border-color:#a7c7bf}
-/* sections & cards */
-main{padding-bottom:40px}
 section{margin:38px 0}
 .card{background:#ffffff;border:1px solid #d5e3de;border-radius:14px;padding:20px 22px;box-shadow:0 2px 10px rgba(60,45,20,.07)}
-.card h3{margin:0 0 10px;font-size:19px;color:#3d2f18}
-h2{font-size:clamp(21px,3vw,28px);margin:0 0 6px;color:#3d2f18;display:flex;align-items:center;gap:12px}
+.card h3{margin:0 0 10px;font-size:19px;color:#092c33}
+h2{font-size:clamp(21px,3vw,28px);margin:0 0 6px;color:#092c33;display:flex;align-items:center;gap:12px}
 h2 .num{flex:none;width:38px;height:38px;border-radius:50%;background:#0a655d;color:#fff;display:inline-flex;align-items:center;justify-content:center;font:700 19px Georgia,serif}
-.lead{color:#5c5140;margin:4px 0 18px;max-width:60em}
+.lead{color:#435b56;margin:4px 0 18px;max-width:60em}
 .cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin:16px 0}
 .cards3 .card{display:flex;flex-direction:column}
 .cards3 svg{width:100%;height:auto;border:1px solid #d5e3de;border-radius:8px;background:#f8fbfa}
@@ -48,7 +35,7 @@ table.cmp td:first-child{background:#eaf8f4;font-weight:600;width:22%}
 .scales{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:14px 0}
 .scales .card{text-align:center}
 .scales .big{font:700 26px Georgia,serif;color:#07554e;margin:6px 0}
-.scales .expl{font-size:13.5px;color:#5c5140}
+.scales .expl{font-size:13.5px;color:#435b56}
 .convrow{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-top:8px}
 .convrow label{display:block;font-size:13px;color:#53706a;margin-bottom:4px}
 .convrow input,.convrow select{font:inherit;padding:8px 10px;border:1px solid #a7c7bf;border-radius:8px;background:#fff;width:130px}
@@ -63,21 +50,21 @@ table.cmp td:first-child{background:#eaf8f4;font-weight:600;width:22%}
 .sym:hover{box-shadow:0 0 0 2px #ff7136 inset}
 .sym.sel{box-shadow:0 0 0 2px #0a655d inset}
 .sym svg{width:100%;height:auto;display:block;background:#f8fbfa;border-radius:6px}
-.sym .cap{font-size:12px;margin-top:5px;color:#3d2f18}
+.sym .cap{font-size:12px;margin-top:5px;color:#092c33}
 #symInfo{background:#eaf8f4;border-radius:10px;padding:12px 14px;font-size:14.5px;min-height:3.4em;margin-top:6px}
 #symInfo b{color:#07554e}
 /* controls */
 .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0 12px}
-.controls label{font-size:14px;color:#5c5140;display:inline-flex;align-items:center;gap:5px}
+.controls label{font-size:14px;color:#435b56;display:inline-flex;align-items:center;gap:5px}
 .controls select{font:inherit;padding:5px 8px;border:1px solid #a7c7bf;border-radius:8px;background:#fff}
 .btn{font:600 14px/1 inherit;padding:9px 16px;border-radius:10px;border:1.5px solid #0a655d;background:#fff;color:#07554e;cursor:pointer}
 .btn:hover{background:#eaf8f4}
 .btn.on{background:#0a655d;color:#fff}
-.readout{font:13px/1.6 ui-monospace,Consolas,"Courier New",monospace;background:#0f2930;color:#eaf7f4;padding:9px 13px;border-radius:9px;margin:10px 0;min-height:2.6em}
-.readout b{color:#ffd79a;font-weight:600}
+.readout{font:13px/1.6 ui-monospace,Consolas,"Courier New",monospace;background:#092c33;color:#eaf7f4;padding:9px 13px;border-radius:9px;margin:10px 0;min-height:2.6em}
+.readout b{color:#ff9b6e;font-weight:600}
 .mapsvg{width:100%;height:auto;display:block;background:#f8fbfa;border:1px solid #b9d2cb;border-radius:10px}
 .legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:6px 14px;margin-top:12px}
-.legend .it{display:flex;gap:9px;align-items:center;font-size:13px;color:#4a3f2c}
+.legend .it{display:flex;gap:9px;align-items:center;font-size:13px;color:#435b56}
 .legend svg{width:52px;height:30px;flex:none;background:#f8fbfa;border:1px solid #d5e3de;border-radius:5px}
 /* forms of relief */
 .forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:14px 0}
@@ -98,12 +85,12 @@ figcaption{font-size:13px;color:#53706a;margin-top:6px}
 /* quiz */
 .q{border:1px solid #d5e3de;border-radius:12px;padding:14px 16px;margin:12px 0;background:#ffffff}
 .q .qt{font-weight:600;margin-bottom:8px}
-.q-opt{display:block;border:1px solid #d8cfb8;border-radius:9px;padding:8px 13px;margin:6px 0;cursor:pointer;background:#fff;font-size:14.5px}
+.q-opt{display:block;border:1px solid #d5e3de;border-radius:9px;padding:8px 13px;margin:6px 0;cursor:pointer;background:#fff;font-size:14.5px}
 .q-opt:hover{border-color:#0a655d}
 .q-opt.ok{background:#dff0d8;border-color:#4c9a3f}
 .q-opt.bad{background:#f5dcdc;border-color:#c0504d}
 .q-opt.dim{opacity:.55;cursor:default}
-.expl{font-size:13.5px;color:#5c5140;margin-top:8px;background:#eaf8f4;border-radius:8px;padding:8px 12px;display:none}
+.expl{font-size:13.5px;color:#435b56;margin-top:8px;background:#eaf8f4;border-radius:8px;padding:8px 12px;display:none}
 .expl.show{display:block}
 #quizScore{font:600 16px Georgia,serif;color:#07554e;margin-top:14px}
 footer{border-top:1px solid #b9d2cb;background:#eaf8f4;padding:18px 0 26px;color:#53706a;font-size:13px}
@@ -113,37 +100,37 @@ svg text{user-select:none;pointer-events:none}
 @media (max-width:600px){.convrow input,.convrow select{width:110px}}
 
 /* ===== дополнения для частей 1 и 2 ===== */
-.defn{background:#fff9e8;border:1px solid #ead9a8;border-left:6px solid #0a655d;border-radius:12px;padding:16px 20px;margin:14px 0;font-size:16.5px;line-height:1.65}
-.defn .lbl{display:inline-block;font:700 11px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#0a655d;background:#f6e8cf;border-radius:6px;padding:4px 8px;margin-bottom:10px}
+.defn{background:#e9f5f1;border:1px solid #b3d9d0;border-left:6px solid #0a655d;border-radius:12px;padding:16px 20px;margin:14px 0;font-size:16.5px;line-height:1.65}
+.defn .lbl{display:inline-block;font:700 11px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#0a655d;background:#d5e3de;border-radius:6px;padding:4px 8px;margin-bottom:10px}
 .kw{cursor:pointer;border-bottom:2px dotted #0a655d;color:#07554e;background:#eaf8f4;border-radius:4px 4px 0 0;padding:0 2px}
-.kw:hover{background:#f0dcbc}
-.kw.sel{background:#0a655d;color:#fff;border-bottom-color:#7a3f0c}
+.kw:hover{background:#ffe9de}
+.kw.sel{background:#0a655d;color:#fff;border-bottom-color:#d9501a}
 .dinfo{background:#eaf8f4;border-radius:10px;padding:12px 14px;font-size:14.5px;min-height:3.2em;margin:8px 0 16px}
 .dinfo b{color:#07554e}
 figure.imgcard{margin:14px 0;background:#ffffff;border:1px solid #d5e3de;border-radius:12px;padding:12px;box-shadow:0 2px 10px rgba(60,45,20,.07)}
 figure.imgcard img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid #d5e3de}
-figure.imgcard figcaption{font-size:13.5px;color:#5c5140;margin-top:8px;line-height:1.5}
-figure.imgcard figcaption b{color:#3d2f18}
+figure.imgcard figcaption{font-size:13.5px;color:#435b56;margin-top:8px;line-height:1.5}
+figure.imgcard figcaption b{color:#092c33}
 .imgrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
 .formula{background:#ffffff;border:1px solid #d5e3de;border-radius:14px;padding:18px 20px;text-align:center;margin:14px 0}
-.formula .fx{font-family:Georgia,'Times New Roman',serif;font-size:28px;color:#3d2f18;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.formula .fx{font-family:Georgia,'Times New Roman',serif;font-size:28px;color:#092c33;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
 .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;line-height:1.2}
 .frac>span{display:block;padding:0 10px}
-.frac>span:first-child{border-bottom:2px solid #5c4a2e}
-.formula .flegend{font-size:14px;color:#5c5140;margin:14px auto 0;text-align:left;max-width:660px}
+.frac>span:first-child{border-bottom:2px solid #435b56}
+.formula .flegend{font-size:14px;color:#435b56;margin:14px auto 0;text-align:left;max-width:660px}
 .formula .flegend i{font-family:Georgia,serif;font-style:italic}
 .conda{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:14px}
-.conda .chip{font-size:14.5px;background:#efe2c2}
+.conda .chip{font-size:14.5px;background:#e9f5f1}
 .stepex{border:1px solid #d5e3de;border-radius:12px;padding:12px 16px;margin:10px 0;background:#ffffff;font-size:14.5px}
-.stepex .tag{display:inline-block;font:700 11px/1 inherit;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#8a5a2b;border-radius:6px;padding:4px 8px;margin-right:8px;vertical-align:2px}
-.stepex .math{font-family:Georgia,serif;font-size:16.5px;color:#3d2f18;background:#eaf8f4;border-radius:8px;padding:6px 12px;display:inline-block;margin-top:8px}
+.stepex .tag{display:inline-block;font:700 11px/1 inherit;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#d9501a;border-radius:6px;padding:4px 8px;margin-right:8px;vertical-align:2px}
+.stepex .math{font-family:Georgia,serif;font-size:16.5px;color:#092c33;background:#eaf8f4;border-radius:8px;padding:6px 12px;display:inline-block;margin-top:8px}
 details.orig{border:1px dashed #a7c7bf;border-radius:10px;padding:10px 14px;margin-top:14px;background:#f8fbfa}
 details.orig summary{cursor:pointer;font-size:14px;color:#07554e;font-weight:600}
 details.orig img{width:100%;max-width:640px;height:auto;border-radius:8px;border:1px solid #d5e3de;margin-top:10px;display:block}
-.nextlink{display:block;background:linear-gradient(135deg,#eaf8f4,#efe0bd);border:1.5px solid #c9a44a;border-radius:14px;padding:18px 22px;margin:30px 0 10px;text-decoration:none;color:#3d2f18}
+.nextlink{display:block;background:linear-gradient(135deg,#eaf8f4,#e9f5f1);border:1.5px solid #0a655d;border-radius:14px;padding:18px 22px;margin:30px 0 10px;text-decoration:none;color:#092c33}
 .nextlink:hover{box-shadow:0 4px 14px rgba(120,90,30,.18)}
 .nextlink .t{font:700 18px Georgia,serif;color:#07554e}
-.nextlink .d{font-size:14px;color:#5c5140;margin-top:4px}
+.nextlink .d{font-size:14px;color:#435b56;margin-top:4px}
 .lbadge{background:#0a655d;color:#fff;border:none;font-weight:600;margin-bottom:12px;display:inline-block}
 .classif-svg{width:100%;height:auto;display:block;background:#f8fbfa;border:1px solid #b9d2cb;border-radius:10px}
 
@@ -152,26 +139,17 @@ details.orig img{width:100%;max-width:640px;height:auto;border-radius:8px;border
 .symcatnote{margin-bottom:4px}
 figure.symstrip{margin:10px 0;background:#ffffff;border:1px solid #d5e3de;border-radius:10px;padding:10px 12px 8px;box-shadow:0 2px 8px rgba(60,45,20,.06)}
 figure.symstrip img{width:100%;height:auto;display:block;border-radius:6px}
-figure.symstrip figcaption{font-size:13px;color:#5c5140;margin-top:6px;line-height:1.45}
-figure.symstrip figcaption b{color:#3d2f18}
+figure.symstrip figcaption{font-size:13px;color:#435b56;margin-top:6px;line-height:1.45}
+figure.symstrip figcaption b{color:#092c33}
 
 </style>
 <link href="../../assets/lesson-site.css" rel="stylesheet"/>
-<style>
-/* Унификация палитры урока с ГеоЛинией */
-body{background:#f4f8f6!important;color:#092c33!important}
-.gl-lesson-content>.hero{background:linear-gradient(135deg,#043f3b,#07554e)!important;border-bottom:0!important;color:#fff!important}
-.gl-lesson-content>.hero p,.gl-lesson-content>.hero .subtitle{color:#c2d9d4!important}
-.gl-lesson-content>nav{background:#07534d!important;border-color:rgba(255,255,255,.12)!important}
-.gl-lesson-content>nav a{color:#e1efec!important;border-color:rgba(255,255,255,.18)!important;background:rgba(255,255,255,.05)!important}
-.gl-lesson-content>nav a:hover{background:#ff7136!important;color:#092c33!important}
-.gl-lesson-content .card,.gl-lesson-content table.cmp,.gl-lesson-content .q,.gl-lesson-content .form{background:#fff!important;border-color:#d5e3de!important;box-shadow:0 12px 34px rgba(18,54,49,.08)!important}
-.gl-lesson-content h2 .num,.gl-lesson-content table.cmp thead th,.gl-lesson-content .btn.on{background:#0a655d!important}
-.gl-lesson-content .note,.gl-lesson-content .use,.gl-lesson-content #symInfo,.gl-lesson-content table.cmp td:first-child,.gl-lesson-content .chip{background:#eaf8f4!important;border-color:#bfe6dc!important;color:#315b54!important}
-.gl-lesson-content .btn{border-color:#0a655d!important;color:#07554e!important}
-.gl-lesson-content svg{background:#f8fbfa!important;border-color:#d5e3de!important}
-</style></head>
-<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="Эмблема ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Геодезия. Курс 1</a><a href="../../index.html#about">О проекте</a></nav><button aria-label="Открыть меню" class="gl-menu-button" type="button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar gl-block-sidebar"><div class="gl-sidebar-label">Геодезия. Курс 1</div><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 01. Введение в геодезию</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="subject-and-tasks-of-geodesy" href="subject-and-tasks-of-geodesy.html">Предмет и задачи геодезии</a><a data-lesson="history-of-geodesy" href="history-of-geodesy.html">Краткие сведения из истории геодезии</a><a data-lesson="history-of-geodetic-instruments" href="history-of-geodetic-instruments.html">Краткая история геодезических приборов</a><a data-lesson="earth-shape-and-size" href="earth-shape-and-size.html">Понятие о форме и размерах Земли</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 02. Геодезическое оборудование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="modern-geodetic-instruments" href="modern-geodetic-instruments.html">Современные геодезические приборы</a><a data-lesson="distance-measurement" href="distance-measurement.html">Измерение расстояний</a><a data-lesson="theodolites-classification-and-design" href="theodolites-classification-and-design.html">Теодолиты: классификация, устройство и принцип работы</a><a data-lesson="theodolite-checks" href="theodolite-checks.html">Теодолиты: поверки и юстировки</a><a data-lesson="theodolite-horizontal-angles" href="theodolite-horizontal-angles.html">Измерение горизонтальных углов теодолитом</a><a data-lesson="theodolite-vertical-angles" href="theodolite-vertical-angles.html">Измерение вертикальных углов теодолитом</a><a data-lesson="levels-classification-and-design" href="levels-classification-and-design.html">Нивелиры: классификация, устройство и принцип работы</a><a data-lesson="level-checks-and-adjustments" href="level-checks-and-adjustments.html">Нивелиры: поверки и юстировки</a></div></section><section class="gl-course-block open"><button aria-expanded="true" class="gl-block-toggle" type="button"><span>Тема 03. Топографические карты и планы</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="cartographic-projections" href="cartographic-projections.html">Картографические проекции</a><a data-lesson="gauss-kruger-projection" href="gauss-kruger-projection.html">Проекция Гаусса-Крюгера</a><a class="active" data-lesson="plan-map-profile" href="plan-map-profile.html">Топографические карты и планы</a><a data-lesson="topographic-symbols" href="topographic-symbols.html">Топографические условные знаки</a><a data-lesson="lmp-and-tgt" href="lmp-and-tgt.html">Использование ЛМП и ТГТ</a><a data-lesson="landform-types" href="landform-types.html">Рельеф</a><a data-lesson="digital-terrain-models" href="digital-terrain-models.html">Цифровые модели местности</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 04. Системы координат и ориентирование</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="geodetic-coordinate-system" href="geodetic-coordinate-system.html">Геодезическая система координат</a><a data-lesson="line-orientation-on-map" href="line-orientation-on-map.html">Ориентирование линий на карте</a><a data-lesson="direct-and-inverse-geodetic-problems" href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи</a><a data-lesson="directional-angle-transfer" href="directional-angle-transfer.html">Передача дирекционных углов</a></div></section><section class="gl-course-block"><button aria-expanded="false" class="gl-block-toggle" type="button"><span>Тема 05. Топографическая съёмка местности</span><i>⌄</i></button><div class="gl-block-lessons"><a data-lesson="inaccessible-distance" href="inaccessible-distance.html">Определение недоступного расстояния</a><a data-lesson="survey-control" href="survey-control.html">Съёмочное обоснование</a><a data-lesson="state-geodetic-network-points" href="state-geodetic-network-points.html">Пункты государственной геодезической сети</a><a data-lesson="coordinate-register-calculation" href="coordinate-register-calculation.html">Вычисление ведомости координат</a></div></section><a class="gl-course-link" href="index.html">← Страница курса</a></aside><div class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Геодезия. Курс 1 · Урок 12</div><h1>Карта и план местности</h1><nav class="gl-tabs">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout"><aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside><div class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-03">Тема 03. Топографические карты и планы</a></div>
+<h1>Топографические карты и планы</h1>
+<p class="gl-meta-summary">Как устроено уменьшенное изображение Земли «взглядом сверху»: определения карты и плана, масштаб и его формула, классификация карт и планов, группы условных знаков.</p>
+<nav class="gl-tabs">
 <button class="active" data-gl-tab="s1" type="button">1. Карта</button>
 <button class="" data-gl-tab="s2" type="button">2. План</button>
 <button class="" data-gl-tab="s3" type="button">3. План vs карта</button>
@@ -180,18 +158,8 @@ body{background:#f4f8f6!important;color:#092c33!important}
 <button class="" data-gl-tab="s6" type="button">6. Условные знаки</button>
 <button class="" data-gl-tab="s7" type="button">7. Проверь себя</button>
 </nav></section>
-<header class="hero">
-<div class="wrap">
-<span class="chip lbadge">Урок 1 из 2 · Картография</span>
-<h1 class="gl-original-title">Карта и план местности</h1>
-<p class="sub">Как устроено уменьшенное изображение Земли «взглядом сверху»: точные определения, масштаб и его формула, классификация карт и планов, условные знаки.</p>
-<div class="chips">
-<span class="chip">определения — как в нормативных документах</span>
-<span class="chip">формула масштаба + калькулятор</span>
-<span class="chip">классификация по масштабам</span>
-</div>
-</div>
-</header>
+<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#topograficheskaya-karta">Топографическая карта</a><a href="../../encyclopedia.html#plan">План</a><a href="../../encyclopedia.html#masshtab">Масштаб</a><a href="../../encyclopedia.html#uslovnye-znaki">Условные знаки</a><a href="../../encyclopedia.html#profil-mestnosti">Профиль местности</a></nav>
+
 <main class="wrap">
 <!-- ============ 1. КАРТА ============ -->
 <section class="gl-tab-panel" data-gl-panel="s1" id="s1">
@@ -338,12 +306,12 @@ body{background:#f4f8f6!important;color:#092c33!important}
 </div>
 <div class="card" style="margin-top:16px">
 <h3>Точность масштаба</h3>
-<p class="expl" style="font-size:14.5px;color:#5c5140;margin:6px 0">Глаз человека различает на бумаге отрезки не мельче <b>0,1 мм</b> — это <b>графическая точность</b>. Из неё следует «разрешающая способность» масштаба:</p>
+<p class="expl" style="font-size:14.5px;color:#435b56;margin:6px 0">Глаз человека различает на бумаге отрезки не мельче <b>0,1 мм</b> — это <b>графическая точность</b>. Из неё следует «разрешающая способность» масштаба:</p>
 <div class="conda" style="margin-top:4px">
 <span class="chip"><b>точность масштаба:</b>  t = 0,1 мм × M</span>
 <span class="chip"><b>предельная точность:</b>  t<sub>пред</sub> = 0,3 мм × M</span>
 </div>
-<p class="expl" style="font-size:14.5px;color:#5c5140;margin:10px 0 4px">Это значит: объекты, изображение которых на плане (карте) мельче <b>0,3 мм</b>, <b>не отображаются</b> — они либо пропускаются, либо показываются внемасштабным знаком. Это одна из причин обобщения (генерализации) содержания карт.</p>
+<p class="expl" style="font-size:14.5px;color:#435b56;margin:10px 0 4px">Это значит: объекты, изображение которых на плане (карте) мельче <b>0,3 мм</b>, <b>не отображаются</b> — они либо пропускаются, либо показываются внемасштабным знаком. Это одна из причин обобщения (генерализации) содержания карт.</p>
 <div class="stepex">
 <span class="tag">Пример 4</span>Определить точность масштаба <b>1:2 000</b> и наименьший отображаемый объект.
       <div class="math">t = 0,1 мм × 2 000 = 200 мм = <b>0,2 м</b>;  t<sub>пред</sub> = 0,3 мм × 2 000 = <b>0,6 м</b></div>
@@ -551,7 +519,7 @@ const CLASSIF=[
   {title:'Карты',sub:'большие территории',fill:'#dce8f5',band:'#c3d8ef',stroke:'#7d9dc4',tcol:'#2c4e75',
    items:[['1 : 1 000 000','в 1 см 10 км'],['1 : 500 000','в 1 см 5 км'],['1 : 200 000','в 1 см 2 км'],
           ['1 : 100 000','в 1 см 1 км'],['1 : 50 000','в 1 см 500 м'],['1 : 25 000','в 1 см 250 м'],['1 : 10 000','в 1 см 100 м']]},
-  {title:'Карты и планы',sub:'переходные масштабы',fill:'#f6edd6',band:'#eddfae',stroke:'#c9a44a',tcol:'#7a5c14',
+  {title:'Карты и планы',sub:'переходные масштабы',fill:'#f6edd6',band:'#eddfae',stroke:'#0a655d',tcol:'#7a5c14',
    items:[['1 : 5 000','в 1 см 50 м'],['1 : 2 000','в 1 см 20 м']]},
   {title:'Планы',sub:'небольшие участки',fill:'#def0d7',band:'#c4e2b6',stroke:'#79a86c',tcol:'#2f5e26',
    items:[['1 : 1 000','в 1 см 10 м'],['1 : 500','в 1 см 5 м'],['1 : 200','в 1 см 2 м'],['1 : 100','в 1 см 1 м']]}
@@ -574,7 +542,7 @@ function buildClassif(){
     c.items.forEach((it,i)=>{
       const y=topY+headH+i*IW;
       E('rect',{x:x+8,y,width:w-16,height:27,rx:6,fill:'#fff',stroke:c.stroke,'stroke-width':.9},svg);
-      const s1=E('text',{x:x+18,y:y+17.5,'font-size':13,'font-weight':700,fill:'#3d2f18','font-family':'Georgia,serif'},svg);
+      const s1=E('text',{x:x+18,y:y+17.5,'font-size':13,'font-weight':700,fill:'#092c33','font-family':'Georgia,serif'},svg);
       s1.textContent=it[0];
       const s2=E('text',{x:x+w-16,y:y+17.5,'text-anchor':'end','font-size':10.5,fill:'#53706a'},svg);
       s2.textContent=it[1];
@@ -673,5 +641,10 @@ initConverter();
 buildQuiz();
 
 </script>
-<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></div></div><script>(function(){var a=document.querySelector('[data-lesson="plan-map-profile"]');if(a)a.classList.add('active');var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};})();</script><script src="../../assets/lesson-blocks.js"></script></body>
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script></div></div>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/lesson-blocks.js"></script>
+</body>
 </html>

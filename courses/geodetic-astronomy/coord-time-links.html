@@ -4,9 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../assets/style.css" rel="stylesheet"/>
 <title>Связи систем координат и времени — ГеоЛиния</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
+500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 :root{
   --dark:#063f3b; --dark2:#07554e; --accent:#ff7136; --accent-d:#de501a;
   --ink:#092c33; --paper:#f4f8f6; --white:#fff; --line:#d5e3de; --muted:#657674;
@@ -14,29 +15,6 @@
   --hor:#0f9d78; --eq:#1f74d8; --eq2:#8a4bd8; --ecl:#e8541b; --time:#c98800;
   --cat:#8a4bd8; --meas:#e8541b; --det:#0a7d63;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{width:min(1200px,calc(100% - 40px));margin:auto}
-
-.page-hero{background:linear-gradient(135deg,#043f3b,#07554e);color:#fff;padding:52px 0 46px;position:relative;overflow:hidden}
-.page-hero:before{content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:42px 42px}
-.page-hero .container{position:relative}
-.breadcrumbs{font:12px "Roboto Mono",monospace;color:#8fb0a8;margin-bottom:20px;letter-spacing:.04em}
-.breadcrumbs span{color:#e7f2ef}
-.eyebrow{font:500 12px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.page-hero h1{font-size:clamp(30px,4.6vw,50px);line-height:1.05;letter-spacing:-.04em;margin:0 0 16px;max-width:920px}
-.page-hero h1 em{color:var(--accent);font-style:normal}
-.page-hero p{color:#bcd2cd;max-width:780px;margin:0;font-size:17px}
-
-.tabs-wrap{background:rgba(6,63,59,.98);position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(255,255,255,.09)}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0}
-.tab{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#dbeae6;
-  padding:9px 15px;border-radius:11px;cursor:pointer;font:600 14px Manrope,Arial;transition:.18s;white-space:nowrap}
-.tab:hover{border-color:var(--accent);color:#fff}
-.tab.active{background:var(--accent);color:#0a2c26;border-color:var(--accent);font-weight:800}
 
 .section{padding:34px 0 70px}
 .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
@@ -63,7 +41,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial
 .panel svg{display:block;width:100%;height:auto}
 .cap{font:500 12.5px "Roboto Mono",monospace;color:var(--muted);text-align:center;margin-top:8px}
 .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.subtab{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13.5px Manrope;transition:.15s}
+.subtab{border:1px solid var(--line);background:#eef4f2;color:#174c45;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13.5px Manrope;transition:.15s}
 .subtab:hover{border-color:var(--accent)}
 .subtab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
 
@@ -73,7 +51,7 @@ ul.legend li:last-child{border-bottom:0}
 .sym{min-width:54px;font-weight:800;text-align:left;font-family:"Cambria Math",Georgia,serif;font-size:16px;color:var(--accent-d)}
 .k{color:var(--muted);font-size:13px}
 .formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
-  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;color:#0d5a4c;overflow-x:auto;line-height:1.95}
+  padding:12px 16px;margin:14px 0;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;color:#0a655d;overflow-x:auto;line-height:1.95}
 .note{border-left:3px solid var(--accent);background:#fff2ec;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px;color:#7a4326}
 .roletag{display:inline-block;font:700 12px "Roboto Mono",monospace;padding:3px 10px;border-radius:99px;margin:3px 6px 3px 0;border:1.5px solid}
 .role-cat{color:var(--cat);border-color:var(--cat);background:#f4ecfb}
@@ -106,7 +84,7 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 .field{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
 .field span{font:500 11.5px "Roboto Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .field input,.field select{font:600 15px "Roboto Mono",monospace;border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;color:var(--ink);background:#fff}
-.btn{border:1px solid var(--line);background:#eef4f2;color:#1c4a44;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13px Manrope;transition:.15s}
+.btn{border:1px solid var(--line);background:#eef4f2;color:#174c45;border-radius:10px;padding:9px 14px;cursor:pointer;font:700 13px Manrope;transition:.15s}
 .btn:hover{border-color:var(--accent);background:#fff2ec;color:var(--accent-d)}
 .btn.primary{background:var(--accent);color:#0a2c26;border-color:var(--accent)}
 .arrows{display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(2,34px);gap:5px;justify-content:center;margin:6px auto}
@@ -115,15 +93,13 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 .hint{font:500 12px "Roboto Mono",monospace;color:#8aa39c;text-align:center;margin-top:4px}
 .spherebox{touch-action:none;cursor:grab}
 .spherebox:active{cursor:grabbing}
-
-.site-footer{background:#043632;color:#a9bdb8;padding:30px 0}
-.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
-.footer-brand{color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
-.footer-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#08302b;display:grid;place-items:center;font:800 15px "Roboto Mono"}
-.footer-small{font:12px "Roboto Mono",monospace;max-width:460px}
 </style>
 <link href="../../assets/lesson-site.css" rel="stylesheet"/></head>
-<body><header class="gl-sitebar"><a class="gl-brand" href="../../index.html"><img alt="ГеоЛиния" src="../../uploads/common/geoline-logo.png"/><span>ГеоЛиния <small>GeoLine</small></span></a><nav><a href="../../index.html">Главная</a><a href="../index.html">Курсы</a><a href="index.html">Курс астрономии</a><a href="../../index.html#contacts">Контакты</a></nav><button aria-label="Открыть меню" class="gl-menu-button">☰</button></header><div class="gl-lesson-layout"><aside class="gl-sidebar"><div class="gl-sidebar-label">Основы геодезической астрономии · 3 урока</div><a href="celestial-sphere.html"><span>01</span>Небесная сфера и системы координат</a><a href="coord-time-links.html"><span>02</span>Связи систем координат и времени</a><a href="time-systems.html"><span>03</span>Системы измерения времени в астрономии</a><a class="gl-course-link" href="index.html">← Страница курса</a></aside><main class="gl-lesson-content"><section class="gl-lesson-meta"><div class="gl-lesson-number">Основы геодезической астрономии · Урок 02</div><h1>Связи систем координат и времени</h1><div class="tabs-wrap gl-tabs">
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout"><aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside><main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-02">Тема 02. Связи систем координат и времени</a></div>
+<h1>Связи систем координат и времени</h1>
+<p class="gl-meta-summary">Как одно и то же светило описывается в четырёх системах координат, какими параметрами системы связаны между собой и как время вместе с широтой и долготой позволяет перейти от карты неба к виду над горизонтом.</p>
+<div class="tabs-wrap gl-tabs">
 <div class="container">
 <div class="tabs" id="tabs">
 <button class="tab active" data-view="overview">Общая карта связей</button>
@@ -135,14 +111,7 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 </div>
 </div>
 </div></section>
-<header class="page-hero">
-<div class="container">
-<div class="breadcrumbs">GeoLine · Астрономия / <span>Связи систем координат и времени</span></div>
-<div class="eyebrow">Интерактивный урок · связка</div>
-<h1 class="gl-original-title">Связи <em>систем координат</em> и <em>времени</em></h1>
-<p>Как одно и то же светило описывается в четырёх системах координат, какими параметрами эти системы связаны между собой и как время (солнечное, звёздное и всемирное) вместе с широтой и долготой позволяет перейти от карты неба к тому, что реально видно над горизонтом.</p>
-</div>
-</header>
+<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#chasovoi-ugol">Часовой угол</a><a href="../../encyclopedia.html#zvezdnoe-vremya">Звёздное время</a><a href="../../encyclopedia.html#vsemirnoe-vremya">Всемирное время</a><a href="../../encyclopedia.html#vysota-svetila">Высота светила</a><a href="../../encyclopedia.html#azimut">Азимут</a></nav>
 
 <div class="section">
 <div class="container">
@@ -1165,5 +1134,10 @@ buildCritBtns();
 // initial
 drawGraph();drawLinks();drawTimeView();calcUpdate();drawCrit();
 </script>
-</main></div><footer class="gl-footer"><div><b>ГеоЛиния · Основы геодезической астрономии</b><small>Интерактивный учебный материал</small></div><div class="gl-contact"><span>Контакты</span><b>к.т.н. Щукина Екатерина Александровна</b><a href="mailto:shchukinaea@guz.ru">shchukinaea@guz.ru</a></div></footer><script>(function(){var b=document.querySelector('.gl-menu-button'),n=document.querySelector('.gl-sitebar nav');if(b)b.onclick=function(){n.classList.toggle('open')};var a=document.querySelector('.gl-sidebar a[href="coord-time-links.html"]');if(a)a.classList.add('active');})();</script></body>
+</main></div>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/lesson-blocks.js"></script>
+</body>
 </html>
