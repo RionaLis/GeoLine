@@ -172,7 +172,6 @@ input.cp-range::-moz-range-thumb {width:11px;height:11px;border-radius:50%;backg
 }
 </style>
 
-
 </head>
 <body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout"><aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside><main class="gl-lesson-content cp"><section class="gl-lesson-meta">
 <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-03">Тема 03. Топографические карты и планы</a></div>
@@ -183,9 +182,6 @@ input.cp-range::-moz-range-thumb {width:11px;height:11px;border-radius:50%;backg
 <button data-panel="cp-class">2. Классификация</button>
 <button data-panel="cp-lab">3. Проекции на практике</button>
 </nav></section>
-<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#kartograficheskaya-proekciya">Картографическая проекция</a><a href="../../encyclopedia.html#iskazheniya">Искажения</a><a href="../../encyclopedia.html#ravnougolnaya-proekciya">Равноугольная проекция</a><a href="../../encyclopedia.html#ravnovelikaya-proekciya">Равновеликая проекция</a><a href="../../encyclopedia.html#meridian">Меридиан</a><a href="../../encyclopedia.html#parallel">Параллель</a></nav>
-
-
 <!-- ================= 1. ГЛАВНАЯ ИДЕЯ ================= -->
 <section class="gl-tab-panel active" id="cp-idea">
 <p class="cp-lead">Земля близка к шару, а карта — плоская. Из этого простого факта следует всё остальное: <strong>абсолютно точной карты не существует</strong>, и каждая проекция — это осознанный компромисс. Разберёмся, почему искажения неизбежны, что именно они затрагивают и как их измеряют.</p>
@@ -1844,7 +1840,6 @@ var CPClass = (function () {
     return pts;
   }
 
-
   function boundsOf(proj, b, ww, hh) {
     var xs = [], ys = [];
     for (var lon = -180; lon <= 180; lon += 5) for (var lat = b.latMin; lat <= b.latMax; lat += 5) {
@@ -2447,7 +2442,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="../../assets/search-data.js"></script>
 <script src="../../assets/courses-data.js"></script>
 <script src="../../assets/main.js"></script>
-<script src="../../assets/lesson-blocks.js"></script>
+<script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
 </body>
 </html>
 

@@ -43,3 +43,73 @@
     btn.setAttribute('aria-expanded', String(open));
   });
 })();
+
+/* ============================================================
+   Панель «Термины и определения»: кнопка-стрелка у правого
+   края страницы. Термины урока, их определения и источники —
+   из encyclopedia-data.js (terms, lessons, sources).
+   Открытая панель сжимает страницу (body.gl-terms-open).
+   ============================================================ */
+(function(){
+  var ENC = window.ENCYCLOPEDIA;
+  var side = document.querySelector('.gl-sidebar[data-course]');
+  if (!ENC || !ENC.terms || !ENC.lessons || !side) return;
+  var courseId = side.getAttribute('data-course');
+  var file = (location.pathname.split('/').pop() || 'index.html').split('?')[0].split('#')[0];
+  var termSlugs = ENC.lessons[courseId + '/' + file] || [];
+  if (!termSlugs.length) return;
+
+  var items = '';
+  for (var i = 0; i < termSlugs.length; i++) {
+    var slug = termSlugs[i];
+    var term = ENC.terms[slug];
+    if (!term) continue;
+    var href = '../../encyclopedia/' + slug + '.html';
+    items += '<div class="gl-term-item">' +
+      '<a class="gl-term-name" href="' + href + '">' + term.t + '</a>' +
+      (term.d ? '<p class="gl-term-def">' + term.d + '</p>' : '') +
+      '</div>';
+  }
+
+  var sources = (courseId && ENC.sources && ENC.sources[courseId]) || [];
+  var srcHtml = '';
+  if (sources.length) {
+    srcHtml = '<h3 class="gl-terms-sub">Источники и нормативные документы</h3>' +
+      '<ul class="gl-terms-sources">' +
+      sources.map(function(s){
+        return '<li><a href="' + s.u + '" target="_blank" rel="noopener">' + s.t + '</a></li>';
+      }).join('') + '</ul>';
+  }
+
+  var panel = document.createElement('aside');
+  panel.className = 'gl-terms-panel';
+  panel.id = 'glTermsPanel';
+  panel.setAttribute('aria-label', 'Термины и определения');
+  panel.innerHTML = '<h2 class="gl-terms-title">Термины и определения</h2>' +
+    '<p class="gl-terms-hint">Определения — из статей энциклопедии</p>' +
+    items + srcHtml;
+  document.body.appendChild(panel);
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'gl-terms-toggle';
+  btn.setAttribute('aria-controls', 'glTermsPanel');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-label', 'Открыть панель «Термины и определения»');
+  btn.innerHTML = '<i aria-hidden="true">❯</i><span>Термины</span>';
+  document.body.appendChild(btn);
+
+  function setOpen(open){
+    document.body.classList.toggle('gl-terms-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open
+      ? 'Закрыть панель «Термины и определения»'
+      : 'Открыть панель «Термины и определения»');
+  }
+  btn.addEventListener('click', function(){
+    setOpen(!document.body.classList.contains('gl-terms-open'));
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();

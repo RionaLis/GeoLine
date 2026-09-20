@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description"
-    content="Предмет и задачи геодезии: научные и производственные задачи, структура геодезической науки, классификация разделов и геодезическое инструментоведение.">
+    content="Предмет и задачи геодезии: научные и производственные задачи, структура геодезической науки и шесть основных разделов — геодезия (топография), прикладная и высшая геодезия, ДЗЗ, геодезическая метрология и геоинформатика.">
   <title>Предмет и задачи геодезии — ГеоЛиния</title>
   <link href="../../assets/style.css" rel="stylesheet">
   <link href="../../assets/lesson-site.css" rel="stylesheet">
@@ -226,7 +226,7 @@
       color: #21433f;
     }
 
-    /* Интерактивный каталог 14 разделов */
+    /* Интерактивный каталог разделов */
     .branches-interactive {
       background: #fafcfb;
       border: 1px solid var(--gl-card-border);
@@ -337,6 +337,11 @@
 
     .tiles-grid .branch-head {
       flex-wrap: wrap;
+      row-gap: 8px;
+    }
+
+    .tiles-grid .branch-badge {
+      margin-left: auto;
     }
 
     .branch-item {
@@ -435,6 +440,47 @@
       line-height: 1.6 !important;
       color: #3d5a54;
       margin: 0 0 6px;
+    }
+
+    .branch-subs {
+      margin: 12px 0 2px;
+      background: var(--gl-teal-light, #eaf5f2);
+      border: 1px solid #d5e7e1;
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .branch-subs h5 {
+      margin: 0 0 8px;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gl-teal);
+    }
+
+    .branch-subs ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13.5px !important;
+      line-height: 1.6 !important;
+      color: #3d5a54;
+    }
+
+    .branch-subs li {
+      margin-bottom: 6px;
+    }
+
+    .branch-subs li:last-child {
+      margin-bottom: 0;
+    }
+
+    .branch-subs b {
+      color: var(--gl-dark);
+    }
+
+    /* Раскрытая плитка раздела занимает всю ширину сетки */
+    .tiles-grid .branch-item.open {
+      grid-column: 1 / -1;
     }
 
     .branch-info-grid {
@@ -738,14 +784,6 @@
           <button data-gl-tab="sub-3" type="button">Самопроверка</button>
         </div>
       </section>
-      <nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые
-          понятия:</span><a href="../../encyclopedia.html#geodeziya">Геодезия</a><a
-          href="../../encyclopedia.html#zemnoi-ellipsoid">Земной эллипсоид</a><a
-          href="../../encyclopedia.html#topograficheskaya-semka">Топографическая съемка</a><a
-          href="../../encyclopedia.html#inzhenernaya-geodeziya">Инженерная геодезия</a><a
-          href="../../encyclopedia.html#geodezicheskaya-set">Геодезическая сеть</a></nav>
-
-
       <section class="section lesson-section">
         <div class="container">
           <article class="article subj-article">
@@ -841,7 +879,6 @@
               <p>Все задачи геодезии традиционно подразделяют на две взаимосвязанные ветви: <b>научные
                   (фундаментальные)</b> и <b>производственные (практические)</b>.</p>
 
-
               <p><b>Кликните по задаче</b>, чтобы ниже раскрылось ее подробное пояснение: слева собраны научные задачи,
                 справа — производственные.</p>
 
@@ -856,7 +893,6 @@
                       <div class="branch-item" data-category="science">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Определение фигуры, размеров Земли и ее гравитационного поля</span>
-                          <span class="branch-badge sci">Главная научная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -870,9 +906,9 @@
                               <div class="branch-info-grid">
                                 <div class="branch-info-cell">
                                   <h5>Суть задачи</h5>
-                                  <p>В первом приближении фигуру Земли описывают как шар, во втором - как эллипсоид,
+                                  <p>В первом приближении фигуру Земли описывают как шар, во втором — как эллипсоид,
                                     однако Земля представляет
-                                    собой сложный, неоднородный как по формле, так и по структуре
+                                    собой сложный, неоднородный как по форме, так и по структуре
                                     объект. Задача — с максимально возможной точностью определить размеры
                                     эллипсоида, все отклонения фактической земной поверхности от него. Знание
                                     гравитационного поля Земли дает массу информации о структуре земных недр
@@ -902,7 +938,6 @@
                       <div class="branch-item" data-category="science">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Исследование внутреннего строения Земли</span>
-                          <span class="branch-badge sci">Научная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -939,7 +974,6 @@
                       <div class="branch-item" data-category="science">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Изучение горизонтальных и вертикальных движений земной коры</span>
-                          <span class="branch-badge sci">Научная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -975,7 +1009,6 @@
                       <div class="branch-item" data-category="science">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Изучение колебаний уровня морей и океанов</span>
-                          <span class="branch-badge sci">Научная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1015,7 +1048,6 @@
                       <div class="branch-item" data-category="science">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Изучение движения полюсов и вращения Земли</span>
-                          <span class="branch-badge sci">Научная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1058,7 +1090,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Определение пространственных координат точек</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1071,7 +1102,7 @@
                               <div class="branch-info-grid">
                                 <div class="branch-info-cell">
                                   <h5>Суть задачи</h5>
-                                  <p>пределение пространственного положения (координат X, Y, H) точек
+                                  <p>Определение пространственного положения (координат <i class="math">X</i>, <i class="math">Y</i>, <i class="math">H</i>) точек
                                     земной поверхности и объектов на ней в единых государственных и международных
                                     системах
                                     координат и осуществление перехода между ними.</p>
@@ -1096,7 +1127,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Создание опорных геодезических сетей</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1132,7 +1162,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Топографическая съемка территории</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1168,7 +1197,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Инженерно-геодезическое обеспечение строительства</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1208,7 +1236,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Кадастр, землеустройство и недропользование</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1230,12 +1257,12 @@
                                 </div>
                                 <div class="branch-info-cell">
                                   <h5>Методы и средства</h5>
-                                  <p>ГНСС-ропределения, электронные тахеометры, кадастровые съемки с привязкой к опорным
+                                  <p>ГНСС-определения, электронные тахеометры, кадастровые съемки с привязкой к опорным
                                     сетям, маркшейдерские работы.</p>
                                 </div>
                                 <div class="branch-info-cell">
                                   <h5>Практическое значение</h5>
-                                  <p>Государственный кадастр недвижимости, оборот земель, налогобложение, безопасное
+                                  <p>Государственный кадастр недвижимости, оборот земель, налогообложение, безопасное
                                     ведение горных работ.</p>
                                 </div>
                               </div>
@@ -1248,7 +1275,6 @@
                       <div class="branch-item" data-category="production">
                         <button class="branch-head" type="button" aria-expanded="false">
                           <span class="branch-title">Обеспечение обороны и безопасности государства</span>
-                          <span class="branch-badge prod">Производственная</span>
                           <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                               fill="none">
                               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1295,25 +1321,18 @@
 
               <h2>Основные разделы современной геодезии</h2>
               <p>Современная геодезия — это разветвленная система взаимосвязанных научных и прикладных дисциплин.
-                Далее приведены самые крупные направления.
+                Их принято сводить к <b>шести основным направлениям</b>, каждое из которых объединяет несколько
+                более узких дисциплин.
                 <b>Кликните по названию раздела</b>, чтобы ниже раскрылась подробная информация о нем.
               </p>
 
               <!-- Интерактивный каталог разделов: кликните по разделу, чтобы раскрыть подробности -->
               <div class="branches-interactive">
-                <div class="branches-filter-bar">
-                  <button class="filter-chip active" data-filter="all" type="button">Все 14 разделов</button>
-                  <button class="filter-chip" data-filter="fundamental" type="button">Фундаментальные</button>
-                  <button class="filter-chip" data-filter="applied" type="button">Инженерно-прикладные</button>
-                  <button class="filter-chip" data-filter="space" type="button">Космические и ДЗЗ</button>
-                  <button class="filter-chip" data-filter="marine" type="button">Морские и водные</button>
-                  <button class="filter-chip" data-filter="instrument" type="button">Приборы и метрология</button>
-                </div>
 
                 <div class="branches-grid tiles-grid" id="branchesGrid">
 
-                  <!-- Топография -->
-                  <div class="branch-item" data-category="fundamental applied">
+                  <!-- 1. Геодезия (топография) -->
+                  <div class="branch-item" data-category="fundamental">
                     <button class="branch-head" type="button" aria-expanded="false">
                       <span class="branch-title">Геодезия (топография)</span>
                       <span class="branch-badge">Локальные съемки</span>
@@ -1340,7 +1359,7 @@
                               <h5>Основные задачи</h5>
                               <ul>
                                 <li>наземные съемки: горизонтальная (теодолитная), вертикальная (нивелирование),
-                                  комбинированная топограическая;</li>
+                                  комбинированная топографическая;</li>
                                 <li>создание топографических планов масштабов 1:500 — 1:10 000;</li>
                                 <li>построение цифровых моделей местности (ЦММ) и рельефа (ЦМР).</li>
                               </ul>
@@ -1361,7 +1380,74 @@
                     </div>
                   </div>
 
-                  <!-- Высшая геодезия -->
+                  <!-- 2. Прикладная геодезия -->
+                  <div class="branch-item" data-category="applied">
+                    <button class="branch-head" type="button" aria-expanded="false">
+                      <span class="branch-title">Прикладная геодезия</span>
+                      <span class="branch-badge">Практические задачи</span>
+                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
+                          fill="none">
+                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg></span>
+                    </button>
+                    <div class="branch-body">
+                      <div class="branch-body-inner">
+                        <div class="branch-body-content">
+                          <p class="branch-lead"><b>Прикладная геодезия</b> — обобщающее направление, объединяющее все
+                            практические (отраслевые) аспекты геодезии: геодезическое обеспечение землеустройства и
+                            кадастра, строительства, работ на акваториях и других видов хозяйственной деятельности.</p>
+                          <div class="branch-subs">
+                            <h5>Что входит в направление</h5>
+                            <ul>
+                              <li><b>Геодезические работы при землеустройстве и кадастре</b> — межевание и вынос границ
+                                земельных участков, координирование объектов недвижимости, подготовка межевых и
+                                технических планов для ЕГРН.</li>
+                              <li><b>Инженерная (строительная) геодезия</b> — изыскания, разбивочные работы, вынос
+                                проекта в натуру, исполнительные съемки, мониторинг осадок и деформаций зданий,
+                                мостов, ГЭС и АЭС, монтаж технологического оборудования.</li>
+                              <li><b>Прочие отраслевые направления</b> — маркшейдерско-геодезическое обеспечение
+                                недропользования, геодезия в лесном и сельском хозяйстве, морская геодезия и
+                                гидрография, навигационно-геодезическое
+                                обеспечение транспорта, работы для нужд обороны.</li>
+                            </ul>
+                          </div>
+                          <div class="branch-info-grid">
+                            <div class="branch-info-cell">
+                              <h5>Предмет изучения</h5>
+                              <p>Геометрия объектов хозяйственной деятельности — земельных участков, инженерных
+                                сооружений, акваторий — на всех этапах жизненного цикла: от изысканий и проектирования
+                                до эксплуатации и мониторинга.</p>
+                            </div>
+                            <div class="branch-info-cell">
+                              <h5>Основные задачи</h5>
+                              <ul>
+                                <li>создание планово-высотного обоснования и специальных сетей (строительных, межевых,
+                                  морских);</li>
+                                <li>вынос в натуру проектных решений и границ, исполнительные съемки;</li>
+                                <li>мониторинг деформаций сооружений и смещений земной поверхности;</li>
+                                <li>съемка суши и дна для проектирования и эксплуатации объектов.</li>
+                              </ul>
+                            </div>
+                            <div class="branch-info-cell">
+                              <h5>Методы и средства</h5>
+                              <p>Электронные тахеометры, ГНСС-оборудование, высокоточные и цифровые
+                                нивелиры, лазерные сканеры, приборы вертикального проектирования, эхолоты (в том числе
+                                многолучевые MBES), гидроакустические системы навигации (USBL, LBL).</p>
+                            </div>
+                            <div class="branch-info-cell">
+                              <h5>Применение</h5>
+                              <p>Кадастр недвижимости и землеустройство, промышленное и гражданское строительство,
+                                транспортная инфраструктура, освоение шельфа и добыча углеводородов, безопасность
+                                мореплавания, дноуглубительные и портовые работы.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 3. Высшая геодезия -->
                   <div class="branch-item" data-category="fundamental">
                     <button class="branch-head" type="button" aria-expanded="false">
                       <span class="branch-title">Высшая геодезия</span>
@@ -1379,6 +1465,29 @@
                             технику измерений для определения поверхности всей Земли или значительных ее частей,
                             построения опорных геодезических сетей и изучения гравитационного поля в единой системе
                             координат.</p>
+                          <div class="branch-subs">
+                            <h5>Что входит в направление</h5>
+                            <ul>
+                              <li><b>Собственно высшая геодезия</b> — установление и поддержание государственных и
+                                международных систем
+                                координат и высот, построение
+                                государственных и международных геодезических сетей, определение параметров земного
+                                эллипсоида и высот квазигеоида, изучение движений земной коры и вращения Земли.</li>
+                              <li><b>Космическая геодезия</b> — теория движения искусственных спутников Земли и решение
+                                по ним геометрических и динамических задач: глобальные сети по наблюдениям ИСЗ, лазерная
+                                дальнометрия (SLR), радиоинтерферометрия со сверхдлинными базами (VLBI), системы отсчета
+                                ITRF и ICRF.</li>
+                              <li><b>Спутниковая геодезия</b> — теория и методы использования ГНСС (ГЛОНАСС, GPS,
+                                Galileo, BeiDou): режимы Static, Kinematic, RTK, PPK, PPP, сети базовых станций (CORS),
+                                передача точного времени, мониторинг смещений в реальном времени.</li>
+                              <li><b>Геодезическая астрономия</b> — определение астрономических широт, долгот и азимутов
+                                направлений (пункты Лапласа) из наблюдений звезд и Солнца, определение уклонений
+                                отвесных линий, служба времени.</li>
+                              <li><b>Геодезическая гравиметрия</b> — измерение ускорения силы тяжести абсолютным и
+                                относительным методами, построение моделей гравитационного поля и геоида (EGM2008),
+                                гравиметрическое редуцирование измерений на эллипсоид.</li>
+                            </ul>
+                          </div>
                           <div class="branch-info-grid">
                             <div class="branch-info-cell">
                               <h5>Предмет изучения</h5>
@@ -1388,23 +1497,22 @@
                             <div class="branch-info-cell">
                               <h5>Основные задачи</h5>
                               <ul>
-                                <li>установление и поддержание государственных систем координат (ГСК-2011, ПЗ-90.11) и
-                                  систем высот (Балтийская система 1977 г.);</li>
-                                <li>построение государственных геодезических сетей: ФАГС, ВГС, СГС-1;</li>
-                                <li>определение параметров земного эллипсоида и высот квазигеоида;</li>
-                                <li>изучение движений земной коры и вращения Земли.</li>
+                                <li>создание и поддержание государственных и глобальных систем координат и высот;</li>
+                                <li>построение опорных геодезических сетей высших классов;</li>
+                                <li>определение параметров эллипсоида, геоида и гравитационного поля;</li>
+                                <li>изучение движений земной коры, полюсов и вращения Земли.</li>
                               </ul>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Методы и средства</h5>
-                              <p>Статические ГНСС-измерения, высокоточное нивелирование I–II классов, астрономические
-                                определения, гравиметрия, лазерная дальнометрия спутников (SLR) и радиоинтерферометрия
-                                (VLBI).</p>
+                              <p>Статические ГНСС-измерения, высокоточное нивелирование, лазерные
+                                дальномерные станции и радиотелескопы РСДБ, астрономические теодолиты и зенит-телескопы,
+                                баллистические и относительные гравиметры, спутниковые миссии GRACE и GOCE.</p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Применение</h5>
-                              <p>Единая координатная основа всех видов съемок и ГИС, оборона и космическая деятельность,
-                                геодинамический мониторинг территории страны.</p>
+                              <p>Координатная основа страны и мира, навигационные системы, геодинамический мониторинг
+                                планеты, изучение внутреннего строения Земли, обеспечение космической деятельности.</p>
                             </div>
                           </div>
                         </div>
@@ -1412,11 +1520,11 @@
                     </div>
                   </div>
 
-                  <!-- Геодезическая гравиметрия -->
-                  <div class="branch-item" data-category="fundamental">
+                  <!-- 4. Дистанционное зондирование Земли -->
+                  <div class="branch-item" data-category="space">
                     <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Геодезическая гравиметрия</span>
-                      <span class="branch-badge">Поле тяжести</span>
+                      <span class="branch-title">Дистанционное зондирование Земли</span>
+                      <span class="branch-badge">Фотограмметрия</span>
                       <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                           fill="none">
                           <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1426,353 +1534,10 @@
                     <div class="branch-body">
                       <div class="branch-body-inner">
                         <div class="branch-body-content">
-                          <p class="branch-lead"><b>Геодезическая гравиметрия</b> — раздел геодезии, изучающий внешнее
-                            гравитационное поле Земли и его изменения в пространстве и времени по результатам измерений
-                            ускорения силы тяжести.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Величина и направление силы тяжести на физической поверхности Земли и вблизи нее;
-                                гравитационные аномалии, вызванные неоднородностями строения земной коры.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>измерение ускорения силы тяжести абсолютным и относительным методами;</li>
-                                <li>построение глобальных и региональных моделей гравитационного поля и геоида
-                                  (EGM2008);</li>
-                                <li>изучение приливных и тектонических изменений поля во времени;</li>
-                                <li>гравиметрическое редуцирование геодезических измерений с физической поверхности на
-                                  эллипсоид.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Наземные пружинные и кварцевые гравиметры, абсолютные баллистические гравиметры,
-                                морские и авиационные гравиметрические комплексы, спутниковая альтиметрия и
-                                градиентометрия (GRACE, GOCE).</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Уточнение фигуры Земли и высот геоида, поиски месторождений нефти, газа и руд, изучение
-                                внутреннего строения планеты, метрология.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Геодезическая астрономия -->
-                  <div class="branch-item" data-category="fundamental space">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Геодезическая астрономия</span>
-                      <span class="branch-badge">Светила и координаты</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Геодезическая астрономия</b> — раздел геодезии, изучающий методы
-                            определения координат точек земной поверхности в пространстве (широт и долгот) и азимутов
-                            направлений из наблюдений небесных светил — звезд и Солнца.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Взаимная связь между координатами небесных светил и координатами точек земной
-                                поверхности; теория и техника высокоточных астрономических наблюдений.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>определение астрономических широт и долгот пунктов;</li>
-                                <li>определение астрономических азимутов направлений (пункты Лапласа);</li>
-                                <li>определение уклонений отвесных линий;</li>
-                                <li>участие в служе времени и изучении неравномерности вращения Земли.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Астрономические теодолиты, зенит-телескопы и пассажные инструменты, призменные
-                                астролябии, приемники точного времени, фундаментальные звездные каталоги.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Ориентирование государственных геодезических сетей, автономное определение координат в
-                                экспедициях и в море, изучение движения полюсов.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Космическая геодезия -->
-                  <div class="branch-item" data-category="fundamental space">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Космическая геодезия</span>
-                      <span class="branch-badge">Орбиты и динамика</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Космическая геодезия</b> — раздел геодезии, рассматривающий теорию
-                            движения небесных объектов и их спутников, в том числе искусственных спутников Земли (ИСЗ),
-                            для решения геометрических и динамических задач геодезии.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Орбитальное движение ИСЗ и его связь с параметрами гравитационного поля и системами
-                                координат; геометрия цепочки «Земля — спутник — наблюдатель».</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>геометрические задачи: построение глобальных сетей по наблюдениям спутников,
-                                  лазерная дальнометрия (SLR), радиоинтерферометрия со сверхдлинными базами (VLBI);</li>
-                                <li>динамические задачи: определение параметров гравитационного поля по возмущениям
-                                  орбит;</li>
-                                <li>установление и поддержание земных и небесных систем отсчета (ITRF, ICRF);</li>
-                                <li>контроль вращения Земли и движения полюсов.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Лазерные дальномерные станции, радиотелескопы РСДБ, доплеровые системы (DORIS),
-                                спутниковые альтиметры и градиентометрические миссии (GRACE, GOCE).</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Глобальные геодезические сети и системы координат, модели геопотенциала,
-                                геодинамический мониторинг планеты, навигация в дальнем космосе.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Спутниковая геодезия -->
-                  <div class="branch-item" data-category="space applied">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Спутниковая геодезия</span>
-                      <span class="branch-badge">ГНСС / GNSS</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Спутниковая геодезия</b> — направление геодезии, рассматривающее
-                            теорию и методы использования ИСЗ — глобальных навигационных спутниковых систем (ГЛОНАСС,
-                            GPS, Galileo, BeiDou) — для высокоточного координатного обеспечения и решения практических
-                            задач.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Алгоритмы обработки кодовых и фазовых спутниковых измерений; источники погрешностей
-                                (ионосфера, тропосфера, многолучевость) и способы их компенсации.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>абсолютное и относительное позиционирование; режимы Static, Kinematic, RTK, PPK,
-                                  PPP;</li>
-                                <li>создание спутниковых геодезических сетей и сетей постоянно действующих базовых
-                                  станций (CORS);</li>
-                                <li>передача точного времени и синхронизация систем;</li>
-                                <li>мониторинг движений земной коры и сооружений в реальном времени.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Многочастотные ГНСС-приемники, антенны Choke Ring, базовые станции и сервисы
-                                дифференциальных поправок, программные комплексы постобработки.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Государственные геодезические сети, кадастровые съемки в режиме RTK, навигация
-                                транспорта и БПЛА, точное земледелие, геоинформационные системы.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Морская геодезия -->
-                  <div class="branch-item" data-category="marine applied">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Морская геодезия</span>
-                      <span class="branch-badge">Морские акватории</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Морская геодезия</b> — раздел геодезии, решающий научные и
-                            прикладные задачи на море: определение формы поверхности и гравитационного поля в океанах,
-                            навигационно-геодезическое обеспечение работ на шельфе.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Топография морской поверхности, рельеф дна и придонное пространство, положение объектов
-                                и сооружений на шельфе и в открытом море.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>определение высот морской поверхности по альтиметрическим данным;</li>
-                                <li>координатная привязка буровых платформ, подводных трубопроводов и кабелей;</li>
-                                <li>создание морских геодезических сетей и съемка шельфа;</li>
-                                <li>навигационно-гидрографическое обеспечение морских операций.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Спутниковая альтиметрия, морские гравиметры, эхолоты, комплексы ГНСС/INS, необитаемые
-                                подводные аппараты с гидроакустическими системами навигации (USBL, LBL).</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Освоение шельфа и добыча углеводородов, демаркация морских границ по Конвенции ООН по
-                                морскому праву, строительство портовых сооружений, военное дело.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Гидрография -->
-                  <div class="branch-item" data-category="marine applied">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Гидрография</span>
-                      <span class="branch-badge">Рельеф дна и навигация</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Гидрография</b> — наука, изучающая жидкую оболочку Земли — океаны,
-                            моря, реки и озера, их берега и рельеф дна — в целях обеспечения безопасности судоходства и
-                            водного строительства.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Глубины и рельеф дна, гидрологический режим (течения, приливы, колебания уровня воды),
-                                береговая полоса и навигационные опасности.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>промерные работы: измерение глубин и съемка рельефа дна;</li>
-                                <li>съемка береговой полосы и съемка навигационных опасностей;</li>
-                                <li>составление морских навигационных карт и лоций;</li>
-                                <li>контроль глубин судоходных каналов и подходов к портам.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Одно- и многолучевые эхолоты (MBES), гидролокаторы бокового обзора, профилографы,
-                                батиметрические лидары, донные марки и станции приливных наблюдений.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Безопасность мореплавания, дноуглубительные и портовые работы, поиск затонувших
-                                объектов, военно-морской флот, подводная археология.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Навигация -->
-                  <div class="branch-item" data-category="applied space">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Навигация</span>
-                      <span class="branch-badge">Движение и маршруты</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Навигация</b> — область науки и техники, изучающая методы и
-                            технологии оперативного определения местоположения, скорости и ориентации движущихся
-                            объектов (наземных, морских, воздушных, космических) и проложения маршрутов.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Процесс непрерывного определения позиции и параметров движения объекта — курса,
-                                скорости, ускорений — в реальном времени с требуемой точностью.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>позиционирование подвижных объектов в реальном времени;</li>
-                                <li>счисление пути и коррекция по внешним сигналам и ориентирам;</li>
-                                <li>комплексирование спутниковых (ГНСС) и инерциальных (ИНС) данных;</li>
-                                <li>маршрутное планирование и проводка по фарватерам и трассам.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>ГНСС-приемники, инерциальные навигационные системы, доплеровские измерители скорости,
-                                радиомаяки, эхолоты, электронные навигационные карты (ECDIS).</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Транспорт и логистика, авиация и флот, беспилотные автомобили и БПЛА, мобильные
-                                навигационные приложения, военное дело.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- ДЗЗ и Фотограмметрия -->
-                  <div class="branch-item" data-category="space applied">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">ДЗЗ и фотограмметрия</span>
-                      <span class="branch-badge">Аэрофото и БПЛА</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Дистанционное зондирование Земли (ДЗЗ) и фотограмметрия</b> —
-                            решение задач измерений по аэрофото- и космическим снимкам (в том числе с беспилотных
-                            воздушных судов — БВС) для получения карт, планов, 3D-моделей и обмеров зданий.</p>
+                          <p class="branch-lead"><b>Дистанционное зондирование Земли (ДЗЗ)</b> — получение информации о
+                            земной поверхности бесконтактными методами (с самолетов, беспилотных воздушных судов и
+                            космических аппаратов) и ее измерительная обработка средствами <b>фотограмметрии</b> для
+                            получения карт, планов, 3D-моделей и обмеров зданий.</p>
                           <div class="branch-info-grid">
                             <div class="branch-info-cell">
                               <h5>Предмет изучения</h5>
@@ -1783,7 +1548,7 @@
                             <div class="branch-info-cell">
                               <h5>Основные задачи</h5>
                               <ul>
-                                <li>аэрофотосъемка и космическая съемка, планирование залетов;</li>
+                                <li>аэрофотосъемка и космическая съемка, планирование полетов и съемки;</li>
                                 <li>фотограмметрическая обработка: внутреннее, взаимное и внешнее ориентирование
                                   снимков;</li>
                                 <li>создание ортофотопланов, ЦМР и трехмерных моделей местности;</li>
@@ -1792,8 +1557,9 @@
                             </div>
                             <div class="branch-info-cell">
                               <h5>Методы и средства</h5>
-                              <p>Метрические аэрофотокамеры, БПЛА, космические аппараты ДЗЗ, цифровые
-                                фотограмметрические станции и программные комплексы (Agisoft Metashape, Pix4D).</p>
+                              <p>Метрические аэрофотокамеры, БВС, БАС, космические аппараты ДЗЗ, воздушное лазерное
+                                сканирование и радиолокационная съемка, цифровые фотограмметрические станции и
+                                программные комплексы (Agisoft Metashape, Pix4D).</p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Применение</h5>
@@ -1806,109 +1572,11 @@
                     </div>
                   </div>
 
-                  <!-- Инженерная геодезия -->
-                  <div class="branch-item" data-category="applied">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Инженерная (прикладная) геодезия</span>
-                      <span class="branch-badge">Строительство и монтаж</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Инженерная (прикладная) геодезия</b> — раздел геодезии,
-                            разрабатывающий методы геодезических работ при изысканиях, проектировании, строительстве и
-                            эксплуатации инженерных сооружений, монтаже промышленного оборудования и разведке недр.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Геометрия инженерных сооружений на всех этапах жизненного цикла — от изысканий и выноса
-                                проекта в натуру до мониторинга деформаций при эксплуатации.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>инженерно-геодезические изыскания и создание строительных сетей;</li>
-                                <li>разбивочные работы: вынос в натуру осей, отметок и габаритов сооружений;</li>
-                                <li>исполнительные съемки и контроль геометрии монтажа;</li>
-                                <li>мониторинг осадок, кренов и деформаций зданий и оборудования.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>Электронные тахеометры, ГНСС-приемники в режиме RTK, высокоточные и цифровые нивелиры,
-                                приборы вертикального проектирования, лазерные сканеры.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Промышленное и гражданское строительство, мосты и тоннели, ГЭС и АЭС, монтаж
-                                технологического оборудования, разведка и добыча полезных ископаемых.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Картография -->
-                  <div class="branch-item" data-category="applied fundamental">
-                    <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Картография</span>
-                      <span class="branch-badge">Проекции и карты</span>
-                      <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
-                          fill="none">
-                          <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </svg></span>
-                    </button>
-                    <div class="branch-body">
-                      <div class="branch-body-inner">
-                        <div class="branch-body-content">
-                          <p class="branch-lead"><b>Картография</b> — наука об исследовании, моделировании и отображении
-                            пространственного расположения объектов и явлений природы и общества; рассматривает методы
-                            математических преобразований, позволяющих изобразить сферическую земную поверхность на
-                            плоскости, а также методы составления и издания карт.</p>
-                          <div class="branch-info-grid">
-                            <div class="branch-info-cell">
-                              <h5>Предмет изучения</h5>
-                              <p>Земная поверхность как объект картографирования, картографические проекции, знаковые
-                                системы и способы изображения, теория картографической генерализации.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Основные задачи</h5>
-                              <ul>
-                                <li>выбор проекций (Гаусса-Крюгера, UTM), масштабов и разграфки с номенклатурой листов;
-                                </li>
-                                <li>составление, оформление и издание карт и атласов;</li>
-                                <li>картографическая генерализация содержания;</li>
-                                <li>создание электронных карт и слоев геоинформационных систем.</li>
-                              </ul>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Методы и средства</h5>
-                              <p>ГИС-пакеты (QGIS, ArcGIS), издательские картографические системы, базы пространственных
-                                данных, технологии веб-картографии.</p>
-                            </div>
-                            <div class="branch-info-cell">
-                              <h5>Применение</h5>
-                              <p>Топографические и тематические карты всех масштабов, навигационные атласы, электронные
-                                картографические сервисы, образование, наука и управление территориями.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Геодезическая метрология -->
+                  <!-- 5. Геодезическая метрология и приборостроение-->
                   <div class="branch-item" data-category="instrument">
                     <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Геодезическая метрология</span>
-                      <span class="branch-badge">Единство измерений</span>
+                      <span class="branch-title">Геодезическая метрология и приборостроение</span>
+                      <span class="branch-badge">Эталоны и приборы</span>
                       <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                           fill="none">
                           <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1921,32 +1589,48 @@
                           <p class="branch-lead"><b>Геодезическая метрология</b> — комплекс научных, технических и
                             нормативных вопросов по обеспечению единства и требуемой точности геодезических измерений,
                             включая разработку эталонов, методик калибровки и поверок средств измерений.</p>
+                          <div class="branch-subs">
+                            <h5>Что входит в направление</h5>
+                            <ul>
+                              <li><b>Метрологическое обеспечение</b> — государственные эталоны единиц величин,
+                                поверочные схемы, методики поверки и калибровки, утверждение типов средств измерений и
+                                аккредитация лабораторий (ФЗ № 102-ФЗ «Об обеспечении единства измерений»).</li>
+                              <li><b>Геодезическое инструментоведение (прибороведение)</b> — принципы устройства, теория
+                                работы, система основных осей приборов, источники инструментальных погрешностей,
+                                исследования, поверки и юстировки.</li>
+                              <li><b>Геодезическое приборостроение</b> — конструирование и производство угломерных,
+                                высотомерных и линейно-измерительных приборов, электронных тахеометров,
+                                ГНСС-аппаратуры, лазерных сканеров и автоматизированных измерительных систем.</li>
+                            </ul>
+                          </div>
                           <div class="branch-info-grid">
                             <div class="branch-info-cell">
                               <h5>Предмет изучения</h5>
                               <p>Метрологические характеристики геодезических приборов и методик измерений; передача
                                 размера единиц величин (длины, угла, ускорения) от эталонов к рабочим средствам
-                                измерений.</p>
+                                измерений; конструкция приборов и их оптико-механические и электронные узлы.</p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Основные задачи</h5>
                               <ul>
                                 <li>создание и поддержание государственных эталонов единиц величин;</li>
                                 <li>разработка поверочных схем и методик поверки и калибровки;</li>
-                                <li>утверждение типов средств измерений, аккредитация лабораторий (ФЗ № 102-ФЗ «Об
-                                  обеспечении единства измерений»);</li>
-                                <li>метрологический контроль и надзор за геодезическими работами.</li>
+                                <li>исследование, испытание, поверка и юстировка приборов;</li>
+                                <li>разработка и внедрение новых приборов и автоматизированных измерительных систем.
+                                </li>
                               </ul>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Методы и средства</h5>
                               <p>Эталонные компараторы и интерферометры, экзаменаторы и коллиматоры, эталонные линейные
-                                базисы, геодезические полигоны, имитаторы ГНСС-сигналов.</p>
+                                базисы, геодезические полигоны, имитаторы ГНСС-сигналов, юстировочные приспособления.
+                              </p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Применение</h5>
                               <p>Поверка и калибровка теодолитов, нивелиров, тахеометров и ГНСС-приемников в
-                                аккредитованных лабораториях, метрологическое сопровождение инженерных изысканий.</p>
+                                аккредитованных лабораториях, метрологическое сопровождение инженерных изысканий,
+                                приборостроительные предприятия.</p>
                             </div>
                           </div>
                         </div>
@@ -1954,11 +1638,11 @@
                     </div>
                   </div>
 
-                  <!-- Геодезическое инструментоведение -->
-                  <div class="branch-item" data-category="instrument applied">
+                  <!-- 6. Геоинформатика -->
+                  <div class="branch-item" data-category="applied">
                     <button class="branch-head" type="button" aria-expanded="false">
-                      <span class="branch-title">Геодезическое инструментоведение</span>
-                      <span class="branch-badge">Приборы и оптико-электроника</span>
+                      <span class="branch-title">Геоинформатика</span>
+                      <span class="branch-badge">ГИС и карты</span>
                       <span class="branch-chevron" aria-hidden="true"><svg width="11" height="7" viewBox="0 0 11 7"
                           fill="none">
                           <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1968,41 +1652,56 @@
                     <div class="branch-body">
                       <div class="branch-body-inner">
                         <div class="branch-body-content">
-                          <p class="branch-lead"><b>Геодезическое инструментоведение</b> (прибороведение) — научная и
-                            инженерная дисциплина, исследующая принципы устройства, теорию работы, методы
-                            конструирования, исследования, поверки, юстировки и условия эксплуатации приборов и систем,
-                            применяемых для геодезических измерений. Подробно приборы изучаются в Теме 02 «Геодезическое
-                            оборудование».</p>
+                          <p class="branch-lead"><b>Геоинформатика</b> — научно-техническое направление, изучающее
+                            методы сбора, хранения, анализа и визуализации пространственных данных, а также технологии
+                            создания и эксплуатации геоинформационных систем (ГИС).</p>
+                          <div class="branch-subs">
+                            <h5>Что входит в направление</h5>
+                            <ul>
+                              <li><b>Собственно геоинформатика</b> — теория пространственных данных, модели данных
+                                (векторные, растровые), базы геоданных, пространственный анализ и моделирование,
+                                инфраструктуры пространственных данных.</li>
+                              <li><b>Геоинформационные системы (ГИС)</b> — проектирование и наполнение ГИС, слои и
+                                атрибутивные данные, геопорталы и веб-сервисы, отраслевые муниципальные и
+                                корпоративные системы.</li>
+                              <li><b>Картография (частично)</b> — картографические проекции (Гаусса-Крюгера, UTM),
+                                масштабы, разграфка и номенклатура листов, знаковые системы и генерализация,
+                                составление и издание карт и атласов в цифровой форме.</li>
+                            </ul>
+                          </div>
                           <div class="branch-info-grid">
                             <div class="branch-info-cell">
                               <h5>Предмет изучения</h5>
-                              <p>Конструкция приборов, их оптико-механические и электронные узлы, система основных осей,
-                                источники инструментальных погрешностей и способы их учета и устранения.</p>
+                              <p>Пространственные данные и их модели, способы отображения сферической земной поверхности
+                                на плоскости, технологии обработки и распространения геоданных.</p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Основные задачи</h5>
                               <ul>
-                                <li>классификация приборов: угломерные, высотомерные, линейно-измерительные, электронные
-                                  тахеометры, ГНСС-аппаратура, лазерные сканеры;</li>
-                                <li>исследование, испытание, поверка и юстировка приборов;</li>
-                                <li>разработка и внедрение автоматизированных измерительных систем.</li>
+                                <li>формирование и ведение баз пространственных данных;</li>
+                                <li>пространственный анализ: оверлеи, зоны видимости и доступности, сетевые задачи;</li>
+                                <li>выбор проекций и создание электронных карт и картографических сервисов;</li>
+                                <li>интеграция данных геодезии, ДЗЗ и кадастра в единые системы.</li>
                               </ul>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Методы и средства</h5>
-                              <p>Теодолиты, нивелиры, светодальномеры, тахеометры, ГНСС-приемники, сканеры; юстировочные
-                                винты, эталонные компараторы и поверочные лаборатории.</p>
+                              <p>ГИС-пакеты (QGIS, ArcGIS), СУБД пространственных данных (PostGIS), языки запросов и
+                                скриптов, веб-картографические библиотеки и геопорталы, издательские картографические
+                                системы.</p>
                             </div>
                             <div class="branch-info-cell">
                               <h5>Применение</h5>
-                              <p>Метрологически исправные приборы для всех видов геодезических работ;
-                                приборостроительные предприятия и аккредитованные лаборатории поверки.</p>
+                              <p>Управление территориями и градостроительство, кадастр и земельные отношения,
+                                транспорт и логистика, экология и природопользование, навигационные и справочные
+                                сервисы, образование и наука.</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -2051,11 +1750,12 @@
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                   <div>
-                    <div class="flashcard-term">Геодезическое инструментоведение</div>
+                    <div class="flashcard-term">Геодезическая метрология</div>
                     <div class="flashcard-hint">Нажмите, чтобы увидеть определение →</div>
                   </div>
-                  <div class="flashcard-def">Раздел геодезии, изучающий физические основы, устройство,
-                    оптико-электронику, поверки, юстировки и эксплуатацию геодезических приборов.</div>
+                  <div class="flashcard-def">Раздел геодезии, обеспечивающий единство и точность измерений: эталоны,
+                    поверки и калибровки, а также инструментоведение и геодезическое приборостроение — устройство,
+                    юстировка и эксплуатация приборов.</div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -2094,10 +1794,11 @@
                     поверхность, гравитационное поле и координаты объектов (ФЗ № 431-ФЗ).</li>
                   <li><span>02</span><b>Главная научная задача</b> — изучение фигуры Земли и гравитационного поля;
                     производственные задачи — координаты, карты, строительство и оборона.</li>
-                  <li><span>03</span>Современная геодезия насчитывает <b>14 тесно связанных разделов</b>: от высшей
-                    геодезии и гравиметрии до спутниковых технологий, ДЗЗ и гидрографии.</li>
-                  <li><span>04</span><b>Геодезическое инструментоведение</b> изучает физику, устройство, поверки и
-                    юстировки приборов (теодолитов, нивелиров, тахеометров, ГНСС-приемников, лазерных сканеров).</li>
+                  <li><span>03</span>Современная геодезия сводится к <b>6 основным разделам</b>: геодезия (топография),
+                    прикладная геодезия, высшая геодезия, ДЗЗ, геодезическая метрология и геоинформатика.</li>
+                  <li><span>04</span><b>Геодезическая метрология</b> (вместе с инструментоведением и приборостроением)
+                    обеспечивает единство измерений: эталоны, поверки и юстировки теодолитов, нивелиров,
+                    тахеометров, ГНСС-приемников и лазерных сканеров.</li>
                 </ol>
               </section>
             </div>
@@ -2223,13 +1924,13 @@
         {
           q: 'Какой раздел геодезии исследует физические основы, оптико-электронику, теорию погрешностей, поверки и юстировки приборов?',
           options: [
-            'Геодезическая астрономия',
-            'Геодезическое инструментоведение',
-            'Морская геодезия',
-            'Картография'
+            'Высшая геодезия',
+            'Геодезическая метрология (инструментоведение и приборостроение)',
+            'Геоинформатика',
+            'Дистанционное зондирование Земли'
           ],
           correct: 1,
-          explain: 'Верно! Геодезическое инструментоведение изучает конструкцию, принципы действия, поверки и юстировки измерительных средств.'
+          explain: 'Верно! Геодезическая метрология вместе с инструментоведением и приборостроением изучает конструкцию, принципы действия, поверки и юстировки измерительных средств и обеспечивает единство измерений.'
         },
         {
           q: 'Чем принципиально отличается поверка геодезического прибора от его юстировки?',
@@ -2245,24 +1946,24 @@
         {
           q: 'Какая ось геодезического угломерного прибора соединяет центр объектива и перекрестие сетки нитей?',
           options: [
-            'Вертикальная ось вращения прибора (ZZ\')',
-            'Горизонтальная ось вращения зрительной трубы (HH\')',
-            'Визирная ось зрительной трубы (VV\')',
-            'Ось цилиндрического уровня (LL\')'
+            'Вертикальная ось вращения прибора (<i class="math">ZZ′</i>)',
+            'Горизонтальная ось вращения зрительной трубы (<i class="math">HH′</i>)',
+            'Визирная ось зрительной трубы (<i class="math">VV′</i>)',
+            'Ось цилиндрического уровня (<i class="math">LL′</i>)'
           ],
           correct: 2,
-          explain: 'Верно! Визирная ось (VV\') — это воображаемая прямая линия через оптический центр объектива и центр сетки нитей.'
+          explain: 'Верно! Визирная ось (<i class="math">VV′</i>) — это воображаемая прямая линия через оптический центр объектива и центр сетки нитей.'
         },
         {
           q: 'К какому классу задач относится геодезический мониторинг осадок и деформаций плотины гидроэлектростанции (ГЭС)?',
           options: [
-            'Геодезическая астрономия',
-            'Инженерная (прикладная) геодезия',
-            'Гидрография',
-            'Космическая геодезия'
+            'Высшая геодезия',
+            'Прикладная геодезия (инженерная, строительная)',
+            'Геоинформатика',
+            'Дистанционное зондирование Земли'
           ],
           correct: 1,
-          explain: 'Верно! Контроль деформаций и осадок сооружений на всех этапах строительства и эксплуатации относится к инженерной (прикладной) геодезии.'
+          explain: 'Верно! Контроль деформаций и осадок сооружений на всех этапах строительства и эксплуатации относится к прикладной (инженерной, строительной) геодезии.'
         }
       ];
 
@@ -2288,7 +1989,7 @@
 
           const qText = document.createElement('div');
           qText.className = 'quiz-q-text';
-          qText.textContent = item.q;
+          qText.innerHTML = item.q;
           qCard.appendChild(qText);
 
           const optList = document.createElement('div');
@@ -2301,7 +2002,7 @@
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'quiz-opt-btn';
-            btn.textContent = optText;
+            btn.innerHTML = optText;
 
             btn.addEventListener('click', function () {
               if (qCard.dataset.answered === 'true') return;
@@ -2344,7 +2045,9 @@
   <script src="../../assets/search-data.js"></script>
   <script src="../../assets/courses-data.js"></script>
   <script src="../../assets/main.js"></script>
-  <script src="../../assets/lesson-blocks.js"></script>
+  <script src="../../assets/encyclopedia-data.js"></script>
+    <script src="../../assets/lesson-blocks.js"></script>
+  <script>(function () {function c() {var b = a.contentDocument || (a.contentWindow && a.contentWindow.document); if (b) {var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'a3e124429f7ce0de',t:'MTc4OTkxMDU3NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d)} } if (document.body) {var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else {var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) {e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c())}} } })();</script>
 </body>
 
 </html>

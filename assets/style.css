@@ -176,3 +176,19 @@ a{color:inherit}
   .hero h1{font-size:43px}
   .article{border-radius:12px}
 }
+
+/* ---------- Статья энциклопедии ---------- */
+.article-def{border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;background:var(--green-soft);padding:18px 20px;margin:0 0 30px}
+.article-def-label{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.article-def p{margin:0;font-size:16.5px;line-height:1.65;color:var(--ink)}
+.article-where h2{font-size:20px;margin:0 0 12px}
+.article-courses{font-size:13.5px;color:var(--muted);margin:0 0 14px}
+.article-courses a{color:var(--green);font-weight:600;text-decoration:none}
+.article-courses a:hover{color:var(--accent-dark)}
+.article-lessons{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:8px}
+.article-lessons li{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff;font-size:14px}
+.article-lessons a{color:var(--green);font-weight:600;text-decoration:none}
+.article-lessons a:hover{color:var(--accent-dark)}
+.article-lessons span{color:var(--muted);font-size:12.5px}
+.article-back a{display:inline-block;margin-top:26px;color:var(--green);font-weight:700;text-decoration:none}
+.article-back a:hover{color:var(--accent-dark)}

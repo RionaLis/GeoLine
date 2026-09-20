@@ -60,7 +60,7 @@
 .gl-lesson-meta{
   background:linear-gradient(135deg,#043f3b,#07554e);
   color:#fff;border-radius:18px;
-  padding:28px 32px 20px;margin:0 0 18px;
+  padding:28px 32px 20px;margin:0 0 26px;
   box-shadow:0 16px 42px rgba(18,54,49,.14);
   overflow:hidden;
 }
@@ -112,20 +112,6 @@
 .gl-tab-panel{display:none!important}
 .gl-tab-panel.active{display:block!important}
 
-/* ---------- Ключевые понятия урока ---------- */
-.gl-concepts{
-  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
-  background:#fff;border:1px solid var(--line);border-radius:14px;
-  padding:13px 16px;margin:0 0 26px;
-}
-.gl-concepts .gl-concepts-label{font:600 10.5px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#7a918b;margin-right:4px}
-.gl-concepts a{
-  display:inline-block;background:var(--green-soft);color:var(--green);
-  border:1px solid var(--green-line);border-radius:99px;
-  padding:6px 13px;font-size:12.5px;font-weight:700;text-decoration:none;
-}
-.gl-concepts a:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-dark)}
-
 /* ---------- Единая ширина поля урока ---------- */
 .gl-lesson-content .wrap,
 .gl-lesson-content .container,
@@ -172,10 +158,53 @@
   .gl-lesson-layout{display:block;width:min(100% - 24px,calc(var(--lesson-w) + 278px));padding-top:20px}
   .gl-sidebar{position:static;max-height:none;margin:0 0 22px}
   .gl-lesson-meta{padding:22px 18px 14px;border-radius:14px}
-  .gl-concepts{padding:11px 13px}
 }
 @media(max-width:560px){
   .gl-lesson-meta h1{font-size:27px!important}
   .gl-meta-summary{font-size:14.5px}
   .next-lesson{align-items:flex-start;gap:10px;flex-direction:column}
 }
+
+/* ---------- Панель «Термины и определения» (кнопка-стрелка справа) ---------- */
+:root{--terms-w:clamp(300px,30vw,440px)}
+@media (max-width:860px){:root{--terms-w:min(100vw,420px)}}
+.gl-terms-toggle{
+  position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:70;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:16px 7px;border:1px solid var(--line);border-right:0;
+  border-radius:12px 0 0 12px;background:#fff;color:var(--green);
+  cursor:pointer;box-shadow:-6px 10px 24px rgba(18,54,49,.10);
+  font:600 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  transition:right .3s,color .2s;
+}
+.gl-terms-toggle i{font-style:normal;font-size:15px;line-height:1;transition:transform .3s}
+.gl-terms-toggle span{writing-mode:vertical-rl}
+.gl-terms-toggle:hover{color:var(--accent-dark)}
+body.gl-terms-open .gl-terms-toggle{right:var(--terms-w)}
+body.gl-terms-open .gl-terms-toggle i{transform:rotate(180deg)}
+.gl-terms-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:69;width:var(--terms-w);
+  background:#fff;border-left:1px solid var(--line);
+  box-shadow:-18px 0 40px rgba(18,54,49,.08);
+  overflow-y:auto;padding:26px 24px 34px;
+  transform:translateX(100%);transition:transform .3s;
+}
+body.gl-terms-open .gl-terms-panel{transform:none}
+body.gl-lesson{transition:padding-right .3s}
+body.gl-terms-open.gl-lesson{padding-right:var(--terms-w)}
+.gl-terms-title{font:700 17px/1.3 Manrope,Arial,sans-serif;color:#092c33;margin:0 0 4px}
+.gl-terms-hint{font:500 11.5px Manrope,Arial,sans-serif;color:#7a918b;margin:0 0 16px}
+.gl-term-item{padding:12px 0;border-bottom:1px solid #e4eeea}
+.gl-term-name{display:inline-block;font:700 13.5px/1.4 Manrope,Arial,sans-serif;color:#0a655d;text-decoration:none}
+.gl-term-name:hover{color:var(--accent-dark)}
+.gl-term-def{margin:6px 0 0;font:400 12.5px/1.65 Manrope,Arial,sans-serif;color:#435b56}
+.gl-terms-sub{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#0a655d;margin:22px 0 10px}
+.gl-terms-sources{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gl-terms-sources li{border:1px solid #dfe9e5;border-radius:10px;padding:9px 12px;background:#f6faf8}
+.gl-terms-sources a{font:600 12px/1.5 Manrope,Arial,sans-serif;color:#0a655d;text-decoration:none}
+.gl-terms-sources a:hover{color:var(--accent-dark)}
+.gl-terms-sources a::after{content:" ↗";color:var(--accent);font-size:11px}
+
+/* ---------- Математические обозначения (шрифт как в LaTeX) ---------- */
+.math{font-family:'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;font-style:italic}
+.math b{font-style:normal}

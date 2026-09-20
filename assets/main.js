@@ -15,8 +15,8 @@
       '<nav class="main-nav" id="nav">' +
         '<a href="' + root + '/index.html" data-nav="home">Главная</a>' +
         '<a href="' + root + '/courses/index.html" data-nav="courses">Курсы</a>' +
-        '<a href="' + root + '/encyclopedia.html" data-nav="encyclopedia">Энциклопедия</a>' +
-        '<a href="' + root + '/news.html" data-nav="news">Новости</a>' +
+        '<a href="' + root + '/encyclopedia/index.html" data-nav="encyclopedia">Энциклопедия</a>' +
+        '<a href="' + root + '/news/index.html" data-nav="news">Новости</a>' +
         '<a href="' + root + '/index.html#about" data-nav="about">О проекте</a>' +
       '</nav>' +
       '<div class="header-search">' +

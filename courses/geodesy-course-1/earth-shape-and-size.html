@@ -1,100 +1,605 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Форма и размеры Земли: геоид, земной эллипсоид, референц-эллипсоиды Бесселя, Красовского и ПЗ-90.">
+  <meta name="description"
+    content="Форма и размеры Земли: геоид, земной эллипсоид, референц-эллипсоиды Бесселя, Красовского и ПЗ-90.">
   <title>Форма и размеры Земли — ГеоЛиния</title>
   <link href="../../assets/style.css" rel="stylesheet">
   <link href="../../assets/lesson-site.css" rel="stylesheet">
-<style>
-/* Стили содержания урока «Форма и размеры Земли» (общая рамка — в lesson-site.css) */
-.earth-lesson .gl-tab-panel{background:#fff;border:1px solid #d5e3de;border-radius:18px;padding:26px 30px;box-shadow:0 18px 50px rgba(18,54,49,.08);margin:0 0 22px}
-.earth-article h2{margin-top:40px;color:#123f39}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:23px 0}
-.stat-grid>div{background:#fff;border:1px solid #dce9e5;padding:20px;border-radius:14px}
-.stat-grid span{display:block;font-size:24px;font-weight:800;color:var(--green)}
-.stat-grid p{font-size:13px;line-height:1.45;margin:5px 0 0;color:#58716b}
-.fact{display:flex;gap:16px;align-items:flex-start;background:var(--green-soft);border-radius:12px;padding:17px 19px;margin:25px 0}
-.fact b{color:var(--green);white-space:nowrap}
-.fact p{margin:0}
-.fact.orange{background:var(--accent-soft)}
-.fact.orange b{color:var(--accent-dark)}
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
-.earth-diagram,.geoid-diagram{margin:0!important;background:#fff;border:1px solid #dce9e5;border-radius:16px;padding:18px}
-.geoid-diagram figcaption{font-size:12px;text-align:center;color:#6a817b}
-.formula{text-align:center;background:var(--green-soft);border:1px solid var(--green-line);color:#043f3b;border-radius:10px;padding:16px;font:600 20px var(--mono);margin:18px 0}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
-.compare>div{border-top:4px solid var(--green);padding:20px;background:#fff;border-radius:5px 5px 13px 13px;box-shadow:0 7px 24px rgba(18,54,49,.06)}
-.compare span{font-weight:800;color:#123f39}
-.compare p{font-size:14px;margin-bottom:0}
-.table-wrap{overflow-x:auto;border-radius:13px;border:1px solid #d8e6e2}
-.earth-article table{border-collapse:collapse;width:100%;min-width:730px;background:#fff}
-.earth-article th{background:#043f3b;color:#fff;text-align:left;padding:14px}
-.earth-article td{padding:14px;border-bottom:1px solid #e2ebe8;vertical-align:top}
-.earth-article tr:last-child td{border-bottom:0}
-.fact-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0!important}
-.fact-list li{list-style:none;background:#fff;border:1px solid #dce9e5;border-radius:12px;padding:17px}
-.geoid-split{grid-template-columns:1fr 1fr}
-.height-card{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;background:#043f3b;color:#fff;padding:20px;border-radius:15px;margin:27px 0}
-.height-card>div{display:flex;align-items:flex-start;gap:10px}
-.height-card span{display:grid;place-items:center;min-width:38px;height:38px;border-radius:50%;background:var(--accent);font-weight:800}
-.height-card p{font-size:12px;line-height:1.4;margin:0;color:#d9e9e5}
-.height-card strong{font-size:22px}
-.summary{background:#fff;border:1px solid #dce9e5;border-radius:16px;padding:5px 24px 22px;margin-top:42px}
-.summary h2{margin-top:24px!important}
-.summary ol{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:0}
-.summary li{list-style:none;display:flex;gap:13px}
-.summary li span{font:700 12px var(--mono);color:var(--accent-dark)}
-.self-check details{background:#fff;border:1px solid #dce9e5;border-radius:11px;margin:10px 0;padding:15px 18px}
-.self-check summary{cursor:pointer;font-weight:700;color:#174c45}
-.self-check details p{margin-bottom:0}
-.type-badge{display:block;width:max-content;margin-top:7px;padding:3px 7px;border-radius:99px;font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.06em}
-.type-badge.global{color:var(--green);background:var(--green-soft)}
-.type-badge.reference{color:var(--accent-dark);background:var(--accent-soft)}
-.geoid-photo{margin:5px 0 22px;background:#f6f8f7;border:1px solid #d5e3de;border-radius:14px;overflow:hidden}
-.geoid-photo img{width:100%!important;display:block;aspect-ratio:2.95/1;object-fit:cover}
-.geoid-photo p{text-align:center;font-size:12px;color:#667e78;margin:8px 14px 10px}
-.geoid-definitions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
-.geoid-definitions>div{padding:18px;border-left:4px solid var(--green);background:var(--green-soft);border-radius:0 12px 12px 0}
-.geoid-definitions b{color:#075c52}
-.geoid-definitions p{margin:6px 0 0}
-@media(max-width:800px){.stat-grid,.split,.compare,.fact-list,.summary ol,.geoid-definitions{grid-template-columns:1fr}.height-card{grid-template-columns:1fr}.geoid-split{grid-template-columns:1fr}}
-@media(max-width:560px){.earth-lesson .gl-tab-panel{padding:20px 16px}.earth-lesson .stat-grid{grid-template-columns:1fr 1fr}}
-</style>
-</head>
-<body class="gl-lesson earth-lesson" data-root="../.." data-page="courses">
-<div class="gl-lesson-layout">
-<aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside>
-<main class="gl-lesson-content">
-<section class="gl-lesson-meta">
-<div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-01">Тема 01. Введение в геодезию</a></div>
-<h1>Форма и размеры Земли</h1>
-<p class="gl-meta-summary">Физическая поверхность, уровенная поверхность, земной эллипсоид и геоид — три представления Земли для разных геодезических задач. Общеземные и референц-эллипсоиды, основные размеры планеты и поверхности отсчёта высот.</p>
-<div class="gl-tabs" role="tablist" aria-label="Разделы урока"><button class="active" data-gl-tab="earth-0" type="button">Размеры Земли</button><button data-gl-tab="earth-1" type="button">Эллипсоид</button><button data-gl-tab="earth-2" type="button">Модели эллипсоидов</button><button data-gl-tab="earth-3" type="button">Геоид и высоты</button><button data-gl-tab="earth-4" type="button">Самопроверка</button></div></section>
-<nav class="gl-concepts" aria-label="Ключевые понятия урока"><span class="gl-concepts-label">Ключевые понятия:</span><a href="../../encyclopedia.html#geoid">Геоид</a><a href="../../encyclopedia.html#zemnoi-ellipsoid">Земной эллипсоид</a><a href="../../encyclopedia.html#urovennaya-poverhnost">Уровенная поверхность</a><a href="../../encyclopedia.html#referenc-ellipsoid">Референц-эллипсоид</a><a href="../../encyclopedia.html#sistema-vysot">Система высот</a></nav>
+  <style>
+    /* Стили содержания урока «Форма и размеры Земли» (общая рамка — в lesson-site.css) */
+    .earth-lesson .gl-tab-panel {
+      background: #fff;
+      border: 1px solid #d5e3de;
+      border-radius: 18px;
+      padding: 26px 30px;
+      box-shadow: 0 18px 50px rgba(18, 54, 49, .08);
+      margin: 0 0 22px
+    }
 
-<section class="section lesson-section"><div class="container"><article class="article earth-article">
-<div class="card gl-tab-panel active" data-gl-panel="earth-0"><section class="learning-goal"><span>Цель урока</span><p>Различать физическую поверхность Земли, земной эллипсоид и геоид; понимать назначение общеземных и референц-эллипсоидов; знать основные числовые характеристики Земли.</p></section>
-<h2 id="dimensions">Земля в числах</h2><p>Земля близка к шару, но слегка сплюснута у полюсов. Для общих оценок используют средний радиус <strong>6 371 км</strong>. Разность экваториального и полярного радиусов составляет около 21,4 км — всего 0,34% радиуса, поэтому на небольшом рисунке сплюснутость почти незаметна.</p>
-<div class="stat-grid"><div><span>6 371 км</span><p>средний радиус</p></div><div><span>8 848,86 м</span><p>Эверест — высшая точка суши над средним уровнем моря</p></div><div><span>≈ −430 м</span><p>побережье Мёртвого моря — самая низкая открытая точка суши</p></div><div><span>−10 984 м</span><p>Бездна Челленджера — глубочайшая известная точка океана</p></div></div>
-<div class="fact"><b>Важно</b><p>Высоту Эвереста и глубину океана отсчитывают относительно уровенной поверхности, близкой к среднему уровню моря, а не от центра Земли.</p></div>
-</div><div class="card gl-tab-panel" data-gl-panel="earth-1"><h2 id="ellipsoid">Земной эллипсоид</h2><div class="split"><div><p><strong>Эллипсоид вращения</strong> получают вращением эллипса вокруг его малой оси. Это гладкая математическая поверхность, удобная для вычисления координат, расстояний и направлений.</p><p>Его задают большой полуосью <i>a</i> (экваториальный радиус) и малой полуосью <i>b</i> (полярный радиус). Сплюснутость:</p><div class="formula">α = (a − b) / a</div><p>Обычно в каталогах указывают <i>a</i> и обратную величину <i>1/α</i>.</p></div><figure class="earth-diagram"><svg viewBox="0 0 440 300" role="img" aria-label="Схема эллипсоида вращения"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b756a"/><stop offset="1" stop-color="#063f3b"/></linearGradient></defs><ellipse cx="220" cy="146" rx="170" ry="126" fill="url(#eg)"/><ellipse cx="220" cy="146" rx="170" ry="38" fill="none" stroke="#8fd0c2" stroke-width="2" stroke-dasharray="7 6"/><line x1="220" y1="146" x2="390" y2="146" stroke="#ff925d" stroke-width="3"/><line x1="220" y1="146" x2="220" y2="20" stroke="#fff" stroke-width="3"/><circle cx="220" cy="146" r="5" fill="#fff"/><text x="300" y="137" fill="#fff" font-size="18">a</text><text x="229" y="78" fill="#fff" font-size="18">b</text><text x="220" y="290" text-anchor="middle" fill="#55736c" font-size="14">a &gt; b — полюса слегка сплюснуты</text></svg></figure></div>
-<div class="compare"><div><span>Общеземной эллипсоид</span><p><b>Математическая модель, наилучшим образом аппроксимирующая поверхность геоида в целом.</b></p><p>Его центр совмещают с центром масс Земли, а малую ось ориентируют вдоль оси вращения. Применяется в глобальных и спутниковых системах координат.</p></div><div><span>Референц-эллипсоид</span><p><b>Эллипсоид, поверхность которого аппроксимирует некоторую региональную часть геоида.</b></p><p>Его положение и ориентацию закрепляют исходными геодезическими данными. Применяется в национальных сетях и картографии.</p></div></div>
-</div><div class="card gl-tab-panel" data-gl-panel="earth-2"><h2 id="reference">Три известных эллипсоида</h2><div class="table-wrap"><table><thead><tr><th>Эллипсоид</th><th>Большая полуось a</th><th>1/α</th><th>Где применялся / применяется</th></tr></thead><tbody><tr><td><b>Бесселя, 1841</b><small class="type-badge reference">референц</small></td><td>6 377 397,155 м</td><td>299,1528</td><td>Исторические сети и карты Центральной Европы, Индонезии и ряда других стран; основа старых региональных датумов.</td></tr><tr><td><b>Красовского, 1940</b><small class="type-badge reference">референц</small></td><td>6 378 245 м</td><td>298,3</td><td>СК-42, СК-63 и топографические карты СССР; встречается в архивных данных стран бывшего СССР.</td></tr><tr><td><b>ПЗ-90.11</b><small class="type-badge global">общеземной</small></td><td>6 378 136 м</td><td>298,25784</td><td>Государственная геоцентрическая система России и координатная основа ГЛОНАСС.</td></tr><tr><td><b>WGS 84</b><small class="type-badge global">общеземной</small></td><td>6 378 137 м</td><td>298,257223563</td><td>Глобальная система GPS, международная навигация, геоинформационные сервисы и веб-карты.</td></tr></tbody></table></div>
-<div class="fact orange"><b>Практический вывод</b><p>Координаты без названия системы координат и датума неоднозначны. При переходе между системами меняется не только эллипсоид: необходимо учитывать положение начала, ориентацию осей, масштаб и эпоху.</p></div>
-<h3>Интересные факты</h3><ul class="fact-list"><li><b>Земля не «идеальная груша».</b> Неровности геоида очень малы относительно её радиуса; в учебных визуализациях их сильно преувеличивают.</li><li><b>Экваториальный диаметр больше полярного</b> примерно на 42,8 км из-за вращения Земли.</li><li><b>ПЗ-90 — не только эллипсоид.</b> Это параметры Земли и геоцентрическая система координат; актуальная реализация — ПЗ-90.11.</li><li><b>GPS и ГЛОНАСС используют разные реализации.</b> GPS связан с WGS 84, ГЛОНАСС — с ПЗ-90.11; для точных работ выполняют преобразование координат.</li></ul>
-</div><div class="card gl-tab-panel" data-gl-panel="earth-3"><h2 id="geoid">Геоид и отсчёт высот</h2><div class="geoid-photo"><img src="../../uploads/geodesy-course-1/earth-surfaces.png" alt="Схема физической поверхности, общеземного и референц-эллипсоидов и геоида"><p>Соотношение физической поверхности Земли, геоида и аппроксимирующих эллипсоидов.</p></div><div class="geoid-definitions"><div><b>Геоид как поверхность океана</b><p>Водная поверхность Мирового океана в условиях отсутствия возмущающих факторов, мысленно продолженная под земной поверхностью.</p></div><div><b>Геоид как фигура Земли</b><p>Фигура, ограниченная уровенной поверхностью, проходящей через начало отсчёта высот.</p></div></div><p>В каждой точке геоида направление силы тяжести перпендикулярно его поверхности. Геоид имеет сложную форму и не задаётся простой формулой: его определяют по гравиметрическим, спутниковым и нивелирным данным.</p>
-<div class="height-card"><div><span>h</span><p><b>Геодезическая высота</b><br>от эллипсоида до точки</p></div><strong>=</strong><div><span>H</span><p><b>Нормальная / ортометрическая высота</b><br>связана с уровенной поверхностью</p></div><strong>+</strong><div><span>N (или ζ)</span><p><b>Высота геоида / аномалия высоты</b><br>разность поверхностей</p></div></div>
-<p>Геоид служит физической основой отсчёта нивелирных высот. В России в практической системе нормальных высот исходной поверхностью является <strong>квазигеоид</strong>, а начало Балтийской системы высот закреплено нулём Кронштадтского футштока. В упрощённом вводном изложении говорят, что высоты отсчитывают от геоида — поверхности среднего уровня моря.</p>
-<section class="summary"><h2>Коротко о главном</h2><ol><li><span>01</span>Для приближённых расчётов Землю принимают за шар радиусом 6 371 км.</li><li><span>02</span>Эллипсоид — гладкая математическая модель для координат и вычислений.</li><li><span>03</span>Общеземной эллипсоид описывает планету целиком, референц-эллипсоид подбирают для региона.</li><li><span>04</span>Геоид — уровенная поверхность поля тяжести и физическая основа высот.</li></ol></section>
-</div><div class="card gl-tab-panel" data-gl-panel="earth-4"><section id="check" class="self-check"><h2>Проверьте себя</h2><details><summary>Почему в точной геодезии Землю нельзя считать шаром?</summary><p>Полярный радиус меньше экваториального, а физическая поверхность и поле тяжести неоднородны. Шар удобен лишь для приближённых задач.</p></details><details><summary>Чем геоид отличается от эллипсоида?</summary><p>Геоид — физически обусловленная неровная уровенная поверхность поля тяжести. Эллипсоид — гладкая математическая модель, заданная параметрами.</p></details><details><summary>Какой эллипсоид связан с ГЛОНАСС?</summary><p>Эллипсоид системы ПЗ-90.11.</p></details><details><summary>От какой поверхности ведут отсчёт нивелирных высот?</summary><p>От уровенной поверхности, связанной со средним уровнем моря; строго для нормальных высот в России — от квазигеоида.</p></details></section>
-</div><div class="next-lesson"><span>Далее в курсе</span><a href="modern-geodetic-instruments.html">Современные геодезические приборы →</a></div>
-</article></div></section>
-</main></div>
-<script>(function(){const root=document.querySelector('.gl-lesson-content'),tabs=[...root.querySelectorAll('[data-gl-tab]')],panels=[...root.querySelectorAll('[data-gl-panel]')];function show(id){tabs.forEach(t=>{const on=t.dataset.glTab===id;t.classList.toggle('active',on);t.setAttribute('aria-selected',String(on))});panels.forEach(p=>p.classList.toggle('active',p.dataset.glPanel===id));}tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.glTab)));show(tabs[0].dataset.glTab);}());</script>
-<script src="../../assets/search-data.js"></script>
-<script src="../../assets/courses-data.js"></script>
-<script src="../../assets/main.js"></script>
-<script src="../../assets/lesson-blocks.js"></script>
-</body></html>
+    .earth-article h2 {
+      margin-top: 40px;
+      color: #123f39
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 23px 0
+    }
+
+    .stat-grid>div {
+      background: #fff;
+      border: 1px solid #dce9e5;
+      padding: 20px;
+      border-radius: 14px
+    }
+
+    .stat-grid span {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--green)
+    }
+
+    .stat-grid p {
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 5px 0 0;
+      color: #58716b
+    }
+
+    .fact {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--green-soft);
+      border-radius: 12px;
+      padding: 17px 19px;
+      margin: 25px 0
+    }
+
+    .fact b {
+      color: var(--green);
+      white-space: nowrap
+    }
+
+    .fact p {
+      margin: 0
+    }
+
+    .fact.orange {
+      background: var(--accent-soft)
+    }
+
+    .fact.orange b {
+      color: var(--accent-dark)
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 32px;
+      align-items: center
+    }
+
+    .earth-diagram,
+    .geoid-diagram {
+      margin: 0 !important;
+      background: #fff;
+      border: 1px solid #dce9e5;
+      border-radius: 16px;
+      padding: 18px
+    }
+
+    .geoid-diagram figcaption {
+      font-size: 12px;
+      text-align: center;
+      color: #6a817b
+    }
+
+    .formula {
+      text-align: center;
+      background: var(--green-soft);
+      border: 1px solid var(--green-line);
+      color: #043f3b;
+      border-radius: 10px;
+      padding: 16px;
+      font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;
+      font-weight: 600;
+      font-size: 21px;
+      margin: 18px 0
+    }
+    .earth-article i { font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif; }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 28px 0
+    }
+
+    .compare>div {
+      border-top: 4px solid var(--green);
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px 5px 13px 13px;
+      box-shadow: 0 7px 24px rgba(18, 54, 49, .06)
+    }
+
+    .compare span {
+      font-weight: 800;
+      color: #123f39
+    }
+
+    .compare p {
+      font-size: 14px;
+      margin-bottom: 0
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 13px;
+      border: 1px solid #d8e6e2
+    }
+
+    .earth-article table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 730px;
+      background: #fff
+    }
+
+    .earth-article th {
+      background: #043f3b;
+      color: #fff;
+      text-align: left;
+      padding: 14px
+    }
+
+    .earth-article td {
+      padding: 14px;
+      border-bottom: 1px solid #e2ebe8;
+      vertical-align: top
+    }
+
+    .earth-article tr:last-child td {
+      border-bottom: 0
+    }
+
+    .fact-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 !important
+    }
+
+    .fact-list li {
+      list-style: none;
+      background: #fff;
+      border: 1px solid #dce9e5;
+      border-radius: 12px;
+      padding: 17px
+    }
+
+    .geoid-split {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .height-card {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      background: #043f3b;
+      color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 27px 0
+    }
+
+    .height-card>div {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px
+    }
+
+    .height-card span {
+      display: grid;
+      place-items: center;
+      min-width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      font-weight: 800;
+      font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;
+      font-style: italic
+    }
+
+    .height-card p {
+      font-size: 12px;
+      line-height: 1.4;
+      margin: 0;
+      color: #d9e9e5
+    }
+
+    .height-card strong {
+      font-size: 22px
+    }
+
+    .summary {
+      background: #fff;
+      border: 1px solid #dce9e5;
+      border-radius: 16px;
+      padding: 5px 24px 22px;
+      margin-top: 42px
+    }
+
+    .summary h2 {
+      margin-top: 24px !important
+    }
+
+    .summary ol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      padding: 0
+    }
+
+    .summary li {
+      list-style: none;
+      display: flex;
+      gap: 13px
+    }
+
+    .summary li span {
+      font: 700 12px var(--mono);
+      color: var(--accent-dark)
+    }
+
+    .self-check details {
+      background: #fff;
+      border: 1px solid #dce9e5;
+      border-radius: 11px;
+      margin: 10px 0;
+      padding: 15px 18px
+    }
+
+    .self-check summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #174c45
+    }
+
+    .self-check details p {
+      margin-bottom: 0
+    }
+
+    .type-badge {
+      display: block;
+      width: max-content;
+      margin-top: 7px;
+      padding: 3px 7px;
+      border-radius: 99px;
+      font: 700 9px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .06em
+    }
+
+    .type-badge.global {
+      color: var(--green);
+      background: var(--green-soft)
+    }
+
+    .type-badge.reference {
+      color: var(--accent-dark);
+      background: var(--accent-soft)
+    }
+
+    .geoid-photo {
+      margin: 5px 0 22px;
+      background: #f6f8f7;
+      border: 1px solid #d5e3de;
+      border-radius: 14px;
+      overflow: hidden
+    }
+
+    .geoid-photo img {
+      width: 100% !important;
+      display: block;
+      aspect-ratio: 2.95/1;
+      object-fit: cover
+    }
+
+    .geoid-photo p {
+      text-align: center;
+      font-size: 12px;
+      color: #667e78;
+      margin: 8px 14px 10px
+    }
+
+    .geoid-definitions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0
+    }
+
+    .geoid-definitions>div {
+      padding: 18px;
+      border-left: 4px solid var(--green);
+      background: var(--green-soft);
+      border-radius: 0 12px 12px 0
+    }
+
+    .geoid-definitions b {
+      color: #075c52
+    }
+
+    .geoid-definitions p {
+      margin: 6px 0 0
+    }
+
+    @media(max-width:800px) {
+
+      .stat-grid,
+      .split,
+      .compare,
+      .fact-list,
+      .summary ol,
+      .geoid-definitions {
+        grid-template-columns: 1fr
+      }
+
+      .height-card {
+        grid-template-columns: 1fr
+      }
+
+      .geoid-split {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:560px) {
+      .earth-lesson .gl-tab-panel {
+        padding: 20px 16px
+      }
+
+      .earth-lesson .stat-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+  </style>
+</head>
+
+<body class="gl-lesson earth-lesson" data-root="../.." data-page="courses">
+  <div class="gl-lesson-layout">
+    <aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside>
+    <main class="gl-lesson-content">
+      <section class="gl-lesson-meta">
+        <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a
+            href="index.html#topic-01">Тема 01. Введение в геодезию</a></div>
+        <h1>Форма и размеры Земли</h1>
+        <p class="gl-meta-summary">Что же мы подразумеваем под фигурой Земли? Физическая поверхность, геоид, земной эллипсоид — три
+          представления Земли для разных геодезических задач.</p>
+        <div class="gl-tabs" role="tablist" aria-label="Разделы урока"><button class="active" data-gl-tab="earth-0"
+            type="button">Размеры Земли</button><button data-gl-tab="earth-1" type="button">Эллипсоид</button><button
+            data-gl-tab="earth-2" type="button">Модели эллипсоидов</button><button data-gl-tab="earth-3"
+            type="button">Геоид и высоты</button><button data-gl-tab="earth-4" type="button">Самопроверка</button></div>
+      </section>
+      <section class="section lesson-section">
+        <div class="container">
+          <article class="article earth-article">
+            <div class="card gl-tab-panel active" data-gl-panel="earth-0">
+              <h2 id="dimensions">Земля в числах</h2>
+              <p>Земля близка к шару, но слегка сплюснута у полюсов. Для общих оценок используют средний радиус
+                <strong>6 371 км</strong>. Разность экваториального и полярного радиусов составляет около 21,4 км —
+                всего 0,34% радиуса, поэтому на небольшом рисунке сплюснутость почти незаметна.</p>
+              <div class="stat-grid">
+                <div><span>6 371 км</span>
+                  <p>средний радиус</p>
+                </div>
+                <div><span>8 848,86 м</span>
+                  <p>Эверест — высшая точка суши над средним уровнем моря</p>
+                </div>
+                <div><span>≈ −430 м</span>
+                  <p>побережье Мёртвого моря — самая низкая открытая точка суши</p>
+                </div>
+                <div><span>−10 984 м</span>
+                  <p>Бездна Челленджера — глубочайшая известная точка океана</p>
+                </div>
+              </div>
+              <div class="fact"><b>Важно</b>
+                <p>Высоту Эвереста и глубину океана отсчитывают относительно уровенной поверхности, близкой к среднему
+                  уровню моря, а не от центра Земли.</p>
+              </div>
+            </div>
+            <div class="card gl-tab-panel" data-gl-panel="earth-1">
+              <h2 id="ellipsoid">Земной эллипсоид</h2>
+              <div class="split">
+                <div>
+                  <p><strong>Эллипсоид вращения</strong> получают вращением эллипса вокруг его малой оси. Это гладкая
+                    математическая поверхность, удобная для вычисления координат, расстояний и направлений.</p>
+                  <p>Его задают большой полуосью <i>a</i> (экваториальный радиус) и малой полуосью <i>b</i> (полярный
+                    радиус). Полярное сжатие (сплюснутость Земли с полюсов):</p>
+                  <div class="formula"><i>α</i> = (<i>a</i> − <i>b</i>) / <i>a</i></div>
+                  <p>Обычно в каталогах указывают <i>a</i> и обратную величину <i>1/α</i>.</p>
+                </div>
+                <figure class="earth-diagram"><svg viewBox="0 0 440 300" role="img"
+                    aria-label="Схема эллипсоида вращения">
+                    <defs>
+                      <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1">
+                        <stop stop-color="#0b756a" />
+                        <stop offset="1" stop-color="#063f3b" />
+                      </linearGradient>
+                    </defs>
+                    <ellipse cx="220" cy="146" rx="170" ry="126" fill="url(#eg)" />
+                    <ellipse cx="220" cy="146" rx="170" ry="38" fill="none" stroke="#8fd0c2" stroke-width="2"
+                      stroke-dasharray="7 6" />
+                    <line x1="220" y1="146" x2="390" y2="146" stroke="#ff925d" stroke-width="3" />
+                    <line x1="220" y1="146" x2="220" y2="20" stroke="#fff" stroke-width="3" />
+                    <circle cx="220" cy="146" r="5" fill="#fff" /><text x="300" y="137" fill="#fff"
+                      font-size="18" font-family="Georgia, 'Times New Roman', serif" font-style="italic">a</text><text x="229" y="78" fill="#fff" font-size="18" font-family="Georgia, 'Times New Roman', serif" font-style="italic">b</text><text x="220"
+                      y="290" text-anchor="middle" fill="#55736c" font-size="14"><tspan font-family="Georgia, serif" font-style="italic">a</tspan> &gt; <tspan font-family="Georgia, serif" font-style="italic">b</tspan> — полюса слегка
+                      сплюснуты</text>
+                  </svg></figure>
+              </div>
+              <div class="compare">
+                <div><span>Общеземной эллипсоид</span>
+                  <p><b>Математическая модель, наилучшим образом аппроксимирующая поверхность геоида в целом.</b></p>
+                  <p>Его центр совмещают с центром масс Земли, а малую ось ориентируют вдоль оси вращения. Применяется в
+                    глобальных и спутниковых системах координат.</p>
+                </div>
+                <div><span>Референц-эллипсоид</span>
+                  <p><b>Эллипсоид, поверхность которого аппроксимирует некоторую региональную часть геоида.</b></p>
+                  <p>Его положение и ориентацию закрепляют исходными геодезическими данными. Применяется в национальных
+                    сетях и картографии.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card gl-tab-panel" data-gl-panel="earth-2">
+              <h2 id="reference">Три известных эллипсоида</h2>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Эллипсоид</th>
+                      <th>Большая полуось <i>a</i></th>
+                      <th>1/<i>α</i></th>
+                      <th>Где применялся / применяется</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Бесселя, 1841</b><small class="type-badge reference">референц</small></td>
+                      <td>6 377 397,155 м</td>
+                      <td>299,1528</td>
+                      <td>Исторические сети и карты Центральной Европы, Индонезии и ряда других стран; основа старых
+                        региональных датумов.</td>
+                    </tr>
+                    <tr>
+                      <td><b>Красовского, 1940</b><small class="type-badge reference">референц</small></td>
+                      <td>6 378 245 м</td>
+                      <td>298,3</td>
+                      <td>СК-42, СК-63 и топографические карты СССР; встречается в архивных данных стран бывшего СССР.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>ПЗ-90.11</b><small class="type-badge global">общеземной</small></td>
+                      <td>6 378 136 м</td>
+                      <td>298,25784</td>
+                      <td>Государственная геоцентрическая система России и координатная основа ГЛОНАСС.</td>
+                    </tr>
+                    <tr>
+                      <td><b>WGS 84</b><small class="type-badge global">общеземной</small></td>
+                      <td>6 378 137 м</td>
+                      <td>298,257223563</td>
+                      <td>Глобальная система GPS, международная навигация, геоинформационные сервисы и веб-карты.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="fact orange"><b>Практический вывод</b>
+                <p>Координаты без названия системы координат и датума неоднозначны. При переходе между системами
+                  меняется не только эллипсоид: необходимо учитывать положение начала, ориентацию осей, масштаб и эпоху.
+                </p>
+              </div>
+              <h3>Интересные факты</h3>
+              <ul class="fact-list">
+                <li><b>Земля не «идеальная груша».</b> Неровности геоида очень малы относительно её радиуса; в учебных
+                  визуализациях их сильно преувеличивают.</li>
+                <li><b>Экваториальный диаметр больше полярного</b> примерно на 42,8 км из-за вращения Земли.</li>
+                <li><b>ПЗ-90 — не только эллипсоид.</b> Это параметры Земли и геоцентрическая система координат;
+                  актуальная реализация — ПЗ-90.11.</li>
+                <li><b>GPS и ГЛОНАСС используют разные реализации.</b> GPS связан с WGS 84, ГЛОНАСС — с ПЗ-90.11; для
+                  точных работ выполняют преобразование координат.</li>
+              </ul>
+            </div>
+            <div class="card gl-tab-panel" data-gl-panel="earth-3">
+              <h2 id="geoid">Геоид и отсчёт высот</h2>
+              <div class="geoid-photo"><img src="../../uploads/geodesy-course-1/earth-surfaces.png"
+                  alt="Схема физической поверхности, общеземного и референц-эллипсоидов и геоида">
+                <p>Соотношение физической поверхности Земли, геоида и аппроксимирующих эллипсоидов.</p>
+              </div>
+              <div class="geoid-definitions">
+                <div><b>Геоид как поверхность океана</b>
+                  <p>Водная поверхность Мирового океана в условиях отсутствия возмущающих факторов, мысленно
+                    продолженная под земной поверхностью.</p>
+                </div>
+                <div><b>Геоид как фигура Земли</b>
+                  <p>Фигура, ограниченная уровенной поверхностью, проходящей через начало отсчёта высот.</p>
+                </div>
+              </div>
+              <p>В каждой точке геоида направление силы тяжести перпендикулярно его поверхности. Геоид имеет сложную
+                форму и не задаётся простой формулой: его определяют по гравиметрическим, спутниковым и нивелирным
+                данным.</p>
+              <div class="height-card">
+                <div><span>h</span>
+                  <p><b>Геодезическая высота</b><br>от эллипсоида до точки</p>
+                </div><strong>=</strong>
+                <div><span>H</span>
+                  <p><b>Нормальная / ортометрическая высота</b><br>связана с уровенной поверхностью</p>
+                </div><strong>+</strong>
+                <div><span>N (или ζ)</span>
+                  <p><b>Высота геоида / аномалия высоты</b><br>разность поверхностей</p>
+                </div>
+              </div>
+              <p>Геоид служит физической основой отсчёта нивелирных высот. В России в практической системе нормальных
+                высот исходной поверхностью является <strong>квазигеоид</strong>, а начало Балтийской системы высот
+                закреплено нулём Кронштадтского футштока. В упрощённом вводном изложении говорят, что высоты отсчитывают
+                от геоида — поверхности среднего уровня моря.</p>
+              <section class="summary">
+                <h2>Коротко о главном</h2>
+                <ol>
+                  <li><span>01</span>Для приближённых расчётов Землю принимают за шар радиусом 6 371 км.</li>
+                  <li><span>02</span>Эллипсоид — гладкая математическая модель для координат и вычислений.</li>
+                  <li><span>03</span>Общеземной эллипсоид описывает планету целиком, референц-эллипсоид подбирают для
+                    региона.</li>
+                  <li><span>04</span>Геоид — уровенная поверхность поля тяжести и физическая основа высот.</li>
+                </ol>
+              </section>
+            </div>
+            <div class="card gl-tab-panel" data-gl-panel="earth-4">
+              <section id="check" class="self-check">
+                <h2>Проверьте себя</h2>
+                <details>
+                  <summary>Почему в точной геодезии Землю нельзя считать шаром?</summary>
+                  <p>Полярный радиус меньше экваториального, а физическая поверхность и поле тяжести неоднородны. Шар
+                    удобен лишь для приближённых задач.</p>
+                </details>
+                <details>
+                  <summary>Чем геоид отличается от эллипсоида?</summary>
+                  <p>Геоид — физически обусловленная неровная уровенная поверхность поля тяжести. Эллипсоид — гладкая
+                    математическая модель, заданная параметрами.</p>
+                </details>
+                <details>
+                  <summary>Какой эллипсоид связан с ГЛОНАСС?</summary>
+                  <p>Эллипсоид системы ПЗ-90.11.</p>
+                </details>
+                <details>
+                  <summary>От какой поверхности ведут отсчёт нивелирных высот?</summary>
+                  <p>От уровенной поверхности, связанной со средним уровнем моря; строго для нормальных высот в России —
+                    от квазигеоида.</p>
+                </details>
+              </section>
+            </div>
+            <div class="next-lesson"><span>Далее в курсе</span><a href="modern-geodetic-instruments.html">Современные
+                геодезические приборы →</a></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>(function () {const root = document.querySelector('.gl-lesson-content'), tabs = [...root.querySelectorAll('[data-gl-tab]')], panels = [...root.querySelectorAll('[data-gl-panel]')]; function show(id) {tabs.forEach(t => {const on = t.dataset.glTab === id; t.classList.toggle('active', on); t.setAttribute('aria-selected', String(on))}); panels.forEach(p => p.classList.toggle('active', p.dataset.glPanel === id));} tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.glTab))); show(tabs[0].dataset.glTab);}());</script>
+  <script src="../../assets/search-data.js"></script>
+  <script src="../../assets/courses-data.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script src="../../assets/encyclopedia-data.js"></script>
+    <script src="../../assets/lesson-blocks.js"></script>
+</body>
+
+</html>
