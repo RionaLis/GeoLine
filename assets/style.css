@@ -58,6 +58,19 @@ a{color:inherit}
 .search-results .search-item b{display:block;font-size:14px;color:var(--ink)}
 .search-results .search-item small{color:var(--muted);font-size:12px}
 .search-results .empty{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+.font-scale-btn{
+  position:relative;flex:0 0 42px;width:42px;height:42px;padding:0;
+  display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);border-radius:10px;
+  background:rgba(255,255,255,.07);color:#d5e6e2;cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
+}
+.font-scale-btn svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.font-scale-btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.38);color:#fff}
+.font-scale-btn:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(255,113,54,.45)}
+.font-scale-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#092c33}
+.font-scale-btn[aria-pressed="true"]:after{
+  content:'+';position:absolute;right:4px;top:2px;font:800 12px/1 Manrope,Arial,sans-serif;color:#092c33;
+}
 .menu-btn{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer;padding:6px}
 
 /* ---------- Главная страница ---------- */
@@ -152,7 +165,8 @@ a{color:inherit}
   .main-nav{display:none;position:absolute;top:72px;left:0;right:0;background:var(--dark);padding:14px 20px;flex-direction:column;gap:4px;border-bottom:1px solid rgba(255,255,255,.12)}
   .main-nav.open{display:flex}
   .main-nav a{padding:10px 4px;font-size:15px}
-  .menu-btn{display:block;order:3}
+  .font-scale-btn{order:3}
+  .menu-btn{display:block;order:4}
   .header-search{flex:1 1 130px;min-width:120px;order:2}
   .brand{order:1;font-size:16px}
   .header-inner{flex-wrap:wrap;gap:14px}

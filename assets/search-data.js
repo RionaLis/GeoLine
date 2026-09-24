@@ -154,13 +154,13 @@ window.SEARCH_DATA = [
     "url": "courses/geodesy-course-1/directional-angle-transfer.html"
   },
   {
-    "title": "Измерение горизонтальных углов теодолитом",
+    "title": "Теодолиты: измерение горизонтальных углов",
     "desc": "Тема 02. Геодезическое оборудование",
     "course": "Геодезия. Курс 1",
     "url": "courses/geodesy-course-1/theodolite-horizontal-angles.html"
   },
   {
-    "title": "Измерение вертикальных углов теодолитом",
+    "title": "Теодолиты: измерение вертикальных углов",
     "desc": "Тема 02. Геодезическое оборудование",
     "course": "Геодезия. Курс 1",
     "url": "courses/geodesy-course-1/theodolite-vertical-angles.html"
@@ -188,24 +188,6 @@ window.SEARCH_DATA = [
     "desc": "Тема 05. Топографическая съёмка местности",
     "course": "Геодезия. Курс 1",
     "url": "courses/geodesy-course-1/coordinate-register-calculation.html"
-  },
-  {
-    "title": "ГНСС-оборудование: принцип работы",
-    "desc": "Принцип работы ГНСС-оборудования: антенна, приёмник, режимы измерений.",
-    "course": "Геодезия. Курс 1",
-    "url": "courses/geodesy-course-1/gnss-equipment.html"
-  },
-  {
-    "title": "Измерение расстояний рулеткой",
-    "desc": "Измерение расстояний рулеткой и лентой: створ, натяжение, поправки.",
-    "course": "Геодезия. Курс 1",
-    "url": "courses/geodesy-course-1/measuring-tape.html"
-  },
-  {
-    "title": "Нитяный дальномер",
-    "desc": "Нитяный дальномер: формула, коэффициент, работа с рейкой.",
-    "course": "Геодезия. Курс 1",
-    "url": "courses/geodesy-course-1/stadia-rangefinder.html"
   },
   {
     "title": "Ортогональная проекция",

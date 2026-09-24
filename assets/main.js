@@ -23,6 +23,12 @@
         '<input type="search" id="searchInput" placeholder="Поиск по сайту…" autocomplete="off" aria-label="Поиск по сайту">' +
         '<div class="search-results" id="searchResults"></div>' +
       '</div>' +
+      '<button class="font-scale-btn" id="fontScaleBtn" type="button" aria-label="Увеличить шрифт" aria-pressed="false" title="Увеличить шрифт">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+          '<path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"></path>' +
+          '<circle cx="12" cy="12" r="3.2"></circle>' +
+        '</svg>' +
+      '</button>' +
       '<button class="menu-btn" id="menuBtn" aria-label="Меню">☰</button>' +
     '</div></header>';
 
@@ -112,5 +118,136 @@
         plural(data.topics.length, 'тема', 'темы', 'тем') + '</span>' +
         '<span class="chip">' + lessons + ' ' + plural(lessons, 'урок', 'урока', 'уроков') + '</span>';
     });
+  }
+
+  /* Режим для проектора: увеличивает только текст, не масштабируя изображения
+     и геометрию блоков. Выбор хранится в пределах вкладки и действует при
+     переходах между всеми страницами сайта. */
+  var FONT_SCALE = 1.25;
+  var FONT_SCALE_STORAGE_KEY = 'geoline-large-text';
+  var fontScaleButton = document.getElementById('fontScaleBtn');
+  var fontScaleEnabled = false;
+  var fontSnapshots = [];
+  var fontRefreshQueued = false;
+
+  function hasOwnText(element) {
+    var tag = element.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'OPTION') return true;
+    for (var i = 0; i < element.childNodes.length; i++) {
+      var node = element.childNodes[i];
+      if (node.nodeType === 3 && /\S/.test(node.nodeValue || '')) return true;
+    }
+    return false;
+  }
+
+  function textElements() {
+    var all = Array.prototype.slice.call(document.body.querySelectorAll('*'));
+    return all.filter(function(element) {
+      if (element.closest && element.closest('#fontScaleBtn')) return false;
+      if (/^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/.test(element.tagName)) return false;
+      return hasOwnText(element);
+    });
+  }
+
+  function enlargeText() {
+    var elements = textElements();
+    var measured = elements.map(function(element) {
+      return {
+        element: element,
+        size: parseFloat(window.getComputedStyle(element).fontSize),
+        value: element.style.getPropertyValue('font-size'),
+        priority: element.style.getPropertyPriority('font-size')
+      };
+    });
+
+    fontSnapshots = [];
+    measured.forEach(function(item) {
+      if (!isFinite(item.size) || item.size <= 0) return;
+      fontSnapshots.push(item);
+      item.element.style.setProperty(
+        'font-size',
+        (Math.round(item.size * FONT_SCALE * 1000) / 1000) + 'px',
+        'important'
+      );
+    });
+  }
+
+  function restoreText() {
+    fontSnapshots.forEach(function(item) {
+      if (item.value) {
+        item.element.style.setProperty('font-size', item.value, item.priority);
+      } else {
+        item.element.style.removeProperty('font-size');
+      }
+    });
+    fontSnapshots = [];
+  }
+
+  function updateFontScaleButton() {
+    var label = fontScaleEnabled ? 'Вернуть обычный размер шрифта' : 'Увеличить шрифт';
+    fontScaleButton.setAttribute('aria-label', label);
+    fontScaleButton.setAttribute('aria-pressed', String(fontScaleEnabled));
+    fontScaleButton.setAttribute('title', label);
+  }
+
+  function rememberFontScale() {
+    try {
+      if (fontScaleEnabled) sessionStorage.setItem(FONT_SCALE_STORAGE_KEY, '1');
+      else sessionStorage.removeItem(FONT_SCALE_STORAGE_KEY);
+    } catch (e) {
+      /* sessionStorage может быть отключён настройками браузера */
+    }
+  }
+
+  function setFontScale(enabled, remember) {
+    if (enabled === fontScaleEnabled) {
+      updateFontScaleButton();
+      return;
+    }
+    fontScaleEnabled = enabled;
+    document.body.classList.toggle('gl-large-text', enabled);
+    if (enabled) enlargeText();
+    else restoreText();
+    updateFontScaleButton();
+    if (remember) rememberFontScale();
+  }
+
+  function refreshEnlargedText() {
+    if (!fontScaleEnabled || fontRefreshQueued) return;
+    fontRefreshQueued = true;
+    window.requestAnimationFrame(function() {
+      fontRefreshQueued = false;
+      if (!fontScaleEnabled) return;
+      restoreText();
+      enlargeText();
+    });
+  }
+
+  function initFontScale() {
+    var saved = false;
+    try { saved = sessionStorage.getItem(FONT_SCALE_STORAGE_KEY) === '1'; } catch (e) {}
+
+    fontScaleButton.addEventListener('click', function() {
+      setFontScale(!fontScaleEnabled, true);
+    });
+
+    /* Поиск и учебные интерактивы могут добавлять подписи после загрузки. */
+    if (window.MutationObserver) {
+      new MutationObserver(function(mutations) {
+        var hasNewContent = mutations.some(function(mutation) {
+          return mutation.type === 'childList' && mutation.addedNodes.length > 0;
+        });
+        if (hasNewContent) refreshEnlargedText();
+      }).observe(document.body, {childList:true, subtree:true});
+    }
+
+    updateFontScaleButton();
+    if (saved) setFontScale(true, false);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFontScale, {once:true});
+  } else {
+    initFontScale();
   }
 })();

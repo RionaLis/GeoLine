@@ -12,14 +12,11 @@
 ## Тема 02. Геодезическое оборудование
 
 - **Современные геодезические приборы** — `modern-geodetic-instruments.html`
-- **ГНСС-оборудование: принцип работы** — `gnss-equipment.html`
 - **Измерение расстояний** — `distance-measurement.html`
-- **Измерение расстояний рулеткой** — `measuring-tape.html`
-- **Нитяный дальномер** — `stadia-rangefinder.html`
 - **Теодолиты: классификация, устройство и принцип работы** — `theodolites-classification-and-design.html`
 - **Теодолиты: поверки и юстировки** — `theodolite-checks.html`
-- **Измерение горизонтальных углов теодолитом** — `theodolite-horizontal-angles.html`
-- **Измерение вертикальных углов теодолитом** — `theodolite-vertical-angles.html`
+- **Теодолиты: измерение горизонтальных углов** — `theodolite-horizontal-angles.html`
+- **Теодолиты: измерение вертикальных углов** — `theodolite-vertical-angles.html`
 - **Нивелиры: классификация, устройство и принцип работы** — `levels-classification-and-design.html`
 - **Нивелиры: поверки и юстировки** — `level-checks-and-adjustments.html`
 

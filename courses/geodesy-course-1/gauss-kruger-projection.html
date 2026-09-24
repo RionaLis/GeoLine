@@ -536,16 +536,10 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-03">Тема 03. Топографические карты и планы</a></div>
 <h1>Проекция Гаусса-Крюгера</h1>
 <p class="gl-meta-summary">Зональная поперечно-цилиндрическая проекция: деление эллипсоида на шестиградусные зоны, осевой меридиан и плоские координаты X, Y. Разграфка и номенклатура топографических карт.</p>
-<nav class="nav-tabs gl-tabs" id="mainNav">
-<button class="nav-tab active" data-tab="tab-coords">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="2" y2="22"></line><line x1="2" x2="22" y1="12" y2="12"></line></svg>
-        1. Проекция Гаусса-Крюгера и координаты (X, Y)
-      </button>
-<button class="nav-tab" data-tab="tab-nomenclature">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9M15 21V9M3 15h18"></path></svg>
-        2. Разграфка и номенклатура топографических карт
-      </button>
-</nav></section>
+<div class="gl-tabs" id="mainNav" role="tablist" aria-label="Разделы урока">
+<button class="active" data-tab="tab-coords" type="button">Проекция Гаусса-Крюгера и координаты (X, Y)</button>
+<button data-tab="tab-nomenclature" type="button">Разграфка и номенклатура топографических карт</button>
+</div></section>
 <main>
 <!-- ================================================================= -->
 <!-- TAB 1: GAUSS-KRUGER PROJECTION & RECTANGULAR COORDINATES (X, Y)   -->
@@ -2356,9 +2350,9 @@ function syncAll() {
   updateTab2Nomenclature();
 }
 
-document.querySelectorAll('.nav-tab').forEach(tab => {
+document.querySelectorAll('#mainNav button').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#mainNav button').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
     tab.classList.add('active');
