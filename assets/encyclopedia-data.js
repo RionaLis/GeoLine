@@ -198,6 +198,7 @@ lessons: {
   "geodetic-astronomy/celestial-sphere.html": ["nebesnaya-sfera", "gorizontnaya-sistema-koordinat", "ekvatorialnaya-sistema-koordinat", "ekliptika", "zenit"],
   "geodetic-astronomy/coord-time-links.html": ["chasovoi-ugol", "zvezdnoe-vremya", "vsemirnoe-vremya", "vysota-svetila", "azimut"],
   "geodetic-astronomy/time-systems.html": ["solnechnoe-vremya", "zvezdnoe-vremya", "uravnenie-vremeni", "vsemirnoe-koordinirovannoe-vremya", "sidericheskii-mesyac"],
+  "geodetic-astronomy/reduction-calculations.html": ["ekvatorialnaya-sistema-koordinat", "chasovoi-ugol", "zvezdnoe-vremya", "vsemirnoe-vremya", "vysota-svetila"],
   "measurement-errors/combinatorics-basics.html": ["perestanovka", "razmeschenie", "sochetanie", "faktorial", "pravilo-proizvedeniya"],
   "measurement-errors/probability-basics.html": ["sluchainyi-eksperiment", "elementarnyi-ishod", "sobytie", "generalnaya-sovokupnost", "vyborka"],
   "measurement-errors/probability-theorems.html": ["klassicheskaya-veroyatnost", "uslovnaya-veroyatnost", "teorema-slozheniya", "teorema-umnozheniya", "polnaya-veroyatnost"]
