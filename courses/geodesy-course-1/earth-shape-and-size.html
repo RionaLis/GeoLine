@@ -109,12 +109,15 @@
       color: #043f3b;
       border-radius: 10px;
       padding: 16px;
-      font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;
+      font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
       font-weight: 600;
       font-size: 21px;
       margin: 18px 0
     }
-    .earth-article i { font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif; }
+
+    .earth-article i {
+      font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
+    }
 
     .compare {
       display: grid;
@@ -216,7 +219,7 @@
       border-radius: 50%;
       background: var(--accent);
       font-weight: 800;
-      font-family: 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;
+      font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
       font-style: italic
     }
 
@@ -384,7 +387,8 @@
         <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a
             href="index.html#topic-01">Тема 01. Введение в геодезию</a></div>
         <h1>Форма и размеры Земли</h1>
-        <p class="gl-meta-summary">Что же мы подразумеваем под фигурой Земли? Физическая поверхность, геоид, земной эллипсоид — три
+        <p class="gl-meta-summary">Что же мы подразумеваем под фигурой Земли? Физическая поверхность, геоид, земной
+          эллипсоид — три
           представления Земли для разных геодезических задач.</p>
         <div class="gl-tabs" role="tablist" aria-label="Разделы урока"><button class="active" data-gl-tab="earth-0"
             type="button">Размеры Земли</button><button data-gl-tab="earth-1" type="button">Эллипсоид</button><button
@@ -398,18 +402,19 @@
               <h2 id="dimensions">Земля в числах</h2>
               <p>Земля близка к шару, но слегка сплюснута у полюсов. Для общих оценок используют средний радиус
                 <strong>6 371 км</strong>. Разность экваториального и полярного радиусов составляет около 21,4 км —
-                всего 0,34% радиуса, поэтому на небольшом рисунке сплюснутость почти незаметна.</p>
+                всего 0,34% радиуса, поэтому на небольшом рисунке сплюснутость почти незаметна.
+              </p>
               <div class="stat-grid">
                 <div><span>6 371 км</span>
                   <p>средний радиус</p>
                 </div>
-                <div><span>8 848,86 м</span>
+                <div><span>8,849 км</span>
                   <p>Эверест — высшая точка суши над средним уровнем моря</p>
                 </div>
-                <div><span>≈ −430 м</span>
+                <div><span>≈ −0,430 км</span>
                   <p>побережье Мёртвого моря — самая низкая открытая точка суши</p>
                 </div>
-                <div><span>−10 984 м</span>
+                <div><span>−10,984 км</span>
                   <p>Бездна Челленджера — глубочайшая известная точка океана</p>
                 </div>
               </div>
@@ -442,10 +447,15 @@
                       stroke-dasharray="7 6" />
                     <line x1="220" y1="146" x2="390" y2="146" stroke="#ff925d" stroke-width="3" />
                     <line x1="220" y1="146" x2="220" y2="20" stroke="#fff" stroke-width="3" />
-                    <circle cx="220" cy="146" r="5" fill="#fff" /><text x="300" y="137" fill="#fff"
-                      font-size="18" font-family="Georgia, 'Times New Roman', serif" font-style="italic">a</text><text x="229" y="78" fill="#fff" font-size="18" font-family="Georgia, 'Times New Roman', serif" font-style="italic">b</text><text x="220"
-                      y="290" text-anchor="middle" fill="#55736c" font-size="14"><tspan font-family="Georgia, serif" font-style="italic">a</tspan> &gt; <tspan font-family="Georgia, serif" font-style="italic">b</tspan> — полюса слегка
-                      сплюснуты</text>
+                    <circle cx="220" cy="146" r="5" fill="#fff" /><text x="300" y="137" fill="#fff" font-size="18"
+                      font-family="Georgia, 'Times New Roman', serif" font-style="italic">a</text><text x="229" y="78"
+                      fill="#fff" font-size="18" font-family="Georgia, 'Times New Roman', serif"
+                      font-style="italic">b</text><text x="220" y="290" text-anchor="middle" fill="#55736c"
+                      font-size="14">
+                      <tspan font-family="Georgia, serif" font-style="italic">a</tspan> &gt; <tspan
+                        font-family="Georgia, serif" font-style="italic">b</tspan> — полюса слегка
+                      сплюснуты
+                    </text>
                   </svg></figure>
               </div>
               <div class="compare">
@@ -476,8 +486,8 @@
                   <tbody>
                     <tr>
                       <td><b>Бесселя, 1841</b><small class="type-badge reference">референц</small></td>
-                      <td>6 377 397,155 м</td>
-                      <td>299,1528</td>
+                      <td>6 377 397 м</td>
+                      <td>299,153</td>
                       <td>Исторические сети и карты Центральной Европы, Индонезии и ряда других стран; основа старых
                         региональных датумов.</td>
                     </tr>
@@ -491,13 +501,13 @@
                     <tr>
                       <td><b>ПЗ-90.11</b><small class="type-badge global">общеземной</small></td>
                       <td>6 378 136 м</td>
-                      <td>298,25784</td>
+                      <td>298,258</td>
                       <td>Государственная геоцентрическая система России и координатная основа ГЛОНАСС.</td>
                     </tr>
                     <tr>
                       <td><b>WGS 84</b><small class="type-badge global">общеземной</small></td>
                       <td>6 378 137 м</td>
-                      <td>298,257223563</td>
+                      <td>298,257</td>
                       <td>Глобальная система GPS, международная навигация, геоинформационные сервисы и веб-карты.</td>
                     </tr>
                   </tbody>
@@ -510,8 +520,6 @@
               </div>
               <h3>Интересные факты</h3>
               <ul class="fact-list">
-                <li><b>Земля не «идеальная груша».</b> Неровности геоида очень малы относительно её радиуса; в учебных
-                  визуализациях их сильно преувеличивают.</li>
                 <li><b>Экваториальный диаметр больше полярного</b> примерно на 42,8 км из-за вращения Земли.</li>
                 <li><b>ПЗ-90 — не только эллипсоид.</b> Это параметры Земли и геоцентрическая система координат;
                   актуальная реализация — ПЗ-90.11.</li>
@@ -544,7 +552,7 @@
                 <div><span>H</span>
                   <p><b>Нормальная / ортометрическая высота</b><br>связана с уровенной поверхностью</p>
                 </div><strong>+</strong>
-                <div><span>N (или ζ)</span>
+                <div><span>N(ζ)</span>
                   <p><b>Высота геоида / аномалия высоты</b><br>разность поверхностей</p>
                 </div>
               </div>
@@ -599,7 +607,7 @@
   <script src="../../assets/courses-data.js"></script>
   <script src="../../assets/main.js"></script>
   <script src="../../assets/encyclopedia-data.js"></script>
-    <script src="../../assets/lesson-blocks.js"></script>
+  <script src="../../assets/lesson-blocks.js"></script>
 </body>
 
 </html>

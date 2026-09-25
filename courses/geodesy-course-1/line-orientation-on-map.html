@@ -1,448 +1,1806 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Ориентирование на карте: астрономический и магнитный азимуты, дирекционный угол, румб, сближение меридианов, магнитное склонение и передача дирекционного угла.">
-<title>Ориентирование на карте — ГеоЛиния</title>
-<link href="../../assets/style.css" rel="stylesheet">
-<link href="../../assets/lesson-site.css" rel="stylesheet">
-<style>
-/* Содержание урока «Ориентирование на карте» */
-.orientation-article{--ol-ink:#163f3a;--ol-muted:#627a74;--ol-line:#d8e7e2;--ol-soft:#f1f8f5;--ol-soft-2:#e7f3ef;--ol-orange:#ff8250;--ol-orange-soft:#fff1e9}
-.orientation-panel{display:none;background:#fff;border:1px solid #d5e3de;border-radius:18px;padding:28px 30px;box-shadow:0 18px 50px rgba(18,54,49,.08);margin:0 0 22px}
-.orientation-panel.active{display:block}
-.orientation-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 0}
-.orientation-tabs button{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.08);color:#dcebe8;border-radius:10px;padding:9px 13px;font:700 12px Manrope,Arial,sans-serif;cursor:pointer;transition:.2s}
-.orientation-tabs button:hover{border-color:var(--accent);background:rgba(255,255,255,.14);color:#fff}
-.orientation-tabs button.active{background:var(--accent);border-color:var(--accent);color:#092c33}
-.orientation-tabs button:focus-visible,.orientation-article button:focus-visible,.orientation-article input:focus-visible,.orientation-article select:focus-visible{outline:3px solid rgba(255,146,93,.48);outline-offset:2px}
-.orientation-article h2{color:var(--ol-ink);margin-top:0}
-.orientation-article h3{color:#1b5048;margin-top:28px}
-.orientation-article p{color:#304d48}
-.orientation-article strong{color:#123f39}
-.orientation-article .formula{font:600 22px/1.4 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;text-align:center;color:#043f3b;background:var(--ol-soft);border:1px solid #cfe4dc;border-radius:12px;padding:15px 18px;margin:20px 0}
-.orientation-article .formula small{display:block;font:500 12px/1.5 Manrope,Arial,sans-serif;color:#6a817b;margin-top:5px}
-.orientation-article .math{font-family:'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;font-style:italic}
-.orientation-article .math b{font-style:normal}
-.orientation-goal{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 13px 13px 0;padding:17px 20px;margin:0 0 24px}
-.orientation-goal b{font:700 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-dark);white-space:nowrap;padding-top:3px}
-.orientation-goal p{margin:0;color:#294e48}
-.orientation-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
-.orientation-map{background:linear-gradient(145deg,#f6fbf9,#e8f4f0);border:1px solid #d6e7e1;border-radius:16px;padding:15px;margin:0}
-.orientation-map svg{display:block;width:100%;height:auto}
-.orientation-map figcaption,.orientation-article figcaption{font-size:12px;line-height:1.5;color:#728780;text-align:center;margin:8px 4px 0}
-.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}
-.concept-card{border:1px solid var(--ol-line);border-radius:13px;padding:16px;background:#fff}
-.concept-card .concept-label{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#0a756a}
-.concept-card h3{font-size:17px;margin:7px 0 5px;color:#173f39}
-.concept-card p{font-size:13.5px;line-height:1.5;margin:0;color:#58716b}
-.note-inline{border-left:4px solid #0a756a;background:var(--ol-soft);border-radius:0 11px 11px 0;padding:15px 18px;margin:20px 0;color:#365951}
-.note-inline.orange{border-left-color:var(--ol-orange);background:var(--ol-orange-soft)}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+    content="Ориентирование на карте: астрономический и магнитный азимуты, дирекционный угол, румб, сближение меридианов, магнитное склонение и передача дирекционного угла.">
+  <title>Ориентирование на карте — ГеоЛиния</title>
+  <link href="../../assets/style.css" rel="stylesheet">
+  <link href="../../assets/lesson-site.css" rel="stylesheet">
+  <style>
+    /* Содержание урока «Ориентирование на карте» */
+    .orientation-article {
+      --ol-ink: #163f3a;
+      --ol-muted: #627a74;
+      --ol-line: #d8e7e2;
+      --ol-soft: #f1f8f5;
+      --ol-soft-2: #e7f3ef;
+      --ol-orange: #ff8250;
+      --ol-orange-soft: #fff1e9
+    }
 
-.static-overview-figure{margin:24px 0 2px;padding:13px;border:1px solid var(--ol-line);border-radius:15px;background:#fbfdfc}
-.static-overview-figure svg{display:block;width:100%;height:auto}
-.static-overview-figure figcaption{font-size:12px;line-height:1.5;color:#627a74;text-align:center;margin:8px 3px 0}
-.angle-definition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 4px}
-.angle-definition-card{border:1px solid var(--ol-line);border-top:4px solid #0a756a;border-radius:7px 7px 13px 13px;background:#fff;padding:16px 17px}
-.angle-definition-card:nth-child(2){border-top-color:#ff8250}
-.angle-definition-card:nth-child(3){border-top-color:#668bc0}
-.angle-definition-card h3{font-size:17px;margin:0 0 10px;color:#174c45}
-.angle-definition-card p{font-size:13px;line-height:1.52;margin:7px 0;color:#58716b}
-.angle-definition-card strong{color:#315850}
-.angle-range{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:7px;background:#f1f8f5;color:#0a756a;font:700 13px 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif}
-.rumb-board{position:relative;margin:20px 0 26px}
-.rumb-board>svg{display:block;width:100%;height:auto}
-.quadrant-window{position:absolute;width:24%;min-height:78px;box-sizing:border-box;padding:11px 13px;border:1px solid #ffd0ba;border-radius:10px;background:rgba(255,249,245,.96);box-shadow:0 7px 18px rgba(18,54,49,.08);color:#315850}
-.quadrant-window b{display:block;color:var(--quadrant);font:800 14px Manrope,Arial,sans-serif;margin-bottom:4px}
-.quadrant-window span{display:block;font:700 12px/1.35 Manrope,Arial,sans-serif;color:var(--quadrant);margin-top:5px}
-.quadrant-window strong{display:block;margin-top:5px;color:var(--quadrant);font:700 14px/1.35 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif}
-.quadrant-window.q1{--quadrant:#d94f45;top:5%;right:2.5%}.quadrant-window.q2{--quadrant:#d88b00;top:5%;left:2.5%}.quadrant-window.q3{--quadrant:#7a5ab8;bottom:5%;left:2.5%}.quadrant-window.q4{--quadrant:#3c76b3;bottom:5%;right:2.5%}
-.rumb-live-layout{display:grid;grid-template-columns:minmax(300px,.95fr) 1.05fr;gap:18px;align-items:center}
-.interactive-rumb-figure{margin:0;padding:10px;border:1px solid var(--ol-line);border-radius:14px;background:#fff}
-.interactive-rumb-figure svg{display:block;width:100%;height:auto}
-.interactive-rumb-figure figcaption{font-size:12px;line-height:1.45;color:#627a74;text-align:center;margin:7px 3px 0}
-.rumb-live-controls{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center}
-.rumb-live-controls>label{font-weight:700;color:#315850;font-size:13px}
-.rumb-live-controls>input[type=range]{grid-column:1/-1;width:100%;accent-color:#0a756a}
-.rumb-live-controls>output{justify-self:end;font:800 17px var(--mono);color:#0a756a}
-.live-values{grid-column:1/-1;display:grid;gap:8px;margin-top:8px}
-.live-values>div{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:10px 12px;border-radius:9px;background:#fff;border:1px solid #dbeae5}
-.live-values span{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#718781}
-.live-values strong{font:800 17px 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;color:#0a756a}
-.rumb-figure{margin:24px 0 26px;padding:12px 14px;border:1px solid var(--ol-line);border-radius:15px;background:#fbfdfc}
-.rumb-figure svg{display:block;width:100%;height:auto}
-.rumb-figure figcaption{font-size:12px;line-height:1.5;color:#627a74;text-align:center;margin:7px 3px 0}
-.rumb-tool,.transfer-tool,.calculator{border:1px solid #cfe4dc;background:#f7fbf9;border-radius:15px;padding:19px 20px;margin:25px 0}
-.tool-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 13px}
-.tool-title h3{margin:0;font-size:18px}
-.tool-title span{font:500 10px var(--mono);color:#7a918b;text-transform:uppercase;letter-spacing:.08em}
-.tool-form{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
-.tool-field{display:grid;gap:5px}
-.tool-field label{font-size:12px;font-weight:700;color:#315850}
-.tool-field input,.tool-field select{width:140px;border:1px solid #c7dcd5;border-radius:8px;background:#fff;padding:9px 10px;font:600 14px Manrope,Arial,sans-serif;color:#173f39}
-.tool-field input:invalid{border-color:#d87557}
-.tool-button{border:0;border-radius:9px;background:#0a756a;color:#fff;padding:10px 16px;font:800 12px Manrope,Arial,sans-serif;cursor:pointer;transition:.2s}
-.tool-button:hover{background:#064f48;transform:translateY(-1px)}
-.tool-result{flex:1;min-width:220px;background:#fff;border:1px solid #dbeae5;border-radius:9px;padding:10px 13px;color:#174c45;line-height:1.45}
-.tool-result b{color:#0a756a}
-.tool-help{font-size:12px;color:#718781;margin:11px 0 0}
-.correction-figures{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 26px}
-.meridian-legend{display:flex;flex-wrap:wrap;gap:12px 20px;margin:18px 0 0;padding:11px 14px;border:1px solid var(--ol-line);border-radius:10px;background:#f7fbf9;color:#58716b;font-size:12px}
-.meridian-legend span{display:flex;align-items:center;gap:7px}
-.legend-line{display:inline-block;width:24px;height:3px;border-radius:3px}.true-line{background:#0a756a}.magnetic-line{background:#ff8250}.grid-line{background:#668bc0}
-.correction-figure{margin:0;padding:12px 12px 10px;border:1px solid var(--ol-line);border-radius:14px;background:#fbfdfc}
-.correction-figure svg{display:block;width:100%;height:auto}
-.correction-figure figcaption{font-size:12px;line-height:1.5;color:#627a74;text-align:center;margin:7px 2px 0}
-.relation-layout{display:grid;grid-template-columns:1fr 1.02fr;gap:24px;align-items:start}
-.relation-map{border:1px solid var(--ol-line);border-radius:15px;padding:14px;background:#fbfdfc}
-.relation-map svg{width:100%;height:auto;display:block}
-.sign-list{display:grid;gap:9px;margin-top:15px}
-.sign-list div{display:grid;grid-template-columns:60px 1fr;gap:10px;align-items:start;padding:10px 12px;border-radius:9px;background:#f5faf8}
-.sign-list b{font:800 14px var(--mono);color:#0a756a}
-.sign-list span{font-size:12.5px;line-height:1.45;color:#536d66}
-.calculator-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
-.calculator-grid .tool-field input{width:100%;box-sizing:border-box}
-.calc-result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}
-.calc-result>div{background:#043f3b;color:#fff;border-radius:10px;padding:12px 14px}
-.calc-result span{display:block;font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:#b9d8d1;margin-bottom:4px}
-.calc-result output{font:800 20px 'Cambria Math','STIX Two Math','Times New Roman',Georgia,serif;color:#ffb18b}
-.warning-box{background:var(--ol-orange-soft);border:1px solid #ffd4c0;border-radius:12px;padding:14px 16px;color:#68483a;font-size:13px;line-height:1.55;margin:20px 0}
-.transfer-figure{margin:24px 0 25px;padding:13px 14px;border:1px solid var(--ol-line);border-radius:15px;background:#fbfdfc}
-.transfer-figure svg{display:block;width:100%;height:auto}
-.transfer-figure figcaption{font-size:12px;line-height:1.5;color:#627a74;text-align:center;margin:8px 3px 0}
-.transfer-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
-.transfer-card{border:1px solid var(--ol-line);border-radius:13px;padding:20px;background:#fff}
-.transfer-card h3{font-size:19px;margin:0 0 10px;color:#15564d}
-.transfer-card p{font-size:15px;line-height:1.62;margin:0;color:#58716b}
-.transfer-example{background:#043f3b;color:#fff;border-radius:14px;padding:19px 21px;margin:24px 0}
-.transfer-example h3{color:#fff;margin:0 0 8px;font-size:18px}
-.transfer-example p{color:#d6e8e3;margin:8px 0;font-size:14px}
-.transfer-example .formula{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);color:#fff;margin:14px 0}
-.transfer-example strong{color:#ffb18b}
-.quiz{margin-top:5px}
-.quiz-item{border:1px solid #dce9e5;border-radius:13px;padding:16px 17px;margin:11px 0;background:#fff}
-.quiz-item legend{font-weight:800;color:#174c45;padding:0 5px;line-height:1.45}
-.quiz-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.quiz-options button{border:1px solid #cfe1db;border-radius:8px;background:#f7fbf9;color:#315850;padding:8px 11px;font:600 12.5px Manrope,Arial,sans-serif;cursor:pointer;text-align:left}
-.quiz-options button:hover{border-color:#0a756a;color:#075c52}
-.quiz-options button.selected{border-color:#0a756a;background:#dff1eb;color:#064f48}
-.quiz-options button.correct{border-color:#268265;background:#dff3e9;color:#135f4c}
-.quiz-options button.wrong{border-color:#d87557;background:#fff0ea;color:#91472f}
-.quiz-feedback{font-size:12px;color:#627a74;margin:9px 0 0;min-height:18px}
-.quiz-score{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#043f3b;border-radius:12px;color:#fff;padding:14px 17px;margin-top:18px}
-.quiz-score strong{color:#ffb18b}
-.quiz-score button{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:8px;padding:8px 11px;font:700 11px Manrope,Arial,sans-serif;cursor:pointer}
-.summary-box{border:1px solid #dce9e5;border-radius:15px;padding:4px 22px 20px;margin-top:24px;background:#fff}
-.summary-box h2{margin-top:23px!important}
-.summary-box ol{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;list-style:none;padding:0}
-.summary-box li{display:grid;grid-template-columns:28px 1fr;gap:9px;font-size:14px;line-height:1.5;color:#315850}
-.summary-box li>span{font:800 11px var(--mono);color:var(--accent-dark);padding-top:3px}
-@media(max-width:900px){.orientation-hero-grid,.relation-layout,.rumb-live-layout{grid-template-columns:1fr}.correction-figures{grid-template-columns:repeat(2,1fr)}.angle-definition-grid{grid-template-columns:1fr}.concept-grid{grid-template-columns:repeat(2,1fr)}.calc-result{grid-template-columns:1fr}.calculator-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.orientation-panel{padding:21px 16px}.orientation-tabs{margin-top:14px}.orientation-tabs button{font-size:11px;padding:8px 10px}.correction-figures{grid-template-columns:1fr}.concept-grid,.transfer-cards,.summary-box ol{grid-template-columns:1fr}.tool-form{display:grid;grid-template-columns:1fr 1fr}.tool-result{grid-column:1/-1}.tool-field input,.tool-field select{width:100%;box-sizing:border-box}.calculator-grid{grid-template-columns:1fr}.calc-result{grid-template-columns:1fr 1fr}.orientation-goal{grid-template-columns:1fr;gap:4px}.orientation-goal b{padding:0}.rumb-board{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rumb-board>svg{grid-column:1/-1;margin-bottom:4px}.quadrant-window{position:static;width:auto;min-height:0}.quadrant-window.q1,.quadrant-window.q2,.quadrant-window.q3,.quadrant-window.q4{top:auto;right:auto;bottom:auto;left:auto}}
+    .orientation-panel {
+      display: none;
+      background: #fff;
+      border: 1px solid #d5e3de;
+      border-radius: 18px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 50px rgba(18, 54, 49, .08);
+      margin: 0 0 22px
+    }
 
-</style>
+    .orientation-panel.active {
+      display: block
+    }
+
+    .orientation-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 20px 0 0
+    }
+
+    .orientation-tabs button {
+      border: 1px solid rgba(255, 255, 255, .23);
+      background: rgba(255, 255, 255, .08);
+      color: #dcebe8;
+      border-radius: 10px;
+      padding: 9px 13px;
+      font: 700 12px Manrope, Arial, sans-serif;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .orientation-tabs button:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, .14);
+      color: #fff
+    }
+
+    .orientation-tabs button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #092c33
+    }
+
+    .orientation-tabs button:focus-visible,
+    .orientation-article button:focus-visible,
+    .orientation-article input:focus-visible,
+    .orientation-article select:focus-visible {
+      outline: 3px solid rgba(255, 146, 93, .48);
+      outline-offset: 2px
+    }
+
+    .orientation-article h2 {
+      color: var(--ol-ink);
+      margin-top: 0
+    }
+
+    .orientation-article h3 {
+      color: #1b5048;
+      margin-top: 28px
+    }
+
+    .orientation-article p {
+      color: #304d48
+    }
+
+    .orientation-article strong {
+      color: #123f39
+    }
+
+    .orientation-article .formula {
+      font: 600 22px/1.4 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
+      text-align: center;
+      color: #043f3b;
+      background: var(--ol-soft);
+      border: 1px solid #cfe4dc;
+      border-radius: 12px;
+      padding: 15px 18px;
+      margin: 20px 0
+    }
+
+    .orientation-article .formula small {
+      display: block;
+      font: 500 12px/1.5 Manrope, Arial, sans-serif;
+      color: #6a817b;
+      margin-top: 5px
+    }
+
+    .orientation-article .math {
+      font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
+      font-style: italic
+    }
+
+    .orientation-article .math b {
+      font-style: normal
+    }
+
+    .orientation-goal {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 15px;
+      align-items: start;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 13px 13px 0;
+      padding: 17px 20px;
+      margin: 0 0 24px
+    }
+
+    .orientation-goal b {
+      font: 700 11px var(--mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      white-space: nowrap;
+      padding-top: 3px
+    }
+
+    .orientation-goal p {
+      margin: 0;
+      color: #294e48
+    }
+
+    .orientation-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 28px;
+      align-items: center
+    }
+
+    .orientation-map {
+      background: linear-gradient(145deg, #f6fbf9, #e8f4f0);
+      border: 1px solid #d6e7e1;
+      border-radius: 16px;
+      padding: 15px;
+      margin: 0
+    }
+
+    .orientation-map svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .orientation-map figcaption,
+    .orientation-article figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #728780;
+      text-align: center;
+      margin: 8px 4px 0
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 25px 0
+    }
+
+    .concept-card {
+      border: 1px solid var(--ol-line);
+      border-radius: 13px;
+      padding: 16px;
+      background: #fff
+    }
+
+    .concept-card .concept-label {
+      font: 700 10px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #0a756a
+    }
+
+    .concept-card h3 {
+      font-size: 17px;
+      margin: 7px 0 5px;
+      color: #173f39
+    }
+
+    .concept-card p {
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin: 0;
+      color: #58716b
+    }
+
+    .note-inline {
+      border-left: 4px solid #0a756a;
+      background: var(--ol-soft);
+      border-radius: 0 11px 11px 0;
+      padding: 15px 18px;
+      margin: 20px 0;
+      color: #365951
+    }
+
+    .note-inline.orange {
+      border-left-color: var(--ol-orange);
+      background: var(--ol-orange-soft)
+    }
+
+    .static-overview-figure {
+      margin: 24px 0 2px;
+      padding: 13px;
+      border: 1px solid var(--ol-line);
+      border-radius: 15px;
+      background: #fbfdfc
+    }
+
+    .static-overview-figure svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .static-overview-figure figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #627a74;
+      text-align: center;
+      margin: 8px 3px 0
+    }
+
+    .orientation-azimuth-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 22px
+    }
+
+    .orientation-azimuth-layout .static-overview-figure {
+      margin: 0
+    }
+
+    .orientation-azimuth-layout .angle-definition-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 0
+    }
+
+    .angle-definition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0 4px
+    }
+
+    .angle-definition-card {
+      border: 1px solid var(--ol-line);
+      border-top: 4px solid #0a756a;
+      border-radius: 7px 7px 13px 13px;
+      background: #fff;
+      padding: 16px 17px
+    }
+
+    .angle-definition-card:nth-child(2) {
+      border-top-color: #ff8250
+    }
+
+    .angle-definition-card:nth-child(3) {
+      border-top-color: #668bc0
+    }
+
+    .angle-definition-card h3 {
+      font-size: 17px;
+      margin: 0 0 10px;
+      color: #174c45
+    }
+
+    .angle-definition-card p {
+      font-size: 13px;
+      line-height: 1.52;
+      margin: 7px 0;
+      color: #58716b
+    }
+
+    .angle-definition-card strong {
+      color: #315850
+    }
+
+    .angle-range {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 5px 8px;
+      border-radius: 7px;
+      background: #f1f8f5;
+      color: #0a756a;
+      font: 700 13px 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif
+    }
+
+    .rumb-board {
+      position: relative;
+      margin: 20px 0 26px
+    }
+
+    .rumb-board>svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .quadrant-window {
+      position: absolute;
+      width: 24%;
+      min-height: 78px;
+      box-sizing: border-box;
+      padding: 11px 13px;
+      border: 1px solid #ffd0ba;
+      border-radius: 10px;
+      background: rgba(255, 249, 245, .96);
+      box-shadow: 0 7px 18px rgba(18, 54, 49, .08);
+      color: #315850
+    }
+
+    .quadrant-window b {
+      display: block;
+      color: var(--quadrant);
+      font: 800 14px Manrope, Arial, sans-serif;
+      margin-bottom: 4px
+    }
+
+    .quadrant-window span {
+      display: block;
+      font: 700 12px/1.35 Manrope, Arial, sans-serif;
+      color: var(--quadrant);
+      margin-top: 5px
+    }
+
+    .quadrant-window strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--quadrant);
+      font: 700 14px/1.35 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif
+    }
+
+    .quadrant-window.q1 {
+      --quadrant: #d94f45;
+      top: 5%;
+      right: 2.5%
+    }
+
+    .quadrant-window.q2 {
+      --quadrant: #d88b00;
+      top: 5%;
+      left: 2.5%
+    }
+
+    .quadrant-window.q3 {
+      --quadrant: #7a5ab8;
+      bottom: 5%;
+      left: 2.5%
+    }
+
+    .quadrant-window.q4 {
+      --quadrant: #3c76b3;
+      bottom: 5%;
+      right: 2.5%
+    }
+
+    .rumb-live-layout {
+      display: grid;
+      grid-template-columns: minmax(300px, .95fr) 1.05fr;
+      gap: 18px;
+      align-items: center
+    }
+
+    .interactive-rumb-figure {
+      margin: 0;
+      padding: 10px;
+      border: 1px solid var(--ol-line);
+      border-radius: 14px;
+      background: #fff
+    }
+
+    .interactive-rumb-figure svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .interactive-rumb-figure figcaption {
+      font-size: 12px;
+      line-height: 1.45;
+      color: #627a74;
+      text-align: center;
+      margin: 7px 3px 0
+    }
+
+    .rumb-live-controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 12px;
+      align-items: center
+    }
+
+    .rumb-live-controls>label {
+      font-weight: 700;
+      color: #315850;
+      font-size: 13px
+    }
+
+    .rumb-live-controls>input[type=range] {
+      grid-column: 1/-1;
+      width: 100%;
+      accent-color: #0a756a
+    }
+
+    .rumb-live-controls>output {
+      justify-self: end;
+      font: 800 17px var(--mono);
+      color: #0a756a
+    }
+
+    .live-values {
+      grid-column: 1/-1;
+      display: grid;
+      gap: 8px;
+      margin-top: 8px
+    }
+
+    .live-values>div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: #fff;
+      border: 1px solid #dbeae5
+    }
+
+    .live-values span {
+      font: 600 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #718781
+    }
+
+    .live-values strong {
+      font: 800 17px 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
+      color: #0a756a
+    }
+
+    .rumb-figure {
+      margin: 24px 0 26px;
+      padding: 12px 14px;
+      border: 1px solid var(--ol-line);
+      border-radius: 15px;
+      background: #fbfdfc
+    }
+
+    .rumb-figure svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .rumb-figure figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #627a74;
+      text-align: center;
+      margin: 7px 3px 0
+    }
+
+    .rumb-tool,
+    .transfer-tool,
+    .calculator {
+      border: 1px solid #cfe4dc;
+      background: #f7fbf9;
+      border-radius: 15px;
+      padding: 19px 20px;
+      margin: 25px 0
+    }
+
+    .tool-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin: 0 0 13px
+    }
+
+    .tool-title h3 {
+      margin: 0;
+      font-size: 18px
+    }
+
+    .tool-title span {
+      font: 500 10px var(--mono);
+      color: #7a918b;
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .tool-form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 12px
+    }
+
+    .tool-field {
+      display: grid;
+      gap: 5px
+    }
+
+    .tool-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #315850
+    }
+
+    .tool-field input,
+    .tool-field select {
+      width: 140px;
+      border: 1px solid #c7dcd5;
+      border-radius: 8px;
+      background: #fff;
+      padding: 9px 10px;
+      font: 600 14px Manrope, Arial, sans-serif;
+      color: #173f39
+    }
+
+    .tool-field input:invalid {
+      border-color: #d87557
+    }
+
+    .tool-button {
+      border: 0;
+      border-radius: 9px;
+      background: #0a756a;
+      color: #fff;
+      padding: 10px 16px;
+      font: 800 12px Manrope, Arial, sans-serif;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .tool-button:hover {
+      background: #064f48;
+      transform: translateY(-1px)
+    }
+
+    .tool-result {
+      flex: 1;
+      min-width: 220px;
+      background: #fff;
+      border: 1px solid #dbeae5;
+      border-radius: 9px;
+      padding: 10px 13px;
+      color: #174c45;
+      line-height: 1.45
+    }
+
+    .tool-result b {
+      color: #0a756a
+    }
+
+    .tool-help {
+      font-size: 12px;
+      color: #718781;
+      margin: 11px 0 0
+    }
+
+    .correction-figures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 22px 0 26px
+    }
+
+    .meridian-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin: 18px 0 0;
+      padding: 11px 14px;
+      border: 1px solid var(--ol-line);
+      border-radius: 10px;
+      background: #f7fbf9;
+      color: #58716b;
+      font-size: 12px
+    }
+
+    .meridian-legend span {
+      display: flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .legend-line {
+      display: inline-block;
+      width: 24px;
+      height: 3px;
+      border-radius: 3px
+    }
+
+    .true-line {
+      background: #0a756a
+    }
+
+    .magnetic-line {
+      background: #ff8250
+    }
+
+    .grid-line {
+      background: #668bc0
+    }
+
+    .correction-figure {
+      margin: 0;
+      padding: 12px 12px 10px;
+      border: 1px solid var(--ol-line);
+      border-radius: 14px;
+      background: #fbfdfc
+    }
+
+    .correction-figure svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .correction-figure figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #627a74;
+      text-align: center;
+      margin: 7px 2px 0
+    }
+
+    .relation-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.02fr;
+      gap: 24px;
+      align-items: start
+    }
+
+    .relation-map {
+      border: 1px solid var(--ol-line);
+      border-radius: 15px;
+      padding: 14px;
+      background: #fbfdfc
+    }
+
+    .relation-map svg {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .sign-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 15px
+    }
+
+    .sign-list div {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: #f5faf8
+    }
+
+    .sign-list b {
+      font: 800 14px var(--mono);
+      color: #0a756a
+    }
+
+    .sign-list span {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #536d66
+    }
+
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 14px
+    }
+
+    .calculator-grid .tool-field input {
+      width: 100%;
+      box-sizing: border-box
+    }
+
+    .calc-result {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 13px
+    }
+
+    .calc-result>div {
+      background: #043f3b;
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 14px
+    }
+
+    .calc-result span {
+      display: block;
+      font: 600 10px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #b9d8d1;
+      margin-bottom: 4px
+    }
+
+    .calc-result output {
+      font: 800 20px 'Cambria Math', 'STIX Two Math', 'Times New Roman', Georgia, serif;
+      color: #ffb18b
+    }
+
+    .warning-box {
+      background: var(--ol-orange-soft);
+      border: 1px solid #ffd4c0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: #68483a;
+      font-size: 13px;
+      line-height: 1.55;
+      margin: 20px 0
+    }
+
+    .transfer-figure {
+      margin: 24px 0 25px;
+      padding: 13px 14px;
+      border: 1px solid var(--ol-line);
+      border-radius: 15px;
+      background: #fbfdfc
+    }
+
+    .transfer-figure svg {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .transfer-figure figcaption {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #627a74;
+      text-align: center;
+      margin: 8px 3px 0
+    }
+
+    .transfer-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0
+    }
+
+    .transfer-card {
+      border: 1px solid var(--ol-line);
+      border-radius: 13px;
+      padding: 20px;
+      background: #fff
+    }
+
+    .transfer-card h3 {
+      font-size: 19px;
+      margin: 0 0 10px;
+      color: #15564d
+    }
+
+    .transfer-card p {
+      font-size: 15px;
+      line-height: 1.62;
+      margin: 0;
+      color: #58716b
+    }
+
+    .transfer-example {
+      background: #043f3b;
+      color: #fff;
+      border-radius: 14px;
+      padding: 19px 21px;
+      margin: 24px 0
+    }
+
+    .transfer-example h3 {
+      color: #fff;
+      margin: 0 0 8px;
+      font-size: 18px
+    }
+
+    .transfer-example p {
+      color: #d6e8e3;
+      margin: 8px 0;
+      font-size: 14px
+    }
+
+    .transfer-example .formula {
+      background: rgba(255, 255, 255, .09);
+      border-color: rgba(255, 255, 255, .18);
+      color: #fff;
+      margin: 14px 0
+    }
+
+    .transfer-example strong {
+      color: #ffb18b
+    }
+
+    .quiz {
+      margin-top: 5px
+    }
+
+    .quiz-item {
+      border: 1px solid #dce9e5;
+      border-radius: 13px;
+      padding: 16px 17px;
+      margin: 11px 0;
+      background: #fff
+    }
+
+    .quiz-item legend {
+      font-weight: 800;
+      color: #174c45;
+      padding: 0 5px;
+      line-height: 1.45
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px
+    }
+
+    .quiz-options button {
+      border: 1px solid #cfe1db;
+      border-radius: 8px;
+      background: #f7fbf9;
+      color: #315850;
+      padding: 8px 11px;
+      font: 600 12.5px Manrope, Arial, sans-serif;
+      cursor: pointer;
+      text-align: left
+    }
+
+    .quiz-options button:hover {
+      border-color: #0a756a;
+      color: #075c52
+    }
+
+    .quiz-options button.selected {
+      border-color: #0a756a;
+      background: #dff1eb;
+      color: #064f48
+    }
+
+    .quiz-options button.correct {
+      border-color: #268265;
+      background: #dff3e9;
+      color: #135f4c
+    }
+
+    .quiz-options button.wrong {
+      border-color: #d87557;
+      background: #fff0ea;
+      color: #91472f
+    }
+
+    .quiz-feedback {
+      font-size: 12px;
+      color: #627a74;
+      margin: 9px 0 0;
+      min-height: 18px
+    }
+
+    .quiz-score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      background: #043f3b;
+      border-radius: 12px;
+      color: #fff;
+      padding: 14px 17px;
+      margin-top: 18px
+    }
+
+    .quiz-score strong {
+      color: #ffb18b
+    }
+
+    .quiz-score button {
+      border: 1px solid rgba(255, 255, 255, .28);
+      background: transparent;
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 11px;
+      font: 700 11px Manrope, Arial, sans-serif;
+      cursor: pointer
+    }
+
+    .summary-box {
+      border: 1px solid #dce9e5;
+      border-radius: 15px;
+      padding: 4px 22px 20px;
+      margin-top: 24px;
+      background: #fff
+    }
+
+    .summary-box h2 {
+      margin-top: 23px !important
+    }
+
+    .summary-box ol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 20px;
+      list-style: none;
+      padding: 0
+    }
+
+    .summary-box li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #315850
+    }
+
+    .summary-box li>span {
+      font: 800 11px var(--mono);
+      color: var(--accent-dark);
+      padding-top: 3px
+    }
+
+    @media(max-width:900px) {
+
+      .orientation-hero-grid,
+      .relation-layout,
+      .rumb-live-layout,
+      .orientation-azimuth-layout {
+        grid-template-columns: 1fr
+      }
+
+      .correction-figures {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .angle-definition-grid {
+        grid-template-columns: 1fr
+      }
+
+      .concept-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .calc-result {
+        grid-template-columns: 1fr
+      }
+
+      .calculator-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media(max-width:620px) {
+      .orientation-panel {
+        padding: 21px 16px
+      }
+
+      .orientation-tabs {
+        margin-top: 14px
+      }
+
+      .orientation-tabs button {
+        font-size: 11px;
+        padding: 8px 10px
+      }
+
+      .correction-figures {
+        grid-template-columns: 1fr
+      }
+
+      .concept-grid,
+      .transfer-cards,
+      .summary-box ol {
+        grid-template-columns: 1fr
+      }
+
+      .tool-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr
+      }
+
+      .tool-result {
+        grid-column: 1/-1
+      }
+
+      .tool-field input,
+      .tool-field select {
+        width: 100%;
+        box-sizing: border-box
+      }
+
+      .calculator-grid {
+        grid-template-columns: 1fr
+      }
+
+      .calc-result {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .orientation-goal {
+        grid-template-columns: 1fr;
+        gap: 4px
+      }
+
+      .orientation-goal b {
+        padding: 0
+      }
+
+      .rumb-board {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px
+      }
+
+      .rumb-board>svg {
+        grid-column: 1/-1;
+        margin-bottom: 4px
+      }
+
+      .quadrant-window {
+        position: static;
+        width: auto;
+        min-height: 0
+      }
+
+      .quadrant-window.q1,
+      .quadrant-window.q2,
+      .quadrant-window.q3,
+      .quadrant-window.q4 {
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto
+      }
+    }
+  </style>
 </head>
+
 <body class="gl-lesson" data-root="../.." data-page="courses">
-<div class="gl-lesson-layout">
-<aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside>
-<main class="gl-lesson-content">
-<section class="gl-lesson-meta">
-<div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-04">Тема 04. Системы координат и ориентирование</a></div>
-<h1>Ориентирование на карте</h1>
-<p class="gl-meta-summary">Как задать направление линии на карте: от исходного меридиана к азимуту, дирекционному углу и румбу — с учётом сближения меридианов и склонения магнитной стрелки.</p>
-<div class="orientation-tabs" role="tablist" aria-label="Разделы урока">
-<button class="active" type="button" role="tab" aria-selected="true" data-orientation-tab="orientation-0">Ориентирование</button>
-<button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-1">Азимуты и α</button>
-<button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-2">Румб</button>
-<button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-3">Связи и поправки</button>
-<button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-4">Передача α</button>
-<button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-5">Самопроверка</button>
-</div>
-</section>
+  <div class="gl-lesson-layout">
+    <aside class="gl-sidebar" data-course="geodesy-course-1" aria-label="Разделы курса"></aside>
+    <main class="gl-lesson-content">
+      <section class="gl-lesson-meta">
+        <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a
+            href="index.html#topic-04">Тема 04. Системы координат и ориентирование</a></div>
+        <h1>Ориентирование на карте</h1>
+        <p class="gl-meta-summary">Как задать направление линии на карте: от исходного меридиана к азимуту,
+          дирекционному углу и румбу — с учётом сближения меридианов и склонения магнитной стрелки.</p>
+        <div class="orientation-tabs" role="tablist" aria-label="Разделы урока">
+          <button class="active" type="button" role="tab" aria-selected="true"
+            data-orientation-tab="orientation-0">Ориентирование</button>
+          <button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-1">Азимуты и
+            α</button>
+          <button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-2">Румб</button>
+          <button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-3">Связи и
+            поправки</button>
+          <button type="button" role="tab" aria-selected="false" data-orientation-tab="orientation-4">Передача
+            α</button>
+          <button type="button" role="tab" aria-selected="false"
+            data-orientation-tab="orientation-5">Самопроверка</button>
+        </div>
+      </section>
 
-<section class="section lesson-section"><div class="container"><article class="article orientation-article">
+      <section class="section lesson-section">
+        <div class="container">
+          <article class="article orientation-article">
 
-<div class="orientation-panel active" role="tabpanel" data-orientation-panel="orientation-0">
-<div class="orientation-goal"><b>Цель урока</b><p>Научиться читать направление линии на карте и уверенно переходить между истинным, магнитным и координатным способами его задания.</p></div>
-<div class="orientation-hero-grid">
-<div>
-<h2>Ориентирование линий</h2>
-<p><strong>Ориентировать линию</strong> — значит найти её направление относительно какого-либо другого направления, принимаемого за исходное (известное) направление. В зависимости от выбранного исходного направления получают астрономический (истинный) азимут, магнитный азимут или дирекционный угол.</p>
-<p>Например, одной фразы «дорога идёт на северо-восток» недостаточно для точной работы. Ориентирующий угол позволяет записать направление числом и использовать его в расчётах, разбивке и передаче координат.</p>
-</div>
+            <div class="orientation-panel active" role="tabpanel" data-orientation-panel="orientation-0">
+              <div class="orientation-hero-grid">
+                <div>
+                  <h2>Ориентирование линий</h2>
+                  <p><strong>Ориентировать линию</strong> — значит найти её направление относительно какого-либо другого
+                    направления, принимаемого за исходное (известное) направление. В зависимости от выбранного исходного
+                    направления получают астрономический (истинный) азимут, магнитный азимут или дирекционный угол.</p>
+                </div>
 
-</div>
-<div class="concept-grid">
-<div class="concept-card"><span class="concept-label">01 · линия</span><h3>Что задаём?</h3><p>Направление линии от начальной точки к конечной, а не обратное направление. При развороте на 180° угол меняется.</p></div>
-<div class="concept-card"><span class="concept-label">02 · начало отсчёта</span><h3>Откуда считаем?</h3><p>От северного направления выбранного меридиана: истинного, магнитного или осевого меридиана зоны.</p></div>
-<div class="concept-card"><span class="concept-label">03 · отсчёт</span><h3>Как считаем?</h3><p>Для азимута и дирекционного угла — по часовой стрелке, от 0° до 360°. Для румба — острый угол 0–90° и четверть.</p></div>
-</div>
-<div class="note-inline"><strong>Важно:</strong> истинный азимут, магнитный азимут и дирекционный угол могут описывать одну и ту же линию, но отсчитываются от разных северных направлений. Сначала определите «север», а уже потом сравнивайте числа.</div>
-</div>
+              </div>
+              <div class="concept-grid">
+                <div class="concept-card"><span class="concept-label">01 · линия</span>
+                  <h3>Что задаём?</h3>
+                  <p>Направление линии от начальной точки к конечной, а не обратное направление. При развороте на 180°
+                    угол меняется.</p>
+                </div>
+                <div class="concept-card"><span class="concept-label">02 · начало отсчёта</span>
+                  <h3>Откуда считаем?</h3>
+                  <p>От северного направления выбранного меридиана: истинного, магнитного или осевого меридиана зоны.
+                  </p>
+                </div>
+                <div class="concept-card"><span class="concept-label">03 · отсчёт</span>
+                  <h3>Как считаем?</h3>
+                  <p>Для азимута и дирекционного угла — по часовой стрелке, от 0° до 360°. Для румба — острый угол 0–90°
+                    и четверть.</p>
+                </div>
+              </div>
+              <div class="note-inline"><strong>Важно:</strong> истинный азимут, магнитный азимут и дирекционный угол
+                могут описывать одну и ту же линию, но отсчитываются от разных северных направлений. Сначала определите
+                «север», а уже потом сравнивайте числа.</div>
+            </div>
 
-<div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-1">
-<h2>Астрономический (истинный) азимут, магнитный азимут и дирекционный угол</h2>
-<p>Для ориентирования линии выбирают исходное направление — истинный (астрономический) меридиан, магнитный меридиан или осевой меридиан.</p>
+            <div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-1">
+              <h2>Астрономический (истинный) азимут, магнитный азимут и дирекционный угол</h2>
+              <p>Для ориентирования линии выбирают исходное направление — истинный (астрономический) меридиан, магнитный
+                меридиан или осевой меридиан.</p>
 
-<div class="angle-definition-grid">
-<div class="angle-definition-card"><h3>Астрономический (истинный) азимут <span class="math">A</span></h3><p><strong>Исходное направление — истинный (астрономический) меридиан.</strong></p><p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления истинного (астрономического) меридиана до заданного направления.</p><div class="angle-range">0° ≤ A ≤ 360°</div></div>
-<div class="angle-definition-card"><h3>Магнитный азимут <span class="math">A<sup>М</sup></span></h3><p><strong>Исходное направление — магнитный меридиан.</strong></p><p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления магнитного меридиана до заданного направления.</p><div class="angle-range">0° ≤ A<sup>М</sup> ≤ 360°</div></div>
-<div class="angle-definition-card"><h3>Дирекционный угол <span class="math">α</span></h3><p><strong>Исходное направление — осевой меридиан.</strong></p><p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления осевого меридиана до заданного направления.</p><div class="angle-range">0° ≤ α ≤ 360°</div></div>
-</div>
-<figure class="static-overview-figure">
-<svg viewBox="0 0 520 300" role="img" aria-label="Статичная схема трёх меридианов, линии AB и ориентирующих углов">
-<defs><marker id="staticDirectionArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39"/></marker><marker id="staticAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0"/></marker><marker id="staticTrueArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a"/></marker><marker id="staticMagneticArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250"/></marker></defs>
-<rect x="15" y="15" width="490" height="270" rx="15" fill="#f7fcfa" stroke="#d7e8e2"/>
-<line x1="260" y1="245" x2="260" y2="45" stroke="#668bc0" stroke-width="3"/><line x1="260" y1="245" x2="297" y2="49" stroke="#0a756a" stroke-width="3"/><line x1="260" y1="245" x2="229" y2="48" stroke="#ff8250" stroke-width="3"/><line x1="260" y1="245" x2="415" y2="163" stroke="#173f39" stroke-width="3"/>
-<path d="M260 200 A45 45 0 0 1 299.8 224.0" fill="none" stroke="#668bc0" stroke-width="2.5" marker-end="url(#staticAlphaArrow)"/><path d="M277.7 161.9 A85 85 0 0 1 335.1 205.3" fill="none" stroke="#0a756a" stroke-width="2.5" marker-end="url(#staticTrueArrow)"/><path d="M238.3 121.9 A125 125 0 0 1 370.5 186.5" fill="none" stroke="#ff8250" stroke-width="2.5" marker-end="url(#staticMagneticArrow)"/>
-<circle cx="260" cy="245" r="6" fill="#043f3b"/><circle cx="415" cy="163" r="5" fill="#043f3b"/><text x="260" y="28" text-anchor="middle" fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">осевой меридиан</text><text x="330" y="35" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="145" y="35" fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text x="422" y="159" fill="#173f39" font-size="12" font-weight="700" font-family="Manrope,Arial">AB</text><text x="292" y="192" fill="#4e709f" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text><text x="320" y="165" fill="#075c52" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">A</text><text x="322" y="119" fill="#be5733" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">A<tspan baseline-shift="super" font-size="10">М</tspan></text><text x="250" y="267" fill="#173f39" font-size="15" font-weight="700" font-family="Manrope,Arial">A</text><text x="423" y="180" fill="#173f39" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text>
-</svg>
-<figcaption>Статичная схема построена по тому же принципу, что и схема связей на четвёртой вкладке: три исходных направления, линия AB и три угла.</figcaption>
-</figure>
-</div>
+              <div class="orientation-azimuth-layout">
+                <figure class="static-overview-figure">
+                  <svg viewBox="0 0 520 300" role="img"
+                    aria-label="Статичная схема трёх меридианов, линии AB и ориентирующих углов">
+                    <defs>
+                      <marker id="staticDirectionArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39" />
+                      </marker>
+                      <marker id="staticAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0" />
+                      </marker>
+                      <marker id="staticTrueArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a" />
+                      </marker>
+                      <marker id="staticMagneticArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250" />
+                      </marker>
+                    </defs>
+                    <rect x="15" y="15" width="490" height="270" rx="15" fill="#f7fcfa" stroke="#d7e8e2" />
+                    <line x1="260" y1="245" x2="260" y2="45" stroke="#668bc0" stroke-width="3" />
+                    <line x1="260" y1="245" x2="297" y2="49" stroke="#0a756a" stroke-width="3" />
+                    <line x1="260" y1="245" x2="229" y2="48" stroke="#ff8250" stroke-width="3" />
+                    <line x1="260" y1="245" x2="415" y2="163" stroke="#173f39" stroke-width="3" />
+                    <path d="M260 200 A45 45 0 0 1 299.8 224.0" fill="none" stroke="#668bc0" stroke-width="2.5"
+                      marker-end="url(#staticAlphaArrow)" />
+                    <path d="M277.7 161.9 A85 85 0 0 1 335.1 205.3" fill="none" stroke="#0a756a" stroke-width="2.5"
+                      marker-end="url(#staticTrueArrow)" />
+                    <path d="M238.3 121.9 A125 125 0 0 1 370.5 186.5" fill="none" stroke="#ff8250" stroke-width="2.5"
+                      marker-end="url(#staticMagneticArrow)" />
+                    <circle cx="260" cy="245" r="6" fill="#043f3b" />
+                    <circle cx="415" cy="163" r="5" fill="#043f3b" /><text x="260" y="28" text-anchor="middle"
+                      fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">осевой
+                      меридиан</text><text x="330" y="35" fill="#075c52" font-size="12" font-weight="700"
+                      font-family="Manrope,Arial">истинный</text><text x="145" y="35" fill="#be5733" font-size="12"
+                      font-weight="700" font-family="Manrope,Arial">магнитный</text><text x="422" y="159" fill="#173f39"
+                      font-size="12" font-weight="700" font-family="Manrope,Arial">AB</text><text x="292" y="192"
+                      fill="#4e709f" font-size="15" font-weight="700" font-family="Georgia,serif"
+                      font-style="italic">α</text><text x="320" y="165" fill="#075c52" font-size="15" font-weight="700"
+                      font-family="Georgia,serif" font-style="italic">A</text><text x="322" y="119" fill="#be5733"
+                      font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">A<tspan
+                        baseline-shift="super" font-size="10">М</tspan></text><text x="250" y="267" fill="#173f39"
+                      font-size="15" font-weight="700" font-family="Manrope,Arial">A</text><text x="423" y="180"
+                      fill="#173f39" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text>
+                  </svg>
+                  <figcaption>Статичная схема построена по тому же принципу, что и схема связей на четвёртой вкладке:
+                    три исходных направления, линия AB и три угла.</figcaption>
+                </figure>
+                <div class="angle-definition-grid">
+                  <div class="angle-definition-card">
+                    <h3>Астрономический (истинный) азимут <span class="math">A</span></h3>
+                    <p><strong>Исходное направление — истинный (астрономический) меридиан.</strong></p>
+                    <p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления истинного
+                      (астрономического) меридиана до заданного направления.</p>
+                    <div class="angle-range">0° ≤ A ≤ 360°</div>
+                  </div>
+                  <div class="angle-definition-card">
+                    <h3>Магнитный азимут <span class="math">A<sup>М</sup></span></h3>
+                    <p><strong>Исходное направление — магнитный меридиан.</strong></p>
+                    <p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления магнитного
+                      меридиана до заданного направления.</p>
+                    <div class="angle-range">0° ≤ A<sup>М</sup> ≤ 360°</div>
+                  </div>
+                  <div class="angle-definition-card">
+                    <h3>Дирекционный угол <span class="math">α</span></h3>
+                    <p><strong>Исходное направление — осевой меридиан.</strong></p>
+                    <p>Горизонтальный угол, отсчитываемый по ходу часовой стрелки от северного направления осевого
+                      меридиана до заданного направления.</p>
+                    <div class="angle-range">0° ≤ α ≤ 360°</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-<div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-2">
-<h2>Румб: короткая запись направления</h2>
-<p><strong>Румб <span class="math">r</span></strong> — острый горизонтальный угол, отсчитываемый от осевого меридиана до данного направления. Помимо градусной величины, румб имеет направление. Поэтому запись румба включает величину угла и четверть: СВ, СЗ, ЮЗ или ЮВ.</p>
-<div class="rumb-board" aria-label="Схема связи румба и дирекционного угла по четвертям">
-<svg viewBox="0 0 760 520" role="img" aria-label="Четыре четверти румба и дирекционного угла">
-<defs><marker id="rumbQ1Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#d94f45"/></marker><marker id="rumbQ2Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#d88b00"/></marker><marker id="rumbQ3Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#7a5ab8"/></marker><marker id="rumbQ4Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#3c76b3"/></marker></defs>
-<rect x="8" y="8" width="744" height="504" rx="18" fill="#f7fcfa" stroke="#d3e6df"/>
-<line x1="380" y1="40" x2="380" y2="488" stroke="#e14d35" stroke-width="2"/><line x1="45" y1="270" x2="715" y2="270" stroke="#e14d35" stroke-width="2"/><circle cx="380" cy="270" r="6" fill="#043f3b"/>
-<line x1="380" y1="270" x2="509" y2="85" stroke="#d94f45" stroke-width="4"/><line x1="380" y1="270" x2="236" y2="98" stroke="#d88b00" stroke-width="4"/><line x1="380" y1="270" x2="196" y2="399" stroke="#7a5ab8" stroke-width="4"/><line x1="380" y1="270" x2="475" y2="474" stroke="#3c76b3" stroke-width="4"/>
-<path d="M380 195 A75 75 0 0 1 423.0 208.6" fill="none" stroke="#d94f45" stroke-width="3" marker-end="url(#rumbQ1Arrow)"/><path d="M380 225 A45 45 0 0 1 405.8 233.1" fill="none" stroke="#d94f45" stroke-width="3" marker-end="url(#rumbQ1Arrow)"/><text x="397" y="217" text-anchor="middle" fill="#d94f45" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text x="407" y="186" text-anchor="middle" fill="#d94f45" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text>
-<path d="M380 145 A125 125 0 1 1 299.6 174.2" fill="none" stroke="#d88b00" stroke-width="3" marker-end="url(#rumbQ2Arrow)"/><path d="M380 175 A95 95 0 0 0 318.9 197.2" fill="none" stroke="#d88b00" stroke-width="3" marker-end="url(#rumbQ2Arrow)"/><text x="342" y="166" text-anchor="middle" fill="#d88b00" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text x="428" y="402" text-anchor="middle" fill="#d88b00" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text>
-<path d="M380 95 A175 175 0 1 1 236.7 370.5" fill="none" stroke="#7a5ab8" stroke-width="3" marker-end="url(#rumbQ3Arrow)"/><path d="M380 415 A145 145 0 0 1 261.2 353.2" fill="none" stroke="#7a5ab8" stroke-width="3" marker-end="url(#rumbQ3Arrow)"/><text x="306" y="412" text-anchor="middle" fill="#7a5ab8" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text x="549" y="358" text-anchor="middle" fill="#7a5ab8" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text>
-<path d="M380 55 A215 215 0 0 1 471.0 465.2" fill="none" stroke="#3c76b3" stroke-width="3" marker-end="url(#rumbQ4Arrow)"/><path d="M380 465 A195 195 0 0 0 462.5 447.0" fill="none" stroke="#3c76b3" stroke-width="3" marker-end="url(#rumbQ4Arrow)"/><text x="425" y="475" text-anchor="middle" fill="#3c76b3" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text x="605" y="220" text-anchor="middle" fill="#3c76b3" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text>
-<text x="380" y="31" text-anchor="middle" fill="#be5733" font-size="14" font-weight="700" font-family="Manrope,Arial">север</text><text x="380" y="505" text-anchor="middle" fill="#be5733" font-size="14" font-weight="700" font-family="Manrope,Arial">юг</text><text x="30" y="265" text-anchor="middle" fill="#be5733" font-size="14" font-weight="700" font-family="Manrope,Arial">запад</text><text x="730" y="265" text-anchor="middle" fill="#be5733" font-size="14" font-weight="700" font-family="Manrope,Arial">восток</text>
-<text x="518" y="82" fill="#d94f45" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="225" y="96" fill="#d88b00" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="187" y="418" fill="#7a5ab8" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="484" y="491" fill="#3c76b3" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="369" y="292" fill="#173f39" font-size="15" font-weight="700" font-family="Manrope,Arial">A</text>
-</svg>
-<div class="quadrant-window q1"><b>I · СВ</b><strong>r = СВ:</strong><strong>α = r</strong><span>ΔX ⊕ · ΔY ⊕</span></div>
-<div class="quadrant-window q2"><b>II · СЗ</b><strong>r = СЗ:</strong><strong>α = 360° − r</strong><span>ΔX ⊕ · ΔY ⊖</span></div>
-<div class="quadrant-window q3"><b>III · ЮЗ</b><strong>r = ЮЗ:</strong><strong>α = 180° + r</strong><span>ΔX ⊖ · ΔY ⊖</span></div>
-<div class="quadrant-window q4"><b>IV · ЮВ</b><strong>r = ЮВ:</strong><strong>α = 180° − r</strong><span>ΔX ⊖ · ΔY ⊕</span></div>
-</div>
-<div class="rumb-tool rumb-interactive">
-<div class="tool-title"><h3>Интерактив: изменяйте положение линии</h3><span>север зафиксирован</span></div>
-<div class="rumb-live-layout">
-<figure class="interactive-rumb-figure">
-<svg viewBox="0 0 440 360" role="img" aria-label="Интерактивная схема румба и дирекционного угла">
-<defs><marker id="rumbLiveLineArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39"/></marker><marker id="rumbLiveAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#e14d35"/></marker><marker id="rumbLiveRumbArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff9c00"/></marker></defs>
-<rect x="10" y="10" width="420" height="320" rx="16" fill="#fbfdfc" stroke="#d7e8e2"/><line x1="220" y1="305" x2="220" y2="38" stroke="#0a756a" stroke-width="3"/><line x1="40" y1="180" x2="400" y2="180" stroke="#dfece8" stroke-width="1.5" stroke-dasharray="5 5"/><line x1="220" y1="180" x2="220" y2="180" stroke="#173f39" stroke-width="4"/><line id="rumbInteractiveLine" x1="220" y1="180" x2="312" y2="103" stroke="#173f39" stroke-width="4"/><circle id="rumbInteractivePoint" cx="312" cy="103" r="5" fill="#173f39"/><path id="rumbAlphaArc" d="M220 92 A88 88 0 0 1 281 125" fill="none" stroke="#e14d35" stroke-width="3" marker-end="url(#rumbLiveAlphaArrow)"/><path id="rumbShortArc" d="M220 120 A60 60 0 0 1 262 143" fill="none" stroke="#ff9c00" stroke-width="3" marker-end="url(#rumbLiveRumbArrow)"/><circle cx="220" cy="180" r="6" fill="#043f3b"/><text x="220" y="28" text-anchor="middle" fill="#075c52" font-size="14" font-weight="700" font-family="Manrope,Arial">N</text><text x="220" y="320" text-anchor="middle" fill="#78918b" font-size="13" font-family="Manrope,Arial">S</text><text id="rumbAlphaSvgText" x="275" y="120" fill="#d9422d" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text><text id="rumbLiveSvgText" x="265" y="143" fill="#d47d00" font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text></svg>
-<figcaption>Северное направление не меняется, вращается только линия AB.</figcaption>
-</figure>
-<div class="rumb-live-controls"><label for="rumbLineRange">Положение линии AB</label><input id="rumbLineRange" type="range" min="0" max="359" value="45" step="1"><output id="rumbLineRangeOutput">45°</output><div class="live-values"><div><span>Дирекционный угол</span><strong id="rumbLiveAlpha">45°</strong></div><div><span>Румб</span><strong id="rumbLiveRumb">r = СВ:45°</strong></div><div><span>Четверть</span><strong id="rumbLiveQuadrant">I</strong></div></div><p class="tool-help">Передвигайте ползунок — дуги, подписи и значения обновляются автоматически.</p></div>
-</div>
-</div>
-<div class="note-inline"><strong>Почему румб удобен?</strong> По записи «Ю 35° З» сразу видно, между какими сторонами горизонта проходит линия. Но для вычислений по координатам чаще используют дирекционный угол.</div>
-</div>
+            <div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-2">
+              <h2>Румб: короткая запись направления</h2>
+              <p><strong>Румб <span class="math">r</span></strong> — острый горизонтальный угол, отсчитываемый от
+                осевого меридиана до данного направления. Помимо градусной величины, румб имеет направление. Поэтому
+                запись румба включает величину угла и четверть: СВ, СЗ, ЮЗ или ЮВ.</p>
+              <div class="rumb-board" aria-label="Схема связи румба и дирекционного угла по четвертям">
+                <svg viewBox="0 0 760 520" role="img" aria-label="Четыре четверти румба и дирекционного угла">
+                  <defs>
+                    <marker id="rumbQ1Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#d94f45" />
+                    </marker>
+                    <marker id="rumbQ2Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#d88b00" />
+                    </marker>
+                    <marker id="rumbQ3Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#7a5ab8" />
+                    </marker>
+                    <marker id="rumbQ4Arrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#3c76b3" />
+                    </marker>
+                  </defs>
+                  <rect x="8" y="8" width="744" height="504" rx="18" fill="#f7fcfa" stroke="#d3e6df" />
+                  <line x1="380" y1="40" x2="380" y2="488" stroke="#e14d35" stroke-width="2" />
+                  <line x1="45" y1="270" x2="715" y2="270" stroke="#e14d35" stroke-width="2" />
+                  <circle cx="380" cy="270" r="6" fill="#043f3b" />
+                  <line x1="380" y1="270" x2="509" y2="85" stroke="#d94f45" stroke-width="4" />
+                  <line x1="380" y1="270" x2="236" y2="98" stroke="#d88b00" stroke-width="4" />
+                  <line x1="380" y1="270" x2="196" y2="399" stroke="#7a5ab8" stroke-width="4" />
+                  <line x1="380" y1="270" x2="475" y2="474" stroke="#3c76b3" stroke-width="4" />
+                  <path d="M380 195 A75 75 0 0 1 423.0 208.6" fill="none" stroke="#d94f45" stroke-width="3"
+                    marker-end="url(#rumbQ1Arrow)" />
+                  <path d="M380 225 A45 45 0 0 1 405.8 233.1" fill="none" stroke="#d94f45" stroke-width="3"
+                    marker-end="url(#rumbQ1Arrow)" /><text x="397" y="217" text-anchor="middle" fill="#d94f45"
+                    font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text
+                    x="407" y="186" text-anchor="middle" fill="#d94f45" font-size="16" font-weight="700"
+                    font-family="Georgia,serif" font-style="italic">α</text>
+                  <path d="M380 145 A125 125 0 1 1 299.6 174.2" fill="none" stroke="#d88b00" stroke-width="3"
+                    marker-end="url(#rumbQ2Arrow)" />
+                  <path d="M380 175 A95 95 0 0 0 318.9 197.2" fill="none" stroke="#d88b00" stroke-width="3"
+                    marker-end="url(#rumbQ2Arrow)" /><text x="342" y="166" text-anchor="middle" fill="#d88b00"
+                    font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text
+                    x="428" y="402" text-anchor="middle" fill="#d88b00" font-size="16" font-weight="700"
+                    font-family="Georgia,serif" font-style="italic">α</text>
+                  <path d="M380 95 A175 175 0 1 1 236.7 370.5" fill="none" stroke="#7a5ab8" stroke-width="3"
+                    marker-end="url(#rumbQ3Arrow)" />
+                  <path d="M380 415 A145 145 0 0 1 261.2 353.2" fill="none" stroke="#7a5ab8" stroke-width="3"
+                    marker-end="url(#rumbQ3Arrow)" /><text x="306" y="412" text-anchor="middle" fill="#7a5ab8"
+                    font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text
+                    x="549" y="358" text-anchor="middle" fill="#7a5ab8" font-size="16" font-weight="700"
+                    font-family="Georgia,serif" font-style="italic">α</text>
+                  <path d="M380 55 A215 215 0 0 1 471.0 465.2" fill="none" stroke="#3c76b3" stroke-width="3"
+                    marker-end="url(#rumbQ4Arrow)" />
+                  <path d="M380 465 A195 195 0 0 0 462.5 447.0" fill="none" stroke="#3c76b3" stroke-width="3"
+                    marker-end="url(#rumbQ4Arrow)" /><text x="425" y="475" text-anchor="middle" fill="#3c76b3"
+                    font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">r</text><text
+                    x="605" y="220" text-anchor="middle" fill="#3c76b3" font-size="16" font-weight="700"
+                    font-family="Georgia,serif" font-style="italic">α</text>
+                  <text x="380" y="31" text-anchor="middle" fill="#be5733" font-size="14" font-weight="700"
+                    font-family="Manrope,Arial">север</text><text x="380" y="505" text-anchor="middle" fill="#be5733"
+                    font-size="14" font-weight="700" font-family="Manrope,Arial">юг</text><text x="30" y="265"
+                    text-anchor="middle" fill="#be5733" font-size="14" font-weight="700"
+                    font-family="Manrope,Arial">запад</text><text x="730" y="265" text-anchor="middle" fill="#be5733"
+                    font-size="14" font-weight="700" font-family="Manrope,Arial">восток</text>
+                  <text x="518" y="82" fill="#d94f45" font-size="15" font-weight="700"
+                    font-family="Manrope,Arial">B</text><text x="225" y="96" fill="#d88b00" font-size="15"
+                    font-weight="700" font-family="Manrope,Arial">B</text><text x="187" y="418" fill="#7a5ab8"
+                    font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="484" y="491"
+                    fill="#3c76b3" font-size="15" font-weight="700" font-family="Manrope,Arial">B</text><text x="369"
+                    y="292" fill="#173f39" font-size="15" font-weight="700" font-family="Manrope,Arial">A</text>
+                </svg>
+                <div class="quadrant-window q1"><b>I · СВ</b><strong>r = СВ:</strong><strong>α = r</strong><span>ΔX ⊕ ·
+                    ΔY ⊕</span></div>
+                <div class="quadrant-window q2"><b>II · СЗ</b><strong>r = СЗ:</strong><strong>α = 360° −
+                    r</strong><span>ΔX ⊕ · ΔY ⊖</span></div>
+                <div class="quadrant-window q3"><b>III · ЮЗ</b><strong>r = ЮЗ:</strong><strong>α = 180° +
+                    r</strong><span>ΔX ⊖ · ΔY ⊖</span></div>
+                <div class="quadrant-window q4"><b>IV · ЮВ</b><strong>r = ЮВ:</strong><strong>α = 180° −
+                    r</strong><span>ΔX ⊖ · ΔY ⊕</span></div>
+              </div>
+              <div class="rumb-tool rumb-interactive">
+                <div class="tool-title">
+                  <h3>Интерактив: изменяйте положение линии</h3><span>север зафиксирован</span>
+                </div>
+                <div class="rumb-live-layout">
+                  <figure class="interactive-rumb-figure">
+                    <svg viewBox="0 0 440 360" role="img" aria-label="Интерактивная схема румба и дирекционного угла">
+                      <defs>
+                        <marker id="rumbLiveLineArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                          orient="auto">
+                          <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39" />
+                        </marker>
+                        <marker id="rumbLiveAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                          orient="auto">
+                          <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#e14d35" />
+                        </marker>
+                        <marker id="rumbLiveRumbArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                          orient="auto">
+                          <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff9c00" />
+                        </marker>
+                      </defs>
+                      <rect x="10" y="10" width="420" height="320" rx="16" fill="#fbfdfc" stroke="#d7e8e2" />
+                      <line x1="220" y1="305" x2="220" y2="38" stroke="#0a756a" stroke-width="3" />
+                      <line x1="40" y1="180" x2="400" y2="180" stroke="#dfece8" stroke-width="1.5"
+                        stroke-dasharray="5 5" />
+                      <line x1="220" y1="180" x2="220" y2="180" stroke="#173f39" stroke-width="4" />
+                      <line id="rumbInteractiveLine" x1="220" y1="180" x2="312" y2="103" stroke="#173f39"
+                        stroke-width="4" />
+                      <circle id="rumbInteractivePoint" cx="312" cy="103" r="5" fill="#173f39" />
+                      <path id="rumbAlphaArc" d="M220 92 A88 88 0 0 1 281 125" fill="none" stroke="#e14d35"
+                        stroke-width="3" marker-end="url(#rumbLiveAlphaArrow)" />
+                      <path id="rumbShortArc" d="M220 120 A60 60 0 0 1 262 143" fill="none" stroke="#ff9c00"
+                        stroke-width="3" marker-end="url(#rumbLiveRumbArrow)" />
+                      <circle cx="220" cy="180" r="6" fill="#043f3b" /><text x="220" y="28" text-anchor="middle"
+                        fill="#075c52" font-size="14" font-weight="700" font-family="Manrope,Arial">N</text><text
+                        x="220" y="320" text-anchor="middle" fill="#78918b" font-size="13"
+                        font-family="Manrope,Arial">S</text><text id="rumbAlphaSvgText" x="275" y="120" fill="#d9422d"
+                        font-size="16" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text><text
+                        id="rumbLiveSvgText" x="265" y="143" fill="#d47d00" font-size="16" font-weight="700"
+                        font-family="Georgia,serif" font-style="italic">r</text>
+                    </svg>
+                    <figcaption>Северное направление не меняется, вращается только линия AB.</figcaption>
+                  </figure>
+                  <div class="rumb-live-controls"><label for="rumbLineRange">Положение линии AB</label><input
+                      id="rumbLineRange" type="range" min="0" max="359" value="45" step="1"><output
+                      id="rumbLineRangeOutput">45°</output>
+                    <div class="live-values">
+                      <div><span>Дирекционный угол</span><strong id="rumbLiveAlpha">45°</strong></div>
+                      <div><span>Румб</span><strong id="rumbLiveRumb">r = СВ:45°</strong></div>
+                      <div><span>Четверть</span><strong id="rumbLiveQuadrant">I</strong></div>
+                    </div>
+                    <p class="tool-help">Передвигайте ползунок — дуги, подписи и значения обновляются автоматически.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="note-inline"><strong>Почему румб удобен?</strong> По записи «ЮЗ:35°» сразу видно, между
+                какими сторонами горизонта проходит линия. Но для вычислений по координатам чаще используют дирекционный
+                угол.</div>
+            </div>
 
-<div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-3">
-<h2>Сближение меридианов и магнитное склонение</h2>
-<p><strong>Магнитное склонение</strong> <span class="math">δ</span> — угол между направлением истинного (астрономического) и магнитного меридианов. <strong>Сближение меридианов</strong> <span class="math">γ</span> — угол между направлением истинного (астрономического) меридиана и вертикальной линией сетки координат. Восточные значения принимают положительными, западные — отрицательными.</p>
-<div class="meridian-legend" aria-label="Легенда цветов схем">
-<span><i class="legend-line true-line"></i>истинный меридиан</span><span><i class="legend-line magnetic-line"></i>магнитный меридиан</span><span><i class="legend-line grid-line"></i>линия сетки координат</span>
-</div>
-<div class="correction-figures">
-<figure class="correction-figure">
-<svg viewBox="0 0 430 220" role="img" aria-label="Схема восточного и западного магнитного склонения">
-<defs><marker id="declinationArcArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250"/></marker></defs>
-<rect x="8" y="10" width="414" height="200" rx="14" fill="#f7fcfa" stroke="#d7e8e2"/>
-<line x1="105" y1="178" x2="105" y2="38" stroke="#0a756a" stroke-width="3"/><line x1="105" y1="178" x2="139" y2="39" stroke="#ff8250" stroke-width="3"/><path d="M105 78 A100 100 0 0 1 124 82" fill="none" stroke="#ff8250" stroke-width="2.5" marker-end="url(#declinationArcArrow)"/><text x="105" y="28" text-anchor="middle" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="151" y="42" fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text x="121" y="72" fill="#be5733" font-size="13" font-weight="700" font-family="Georgia,serif" font-style="italic">+δ</text><circle cx="105" cy="178" r="5" fill="#043f3b"/>
-<line x1="313" y1="178" x2="313" y2="38" stroke="#0a756a" stroke-width="3"/><line x1="313" y1="178" x2="279" y2="39" stroke="#ff8250" stroke-width="3"/><path d="M313 78 A100 100 0 0 0 294 82" fill="none" stroke="#ff8250" stroke-width="2.5" marker-end="url(#declinationArcArrow)"/><text x="313" y="28" text-anchor="middle" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="238" y="42" fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text x="280" y="72" fill="#be5733" font-size="13" font-weight="700" font-family="Georgia,serif" font-style="italic">−δ</text><circle cx="313" cy="178" r="5" fill="#043f3b"/>
-<text x="105" y="202" text-anchor="middle" fill="#627a74" font-size="12" font-family="Manrope,Arial">восточное</text><text x="313" y="202" text-anchor="middle" fill="#627a74" font-size="12" font-family="Manrope,Arial">западное</text>
-</svg><figcaption>Магнитное склонение δ — угол между направлениями истинного и магнитного меридианов.</figcaption>
-</figure>
-<figure class="correction-figure">
-<svg viewBox="0 0 430 220" role="img" aria-label="Схема восточного и западного сближения меридианов">
-<defs><marker id="convergenceArcArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a"/></marker></defs>
-<rect x="8" y="10" width="414" height="200" rx="14" fill="#f7fcfa" stroke="#d7e8e2"/>
-<line x1="105" y1="178" x2="105" y2="38" stroke="#668bc0" stroke-width="3"/><line x1="105" y1="178" x2="139" y2="39" stroke="#0a756a" stroke-width="3"/><path d="M105 78 A100 100 0 0 1 124 82" fill="none" stroke="#0a756a" stroke-width="2.5" marker-end="url(#convergenceArcArrow)"/><text x="105" y="28" text-anchor="middle" fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">линия сетки</text><text x="151" y="42" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="121" y="72" fill="#075c52" font-size="13" font-weight="700" font-family="Georgia,serif" font-style="italic">+γ</text><circle cx="105" cy="178" r="5" fill="#043f3b"/>
-<line x1="313" y1="178" x2="313" y2="38" stroke="#668bc0" stroke-width="3"/><line x1="313" y1="178" x2="279" y2="39" stroke="#0a756a" stroke-width="3"/><path d="M313 78 A100 100 0 0 0 294 82" fill="none" stroke="#0a756a" stroke-width="2.5" marker-end="url(#convergenceArcArrow)"/><text x="313" y="28" text-anchor="middle" fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">линия сетки</text><text x="238" y="42" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="280" y="72" fill="#075c52" font-size="13" font-weight="700" font-family="Georgia,serif" font-style="italic">−γ</text><circle cx="313" cy="178" r="5" fill="#043f3b"/>
-<text x="105" y="202" text-anchor="middle" fill="#627a74" font-size="12" font-family="Manrope,Arial">восточное</text><text x="313" y="202" text-anchor="middle" fill="#627a74" font-size="12" font-family="Manrope,Arial">западное</text>
-</svg><figcaption>Сближение меридианов γ — угол между истинным меридианом и вертикальной линией сетки координат.</figcaption>
-</figure>
-</div>
+            <div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-3">
+              <h2>Сближение меридианов и магнитное склонение</h2>
+              <p><strong>Магнитное склонение</strong> <span class="math">δ</span> — угол между направлением истинного
+                (астрономического) и магнитного меридианов. <strong>Сближение меридианов</strong> <span
+                  class="math">γ</span> — угол между направлением истинного (астрономического) меридиана и вертикальной
+                линией сетки координат. Восточные значения принимают положительными, западные — отрицательными.</p>
+              <div class="meridian-legend" aria-label="Легенда цветов схем">
+                <span><i class="legend-line true-line"></i>истинный меридиан</span><span><i
+                    class="legend-line magnetic-line"></i>магнитный меридиан</span><span><i
+                    class="legend-line grid-line"></i>линия сетки координат</span>
+              </div>
+              <div class="correction-figures">
+                <figure class="correction-figure">
+                  <svg viewBox="0 0 430 220" role="img" aria-label="Схема восточного и западного магнитного склонения">
+                    <defs>
+                      <marker id="declinationArcArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250" />
+                      </marker>
+                    </defs>
+                    <rect x="8" y="10" width="414" height="200" rx="14" fill="#f7fcfa" stroke="#d7e8e2" />
+                    <line x1="105" y1="178" x2="105" y2="38" stroke="#0a756a" stroke-width="3" />
+                    <line x1="105" y1="178" x2="139" y2="39" stroke="#ff8250" stroke-width="3" />
+                    <path d="M105 78 A100 100 0 0 1 124 82" fill="none" stroke="#ff8250" stroke-width="2.5"
+                      marker-end="url(#declinationArcArrow)" /><text x="105" y="28" text-anchor="middle" fill="#075c52"
+                      font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="151" y="42"
+                      fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text
+                      x="121" y="72" fill="#be5733" font-size="13" font-weight="700" font-family="Georgia,serif"
+                      font-style="italic">+δ</text>
+                    <circle cx="105" cy="178" r="5" fill="#043f3b" />
+                    <line x1="313" y1="178" x2="313" y2="38" stroke="#0a756a" stroke-width="3" />
+                    <line x1="313" y1="178" x2="279" y2="39" stroke="#ff8250" stroke-width="3" />
+                    <path d="M313 78 A100 100 0 0 0 294 82" fill="none" stroke="#ff8250" stroke-width="2.5"
+                      marker-end="url(#declinationArcArrow)" /><text x="313" y="28" text-anchor="middle" fill="#075c52"
+                      font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text x="238" y="42"
+                      fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text
+                      x="280" y="72" fill="#be5733" font-size="13" font-weight="700" font-family="Georgia,serif"
+                      font-style="italic">−δ</text>
+                    <circle cx="313" cy="178" r="5" fill="#043f3b" />
+                    <text x="105" y="202" text-anchor="middle" fill="#627a74" font-size="12"
+                      font-family="Manrope,Arial">восточное</text><text x="313" y="202" text-anchor="middle"
+                      fill="#627a74" font-size="12" font-family="Manrope,Arial">западное</text>
+                  </svg>
+                  <figcaption>Магнитное склонение δ — угол между направлениями истинного и магнитного меридианов.
+                  </figcaption>
+                </figure>
+                <figure class="correction-figure">
+                  <svg viewBox="0 0 430 220" role="img" aria-label="Схема восточного и западного сближения меридианов">
+                    <defs>
+                      <marker id="convergenceArcArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a" />
+                      </marker>
+                    </defs>
+                    <rect x="8" y="10" width="414" height="200" rx="14" fill="#f7fcfa" stroke="#d7e8e2" />
+                    <line x1="105" y1="178" x2="105" y2="38" stroke="#668bc0" stroke-width="3" />
+                    <line x1="105" y1="178" x2="139" y2="39" stroke="#0a756a" stroke-width="3" />
+                    <path d="M105 78 A100 100 0 0 1 124 82" fill="none" stroke="#0a756a" stroke-width="2.5"
+                      marker-end="url(#convergenceArcArrow)" /><text x="105" y="28" text-anchor="middle" fill="#4e709f"
+                      font-size="12" font-weight="700" font-family="Manrope,Arial">линия сетки</text><text x="151"
+                      y="42" fill="#075c52" font-size="12" font-weight="700"
+                      font-family="Manrope,Arial">истинный</text><text x="121" y="72" fill="#075c52" font-size="13"
+                      font-weight="700" font-family="Georgia,serif" font-style="italic">+γ</text>
+                    <circle cx="105" cy="178" r="5" fill="#043f3b" />
+                    <line x1="313" y1="178" x2="313" y2="38" stroke="#668bc0" stroke-width="3" />
+                    <line x1="313" y1="178" x2="279" y2="39" stroke="#0a756a" stroke-width="3" />
+                    <path d="M313 78 A100 100 0 0 0 294 82" fill="none" stroke="#0a756a" stroke-width="2.5"
+                      marker-end="url(#convergenceArcArrow)" /><text x="313" y="28" text-anchor="middle" fill="#4e709f"
+                      font-size="12" font-weight="700" font-family="Manrope,Arial">линия сетки</text><text x="238"
+                      y="42" fill="#075c52" font-size="12" font-weight="700"
+                      font-family="Manrope,Arial">истинный</text><text x="280" y="72" fill="#075c52" font-size="13"
+                      font-weight="700" font-family="Georgia,serif" font-style="italic">−γ</text>
+                    <circle cx="313" cy="178" r="5" fill="#043f3b" />
+                    <text x="105" y="202" text-anchor="middle" fill="#627a74" font-size="12"
+                      font-family="Manrope,Arial">восточное</text><text x="313" y="202" text-anchor="middle"
+                      fill="#627a74" font-size="12" font-family="Manrope,Arial">западное</text>
+                  </svg>
+                  <figcaption>Сближение меридианов γ — угол между истинным меридианом и вертикальной линией сетки
+                    координат.</figcaption>
+                </figure>
+              </div>
 
-<div class="relation-layout">
-<div>
-<div class="formula"><span class="math">A = α + γ</span><br><span class="math">A = A<sup>М</sup> + δ</span><br><span class="math">α = A<sup>М</sup> + δ − γ</span><small>Связи позволяют перейти от одного исходного направления к другому.</small></div>
-<div class="sign-list">
-<div><b>γ &gt; 0</b><span>точка восточнее осевого меридиана; сближение принято восточным.</span></div>
-<div><b>δ &gt; 0</b><span>магнитное склонение восточное: магнитный север восточнее истинного.</span></div>
-<div><b>γ, δ &lt; 0</b><span>западные значения. Знак вводят в формулу, а не «исправляют на глаз».</span></div>
-</div>
-</div>
-<figure class="relation-map">
-<svg viewBox="0 0 520 280" role="img" aria-label="Изменяемая схема истинного, магнитного и координатного северных направлений">
-<defs><marker id="relationDirectionArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39"/></marker><marker id="relationAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0"/></marker><marker id="relationTrueArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a"/></marker><marker id="relationMagneticArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250"/></marker></defs>
-<rect x="15" y="15" width="490" height="250" rx="15" fill="#f7fcfa" stroke="#d7e8e2"/><line id="relationGrid" x1="260" y1="220" x2="260" y2="38" stroke="#668bc0" stroke-width="3"/><line id="relationTrue" x1="260" y1="220" x2="260" y2="38" stroke="#0a756a" stroke-width="3"/><line id="relationMagnetic" x1="260" y1="220" x2="260" y2="38" stroke="#ff8250" stroke-width="3"/><line id="relationDirection" x1="260" y1="220" x2="390" y2="150" stroke="#173f39" stroke-width="3"/><circle id="relationDirectionPoint" cx="390" cy="150" r="5" fill="#173f39"/><path id="relationAngleAlpha" d="M260 178 A42 42 0 0 1 295 198" fill="none" stroke="#668bc0" stroke-width="2.5" marker-end="url(#relationAlphaArrow)"/><path id="relationAngleA" d="M260 145 A76 76 0 0 1 322 184" fill="none" stroke="#0a756a" stroke-width="2.5" marker-end="url(#relationTrueArrow)"/><path id="relationAngleAm" d="M260 112 A110 110 0 0 1 350 168" fill="none" stroke="#ff8250" stroke-width="2.5" marker-end="url(#relationMagneticArrow)"/><circle cx="260" cy="220" r="6" fill="#043f3b"/><text x="260" y="29" text-anchor="middle" fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">сетка</text><text id="relationTrueText" x="280" y="48" fill="#075c52" font-size="12" font-weight="700" font-family="Manrope,Arial">истинный</text><text id="relationMagneticText" x="348" y="68" fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text x="398" y="148" fill="#173f39" font-size="12" font-weight="700" font-family="Manrope,Arial">AB</text><text id="relationLabelAlpha" x="295" y="199" fill="#4e709f" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text><text id="relationLabelA" x="322" y="184" fill="#075c52" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">A</text><text id="relationLabelAm" x="350" y="168" fill="#be5733" font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">AМ</text>
-</svg><figcaption>Схема обновляется по значениям калькулятора; разности γ и δ показаны с увеличением для наглядности.</figcaption>
-</figure>
-</div>
-<div class="calculator">
-<div class="tool-title"><h3>Калькулятор связей</h3><span>все углы — в градусах</span></div>
-<div class="calculator-grid">
-<div class="tool-field"><label for="calcAlpha">α — дирекционный угол</label><input id="calcAlpha" type="number" min="-360" max="720" step="0.01" value="72.5"></div>
-<div class="tool-field"><label for="calcGamma">γ — сближение меридианов</label><input id="calcGamma" type="number" min="-180" max="180" step="0.01" value="2.1667"></div>
-<div class="tool-field"><label for="calcDelta">δ — склонение</label><input id="calcDelta" type="number" min="-180" max="180" step="0.01" value="6.6667"></div>
-</div>
-<button class="tool-button" id="calcAngles" type="button">Рассчитать связи</button>
-<div class="calc-result" aria-live="polite"><div><span>Астрономический A</span><output id="calcA">74°40′</output></div><div><span>Магнитный AМ</span><output id="calcAm">68°00′</output></div><div><span>Проверка α</span><output id="calcAlphaBack">72°30′</output></div></div>
-<p class="tool-help">Пример по умолчанию: α = 72°30′, γ = +2°10′, δ = +6°40′. Поэтому A = 74°40′, а AМ = 68°00′.</p>
-</div>
-<div class="warning-box"><strong>Контроль здравого смысла.</strong> Если магнитное склонение восточное, при одной и той же линии магнитный азимут обычно меньше истинного: <span class="math">A<sup>М</sup> = A − δ</span>. Если получилось иначе, проверьте знак δ.</div>
-</div>
+              <div class="relation-layout">
+                <div>
+                  <div class="formula"><span class="math">A = α + γ</span><br><span class="math">A = A<sup>М</sup> +
+                      δ</span><br><span class="math">α = A<sup>М</sup> + δ − γ</span><small>Связи позволяют перейти от
+                      одного исходного направления к другому.</small></div>
+                  <div class="sign-list">
+                    <div><b>γ &gt; 0</b><span>точка восточнее осевого меридиана; сближение принято восточным.</span>
+                    </div>
+                    <div><b>δ &gt; 0</b><span>магнитное склонение восточное: магнитный север восточнее истинного.</span>
+                    </div>
+                    <div><b>γ, δ &lt; 0</b><span>западные значения. Знак вводят в формулу, а не «исправляют на
+                        глаз».</span></div>
+                  </div>
+                </div>
+                <figure class="relation-map">
+                  <svg viewBox="0 0 520 280" role="img"
+                    aria-label="Изменяемая схема истинного, магнитного и координатного северных направлений">
+                    <defs>
+                      <marker id="relationDirectionArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39" />
+                      </marker>
+                      <marker id="relationAlphaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0" />
+                      </marker>
+                      <marker id="relationTrueArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#0a756a" />
+                      </marker>
+                      <marker id="relationMagneticArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                        orient="auto">
+                        <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#ff8250" />
+                      </marker>
+                    </defs>
+                    <rect x="15" y="15" width="490" height="250" rx="15" fill="#f7fcfa" stroke="#d7e8e2" />
+                    <line id="relationGrid" x1="260" y1="220" x2="260" y2="38" stroke="#668bc0" stroke-width="3" />
+                    <line id="relationTrue" x1="260" y1="220" x2="260" y2="38" stroke="#0a756a" stroke-width="3" />
+                    <line id="relationMagnetic" x1="260" y1="220" x2="260" y2="38" stroke="#ff8250" stroke-width="3" />
+                    <line id="relationDirection" x1="260" y1="220" x2="390" y2="150" stroke="#173f39"
+                      stroke-width="3" />
+                    <circle id="relationDirectionPoint" cx="390" cy="150" r="5" fill="#173f39" />
+                    <path id="relationAngleAlpha" d="M260 178 A42 42 0 0 1 295 198" fill="none" stroke="#668bc0"
+                      stroke-width="2.5" marker-end="url(#relationAlphaArrow)" />
+                    <path id="relationAngleA" d="M260 145 A76 76 0 0 1 322 184" fill="none" stroke="#0a756a"
+                      stroke-width="2.5" marker-end="url(#relationTrueArrow)" />
+                    <path id="relationAngleAm" d="M260 112 A110 110 0 0 1 350 168" fill="none" stroke="#ff8250"
+                      stroke-width="2.5" marker-end="url(#relationMagneticArrow)" />
+                    <circle cx="260" cy="220" r="6" fill="#043f3b" /><text x="260" y="29" text-anchor="middle"
+                      fill="#4e709f" font-size="12" font-weight="700" font-family="Manrope,Arial">сетка</text><text
+                      id="relationTrueText" x="280" y="48" fill="#075c52" font-size="12" font-weight="700"
+                      font-family="Manrope,Arial">истинный</text><text id="relationMagneticText" x="348" y="68"
+                      fill="#be5733" font-size="12" font-weight="700" font-family="Manrope,Arial">магнитный</text><text
+                      x="398" y="148" fill="#173f39" font-size="12" font-weight="700"
+                      font-family="Manrope,Arial">AB</text><text id="relationLabelAlpha" x="295" y="199" fill="#4e709f"
+                      font-size="15" font-weight="700" font-family="Georgia,serif" font-style="italic">α</text><text
+                      id="relationLabelA" x="322" y="184" fill="#075c52" font-size="15" font-weight="700"
+                      font-family="Georgia,serif" font-style="italic">A</text><text id="relationLabelAm" x="350" y="168"
+                      fill="#be5733" font-size="15" font-weight="700" font-family="Georgia,serif"
+                      font-style="italic">AМ</text>
+                  </svg>
+                  <figcaption>Схема обновляется по значениям калькулятора; разности γ и δ показаны с увеличением для
+                    наглядности.</figcaption>
+                </figure>
+              </div>
+              <div class="calculator">
+                <div class="tool-title">
+                  <h3>Калькулятор связей</h3><span>все углы — в градусах</span>
+                </div>
+                <div class="calculator-grid">
+                  <div class="tool-field"><label for="calcAlpha">α — дирекционный угол</label><input id="calcAlpha"
+                      type="number" min="-360" max="720" step="0.01" value="72.5"></div>
+                  <div class="tool-field"><label for="calcGamma">γ — сближение меридианов</label><input id="calcGamma"
+                      type="number" min="-180" max="180" step="0.01" value="2.1667"></div>
+                  <div class="tool-field"><label for="calcDelta">δ — склонение</label><input id="calcDelta"
+                      type="number" min="-180" max="180" step="0.01" value="6.6667"></div>
+                </div>
+                <button class="tool-button" id="calcAngles" type="button">Рассчитать связи</button>
+                <div class="calc-result" aria-live="polite">
+                  <div><span>Астрономический A</span><output id="calcA">74°40′</output></div>
+                  <div><span>Магнитный AМ</span><output id="calcAm">68°00′</output></div>
+                  <div><span>Проверка α</span><output id="calcAlphaBack">72°30′</output></div>
+                </div>
+                <p class="tool-help">Пример по умолчанию: α = 72°30′, γ = +2°10′, δ = +6°40′. Поэтому A = 74°40′, а AМ =
+                  68°00′.</p>
+              </div>
+              <div class="warning-box"><strong>Контроль здравого смысла.</strong> Если магнитное склонение восточное,
+                при одной и той же линии магнитный азимут обычно меньше истинного: <span class="math">A<sup>М</sup> = A
+                  − δ</span>. Если получилось иначе, проверьте знак δ.</div>
+            </div>
 
-<div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-4">
-<h2>Передача дирекционного угла</h2>
-<p>В теодолитном ходе дирекционный угол первой стороны задают исходными данными или получают из координат. Затем по измеренным горизонтальным углам последовательно вычисляют дирекционные углы остальных сторон.</p>
-<figure class="transfer-figure">
-<svg viewBox="0 0 760 300" role="img" aria-label="Схема передачи дирекционного угла вправо и влево по ходу">
-<defs><marker id="transferLineArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39"/></marker><marker id="transferBetaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#e14d35"/></marker><marker id="transferLambdaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto"><path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0"/></marker></defs>
-<rect x="12" y="12" width="352" height="276" rx="16" fill="#f7fcfa" stroke="#d7e8e2"/><rect x="396" y="12" width="352" height="276" rx="16" fill="#f7fbfd" stroke="#d7e8e2"/>
-<text x="188" y="40" text-anchor="middle" fill="#be5733" font-size="16" font-weight="800" font-family="Manrope,Arial">угол вправо по ходу · β</text><text x="572" y="40" text-anchor="middle" fill="#4e709f" font-size="16" font-weight="800" font-family="Manrope,Arial">угол влево по ходу · λ</text>
-<circle cx="188" cy="205" r="6" fill="#043f3b"/><line x1="188" y1="205" x2="65" y2="205" stroke="#173f39" stroke-width="3" marker-end="url(#transferLineArrow)"/><line x1="188" y1="205" x2="310" y2="103" stroke="#173f39" stroke-width="3" marker-end="url(#transferLineArrow)"/><path d="M112 205 A76 76 0 0 1 242 159" fill="none" stroke="#e14d35" stroke-width="3" marker-end="url(#transferBetaArrow)"/><text x="184" y="194" fill="#d9422d" font-size="19" font-weight="700" font-family="Georgia,serif" font-style="italic">β</text><text x="52" y="225" fill="#173f39" font-size="13" font-family="Manrope,Arial">предыдущая сторона</text><text x="273" y="98" fill="#173f39" font-size="13" font-family="Manrope,Arial">следующая</text><text x="179" y="229" fill="#173f39" font-size="14" font-weight="700" font-family="Manrope,Arial">P</text>
-<circle cx="572" cy="205" r="6" fill="#043f3b"/><line x1="572" y1="205" x2="449" y2="205" stroke="#173f39" stroke-width="3" marker-end="url(#transferLineArrow)"/><line x1="572" y1="205" x2="694" y2="103" stroke="#173f39" stroke-width="3" marker-end="url(#transferLineArrow)"/><path d="M496 205 A76 76 0 0 0 626 159" fill="none" stroke="#668bc0" stroke-width="3" marker-end="url(#transferLambdaArrow)"/><text x="566" y="194" fill="#4e709f" font-size="19" font-weight="700" font-family="Georgia,serif" font-style="italic">λ</text><text x="436" y="225" fill="#173f39" font-size="13" font-family="Manrope,Arial">предыдущая сторона</text><text x="657" y="98" fill="#173f39" font-size="13" font-family="Manrope,Arial">следующая</text><text x="563" y="229" fill="#173f39" font-size="14" font-weight="700" font-family="Manrope,Arial">P</text>
-</svg><figcaption>В вершине P предыдущая сторона задаёт обратное направление; измеренный угол связывает его со следующей стороной.</figcaption>
-</figure>
-<div class="transfer-cards">
-<div class="transfer-card"><h3>Углы вправо по ходу</h3><p>Если <span class="math">β</span> — правый угол при вершине хода, то<br><strong><span class="math">α<sub>i+1</sub> = α<sub>i</sub> − β + 180°</span></strong>.</p></div>
-<div class="transfer-card"><h3>Углы влево по ходу</h3><p>Если <span class="math">λ</span> — левый угол при вершине хода, то<br><strong><span class="math">α<sub>i+1</sub> = α<sub>i</sub> + λ − 180°</span></strong>.</p></div>
-</div>
-<div class="transfer-example"><h3>Пример передачи</h3><p>Пусть <span class="math">α<sub>1</sub> = 128°</span>, а измеренный правый угол <span class="math">β = 74°</span>.</p><div class="formula"><span class="math">α<sub>2</sub> = 128° − 74° + 180° = </span><strong>234°</strong></div><p>Расчёт выполнен до целых градусов. Полученный угол уже лежит в диапазоне 0°…360°.</p></div>
-<div class="transfer-tool">
-<div class="tool-title"><h3>Тренажёр передачи угла</h3><span>целые градусы</span></div>
-<div class="tool-form"><div class="tool-field"><label for="transferAlpha">Исходный αᵢ, °</label><input id="transferAlpha" type="number" value="128" step="1"></div><div class="tool-field"><label for="transferBeta">Измеренный β / λ, °</label><input id="transferBeta" type="number" value="74" min="0" max="360" step="1"></div><div class="tool-field"><label for="transferSide">Вид угла</label><select id="transferSide"><option value="right">вправо по ходу · β</option><option value="left">влево по ходу · λ</option></select></div><button class="tool-button" id="transferCalc" type="button">Передать α</button><div class="tool-result" id="transferResult" aria-live="polite"><b>αᵢ₊₁ = 234°</b><br>Формула: αᵢ − β + 180°</div></div>
-<p class="tool-help">Вводите исходный угол и измеренный угол до целых градусов.</p>
-</div>
-<div class="note-inline orange"><strong>Важно:</strong> Дирекционный угол изменяется от 0 до 360. Если при вычислениях угол получается отрицательным, нужно прибавить целый оборот (+360). Если угол получается больше 360, то вычесть (-360).</div>
-</div>
-<div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-5">
-<h2>Самопроверка</h2>
-<p>Выберите один вариант в каждом вопросе. После выбора сразу появится пояснение.</p>
-<div class="quiz" id="orientationQuiz">
-<fieldset class="quiz-item" data-answer="b"><legend>1. От какого направления отсчитывают дирекционный угол?</legend><div class="quiz-options"><button type="button" data-choice="a">От магнитного меридиана</button><button type="button" data-choice="b">От северного направления осевого меридиана</button><button type="button" data-choice="c">От южного направления истинного меридиана</button></div><p class="quiz-feedback"></p></fieldset>
-<fieldset class="quiz-item" data-answer="a"><legend>2. Как связаны истинный азимут A и дирекционный угол α?</legend><div class="quiz-options"><button type="button" data-choice="a">A = α + γ</button><button type="button" data-choice="b">A = α − γ</button><button type="button" data-choice="c">A = α + δ</button></div><p class="quiz-feedback"></p></fieldset>
-<fieldset class="quiz-item" data-answer="c"><legend>3. Как записать румб для α = 225°?</legend><div class="quiz-options"><button type="button" data-choice="a">С 45° В</button><button type="button" data-choice="b">Ю 45° В</button><button type="button" data-choice="c">Ю 45° З</button></div><p class="quiz-feedback"></p></fieldset>
-<fieldset class="quiz-item" data-answer="b"><legend>4. Как передать α вправо по ходу?</legend><div class="quiz-options"><button type="button" data-choice="a">αᵢ₊₁ = αᵢ + β − 180°</button><button type="button" data-choice="b">αᵢ₊₁ = αᵢ − β + 180°</button><button type="button" data-choice="c">αᵢ₊₁ = αᵢ − 180° − β</button></div><p class="quiz-feedback"></p></fieldset>
-<div class="quiz-score"><span>Результат: <strong id="quizScore">0 / 4</strong></span><button type="button" id="quizReset">Сбросить ответы</button></div>
-</div>
-<div class="summary-box"><h2>Коротко о главном</h2><ol><li><span>01</span><div>Азимут и дирекционный угол измеряют от севера по часовой стрелке в диапазоне 0°…360°.</div></li><li><span>02</span><div>Астрономический и истинный азимуты — одно и то же направление отсчёта от истинного меридиана; магнитный азимут отсчитывают от магнитного меридиана.</div></li><li><span>03</span><div>Румб — острый угол 0°…90° с обязательным обозначением четверти.</div></li><li><span>04</span><div>Связи при восточных положительных поправках: A = α + γ, A = A<sup>М</sup> + δ, α = A<sup>М</sup> + δ − γ.</div></li><li><span>05</span><div>При передаче α используйте формулу, соответствующую виду измеренного угла, и нормируйте результат.</div></li></ol></div>
-</div>
+            <div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-4">
+              <h2>Передача дирекционного угла</h2>
+              <p>В теодолитном ходе дирекционный угол первой стороны задают исходными данными или получают из координат.
+                Затем по измеренным горизонтальным углам последовательно вычисляют дирекционные углы остальных сторон.
+              </p>
+              <figure class="transfer-figure">
+                <svg viewBox="0 0 760 300" role="img"
+                  aria-label="Схема передачи дирекционного угла вправо и влево по ходу">
+                  <defs>
+                    <marker id="transferLineArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#173f39" />
+                    </marker>
+                    <marker id="transferBetaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#e14d35" />
+                    </marker>
+                    <marker id="transferLambdaArrow" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5"
+                      orient="auto">
+                      <path d="M0,0 L4.5,2.5 L0,5 Z" fill="#668bc0" />
+                    </marker>
+                  </defs>
+                  <rect x="12" y="12" width="352" height="276" rx="16" fill="#f7fcfa" stroke="#d7e8e2" />
+                  <rect x="396" y="12" width="352" height="276" rx="16" fill="#f7fbfd" stroke="#d7e8e2" />
+                  <text x="188" y="40" text-anchor="middle" fill="#be5733" font-size="16" font-weight="800"
+                    font-family="Manrope,Arial">угол вправо по ходу · β</text><text x="572" y="40" text-anchor="middle"
+                    fill="#4e709f" font-size="16" font-weight="800" font-family="Manrope,Arial">угол влево по ходу ·
+                    λ</text>
+                  <circle cx="188" cy="205" r="6" fill="#043f3b" />
+                  <line x1="188" y1="205" x2="65" y2="205" stroke="#173f39" stroke-width="3"
+                    marker-end="url(#transferLineArrow)" />
+                  <line x1="188" y1="205" x2="310" y2="103" stroke="#173f39" stroke-width="3"
+                    marker-end="url(#transferLineArrow)" />
+                  <path d="M112 205 A76 76 0 0 1 242 159" fill="none" stroke="#e14d35" stroke-width="3"
+                    marker-end="url(#transferBetaArrow)" /><text x="184" y="194" fill="#d9422d" font-size="19"
+                    font-weight="700" font-family="Georgia,serif" font-style="italic">β</text><text x="52" y="225"
+                    fill="#173f39" font-size="13" font-family="Manrope,Arial">предыдущая сторона</text><text x="273"
+                    y="98" fill="#173f39" font-size="13" font-family="Manrope,Arial">следующая</text><text x="179"
+                    y="229" fill="#173f39" font-size="14" font-weight="700" font-family="Manrope,Arial">P</text>
+                  <circle cx="572" cy="205" r="6" fill="#043f3b" />
+                  <line x1="572" y1="205" x2="449" y2="205" stroke="#173f39" stroke-width="3"
+                    marker-end="url(#transferLineArrow)" />
+                  <line x1="572" y1="205" x2="694" y2="103" stroke="#173f39" stroke-width="3"
+                    marker-end="url(#transferLineArrow)" />
+                  <path d="M496 205 A76 76 0 0 0 626 159" fill="none" stroke="#668bc0" stroke-width="3"
+                    marker-end="url(#transferLambdaArrow)" /><text x="566" y="194" fill="#4e709f" font-size="19"
+                    font-weight="700" font-family="Georgia,serif" font-style="italic">λ</text><text x="436" y="225"
+                    fill="#173f39" font-size="13" font-family="Manrope,Arial">предыдущая сторона</text><text x="657"
+                    y="98" fill="#173f39" font-size="13" font-family="Manrope,Arial">следующая</text><text x="563"
+                    y="229" fill="#173f39" font-size="14" font-weight="700" font-family="Manrope,Arial">P</text>
+                </svg>
+                <figcaption>В вершине P предыдущая сторона задаёт обратное направление; измеренный угол связывает его со
+                  следующей стороной.</figcaption>
+              </figure>
+              <div class="transfer-cards">
+                <div class="transfer-card">
+                  <h3>Углы вправо по ходу</h3>
+                  <p>Если <span class="math">β</span> — правый угол при вершине хода, то<br><strong><span
+                        class="math">α<sub>i+1</sub> = α<sub>i</sub> − β + 180°</span></strong>.</p>
+                </div>
+                <div class="transfer-card">
+                  <h3>Углы влево по ходу</h3>
+                  <p>Если <span class="math">λ</span> — левый угол при вершине хода, то<br><strong><span
+                        class="math">α<sub>i+1</sub> = α<sub>i</sub> + λ − 180°</span></strong>.</p>
+                </div>
+              </div>
+              <div class="transfer-example">
+                <h3>Пример передачи</h3>
+                <p>Пусть <span class="math">α<sub>1</sub> = 128°</span>, а измеренный правый угол <span class="math">β =
+                    74°</span>.</p>
+                <div class="formula"><span class="math">α<sub>2</sub> = 128° − 74° + 180° = </span><strong>234°</strong>
+                </div>
+                <p>Расчёт выполнен до целых градусов. Полученный угол уже лежит в диапазоне 0°…360°.</p>
+              </div>
+              <div class="transfer-tool">
+                <div class="tool-title">
+                  <h3>Тренажёр передачи угла</h3><span>целые градусы</span>
+                </div>
+                <div class="tool-form">
+                  <div class="tool-field"><label for="transferAlpha">Исходный αᵢ, °</label><input id="transferAlpha"
+                      type="number" value="128" step="1"></div>
+                  <div class="tool-field"><label for="transferBeta">Измеренный β / λ, °</label><input id="transferBeta"
+                      type="number" value="74" min="0" max="360" step="1"></div>
+                  <div class="tool-field"><label for="transferSide">Вид угла</label><select id="transferSide">
+                      <option value="right">вправо по ходу · β</option>
+                      <option value="left">влево по ходу · λ</option>
+                    </select></div><button class="tool-button" id="transferCalc" type="button">Передать α</button>
+                  <div class="tool-result" id="transferResult" aria-live="polite"><b>αᵢ₊₁ = 234°</b><br>Формула: αᵢ − β
+                    + 180°</div>
+                </div>
+                <p class="tool-help">Вводите исходный угол и измеренный угол до целых градусов.</p>
+              </div>
+              <div class="note-inline orange"><strong>Важно:</strong> Дирекционный угол изменяется от 0° до 360°. Если
+                при
+                вычислениях угол получается отрицательным, нужно прибавить целый оборот (+360°). Если угол получается
+                больше 360, то вычесть (-360°).</div>
+            </div>
+            <div class="orientation-panel" role="tabpanel" data-orientation-panel="orientation-5">
+              <h2>Самопроверка</h2>
+              <p>Выберите один вариант в каждом вопросе. После выбора сразу появится пояснение.</p>
+              <div class="quiz" id="orientationQuiz">
+                <fieldset class="quiz-item" data-answer="b">
+                  <legend>1. От какого направления отсчитывают дирекционный угол?</legend>
+                  <div class="quiz-options"><button type="button" data-choice="a">От магнитного
+                      меридиана</button><button type="button" data-choice="b">От северного направления осевого
+                      меридиана</button><button type="button" data-choice="c">От южного направления истинного
+                      меридиана</button></div>
+                  <p class="quiz-feedback"></p>
+                </fieldset>
+                <fieldset class="quiz-item" data-answer="a">
+                  <legend>2. Как связаны истинный азимут A и дирекционный угол α?</legend>
+                  <div class="quiz-options"><button type="button" data-choice="a">A = α + γ</button><button
+                      type="button" data-choice="b">A = α − γ</button><button type="button" data-choice="c">A = α +
+                      δ</button></div>
+                  <p class="quiz-feedback"></p>
+                </fieldset>
+                <fieldset class="quiz-item" data-answer="c">
+                  <legend>3. Как записать румб для α = 225°?</legend>
+                  <div class="quiz-options"><button type="button" data-choice="a">С 45° В</button><button type="button"
+                      data-choice="b">Ю 45° В</button><button type="button" data-choice="c">Ю 45° З</button></div>
+                  <p class="quiz-feedback"></p>
+                </fieldset>
+                <fieldset class="quiz-item" data-answer="b">
+                  <legend>4. Как передать α вправо по ходу?</legend>
+                  <div class="quiz-options"><button type="button" data-choice="a">αᵢ₊₁ = αᵢ + β − 180°</button><button
+                      type="button" data-choice="b">αᵢ₊₁ = αᵢ − β + 180°</button><button type="button"
+                      data-choice="c">αᵢ₊₁ = αᵢ − 180° − β</button></div>
+                  <p class="quiz-feedback"></p>
+                </fieldset>
+                <div class="quiz-score"><span>Результат: <strong id="quizScore">0 / 4</strong></span><button
+                    type="button" id="quizReset">Сбросить ответы</button></div>
+              </div>
+              <div class="summary-box">
+                <h2>Коротко о главном</h2>
+                <ol>
+                  <li><span>01</span>
+                    <div>Азимут и дирекционный угол измеряют от севера по часовой стрелке в диапазоне 0°…360°.</div>
+                  </li>
+                  <li><span>02</span>
+                    <div>Астрономический и истинный азимуты — одно и то же направление отсчёта от истинного меридиана;
+                      магнитный азимут отсчитывают от магнитного меридиана.</div>
+                  </li>
+                  <li><span>03</span>
+                    <div>Румб — острый угол 0°…90° с обязательным обозначением четверти.</div>
+                  </li>
+                  <li><span>04</span>
+                    <div>Связи при восточных положительных поправках: A = α + γ, A = A<sup>М</sup> + δ, α =
+                      A<sup>М</sup> + δ − γ.</div>
+                  </li>
+                  <li><span>05</span>
+                    <div>При передаче α используйте формулу, соответствующую виду измеренного угла, и нормируйте
+                      результат.</div>
+                  </li>
+                </ol>
+              </div>
+            </div>
 
-<div class="next-lesson"><span>Далее в курсе</span><a href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи →</a></div>
-</article></div></section>
-</main>
-</div>
-<script>
-(function(){
-  var root=document.querySelector('.orientation-article');
-  if(!root) return;
-  var tabs=[].slice.call(document.querySelectorAll('[data-orientation-tab]'));
-  var panels=[].slice.call(document.querySelectorAll('[data-orientation-panel]'));
-  function show(id){
-    tabs.forEach(function(tab){var on=tab.getAttribute('data-orientation-tab')===id;tab.classList.toggle('active',on);tab.setAttribute('aria-selected',String(on));});
-    panels.forEach(function(panel){panel.classList.toggle('active',panel.getAttribute('data-orientation-panel')===id);});
-  }
-  tabs.forEach(function(tab){tab.addEventListener('click',function(){show(tab.getAttribute('data-orientation-tab'));});});
+            <div class="next-lesson"><span>Далее в курсе</span><a
+                href="direct-and-inverse-geodetic-problems.html">Прямая и обратная геодезические задачи →</a></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var root = document.querySelector('.orientation-article');
+      if (!root) return;
+      var tabs = [].slice.call(document.querySelectorAll('[data-orientation-tab]'));
+      var panels = [].slice.call(document.querySelectorAll('[data-orientation-panel]'));
+      function show(id) {
+        tabs.forEach(function (tab) {var on = tab.getAttribute('data-orientation-tab') === id; tab.classList.toggle('active', on); tab.setAttribute('aria-selected', String(on));});
+        panels.forEach(function (panel) {panel.classList.toggle('active', panel.getAttribute('data-orientation-panel') === id);});
+      }
+      tabs.forEach(function (tab) {tab.addEventListener('click', function () {show(tab.getAttribute('data-orientation-tab'));});});
 
-  var range=document.getElementById('azimuthRange'), rangeOut=document.getElementById('azimuthRangeOutput'), azOut=document.getElementById('azimuthValue'), ray=document.getElementById('azimuthRay'), arc=document.getElementById('azimuthArc'), svgText=document.getElementById('azimuthSvgText');
-  function updateAzimuth(){
-    if(!range) return;
-    var angle=Number(range.value), rad=angle*Math.PI/180, cx=165, cy=165, r=112, x=cx+r*Math.sin(rad), y=cy-r*Math.cos(rad);
-    ray.setAttribute('x2',x.toFixed(1)); ray.setAttribute('y2',y.toFixed(1));
-    var startX=cx, startY=cy-89, endX=cx+89*Math.sin(rad), endY=cy-89*Math.cos(rad), large=angle>180?1:0;
-    arc.setAttribute('d','M '+startX+' '+startY+' A 89 89 0 '+large+' 1 '+endX.toFixed(1)+' '+endY.toFixed(1));
-    rangeOut.textContent=angle+'°'; azOut.textContent=angle+'°';
-    svgText.setAttribute('x',(cx+(r+15)*Math.sin(rad)).toFixed(1)); svgText.setAttribute('y',(cy-(r+15)*Math.cos(rad)).toFixed(1));
-  }
-  if(range){range.addEventListener('input',updateAzimuth);updateAzimuth();}
+      var range = document.getElementById('azimuthRange'), rangeOut = document.getElementById('azimuthRangeOutput'), azOut = document.getElementById('azimuthValue'), ray = document.getElementById('azimuthRay'), arc = document.getElementById('azimuthArc'), svgText = document.getElementById('azimuthSvgText');
+      function updateAzimuth() {
+        if (!range) return;
+        var angle = Number(range.value), rad = angle * Math.PI / 180, cx = 165, cy = 165, r = 112, x = cx + r * Math.sin(rad), y = cy - r * Math.cos(rad);
+        ray.setAttribute('x2', x.toFixed(1)); ray.setAttribute('y2', y.toFixed(1));
+        var startX = cx, startY = cy - 89, endX = cx + 89 * Math.sin(rad), endY = cy - 89 * Math.cos(rad), large = angle > 180 ? 1 : 0;
+        arc.setAttribute('d', 'M ' + startX + ' ' + startY + ' A 89 89 0 ' + large + ' 1 ' + endX.toFixed(1) + ' ' + endY.toFixed(1));
+        rangeOut.textContent = angle + '°'; azOut.textContent = angle + '°';
+        svgText.setAttribute('x', (cx + (r + 15) * Math.sin(rad)).toFixed(1)); svgText.setAttribute('y', (cy - (r + 15) * Math.cos(rad)).toFixed(1));
+      }
+      if (range) {range.addEventListener('input', updateAzimuth); updateAzimuth();}
 
-  function norm(a){a=a%360;if(a<0)a+=360;return a;}
-  function degreeMinute(value){
-    var n=norm(value), deg=Math.floor(n+1e-8), min=Math.round((n-deg)*60);
-    if(min===60){deg=(deg+1)%360;min=0;}
-    return deg+'°'+String(min).padStart(2,'0')+'′';
-  }
-  function rumb(value){
-    var a=norm(value), result, q;
-    if(a===0 || a===360){return 'С 0° В — северное направление';}
-    if(a===90){return 'С 90° В — восточное направление';}
-    if(a===180){return 'Ю 0° В — южное направление';}
-    if(a===270){return 'С 90° З — западное направление';}
-    if(a<90){result=a;q='I четверть';return 'С '+degreeMinute(result)+' В — '+q;}
-    if(a<180){result=180-a;q='IV четверть';return 'Ю '+degreeMinute(result)+' В — '+q;}
-    if(a<270){result=a-180;q='III четверть';return 'Ю '+degreeMinute(result)+' З — '+q;}
-    result=360-a;q='II четверть';return 'С '+degreeMinute(result)+' З — '+q;
-  }
-  function arcPath(cx,cy,r,start,end,sweep){
-    var a1=start*Math.PI/180, a2=end*Math.PI/180;
-    var x1=cx+r*Math.sin(a1), y1=cy-r*Math.cos(a1), x2=cx+r*Math.sin(a2), y2=cy-r*Math.cos(a2);
-    var diff=sweep===1?(end-start+360)%360:(start-end+360)%360, large=diff>180?1:0;
-    return 'M '+x1.toFixed(1)+' '+y1.toFixed(1)+' A '+r+' '+r+' 0 '+large+' '+sweep+' '+x2.toFixed(1)+' '+y2.toFixed(1);
-  }
-  function rumbCompact(value){
-    var a=norm(value), result, label;
-    if(a<90){result=a;label='СВ';}
-    else if(a<180){result=180-a;label='ЮВ';}
-    else if(a<270){result=a-180;label='ЮЗ';}
-    else{result=360-a;label='СЗ';}
-    return 'r = '+label+':'+degreeMinute(result);
-  }
-  var rumbLineRange=document.getElementById('rumbLineRange'), rumbLineRangeOutput=document.getElementById('rumbLineRangeOutput'), rumbInteractiveLine=document.getElementById('rumbInteractiveLine'), rumbInteractivePoint=document.getElementById('rumbInteractivePoint'), rumbAlphaArc=document.getElementById('rumbAlphaArc'), rumbShortArc=document.getElementById('rumbShortArc'), rumbAlphaSvgText=document.getElementById('rumbAlphaSvgText'), rumbLiveSvgText=document.getElementById('rumbLiveSvgText');
-  function setSvgTextPosition(el,cx,cy,r,angle){var rad=angle*Math.PI/180;el.setAttribute('x',(cx+r*Math.sin(rad)).toFixed(1));el.setAttribute('y',(cy-r*Math.cos(rad)).toFixed(1));}
-  function updateRumbLive(){
-    if(!rumbLineRange) return;
-    var a=Number(rumbLineRange.value), rad=a*Math.PI/180, cx=220, cy=180, lineR=132;
-    rumbInteractiveLine.setAttribute('x2',(cx+lineR*Math.sin(rad)).toFixed(1)); rumbInteractiveLine.setAttribute('y2',(cy-lineR*Math.cos(rad)).toFixed(1)); rumbInteractivePoint.setAttribute('cx',(cx+lineR*Math.sin(rad)).toFixed(1)); rumbInteractivePoint.setAttribute('cy',(cy-lineR*Math.cos(rad)).toFixed(1));
-    rumbAlphaArc.setAttribute('d',arcPath(cx,cy,105,0,a,1));
-    var start,sweep,mid,diff;
-    if(a<90){start=0;sweep=1;diff=a;}
-    else if(a<180){start=180;sweep=0;diff=180-a;}
-    else if(a<270){start=180;sweep=1;diff=a-180;}
-    else{start=0;sweep=0;diff=360-a;}
-    rumbShortArc.setAttribute('d',arcPath(cx,cy,73,start,a,sweep));
-    mid=sweep===1?start+diff/2:start-diff/2;
-    setSvgTextPosition(rumbAlphaSvgText,cx,cy,117,a/2); setSvgTextPosition(rumbLiveSvgText,cx,cy,84,mid);
-    var label=rumb(a).split(' — ');
-    document.getElementById('rumbLineRangeOutput').textContent=a+'°'; document.getElementById('rumbLiveAlpha').textContent=degreeMinute(a); document.getElementById('rumbLiveRumb').textContent=rumbCompact(a); document.getElementById('rumbLiveQuadrant').textContent=label[1]||'';
-  }
-  if(rumbLineRange){rumbLineRange.addEventListener('input',updateRumbLive);updateRumbLive();}
+      function norm(a) {a = a % 360; if (a < 0) a += 360; return a;}
+      function degreeMinute(value) {
+        var n = norm(value), deg = Math.floor(n + 1e-8), min = Math.round((n - deg) * 60);
+        if (min === 60) {deg = (deg + 1) % 360; min = 0;}
+        return deg + '°' + String(min).padStart(2, '0') + '′';
+      }
+      function rumb(value) {
+        var a = norm(value), result, q;
+        if (a === 0 || a === 360) {return 'С 0° В — северное направление';}
+        if (a === 90) {return 'С 90° В — восточное направление';}
+        if (a === 180) {return 'Ю 0° В — южное направление';}
+        if (a === 270) {return 'С 90° З — западное направление';}
+        if (a < 90) {result = a; q = 'I четверть'; return 'С ' + degreeMinute(result) + ' В — ' + q;}
+        if (a < 180) {result = 180 - a; q = 'IV четверть'; return 'Ю ' + degreeMinute(result) + ' В — ' + q;}
+        if (a < 270) {result = a - 180; q = 'III четверть'; return 'Ю ' + degreeMinute(result) + ' З — ' + q;}
+        result = 360 - a; q = 'II четверть'; return 'С ' + degreeMinute(result) + ' З — ' + q;
+      }
+      function arcPath(cx, cy, r, start, end, sweep) {
+        var a1 = start * Math.PI / 180, a2 = end * Math.PI / 180;
+        var x1 = cx + r * Math.sin(a1), y1 = cy - r * Math.cos(a1), x2 = cx + r * Math.sin(a2), y2 = cy - r * Math.cos(a2);
+        var diff = sweep === 1 ? (end - start + 360) % 360 : (start - end + 360) % 360, large = diff > 180 ? 1 : 0;
+        return 'M ' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' A ' + r + ' ' + r + ' 0 ' + large + ' ' + sweep + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+      }
+      function rumbCompact(value) {
+        var a = norm(value), result, label;
+        if (a < 90) {result = a; label = 'СВ';}
+        else if (a < 180) {result = 180 - a; label = 'ЮВ';}
+        else if (a < 270) {result = a - 180; label = 'ЮЗ';}
+        else {result = 360 - a; label = 'СЗ';}
+        return 'r = ' + label + ':' + degreeMinute(result);
+      }
+      var rumbLineRange = document.getElementById('rumbLineRange'), rumbLineRangeOutput = document.getElementById('rumbLineRangeOutput'), rumbInteractiveLine = document.getElementById('rumbInteractiveLine'), rumbInteractivePoint = document.getElementById('rumbInteractivePoint'), rumbAlphaArc = document.getElementById('rumbAlphaArc'), rumbShortArc = document.getElementById('rumbShortArc'), rumbAlphaSvgText = document.getElementById('rumbAlphaSvgText'), rumbLiveSvgText = document.getElementById('rumbLiveSvgText');
+      function setSvgTextPosition(el, cx, cy, r, angle) {var rad = angle * Math.PI / 180; el.setAttribute('x', (cx + r * Math.sin(rad)).toFixed(1)); el.setAttribute('y', (cy - r * Math.cos(rad)).toFixed(1));}
+      function updateRumbLive() {
+        if (!rumbLineRange) return;
+        var a = Number(rumbLineRange.value), rad = a * Math.PI / 180, cx = 220, cy = 180, lineR = 132;
+        rumbInteractiveLine.setAttribute('x2', (cx + lineR * Math.sin(rad)).toFixed(1)); rumbInteractiveLine.setAttribute('y2', (cy - lineR * Math.cos(rad)).toFixed(1)); rumbInteractivePoint.setAttribute('cx', (cx + lineR * Math.sin(rad)).toFixed(1)); rumbInteractivePoint.setAttribute('cy', (cy - lineR * Math.cos(rad)).toFixed(1));
+        rumbAlphaArc.setAttribute('d', arcPath(cx, cy, 105, 0, a, 1));
+        var start, sweep, mid, diff;
+        if (a < 90) {start = 0; sweep = 1; diff = a;}
+        else if (a < 180) {start = 180; sweep = 0; diff = 180 - a;}
+        else if (a < 270) {start = 180; sweep = 1; diff = a - 180;}
+        else {start = 0; sweep = 0; diff = 360 - a;}
+        rumbShortArc.setAttribute('d', arcPath(cx, cy, 73, start, a, sweep));
+        mid = sweep === 1 ? start + diff / 2 : start - diff / 2;
+        setSvgTextPosition(rumbAlphaSvgText, cx, cy, 117, a / 2); setSvgTextPosition(rumbLiveSvgText, cx, cy, 84, mid);
+        var label = rumb(a).split(' — ');
+        document.getElementById('rumbLineRangeOutput').textContent = a + '°'; document.getElementById('rumbLiveAlpha').textContent = degreeMinute(a); document.getElementById('rumbLiveRumb').textContent = rumbCompact(a); document.getElementById('rumbLiveQuadrant').textContent = label[1] || '';
+      }
+      if (rumbLineRange) {rumbLineRange.addEventListener('input', updateRumbLive); updateRumbLive();}
 
-  function clamp(a,min,max){return Math.max(min,Math.min(max,a));}
-  function setRay(id,theta,r){var el=document.getElementById(id),cx=260,cy=220,rad=theta*Math.PI/180;el.setAttribute('x2',(cx+r*Math.sin(rad)).toFixed(1));el.setAttribute('y2',(cy-r*Math.cos(rad)).toFixed(1));}
-  function updateRelationDiagram(alpha,gamma,delta){
-    var scale=5, grid=0, trueAngle=clamp(gamma*scale,-70,70), magneticAngle=clamp((gamma-delta)*scale,-70,70), direction=norm(alpha);
-    setRay('relationGrid',grid,182);setRay('relationTrue',trueAngle,165);setRay('relationMagnetic',magneticAngle,148);setRay('relationDirection',direction,175);var directionPoint=document.getElementById('relationDirectionPoint'),directionRad=direction*Math.PI/180;directionPoint.setAttribute('cx',(260+175*Math.sin(directionRad)).toFixed(1));directionPoint.setAttribute('cy',(220-175*Math.cos(directionRad)).toFixed(1));
-    document.getElementById('relationAngleAlpha').setAttribute('d',arcPath(260,220,42,grid,direction,1));
-    document.getElementById('relationAngleA').setAttribute('d',arcPath(260,220,76,trueAngle,direction,1));
-    document.getElementById('relationAngleAm').setAttribute('d',arcPath(260,220,110,magneticAngle,direction,1));
-    var midAlpha=(grid+(direction-grid+360)%360/2)%360, midA=(trueAngle+(direction-trueAngle+360)%360/2)%360, midAm=(magneticAngle+(direction-magneticAngle+360)%360/2)%360;
-    setSvgTextPosition(document.getElementById('relationLabelAlpha'),260,220,54,midAlpha);setSvgTextPosition(document.getElementById('relationLabelA'),260,220,88,midA);setSvgTextPosition(document.getElementById('relationLabelAm'),260,220,124,midAm);
-    var trueText=document.getElementById('relationTrueText'),magText=document.getElementById('relationMagneticText');setSvgTextPosition(trueText,260,220,178,trueAngle);setSvgTextPosition(magText,260,220,160,magneticAngle);
-  }
-  function integerAngle(value){var n=Math.round(norm(value));return (n===360?0:n)+'°';}
-  function renderCalc(){
-    var alpha=Number(document.getElementById('calcAlpha').value),gamma=Number(document.getElementById('calcGamma').value),delta=Number(document.getElementById('calcDelta').value);if(![alpha,gamma,delta].every(Number.isFinite))return;
-    var A=norm(alpha+gamma),Am=norm(A-delta),back=norm(Am+delta-gamma);document.getElementById('calcA').textContent=degreeMinute(A);document.getElementById('calcAm').textContent=degreeMinute(Am);document.getElementById('calcAlphaBack').textContent=degreeMinute(back);updateRelationDiagram(alpha,gamma,delta);
-  }
-  var calcBtn=document.getElementById('calcAngles');
-  if(calcBtn){calcBtn.addEventListener('click',renderCalc);['calcAlpha','calcGamma','calcDelta'].forEach(function(id){document.getElementById(id).addEventListener('input',renderCalc);});renderCalc();}
+      function clamp(a, min, max) {return Math.max(min, Math.min(max, a));}
+      function setRay(id, theta, r) {var el = document.getElementById(id), cx = 260, cy = 220, rad = theta * Math.PI / 180; el.setAttribute('x2', (cx + r * Math.sin(rad)).toFixed(1)); el.setAttribute('y2', (cy - r * Math.cos(rad)).toFixed(1));}
+      function updateRelationDiagram(alpha, gamma, delta) {
+        var scale = 5, grid = 0, trueAngle = clamp(gamma * scale, -70, 70), magneticAngle = clamp((gamma - delta) * scale, -70, 70), direction = norm(alpha);
+        setRay('relationGrid', grid, 182); setRay('relationTrue', trueAngle, 165); setRay('relationMagnetic', magneticAngle, 148); setRay('relationDirection', direction, 175); var directionPoint = document.getElementById('relationDirectionPoint'), directionRad = direction * Math.PI / 180; directionPoint.setAttribute('cx', (260 + 175 * Math.sin(directionRad)).toFixed(1)); directionPoint.setAttribute('cy', (220 - 175 * Math.cos(directionRad)).toFixed(1));
+        document.getElementById('relationAngleAlpha').setAttribute('d', arcPath(260, 220, 42, grid, direction, 1));
+        document.getElementById('relationAngleA').setAttribute('d', arcPath(260, 220, 76, trueAngle, direction, 1));
+        document.getElementById('relationAngleAm').setAttribute('d', arcPath(260, 220, 110, magneticAngle, direction, 1));
+        var midAlpha = (grid + (direction - grid + 360) % 360 / 2) % 360, midA = (trueAngle + (direction - trueAngle + 360) % 360 / 2) % 360, midAm = (magneticAngle + (direction - magneticAngle + 360) % 360 / 2) % 360;
+        setSvgTextPosition(document.getElementById('relationLabelAlpha'), 260, 220, 54, midAlpha); setSvgTextPosition(document.getElementById('relationLabelA'), 260, 220, 88, midA); setSvgTextPosition(document.getElementById('relationLabelAm'), 260, 220, 124, midAm);
+        var trueText = document.getElementById('relationTrueText'), magText = document.getElementById('relationMagneticText'); setSvgTextPosition(trueText, 260, 220, 178, trueAngle); setSvgTextPosition(magText, 260, 220, 160, magneticAngle);
+      }
+      function integerAngle(value) {var n = Math.round(norm(value)); return (n === 360 ? 0 : n) + '°';}
+      function renderCalc() {
+        var alpha = Number(document.getElementById('calcAlpha').value), gamma = Number(document.getElementById('calcGamma').value), delta = Number(document.getElementById('calcDelta').value); if (![alpha, gamma, delta].every(Number.isFinite)) return;
+        var A = norm(alpha + gamma), Am = norm(A - delta), back = norm(Am + delta - gamma); document.getElementById('calcA').textContent = degreeMinute(A); document.getElementById('calcAm').textContent = degreeMinute(Am); document.getElementById('calcAlphaBack').textContent = degreeMinute(back); updateRelationDiagram(alpha, gamma, delta);
+      }
+      var calcBtn = document.getElementById('calcAngles');
+      if (calcBtn) {calcBtn.addEventListener('click', renderCalc);['calcAlpha', 'calcGamma', 'calcDelta'].forEach(function (id) {document.getElementById(id).addEventListener('input', renderCalc);}); renderCalc();}
 
-  var transferBtn=document.getElementById('transferCalc');
-  if(transferBtn){transferBtn.addEventListener('click',function(){var a=Number(document.getElementById('transferAlpha').value),b=Number(document.getElementById('transferBeta').value),side=document.getElementById('transferSide').value,out=document.getElementById('transferResult');if(!Number.isFinite(a)||!Number.isFinite(b)){out.innerHTML='<b>Проверьте ввод:</b> нужны два числовых значения.';return;}var next=side==='right'?a-b+180:a+b-180;var formula=side==='right'?'αᵢ − β + 180°':'αᵢ + λ − 180°';out.innerHTML='<b>αᵢ₊₁ = '+integerAngle(next)+'</b><br>Формула: '+formula;});}
+      var transferBtn = document.getElementById('transferCalc');
+      if (transferBtn) {transferBtn.addEventListener('click', function () {var a = Number(document.getElementById('transferAlpha').value), b = Number(document.getElementById('transferBeta').value), side = document.getElementById('transferSide').value, out = document.getElementById('transferResult'); if (!Number.isFinite(a) || !Number.isFinite(b)) {out.innerHTML = '<b>Проверьте ввод:</b> нужны два числовых значения.'; return;} var next = side === 'right' ? a - b + 180 : a + b - 180; var formula = side === 'right' ? 'αᵢ − β + 180°' : 'αᵢ + λ − 180°'; out.innerHTML = '<b>αᵢ₊₁ = ' + integerAngle(next) + '</b><br>Формула: ' + formula;});}
 
-  var quiz=document.getElementById('orientationQuiz');
-  function updateScore(){var items=[].slice.call(quiz.querySelectorAll('.quiz-item')),score=0;items.forEach(function(item){var selected=item.querySelector('button.selected');if(selected&&selected.getAttribute('data-choice')===item.getAttribute('data-answer'))score++;});document.getElementById('quizScore').textContent=score+' / '+items.length;}
-  if(quiz){quiz.addEventListener('click',function(e){var button=e.target.closest('button[data-choice]');if(!button)return;var item=button.closest('.quiz-item'),answer=item.getAttribute('data-answer'),choice=button.getAttribute('data-choice'),feedback=item.querySelector('.quiz-feedback');item.querySelectorAll('button[data-choice]').forEach(function(b){b.classList.remove('selected','correct','wrong');});button.classList.add('selected');if(choice===answer){button.classList.add('correct');feedback.textContent='Верно. Отлично!';feedback.style.color='#267458';}else{button.classList.add('wrong');feedback.textContent='Пока нет. Попробуйте ещё раз или сверитесь с соответствующим разделом урока.';feedback.style.color='#a1543b';}updateScore();});document.getElementById('quizReset').addEventListener('click',function(){quiz.querySelectorAll('button[data-choice]').forEach(function(b){b.classList.remove('selected','correct','wrong');});quiz.querySelectorAll('.quiz-feedback').forEach(function(p){p.textContent='';p.style.color='';});updateScore();});}
-}());
-</script>
-<script src="../../assets/search-data.js"></script>
-<script src="../../assets/courses-data.js"></script>
-<script src="../../assets/main.js"></script>
-<script src="../../assets/encyclopedia-data.js"></script>
-<script src="../../assets/lesson-blocks.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40218e88d71de5f',t:'MTc5MDI1NjEzOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      var quiz = document.getElementById('orientationQuiz');
+      function updateScore() {var items = [].slice.call(quiz.querySelectorAll('.quiz-item')), score = 0; items.forEach(function (item) {var selected = item.querySelector('button.selected'); if (selected && selected.getAttribute('data-choice') === item.getAttribute('data-answer')) score++;}); document.getElementById('quizScore').textContent = score + ' / ' + items.length;}
+      if (quiz) {quiz.addEventListener('click', function (e) {var button = e.target.closest('button[data-choice]'); if (!button) return; var item = button.closest('.quiz-item'), answer = item.getAttribute('data-answer'), choice = button.getAttribute('data-choice'), feedback = item.querySelector('.quiz-feedback'); item.querySelectorAll('button[data-choice]').forEach(function (b) {b.classList.remove('selected', 'correct', 'wrong');}); button.classList.add('selected'); if (choice === answer) {button.classList.add('correct'); feedback.textContent = 'Верно. Отлично!'; feedback.style.color = '#267458';} else {button.classList.add('wrong'); feedback.textContent = 'Пока нет. Попробуйте ещё раз или сверитесь с соответствующим разделом урока.'; feedback.style.color = '#a1543b';} updateScore();}); document.getElementById('quizReset').addEventListener('click', function () {quiz.querySelectorAll('button[data-choice]').forEach(function (b) {b.classList.remove('selected', 'correct', 'wrong');}); quiz.querySelectorAll('.quiz-feedback').forEach(function (p) {p.textContent = ''; p.style.color = '';}); updateScore();});}
+    }());
+  </script>
+  <script src="../../assets/search-data.js"></script>
+  <script src="../../assets/courses-data.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script src="../../assets/encyclopedia-data.js"></script>
+  <script src="../../assets/lesson-blocks.js"></script>
+  <script>(function () {function c() {var b = a.contentDocument || (a.contentWindow && a.contentWindow.document); if (b) {var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'a4024cf10a1bde5f',t:'MTc5MDI1ODI3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d)} } if (document.body) {var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else {var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) {e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c())}} } })();</script>
+</body>
+
 </html>
