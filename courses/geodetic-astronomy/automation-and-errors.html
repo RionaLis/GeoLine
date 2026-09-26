@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Интерактивный урок об автоматизации астрономических наблюдений, источниках ошибок астрономических определений и поправках в результаты измерений: электронные и роботизированные системы, цифровые зенитные камеры, бюджет ошибок, поправки за рефракцию, наклон оси, коллимацию и суточную аберрацию.">
+<title>Автоматизация наблюдений, источники ошибок и поправки — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+:root{--ink:#092c33;--muted:#5c7370;--paper:#f4f8f6;--white:#fff;--dark:#063f3b;--dark2:#07534d;--green:#0a655d;--green-soft:#e9f5f1;--green-line:#b3d9d0;--accent:#ff7136;--accent-dark:#d9501a;--accent-soft:#ffe9de;--line:#d5e3de;--radius:18px;--mono:'Roboto Mono',Consolas,monospace;--lesson-w:1220px}
+:root{--blue:#2474c6;--violet:#7655b7;--cyan:#118c91;--gold:#b9780c;--red:#d45834;--shadow:0 18px 50px rgba(18,54,49,.10)}
+.section{padding:28px 0 60px}.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.article,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.article{padding:28px 31px}.panel{padding:16px}
+.article h2{margin:0 0 9px}.article h3{font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:22px 0 8px}
+.lead{color:#405a55;margin:0 0 10px}.note{border-left:3px solid var(--accent);background:#fff2ec;padding:13px 16px;border-radius:0 10px 10px 0;margin:15px 0;color:#75462d}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:#096158;font-family:"Cambria Math",Georgia,serif;font-size:16px;overflow:auto}
+.muted{color:#6a7d79;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.cards{grid-template-columns:1fr}}
+.card{padding:18px;border:1px solid var(--line);border-radius:14px;background:#f8fbfa}.card b{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;border-radius:99px;padding:3px 9px;font:700 11px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font:800 11px var(--mono);color:var(--accent-dark);text-transform:uppercase}
+.legend{list-style:none;padding:0;margin:8px 0}.legend li{border-bottom:1px dashed var(--line);padding:8px 0;display:flex;gap:10px}.legend li:last-child{border:0}
+.legend .n{min-width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font:700 13px/26px var(--mono);text-align:center}
+.cap{font:500 11.5px var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+/* evolution steps */
+.evo{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 4px}
+@media(max-width:820px){.evo{grid-template-columns:1fr 1fr}}@media(max-width:520px){.evo{grid-template-columns:1fr}}
+.evo-step{border:1px solid var(--line);border-radius:13px;background:#f7fbf9;padding:14px;cursor:pointer;transition:.15s;position:relative}
+.evo-step:hover{border-color:var(--accent)}
+.evo-step.on{border-color:var(--accent);background:#fff3ed;box-shadow:0 5px 18px rgba(255,113,54,.14)}
+.evo-step small{display:block;font:700 10px var(--mono);color:#81918d;text-transform:uppercase}
+.evo-step b{display:block;margin:4px 26px 4px 0;color:#163f39;font-size:13.5px}
+.evo-step i{position:absolute;right:12px;top:14px;font-style:normal;color:var(--accent);font-weight:800}
+.evo-detail{border:1px solid var(--line);border-radius:13px;padding:20px;background:#fff;min-height:150px;margin-top:12px}
+.evo-detail h4{margin:0 0 8px;color:var(--green)}
+.evo-detail .excl{border-left:4px solid var(--cyan);background:#eef7f6;border-radius:0 9px 9px 0;padding:9px 12px;font-size:13px;color:#315951;margin-top:12px}
+/* budget bars */
+.brow{display:grid;grid-template-columns:230px 1fr 74px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+@media(max-width:620px){.brow{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}}
+input[type=range]{accent-color:var(--accent);width:100%}
+.bval{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+.bname{font:600 12.5px var(--mono);color:#405a55}
+.bbars{margin-top:14px}
+.bbar{display:grid;grid-template-columns:230px 1fr 74px;gap:10px;align-items:center;margin:7px 0}
+@media(max-width:620px){.bbar{grid-template-columns:1fr}}
+.bbar .track{height:15px;border-radius:8px;background:#eef4f2;position:relative;overflow:hidden}
+.bbar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px}
+.bbar.total{border-top:1.5px solid var(--line);padding-top:11px}
+.bbar.total .bname{font-weight:800;color:#163f39}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+@media(max-width:620px){.readout{grid-template-columns:1fr}}
+.out{padding:12px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9}
+.out small{display:block;color:#768a85;font:700 10px var(--mono);text-transform:uppercase}
+.out b{font:700 15px var(--mono);color:var(--green)}
+.corr{display:grid;grid-template-columns:1fr 1fr 120px;gap:8px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+@media(max-width:560px){.corr{grid-template-columns:1fr}}
+.value{font:700 13px var(--mono);color:var(--accent-dark);text-align:right}
+.scheme{margin:6px 0}.scheme svg{display:block;width:100%;height:auto}
+.lbl{font:600 11px var(--mono);fill:#5c7370}
+.quiz-q{padding:15px 0;border-bottom:1px solid var(--line)}.answers{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.ans{border:1px solid var(--line);background:#f5faf8;border-radius:9px;padding:8px 11px;cursor:pointer;font-size:13.5px}
+.ans.ok{background:#def3e9;border-color:#55a980}.ans.bad{background:#ffe8df;border-color:#d98263}
+.source-list a{color:var(--green)}.source-list{padding-left:18px}.source-list li{margin:6px 0;font-size:14px}
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside>
+<main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-05">Тема 05. Приборы для астрономо-геодезических измерений</a></div>
+<h1>Автоматизация наблюдений, источники ошибок и поправки</h1>
+<p class="gl-meta-summary">Куда движется астрономическая техника: от контактных микрометров и хронографов к фотоэлектрической регистрации, ПЗС-камерам и роботизированным зенитным камерам. Основные источники ошибок астрономических определений — инструментальные, личные, внешней среды и исходных данных — и рабочие поправки в результаты измерений. Интерактивный бюджет ошибок и калькуляторы поправок.</p>
+<div class="tabs-wrap gl-tabs"><div class="container"><div class="tabs" id="tabs">
+<button class="tab active" data-view="auto">Автоматизация</button>
+<button class="tab" data-view="errors">Источники ошибок</button>
+<button class="tab" data-view="corrections">Поправки</button>
+<button class="tab" data-view="check">Самопроверка</button>
+</div></div></div></section>
+<div class="section"><div class="container">
+
+<!-- ============ AUTO ============ -->
+<section class="view active" id="auto">
+<div class="article">
+<h2>Зачем автоматизировать астрономические наблюдения</h2>
+<p class="lead">Классическое астрономическое определение — это длинная цепочка ручных операций: навести, отсчитать микроскопы, услышать удар хронометра, записать. Каждое звено добавляет ошибки, а ночь наблюдений ограничена погодой и усталостью наблюдателя. Автоматизация бьёт по трём целям сразу.</p>
+<div class="cards">
+<div class="card"><span class="tag">точность</span><b>Исключить личные ошибки</b>Реакция наблюдателя, привычка смещать биссектор, ошибки отсчитывания — всё это уходит вместе с самим наблюдателем из контура регистрации.</div>
+<div class="card"><span class="tag">объём</span><b>Поднять производительность</b>Робот не устаёт: больше звёзд за ночь → случайные ошибки гасятся числом приёмов (√n), а результат готов к утру.</div>
+<div class="card"><span class="tag">методика</span><b>Сделать её устойчивой</b>Одна и та же программа, одни и те же параметры экспозиции и наведения на каждом пункте — систематика не «гуляет» от наблюдателя к наблюдателю.</div>
+<div class="card"><span class="tag">оперативность</span><b>Обработка в реальном времени</b>Эфемериды, редукция и контроль качества выполняются в полевом компьютере непосредственно во время сеанса.</div>
+</div>
+</div>
+<div class="panel" style="margin-top:24px">
+<h2>Четыре ступени автоматизации</h2>
+<p class="muted">Нажмите на ступень — ниже раскроется её устройство и что именно она исключает.</p>
+<div class="evo" id="evo"></div>
+<div class="evo-detail" id="evoDetail"></div>
+</div>
+<div class="grid" style="margin-top:24px">
+<div class="article">
+<h2>Современные автоматизированные комплексы</h2>
+<h3>АУ-01 — отечественный шаг к автоматизации</h3>
+<p class="lead">К середине 1980-х годов ЦНИИГАиК совместно с ЭОМЗ создал высокоточный астрономический комплекс на базе универсала <b>АУ-01</b>: инструментальная СКП азимута направления из программы — <b>0,1″·sec φ</b>, широты — около <b>0,2″</b>. Комплекс выпускался малой серией и обозначил переход от «чисто визуальных» приборов к системам с полуавтоматической регистрацией.</p>
+<h3>Цифровые зенитные камеры</h3>
+<p class="lead">TZK2-D (Ганновер) и DIADEM (ETH Цюрих) — типичные представители цифровых зенитных камерных систем (DZCS). Подвижная часть — телескоп с ПЗС-камерой и инклинометром — поворачивается на 180°, чтобы наблюдать звёзды в двух противоположных направлениях и исключать систематику наклона.</p>
+<ul class="legend">
+<li><span class="n">1</span><span><b>ПЗС-снимки околозенитного поля</b>: экспозиция 0,2–0,5 с, звёзды до 12–14 величины, опознание по каталогам Tycho-2 / UCAC.</span></li>
+<li><span class="n">2</span><span><b>Инклинометр</b> измеряет наклон оси камеры вместо уровней; <b>ГНСС-приёмник</b> даёт время и координаты пункта.</span></li>
+<li><span class="n">3</span><span><b>Полевой компьютер</b> управляет съёмкой и решает редукцию в реальном времени: на выходе — широта, долгота и <b>уклонение отвесной линии</b>.</span></li>
+<li><span class="n">4</span><span><b>Точность 0,1–0,2″</b> по компонентам уклонения — этого достаточно, чтобы строить миллиметровые локальные модели квазигеоида методом астрономического нивелирования.</span></li>
+</ul>
+<h3>Тахеометровые астрономические системы</h3>
+<p class="lead">Система <b>QDaedalus</b> (ETH) — лёгкая ПЗС-насадка на серийный электронный тахеометр: автонаведение, электронные круги и ГНСС-время позволяют определять уклонения отвесных линий с точностью около 0,2″ силами одного специалиста. Так «обычный» геодезический прибор превращается в астрономический инструмент.</p>
+<div class="note"><b>Вектор развития.</b> Оптико-механическая точность классических универсалов дополнена электроникой: датчики вместо глаз, сервоприводы вместо наводящих винтов, ГНСС вместо радиоприёмника, процессор вместо журнала и логарифмических таблиц.</div>
+</div>
+<div class="panel">
+<h2>Было — стало</h2>
+<table>
+<tr><th></th><th>Классический полевой набор</th><th>Автоматизированный комплекс</th></tr>
+<tr><td>Прибор</td><td>АУ 2/10 / Вильд Т-4 + поверительная труба</td><td>зенитная камера с ПЗС или тахеометр с насадкой</td></tr>
+<tr><td>Время</td><td>хронометр + радиоприёмник «Астра»</td><td>ГНСС-приёмник (UTC напрямую)</td></tr>
+<tr><td>Регистрация</td><td>контактный микрометр + хронограф ХПМ-3</td><td>кадры ПЗС с метками времени</td></tr>
+<tr><td>Учёт наклона</td><td>отсчёты по уровням, в журнал</td><td>инклинометр / двухосевой компенсатор</td></tr>
+<tr><td>Сеанс на пункте</td><td>полночь наблюдений + дни обработки</td><td>20–40 минут, результат «на месте»</td></tr>
+<tr><td>Точность (астр. координаты)</td><td>~0,3–0,5″ в лучших определениях</td><td>0,1–0,2″ (уклонения отвеса)</td></tr>
+</table>
+<div class="note" style="margin-bottom:0"><b>Осталась неизменной</b> астрономическая суть: пары звёзд, выгоднейшие условия, редукция координат, учёт рефракции и вращения Земли. Электроника ускорила и очистила измерения, но не отменила ни одной формулы из урока <a href="reduction-calculations.html" style="color:#d9501a">«Редукционные вычисления в астрономии»</a>.</div>
+</div>
+</div>
+</section>
+
+<!-- ============ ERRORS ============ -->
+<section class="view" id="errors">
+<div class="article">
+<h2>Откуда берутся ошибки астрономических определений</h2>
+<p class="lead">Итоговая ошибка определения широты, долготы или азимута складывается из четырёх больших групп. Внутри групп действуют и случайные, и систематические составляющие; методика наблюдений строится так, чтобы систематику исключить или выявить.</p>
+<div class="cards">
+<div class="card"><span class="tag">группа 1</span><b>Инструментальные</b>Коллимационная ошибка, наклоны осей, эксцентриситет алидады и лимба, ошибки штрихов и диаметров кругов, боковое гнутие трубы, неправильности цапф, ошибки уровней и микрометра, ошибки компенсатора.</div>
+<div class="card"><span class="tag">группа 2</span><b>Личные наблюдателя</b>Запаздывание реакции при регистрации моментов, систематическое смещение биссектора относительно звезды, ошибки совмещения штрихов при отсчётах. Свои у каждого наблюдателя — отсюда лично-инструментальная разность (АЛИР).</div>
+<div class="card"><span class="tag">группа 3</span><b>Внешней среды</b>Рефракция и её нестабильность — главный ограничитель точности; боковая рефракция в азимутальных определениях; мерцание изображений; температура и давление (гнутие трубы, ход хронометра); ветер и освещённость.</div>
+<div class="card"><span class="tag">группа 4</span><b>Исходных данных и методики</b>Ошибки каталогов и эфемерид, параметры вращения Земли и движения полюса, неучтённые условия (не те шкалы времени, неверная интерполяция), недостаток или несимметричность пар звёзд в программе.</div>
+</div>
+<h3>Как методика борется с систематикой</h3>
+<ul class="legend">
+<li><span class="n">1</span><span><b>Два круга</b> (КЛ и КП) — исключают коллимационную ошибку и место зенита.</span></li>
+<li><span class="n">2</span><span><b>Симметричные пары звёзд</b> (по азимуту, по зенитному расстоянию, по времени) — рефракционные и инструментальные влияния взаимно компенсируются.</span></li>
+<li><span class="n">3</span><span><b>Наблюдения на равных высотах</b> — исключается систематика отсчётов по вертикальному лимбу.</span></li>
+<li><span class="n">4</span><span><b>Перестановки лимба</b> между приёмами — усредняются ошибки штрихов и диаметров круга.</span></li>
+<li><span class="n">5</span><span><b>Определение АЛИР</b> на эталонном пункте до и после сезона — выявляется систематика «наблюдатель + прибор» в азимуте.</span></li>
+</ul>
+<div class="note"><b>Случайная часть</b> гасится объёмом: ошибка среднего из n приёмов падает как 1/√n. Именно поэтому автоматизация (больше наблюдений за ту же ночь) напрямую повышает точность.</div>
+</div>
+<div class="panel" style="margin-top:24px">
+<h2>Интерактив: бюджет ошибок определения</h2>
+<p class="muted">Подвигайте ползунки — компоненты складываются <b>квадратически</b>: m = √(Σmᵢ²). Типичное правило оптимизации: сначала ослабляй наибольший компонент.</p>
+<div id="budget"></div>
+<div class="bbars" id="budgetBars"></div>
+<div class="readout">
+<div class="out"><small>суммарная ошибка m</small><b id="budTotal"></b></div>
+<div class="out"><small>класс определения</small><b id="budClass"></b></div>
+<div class="out"><small>что ослабить в первую очередь</small><b id="budWorst"></b></div>
+</div>
+<div class="note" style="margin-bottom:0"><b>Проверьте себя.</b> Уменьшите рефракцию вдвое при прочих равных — суммарная ошибка изменится сильнее, чем при вдвое меньшей личной погрешности, если рефракция была доминирующей. Квадратичное сложение «прощает» малые компоненты и беспощадно к большим.</div>
+</div>
+</section>
+
+<!-- ============ CORRECTIONS ============ -->
+<section class="view" id="corrections">
+<div class="article">
+<h2>О поправках в результаты измерений</h2>
+<p class="lead">Измеренная величина почти никогда не равна «той самой», которая входит в формулы способа. Связь оформляют поправками:</p>
+<div class="formula">измерено + Σ(поправок) = исправлено → используется в способе</div>
+<p class="lead">Поправки вводят: в <b>зенитные расстояния</b> (место зенита, наклон уровня, рефракция, параллакс Солнца), в <b>горизонтальные направления</b> (наклон горизонтальной оси, коллимационная ошибка, суточная аберрация, гнутие, цапфы), в <b>моменты времени</b> (поправка и ход хронометра, сличение шкал), в <b>координаты пункта</b> (движение полюса, редукция к центру). Часть влияний предпочитают не поправлять, а <b>исключать методикой</b> — двумя кругами, симметричными парами, равными высотами.</p>
+<div class="note"><b>Знаки поправок</b> определяются правилами конкретного способа и конструкцией прибора (положением круга, направлением возрастания делений). В калькуляторах ниже показаны величины влияний; при реальной обработке их ставят в формулы со своими знаками по руководству.</div>
+</div>
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Калькулятор: поправки в горизонтальное направление</h2>
+<div class="corr"><label>наклон горизонтальной оси b, ″</label><input id="hB" type="range" min="0" max="10" step="0.1" value="2"><span class="value" id="hBV"></span></div>
+<div class="corr"><label>коллимационная ошибка c, ″</label><input id="hC" type="range" min="0" max="10" step="0.1" value="1"><span class="value" id="hCV"></span></div>
+<div class="corr"><label>зенитное расстояние Z, °</label><input id="hZ" type="range" min="15" max="85" step="1" value="30"><span class="value" id="hZV"></span></div>
+<div class="corr"><label>широта пункта φ, °</label><input id="hF" type="range" min="30" max="70" step="1" value="55"><span class="value" id="hFV"></span></div>
+<div class="scheme"><svg id="hSvg" viewBox="0 0 620 210" role="img" aria-label="Схема влияний на горизонтальное направление"></svg></div>
+<div class="readout">
+<div class="out"><small>наклон оси b·ctg Z</small><b id="hOutB"></b></div>
+<div class="out"><small>коллимация c·cosec Z</small><b id="hOutC"></b></div>
+<div class="out"><small>суточная аберрация (макс.)</small><b id="hOutA"></b></div>
+</div>
+<div class="note" style="margin-bottom:0">Суточная аберрация смещает светила к точке востока; её влияние на азимут ΔA = 0,32″·cos φ·cos A·cosec Z — здесь показан максимум по азимуту. Для Полярной (cos A ≈ 1) поправка максимальна и обязательна.</div>
+</div>
+<div class="panel">
+<h2>Калькулятор: поправки в зенитное расстояние</h2>
+<div class="corr"><label>измеренное Z′, °</label><input id="zZ" type="range" min="10" max="80" step="1" value="45"><span class="value" id="zZV"></span></div>
+<div class="corr"><label>давление B, мм рт. ст.</label><input id="zB" type="range" min="700" max="790" step="1" value="755"><span class="value" id="zBV"></span></div>
+<div class="corr"><label>температура t, °C</label><input id="zT" type="range" min="-25" max="35" step="1" value="10"><span class="value" id="zTV"></span></div>
+<div class="corr"><label>наклон уровня, дел. (τ = 1″)</label><input id="zL" type="range" min="0" max="3" step="0.25" value="0.5"><span class="value" id="zLV"></span></div>
+<div class="corr"><label>светило</label><select id="zSun" style="border:1px solid var(--line);border-radius:9px;padding:8px;background:#f5faf8"><option value="star">звезда (параллакс = 0)</option><option value="sun">Солнце (P₀ ≈ 8,8″)</option></select><span></span></div>
+<div class="scheme"><svg id="zSvg" viewBox="0 0 620 210" role="img" aria-label="Схема поправок в зенитное расстояние"></svg></div>
+<div class="readout">
+<div class="out"><small>рефракция ρ</small><b id="zOutR"></b></div>
+<div class="out"><small>параллакс Солнца</small><b id="zOutP"></b></div>
+<div class="out"><small>Z = Z′ + ρ + i·τ (− P)</small><b id="zOutZ"></b></div>
+</div>
+<div class="note" style="margin-bottom:0">Приближённая формула рефракции ρ = 21,67″·B·tg Z′/(273 + t) годится для z &lt; 70–80°; в точных способах пользуются таблицами или строгой моделью по измеренным B, t и влажности. По инструкции ГГС точные определения выполняют при 0° &lt; z &lt; 50° — у горизонта ошибки рефракции резко растут.</div>
+</div>
+</div>
+</section>
+
+<!-- ============ CHECK ============ -->
+<section class="view" id="check"><div class="article">
+<h2>Самопроверка</h2>
+<div id="quiz"></div>
+<div class="note" id="score">Ответьте на пять вопросов.</div>
+<h3>Источники урока</h3>
+<ul class="source-list">
+<li><a href="https://meganorm.ru/Data2/1/4293849/4293849531.htm" target="_blank" rel="noopener">ГКИНП-01-153-81. Руководство по астрономическим определениям</a> — методы регистрации, исследование приборов, формулы поправок.</li>
+<li>Гиенко Е. Г. Астрометрия и геодезическая астрономия: учеб. пособие. — Новосибирск: СГГА, 2010 — § 2.4 «Особенности наблюдения светил. Редукции астрономических наблюдений».</li>
+<li><a href="https://vniiftri.ru/upload/iblock/76e/76ed4451e4cd22bba32f0f9a4ad2d74f.pdf" target="_blank" rel="noopener">ВНИИФТРИ — обзор цифровых зенитных телескопов и астроизмерителей</a> (TZK2-D, DIADEM, QDaedalus).</li>
+<li><a href="https://www.scielo.br/j/bcg/a/MtwCfysQBcx9kGdL6FrR9hJ/?format=html&lang=en&ilang=en" target="_blank" rel="noopener">Halıcıoğlu et al. — Automated Digital Zenith Camera System</a> — точность автоматизированных определений уклонений отвеса.</li>
+<li><a href="https://miigaik.ru/journal/archive/2017/2017_61_1_RU/Geodesy_2017_61_1_RU.pdf" target="_blank" rel="noopener">Известия вузов. Геодезия и аэрофотосъёмка, 2017, № 1</a> — применение электронных теодолитов в астрономических определениях.</li>
+</ul>
+</div></section>
+
+</div></div>
+<script>
+const $=id=>document.getElementById(id);
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.view).classList.add('active')});
+
+/* ---------- evolution ---------- */
+const EVO=[
+{s:'ступень 1',t:'Визуальные наблюдения',d:'Наблюдатель сам всё: наводит трубу, совмещает биссектор, слушает удары хронометра (метод «глаз-ухо»), читает микроскопы-микрометры, записывает журнал. Всё зависит от опыта и самочувствия одного человека.',ex:'Личная ошибка регистрации — до 0,1–0,2ˢ; производительность — десятки звёзд за ночь.'},
+{s:'ступень 2',t:'Контактный микрометр + хронограф',d:'Наблюдатель только ведёт биссектор за звездой, вращая барабан; при совмещениях контакты замыкаются, и печатающий хронограф (ХПМ-3) фиксирует моменты на ленте рядом с секундными метками хронометра. Запись моментов уходит из рук наблюдателя.',ex:'Исключается ошибка чтения секунд; личная ошибка сводится к точности ведения биссектора.'},
+{s:'ступень 3',t:'Фотоэлектрическая и ПЗС-регистрация',d:'Изображение звезды проходит щели или проецируется на ПЗС-матрицу; сигналы формируются и метятся автоматически. В пассажных инструментах фотоэлектрическая регистрация стала стандартом; моменты фиксируются с ошибками ~0,01ˢ.',ex:'Наблюдатель исключён из регистрации; личная ошибка исчезает как класс.'},
+{s:'ступень 4',t:'Роботизированные цифровые системы',d:'Электронные круги, компенсаторы, сервоприводы автонаведения, ПЗС-камера, ГНСС-время и полевой компьютер: система сама находит звёзды, снимает, метит моменты, решает редукцию и выдаёт координаты и уклонения отвеса. Классические TZK2-D, DIADEM, QDaedalus работают именно так.',ex:'Сеанс на пункте сокращается до десятков минут; точность уклонений — 0,1–0,2″; обработка — в реальном времени.'}
+];
+$('evo').innerHTML=EVO.map((x,i)=>`<div class="evo-step" data-i="${i}" role="button" tabindex="0"><small>${x.s}</small><b>${x.t}</b><i>›</i></div>`).join('');
+function pickEvo(i){
+document.querySelectorAll('.evo-step').forEach(x=>x.classList.toggle('on',+x.dataset.i===i));
+$('evoDetail').innerHTML='<h4>'+EVO[i].t+'</h4><p class="lead">'+EVO[i].d+'</p><div class="excl"><b>Что исключается.</b> '+EVO[i].ex+'</div>';
+}
+$('evo').addEventListener('click',e=>{const s=e.target.closest('.evo-step');if(s)pickEvo(+s.dataset.i)});
+$('evo').addEventListener('keydown',e=>{const s=e.target.closest('.evo-step');if(s&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickEvo(+s.dataset.i)}});
+pickEvo(0);
+
+/* ---------- budget ---------- */
+const BUD=[
+{n:'остаточная рефракция',min:0.05,max:2,step:0.05,v:0.6,c:'#2474c6'},
+{n:'инструментальные (после исследований)',min:0.05,max:1,step:0.05,v:0.35,c:'#d45834'},
+{n:'наклон оси (после учёта уровнем)',min:0.02,max:0.5,step:0.01,v:0.15,c:'#b9780c'},
+{n:'ход хронометра (в угловой мере)',min:0.02,max:0.5,step:0.01,v:0.10,c:'#7655b7'},
+{n:'личная погрешность',min:0.02,max:0.5,step:0.01,v:0.12,c:'#118c91'},
+{n:'исходные данные (каталог, ПВЗ)',min:0.02,max:0.3,step:0.01,v:0.08,c:'#657674'}
+];
+function budgetCalc(){
+$('budget').innerHTML=BUD.map((b,i)=>`<div class="brow"><span class="bname">${b.n}</span><input type="range" data-i="${i}" min="${b.min}" max="${b.max}" step="${b.step}" value="${b.v}"><span class="bval" id="bv${i}"></span></div>`).join('');
+document.querySelectorAll('#budget input').forEach(inp=>inp.addEventListener('input',budgetDraw));
+budgetDraw();
+}
+function budgetDraw(){
+document.querySelectorAll('#budget input').forEach(inp=>{BUD[+inp.dataset.i].v=+inp.value});
+let sum=0,worst=BUD[0];
+BUD.forEach((b,i)=>{sum+=b.v*b.v;if(b.v>worst.v)worst=b;const el=$('bv'+i);if(el)el.textContent=b.v.toFixed(2)+'″'});
+const m=Math.sqrt(sum);
+$('budTotal').textContent=m.toFixed(2)+'″';
+$('budClass').textContent=m<0.3?'высокоточное (~0,3″)':m<0.5?'точное (~0,5″)':m<1.0?'средней точности':'приближённое';
+$('budWorst').textContent=worst.n.split(' (')[0];
+const maxv=Math.max(2.2,m*1.15);
+$('budgetBars').innerHTML=BUD.map(b=>`<div class="bbar"><span class="bname">${b.n}</span><div class="track"><div class="fill" style="width:${Math.min(100,b.v/maxv*100)}%;background:${b.c}"></div></div><span class="bval">${b.v.toFixed(2)}″</span></div>`).join('')+
+`<div class="bbar total"><span class="bname">Σ суммарная (квадратично)</span><div class="track" style="background:#f4f8f6"><div class="fill" style="width:${Math.min(100,m/maxv*100)}%;background:linear-gradient(90deg,#ff7136,#d9501a)"></div></div><span class="bval" style="font-size:14px">${m.toFixed(2)}″</span></div>`;
+}
+budgetCalc();
+
+/* ---------- correction calculators ---------- */
+function drawBars(svgId,items){
+const W=620,H=210,L=210,B=26,T=10,pw=W-L-20;
+let g='';const maxv=Math.max(...items.map(i=>i.v))*1.15;
+items.forEach((it,i)=>{
+const y=T+i*((H-T-B)/items.length),bh=(H-T-B)/items.length-12;
+const w=Math.max(2,it.v/maxv*pw);
+g+=`<text x="${L-10}" y="${y+bh/2+4}" text-anchor="end" style="font:600 10.5px var(--mono);fill:#405a55">${it.t}</text>`;
+g+=`<rect x="${L}" y="${y}" width="${pw}" height="${bh}" rx="6" fill="#eef4f2"/>`;
+g+=`<rect x="${L}" y="${y}" width="${w}" height="${bh}" rx="6" fill="${it.c}"/>`;
+g+=`<text x="${L+w+8}" y="${y+bh/2+4}" style="font:700 11px var(--mono);fill:#405a55">${it.v.toFixed(2)}″</text>`;
+});
+$(svgId).innerHTML=g;
+}
+function hCalc(){
+const b=+$('hB').value,c=+$('hC').value,Z=+$('hZ').value,f=+$('hF').value,rad=Math.PI/180;
+$('hBV').textContent=b.toFixed(1)+'″';$('hCV').textContent=c.toFixed(1)+'″';$('hZV').textContent=Z+'°';$('hFV').textContent=f+'°';
+const eb=b/Math.tan(Z*rad),ec=c/Math.sin(Z*rad),ea=0.32*Math.cos(f*rad)/Math.sin(Z*rad);
+$('hOutB').textContent=eb.toFixed(2)+'″';$('hOutC').textContent=ec.toFixed(2)+'″';$('hOutA').textContent=ea.toFixed(2)+'″';
+drawBars('hSvg',[{t:'наклон оси b·ctg Z',v:eb,c:'#ff7136'},{t:'коллимация c·cosec Z',v:ec,c:'#2474c6'},{t:'суточная аберрация',v:ea,c:'#7655b7'}]);
+}
+['hB','hC','hZ','hF'].forEach(id=>$(id).addEventListener('input',hCalc));
+function zCalc(){
+const Z=+$('zZ').value,B=+$('zB').value,t=+$('zT').value,Lv=+$('zL').value,sun=$('zSun').value==='sun',rad=Math.PI/180;
+$('zZV').textContent=Z+'°';$('zBV').textContent=B+' мм';$('zTV').textContent=t+' °C';$('zLV').textContent=Lv.toFixed(2)+' дел';
+const rho=21.67*B*Math.tan(Z*rad)/(273+t);
+const P=sun?8.8*Math.sin(Z*rad):0;
+const lvl=Lv*1.0;
+const Zc=Z+(rho+lvl-P)/3600;
+$('zOutR').textContent=rho.toFixed(2)+'″';$('zOutP').textContent=P>0?P.toFixed(2)+'″':'0″';
+$('zOutZ').textContent=Zc.toFixed(4)+'°';
+drawBars('zSvg',[{t:'рефракция ρ',v:rho,c:'#118c91'},{t:'параллакс Солнца',v:P,c:'#b9780c'},{t:'наклон уровня i·τ',v:lvl,c:'#d45834'}]);
+}
+['zZ','zB','zT','zL'].forEach(id=>$(id).addEventListener('input',zCalc));
+$('zSun').addEventListener('change',zCalc);
+hCalc();zCalc();
+
+/* ---------- quiz ---------- */
+const qs=[
+['Главная цель автоматизации регистрации моментов наблюдений:',['сделать приборы дешевле','исключить личные ошибки наблюдателя и поднять производительность','обойтись без астрономических ежегодников'],1],
+['Какое влияние НЕ исключается наблюдениями при двух положениях круга?',['коллимационная ошибка','место зенита','рефракция'],2],
+['Цифровые зенитные камеры типа TZK2-D и DIADEM предназначены для:',['спутниковых наблюдений','автоматического определения астрономических координат и уклонений отвесных линий','измерения базисов'],1],
+['Независимые случайные ошибки складываются:',['алгебраически','квадратически (m = √Σmᵢ²)','берётся наибольшая из них'],1],
+['Поправка за рефракцию в зенитное расстояние зависит от:',['только от зенитного расстояния','давления и температуры воздуха (и от Z′)','блеска звезды'],1],
+['Влияние наклона горизонтальной оси b на горизонтальное направление равно:',['b·tg Z','b·ctg Z','b·sin Z'],1]
+];
+let done={};
+$('quiz').innerHTML=qs.map((q,i)=>`<div class="quiz-q"><b>${i+1}. ${q[0]}</b><div class="answers">${q[1].map((a,j)=>`<button class="ans" data-q="${i}" data-a="${j}">${a}</button>`).join('')}</div></div>`).join('');
+$('quiz').onclick=e=>{
+const b=e.target.closest('.ans');if(!b||done[b.dataset.q]!==undefined)return;
+const q=+b.dataset.q,a=+b.dataset.a;done[q]=a;
+const row=b.parentElement;
+row.querySelectorAll('.ans').forEach((x,j)=>{if(j===qs[q][2])x.classList.add('ok');else if(j===a)x.classList.add('bad')});
+const n=Object.keys(done).length,ok=Object.keys(done).filter(i=>done[i]===qs[i][2]).length;
+$('score').innerHTML=n<qs.length?`Отвечено: ${n}/${qs.length} · верно: ${ok}`:`Результат: <b>${ok}/${qs.length}</b>. ${ok===qs.length?'Отлично: тема «Приборы для астрономо-геодезических измерений» пройдена полностью.':'Вернитесь к ступеням автоматизации, классификации ошибок и калькуляторам поправок.'}`;
+};
+</script>
+</main></div>
+<script src="../../assets/search-data.js"></script><script src="../../assets/courses-data.js"></script><script src="../../assets/main.js"></script><script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a414bd760911d800',t:'MTc5MDQ1MTYyMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

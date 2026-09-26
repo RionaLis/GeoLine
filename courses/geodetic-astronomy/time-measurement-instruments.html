@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Интерактивный урок о приборах времени в геодезической астрономии: механические и кварцевые хронометры, Государственная служба времени и частоты, радиосигналы времени, методы регистрации моментов наблюдений звёзд, исследование хода хронометра.">
+<title>Приборы для измерения и регистрации времени — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+:root{--ink:#092c33;--muted:#5c7370;--paper:#f4f8f6;--white:#fff;--dark:#063f3b;--dark2:#07534d;--green:#0a655d;--green-soft:#e9f5f1;--green-line:#b3d9d0;--accent:#ff7136;--accent-dark:#d9501a;--accent-soft:#ffe9de;--line:#d5e3de;--radius:18px;--mono:'Roboto Mono',Consolas,monospace;--lesson-w:1220px}
+:root{--blue:#2474c6;--violet:#7655b7;--cyan:#118c91;--gold:#b9780c;--red:#d45834;--shadow:0 18px 50px rgba(18,54,49,.10)}
+.section{padding:28px 0 60px}.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.article,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.article{padding:28px 31px}.panel{padding:16px}
+.article h2{margin:0 0 9px}.article h3{font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:22px 0 8px}
+.lead{color:#405a55;margin:0 0 10px}.note{border-left:3px solid var(--accent);background:#fff2ec;padding:13px 16px;border-radius:0 10px 10px 0;margin:15px 0;color:#75462d}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:#096158;font-family:"Cambria Math",Georgia,serif;font-size:16px;overflow:auto}
+.muted{color:#6a7d79;font-size:13px}
+.card{padding:18px;border:1px solid var(--line);border-radius:14px;background:#f8fbfa}.card b{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;border-radius:99px;padding:3px 9px;font:700 11px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font:800 11px var(--mono);color:var(--accent-dark);text-transform:uppercase}
+.legend{list-style:none;padding:0;margin:8px 0}.legend li{border-bottom:1px dashed var(--line);padding:8px 0;display:flex;gap:10px}.legend li:last-child{border:0}
+.legend .n{min-width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font:700 13px/26px var(--mono);text-align:center}
+.cap{font:500 11.5px var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+.scheme{margin:6px 0}.scheme svg{display:block;width:100%;height:auto}
+.lbl{font:600 11px var(--mono);fill:#5c7370}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin:14px 0 6px;position:relative}
+.tl:before{content:'';position:absolute;left:4%;right:4%;top:15px;height:3px;background:linear-gradient(90deg,#bfe6dc,#ff7136);border-radius:2px}
+.tl-item{position:relative;padding:34px 4px 0;text-align:center;cursor:pointer}
+.tl-item i{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--cyan);transition:.15s}
+.tl-item:hover i{border-color:var(--accent)}
+.tl-item.on i{background:var(--accent);border-color:var(--accent-dark)}
+.tl-item span{display:block;font:700 11px var(--mono);color:#174c45}
+@media(max-width:700px){.tl{grid-template-columns:repeat(2,1fr);gap:6px 0}.tl:before{display:none}}
+@media(max-width:560px){.trial-tab{gap:4px}.trial{padding:6px 4px}.trial b{font-size:11px}}
+.tl-detail{border-left:4px solid var(--accent);background:#fff2ec;border-radius:0 10px 10px 0;padding:14px 16px;margin-top:10px;color:#5b453d;font-size:14px;line-height:1.6}
+.tl-detail b{color:#d9501a}
+/* flow */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:8px 0 4px}
+.fnode{flex:1 1 150px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9;padding:12px;cursor:pointer;transition:.15s;position:relative}
+.fnode:hover{border-color:var(--accent)}
+.fnode.on{border-color:var(--accent);background:#fff3ed;box-shadow:0 5px 18px rgba(255,113,54,.14)}
+.fnode b{display:block;font-size:12.5px;color:#174c45}
+.fnode small{display:block;color:#6a7d79;font-size:11px;margin-top:3px}
+.farr{align-self:center;color:var(--accent);font-size:20px;font-weight:800}
+/* simulator */
+.sky{background:#0e2b33;border-radius:12px;position:relative;overflow:hidden;border:1px solid #7d9a93;cursor:crosshair}
+.sky svg{display:block;width:100%;height:auto}
+.sim-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 4px}
+.btn{border:1px solid var(--line);background:#eef4f2;color:#174c45;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:800;font-size:14px;transition:.15s}
+.btn:hover{border-color:var(--accent);background:#fff2ec}
+.btn.primary{background:var(--accent);border-color:var(--accent-dark);color:#163f39}
+.btn:disabled{opacity:.4;cursor:default}
+.sim-stat{font:700 13px var(--mono);color:#315c54}
+.trial-tab{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
+.trial{border:1px solid var(--line);border-radius:10px;padding:8px 9px;background:#f7fbf9;text-align:center}
+.trial small{display:block;font:700 9px var(--mono);color:#768a85;text-transform:uppercase}
+.trial b{font:700 13px var(--mono);color:var(--green)}
+.trial b.neg{color:#d45834}
+/* study */
+.corr{display:grid;grid-template-columns:1fr 120px;gap:8px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+input[type=range]{accent-color:var(--accent);width:100%}
+.value{font:700 13px var(--mono);color:var(--accent-dark);text-align:right}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+@media(max-width:620px){.readout{grid-template-columns:1fr}}
+.out{padding:12px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9}
+.out small{display:block;color:#768a85;font:700 10px var(--mono);text-transform:uppercase}
+.out b{font:700 15px var(--mono);color:var(--green)}
+.quiz-q{padding:15px 0;border-bottom:1px solid var(--line)}.answers{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.ans{border:1px solid var(--line);background:#f5faf8;border-radius:9px;padding:8px 11px;cursor:pointer;font-size:13.5px}
+.ans.ok{background:#def3e9;border-color:#55a980}.ans.bad{background:#ffe8df;border-color:#d98263}
+.source-list a{color:var(--green)}.source-list{padding-left:18px}.source-list li{margin:6px 0;font-size:14px}
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside>
+<main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-05">Тема 05. Приборы для астрономо-геодезических измерений</a></div>
+<h1>Приборы для измерения и регистрации времени</h1>
+<p class="gl-meta-summary">Хронометр, кварцевые часы и хронограф: как хранить время на пункте и привязывать его к эталону. Государственная служба времени и частоты, радиосигналы и их приём в поле; методы регистрации моментов наблюдений звёзд — от метода «глаз-ухо» до фотоэлектрической установки; исследование поправки и хода хронометра. Симулятор личной ошибки наблюдателя и модель хода хронометра.</p>
+<div class="tabs-wrap gl-tabs"><div class="container"><div class="tabs" id="tabs">
+<button class="tab active" data-view="role">Роль времени</button>
+<button class="tab" data-view="clocks">Хронометры</button>
+<button class="tab" data-view="service">Служба времени</button>
+<button class="tab" data-view="register">Регистрация моментов</button>
+<button class="tab" data-view="study">Исследование хода</button>
+<button class="tab" data-view="check">Самопроверка</button>
+</div></div></div></section>
+<div class="section"><div class="container">
+
+<!-- ============ ROLE ============ -->
+<section class="view active" id="role"><div class="grid">
+<div class="article">
+<h2>Почему время — такая же измеряемая величина, как углы и направления?</h2>
+<p class="lead">Горизонтальные координаты светила меняются непрерывно: из-за суточного вращения небесной сферы звезда смещается на 15″ дуги за каждую секунду времени. Поэтому <b>каждое</b> астрономическое наблюдение — это пара чисел: отсчёт по прибору <b>и момент по часам</b>. Ошибка момента в 0,1<sup>s</sup> смещает положение звезды на 1,5″ — уже слишком много для точных определений; отсюда требование регистрировать моменты с ошибкой в сотые доли секунды.</p>
+<div class="formula">суточное вращение: 360° за 24ʰ → 15′ за 1<sup>m</sup> → <b>15″ дуги за 1<sup>s</sup> времени</b></div>
+<p class="lead">От средств времени требуются три вещи:</p>
+<ul class="legend">
+<li><span class="n">1</span><span><b>Хранить</b> рабочую шкалу времени на пункте — это хронометр.</span></li>
+<li><span class="n">2</span><span><b>Знать её связь с точным временем</b> — поправка u определяется из радиосигналов (или сегодня из ГНСС).</span></li>
+<li><span class="n">3</span><span><b>Регистрировать моменты</b> наблюдений — хронограф, контактный микрометр, печатающее устройство.</span></li>
+</ul>
+<p class="lead">В приближённых определениях обходятся часами с секундной стрелкой и двухстрелочным секундомером; для точных работ нужен комплект «хронометр + радиоприёмник + хронограф», а показания спутникового навигационного приёмника, принятые при наблюдении спутников, дают время в единой системе напрямую.</p>
+<div class="note"><b>Вспомните.</b> Системы времени — звёздное, всемирное, атомное — разобраны в уроке <a href="time-systems.html" style="color:#d9501a">«Системы измерения времени в астрономии»</a>. Здесь речь о «железе»: приборах, которые это время хранят, получают и регистрируют.</div>
+</div>
+<div class="panel">
+<h2>Краткая история средств времени</h2>
+<p class="muted">Нажимайте на вехи — ниже появится описание. Обратите внимание, как менялся «носитель» точного времени: механика → кварц → атом → спутник.</p>
+<div class="tl" id="tl"></div>
+<div class="tl-detail" id="tlDetail"><b>Выберите веху.</b> Каждая — шаг к тому, чтобы полевой наблюдатель знал точное время с ошибкой в сотые доли секунды.</div>
+</div>
+</div></section>
+
+<!-- ============ CLOCKS ============ -->
+<section class="view" id="clocks">
+<div class="grid">
+<div class="article">
+<h2>Механический хронометр</h2>
+<p class="lead">Классический полевой хронометр — пружинные часы особо тщательной выделки, «обученные» держать постоянный суточный ход.</p>
+<ul class="legend">
+<li><span class="n">1</span><span><b>Хронометерный спуск</b> — специальная конструкция спуска: балансир получает импульс в одну сторону, что резко снижает возмущения механизма.</span></li>
+<li><span class="n">2</span><span><b>Термокомпенсированный балансир</b> (с перекладной) — ход почти не зависит от температуры.</span></li>
+<li><span class="n">3</span><span><b>Равномерная тяга пружины</b> — двигатель с фузеей или специальным профилем завода.</span></li>
+<li><span class="n">4</span><span><b>Карданов подвес</b> (в морском исполнении) — корпус сохраняет горизонтальное положение при качке.</span></li>
+</ul>
+<p class="lead">Для астрономических работ применялись <b>контактные</b> хронометры (например, 6МХ): механизм ежесекундно замыкает электрические контакты, к которым подключается хронограф, — секунды «печатаются» на ленте автоматически.</p>
+<div class="note"><b>Главная характеристика.</b> Ценится не малый ход, а его <b>постоянство</b>: стабильный суточный ход можно учесть одной поправкой, а «прыгающий» — неучтём вовсе.</div>
+</div>
+<div class="article">
+<h2>Кварцевые часы и хронометры</h2>
+<p class="lead">В кварцевых часах эталоном частоты служит <b>кварцевый резонатор</b>: колебание пьезокристалла при постоянной температуре стабильно на порядки лучше балансира. Делители частоты формируют секундные импульсы, а электронная схема приводит в движение указатель или выдаёт сигнал наружу.</p>
+<div class="scheme"><svg viewBox="0 0 620 240" role="img" aria-label="Структурная схема кварцевого хронометра">
+<defs><marker id="fa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8Z" fill="#ff7136"/></marker></defs>
+<rect x="14" y="60" width="130" height="66" rx="12" fill="#fff7e8" stroke="#b9780c" stroke-width="1.5"/>
+<text x="79" y="88" text-anchor="middle" style="font:700 12px var(--mono);fill:#8a5b0b">кварцевый</text><text x="79" y="104" text-anchor="middle" style="font:700 12px var(--mono);fill:#8a5b0b">генератор</text>
+<rect x="24" y="130" width="110" height="24" rx="8" fill="#fff" stroke="#b9780c" stroke-dasharray="4 3"/>
+<text x="79" y="146" text-anchor="middle" style="font:600 10px var(--mono);fill:#8a5b0b">термостат</text>
+<rect x="186" y="60" width="130" height="66" rx="12" fill="#eaf4ff" stroke="#2474c6" stroke-width="1.5"/>
+<text x="251" y="88" text-anchor="middle" style="font:700 12px var(--mono);fill:#1c5a9e">делители</text><text x="251" y="104" text-anchor="middle" style="font:700 12px var(--mono);fill:#1c5a9e">частоты</text>
+<rect x="358" y="60" width="130" height="66" rx="12" fill="#eaf8f4" stroke="#118c91" stroke-width="1.5"/>
+<text x="423" y="82" text-anchor="middle" style="font:700 12px var(--mono);fill:#0d6b6f">формирователь</text><text x="423" y="98" text-anchor="middle" style="font:700 12px var(--mono);fill:#0d6b6f">импульсов 1 Гц</text><text x="423" y="114" text-anchor="middle" style="font:600 10px var(--mono);fill:#0d6b6f">минутная метка 1,5 с</text>
+<rect x="520" y="14" width="90" height="52" rx="10" fill="#f6faf8" stroke="#5c7370" stroke-width="1.5"/>
+<text x="565" y="44" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#405a55">указатель,</text><text x="565" y="56" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#405a55">циферблат</text>
+<rect x="520" y="88" width="90" height="52" rx="10" fill="#fff2ec" stroke="#d9501a" stroke-width="1.5"/>
+<text x="565" y="112" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#b3480f">выход на</text><text x="565" y="124" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#b3480f">хронограф</text>
+<rect x="520" y="162" width="90" height="52" rx="10" fill="#f3effa" stroke="#7655b7" stroke-width="1.5"/>
+<text x="565" y="186" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#5c3f97">питание:</text><text x="565" y="198" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#5c3f97">аккумуляторы</text>
+<line x1="144" y1="93" x2="184" y2="93" stroke="#ff7136" stroke-width="2.5" marker-end="url(#fa)"/>
+<line x1="316" y1="93" x2="356" y2="93" stroke="#ff7136" stroke-width="2.5" marker-end="url(#fa)"/>
+<line x1="488" y1="80" x2="518" y2="44" stroke="#ff7136" stroke-width="2.5" marker-end="url(#fa)"/>
+<line x1="488" y1="100" x2="518" y2="110" stroke="#ff7136" stroke-width="2.5" marker-end="url(#fa)"/>
+<line x1="565" y1="162" x2="565" y2="142" stroke="#7655b7" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="79" y="48" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#6a7d79">стабильность частоты резонатора задаёт ход</text>
+</svg></div>
+<p class="cap">Структурная схема кварцевого хронометра (типа «Альтаир»): секундные меандровые импульсы и удлинённая минутная метка выдаются на печатающий хронограф.</p>
+<p class="lead">Полевой кварцевый хронометр <b>«Альтаир»</b> (из комплекта аппаратуры по ГКИНП-01-153-81) выдаёт секундные импульсы с периодом 1 с, причём начало каждой минуты отмечается импульсом длительностью 1,5 с — так моменты удобно различать на ленте хронографа ХПМ-3. Суточная вариация хода у кварцевых хронометров на один-два порядка меньше, чем у механических.</p>
+</div>
+</div>
+<div class="panel" style="margin-top:24px">
+<h2>Поправка, ход, интерполяция — рабочие формулы</h2>
+<div class="two">
+<div class="formula" style="margin:6px 0">u = UTC − T<br><span style="font-size:12.5px;font-family:Manrope,Arial,sans-serif;color:#4f7a72">поправка хронометра: разность точного времени и его показания</span></div>
+<div class="formula" style="margin:6px 0">w = (u₂ − u₁)/(T₂ − T₁)<br><span style="font-size:12.5px;font-family:Manrope,Arial,sans-serif;color:#4f7a72">ход — изменение поправки за единицу времени (за сутки)</span></div>
+</div>
+<div class="formula" style="margin:6px 0">u(T) = u₁ + w·(T − T₁)<br><span style="font-size:12.5px;font-family:Manrope,Arial,sans-serif;color:#4f7a72">поправка на любой момент внутри интервала приёмов — так моменты наблюдений приводятся к точному времени</span></div>
+<div class="note" style="margin-bottom:0"><b>Чей показатель качества?</b> Не сама величина w (её можно вычесть), а её <b>вариация</b> — случайные колебания хода между приёмами. Именно вариация ограничивает точность интерполяции поправки на середину ночи, когда наблюдения идут.</div>
+</div>
+</section>
+
+<!-- ============ SERVICE ============ -->
+<section class="view" id="service">
+<div class="grid">
+<div class="article">
+<h2>Государственная служба времени и частоты</h2>
+<p class="lead"><b>ГСВЧ</b> — Государственная служба времени, частоты и определения параметров вращения Земли. Она воспроизводит национальную шкалу координированного времени <b>UTC(SU)</b>, хранит государственные эталоны частоты (цезиевые и водородные стандарты), сличает их с международными и публикует параметры вращения Земли. Научно-методическое и организационное руководство выполняет главный метрологический центр службы — <b>ВНИИФТРИ</b> (п. Менделеево Московской области).</p>
+<h3>Радиостанции передачи эталонных сигналов</h3>
+<table>
+<tr><th>Позывной</th><th>Частоты</th><th>Где и что передаёт</th></tr>
+<tr><td><b>РБУ</b></td><td>66,(6) кГц</td><td>Длинноволновая станция (Москва): непрерывный эталонный сигнал времени и частоты, согласован с UTC(SU)</td></tr>
+<tr><td><b>РТЗ</b></td><td>50,0 кГц</td><td>Длинноволновая станция (Иркутск) — эталонные сигналы для восточных районов</td></tr>
+<tr><td><b>РВМ</b></td><td>4996 / 9996 / 14996 кГц</td><td>Коротковолновая станция (Москва): секундные импульсы и несущая; в сигнале кодируется разность UT1 − UTC</td></tr>
+</table>
+<p class="lead">Структура сигналов регламентирована государственными стандартами; характерные точки секундных импульсов согласованы со шкалой UTC(SU). Сигналы РВМ дополнительно сообщают разность астрономического и координированного времени — она нужна при обработке наблюдений, использующих вращение Земли.</p>
+<div class="note"><b>Вещательные сигналы.</b> Широковещательные радиостанции много десятилетий подавали «шесть коротких сигналов точного времени»: начало последнего, шестого сигнала совпадает с началом часа. Для полевой практики это был удобный резервный способ контроля часов.</div>
+</div>
+<div class="panel">
+<h2>От эталона до пункта наблюдений</h2>
+<p class="muted">Нажмите на звено цепочки, чтобы увидеть его роль. Именно так поправка хронометра попадала «в поле».</p>
+<div class="flow" id="flow"></div>
+<div class="tl-detail" id="flowDetail"><b>Выберите звено цепочки.</b> Каждый шаг передачи времени добавляет свою, тщательно контролируемую задержку.</div>
+<h3 style="margin-top:18px">Как принимают сигналы в поле</h3>
+<ul class="legend">
+<li><span class="n">1</span><span>Приёмник (в комплекте ГКИНП — специальный <b>«Астра»</b>) подключается к хронографу, либо наблюдатель с помощником слушают сигналы в телефоны.</span></li>
+<li><span class="n">2</span><span>В момент подачи эталонного сигнала фиксируется <b>показание хронометра</b> T; разность даёт поправку u = UTC − T.</span></li>
+<li><span class="n">3</span><span>Приёмы повторяют <b>утром и вечером</b> каждого дня наблюдений (до и после ночного сеанса) — так получают ряд поправок и ход.</span></li>
+<li><span class="n">4</span><span>На момент наблюдений поправку <b>интерполируют</b> по формуле u(T) = u₁ + w(T − T₁).</span></li>
+</ul>
+<div class="note" style="margin-bottom:0"><b>Сегодня.</b> ГНСС-приёмник, принимающий сигналы навигационных спутников, несущие шкалу UTC, заменяет и радиоприёмник, и часть методики: поправка «считывается» напрямую с точностью до микросекунд. Но язык «поправка — ход — вариация» остаётся обязательным для астронома-геодезиста.</div>
+</div>
+</div></section>
+
+<!-- ============ REGISTER ============ -->
+<section class="view" id="register">
+<div class="article">
+<h2>Пять способов зафиксировать момент</h2>
+<p class="lead">Момент наблюдения звезды можно зарегистрировать с разной степенью автоматизации — и цена вопроса: личная ошибка наблюдателя и производительность.</p>
+<div class="two">
+<div class="card"><span class="tag">вручную</span><b>Метод «глаз-ухо»</b>Наблюдатель следит за звездой и считает «на слух» удары хронометра: момент пересечения нити оценивается как «удар плюс доля секунды». Помощник записывает. Просто, но несёт личную ошибку (у опытных — около 0,1<sup>s</sup>).</div>
+<div class="card"><span class="tag">полуавтомат</span><b>Контактный микрометр</b>Наблюдатель вращает барабан, ведя подвижный биссектор точно за звездой; при совмещениях замыкаются контакты, и хронограф сам печатает моменты. Личная ошибка резко уменьшается.</div>
+<div class="card"><span class="tag">автомат</span><b>Фотоэлектрическая регистрация</b>Изображение звезды модулируется щелями или решёткой; фотоумножитель формирует импульсы, а электроника фиксирует моменты. Наблюдатель исключён из процесса регистрации.</div>
+<div class="card"><span class="tag">печать</span><b>Хронограф ХПМ-3</b>Двухканальная запись на движущейся ленте: по одному каналу — секундные метки хронометра, по другому — сигналы микрометра или радиоприёмника. Обработка ленты даёт моменты с сотыми долями секунды.</div>
+<div class="card"><span class="tag">цифра</span><b>Печатающие устройства</b>Цифропечатающие хронографы и устройство МПУ8-3 с кнопочным вводом: наблюдатель нажимает клавишу точно в момент пересечения звездой нити — способ «глаз-клавиша», — и момент (часы, минуты, секунды, доли) печатается или записывается в память.</div>
+<div class="card"><span class="tag">сегодня</span><b>Электронная регистрация</b>Контроллер прибора с метками времени, синхронизированными по ГНСС; моменты и отсчёты пишутся в общий файл наблюдений для немедленной обработки.</div>
+</div>
+<div class="note"><b>Почему это так важно.</b> Ошибка момента 0,1<sup>s</sup> — это смещение положения звезды на 1,5″ по суточной параллели. Точность «пятой угловой секунды» в азимуте достигается только при регистрации моментов с ошибкой сотые доли секунды.</div>
+</div>
+<div class="panel" style="margin-top:24px">
+<h2>Симулятор: личная ошибка наблюдателя</h2>
+<p class="muted">Имитация метода «глаз-ухо». Звезда пересекает нити неподвижной трубы; секунды отмечаются вспышками метки (без цифр — как удары хронометра). Нажмите <b>«Есть!»</b> в момент, когда звезда пересекает <b>среднюю нить</b>. Пять попыток — и вы увидите свою «личную погрешность».</p>
+<div class="sky" id="simSky"><svg viewBox="0 0 620 250" role="img" aria-label="Поле зрения трубы с движущейся звездой">
+<rect x="0" y="0" width="620" height="250" fill="#0e2b33"/>
+<text x="14" y="22" style="font:700 10px var(--mono);fill:#7fa8b3">ПОЛЕ ЗРЕНИЯ ТРУБЫ · движение звезды →</text>
+<g stroke="#cfe1dd" stroke-width="1.2">
+<line x1="150" y1="30" x2="150" y2="200"/><line x1="230" y1="30" x2="230" y2="200"/>
+<line x1="310" y1="30" x2="310" y2="200" stroke-width="2.4" stroke="#ffd9c2"/>
+<line x1="390" y1="30" x2="390" y2="200"/><line x1="470" y1="30" x2="470" y2="200"/>
+</g>
+<text x="310" y="216" text-anchor="middle" style="font:600 10px var(--mono);fill:#ffd9c2">средняя нить</text>
+<circle id="simStar" cx="60" cy="115" r="6" fill="#ffb52e"/>
+<circle id="simFlash" cx="60" cy="115" r="14" fill="none" stroke="#ffb52e" opacity="0"/>
+<g id="simBeats"></g>
+</svg></div>
+<div class="sim-bar">
+<button class="btn primary" id="simStart">▶ Запуск звезды</button>
+<button class="btn" id="simMark" disabled>Есть!</button>
+<button class="btn" id="simReset" style="margin-left:auto">Сброс серии</button>
+<span class="sim-stat" id="simStat">Нажмите «Запуск»</span>
+</div>
+<div class="trial-tab" id="simTrials"></div>
+<div class="note" id="simVerdict" style="margin-bottom:0"><b>Что это было.</b> Разность между вашим нажатием и истинным моментом пересечения — аналог личной ошибки наблюдателя. Она систематична (чаще запаздывание), поэтому её определяют на эталонных пунктах как лично-инструментальную разность и вводят поправкой. Контактный микрометр и фотоэлектрическая регистрация сводят её практически к нулю.</div>
+</div>
+<div class="article" style="margin-top:24px">
+<h2>Тренажёр «Искусственная звезда»</h2>
+<p class="lead">Личный навык регистрации — вещь тренируемая, и в комплекте аппаратуры по ГКИНП-01-153-81 предусмотрен специальный лабораторный тренажёр — <b>«Искусственная звезда»</b>. Его главный объектив (F = 1200 мм) создаёт в фокусе движущееся изображение звезды, причём скорость можно задать одну из трёх: <b>16,1; 7,8 и 3,2″ в секунду</b> — характерные скорости движения звёзд в поле зрения трубы.</p>
+<p class="lead">На тренажёре наблюдатели упражняются в регистрации моментов способами <b>«глаз-ухо»</b> и <b>«глаз-клавиша»</b>, контролируют постоянство своей личной разности (главный показатель готовности к полевому сезону) и настраивают фотоэлектрические установки. Наш симулятор выше — «младший родственник» такого тренажёра: попробуйте улучшить свою серию после пары тренировочных запусков.</p>
+</div>
+</section>
+
+<!-- ============ STUDY ============ -->
+<section class="view" id="study">
+<div class="article">
+<h2>Что исследуют у хронометра</h2>
+<p class="lead">Исследование хронометра — это регулярные определения его поправки и хода до, во время и после полевого сезона.</p>
+<ul class="legend">
+<li><span class="n">1</span><span><b>Поправка u</b> — из приёмов радиосигналов времени (или сличением с ГНСС-приёмником): u = UTC − T. Определяется несколько раз в сутки.</span></li>
+<li><span class="n">2</span><span><b>Ход w</b> — по смежным приёмам; строится ряд суточных ходов. Постоянный, плавно меняющийся ход — норма.</span></li>
+<li><span class="n">3</span><span><b>Вариация хода</b> — колебания w между приёмами; главный показатель качества. Именно она определяет, с какой точностью можно интерполировать поправку на момент наблюдений.</span></li>
+<li><span class="n">4</span><span><b>Температурные коэффициенты</b> — зависимость хода от температуры; в поле хронометр держат в термостате или учитывают поправку.</span></li>
+<li><span class="n">5</span><span><b>Влияние перевозки</b> — до и после транспортировки проверяют сохранность хода; при сильных изменениях хронометр «отдыхает» и исследуется заново.</span></li>
+</ul>
+<div class="note"><b>Полевое правило.</b> Приёмы сигналов выполняются утром и вечером, наблюдения идут ночью: поправку на середину ночи получают <b>интерполяцией</b> между вечерним и утренним приёмами, а не экстраполяцией. Скачок хода между соседними интервалами — сигнал проверить хронометр.</div>
+</div>
+<div class="panel" style="margin-top:24px">
+<h2>Модель: ряд приёмов, ход и поправка на момент наблюдений</h2>
+<p class="muted">Дан ряд из шести приёмов радиосигналов за трое суток (утро/вечер). Таблица и график пересчитываются автоматически. Двигая ползунок, приведите поправку на момент ночных наблюдений и посмотрите, чем грозит пренебрежение ходом.</p>
+<table id="rateTable"><tr><th>Приём</th><th>Время UTC</th><th>Показание хронометра T</th><th>Поправка u</th><th>Ход w, с/сут</th></tr></table>
+<div class="corr" style="margin-top:12px"><label>момент наблюдений — часы от первого приёма</label><input id="obsT" type="range" min="0" max="60" step="0.5" value="30"></div>
+<div class="scheme"><svg id="rateSvg" viewBox="0 0 660 300" role="img" aria-label="График поправки хронометра по приёмам и интерполяция на момент наблюдений"></svg></div>
+<div class="readout">
+<div class="out"><small>средний суточный ход w̄</small><b id="rateW"></b></div>
+<div class="out"><small>поправка на момент наблюдений</small><b id="rateU"></b></div>
+<div class="out"><small>ошибка, если ход не учитывать</small><b id="rateErr"></b></div>
+</div>
+</div>
+</section>
+
+<!-- ============ CHECK ============ -->
+<section class="view" id="check"><div class="article">
+<h2>Самопроверка</h2>
+<div id="quiz"></div>
+<div class="note" id="score">Ответьте на пять вопросов.</div>
+<div class="next-lesson"><span>Далее в теме</span><a href="automation-and-errors.html">Автоматизация наблюдений, источники ошибок и поправки →</a></div>
+<h3>Источники урока</h3>
+<ul class="source-list">
+<li><a href="https://meganorm.ru/Data2/1/4293849/4293849531.htm" target="_blank" rel="noopener">ГКИНП-01-153-81. Руководство по астрономическим определениям</a> — разделы о хронометрах, хронографах и приёме радиосигналов.</li>
+<li>Гиенко Е. Г. Астрометрия и геодезическая астрономия: учеб. пособие. — Новосибирск: СГГА, 2010 — § 2.3.3 «Приборы для измерения и регистрации времени».</li>
+<li><a href="https://vniiftri.ru/" target="_blank" rel="noopener">ФГУП «ВНИИФТРИ»</a> — Государственная служба времени, частоты и определения параметров вращения Земли.</li>
+<li><a href="https://dic.academic.ru/dic.nsf/ruwiki/475622" target="_blank" rel="noopener">Радиостанция РВМ (RWM)</a> — структура эталонных сигналов времени.</li>
+</ul>
+</div></section>
+
+</div></div>
+<script>
+const $=id=>document.getElementById(id);
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.view).classList.add('active')});
+
+/* ---------- timeline ---------- */
+const TL=[
+{y:'XVII–XVIII в.',t:'Маятниковые часы',d:'Часы Гюйгенса с маятником дали астрономам точность секунд, но только в обсерватории: маятник «не переносится». В море и экспедициях точного времени не было — определение долготы оставалось проблемой века.'},
+{y:'1761–1764',t:'Хронометр Гаррисона',d:'Джон Гаррисон построил морской хронометр H4, выдержавший испытательные плавания с ошибкой в секунды: задача долготы в море была решена «переносом времени». Началась эра хронометров.'},
+{y:'XIX в.',t:'Хронометры в геодезии',d:'Градусные измерения и экспедиции возили комплекты палубных хронометров; долготы передавали «переносом времени», а затем — по телеграфу. Сравнение показаний нескольких хронометров стало стандартной процедурой.'},
+{y:'1884',t:'Гринвичский меридиан',d:'Международная конференция приняла Гринвич единым нулевым меридианом: появилось всемирное (гринвичское) время, которое и должны были хранить хронометры.'},
+{y:'1927 →',t:'Кварцевые часы',d:'Первые кварцевые часы превзошли по стабильности балансир; к середине XX века появились полевые кварцевые хронометры — «Альтаир» и другие — с секундными электрическими выходами для хронографов.'},
+{y:'1955–1972',t:'Атомное время',d:'Созданы цезиевые эталоны частоты; в 1967 г. секунда определена через колебания атома цезия-133; с 1972 г. действует шкала всемирного координированного времени UTC, лежащая в основе всей службы времени.'},
+{y:'Наши дни',t:'ГНСС и сети',d:'Приёмник ГНСС даёт UTC напрямую, с микросекундами; серверы времени — по сети. Радиоприёмник ушёл из полевого комплекта, но методика «поправка — ход — интерполяция» осталась рабочим инструментом специалиста.'}
+];
+$('tl').innerHTML=TL.map((x,i)=>`<div class="tl-item" data-i="${i}" role="button" tabindex="0"><i></i><span>${x.y}</span></div>`).join('');
+function pickTl(i){document.querySelectorAll('.tl-item').forEach(x=>x.classList.toggle('on',+x.dataset.i===i));$('tlDetail').innerHTML='<b>'+TL[i].y+' · '+TL[i].t+'.</b> '+TL[i].d;}
+$('tl').addEventListener('click',e=>{const it=e.target.closest('.tl-item');if(it)pickTl(+it.dataset.i)});
+$('tl').addEventListener('keydown',e=>{const it=e.target.closest('.tl-item');if(it&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickTl(+it.dataset.i)}});
+pickTl(1);
+
+/* ---------- flow ---------- */
+const FLOW=[
+{t:'Эталон ГСВЧ',s:'ВНИИФТРИ, Менделеево',d:'Государственные эталоны частоты (цезиевые и водородные стандарты) формируют национальную шкалу UTC(SU) и сличаются с международными эталонами. Здесь «живёт» точное время страны.'},
+{t:'Радиостанции',s:'РБУ · РТЗ · РВМ',d:'Эталонные сигналы времени и частоты излучаются станциями РБУ (66,(6) кГц), РТЗ (50 кГц, Иркутск) и РВМ (4996/9996/14996 кГц). Структура сигналов стандартна; характерные точки согласованы с UTC(SU).'},
+{t:'Радиоприёмник',s:'полевой «Астра»',d:'Специальный приёмник из комплекта аппаратуры принимает сигналы станций ГСВЧ и выдаёт их на телефоны наблюдателя и на хронограф. В современных условиях — приёмник ГНСС.'},
+{t:'Хронометр',s:'u = UTC − T',d:'В момент подачи эталонного сигнала фиксируется показание хронометра: разность даёт поправку u. Приёмы утром и вечером дают ряд поправок и ход w за сутки.'},
+{t:'Моменты наблюдений',s:'интерполяция u(T)',d:'Моменты прохождений звёзд, взятые по хронометру, исправляются поправкой, интерполированной на середину сеанса: T_точн = T + u(T). Теперь измерения привязаны к точному времени.'}
+];
+$('flow').innerHTML=FLOW.map((f,i)=>`<div class="fnode" data-i="${i}" role="button" tabindex="0"><b>${f.t}</b><small>${f.s}</small></div>`+(i<FLOW.length-1?'<div class="farr">→</div>':'')).join('');
+function pickFlow(i){document.querySelectorAll('.fnode').forEach(x=>x.classList.toggle('on',+x.dataset.i===i));$('flowDetail').innerHTML='<b>'+FLOW[i].t+'.</b> '+FLOW[i].d;}
+$('flow').addEventListener('click',e=>{const n=e.target.closest('.fnode');if(n)pickFlow(+n.dataset.i)});
+$('flow').addEventListener('keydown',e=>{const n=e.target.closest('.fnode');if(n&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickFlow(+n.dataset.i)}});
+pickFlow(0);
+
+/* ---------- simulator ---------- */
+const SIM={running:false,raf:0,t0:0,cross:5.2,dur:10.4,x0:60,x1:560,base:32.0,trials:[],anim:0};
+const skyBox=$('simSky');
+function hmsS(base,s){const t=base+s;return t.toFixed(2)+'ˢ'}
+function drawBeats(){
+let g='';
+for(let s=0;s<=10;s++){const x=60+ s/10.4*(500);
+g+=`<line x1="${x}" y1="236" x2="${x}" y2="244" stroke="#7fa8b3" stroke-width="1.5"/>`;
+}
+$('simBeats').innerHTML=g;
+}
+drawBeats();
+function starX(t){return SIM.x0+(SIM.x1-SIM.x0)*(t/SIM.dur)}
+function simFrame(){
+if(!SIM.running)return;
+const t=(performance.now()-SIM.t0)/1000;
+if(t>SIM.dur){endTrial(null);return}
+$('simStar').setAttribute('cx',starX(t));
+const beat=Math.floor(t),bp=t-beat;
+$('simFlash').setAttribute('cx',starX(t));
+$('simFlash').setAttribute('opacity',bp<0.12?String(0.75*(1-bp/0.12)):'0');
+SIM.raf=requestAnimationFrame(simFrame);
+}
+function startTrial(){
+if(SIM.running)return;
+SIM.running=true;SIM.cross=4.6+Math.random()*1.6;
+$('simStart').disabled=true;$('simMark').disabled=false;
+$('simStat').textContent='Звезда пошла… нажмите «Есть!» на средней нити';
+SIM.t0=performance.now();simFrame();
+}
+function endTrial(dt){
+SIM.running=false;cancelAnimationFrame(SIM.raf);
+$('simMark').disabled=true;$('simStart').disabled=false;
+if(dt===null){
+$('simStat').textContent='Звезда ушла из поля — попытка не засчитана. Нажмите «Запуск» ещё раз.';
+}else{
+SIM.trials.push(dt);
+const tTrue=SIM.cross,tGot=SIM.cross+dt;
+$('simStat').innerHTML='Истинный момент: '+hmsS(SIM.base,tTrue)+' · ваш отсчёт: '+hmsS(SIM.base,tGot)+' · Δ = '+(dt>=0?'+':'−')+Math.abs(dt).toFixed(2).replace('.',',')+' ˢ';
+renderTrials();
+}
+}
+function mark(){
+if(!SIM.running)return;
+const t=(performance.now()-SIM.t0)/1000;
+endTrial(t-SIM.cross);
+}
+function renderTrials(){
+const tr=SIM.trials;
+$('simTrials').innerHTML=[0,1,2,3,4].map(i=>{
+if(i<tr.length){const d=tr[i];return `<div class="trial"><small>попытка ${i+1}</small><b class="${d<0?'neg':''}">${(d>=0?'+':'−')}${Math.abs(d).toFixed(2).replace('.',',')}ˢ</b></div>`}
+return `<div class="trial" style="opacity:.35"><small>попытка ${i+1}</small><b>—</b></div>`;
+}).join('');
+if(tr.length>=5){
+const mean=tr.reduce((a,b)=>a+b,0)/tr.length;
+const sd=Math.sqrt(tr.reduce((a,b)=>a+(b-mean)*(b-mean),0)/tr.length);
+$('simStat').innerHTML='Серия завершена: средняя личная ошибка <b>'+(mean>=0?'+':'−')+Math.abs(mean).toFixed(2).replace('.',',')+' ˢ</b>, разброс ±'+sd.toFixed(2).replace('.',',')+' ˢ';
+$('simVerdict').innerHTML='<b>Ваш результат.</b> Средняя личная ошибка '+(mean>=0?'+':'−')+Math.abs(mean).toFixed(2).replace('.',',')+' ˢ — это '+(Math.abs(mean)<0.0015?'отличный результат тренированного наблюдателя':Math.abs(mean)<0.004?'типичное запаздывание реакции наблюдателя':'заметная систематическая ошибка — так и рождается личная погрешность')+'. В реальных определениях её определяют сравнением с эталонными наблюдениями (лично-инструментальная разность) и учитывают поправкой, а фотоэлектрическая регистрация исключает вовсе.';
+}
+}
+$('simStart').addEventListener('click',startTrial);
+$('simMark').addEventListener('click',mark);
+skyBox.addEventListener('click',()=>{if(SIM.running)mark()});
+$('simReset').addEventListener('click',()=>{SIM.trials=[];renderTrials();$('simStat').textContent='Нажмите «Запуск»';$('simVerdict').innerHTML='<b>Что это было.</b> Разность между вашим нажатием и истинным моментом пересечения — аналог личной ошибки наблюдателя. Она систематична (чаще запаздывание), поэтому её определяют на эталонных пунктах как лично-инструментальную разность и вводят поправкой. Контактный микрометр и фотоэлектрическая регистрация сводят её практически к нулю.'});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&SIM.running){e.preventDefault();mark()}});
+renderTrials();
+
+/* ---------- rate study ---------- */
+const REC=[
+{t:'утро, день 1',utc:'08:00:00.0',T:'08:00:02.4',u:-2.4},
+{t:'вечер, день 1',utc:'20:00:00.0',T:'20:00:01.4',u:-1.4},
+{t:'утро, день 2',utc:'08:00:00.0',T:'08:00:00.3',u:-0.3},
+{t:'вечер, день 2',utc:'20:00:00.0',T:'19:59:59.2',u:0.8},
+{t:'утро, день 3',utc:'08:00:00.0',T:'07:59:58.3',u:1.7},
+{t:'вечер, день 3',utc:'20:00:00.0',T:'19:59:57.2',u:2.8}
+];
+const TH=[0,0.5,1.0,1.5,2.0,2.5]; /* сутки от первого приёма */
+function rateCalc(){
+let rows='';const ws=[];
+for(let i=0;i<REC.length;i++){
+let w='';
+if(i>0){const wi=(REC[i].u-REC[i-1].u)/(TH[i]-TH[i-1]);ws.push(wi);w=(wi>=0?'+':'')+wi.toFixed(2)}
+rows+=`<tr><td>${i+1}</td><td>${REC[i].t}</td><td>${REC[i].T}</td><td>${REC[i].u>=0?'+':''}${REC[i].u.toFixed(1)}ˢ</td><td>${w}</td></tr>`;
+}
+$('rateTable').innerHTML='<tr><th>Приём</th><th>Время UTC</th><th>Показание хронометра T</th><th>Поправка u</th><th>Ход w, с/сут</th></tr>'+rows;
+const wMean=(REC[REC.length-1].u-REC[0].u)/(TH[TH.length-1]-TH[0]);
+const vari=Math.max(...ws.map(w=>Math.abs(w-wMean)));
+$('rateW').textContent=(wMean>=0?'+':'')+wMean.toFixed(2)+' с/сут';
+const t=+$('obsT').value/24;
+const u=REC[0].u+wMean*t;
+$('rateU').textContent=(u>=0?'+':'')+u.toFixed(2)+' ˢ';
+$('rateErr').textContent=(wMean*t>=0?'+':'')+Math.abs(wMean*t).toFixed(2)+' ˢ';
+/* plot */
+const W=660,H=300,L=64,R=18,T=16,B=40,pw=W-L-R,ph=H-T-B;
+const umin=Math.min(...REC.map(r=>r.u),REC[0].u+wMean*2.5)-0.6,umax=Math.max(...REC.map(r=>r.u),REC[0].u+wMean*2.5)+0.6;
+const X=t=>L+t/2.5*pw, Y=v=>T+ph-(v-umin)/(umax-umin)*ph;
+let g='';
+for(let k=0;k<=4;k++){const v=umin+(umax-umin)*k/4;g+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" stroke="#e2ebe8"/><text x="${L-7}" y="${Y(v)+4}" text-anchor="end" style="font:600 10.5px var(--mono);fill:#6a7d79">${v.toFixed(1)}</text>`}
+for(let d=0;d<=2;d+=0.5){g+=`<text x="${X(d)}" y="${H-B+18}" text-anchor="middle" style="font:600 10.5px var(--mono);fill:#6a7d79">${d.toFixed(1)}</text>`}
+g+=`<text x="${L-46}" y="${T+ph/2}" transform="rotate(-90 ${L-46} ${T+ph/2})" text-anchor="middle" style="font:700 11px var(--mono);fill:#405a55">поправка u, с</text>`;
+g+=`<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" style="font:700 11px var(--mono);fill:#405a55">сутки от первого приёма</text>`;
+g+=`<line x1="${L}" y1="${T+ph}" x2="${W-R}" y2="${T+ph}" stroke="#9db3ad" stroke-width="1.5"/><line x1="${L}" y1="${T}" x2="${L}" y2="${T+ph}" stroke="#9db3ad" stroke-width="1.5"/>`;
+/* хronometer line */
+g+=`<line x1="${X(0)}" y1="${Y(REC[0].u)}" x2="${X(2.5)}" y2="${Y(REC[0].u+wMean*2.5)}" stroke="#118c91" stroke-width="2.5" stroke-dasharray="7 4"/>`;
+REC.forEach((r,i)=>{g+=`<circle cx="${X(TH[i])}" cy="${Y(r.u)}" r="6" fill="#ff7136" stroke="#fff" stroke-width="2"/>`});
+const xo=X(Math.min(t,2.5)),yo=Y(REC[0].u+wMean*Math.min(t,2.5));
+g+=`<line x1="${xo}" y1="${T}" x2="${xo}" y2="${T+ph}" stroke="#5c7370" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+g+=`<circle cx="${xo}" cy="${yo}" r="7" fill="#7655b7" stroke="#fff" stroke-width="2"/>`;
+g+=`<text x="${Math.min(xo+10,W-150)}" y="${Math.max(yo-10,T+14)}" style="font:600 11px var(--mono);fill:#5c3f97">наблюдения: u = ${(u>=0?'+':'')+u.toFixed(2)}ˢ</text>`;
+g+=`<g><rect x="${L+8}" y="${T+6}" width="216" height="26" rx="7" fill="#fff" opacity=".92" stroke="#e2ebe8"/><line x1="${L+16}" y1="${T+19}" x2="${L+34}" y2="${T+19}" stroke="#ff7136" stroke-width="3"/><text x="${L+40}" y="${T+23}" style="font:600 11px var(--mono);fill:#405a55">приёмы сигналов</text><line x1="${L+150}" y1="${T+19}" x2="${L+168}" y2="${T+19}" stroke="#118c91" stroke-width="2.5" stroke-dasharray="5 3"/><text x="${L+174}" y="${T+23}" style="font:600 11px var(--mono);fill:#405a55">ход w̄</text></g>`;
+$('rateSvg').innerHTML=g;
+}
+$('obsT').addEventListener('input',rateCalc);rateCalc();
+
+/* ---------- quiz ---------- */
+const qs=[
+['Поправка хронометра u — это:',['показание хронометра в момент наблюдения','разность u = UTC − T между точным временем и показанием хронометра','задержка распространения радиосигнала'],1],
+['Ход хронометра — это:',['суточная вариация показаний','изменение поправки хронометра за единицу времени','скорость движения стрелок'],1],
+['Главный показатель качества хронометра:',['малая величина хода','постоянство хода (малая вариация)','красота циферблата'],1],
+['Зачем на пункте принимают радиосигналы времени?',['чтобы сверить хронометр и определить его поправку относительно UTC','чтобы узнать прогноз погоды для наблюдений','чтобы синхронизировать теодолит'],0],
+['Контактный микрометр служит для:',['наведения трубы на звезду','сопровождения звезды биссектором с автоматической регистрацией моментов','измерения зенитных расстояний по лимбу'],1],
+['Сигналы ГСВЧ передают станции:',['РБУ, РТЗ и РВМ','маяк и Русское радио','только спутники ГЛОНАСС'],0]
+];
+let done={};
+$('quiz').innerHTML=qs.map((q,i)=>`<div class="quiz-q"><b>${i+1}. ${q[0]}</b><div class="answers">${q[1].map((a,j)=>`<button class="ans" data-q="${i}" data-a="${j}">${a}</button>`).join('')}</div></div>`).join('');
+$('quiz').onclick=e=>{
+const b=e.target.closest('.ans');if(!b||done[b.dataset.q]!==undefined)return;
+const q=+b.dataset.q,a=+b.dataset.a;done[q]=a;
+const row=b.parentElement;
+row.querySelectorAll('.ans').forEach((x,j)=>{if(j===qs[q][2])x.classList.add('ok');else if(j===a)x.classList.add('bad')});
+const n=Object.keys(done).length,ok=Object.keys(done).filter(i=>done[i]===qs[i][2]).length;
+$('score').innerHTML=n<qs.length?`Отвечено: ${n}/${qs.length} · верно: ${ok}`:`Результат: <b>${ok}/${qs.length}</b>. ${ok===qs.length?'Отлично: служба времени и её полевой инструментарий освоены.':'Вернитесь к формулам поправки и хода и к методам регистрации моментов.'}`;
+};
+</script>
+</main></div>
+<script src="../../assets/search-data.js"></script><script src="../../assets/courses-data.js"></script><script src="../../assets/main.js"></script><script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a414bd8fdef6d800',t:'MTc5MDQ1MTYyNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

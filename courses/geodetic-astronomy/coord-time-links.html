@@ -104,7 +104,7 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <div class="tabs" id="tabs">
 <button class="tab active" data-view="overview">Общая карта связей</button>
 <button class="tab" data-view="links">Связующие параметры</button>
-<button class="tab" data-view="time">Время: солнечное, звёздное, UTC</button>
+<button class="tab" data-view="time">Время: UTC, UT1 и LST</button>
 <button class="tab" data-view="calc">Калькулятор перехода</button>
 <button class="tab" data-view="critical">Особые положения светил</button>
 <button class="tab" data-view="cases">Когда что нужно</button>
@@ -129,14 +129,14 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <span class="roletag role-det">определяемые</span>
 </p>
 <ul class="legend">
-<li><span class="sym" style="color:var(--cat)">α, δ, β, λ⊙, S₀</span><span><b>Каталожные</b> — берутся из звёздного каталога и астрономического ежегодника: прямое восхождение α, склонение δ, эклиптические λ, β и звёздное время в гринвичскую полночь S₀.</span></li>
-<li><span class="sym" style="color:var(--meas)">A, z (h), T</span><span><b>Измеряемые</b> — то, что наблюдатель получает инструментами: азимут A, зенитное расстояние z (или высота h = 90°−z) и момент по всемирному времени T = UT.</span></li>
+<li><span class="sym" style="color:var(--cat)">α, δ, β, λ⊙, GMST₀</span><span><b>Каталожные</b> — берутся из звёздного каталога и астрономического ежегодника: прямое восхождение α, склонение δ, эклиптические λ, β и среднее гринвичское звёздное время GMST₀ в 0ʰ UT1.</span></li>
+<li><span class="sym" style="color:var(--meas)">A, z (h), T</span><span><b>Измеряемые</b> — то, что наблюдатель получает инструментами: азимут A, зенитное расстояние z (или высота h = 90°−z) и момент наблюдения по шкалам UTC/UT1.</span></li>
 <li><span class="sym" style="color:var(--det)">φ, λ</span><span><b>Определяемые</b> — искомые в геодезии величины: астрономическая широта φ и долгота λ пункта.</span></li>
 </ul>
-<div class="note"><b>Звёздное время S и часовой угол t — вычисляемые (промежуточные) величины.</b> Их <u>не измеряют напрямую и не берут из каталога</u>:
-          <br/>• <b>S = S₀ + UT·k + λ</b> — местное звёздное время собирается из каталожного S₀ (ежегодник), измеренного момента UT (часы) и измеренной долготы λ пункта;
-          <br/>• <b>t = S − α</b> — часовой угол получается вычитанием каталожного прямого восхождения α из S.
-          <br/>Поэтому на графе и S, и t показаны серым — это «пересадочные станции» между тем, что дано, и тем, что ищут. Решение параллактического треугольника по измеренным (A, z) и каталожным (α, δ, S₀) величинам даёт искомые φ и λ.</div>
+<div class="note"><b>В этой расчётной схеме звёздное время S и часовой угол t — вычисляемые промежуточные величины.</b> Их получают из шкалы времени, долготы и каталожных координат:
+          <br/>• <b>LST = GMST₀ + UT1·k + λ/15°</b> — местное звёздное время собирается из GMST₀, момента UT1 и долготы пункта;
+          <br/>• <b>t = LST − α</b> — часовой угол получается вычитанием каталожного прямого восхождения α из LST.
+          <br/>Решение параллактического треугольника по измеренным (A, z) и каталожным (α, δ, GMST₀) величинам даёт искомые φ и λ.</div>
 </div>
 </div>
 </section>
@@ -174,46 +174,43 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <div class="grid">
 <div class="panel">
 <div id="svg-time"></div>
-<div class="field" style="margin-top:12px"><span>Дата (UT)</span><input id="t-date" type="date" value="2026-09-17"/></div>
-<div class="ctrl"><label>Всемирное время UT: <span class="val" id="t-ut-val">21ʰ00ᵐ</span></label>
-<input class="slider" id="t-ut" max="24" min="0" step="0.25" type="range" value="21"/></div>
+<div class="field" style="margin-top:12px"><span>Дата (UTC)</span><input id="t-date" type="date" value="2026-09-17"/></div>
+<div class="ctrl"><label>UTC: <span class="val" id="t-utc-val">21ʰ00ᵐ00ˢ</span></label>
+<input class="slider" id="t-utc" max="23.75" min="0" step="0.25" type="range" value="21"/></div>
+<div class="ctrl"><label>DUT1 = UT1 − UTC: <span class="val" id="t-dut1-val">+0.000ˢ</span></label>
+<input class="slider" id="t-dut1" max="0.9" min="-0.9" step="0.001" type="range" value="0"/></div>
 <div class="ctrl"><label>Долгота λ (E+): <span class="val" id="t-lon-val">+37.6°</span></label>
 <input class="slider" id="t-lon" max="180" min="-180" step="0.1" type="range" value="37.6"/></div>
 <div class="ctrl"><label>Прямое восхождение α: <span class="val" id="t-alpha-val">18.6ʰ</span></label>
-<input class="slider" id="t-alpha" max="24" min="0" step="0.1" type="range" value="18.6"/></div>
+<input class="slider" id="t-alpha" max="23.9" min="0" step="0.1" type="range" value="18.6"/></div>
 </div>
 <div class="article">
-<h2>Три шкалы времени и звёздное время</h2>
-<p class="lead">В астрономии одновременно работают три «часа», связанные простыми соотношениями:</p>
+<h2>Время как связующий параметр</h2>
+<p class="lead">Для перехода от каталожных координат светила к его положению над горизонтом нужно определить местное звёздное время. В этой вкладке показана цепочка от гражданского времени до часового угла.</p>
 <ul class="legend">
-<li><span class="sym" style="color:var(--time)">T⊙</span><span><b>Среднее солнечное время</b> — по среднему Солнцу; на нём построена гражданская жизнь. Сутки = 24ʰ.</span></li>
-<li><span class="sym" style="color:var(--eq)">S</span><span><b>Звёздное время</b> — часовой угол точки весеннего равноденствия γ. Звёздные сутки короче солнечных на 3ᵐ56ˢ (23ʰ56ᵐ04ˢ).</span></li>
-<li><span class="sym" style="color:var(--eq2)">UTC</span><span><b>Всемирное координированное время</b> — атомная шкала, удерживаемая близко к UT1 (среднему солнечному на Гринвиче) вставкой секунд координации.</span></li>
+<li><span class="sym" style="color:var(--eq2)">UTC</span><span><b>Всемирное координированное время</b> — атомно реализованная шкала гражданского времени.</span></li>
+<li><span class="sym" style="color:var(--time)">UT1</span><span><b>Всемирное время UT1</b> — шкала, связанная с фактическим вращением Земли; именно она используется при вычислении звёздного времени.</span></li>
+<li><span class="sym" style="color:var(--eq)">LST</span><span><b>Местное звёздное время</b> — часовой угол точки весеннего равноденствия γ на меридиане наблюдателя.</span></li>
 </ul>
-<h3>Звёздное время через каталожное S₀</h3>
-<p class="lead">В ежегоднике на каждую дату дано <b>S₀ — гринвичское звёздное время в полночь UT</b>. Местное звёздное время на момент UT и долготе λ:</p>
-<div class="formula">S = S₀ + UT · k + λ,  k = 1,0027379<br/>
-          GMST = S₀ + UT · k  (на Гринвиче)<br/>
-          S = GMST + λ  (λ в часах, E+)<br/>
-          t = S − α</div>
-<p class="lead">Множитель k = 366,2422/365,2422 переводит промежуток солнечного времени в звёздное. Отсюда часовой угол любого светила t = S − α — то, что нужно для наведения инструмента.</p>
-<h3>Кто есть кто в этой цепочке</h3>
-<ul class="legend">
-<li><span class="sym" style="color:var(--time)">кат.</span><span><b>Каталожные</b> (берём из ежегодника/каталога): звёздное время в гринвичскую полночь <b>S₀</b> и прямое восхождение светила <b>α</b>.</span></li>
-<li><span class="sym" style="color:var(--eq)">изм.</span><span><b>Измеряемые</b> (получаем на месте): <b>дата и UT</b> по часам и <b>долгота λ</b> пункта наблюдения.</span></li>
-<li><span class="sym" style="color:var(--hor)">опр.</span><span><b>Определяемые</b> (вычисляем): местное звёздное время <b>S</b> и часовой угол <b>t = S − α</b>.</span></li>
-</ul>
-<p class="lead"><b>Роль долготы λ.</b> Именно λ переводит гринвичское звёздное время (GMST) в местное: сдвигая точку отсчёта на λ, мы получаем S для своего меридиана.</p>
+<div class="note"><b>Связь UTC и UT1:</b> UT1 = UTC + DUT1, где DUT1 = UT1 − UTC. В учебном режиме DUT1 установлено равным нулю; для точных астрономо-геодезических вычислений его берут из данных IERS.</div>
+<h3>Среднее звёздное время</h3>
+<p class="lead">Код урока использует среднее гринвичское звёздное время GMST. Поэтому вместо неоднозначного обозначения S₀ используются обозначения GMST₀ и GMST:</p>
+<div class="formula">UT1 = UTC + DUT1<br/>
+          GMST = GMST₀ + UT1 · k, &nbsp; k = 1,00273790935<br/>
+          LST = GMST + λ/15°<br/>
+          t = LST − α</div>
+<p class="lead">Здесь GMST₀ — среднее гринвичское звёздное время в 0ʰ UT1, λ &gt; 0 — восточная долгота, а λ/15° — долгота, выраженная в часовой мере. Все значения времени в формуле выражены в часах.</p>
+<div class="note"><b>Среднее и истинное звёздное время.</b> Истинное звёздное время GAST отличается от GMST на уравнение равноденствий, связанное с нутацией. В этом учебном калькуляторе поправка не учитывается.</div>
 <h3>Как читать рисунок</h3>
-<p class="lead"><b>Вверху — вид с северного полюса мира.</b> Небо вращается по часовой стрелке, а часовой угол любого направления — это дуга по экватору <b>от меридиана наблюдателя (вверх) по часовой стрелке</b>. Поэтому все времена превращаются в углы, которые видно сразу: S — до точки ♈, α — от ♈ до звезды, t — до звезды, λ — до гринвичского меридиана. Отсюда наглядно: большая дуга <b>S = t + α</b>, то есть <b>t = S − α</b>.</p>
-<p class="lead"><b>Внизу — из чего складывается S.</b> Полоса показывает сумму трёх вкладов: каталожное <b>S₀</b> (жёлтый) + ход часов <b>UT·k</b> (синий) + поправка на вашу долготу <b>λ</b> (зелёный). Их сумма и есть местное звёздное время S.</p>
+<p class="lead"><b>Вверху</b> показан вид с северного полюса мира. Часовой угол отсчитывается от верхней точки меридиана в сторону запада. Поэтому <b>S = t + α</b>, а <b>t = S − α</b> по модулю 24ʰ.</p>
+<p class="lead"><b>Внизу</b> показана вычислительная цепочка: GMST₀ + ход времени UT1·k = GMST; затем прибавляется долгота и получается LST; после вычитания α получается часовой угол t.</p>
 <div class="readout">
-<div class="rcard time"><b>S₀ (полночь UT)</b><div class="big" id="o-s0">—</div></div>
+<div class="rcard time"><b>GMST₀ (0ʰ UT1)</b><div class="big" id="o-gmst0">—</div></div>
 <div class="rcard time"><b>GMST (Гринвич)</b><div class="big" id="o-gmst">—</div></div>
-<div class="rcard eq"><b>Местное звёздное S</b><div class="big" id="o-lst">—</div></div>
+<div class="rcard eq"><b>LST (местное S)</b><div class="big" id="o-lst">—</div></div>
 <div class="rcard eq"><b>Часовой угол t</b><div class="big" id="o-t">—</div></div>
 </div>
-</div>
+<p class="k"><a href="time-systems.html">Подробное объяснение истинного и среднего солнечного времени, уравнения времени и атомных шкал — в отдельном уроке «Системы измерения времени в астрономии».</a></p></div>
 </div>
 </section>
 <!-- ============ CALCULATOR ============ -->
@@ -229,6 +226,7 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <div class="article">
 <h2>Калькулятор перехода</h2>
 <p class="lead">Резюме урока: выберите исходную и конечную системы, задайте координаты и время — переход выполнится, а слева построится небесная сфера с этим светилом.</p>
+<div class="note">Калькулятор использует идеальную сферическую модель. Координаты считаются заданными для одной эпохи; прецессия, нутация, аберрация, параллакс, рефракция и собственное движение светила не учитываются.</div>
 <div class="two">
 <div class="field"><span>Из системы</span>
 <select id="c-from">
@@ -295,6 +293,7 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <div class="article">
 <h2>Особые положения светил</h2>
 <p class="lead">На суточном пути есть несколько характерных моментов, координаты которых вычисляются напрямую из широты φ и склонения δ. Выберите положение — на схеме подсветится точка, а справа появятся её координаты.</p>
+<div class="note">Формулы ниже используют северную широту и астрономическое соглашение A = 0° на юге, отсчёт к западу. Для других знаков широты и склонения направления и условия требуют соответствующей интерпретации.</div>
 <div id="crit-text"></div>
 <div class="readout">
 <div class="rcard eq"><b>Часовой угол t</b><div class="big" id="cr-t">—</div></div>
@@ -313,18 +312,18 @@ th{color:var(--accent-d);font:800 11.5px "Roboto Mono",monospace;text-transform:
 <div style="overflow-x:auto">
 <table>
 <tr><th>Задача</th><th>Что дано</th><th>Что нужно</th><th>Переход · параметры</th></tr>
-<tr><td>Навести телескоп на звезду из каталога</td><td>(α, δ), дата, UT, λ, φ</td><td>(A, h) или (t, δ)</td><td>UT→S, t = S − α, затем по φ → (A, h)</td></tr>
+<tr><td>Навести телескоп на звезду из каталога</td><td>(α, δ), дата, UTC, DUT1, λ, φ</td><td>(A, h) или (t, δ)</td><td>UTC → UT1 → LST, t = LST − α, затем по φ → (A, h)</td></tr>
 <tr><td>Определить, видна ли звезда сейчас</td><td>(α, δ), S, φ</td><td>высота h &gt; 0?</td><td>t = S − α → h(φ, δ, t)</td></tr>
-<tr><td>Определить широту и долготу пункта</td><td>измеренные (A, z), (α, δ, S₀)</td><td>(φ, λ)</td><td>параллактический треугольник; λ из S − S₀ − UT·k</td></tr>
+<tr><td>Определить широту и долготу пункта</td><td>измеренные (A, z), (α, δ, GMST₀)</td><td>(φ, λ)</td><td>параллактический треугольник; λ из LST − GMST₀ − UT1·k</td></tr>
 <tr><td>Записать наблюдение в каталог</td><td>(A, h), φ, S</td><td>(α, δ)</td><td>(A,h)→(t,δ) по φ, α = S − t</td></tr>
 <tr><td>Рассчитать движение планеты/Луны</td><td>(λ, β), ε</td><td>(α, δ)</td><td>поворот на ε вокруг линии равноденствий</td></tr>
 <tr><td>Составить карту звёздного неба</td><td>каталог (α, δ)</td><td>(λ, β) или (A, h)</td><td>ε для эклиптики; S, φ для горизонта</td></tr>
-<tr><td>Служба времени / часовой угол Солнца</td><td>дата, UT, λ</td><td>S, затем t</td><td>UT→GMST→LST, t = S − α</td></tr>
+<tr><td>Служба времени / часовой угол Солнца</td><td>дата, UTC, DUT1, λ</td><td>LST, затем t</td><td>UTC → UT1 → GMST → LST, t = LST − α</td></tr>
 </table>
 </div>
 <h3>Главная цепочка переходов</h3>
 <div class="formula" style="text-align:center">
-        дата, UT, λ  →  <b>S</b>  —(t = S − α)→  <b>t, δ</b>  —(φ)→  <b>A, h</b><br/>
+        дата, UTC, DUT1, λ  →  <b>LST</b>  —(t = LST − α)→  <b>t, δ</b>  —(φ)→  <b>A, h</b><br/>
         (α, δ)  ⇄(ε)⇄  (λ, β)
       </div>
 <div class="note">Каждая стрелка обратима. Эта сеть переходов позволяет от неизменных «адресов» звёзд в каталоге (α, δ) прийти к тому, что реально видно над горизонтом (A, h) — в нужный момент и в нужной точке Земли, а из измерений — обратно к широте и долготе пункта.</div>
@@ -343,6 +342,7 @@ function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
 function el(id){return document.getElementById(id);}
 function svg(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block">${inner}</svg>`;}
 function hm(hours){hours=w24(hours);let h=Math.floor(hours);let m=Math.round((hours-h)*60);if(m===60){m=0;h=(h+1)%24;}return h+'ʰ'+String(m).padStart(2,'0')+'ᵐ';}
+function hms(hours){hours=w24(hours);let h=Math.floor(hours);let mf=(hours-h)*60;let m=Math.floor(mf);let sec=Math.round((mf-m)*60);if(sec===60){sec=0;m++;}if(m===60){m=0;h=(h+1)%24;}return h+'ʰ'+String(m).padStart(2,'0')+'ᵐ'+String(sec).padStart(2,'0')+'ˢ';}
 function dm(deg){const s=deg<0?'−':'+';deg=Math.abs(deg);let d=Math.floor(deg);let m=Math.round((deg-d)*60);if(m===60){m=0;d++;}return s+d+'°'+String(m).padStart(2,'0')+'′';}
 function d360(deg){deg=w360(deg);let d=Math.floor(deg);let m=Math.round((deg-d)*60);if(m===60){m=0;d++;}return d+'°'+String(m).padStart(2,'0')+'′';}
 
@@ -488,7 +488,7 @@ function starCoords(star,phi,S,eps){star=norm(star);eps=(eps===undefined?EPS:eps
 function drawGraph(){
   const W=500,H=500;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
   const N={
-    time:{x:250,y:56,t:['Время'],co:[['T = UT','var(--meas)'],['S₀','var(--cat)']],c:'#c98800',fill:'#fbf1d8'},
+    time:{x:250,y:56,t:['Время'],co:[['UTC → UT1','var(--meas)'],['GMST₀','var(--cat)']],c:'#c98800',fill:'#fbf1d8'},
     geo:{x:250,y:170,t:['Географические'],co:[['φ','var(--det)'],['λ','var(--det)']],c:'#0a7d63',fill:'#e3f4ed'},
     eq2:{x:120,y:290,t:['II экваториальная'],co:[['α','var(--cat)'],['δ','var(--cat)']],c:'#8a4bd8',fill:'#f2ecfb'},
     ecl:{x:380,y:290,t:['Эклиптическая'],co:[['λ','var(--cat)'],['β','var(--cat)']],c:'#e8541b',fill:'#fdece2'},
@@ -507,8 +507,8 @@ function drawGraph(){
     return `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${col||'#b7cbc4'}" stroke-width="2.4"${dashed?' stroke-dasharray="5 4"':''}/>`+
       `<rect x="${mx-w/2}" y="${my-13}" width="${w}" height="24" rx="10" fill="#fff" stroke="${col||'#b7cbc4'}" stroke-width="1.6"/>`+
       `<text x="${mx}" y="${my+4}" text-anchor="middle" fill="${col||'#516b64'}" font-size="13" font-family="Roboto Mono" font-weight="700">${label}</text>`;}
-  s+=edge(N.time,N.geo,'S₀, UT, λ','#c98800');
-  s+=edge(N.geo,N.eq2,'S','#7d8f8a');
+  s+=edge(N.time,N.geo,'UT1, λ → LST','#c98800');
+  s+=edge(N.geo,N.eq2,'LST + α,δ','#7d8f8a');
   s+=edge(N.eq2,N.ecl,'ε','#e8541b');
   s+=edge(N.eq2,N.eq1,'t = S − α','#7d8f8a');
   s+=edge(N.eq1,N.hor,'φ','#0a7d63');
@@ -534,7 +534,8 @@ const linkArticles={
     <p class="lead">Обе системы построены на одной сфере, но на разных основных кругах: горизонтная — на математическом горизонте, экваториальная — на небесном экваторе. Их взаимный наклон равен широте: <b>высота полюса мира h<sub>P</sub> = φ</b>.</p>
     <div class="formula">sin h = sin φ · sin δ + cos φ · cos δ · cos t<br>
       sin δ = sin φ · sin h − cos φ · cos h · cos A</div>
-    <p class="lead">Двигайте ползунок широты (в обе стороны — северное и южное полушарие) и перетаскивайте звезду. На проекциях внизу видно, как одни и те же положения читаются как (A, h) на горизонте и как (t, δ) на экваторе, а связывает их угол φ.</p>`,
+    <p class="lead">Двигайте ползунок широты (в обе стороны — северное и южное полушарие) и перетаскивайте звезду. На проекциях внизу видно, как одни и те же положения читаются как (A, h) на горизонте и как (t, δ) на экваторе, а связывает их угол φ.</p>
+    <div class="note"><b>Соглашение об азимуте:</b> в этом уроке A = 0° направлен на юг, положительные значения отсчитываются к западу. Это астрономическое соглашение; оно используется во всех формулах калькулятора.</div>`,
   S:()=>`<h2>S · I ↔ II экваториальная</h2>
     <p class="lead">У обеих экваториальных систем общий основной круг — небесный экватор — и общая координата δ. Различаются началом отсчёта долготной координаты: часовой угол t идёт от меридиана, прямое восхождение α — от точки γ. Их связывает звёздное время:</p>
     <div class="formula">S = t + α &nbsp;⟹&nbsp; t = S − α</div>
@@ -824,106 +825,83 @@ function bindSphere(){
 /* =============== TIME =============== */
 function drawTimeView(){
   const dateStr=el('t-date').value;
-  const UT=+el('t-ut').value, lon=+el('t-lon').value, alpha=+el('t-alpha').value;
-  el('t-ut-val').textContent=hm(UT);
+  const UTC=+el('t-utc').value;
+  const DUT1=+el('t-dut1').value;
+  const UT1=UTC+DUT1/3600;
+  const lon=+el('t-lon').value;
+  const alpha=+el('t-alpha').value;
+  el('t-utc-val').textContent=hms(UTC);
+  el('t-dut1-val').textContent=(DUT1>=0?'+':'−')+Math.abs(DUT1).toFixed(3)+'ˢ';
   el('t-lon-val').textContent=(lon>=0?'+':'−')+Math.abs(lon).toFixed(1)+'°';
-  el('t-alpha-val').textContent=alpha.toFixed(1)+'ʰ';
-  const [Y,Mo,Da]=dateStr.split('-').map(Number);
-  const S0=gmst(Y,Mo,Da,0);
+  el('t-alpha-val').textContent=hms(alpha);
+  const parts=dateStr.split('-').map(Number);
+  const [Y,Mo,Da]=parts;
+  if(parts.some(Number.isNaN)){return;}
+  const GMST0=gmst(Y,Mo,Da,0);
   const k=1.00273790935;
-  const S0tom=gmst(Y,Mo,Da+1,0);           // tabulated S₀ for the next date (0ʰ UT)
-  const G=w24(S0+UT*k);
-  const LST=w24(G+lon/15);
+  const GMST=w24(GMST0+UT1*k);
+  const LST=w24(GMST+lon/15);
   const t=w24(LST-alpha);
-  el('o-s0').textContent=hm(S0);
-  el('o-gmst').textContent=hm(G);
-  el('o-lst').textContent=hm(LST);
-  el('o-t').textContent=hm(t);
+  el('o-gmst0').textContent=hms(GMST0);
+  el('o-gmst').textContent=hms(GMST);
+  el('o-lst').textContent=hms(LST);
+  el('o-t').textContent=hms(t);
+
   const CE='#c98800',CB='#1f74d8',CG='#0f9d78',CA='#8a4bd8',CR='#e8541b';
-  // =========================================================================
-  //  Part A — top-down "hour-angle" view (looking down the north pole).
-  //  Everything here is an ANGLE you can literally see: the sky turns clockwise,
-  //  hour angle is measured clockwise from a meridian. So t, S, α, λ are arcs,
-  //  and the identity  t = S − α  is just "the big arc = two smaller arcs".
-  // =========================================================================
-  const W=470,H=500,cx=W/2,cy=150,R=118;let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
-  s+=`<text x="${cx}" y="20" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Вид с северного полюса мира · часовой угол = дуга по экватору</text>`;
-  // direction of measurement (sky turns clockwise here): position at hour angle H
-  const pos=(Hh,r)=>[cx+r*Math.sin(Hh*15*D2R), cy-r*Math.cos(Hh*15*D2R)];
+  const W=470,H=500,cx=W/2,cy=150,R=118;
+  let s=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbf9" rx="12"/>`;
+  s+=`<text x="${cx}" y="20" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Вид с северного полюса мира · часовой угол отсчитывается к западу</text>`;
+  const pos=(Hh,r)=>[cx+r*Math.sin(Hh*15*D2R),cy-r*Math.cos(Hh*15*D2R)];
   const ray=(Hh,r,col,wd,dash)=>{const p=pos(Hh,r);return `<line x1="${cx}" y1="${cy}" x2="${p[0].toFixed(1)}" y2="${p[1].toFixed(1)}" stroke="${col}" stroke-width="${wd}" ${dash?`stroke-dasharray="${dash}"`:''}/>`;};
-  // equator disc
+  const arcHours=(start,delta,r,col,wd)=>{
+    if(Math.abs(delta)<0.0001)return '';
+    return `<path d="${arcPathDir(cx,cy,r,(start*15-90)*D2R,delta*15*D2R)}" fill="none" stroke="${col}" stroke-width="${wd}"/>`;
+  };
+  const arcLabel=(start,delta,r,txt,col)=>{
+    const p=pos(start+delta/2,r);
+    return `<text x="${p[0].toFixed(1)}" y="${p[1].toFixed(1)}" text-anchor="middle" fill="${col}" font-size="13" font-family="Georgia" font-weight="700">${txt}</text>`;
+  };
+  const cardinal=[['N',0],['E',6],['S',12],['W',18]];
   s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="${CB}" stroke-width="1.6"/>`;
-  for(let k=0;k<24;k++){const p1=pos(k,R-6),p2=pos(k,R);s+=`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#cfe0ec" stroke-width="${k%6===0?1.6:0.7}"/>`;}
-  // rotation arrow
+  for(let q=0;q<24;q++){const p1=pos(q,R-6),p2=pos(q,R);s+=`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#cfe0ec" stroke-width="${q%6===0?1.6:0.7}"/>`;}
+  cardinal.forEach(([label,hour])=>{const p=pos(hour,R+14);s+=`<text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" fill="#55716a" font-size="10" font-family="Roboto Mono" font-weight="700">${label}</text>`;});
   s+=`<path d="${arcPath(cx,cy,R+10,-0.5,0.5)}" fill="none" stroke="#b7c7d0" stroke-width="1.2"/>`;
-  const arw=pos(2,R+10);s+=`<text x="${arw[0]+8}" y="${arw[1]}" fill="#9fb0aa" font-size="9" font-family="Roboto Mono">вращение неба ↻</text>`;
-  // arc helper: from hour H0, sweeping clockwise by (H1−H0) hours (true direction)
-  const arcH=(H0,H1,r)=>arcPathDir(cx,cy,r,(H0*15-90)*D2R,((H1-H0+24)%24)*15*D2R);
-  // --- rays ---
-  // observer's meridian (up, H=0) — solid dark
+  s+=`<text x="${cx+R+34}" y="${cy-10}" fill="#9fb0aa" font-size="9" font-family="Roboto Mono">↻ вращение неба</text>`;
   s+=ray(0,R,'#092c33',2.4);
-  s+=`<circle cx="${cx}" cy="${cy-R}" r="3.5" fill="#092c33"/><text x="${cx}" y="${cy-R-8}" text-anchor="middle" fill="#092c33" font-size="10.5" font-family="Roboto Mono" font-weight="700">меридиан наблюдателя</text>`;
-  // Greenwich meridian at hour angle λ from local — dashed orange-brown
-  s+=ray(lon/15,R,CE,1.8,'5 3');
-  const gm=pos(lon/15,R);s+=`<circle cx="${gm[0]}" cy="${gm[1]}" r="3" fill="${CE}"/><text x="${gm[0]+ (lon>=0?6:-40)}" y="${gm[1]-4}" fill="${CE}" font-size="9" font-family="Roboto Mono">Гринвич</text>`;
-  // gamma point at hour angle S — orange
-  s+=ray(LST,R,CR,2,'');
+  s+=`<circle cx="${cx}" cy="${cy-R}" r="3.5" fill="#092c33"/><text x="${cx}" y="${cy-R-8}" text-anchor="middle" fill="#092c33" font-size="10.5" font-family="Roboto Mono" font-weight="700">местный меридиан</text>`;
+  const lonH=lon/15;
+  s+=ray(lonH,R,CE,1.8,'5 3');
+  const gp0=pos(lonH,R);s+=`<circle cx="${gp0[0]}" cy="${gp0[1]}" r="3" fill="${CE}"/><text x="${gp0[0]+(lon>=0?6:-35)}" y="${gp0[1]-4}" fill="${CE}" font-size="9" font-family="Roboto Mono">Гринвич</text>`;
+  s+=ray(LST,R,CR,2);
   const gp=pos(LST,R);s+=`<circle cx="${gp[0]}" cy="${gp[1]}" r="4" fill="${CR}"/><text x="${gp[0]+6}" y="${gp[1]+4}" fill="${CR}" font-size="13" font-family="Georgia" font-weight="700">♈</text>`;
-  // star at hour angle t — dark
   s+=ray(t,R,'#1a2233',2);
   const sp=pos(t,R);s+=`<circle cx="${sp[0]}" cy="${sp[1]}" r="5" fill="#1a2233" stroke="#fff" stroke-width="1.4"/><text x="${sp[0]+7}" y="${sp[1]}" fill="#1a2233" font-size="12" font-family="Georgia" font-weight="700">★</text>`;
   s+=`<circle cx="${cx}" cy="${cy}" r="4.5" fill="#092c33"/>`;
-  // --- arcs (nested radii) : t (local→star), α (star→γ), S (local→γ), λ (local→Greenwich) ---
-  // midpoint (in hours, clockwise) for each arc's label
-  const mid=(H0,H1)=>w24(H0+((H1-H0+24)%24)/2);
-  s+=`<path d="${arcH(0,t,42)}" fill="none" stroke="${CA}" stroke-width="2.4"/>`;
-  let m=pos(mid(0,t),52);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CA}" font-size="13" font-family="Georgia" font-weight="700">t</text>`;
-  s+=`<path d="${arcH(t,LST,42)}" fill="none" stroke="${CB}" stroke-width="2.4"/>`;
-  m=pos(mid(t,LST),52);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CB}" font-size="13" font-family="Georgia" font-weight="700">α</text>`;
-  s+=`<path d="${arcH(0,LST,R-6)}" fill="none" stroke="${CR}" stroke-width="2" stroke-dasharray="2 2"/>`;
-  m=pos(mid(0,LST),R-18);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CR}" font-size="13" font-family="Georgia" font-weight="700">S</text>`;
-  if(Math.abs(lon)>0.5){const lh=lon/15;s+=`<path d="${arcH(0,lh,24)}" fill="none" stroke="${CE}" stroke-width="2"/>`;
-    m=pos(mid(0,lh),32);s+=`<text x="${m[0]}" y="${m[1]}" text-anchor="middle" fill="${CE}" font-size="12" font-family="Georgia" font-weight="700">λ</text>`;}
-  // identity caption
-  s+=`<text x="${cx}" y="${cy+R+26}" text-anchor="middle" fill="#243b36" font-size="13" font-family="Roboto Mono" font-weight="700">большая дуга S  =  t  +  α   ⟹   t = S − α</text>`;
-  // =========================================================================
-  //  Part B — INTERPOLATION scale: the almanac tabulates S₀ only at 0ʰ UT of
-  //  each date. To get the sidereal time at our moment we interpolate between
-  //  today's S₀ and tomorrow's S₀ across the fraction UT/24 of the day.
-  // =========================================================================
-  const bx=46,bw=W-92,by=cy+R+52;
-  const frac=UT/24;
-  // sidereal grows a bit more than 24ʰ over a solar day: span = 24·k = 24ʰ03ᵐ57ˢ
-  const span=w24(S0tom-S0)||(24*(k-1));    // ≈ 3ᵐ56ˢ visible jump; use fractional part
-  const dayGain=24*(k-1);                    // 3ᵐ56ˢ extra per solar day
-  s+=`<text x="${cx}" y="${by-14}" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Интерполяция звёздного времени по каталогу</text>`;
-  s+=`<text x="${cx}" y="${by-1}" text-anchor="middle" fill="#8aa0a0" font-size="9.5" font-family="Roboto Mono">в ежегоднике S₀ дано на 0ʰ UT — промежуточное значение находим долей UT/24</text>`;
-  const ty=by+16;
-  // horizontal axis (one solar day)
-  s+=`<line x1="${bx}" y1="${ty}" x2="${bx+bw}" y2="${ty}" stroke="#c3d3ce" stroke-width="1.4"/>`;
-  // ticks 0..24 UT
-  for(let u=0;u<=24;u+=6){const x=bx+bw*u/24;s+=`<line x1="${x}" y1="${ty-4}" x2="${x}" y2="${ty+4}" stroke="#b7cbc4" stroke-width="1"/>`+
-    `<text x="${x}" y="${ty+16}" text-anchor="middle" fill="#9fb0aa" font-size="9" font-family="Roboto Mono">${u}ʰ</text>`;}
-  // two catalog anchor points (today & tomorrow at 0ʰ UT)
-  s+=`<circle cx="${bx}" cy="${ty}" r="4.5" fill="${CE}" stroke="#fff" stroke-width="1.4"/>`+
-     `<text x="${bx}" y="${ty-10}" text-anchor="middle" fill="${CE}" font-size="9" font-family="Roboto Mono">S₀ (сегодня)</text>`+
-     `<text x="${bx}" y="${ty+30}" text-anchor="middle" fill="${CE}" font-size="8.5" font-family="Roboto Mono">${hm(S0)}</text>`;
-  s+=`<circle cx="${bx+bw}" cy="${ty}" r="4.5" fill="${CE}" stroke="#fff" stroke-width="1.4"/>`+
-     `<text x="${bx+bw}" y="${ty-10}" text-anchor="middle" fill="${CE}" font-size="9" font-family="Roboto Mono">S₀ (завтра)</text>`+
-     `<text x="${bx+bw}" y="${ty+30}" text-anchor="middle" fill="${CE}" font-size="8.5" font-family="Roboto Mono">${hm(S0tom)}</text>`;
-  // interpolation slider position at UT
-  const xu=bx+bw*frac;
-  s+=`<line x1="${xu}" y1="${ty-26}" x2="${xu}" y2="${ty+22}" stroke="${CG}" stroke-width="1.4" stroke-dasharray="3 3"/>`;
-  s+=`<circle cx="${xu}" cy="${ty}" r="5" fill="${CG}" stroke="#fff" stroke-width="1.5"/>`;
-  s+=`<text x="${xu}" y="${ty-30}" text-anchor="middle" fill="${CG}" font-size="10" font-family="Roboto Mono" font-weight="700">UT=${hm(UT)}</text>`;
-  // interpolation formula & result
-  s+=`<text x="${cx}" y="${ty+50}" text-anchor="middle" fill="#243b36" font-size="11.5" font-family="Roboto Mono" font-weight="700">GMST = S₀ + UT·k = ${hm(S0)} + ${hm(UT)}·1,00274 = ${hm(G)}</text>`;
-  s+=`<text x="${cx}" y="${ty+66}" text-anchor="middle" fill="#516b64" font-size="10" font-family="Roboto Mono">за солнечные сутки звёздное время убегает на +${hm(dayGain)} (≈3ᵐ56ˢ)</text>`;
-  s+=`<text x="${cx}" y="${ty+86}" text-anchor="middle" fill="#092c33" font-size="12.5" font-family="Roboto Mono" font-weight="700">S = GMST + λ = ${hm(LST)}  ·  t = S − α = ${hm(t)}</text>`;
-  // role legend row
-  const roles=[['S₀, α — из каталога',CE],['дата, UT, λ — измеряем',CB],['S, t — вычисляем',CG]];
-  let lx=52;const ly=ty+108;
-  roles.forEach(r=>{s+=`<rect x="${lx}" y="${ly-9}" width="11" height="11" rx="2.5" fill="${r[1]}"/><text x="${lx+16}" y="${ly}" fill="#3a534e" font-size="9.5" font-family="Roboto Mono">${r[0]}</text>`;lx+=138;});
+  s+=arcHours(0,t,42,CA,2.4)+arcLabel(0,t,52,'t',CA);
+  s+=arcHours(t,alpha,42,CB,2.4)+arcLabel(t,alpha,52,'α',CB);
+  s+=arcHours(0,LST,R-6,CR,2)+arcLabel(0,LST,R-18,'S',CR);
+  s+=arcHours(0,lonH,24,CE,2)+arcLabel(0,lonH,32,'λ',CE);
+  s+=`<text x="${cx}" y="${cy+R+27}" text-anchor="middle" fill="#243b36" font-size="13" font-family="Roboto Mono" font-weight="700">S = t + α  ·  t = S − α  (mod 24ʰ)</text>`;
+
+  const by=cy+R+52;
+  s+=`<text x="${cx}" y="${by-13}" text-anchor="middle" fill="#516b64" font-size="12" font-family="Roboto Mono" font-weight="700">Вычислительная цепочка</text>`;
+  const boxes=[
+    {x:16,w:78,title:'GMST₀',sub:'0ʰ UT1',col:CE},
+    {x:108,w:78,title:'+ UT1·k',sub:'k=1,00274',col:CB},
+    {x:200,w:78,title:'GMST',sub:'Гринвич',col:CE},
+    {x:292,w:78,title:'+ λ/15°',sub:lon>=0?'E+':'W−',col:CG},
+    {x:384,w:78,title:'LST',sub:'местное S',col:CG}
+  ];
+  const boxY=by+2,boxH=45;
+  boxes.forEach((b,i)=>{
+    s+=`<rect x="${b.x}" y="${boxY}" width="${b.w}" height="${boxH}" rx="9" fill="#fff" stroke="${b.col}" stroke-width="1.8"/>`;
+    s+=`<text x="${b.x+b.w/2}" y="${boxY+19}" text-anchor="middle" fill="${b.col}" font-size="11.5" font-family="Roboto Mono" font-weight="700">${b.title}</text>`;
+    s+=`<text x="${b.x+b.w/2}" y="${boxY+34}" text-anchor="middle" fill="#516b64" font-size="9" font-family="Roboto Mono">${b.sub}</text>`;
+    if(i<boxes.length-1){s+=`<path d="M${b.x+b.w+3} ${boxY+boxH/2} H${boxes[i+1].x-5}" fill="none" stroke="#9fb0aa" stroke-width="1.5"/><path d="M${boxes[i+1].x-9} ${boxY+boxH/2-4} L${boxes[i+1].x-4} ${boxY+boxH/2} L${boxes[i+1].x-9} ${boxY+boxH/2+4} Z" fill="#9fb0aa"/>`;}
+  });
+  s+=`<text x="${cx}" y="${boxY+64}" text-anchor="middle" fill="#243b36" font-size="11.5" font-family="Roboto Mono" font-weight="700">LST = ${hms(LST)}  ·  t = ${hms(t)}</text>`;
+  s+=`<text x="${cx}" y="${boxY+81}" text-anchor="middle" fill="#516b64" font-size="10" font-family="Roboto Mono">UTC=${hms(UTC)}  ·  DUT1=${DUT1>=0?'+':'−'}${Math.abs(DUT1).toFixed(3)}ˢ  ·  UT1=${hms(UT1)}</text>`;
+  s+=`<text x="${cx}" y="${boxY+98}" text-anchor="middle" fill="#8aa39c" font-size="9.5" font-family="Roboto Mono">Звёздные сутки короче средних солнечных примерно на 3ᵐ56ˢ.555</text>`;
   el('svg-time').innerHTML=svg(W,H,s);
 }
 
@@ -1114,7 +1092,7 @@ el('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)r
 buildLinkSubtabs();buildLinkSliders();
 bindSphere();
 // time
-['t-date','t-ut','t-lon','t-alpha'].forEach(id=>el(id).addEventListener('input',drawTimeView));
+['t-date','t-utc','t-dut1','t-lon','t-alpha'].forEach(id=>el(id).addEventListener('input',drawTimeView));
 // calc
 ['c-from','c-to','c-x1','c-x2','c-phi','c-s'].forEach(id=>el(id).addEventListener('input',calcUpdate));
 el('c-from').addEventListener('change',()=>{const m=el('c-from').value;const seeds={eq2:[4,35],eq1:[2,35],hor:[120,40],ecl:[60,10]};applyCalcRanges(m);el('c-x1').value=seeds[m][0];el('c-x2').value=seeds[m][1];calcUpdate();});
