@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Закон распределения дискретной случайной величины: ряд распределения, многоугольник распределения, функция распределения и её свойства, вероятность попадания в интервал — интерактивный урок курса ТМОГИ." name="description"/>
+<title>Закон распределения дискретной случайной величины — ГеоЛиния</title>
+<link href="../../assets/style.css" rel="stylesheet"/>
+<link href="../../assets/lesson-site.css" rel="stylesheet"/>
+<style>
+.lp{max-width:1040px;font-family:Manrope,'Segoe UI',Arial,sans-serif;font-size:15.3px;line-height:1.62;color:#092c33}
+.lp b,.lp strong{color:#063f3b}
+.lp-eyebrow{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#ffd9c2;padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+.lp-sub{max-width:780px;font-size:15.4px;opacity:.93;margin:0 0 18px}
+.lp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lp-chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:600}
+.lp-deco{position:absolute;font-size:72px;opacity:.15;transform:rotate(-14deg);user-select:none;pointer-events:none}
+/* --- секции --- */
+.lp-section{background:#fff;border:1px solid #d5e3de;border-radius:16px;padding:30px 34px 28px;margin-bottom:26px;box-shadow:0 14px 38px rgba(18,54,49,.06);scroll-margin-top:150px}
+.lp-h2{display:flex;align-items:center;gap:14px;font-size:24px;margin:0 0 4px;letter-spacing:-.2px;color:#043f3b}
+.lp-num{flex:none;width:42px;height:42px;border-radius:12px;background:#075c52;color:#fff;display:flex;align-items:center;justify-content:center;font:800 16px 'Roboto Mono',ui-monospace,monospace}
+.lp-lead{color:#5c7370;font-size:15.2px;margin:2px 0 6px}
+.lp h3{font-size:18.5px;margin:28px 0 10px;color:#043f3b}
+.lp h4{margin:0 0 4px;font-size:15px;color:#063f3b}
+.lp p{margin:10px 0}
+.lp a{color:#075c52;font-weight:600}
+.lp a:hover{color:#e45f27}
+.lp-h3num{display:inline-block;background:#e9f5f1;color:#075c52;border-radius:8px;font:800 12px 'Roboto Mono',ui-monospace,monospace;padding:2px 9px;margin-right:9px;vertical-align:2px}
+.lp-small{font-size:12.8px;color:#7a918b}
+/* --- определение --- */
+.lp-def{border-left:5px solid #075c52;background:#e9f5f1;border-radius:0 13px 13px 0;padding:14px 18px;margin:16px 0;font-size:15px}
+.lp-term{color:#075c52;font-weight:800}
+/* --- заметки --- */
+.lp-note{background:#f4f8f6;border:1px solid #dbe7e2;border-radius:13px;padding:12px 16px;margin:16px 0;font-size:14.3px}
+.lp-note-info{background:#e8f2f6;border-color:#c8dce6}
+.lp-note-good{background:#e9f5f1;border-color:#c6e4da}
+/* --- плитки --- */
+.lp-grid{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));margin:16px 0}
+.lp-tile{border:1px solid #e2ebe8;border-radius:13px;padding:13px 15px;background:#fbfdfc}
+.lp-tile:hover{border-color:#c9ded6}
+.lp-dom{font:700 10.5px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.07em;text-transform:uppercase;color:#7a918b}
+.lp-ico{font-size:23px;line-height:1.3}
+.lp-tile p{margin:4px 0 0;font-size:13.6px;color:#435b56}
+/* --- таблицы --- */
+.lp-table{width:100%;border-collapse:collapse;font-size:13.8px;margin:14px 0}
+.lp-table th{background:#e9f5f1;text-align:left;padding:9px 12px;border:1px solid #d5e3de;font-size:13px;color:#043f3b}
+.lp-table td{padding:9px 12px;border:1px solid #e2ebe8;vertical-align:top}
+.lp-table tr:nth-child(even) td{background:#f7fbf9}
+.lp-table td b{color:#043f3b}
+/* --- иллюстрации --- */
+.lp-fig{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:18px 0}
+.lp-figitem{text-align:center}
+.lp-fig figcaption{font-size:12.8px;color:#7a918b;text-align:center;margin-top:7px;max-width:430px}
+.lp svg text{font-family:inherit}
+/* --- демо --- */
+.lp-demo{border:1.5px dashed #b9d6cc;border-radius:16px;padding:20px 22px;margin:20px 0;background:#f6fbf8}
+.lp-demo h3{margin:0 0 12px;display:flex;align-items:center;gap:10px;font-size:17.5px}
+.lp-ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0}
+.lp-out{margin-top:14px}
+.lp-status{font-size:14.2px;color:#435b56;background:#fff;border:1px solid #e2ebe8;border-radius:11px;padding:9px 13px;margin:10px 0}
+/* --- кнопки --- */
+.lp-btn{display:inline-flex;align-items:center;gap:7px;background:#075c52;color:#fff;border:none;border-radius:11px;padding:10px 17px;font-size:14.3px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(6,63,59,.16);transition:background .15s,transform .15s}
+.lp-btn:hover{background:#063f3b;transform:translateY(-1px)}
+.lp-btn:active{transform:none}
+.lp-btn--accent{background:#ff7136;box-shadow:0 3px 10px rgba(255,113,54,.3)}
+.lp-btn--accent:hover{background:#e45f27}
+.lp-btn--ghost{background:#fff;color:#075c52;border:1.5px solid #bfd8d0;box-shadow:none}
+.lp-btn--ghost:hover{border-color:#075c52;background:#f4faf7}
+.lp-btn--ghost.on{background:#e9f5f1;border-color:#075c52}
+.lp-btn--sm{padding:7px 12px;font-size:13.2px;border-radius:9px}
+/* --- элементы управления --- */
+.lp-seg{display:inline-flex;background:#eef5f2;border:1px solid #d5e3de;border-radius:11px;padding:3px;gap:3px}
+.lp-seg button{border:none;background:transparent;padding:7px 13px;border-radius:8px;font-size:13.4px;font-weight:700;color:#5c7370;cursor:pointer;font-family:inherit}
+.lp-seg button.on{background:#fff;color:#075c52;box-shadow:0 1px 4px rgba(18,54,49,.14)}
+.lp-select{padding:9px 12px;border-radius:10px;border:1.5px solid #bfd8d0;background:#fff;font-size:14px;font-family:inherit;color:#092c33;max-width:100%}
+.lp-label{font-size:12.6px;font-weight:700;color:#5c7370;display:block;margin:0 0 5px}
+/* --- теги наступления --- */
+.lp-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:999px;font-size:12.4px;font-weight:700;margin:2px 4px 2px 0;border:1px solid transparent}
+.lp-tag--yes{background:#e9f5f1;color:#0a655d;border-color:#c6e4da}
+.lp-tag--no{background:#fdeeee;color:#b33636;border-color:#f2cfcf}
+.lp-tag--neu{background:#eef3f1;color:#5c7370;border-color:#dbe7e2}
+/* --- игральные карты --- */
+.lp-pcard{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1.5px solid #d5e3de;border-radius:10px;box-shadow:0 2px 7px rgba(18,54,49,.12);font-weight:800;line-height:1.05;user-select:none;flex:none}
+.lp-pcard .r{font-size:19px}.lp-pcard .s{font-size:21px;margin-top:2px}
+.lp-pcard.red{color:#d64c4c}.lp-pcard.black{color:#092c33}
+.lp-pcard.big{width:92px;height:130px}.lp-pcard.big .r{font-size:26px}.lp-pcard.big .s{font-size:30px}
+.lp-pcard.mini{width:36px;height:52px;border-radius:7px}.lp-pcard.mini .r{font-size:12.5px}.lp-pcard.mini .s{font-size:14px}
+.lp-cardrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* --- сетка двух кубиков --- */
+.lp-g2wrap{overflow-x:auto}
+.lp-g2{display:grid;grid-template-columns:34px repeat(6,minmax(40px,1fr));gap:5px;min-width:320px;max-width:520px;margin:12px auto}
+.lp-g2 .lp-hd{display:flex;align-items:center;justify-content:center;background:#e9f5f1;border-radius:9px;font-weight:800;font-size:13.5px;color:#043f3b}
+.lp-g2 .lp-cell{display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid #e2ebe8;border-radius:9px;min-height:40px;font-weight:700;font-size:14px;color:#435b56;cursor:pointer}
+.lp-g2 .lp-cell.hl{background:linear-gradient(135deg,#0a655d,#063f3b);border-color:transparent;color:#fff;box-shadow:0 3px 8px rgba(6,63,59,.3)}
+/* --- история бросков --- */
+.lp-hist{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lp-hh{background:#fff;border:1px solid #e2ebe8;border-radius:9px;padding:4px 9px;font-size:12.2px;font-weight:600;color:#435b56;font-family:'Roboto Mono',ui-monospace,monospace}
+/* --- флаги событий --- */
+.lp-flags{display:grid;gap:8px;margin:12px 0}
+.lp-flag{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:9px 14px;font-size:14.2px}
+.lp-fname{font-weight:700;color:#063f3b}
+.lp-fdef{color:#7a918b;font-size:12.4px;display:block;font-weight:500}
+/* --- венн --- */
+.lp-vennbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.lp-vbtn{border:1.5px solid #bfd8d0;background:#fff;color:#435b56;border-radius:999px;padding:7px 15px;font-size:13.2px;font-weight:700;cursor:pointer;font-family:inherit}
+.lp-vbtn:hover{border-color:#075c52}
+.lp-vbtn.on{background:#075c52;color:#fff;border-color:transparent}
+#vennSvgWrap{display:flex;justify-content:center;margin-top:12px}
+#vennCaption{background:#fff;border:1px solid #e2ebe8;border-radius:14px;padding:13px 16px;font-size:14.4px;margin-top:12px}
+#vennCaption .ttl{color:#075c52}
+.lp-cchip{display:inline-block;padding:3px 10px;border-radius:9px;background:#fff;border:1px solid #e2ebe8;font-size:12.8px;font-weight:700;margin:2px 4px 2px 0;font-family:'Roboto Mono',ui-monospace,monospace}
+.lp-cchip.r{color:#d64c4c;border-color:#f2cfcf}
+.lp-cchip.b{color:#092c33}
+/* --- статистика --- */
+.lp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.lp-stat{background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:10px 13px;text-align:center}
+.lp-stat .v{font-size:17px;font-weight:800;color:#043f3b}
+.lp-stat .k{font-size:10.8px;color:#7a918b;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+#popviz{margin:16px 0 6px}
+/* --- тест --- */
+.lp-qq{border:1.5px solid #e2ebe8;border-radius:15px;padding:16px 18px;margin:14px 0;background:#fbfdfc}
+.lp-qh{font-weight:700;font-size:15px;margin:0 0 10px;color:#063f3b}
+.lp-qh .lp-qn{color:#ff7136;font-family:'Roboto Mono',ui-monospace,monospace}
+.lp-opts{display:grid;gap:8px}
+.lp-opt{text-align:left;padding:10px 14px;border-radius:11px;border:1.5px solid #cfe0d9;background:#fff;cursor:pointer;font-size:14px;font-family:inherit;color:#092c33}
+.lp-opt:hover{border-color:#075c52}
+.lp-qq.done .lp-opt{cursor:default}
+.lp-qq.done .lp-opt:hover{border-color:#cfe0d9}
+.lp-opt.correct{border-color:#0a655d;background:#e9f5f1;font-weight:600}
+.lp-opt.wrong{border-color:#d64c4c;background:#fdeeee}
+.lp-expl{display:none;margin-top:11px;background:#eef6f2;border:1px solid #cfe6dd;border-radius:11px;padding:10px 14px;font-size:13.5px}
+.lp-qq.done .lp-expl{display:block}
+#quizScore{font-weight:800;font-size:15px;color:#075c52}
+/* --- подвал урока --- */
+.lp-foot{margin-top:4px;text-align:center;color:#5c7370;font-size:13.4px;padding:6px 0 14px}
+.lp-foot b{color:#043f3b}
+@media(max-width:760px){
+.lp-section{padding:20px 16px;border-radius:13px;scroll-margin-top:20px}
+.lp-h2{font-size:20px}
+.lp-deco{display:none}
+}
+/* ===== дополнения урока 03 «Вероятность события» ===== */
+.lp-formula{font-family:'Roboto Mono',ui-monospace,monospace;background:#f0f7f3;border:1px solid #d5e3de;border-radius:11px;padding:10px 16px;margin:12px 0;font-size:14.3px;color:#063f3b;overflow-x:auto}
+.lp-frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.2}
+.lp-frac>span{padding:0 5px}
+.lp-frac>span:last-child{border-top:1.6px solid #435b56}
+.lp-formula .lp-frac{font-size:13px}
+.lp-fstep{display:inline-block;background:#eef5f2;border:1px solid #d5e3de;border-radius:8px;padding:1px 8px;font:600 12px 'Roboto Mono',ui-monospace,monospace;color:#435b56;margin-right:4px}
+.lp-pcard.dim{opacity:.3;filter:grayscale(.75)}
+.lp-pcard.fav{outline:3px solid #0a655d;outline-offset:1px;background:#e9f5f1}
+.lp-pcard.spaceB{outline:3px solid #ff7136;outline-offset:1px}
+.lp-pcard.hitBoth{outline:3px solid #ff7136;outline-offset:1px;background:#d9efe7}
+.lp-pcard.uni{outline:3px solid #0a655d;outline-offset:1px;background:#e9f5f1}
+.lp-pcard.inter{outline:3px solid #0a655d;outline-offset:1px;background:#ffefe4;box-shadow:0 0 0 2px #ff7136}
+</style>
+
+<style>
+/* ===== урок «Дискретная СВ» — визуализации ===== */
+.lp-plot{background:#fff;border:1px solid #d5e3de;border-radius:14px;padding:10px;margin:14px 0;overflow-x:auto}
+.lp-plot svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.dist-axis{stroke:#9db3ac;stroke-width:1.4}
+.dist-grid{stroke:#e2ebe8;stroke-width:1}
+.dist-bar{fill:#9fd3c4}
+.dist-stem{stroke:#075c52;stroke-width:2}
+.dist-poly{fill:none;stroke:#ff7136;stroke-width:2.4;stroke-linejoin:round}
+.dist-dot{fill:#075c52;stroke:#fff;stroke-width:1.5}
+.dist-step{stroke:#075c52;stroke-width:2.6;fill:none}
+.dist-jump{stroke:#bcd3cb;stroke-width:1.4;stroke-dasharray:3 3}
+.dist-openc{fill:#fff;stroke:#075c52;stroke-width:2}
+.dist-fillc{fill:#075c52}
+.dist-lbl{fill:#5c7370;font-size:12px;font-family:Manrope,'Segoe UI',Arial,sans-serif}
+.dist-lbl-x{fill:#092c33;font-size:12.5px;font-weight:700}
+.dist-area{fill:rgba(255,113,54,.22)}
+.dist-hi{fill:rgba(10,101,93,.14)}
+.dist-vline{stroke:#ff7136;stroke-width:1.6;stroke-dasharray:4 3}
+.lp-distsum{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;padding:6px 14px;border-radius:10px;border:1px solid #d5e3de}
+.lp-distsum.ok{background:#e9f5f1;color:#0a655d;border-color:#c6e4da}
+.lp-distsum.bad{background:#fdeeee;color:#b33636;border-color:#f2cfcf}
+.dist-prob-table td.editcell{padding:4px}
+.dist-prob-table input{width:66px;padding:6px 7px;border:1.5px solid #bfd8d0;border-radius:8px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:13.5px;text-align:center}
+.lp-range{width:100%;accent-color:#075c52}
+.lp-kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.lp-kv .b{background:#fff;border:1px solid #e2ebe8;border-radius:12px;padding:10px 13px}
+.lp-kv .b .k{font-size:11px;color:#7a918b;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.lp-kv .b .v{font-size:16px;font-weight:800;color:#043f3b;font-family:'Roboto Mono',ui-monospace,monospace}
+</style>
+<style>
+/* ===== увеличенный шрифт в окошках, таблицах и графиках ===== */
+.lp-table{font-size:15.4px}
+.lp-table th{font-size:14.6px;padding:11px 14px}
+.lp-table td{padding:11px 14px}
+.lp-def{font-size:16.4px;padding:16px 20px}
+.lp-note{font-size:15.6px;padding:14px 18px}
+.lp-note-info,.lp-note-good{font-size:15.6px}
+.lp-status{font-size:15.6px;padding:11px 15px}
+.lp-formula{font-size:15.8px;padding:12px 18px}
+.lp-demo h3{font-size:18.5px}
+.lp-demo .lp-small{font-size:14px}
+.lp-select{font-size:15.4px;padding:10px 13px}
+.lp-label{font-size:13.6px}
+.lp-seg button{font-size:14.4px}
+.lp-btn{font-size:15px}
+.dist-prob-table input{font-size:15.4px;width:74px;padding:7px 8px}
+.lp-distsum{font-size:16px;padding:8px 16px}
+.lp-kv .b .v{font-size:18.5px}
+.lp-kv .b .k{font-size:12.4px}
+.dist-lbl{font-size:13.6px}
+.dist-lbl-x{font-size:14.4px;font-weight:700}
+.lp-opt{font-size:15.4px;padding:11px 15px}
+.lp-qh{font-size:16.2px}
+.lp-expl{font-size:14.8px;padding:12px 16px}
+#quizScore{font-size:16px}
+</style>
+
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses">
+<div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="measurement-errors" aria-label="Разделы курса"></aside>
+<div class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">ТМОГИ</a><span class="gl-meta-sep">·</span><a href="index.html#topic-01">Тема 01. Основы теории вероятностей</a></div>
+<h1>Закон распределения дискретной случайной величины</h1>
+<p class="gl-meta-summary">Случайная величина и её закон распределения. Три способа задания закона для дискретной величины: ряд распределения, многоугольник распределения и функция распределения. Свойства функции распределения и вероятность попадания в интервал — с интерактивными примерами и приложениями в геодезии.</p>
+<nav aria-label="Содержание урока" class="lp-toc gl-tabs">
+<span class="lp-toc-label">Разделы</span>
+<button class="active" data-gl-tab="intro" type="button"><b>1</b>Случайная величина</button>
+<button class="" data-gl-tab="row" type="button"><b>2</b>Ряд распределения</button>
+<button class="" data-gl-tab="poly" type="button"><b>3</b>Многоугольник</button>
+<button class="" data-gl-tab="cdf" type="button"><b>4</b>Функция распределения</button>
+<button class="" data-gl-tab="props" type="button"><b>5</b>Свойства F(x)</button>
+<button class="" data-gl-tab="interval" type="button"><b>6</b>Попадание в интервал</button>
+<button class="" data-gl-tab="quiz" type="button"><b>7</b>Проверь себя</button>
+</nav></section>
+<article class="lp">
+
+<!-- ============ 1. Случайная величина ============ -->
+<section class="lp-section gl-tab-panel active" data-gl-panel="intro" id="intro">
+<h2 class="lp-h2"><span class="lp-num">1</span>Случайная величина и закон распределения</h2>
+<p class="lp-lead">Свяжем со случайным опытом <b>число</b> и научимся описывать сразу все его возможные значения вместе с их вероятностями.</p>
+
+<div class="lp-def"><span class="lp-term">Случайная величина</span> — величина, которая обладает некоторым множеством возможных значений, причём заранее нельзя предсказать, какое именно значение она примет в результате того или иного испытания.</div>
+
+<p>В отличие от постоянной величины случайную величину недостаточно характеризовать только числовыми значениями — надо знать ещё и вероятности появления этих значений. Случайные величины обозначают заглавными буквами <b>X, Y, Z</b>, а их значения — соответственно <b>x<sub>1</sub>, x<sub>2</sub>, …, x<sub>n</sub></b>.</p>
+
+<div class="lp-note lp-note-info"><b>Пример.</b> При подбрасывании игральной кости случайная величина X — число выпавших очков — принимает значения 1, 2, 3, 4, 5, 6, каждое с вероятностью 1/6. Любое событие можно описать случайной величиной: бросая монету, присвоим «решке» значение 1, «орлу» — 0; каждое значение имеет вероятность 1/2.</div>
+
+<div class="lp-def"><span class="lp-term">Закон распределения случайной величины</span> — всякое соотношение, устанавливающее связь между значениями случайной величины и вероятностями появления этих значений. Поведение случайной величины полностью определяется её законом распределения.</div>
+
+<h3><span class="lp-h3num">1.1</span>Дискретные и непрерывные величины</h3>
+<div class="lp-grid">
+<div class="lp-tile"><span class="lp-ico">🎲</span><div class="lp-dom">Дискретная (прерывная)</div><p>Множество значений <b>не более чем счётно</b> (эквивалентно множеству натуральных чисел). Значения можно перечислить: 0, 1, 2, …</p></div>
+<div class="lp-tile"><span class="lp-ico">📏</span><div class="lp-dom">Непрерывная</div><p>Все значения заполняют отрезок числовой оси. Множество значений <b>бесконечно и несчётно</b> — перечислить их нельзя.</p></div>
+</div>
+
+<div class="lp-note lp-note-good"><b>Связь с геодезией.</b> К дискретным случайным величинам относится, например, <b>число положительных (или отрицательных) ошибок измерений</b> в геодезических сетях. Сами же <b>ошибки измерений</b> — это непрерывные случайные величины. Этот урок посвящён дискретному случаю; непрерывным величинам посвящён следующий урок.</div>
+
+<p>Для дискретной величины все возможные значения образуют <b>полную группу несовместных событий</b>, поэтому сумма их вероятностей равна единице:</p>
+<div class="lp-formula">P<sub>1</sub> + P<sub>2</sub> + … + P<sub>n</sub> = &sum; P<sub>i</sub> = 1.</div>
+
+<h3><span class="lp-h3num">1.2</span>Три способа задать закон распределения дискретной величины</h3>
+<div class="lp-grid">
+<div class="lp-tile"><div class="lp-dom">Способ 1</div><h4>Ряд (таблица) распределения</h4><p>Таблица «значение x<sub>i</sub> → вероятность P<sub>i</sub>».</p></div>
+<div class="lp-tile"><div class="lp-dom">Способ 2</div><h4>Многоугольник распределения</h4><p>Графическое представление ряда распределения.</p></div>
+<div class="lp-tile"><div class="lp-dom">Способ 3</div><h4>Функция распределения F(x)</h4><p>Универсальная форма — годится и для непрерывных величин.</p></div>
+</div>
+</section>
+
+<!-- ============ 2. Ряд распределения ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="row" id="row">
+<h2 class="lp-h2"><span class="lp-num">2</span>Ряд распределения</h2>
+<p class="lp-lead">Первый и самый наглядный способ задания закона распределения дискретной величины.</p>
+
+<div class="lp-def"><span class="lp-term">Ряд (таблица) распределения</span> — таблица, устанавливающая соответствие между значениями случайной величины x<sub>i</sub> и вероятностями появления этих значений p<sub>i</sub>.</div>
+
+<table class="lp-table" style="max-width:520px">
+<tr><th>X</th><td>x<sub>1</sub></td><td>x<sub>2</sub></td><td>…</td><td>x<sub>n</sub></td></tr>
+<tr><th>P</th><td>p<sub>1</sub></td><td>p<sub>2</sub></td><td>…</td><td>p<sub>n</sub></td></tr>
+</table>
+
+<p>Так как все значения X образуют полную группу несовместных событий, вероятности ряда обязаны удовлетворять условию нормировки <b>&sum; p<sub>i</sub> = 1</b>. Это первое, что нужно проверять у любого ряда распределения.</p>
+
+<div class="lp-note lp-note-info"><b>Пример.</b> Произведено одно измерение. Пусть X — число появлений положительной ошибки: оно равно либо 0, либо 1, то есть X = (0; 1). Тогда при p<sub>1</sub> + p<sub>2</sub> = 1 ряд распределения принимает вид: X = 0 → P = 0,5; X = 1 → P = 0,5.</div>
+
+<h3><span class="lp-h3num">2.1</span>Некоторые виды рядов задаются аналитически</h3>
+<table class="lp-table">
+<tr><th>Распределение</th><th>Значения X</th><th>Вероятности</th><th>Смысл</th></tr>
+<tr><td><b>Биномиальное</b></td><td>k = 0, 1, …, n</td><td>P<sub>n</sub>(k) = C<sub>n</sub><sup>k</sup>·p<sup>k</sup>·q<sup>n−k</sup> (формула Бернулли)</td><td>число k появлений события A в n независимых испытаниях</td></tr>
+<tr><td><b>Геометрическое</b></td><td>k = 1, 2, 3, …</td><td>P<sub>k</sub> = q<sup>k−1</sup>·p</td><td>число испытаний до первого появления события A</td></tr>
+</table>
+<p class="lp-small">Для биномиального распределения &sum; C<sub>n</sub><sup>k</sup> p<sup>k</sup> q<sup>n−k</sup> = (p + q)<sup>n</sup> = 1 (бином Ньютона), а для геометрического сумма бесконечной прогрессии p(1 + q + q² + …) = p/(1 − q) = 1.</p>
+
+<div class="lp-demo">
+<h3>🧮 Конструктор ряда распределения</h3>
+<p class="lp-small">Выберите готовый пример или впишите свои вероятности — проверим условие нормировки &sum; p<sub>i</sub> = 1.</p>
+<div class="lp-ctrl">
+<div><span class="lp-label">Пример</span>
+<select class="lp-select" id="rowPreset">
+<option value="book">Пример: X = (−5, −3, 2, 7)</option>
+<option value="meas">Одно измерение: X = (0, 1)</option>
+<option value="dice">Игральная кость: X = (1…6)</option>
+<option value="binom">Биномиальное: n = 4, p = 0,5</option>
+</select></div>
+</div>
+<div id="rowTableWrap"></div>
+<div class="lp-out"><span class="lp-distsum" id="rowSum">&sum; p = —</span></div>
+</div>
+</section>
+
+<!-- ============ 3. Многоугольник ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="poly" id="poly">
+<h2 class="lp-h2"><span class="lp-num">3</span>Многоугольник распределения</h2>
+<p class="lp-lead">Второй способ задания закона распределения — графический.</p>
+
+<div class="lp-def"><span class="lp-term">Многоугольник распределения</span> — ломаная линия, построенная по ряду распределения: по оси абсцисс откладывают все возможные значения случайной величины x<sub>i</sub>, по оси ординат — вероятности их появления p<sub>i</sub>, а полученные точки последовательно соединяют отрезками.</div>
+
+<div class="lp-note lp-note-info"><b>Пример.</b> Многоугольник распределения строится для ряда: X = (−5; −3; 2; 7), P = (0,1; 0,4; 0,3; 0,2). Наибольшая ордината приходится на значение −3 с вероятностью 0,4.</div>
+
+<div class="lp-demo">
+<h3>📐 Построение многоугольника</h3>
+<p class="lp-small">По оси абсцисс — значения x<sub>i</sub>, по оси ординат — вероятности p<sub>i</sub>; точки соединены ломаной.</p>
+<div class="lp-ctrl">
+<div><span class="lp-label">Ряд распределения</span>
+<select class="lp-select" id="polyPreset">
+<option value="book">Пример: X = (−5, −3, 2, 7)</option>
+<option value="dice">Игральная кость: X = (1…6)</option>
+<option value="binom">Биномиальное: n = 4, p = 0,5</option>
+</select></div>
+</div>
+<div class="lp-plot" id="polyPlot"></div>
+<div class="lp-status" id="polyStatus"></div>
+</div>
+</section>
+
+<!-- ============ 4. Функция распределения ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="cdf" id="cdf">
+<h2 class="lp-h2"><span class="lp-num">4</span>Функция распределения F(x)</h2>
+<p class="lp-lead">Третий, самый универсальный способ: одна функция задаёт закон распределения и дискретной, и непрерывной величины.</p>
+
+<div class="lp-def"><span class="lp-term">Функция распределения</span> F(x) — вероятность того, что случайная величина X примет значение, меньшее некоторого числа x:
+<div class="lp-formula" style="margin:10px 0 2px">F(x) = P(X &lt; x).</div>
+<b>Геометрически</b> это вероятность попадания значений случайной величины на числовую прямую <b>левее точки x</b>, причём <b>сама точка x в этот интервал не входит</b> — неравенство строгое (X &lt; x). Для дискретной величины F(x) равна сумме вероятностей всех значений, лежащих строго левее x.</div>
+
+<div class="lp-note lp-note-info"><b>Пример.</b> Для ряда распределения X = (−5; −3; 2; 7), P = (0,1; 0,4; 0,3; 0,2) найдём значения функции распределения в точках существования величины и добавим их третьей строкой в таблицу:
+<table class="lp-table" style="max-width:560px;margin:10px 0">
+<tr><th>X</th><td>−5</td><td>−3</td><td>2</td><td>7</td></tr>
+<tr><th>P</th><td>0,1</td><td>0,4</td><td>0,3</td><td>0,2</td></tr>
+<tr><th>F(X)</th><td>0</td><td>0,1</td><td>0,5</td><td>0,8</td></tr>
+</table>
+Каждое значение F получается суммированием вероятностей всех значений, лежащих строго левее:
+<div class="lp-formula" style="margin:10px 0 2px">F(−5) = P(X &lt; −5) = 0<br>
+F(−3) = P(X &lt; −3) = P(−5) = 0,1<br>
+F(2) = P(X &lt; 2) = P(−5) + P(−3) = 0,1 + 0,4 = 0,5<br>
+F(7) = P(X &lt; 7) = P(−5) + P(−3) + P(2) = 0,1 + 0,4 + 0,3 = 0,8</div>
+В произвольной точке значение F совпадает с накопленной суммой слева: например F(−1) = P(X &lt; −1) = P(−5) + P(−3) = 0,1 + 0,4 = 0,5.</div>
+
+<p>График функции распределения дискретной величины — <b>ступенчатый</b>: он терпит разрывы в точках существования случайной величины, причём величина скачка равна вероятности появления данного значения. В точке разрыва функция принимает <b>меньшее</b> значение (левое), а большее показывают выколотой точкой. Слева от наименьшего значения график идёт по оси абсцисс (F = 0) и уходит в область отрицательных x; справа от наибольшего значения — на уровне F = 1.</p>
+
+<div class="lp-note lp-note-good"><b>Пример: построение F(x) для биномиального распределения.</b> Пусть X — число появлений события в n = 4 независимых испытаниях при p = 0,5 (например, число положительных ошибок в четырёх измерениях). Вероятности по формуле Бернулли P<sub>4</sub>(k) = C<sub>4</sub><sup>k</sup>·0,5<sup>4</sup> и накопленные значения F(k) = P(X &lt; k):
+<table class="lp-table" style="max-width:620px;margin:10px 0">
+<tr><th>X = k</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><th>P</th><td>0,0625</td><td>0,25</td><td>0,375</td><td>0,25</td><td>0,0625</td></tr>
+<tr><th>F(X)</th><td>0</td><td>0,0625</td><td>0,3125</td><td>0,6875</td><td>0,9375</td></tr>
+</table>
+<div class="lp-formula" style="margin:10px 0 2px">F(2) = P(X &lt; 2) = P(0) + P(1) = 0,0625 + 0,25 = 0,3125<br>
+F(4) = P(X &lt; 4) = P(0) + P(1) + P(2) + P(3) = 0,9375</div>
+Правее k = 4 функция достигает единицы: F(x) = 1 при x &gt; 4. Выберите «Биномиальное» в графике ниже, чтобы увидеть ступени.</div>
+
+<div class="lp-demo">
+<h3>📊 Ступенчатый график F(x)</h3>
+<div class="lp-ctrl">
+<div><span class="lp-label">Ряд распределения</span>
+<select class="lp-select" id="cdfPreset">
+<option value="book">Пример: X = (−5, −3, 2, 7)</option>
+<option value="binom">Биномиальное: n = 4, p = 0,5</option>
+<option value="dice">Игральная кость: X = (1…6)</option>
+<option value="meas">Одно измерение: X = (0, 1)</option>
+</select></div>
+<div style="flex:1;min-width:220px"><span class="lp-label">Точка x = <b id="cdfXval" style="color:#075c52"></b></span>
+<input class="lp-range" id="cdfX" type="range"/></div>
+</div>
+<div class="lp-plot" id="cdfPlot"></div>
+<div class="lp-status" id="cdfStatus"></div>
+</div>
+</section>
+
+<!-- ============ 5. Свойства F(x) ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="props" id="props">
+<h2 class="lp-h2"><span class="lp-num">5</span>Свойства функции распределения</h2>
+<p class="lp-lead">Функция распределения обладает тремя основными свойствами — они одинаковы для дискретных и непрерывных величин.</p>
+
+<div class="lp-def"><b>Свойство 1.</b> <span class="lp-term">F(−∞) = 0.</span> При x → −∞ вероятность попасть левее уходящей влево точки стремится к нулю. В частном случае, если X сосредоточена на отрезке [A, B], то <b>F(A) = 0</b>: попасть левее отрезка нельзя.</div>
+
+<div class="lp-def"><b>Свойство 2.</b> <span class="lp-term">F(+∞) = 1.</span> Все значения величины лежат в пределах от −∞ до +∞, поэтому вероятность оказаться левее уходящей вправо точки стремится к единице. Если X ∈ [A, B], то для любого ε &gt; 0 весь отрезок окажется левее точки B + ε, то есть <b>F(B + ε) = 1</b>.</div>
+
+<div class="lp-def"><b>Свойство 3.</b> <span class="lp-term">F(x) — неубывающая функция:</span> если x<sub>2</sub> &gt; x<sub>1</sub>, то F(x<sub>2</sub>) ≥ F(x<sub>1</sub>). Область «левее x<sub>2</sub>» полностью накрывает область «левее x<sub>1</sub>», поэтому F(x<sub>1</sub>) = P(X &lt; x<sub>1</sub>) не может быть больше F(x<sub>2</sub>) = P(X &lt; x<sub>2</sub>).</div>
+
+<div class="lp-note lp-note-good"><b>Три области графика.</b> В общем случае график F(x) имеет три области: (1) левее области существования величины — совпадает с осью абсцисс (F = 0); (2) область значений величины — здесь F(x) растёт до единицы; (3) правее — все значения F(x) равны единице. Это справедливо и для дискретных, и для непрерывных величин.</p></div>
+
+<div class="lp-demo">
+<h3>✅ Проверка свойств на графике</h3>
+<p class="lp-small">Двигайте две точки — убедитесь, что F не убывает, начинается с 0 и доходит до 1.</p>
+<div class="lp-ctrl">
+<div style="flex:1;min-width:200px"><span class="lp-label">x₁ = <b id="pv1" style="color:#075c52"></b></span><input class="lp-range" id="propX1" type="range"/></div>
+<div style="flex:1;min-width:200px"><span class="lp-label">x₂ = <b id="pv2" style="color:#ff7136"></b></span><input class="lp-range" id="propX2" type="range"/></div>
+</div>
+<div class="lp-plot" id="propPlot"></div>
+<div class="lp-status" id="propStatus"></div>
+</div>
+</section>
+
+<!-- ============ 6. Попадание в интервал ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="interval" id="interval">
+<h2 class="lp-h2"><span class="lp-num">6</span>Вероятность попадания в интервал</h2>
+<p class="lp-lead">Главная практическая формула: вероятность попадания в интервал выражается через функцию распределения.</p>
+
+<p>Пусть событие A — появление значений X левее точки x<sub>1</sub> (X &lt; x<sub>1</sub>), событие B — появление значений левее x<sub>2</sub> (X &lt; x<sub>2</sub>), а событие C — попадание на отрезок x<sub>1</sub> ≤ X &lt; x<sub>2</sub>. События A и C несовместны и в сумме дают B, поэтому P(B) = P(A) + P(C). Отсюда:</p>
+
+<div class="lp-formula" style="font-size:16px">P(x<sub>1</sub> ≤ X &lt; x<sub>2</sub>) = F(x<sub>2</sub>) − F(x<sub>1</sub>).</div>
+
+<div class="lp-note lp-note-info"><b>Важно.</b> В отрезок x<sub>1</sub> ≤ X &lt; x<sub>2</sub> левая точка x<sub>1</sub> <b>включена</b>, а правая x<sub>2</sub> <b>не включена</b> — это прямое следствие определения F(x) = P(X &lt; x).</div>
+
+<h3><span class="lp-h3num">6.1</span>Почему один конец включён, а другой — нет</h3>
+<p>Разность F(x<sub>2</sub>) − F(x<sub>1</sub>) — это вычитание из «широкого» события B = {X &lt; x<sub>2</sub>} «узкого» события A = {X &lt; x<sub>1</sub>}. Наглядно это два перекрывающихся интервала (лучи влево), а искомый отрезок C — то, что от них остаётся:</p>
+
+<figure class="lp-fig" style="display:block;margin:16px 0">
+<svg viewBox="0 0 640 236" width="640" style="max-width:100%;height:auto" role="img" aria-label="Два перекрывающихся интервала: B минус A даёт отрезок с включённым левым концом и исключённым правым">
+<line x1="250" y1="40" x2="250" y2="210" stroke="#c2d5cd" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="430" y1="40" x2="430" y2="210" stroke="#c2d5cd" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="44" y="34" style="font:700 14px Manrope,Arial;fill:#063f3b">B: X &lt; x₂  →  вероятность F(x₂)</text>
+<rect x="44" y="42" width="386" height="18" rx="4" fill="rgba(10,101,93,.16)" stroke="#0a655d"/>
+<circle cx="430" cy="51" r="6.5" fill="#fff" stroke="#0a655d" stroke-width="2"/>
+<text x="44" y="88" style="font:700 14px Manrope,Arial;fill:#063f3b">A: X &lt; x₁  →  вероятность F(x₁)</text>
+<rect x="44" y="96" width="206" height="18" rx="4" fill="rgba(120,140,135,.20)" stroke="#5c7370"/>
+<circle cx="250" cy="105" r="6.5" fill="#fff" stroke="#5c7370" stroke-width="2"/>
+<text x="44" y="142" style="font:700 14px Manrope,Arial;fill:#e45f27">C = B − A:  x₁ ≤ X &lt; x₂  →  F(x₂) − F(x₁)</text>
+<rect x="250" y="150" width="180" height="18" rx="4" fill="rgba(255,113,54,.28)" stroke="#e45f27"/>
+<circle cx="250" cy="159" r="6.5" fill="#075c52" stroke="#fff" stroke-width="1.5"/>
+<circle cx="430" cy="159" r="6.5" fill="#fff" stroke="#e45f27" stroke-width="2"/>
+<line x1="40" y1="200" x2="604" y2="200" stroke="#9db3ac" stroke-width="1.6"/>
+<text x="250" y="222" text-anchor="middle" style="font:700 13.5px Manrope,Arial;fill:#092c33">x₁  ● включена</text>
+<text x="430" y="222" text-anchor="middle" style="font:700 13.5px Manrope,Arial;fill:#092c33">x₂  ○ не включена</text>
+</svg>
+<figcaption style="font-size:13px;color:#7a918b;text-align:center">Точка x₁ не входит в вычитаемое A (неравенство строгое), поэтому в отрезке C она остаётся — <b>включена</b>. Точка x₂ не входит в само B, поэтому её нет и в C — <b>не включена</b>.</figcaption>
+</figure>
+
+<h3><span class="lp-h3num">6.2</span>Как включить или исключить нужный конец</h3>
+<p>Для дискретной величины передвижение или включение конца меняет результат ровно на вероятность значения в этой точке P(X = x<sub>i</sub>). Отсюда четыре варианта:</p>
+<table class="lp-table" style="max-width:720px">
+<tr><th>Интервал</th><th>Формула через F(x)</th></tr>
+<tr><td>x<sub>1</sub> ≤ X &lt; x<sub>2</sub> <span class="lp-small">(левый включён, правый нет — базовая)</span></td><td>F(x<sub>2</sub>) − F(x<sub>1</sub>)</td></tr>
+<tr><td>x<sub>1</sub> ≤ X ≤ x<sub>2</sub> <span class="lp-small">(включить правый конец)</span></td><td>F(x<sub>2</sub>) − F(x<sub>1</sub>) + P(X = x<sub>2</sub>)</td></tr>
+<tr><td>x<sub>1</sub> &lt; X &lt; x<sub>2</sub> <span class="lp-small">(исключить левый конец)</span></td><td>F(x<sub>2</sub>) − F(x<sub>1</sub>) − P(X = x<sub>1</sub>)</td></tr>
+<tr><td>x<sub>1</sub> &lt; X ≤ x<sub>2</sub> <span class="lp-small">(исключить левый, включить правый)</span></td><td>F(x<sub>2</sub>) − F(x<sub>1</sub>) − P(X = x<sub>1</sub>) + P(X = x<sub>2</sub>)</td></tr>
+</table>
+<div class="lp-note lp-note-info"><b>Если конец не совпадает ни с одним значением величины</b>, то P(X = конец) = 0, и тогда включать его или нет — безразлично: результат не меняется.</div>
+
+<div class="lp-note lp-note-good"><b>Примеры</b> (ряд X = (−5; −3; 2; 7), P = (0,1; 0,4; 0,3; 0,2)):
+<ul>
+<li>P(−5 ≤ X &lt; 2) = F(2) − F(−5) = 0,5 − 0 = 0,5. То же как сумма: P(−5) + P(−3) = 0,1 + 0,4 = 0,5.</li>
+<li>P(−3 ≤ X &lt; 7) = F(7) − F(−3) = 0,8 − 0,1 = 0,7. То же как сумма: P(−3) + P(2) = 0,4 + 0,3 = 0,7.</li>
+</ul>
+Итак, вероятность попадания на отрезок — это и разность значений F в крайних точках, и сумма вероятностей всех значений, попавших в интервал.</div>
+
+<div class="lp-demo">
+<h3>🎯 Вероятность попадания P(x₁ ≤ X &lt; x₂)</h3>
+<div class="lp-ctrl">
+<div><span class="lp-label">Ряд распределения</span>
+<select class="lp-select" id="intPreset">
+<option value="book">Пример: X = (−5, −3, 2, 7)</option>
+<option value="dice">Игральная кость: X = (1…6)</option>
+</select></div>
+<div style="flex:1;min-width:180px"><span class="lp-label">Левая граница x₁ = <b id="iv1" style="color:#075c52"></b> (включена)</span><input class="lp-range" id="intX1" type="range"/></div>
+<div style="flex:1;min-width:180px"><span class="lp-label">Правая граница x₂ = <b id="iv2" style="color:#ff7136"></b> (не включена)</span><input class="lp-range" id="intX2" type="range"/></div>
+</div>
+<div class="lp-plot" id="intPlot"></div>
+<div class="lp-kv" id="intKV"></div>
+<div class="lp-status" id="intStatus"></div>
+</div>
+</section>
+
+<!-- ============ 7. Проверь себя ============ -->
+<section class="lp-section gl-tab-panel" data-gl-panel="quiz" id="quiz">
+<h2 class="lp-h2"><span class="lp-num">7</span>Проверь себя</h2>
+<p class="lp-lead">Семь вопросов по материалу урока. Нажмите на выбранный вариант — появится разбор.</p>
+<div id="quizBox"></div>
+<div class="lp-status" id="quizScore">Отвечено: 0 из 7</div>
+</section>
+
+<p class="lp-foot">Тема курса <b>ТМОГИ</b>: закон распределения дискретной случайной величины.</p>
+</article>
+</div><!-- /.gl-lesson-content -->
+</div><!-- /.gl-lesson-layout -->
+<script>
+(function(){
+"use strict";
+function qs(s,r){return (r||document).querySelector(s)}
+function qsa(s,r){return [].slice.call((r||document).querySelectorAll(s))}
+function warn(e){try{console.warn(e)}catch(_){}}
+function nf(v,d){d=(d==null?3:d);return (Math.round(v*Math.pow(10,d))/Math.pow(10,d)).toString().replace('.',',')}
+function comb(n,k){if(k<0||k>n)return 0;var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1)}return Math.round(r)}
+
+/* ---------- наборы данных (ряды распределения) ---------- */
+function dice(){var x=[],p=[];for(var i=1;i<=6;i++){x.push(i);p.push(1/6)}return {x:x,p:p}}
+function binom(n,pp){var x=[],p=[];for(var k=0;k<=n;k++){x.push(k);p.push(comb(n,k)*Math.pow(pp,k)*Math.pow(1-pp,n-k))}return {x:x,p:p}}
+var DISTS={
+  book:{x:[-5,-3,2,7],p:[0.1,0.4,0.3,0.2]},
+  meas:{x:[0,1],p:[0.5,0.5]},
+  dice:dice(),
+  binom:binom(4,0.5)
+};
+
+/* ---------- функция распределения F(x)=P(X<x) для дискретной величины ---------- */
+function Fval(d,x){var s=0;for(var i=0;i<d.x.length;i++){if(d.x[i]<x)s+=d.p[i]}return s}
+/* значения F в точках существования (левое значение, скачок) */
+function cumBefore(d,i){var s=0;for(var j=0;j<i;j++)s+=d.p[j];return s}
+
+var SVGNS='http://www.w3.org/2000/svg';
+function el(name,attrs,txt){var e=document.createElementNS(SVGNS,name);for(var k in attrs)e.setAttribute(k,attrs[k]);if(txt!=null)e.textContent=txt;return e}
+
+/* ============ ДЕМО 2: конструктор ряда ============ */
+try{
+ var rowState=JSON.parse(JSON.stringify(DISTS.book));
+ function rowRender(){
+  var wrap=qs('#rowTableWrap');
+  var head='<tr><th>X</th>';var body='<tr><th>P</th>';
+  for(var i=0;i<rowState.x.length;i++){
+   head+='<td>'+nf(rowState.x[i],2).replace(',00','').replace(/,?0+$/,'')+'</td>';
+   body+='<td class="editcell"><input type="number" step="0.01" min="0" max="1" data-i="'+i+'" value="'+(Math.round(rowState.p[i]*1000)/1000)+'"></td>';
+  }
+  head+='</tr>';body+='</tr>';
+  wrap.innerHTML='<table class="lp-table dist-prob-table" style="max-width:640px">'+head+body+'</table>';
+  qsa('input',wrap).forEach(function(inp){
+   inp.addEventListener('input',function(){var i=+inp.getAttribute('data-i');var v=parseFloat(inp.value);rowState.p[i]=isNaN(v)?0:v;rowSum()});
+  });
+  rowSum();
+ }
+ function rowSum(){
+  var s=rowState.p.reduce(function(a,b){return a+b},0);
+  var box=qs('#rowSum');
+  var ok=Math.abs(s-1)<1e-9;
+  box.className='lp-distsum '+(ok?'ok':'bad');
+  box.innerHTML='&sum; p = '+nf(s,3)+(ok?' ✓ условие нормировки выполнено':' ✗ должно быть 1');
+ }
+ qs('#rowPreset').addEventListener('change',function(){
+  rowState=JSON.parse(JSON.stringify(DISTS[this.value]));rowRender();
+ });
+ rowRender();
+}catch(e){warn(e)}
+
+/* ============ ДЕМО 3: многоугольник (столбики) ============ */
+try{
+ function polyDraw(){
+  var d=DISTS[qs('#polyPreset').value];
+  var W=640,H=320,ml=52,mr=20,mt=22,mb=42;
+  var xs=d.x, ps=d.p;
+  var n=xs.length;
+  var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
+  if(xmin===xmax){xmin-=1;xmax+=1}
+  var pmax=Math.max.apply(null,ps)*1.15;
+  function X(v){return ml+(v-xmin)/(xmax-xmin)*(W-ml-mr)}
+  function Y(v){return H-mb-(v/pmax)*(H-mt-mb)}
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'});
+  // grid + y ticks
+  for(var g=0;g<=5;g++){var yv=pmax*g/5;var yy=Y(yv);svg.appendChild(el('line',{x1:ml,y1:yy,x2:W-mr,y2:yy,class:'dist-grid'}));svg.appendChild(el('text',{x:ml-8,y:yy+4,'text-anchor':'end',class:'dist-lbl'},nf(yv,2)));}
+  // axes
+  svg.appendChild(el('line',{x1:ml,y1:mt,x2:ml,y2:H-mb,class:'dist-axis'}));
+  svg.appendChild(el('line',{x1:ml,y1:H-mb,x2:W-mr,y2:H-mb,class:'dist-axis'}));
+  svg.appendChild(el('text',{x:ml-38,y:mt+6,class:'dist-lbl'},'P'));
+  svg.appendChild(el('text',{x:W-mr,y:H-mb+30,'text-anchor':'end',class:'dist-lbl'},'X'));
+  // тонкие ординаты (стебли) к каждой точке
+  xs.forEach(function(xv,i){svg.appendChild(el('line',{x1:X(xv),y1:H-mb,x2:X(xv),y2:Y(ps[i]),class:'dist-stem'}));});
+  // ломаная, соединяющая точки
+  var pts=xs.map(function(xv,i){return X(xv)+','+Y(ps[i])}).join(' ');
+  svg.appendChild(el('polyline',{points:pts,class:'dist-poly'}));
+  // точки и подписи
+  xs.forEach(function(xv,i){
+   svg.appendChild(el('circle',{cx:X(xv),cy:Y(ps[i]),r:5,class:'dist-dot'}));
+   svg.appendChild(el('text',{x:X(xv),y:Y(ps[i])-11,'text-anchor':'middle',class:'dist-lbl'},nf(ps[i],2)));
+   svg.appendChild(el('text',{x:X(xv),y:H-mb+18,'text-anchor':'middle',class:'dist-lbl-x'},xv));
+  });
+  var box=qs('#polyPlot');box.innerHTML='';box.appendChild(svg);
+  var s=ps.reduce(function(a,b){return a+b},0);
+  qs('#polyStatus').innerHTML='Всего '+n+' значений, наибольшая вероятность '+nf(Math.max.apply(null,ps),2)+' у значения X = '+xs[ps.indexOf(Math.max.apply(null,ps))]+'. Сумма ординат &sum; p = '+nf(s,2)+'.';
+ }
+ qs('#polyPreset').addEventListener('change',polyDraw);
+ polyDraw();
+}catch(e){warn(e)}
+
+/* ============ ступенчатый график F(x) (общий рисовальщик) ============ */
+function drawCDF(container,d,opts){
+ opts=opts||{};
+ var W=640,H=320,ml=52,mr=22,mt=22,mb=42;
+ var xs=d.x;
+ var span=(xs[xs.length-1]-xs[0])||2;
+ var padL=Math.max(span*0.45,2.4),padR=Math.max(span*0.28,1.2);
+ var xmin=xs[0]-padL,xmax=xs[xs.length-1]+padR;
+ if(xmin>-1.2)xmin=-1.2; // всегда захватываем отрицательную область
+ function X(v){return ml+(v-xmin)/(xmax-xmin)*(W-ml-mr)}
+ function Y(v){return H-mb-(v)*(H-mt-mb)}
+ var svg=el('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'});
+ for(var g=0;g<=5;g++){var yv=g/5;var yy=Y(yv);svg.appendChild(el('line',{x1:ml,y1:yy,x2:W-mr,y2:yy,class:'dist-grid'}));svg.appendChild(el('text',{x:ml-8,y:yy+4,'text-anchor':'end',class:'dist-lbl'},nf(yv,1)));}
+ // optional shaded regions
+ if(opts.shade){opts.shade.forEach(function(r){var xa=X(r.a),xb=X(r.b);svg.appendChild(el('rect',{x:xa,y:mt,width:Math.max(0,xb-xa),height:H-mb-mt,class:r.cls||'dist-hi'}))})}
+ svg.appendChild(el('line',{x1:ml,y1:mt,x2:ml,y2:H-mb,class:'dist-axis'}));
+ svg.appendChild(el('line',{x1:ml,y1:H-mb,x2:W-mr,y2:H-mb,class:'dist-axis'}));
+ // ось x=0 (граница отрицательной области)
+ if(xmin<0&&xmax>0){var x0=X(0);svg.appendChild(el('line',{x1:x0,y1:mt,x2:x0,y2:H-mb,stroke:'#c2d5cd','stroke-width':1.4}));svg.appendChild(el('text',{x:x0,y:H-mb+18,'text-anchor':'middle',class:'dist-lbl'},'0'));}
+ svg.appendChild(el('text',{x:ml-36,y:mt+6,class:'dist-lbl'},'F(x)'));
+ svg.appendChild(el('text',{x:W-mr,y:H-mb+30,'text-anchor':'end',class:'dist-lbl'},'X'));
+ // steps: from -inf level 0 up to first point, then cumulative
+ var levels=[]; // level after including point i? F is P(X<x): at x=xs[i] value = cumBefore(i)
+ var c=0;
+ // segment before first point: F=0 from xmin..xs[0] — уходит в отрицательную область
+ svg.appendChild(el('line',{x1:X(xmin),y1:Y(0),x2:X(xs[0]),y2:Y(0),class:'dist-step'}));
+ for(var i=0;i<xs.length;i++){
+  var before=cumBefore(d,i);
+  var after=before+d.p[i];
+  var xnext=(i<xs.length-1)?xs[i+1]:xmax;
+  // horizontal segment at level 'after' from xs[i] to xnext (F(x) for xs[i]<x<=xnext equals after)
+  svg.appendChild(el('line',{x1:X(xs[i]),y1:Y(after),x2:X(xnext),y2:Y(after),class:'dist-step'}));
+  // vertical dashed jump connector
+  svg.appendChild(el('line',{x1:X(xs[i]),y1:Y(before),x2:X(xs[i]),y2:Y(after),class:'dist-jump'}));
+  // open circle at (xs[i], after)?? Actually F(xs[i])=before (left value). Filled at 'before', open at 'after'
+  svg.appendChild(el('circle',{cx:X(xs[i]),cy:Y(before),r:4.5,class:'dist-fillc'}));
+  svg.appendChild(el('circle',{cx:X(xs[i]),cy:Y(after),r:4.5,class:'dist-openc'}));
+  svg.appendChild(el('text',{x:X(xs[i]),y:H-mb+18,'text-anchor':'middle',class:'dist-lbl-x'},xs[i]));
+ }
+ // marker vertical line for a probe x
+ if(opts.probe!=null){
+  var px=X(opts.probe);
+  svg.appendChild(el('line',{x1:px,y1:mt,x2:px,y2:H-mb,class:'dist-vline'}));
+  var fv=Fval(d,opts.probe);
+  svg.appendChild(el('circle',{cx:px,cy:Y(fv),r:5,fill:'#ff7136',stroke:'#fff','stroke-width':1.5}));
+ }
+ if(opts.probes){opts.probes.forEach(function(pr){var px=X(pr.x);svg.appendChild(el('line',{x1:px,y1:mt,x2:px,y2:H-mb,stroke:pr.color,'stroke-width':1.6,'stroke-dasharray':'4 3'}));var fv=Fval(d,pr.x);svg.appendChild(el('circle',{cx:px,cy:Y(fv),r:5,fill:pr.color,stroke:'#fff','stroke-width':1.5}))})}
+ container.innerHTML='';container.appendChild(svg);
+ return {X:X,Y:Y,xmin:xmin,xmax:xmax};
+}
+
+/* ============ ДЕМО 4: F(x) с ползунком ============ */
+try{
+ function cdfSetup(){
+  var d=DISTS[qs('#cdfPreset').value];
+  var r=qs('#cdfX');
+  var lo=d.x[0]-1, hi=d.x[d.x.length-1]+1;
+  r.min=lo;r.max=hi;r.step=0.1;
+  if(+r.value<lo||+r.value>hi)r.value=(lo+hi)/2;
+  cdfUpdate();
+ }
+ function cdfUpdate(){
+  var d=DISTS[qs('#cdfPreset').value];
+  var x=+qs('#cdfX').value;
+  qs('#cdfXval').textContent=nf(x,1);
+  drawCDF(qs('#cdfPlot'),d,{probe:x});
+  var fv=Fval(d,x);
+  var terms=[];for(var i=0;i<d.x.length;i++){if(d.x[i]<x)terms.push('P(X='+d.x[i]+')')}
+  qs('#cdfStatus').innerHTML='F('+nf(x,1)+') = P(X &lt; '+nf(x,1)+') = '+(terms.length?terms.join(' + ')+' = ':'')+'<b>'+nf(fv,3)+'</b>. Скачки происходят в точках существования величины, их высота равна вероятности значения.';
+ }
+ qs('#cdfPreset').addEventListener('change',cdfSetup);
+ qs('#cdfX').addEventListener('input',cdfUpdate);
+ cdfSetup();
+}catch(e){warn(e)}
+
+/* ============ ДЕМО 5: свойства (две точки) ============ */
+try{
+ var pd=DISTS.book;
+ var r1=qs('#propX1'),r2=qs('#propX2');
+ var lo=pd.x[0]-1.5,hi=pd.x[pd.x.length-1]+1.5;
+ [r1,r2].forEach(function(r){r.min=lo;r.max=hi;r.step=0.1});
+ r1.value=-4;r2.value=3;
+ function propUpd(){
+  var x1=+r1.value,x2=+r2.value;
+  qs('#pv1').textContent=nf(x1,1);qs('#pv2').textContent=nf(x2,1);
+  drawCDF(qs('#propPlot'),pd,{probes:[{x:x1,color:'#075c52'},{x:x2,color:'#ff7136'}]});
+  var F1=Fval(pd,x1),F2=Fval(pd,x2);
+  var mono=(x2>=x1)?(F2>=F1?'F(x₂) ≥ F(x₁) — не убывает ✓':'ошибка'):'x₂ &lt; x₁';
+  qs('#propStatus').innerHTML='F(x₁) = '+nf(F1,2)+', F(x₂) = '+nf(F2,2)+'. При x₂ ≥ x₁: <b>'+mono+'</b>. Крайние значения графика: F(−∞) = 0, F(+∞) = 1.';
+ }
+ r1.addEventListener('input',propUpd);r2.addEventListener('input',propUpd);
+ propUpd();
+}catch(e){warn(e)}
+
+/* ============ ДЕМО 6: попадание в интервал ============ */
+try{
+ function intSetup(){
+  var d=DISTS[qs('#intPreset').value];
+  var lo=d.x[0]-1,hi=d.x[d.x.length-1]+1;
+  var r1=qs('#intX1'),r2=qs('#intX2');
+  [r1,r2].forEach(function(r){r.min=lo;r.max=hi;r.step=0.5});
+  r1.value=d.x[0];r2.value=d.x[Math.min(2,d.x.length-1)];
+  intUpd();
+ }
+ function intUpd(){
+  var d=DISTS[qs('#intPreset').value];
+  var x1=+qs('#intX1').value,x2=+qs('#intX2').value;
+  if(x2<x1){var t=x1;x1=x2;x2=t}
+  qs('#iv1').textContent=nf(x1,1);qs('#iv2').textContent=nf(x2,1);
+  drawCDF(qs('#intPlot'),d,{shade:[{a:x1,b:x2,cls:'dist-hi'}],probes:[{x:x1,color:'#075c52'},{x:x2,color:'#ff7136'}]});
+  var F1=Fval(d,x1),F2=Fval(d,x2);
+  var P=F2-F1;
+  // values inside [x1,x2)
+  var inside=[];for(var i=0;i<d.x.length;i++){if(d.x[i]>=x1&&d.x[i]<x2)inside.push(d.x[i])}
+  qs('#intKV').innerHTML=
+   '<div class="b"><div class="k">F(x₁)</div><div class="v">'+nf(F1,3)+'</div></div>'+
+   '<div class="b"><div class="k">F(x₂)</div><div class="v">'+nf(F2,3)+'</div></div>'+
+   '<div class="b"><div class="k">P(x₁ ≤ X &lt; x₂)</div><div class="v" style="color:#e45f27">'+nf(P,3)+'</div></div>'+
+   '<div class="b"><div class="k">значений внутри</div><div class="v">'+inside.length+'</div></div>';
+  qs('#intStatus').innerHTML='P('+nf(x1,1)+' ≤ X &lt; '+nf(x2,1)+') = F(x₂) − F(x₁) = '+nf(F2,3)+' − '+nf(F1,3)+' = <b>'+nf(P,3)+'</b>.'+(inside.length?' Внутри интервала значения: '+inside.join(', ')+' (левая граница включена, правая — нет).':' Внутри интервала нет значений величины.');
+ }
+ qs('#intPreset').addEventListener('change',intSetup);
+ qs('#intX1').addEventListener('input',intUpd);
+ qs('#intX2').addEventListener('input',intUpd);
+ intSetup();
+}catch(e){warn(e)}
+
+/* ============ ТЕСТ ============ */
+try{
+ var QUIZ=[
+  {q:'Какая случайная величина называется дискретной?',
+   o:['та, значения которой заполняют отрезок оси','та, множество значений которой не более чем счётно','та, у которой сумма вероятностей больше 1','любая величина с известной вероятностью'],c:1,
+   e:'Дискретная (прерывная) величина имеет счётное множество значений — их можно перечислить: 0, 1, 2, …'},
+  {q:'Какому условию обязаны удовлетворять вероятности ряда распределения?',
+   o:['&sum; pᵢ = 0','каждая pᵢ = 1','&sum; pᵢ = 1','pᵢ могут быть любыми'],c:2,
+   e:'Все значения образуют полную группу несовместных событий, поэтому &sum; pᵢ = 1 (условие нормировки).'},
+  {q:'Что откладывают по осям при построении многоугольника распределения?',
+   o:['по X — вероятности, по Y — значения','по X — значения xᵢ, по Y — вероятности pᵢ','по обеим осям вероятности','накопленные вероятности'],c:1,
+   e:'По оси абсцисс — возможные значения xᵢ, по оси ординат — вероятности pᵢ; точки соединяют отрезками.'},
+  {q:'Как определяется функция распределения?',
+   o:['F(x) = P(X = x)','F(x) = P(X &gt; x)','F(x) = P(X &lt; x)','F(x) = P(X ≤ x + 1)'],c:2,
+   e:'Функция распределения — вероятность того, что величина примет значение меньшее x: F(x) = P(X < x).'},
+  {q:'Ряд X = (−5; −3; 2; 7), P = (0,1; 0,4; 0,3; 0,2). Чему равно F(2)?',
+   o:['0,3','0,5','0,8','0,1'],c:1,
+   e:'F(2) = P(X < 2) = P(X = −5) + P(X = −3) = 0,1 + 0,4 = 0,5.'},
+  {q:'Какое свойство НЕ принадлежит функции распределения?',
+   o:['F(−∞) = 0','F(+∞) = 1','F(x) — неубывающая','F(x) может убывать на некотором участке'],c:3,
+   e:'F(x) — неубывающая функция: если x₂ > x₁, то F(x₂) ≥ F(x₁). Убывать она не может.'},
+  {q:'Для того же ряда найдите P(−3 ≤ X < 7).',
+   o:['0,7','0,5','0,8','0,3'],c:0,
+   e:'P(−3 ≤ X < 7) = F(7) − F(−3) = 0,8 − 0,1 = 0,7. То же как сумма: P(−3) + P(2) = 0,4 + 0,3 = 0,7.'}
+ ];
+ var answered=0,correct=0;var L=['а','б','в','г'];
+ qs('#quizBox').innerHTML=QUIZ.map(function(q,qi){
+  return '<div class="lp-qq" data-q="'+qi+'"><div class="lp-qh"><span class="lp-qn">Вопрос '+(qi+1)+'.</span> '+q.q+'</div><div class="lp-opts">'+
+   q.o.map(function(o,oi){return '<button class="lp-opt" data-o="'+oi+'" type="button">'+L[oi]+') '+o+'</button>'}).join('')+
+   '</div><div class="lp-expl">'+q.e+'</div></div>';
+ }).join('');
+ qsa('#quizBox .lp-qq').forEach(function(qq){
+  var qi=+qq.getAttribute('data-q'),q=QUIZ[qi];
+  qsa('.lp-opt',qq).forEach(function(btn){
+   btn.addEventListener('click',function(){
+    if(qq.classList.contains('done'))return;
+    qq.classList.add('done');
+    var oi=+btn.getAttribute('data-o');
+    qsa('.lp-opt',qq).forEach(function(o){if(+o.getAttribute('data-o')===q.c)o.classList.add('correct')});
+    if(oi!==q.c)btn.classList.add('wrong');
+    answered++;if(oi===q.c)correct++;
+    qs('#quizScore').textContent='Отвечено: '+answered+' из '+QUIZ.length+' · Правильно: '+correct+(answered===QUIZ.length?(' — '+Math.round(correct/QUIZ.length*100)+'% 🎉'):'');
+   });
+  });
+ });
+}catch(e){warn(e)}
+
+})();
+</script>
+<script>(function(){const root=document.querySelector('.gl-lesson-content'), tabs=[...root.querySelectorAll('[data-gl-tab]')], panels=[...root.querySelectorAll('[data-gl-panel]')];if(!tabs.length||!panels.length)return;function show(id){tabs.forEach(x=>x.classList.toggle('active',x.dataset.glTab===id));panels.forEach(x=>x.classList.toggle('active',x.dataset.glPanel===id));window.scrollTo({top:document.querySelector('.gl-lesson-meta').offsetTop-96,behavior:'smooth'});}tabs.forEach(x=>x.addEventListener('click',()=>show(x.dataset.glTab)));show(tabs[0].dataset.glTab);})();</script>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+
+</body>
+</html>

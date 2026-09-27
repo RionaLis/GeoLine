@@ -8,6 +8,15 @@
    ============================================================ */
 window.ENCYCLOPEDIA = {
 terms: {
+  "sluchainaya-velichina": { t: "Случайная величина", d: "Величина, обладающая некоторым множеством возможных значений, причём заранее нельзя предсказать, какое именно значение она примет в результате того или иного испытания." },
+  "zakon-raspredeleniya": { t: "Закон распределения", d: "Всякое соотношение, устанавливающее связь между значениями случайной величины и вероятностями появления этих значений; полностью определяет поведение случайной величины." },
+  "diskretnaya-sluchainaya-velichina": { t: "Дискретная случайная величина", d: "Случайная величина, множество значений которой не более чем счётно, то есть её значения можно перечислить (0, 1, 2, …)." },
+  "nepreryvnaya-sluchainaya-velichina": { t: "Непрерывная случайная величина", d: "Случайная величина, множество значений которой более чем счётно (несчётно); её возможные значения заполняют отрезок числовой оси, а вероятность попадания в отдельную точку равна нулю." },
+  "ryad-raspredeleniya": { t: "Ряд распределения", d: "Таблица, устанавливающая соответствие между значениями дискретной случайной величины xᵢ и вероятностями их появления pᵢ; сумма вероятностей ряда равна единице." },
+  "mnogougolnik-raspredeleniya": { t: "Многоугольник распределения", d: "Графическое представление ряда распределения: по оси абсцисс откладывают возможные значения случайной величины, по оси ординат — вероятности их появления, а полученные точки соединяют отрезками." },
+  "funkciya-raspredeleniya": { t: "Функция распределения", d: "Функция F(x) = P(X < x) — вероятность того, что случайная величина примет значение, меньшее x; универсальная форма задания закона распределения как дискретных, так и непрерывных величин." },
+  "plotnost-raspredeleniya": { t: "Плотность распределения", d: "Функция φ(x) = F′(x) — производная функции распределения непрерывной случайной величины; площадь между кривой φ(x) и осью абсцисс равна единице." },
+  "element-veroyatnosti": { t: "Элемент вероятности", d: "Величина φ(x)·dx — вероятность попадания непрерывной случайной величины на бесконечно малый отрезок dx; аналог вероятности отдельного значения pᵢ для дискретной случайной величины." },
   "gnss-priemnik": { t: "GNSS-приёмник", d: "Приёмник сигналов глобальной навигационной спутниковой системы, предназначенный для определения координат, высот и времени по сигналам навигационных спутников." },
   "tin": { t: "TIN", d: "TIN (нерегулярная триангуляционная сеть) — цифровая модель рельефа, построенная как система не перекрывающихся треугольников, вершины которых являются точками с известными координатами и высотами." },
   "azimut": { t: "Азимут", d: "Двугранный угол между плоскостью меридиана точки наблюдения и вертикальной плоскостью, проходящей через направление на предмет (или светило); отсчитывается от северного направления меридиана по ходу часовой стрелки от 0° до 360°." },
@@ -218,7 +227,8 @@ lessons: {
   "measurement-errors/combinatorics-basics.html": ["perestanovka", "razmeschenie", "sochetanie", "faktorial", "pravilo-proizvedeniya"],
   "measurement-errors/probability-basics.html": ["sluchainyi-eksperiment", "elementarnyi-ishod", "sobytie", "generalnaya-sovokupnost", "vyborka"],
   "measurement-errors/probability-theorems.html": ["klassicheskaya-veroyatnost", "uslovnaya-veroyatnost", "teorema-slozheniya", "teorema-umnozheniya", "polnaya-veroyatnost"],
-  "measurement-errors/repeated-trials-bernoulli.html": ["sobytie", "sochetanie", "teorema-slozheniya", "teorema-umnozheniya"]
+  "measurement-errors/discrete-random-variable.html": ["sluchainaya-velichina", "zakon-raspredeleniya", "diskretnaya-sluchainaya-velichina", "ryad-raspredeleniya", "mnogougolnik-raspredeleniya", "funkciya-raspredeleniya"],
+  "measurement-errors/continuous-random-variable.html": ["nepreryvnaya-sluchainaya-velichina", "funkciya-raspredeleniya", "plotnost-raspredeleniya", "element-veroyatnosti", "zakon-raspredeleniya"]
 }
 ,
 };

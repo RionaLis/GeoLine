@@ -120,10 +120,16 @@ window.SEARCH_DATA = [
     "url": "courses/measurement-errors/probability-theorems.html"
   },
   {
-    "title": "Многократные повторные испытания. Формула Бернулли",
-    "desc": "Схема Бернулли, вероятность ровно m успехов, следствия формулы, вероятность хотя бы одного успеха и вероятнейшее число.",
+    "title": "Закон распределения дискретной случайной величины",
+    "desc": "Ряд распределения, многоугольник распределения, функция распределения и её свойства, вероятность попадания в интервал.",
     "course": "ТМОГИ",
-    "url": "courses/measurement-errors/repeated-trials-bernoulli.html"
+    "url": "courses/measurement-errors/discrete-random-variable.html"
+  },
+  {
+    "title": "Закон распределения непрерывной случайной величины",
+    "desc": "Функция распределения, плотность распределения, площадь под кривой, свойства и вероятность попадания в интервал.",
+    "course": "ТМОГИ",
+    "url": "courses/measurement-errors/continuous-random-variable.html"
   },
   {
     "title": "Связи систем координат и времени",
