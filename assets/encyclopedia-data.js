@@ -217,7 +217,8 @@ lessons: {
   "geodetic-astronomy/automation-and-errors.html": ["astronomicheskaya-refrakciya", "lichnaya-pogreshnost", "pzs-matrica", "kollimacionnaya-oshibka", "mesto-nulya", "popravka-chasov"],
   "measurement-errors/combinatorics-basics.html": ["perestanovka", "razmeschenie", "sochetanie", "faktorial", "pravilo-proizvedeniya"],
   "measurement-errors/probability-basics.html": ["sluchainyi-eksperiment", "elementarnyi-ishod", "sobytie", "generalnaya-sovokupnost", "vyborka"],
-  "measurement-errors/probability-theorems.html": ["klassicheskaya-veroyatnost", "uslovnaya-veroyatnost", "teorema-slozheniya", "teorema-umnozheniya", "polnaya-veroyatnost"]
+  "measurement-errors/probability-theorems.html": ["klassicheskaya-veroyatnost", "uslovnaya-veroyatnost", "teorema-slozheniya", "teorema-umnozheniya", "polnaya-veroyatnost"],
+  "measurement-errors/repeated-trials-bernoulli.html": ["sobytie", "sochetanie", "teorema-slozheniya", "teorema-umnozheniya"]
 }
 ,
 };

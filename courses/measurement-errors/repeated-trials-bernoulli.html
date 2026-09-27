@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Многократные повторные испытания: схема и формула Бернулли, следствия, вероятность хотя бы одного успеха и вероятнейшее число успехов. Интерактивный урок ТМОГИ.">
+<title>Многократные повторные испытания. Формула Бернулли — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+<style>
+.bl{--blue:#327b84;--orange:#ff7136;--red:#c94e4e;max-width:100%;color:#173d3a}
+.bl *{box-sizing:border-box}.bl-section{display:none;background:#fff;border:1px solid #d5e3de;border-radius:18px;padding:32px 36px;margin-bottom:26px;box-shadow:0 14px 38px rgba(18,54,49,.06)}
+.bl-section.active{display:block}.bl-kicker{font:800 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#d85a27;margin-bottom:8px}.bl-h2{margin:0 0 8px!important;color:#063f3b}.bl-lead{color:#58726d;margin:0 0 22px!important;max-width:850px}.bl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.bl-grid.two{grid-template-columns:repeat(2,1fr)}
+.bl-card{border:1px solid #dce8e4;border-radius:14px;padding:18px;background:#fbfdfc;position:relative;overflow:hidden}.bl-card h3{margin:4px 0 7px!important;color:#063f3b}.bl-card p{margin:4px 0!important;color:#49625e}.bl-icon{font-size:26px}.bl-num{position:absolute;right:13px;top:8px;font:800 40px/1 var(--mono);color:#e6efec}
+.bl-definition{border-left:5px solid #0a655d;border-radius:0 14px 14px 0;background:#eaf5f1;padding:17px 20px;margin:18px 0}.bl-definition b{color:#07534d}.bl-warn{border:1px solid #ffd8c6;background:#fff5ef;border-radius:13px;padding:14px 17px;margin:16px 0}.bl-note{border:1px solid #cfe1dc;background:#f3f9f6;border-radius:13px;padding:14px 17px;margin:16px 0}
+.bl-formula{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0;padding:20px;border:1px solid #cfe1dc;background:#f4faf7;border-radius:15px;font:italic 700 clamp(20px,3vw,30px)/1.4 'Cambria Math','Times New Roman',serif;color:#063f3b;overflow-x:auto}.bl-formula small{font:inherit;color:inherit}.bl-formula.accent{background:linear-gradient(135deg,#063f3b,#0a655d);color:#fff;border:0;box-shadow:0 12px 28px rgba(6,63,59,.16)}
+.bl-symbols{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 22px}.bl-symbol{display:grid;grid-template-columns:minmax(68px,auto) 1fr;gap:12px;align-items:center;border:1px solid #dce8e4;border-radius:11px;padding:11px 13px;background:#fbfdfc}.bl-symbol b{font:italic 700 19px 'Cambria Math','Times New Roman',serif;color:#075c52}.bl-frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;margin:0 4px}.bl-frac>span{padding:1px 7px}.bl-frac>span:first-child{border-bottom:2px solid currentColor}.bl-not{text-decoration-line:overline;text-decoration-thickness:2px;text-decoration-color:currentColor;text-decoration-skip-ink:none;padding-top:1px}
+.bl-steps{counter-reset:step;display:grid;gap:11px;margin:18px 0}.bl-step{counter-increment:step;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding:13px;border:1px solid #e0eae7;border-radius:12px}.bl-step:before{content:counter(step);width:34px;height:34px;display:grid;place-items:center;background:#075c52;color:#fff;border-radius:10px;font:800 14px var(--mono)}.bl-step b{color:#063f3b}.bl-step p{margin:2px 0!important}
+.bl-lab{border:1px solid #bad5ce;background:#f4faf7;border-radius:17px;padding:22px;margin:22px 0}.bl-lab-head{display:flex;justify-content:space-between;align-items:start;gap:16px}.bl-lab h3{margin:0 0 5px!important}.bl-badge{flex:none;border-radius:999px;background:#e3f1ed;color:#075c52;padding:6px 11px;font:800 11px var(--mono)}.bl-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.bl-control label{display:flex;justify-content:space-between;font-size:13px!important;font-weight:700;color:#48635e;margin-bottom:6px}.bl-control output{color:#e45f27;font:800 14px var(--mono)}.bl-control input[type=range]{width:100%;accent-color:#0a655d}.bl-actions{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.bl-btn{border:0;border-radius:10px;padding:10px 15px;background:#075c52;color:#fff;font:750 14px Manrope,Arial,sans-serif;cursor:pointer}.bl-btn:hover{background:#063f3b}.bl-btn.alt{background:#fff;color:#075c52;border:1px solid #b9d2cb}.bl-btn.orange{background:#ff7136;color:#1e3430}.bl-btn:focus-visible,.bl-opt:focus-visible{outline:3px solid rgba(255,113,54,.35);outline-offset:2px}
+.bl-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.bl-stat{background:#fff;border:1px solid #dce8e4;border-radius:12px;padding:12px;text-align:center}.bl-stat b{display:block;font:800 20px var(--mono);color:#075c52}.bl-stat span{font-size:11px;color:#6e8580;text-transform:uppercase;letter-spacing:.04em}.bl-chart{height:250px;display:flex;align-items:flex-end;gap:2px;padding:22px 8px 28px;border:1px solid #dce8e4;border-radius:13px;background:#fff;position:relative;overflow:hidden}.bl-bar{position:relative;flex:1;min-width:3px;border-radius:4px 4px 0 0;background:#8ab9ae;cursor:pointer;transition:height .25s,background .15s}.bl-bar:hover,.bl-bar.on{background:#ff7136}.bl-bar.mode{background:#075c52}.bl-bar span{display:none;position:absolute;z-index:2;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);background:#092c33;color:#fff;padding:5px 7px;border-radius:6px;white-space:nowrap;font:700 10px var(--mono)}.bl-bar:hover span,.bl-bar.on span{display:block}.bl-axis{display:flex;justify-content:space-between;color:#78908b;font:600 11px var(--mono);margin:-24px 10px 0;position:relative;pointer-events:none}.bl-result{background:#fff;border:1px solid #dce8e4;border-radius:12px;padding:13px 15px;margin-top:12px;color:#345550}.bl-result strong{color:#075c52}
+.bl-table-wrap{overflow-x:auto}.gl-lesson-content .bl-table{width:100%;border-collapse:collapse;margin:17px 0;font-size:16px!important;line-height:1.55}.bl-table th{background:#eaf5f1;color:#063f3b;text-align:left}.bl-table th,.bl-table td{border:1px solid #d7e5e0;padding:13px 15px;vertical-align:top}.bl-table tr:nth-child(even) td{background:#f8fbfa}
+.bl-tree{display:flex;justify-content:center;margin:20px 0}.bl-tree svg{width:min(100%,760px);height:auto}.bl-examples{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.bl-example{border:1px solid #dce8e4;border-radius:14px;padding:18px}.bl-example .tag{font:800 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#e45f27}.bl-example h3{margin:7px 0!important}.bl-calc{font:700 15px/1.7 var(--mono);color:#075c52;background:#eef7f3;border-radius:10px;padding:10px 12px;margin-top:10px}
+.bl-checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}.bl-check{display:flex;gap:10px;padding:12px;border:1px solid #dce8e4;border-radius:12px;background:#fbfdfc}.bl-check i{font-style:normal;color:#0a655d;font-weight:900}.bl-quiz{display:grid;gap:14px}.bl-q{border:1px solid #dce8e4;border-radius:14px;padding:17px;background:#fbfdfc}.bl-q h3{font-size:16px!important;margin:0 0 12px!important}.bl-options{display:grid;gap:8px}.bl-opt{text-align:left;border:1px solid #cbded8;border-radius:10px;padding:10px 13px;background:#fff;color:#244944;font:600 14px Manrope,Arial,sans-serif;cursor:pointer}.bl-opt:hover{border-color:#0a655d}.bl-opt.good{background:#e7f5ef;border-color:#0a655d}.bl-opt.bad{background:#fff0ef;border-color:#c94e4e}.bl-explain{display:none;margin-top:10px;color:#526c67}.bl-q.done .bl-explain{display:block}.bl-score{font-weight:800;color:#075c52}.bl-nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:25px;padding-top:18px;border-top:1px solid #e0eae7}.bl-nav-bottom button:disabled{opacity:.35;cursor:not-allowed}
+@media(max-width:760px){.bl-section{padding:22px 16px}.bl-grid,.bl-grid.two,.bl-examples,.bl-checklist,.bl-symbols{grid-template-columns:1fr}.bl-controls{grid-template-columns:1fr}.bl-stats{grid-template-columns:repeat(2,1fr)}.bl-chart{height:210px}.bl-lab{padding:16px}.bl-lab-head{display:block}.bl-badge{display:inline-block;margin-top:8px}}
+</style>
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses">
+<div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="measurement-errors" aria-label="Разделы курса"></aside>
+<div class="gl-lesson-content">
+<section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">ТМОГИ</a><span class="gl-meta-sep">·</span><a href="index.html#topic-01">Тема 01. Основы теории вероятностей</a></div>
+<h1>Многократные повторные испытания</h1>
+<p class="gl-meta-summary">Схема Бернулли, вероятность ровно <i>m</i> успехов, полезные следствия и вероятнейшее число. От одного испытания — к распределению всей серии.</p>
+<nav class="gl-tabs" aria-label="Содержание урока">
+<button class="active" data-gl-tab="scheme" type="button"><b>1</b> Схема</button>
+<button data-gl-tab="formula" type="button"><b>2</b> Формула</button>
+<button data-gl-tab="lab" type="button"><b>3</b> Лаборатория</button>
+<button data-gl-tab="consequences" type="button"><b>4</b> Следствия</button>
+<button data-gl-tab="mode" type="button"><b>5</b> Вероятнейшее число</button>
+<button data-gl-tab="practice" type="button"><b>6</b> Практика</button>
+<button data-gl-tab="quiz" type="button"><b>7</b> Проверка</button>
+</nav>
+</section>
+<article class="bl">
+<section class="bl-section gl-tab-panel active" data-gl-panel="scheme" id="scheme">
+<div class="bl-kicker">01 · постановка задачи</div><h2 class="bl-h2">Когда серия испытаний становится схемой Бернулли</h2>
+<p class="bl-lead">Мы повторяем один и тот же случайный опыт <i>n</i> раз. В каждом опыте интересующее событие либо произошло — «успех», либо нет — «неуспех».</p>
+<div class="bl-grid">
+<div class="bl-card"><span class="bl-num">1</span><div class="bl-icon">🔁</div><h3>Одинаковые условия</h3><p>Каждое испытание проводится по одной методике; вероятность успеха постоянна: <b>p</b>.</p></div>
+<div class="bl-card"><span class="bl-num">2</span><div class="bl-icon">⛓️‍💥</div><h3>Независимость</h3><p>Результат одного испытания не изменяет вероятности результатов остальных.</p></div>
+<div class="bl-card"><span class="bl-num">3</span><div class="bl-icon">◐</div><h3>Два исхода</h3><p>Успех с вероятностью <b>p</b> или неуспех с вероятностью <b>q = 1 − p</b>.</p></div>
+</div>
+<div class="bl-definition"><b>Схема Бернулли</b> — последовательность из <i>n</i> независимых одинаковых испытаний, в каждом из которых событие A наступает с постоянной вероятностью <i>p</i>, а противоположное событие <span class="bl-not">A</span> — с вероятностью <i>q = 1 − p</i>.</div>
+<div class="bl-checklist">
+<div class="bl-check"><i>✓</i><span><b>Подходит:</b> 20 независимых приёмов, вероятность выхода результата за допуск в каждом равна 0,03.</span></div>
+<div class="bl-check"><i>✓</i><span><b>Подходит:</b> 10 бросков одной и той же монеты при неизменных условиях.</span></div>
+<div class="bl-check"><i>×</i><span><b>Не подходит:</b> извлечение деталей без возврата — состав партии меняется, испытания зависимы.</span></div>
+<div class="bl-check"><i>×</i><span><b>Не подходит:</b> наблюдения в быстро меняющуюся погоду — вероятность промаха может быть непостоянной.</span></div>
+</div>
+<div class="bl-warn">Перед применением формулы проверьте не только число опытов, но и <b>независимость</b> и <b>постоянство p</b>. Повторение само по себе ещё не создаёт схему Бернулли.</div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" disabled>← Назад</button><button class="bl-btn" data-next="formula">Как устроена формула →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="formula" id="formula">
+<div class="bl-kicker">02 · основная формула</div><h2 class="bl-h2">Вероятность ровно <i>m</i> успехов</h2>
+<p class="bl-lead">Пусть событие A должно наступить ровно <i>m</i> раз в серии из <i>n</i> независимых испытаний.</p>
+<div class="bl-tree" aria-label="Схема трёх испытаний">
+<svg viewBox="0 0 760 260" role="img">
+<defs><style>.e{fill:none;stroke:#a9c8c0;stroke-width:2}.s{fill:#075c52}.f{fill:#ff7136}.t{font:600 13px Manrope,Arial;fill:#365a54}.w{font:700 12px Manrope,Arial;fill:white}</style></defs>
+<text class="t" x="8" y="132">старт</text><path class="e" d="M52 128L170 62M52 128L170 194M190 62L320 30M190 62L320 94M190 194L320 162M190 194L320 226M340 30L488 18M340 30L488 50M340 94L488 82M340 94L488 114M340 162L488 146M340 162L488 178M340 226L488 210M340 226L488 242"/>
+<g><circle class="s" cx="180" cy="62" r="18"/><text class="w" x="176" y="66">A</text><circle class="f" cx="180" cy="194" r="18"/><text class="w" x="174" y="198">A̅</text></g>
+<g><circle class="s" cx="330" cy="30" r="16"/><text class="w" x="326" y="34">A</text><circle class="f" cx="330" cy="94" r="16"/><text class="w" x="324" y="98">A̅</text><circle class="s" cx="330" cy="162" r="16"/><text class="w" x="326" y="166">A</text><circle class="f" cx="330" cy="226" r="16"/><text class="w" x="324" y="230">A̅</text></g>
+<g class="t"><text x="502" y="22">AAA → p³</text><text x="502" y="54">AAA̅ → p²q</text><text x="502" y="86">AA̅A → p²q</text><text x="502" y="118">AA̅A̅ → pq²</text><text x="502" y="150">A̅AA → p²q</text><text x="502" y="182">A̅AA̅ → pq²</text><text x="502" y="214">A̅A̅A → pq²</text><text x="502" y="246">A̅A̅A̅ → q³</text></g>
+<rect x="490" y="32" width="105" height="92" rx="8" fill="none" stroke="#ff7136" stroke-width="2" stroke-dasharray="5 4"/><text class="t" x="615" y="72">ровно 2 успеха:</text><text class="t" x="615" y="92">3 пути × p²q</text>
+</svg></div>
+<div class="bl-steps">
+<div class="bl-step"><p><b>Вероятность одного заданного порядка.</b> Например, AAA̅AA̅ содержит <i>m = 3</i> успеха и <i>n − m = 2</i> неуспеха, поэтому по теореме умножения его вероятность равна <i>p³q²</i>.</p></div>
+<div class="bl-step"><p><b>Число возможных порядков.</b> Выбрать позиции для <i>m</i> успехов среди <i>n</i> мест можно <i>C<sub>n</sub><sup>m</sup></i> способами.</p></div>
+<div class="bl-step"><p><b>Складываем несовместные пути.</b> Все порядки имеют одинаковую вероятность, значит, умножаем её на их количество.</p></div>
+</div>
+<div class="bl-formula accent">
+<span>P<sub>n</sub>(m) = C<sub>n</sub><sup>m</sup> p<sup>m</sup> q<sup>n−m</sup>,</span>
+<span>C<sub>n</sub><sup>m</sup> = <span class="bl-frac"><span>n!</span><span>m!(n−m)!</span></span></span>
+</div>
+<div class="bl-symbols" aria-label="Обозначения в формуле Бернулли">
+<div class="bl-symbol"><b>P<sub>n</sub>(m)</b><span>вероятность того, что событие A наступит ровно <i>m</i> раз в <i>n</i> испытаниях</span></div>
+<div class="bl-symbol"><b>C<sub>n</sub><sup>m</sup></b><span>число способов выбрать <i>m</i> позиций успеха среди <i>n</i> испытаний</span></div>
+<div class="bl-symbol"><b>p</b><span>вероятность события A в одном испытании</span></div>
+<div class="bl-symbol"><b>q</b><span>вероятность противоположного события <span class="bl-not">A</span> в одном испытании; <i>q = 1 − p</i></span></div>
+<div class="bl-symbol"><b>n</b><span>общее число независимых испытаний</span></div>
+<div class="bl-symbol"><b>m</b><span>требуемое число появлений события A, где 0 ≤ <i>m</i> ≤ <i>n</i></span></div>
+</div>
+<div class="bl-example"><span class="tag">пример</span><h3>Два промаха в пяти приёмах</h3><p>Вероятность промаха в одном приёме <i>p = 0,1</i>. Найдём вероятность ровно двух промахов: <i>n = 5, m = 2, q = 0,9</i>.</p><div class="bl-calc">P₅(2) = C₅² · 0,1² · 0,9³ = 10 · 0,01 · 0,729 = 0,0729</div></div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="scheme">← Схема</button><button class="bl-btn" data-next="lab">Исследовать распределение →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="lab" id="lab">
+<div class="bl-kicker">03 · интерактивная лаборатория</div><h2 class="bl-h2">Увидеть всю серию сразу</h2><p class="bl-lead">Настройте <i>n</i>, <i>p</i> и <i>m</i>. Столбцы показывают вероятности всех возможных чисел успехов от 0 до <i>n</i>.</p>
+<div class="bl-lab">
+<div class="bl-lab-head"><div><h3>Биномиальное распределение</h3><p style="margin:0">Наведите на столбец или выберите <i>m</i> ползунком.</p></div><span class="bl-badge">Σ Pₙ(m) = 1</span></div>
+<div class="bl-controls">
+<div class="bl-control"><label for="nRange">Испытаний n <output id="nOut">12</output></label><input id="nRange" type="range" min="1" max="60" value="12"></div>
+<div class="bl-control"><label for="pRange">Вероятность p <output id="pOut">0,3</output></label><input id="pRange" type="range" min="0" max="1" step="0.1" value="0.3"></div>
+<div class="bl-control"><label for="mRange">Успехов m <output id="mOut">4</output></label><input id="mRange" type="range" min="0" max="12" value="4"></div>
+</div>
+<div class="bl-stats"><div class="bl-stat" title="Вероятность получить ровно выбранное ползунком число m успехов"><b id="probStat">—</b><span>Вероятность ровно m успехов</span></div><div class="bl-stat" title="Число успехов, которому соответствует самый высокий столбец"><b id="modeStat">—</b><span>Вероятнейшее число k₀</span></div><div class="bl-stat" title="Среднее число успехов в большом количестве таких серий"><b id="meanStat">—</b><span>Среднее число успехов np</span></div><div class="bl-stat" title="Вероятность того, что событие не произойдёт ни разу"><b id="noneStat">—</b><span>Вероятность 0 успехов</span></div></div>
+<div class="bl-note"><b>Как читать показатели:</b> первое окно относится к выбранному значению <i>m</i>; второе показывает положение вершины распределения <i>k₀</i>; третье — среднее число успехов <i>np</i>; четвёртое — вероятность серии без единого успеха <i>qⁿ</i>.</div>
+<div class="bl-chart" id="distChart" aria-label="Диаграмма биномиального распределения"></div><div class="bl-axis"><span>0 успехов</span><span id="axisN">12 успехов</span></div>
+<div class="bl-result" id="labResult" aria-live="polite"></div>
+</div>
+<div class="bl-note"><b>Наблюдение.</b> При росте <i>n</i> вероятности собираются вокруг <i>np</i>. Но <i>np</i> — среднее число успехов, а вероятнейшее число определяется отдельным правилом.</div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="formula">← Формула</button><button class="bl-btn" data-next="consequences">Полезные следствия →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="consequences" id="consequences">
+<div class="bl-kicker">04 · следствия формулы Бернулли</div><h2 class="bl-h2">Четыре конструкции, которые экономят вычисления</h2><p class="bl-lead">Каждое следствие получается сложением подходящих значений <i>P<sub>n</sub>(m)</i> или переходом к противоположному событию.</p>
+<div class="bl-table-wrap"><table class="bl-table"><thead><tr><th>Событие</th><th>Формула</th><th>Почему</th></tr></thead><tbody>
+<tr><td><b>Ни одного успеха</b></td><td><i>P<sub>n</sub>(0) = q<sup>n</sup></i></td><td>Все <i>n</i> раз наступил неуспех</td></tr>
+<tr><td><b>Все испытания успешны</b></td><td><i>P<sub>n</sub>(n) = p<sup>n</sup></i></td><td>Успех наступил во всех <i>n</i> опытах</td></tr>
+<tr><td><b>Хотя бы один успех</b></td><td><i>1 − q<sup>n</sup></i></td><td>Противоположное событие — «ни одного»</td></tr>
+<tr><td><b>От a до b успехов</b></td><td><i>Σ<sub>m=a</sub><sup>b</sup> C<sub>n</sub><sup>m</sup>p<sup>m</sup>q<sup>n−m</sup></i></td><td>Случаи с разными <i>m</i> несовместны</td></tr>
+</tbody></table></div>
+<div class="bl-formula">P(m ≥ 1) = 1 − P(m = 0) = 1 − q<sup>n</sup></div>
+<div class="bl-examples">
+<div class="bl-example"><span class="tag">хотя бы один</span><h3>Обнаружить грубую ошибку</h3><p>Один независимый контроль выявляет ошибку с вероятностью 0,4. Для трёх контролей вероятность обнаружения хотя бы раз:</p><div class="bl-calc">1 − (1 − 0,4)³ = 1 − 0,216 = 0,784</div></div>
+<div class="bl-example"><span class="tag">интервал</span><h3>Не более одного отказа</h3><p>Для 8 приборов вероятность отказа каждого равна 0,05. Событие «не более одного» означает <i>m = 0</i> или <i>m = 1</i>:</p><div class="bl-calc">P₈(0) + P₈(1) ≈ 0,6634 + 0,2793 = 0,9428</div></div>
+</div>
+<div class="bl-warn"><b>Типичная ошибка:</b> «хотя бы один» — не то же самое, что «ровно один». Для «хотя бы одного» почти всегда короче считать через противоположное событие.</div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="lab">← Лаборатория</button><button class="bl-btn" data-next="mode">Вероятнейшее число →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="mode" id="mode">
+<div class="bl-kicker">05 · максимум распределения</div><h2 class="bl-h2">Вероятнейшее число успехов</h2><p class="bl-lead">Ищем целое число успехов, которому соответствует наибольшая вероятность в распределении.</p>
+<div class="bl-definition"><b>Вероятнейшее число успехов k₀</b> — число появлений события A, при котором вероятность <i>P<sub>n</sub>(k)</i> максимальна. Оно определяется из двойного неравенства <b>np − q ≤ k₀ ≤ np + p</b>, где <i>q = 1 − p</i>.</div>
+<div class="bl-grid two">
+<div class="bl-card"><div class="bl-icon">①</div><h3>Пример: одно значение</h3><p>При <i>n = 20</i>, <i>p = 0,3</i>, <i>q = 0,7</i>:<br><b>5,3 ≤ k₀ ≤ 6,3</b>.<br>В этом интервале одно целое число: <b>k₀ = 6</b>.</p></div>
+<div class="bl-card"><div class="bl-icon">②</div><h3>Пример: два значения</h3><p>При <i>n = 9</i>, <i>p = q = 0,5</i>:<br><b>4 ≤ k₀ ≤ 5</b>.<br>Границы целые, поэтому одинаково вероятны <b>k₀ = 4</b> и <b>k₀ = 5</b>.</p></div>
+</div>
+<div class="bl-lab">
+<div class="bl-lab-head"><div><h3>Калькулятор вероятнейшего числа</h3><p style="margin:0">Задайте параметры и сравните соседние вероятности.</p></div><span class="bl-badge">режим = максимум</span></div>
+<div class="bl-controls" style="grid-template-columns:repeat(2,1fr)"><div class="bl-control"><label for="modeN">Испытаний n <output id="modeNOut">20</output></label><input id="modeN" type="range" min="1" max="100" value="20"></div><div class="bl-control"><label for="modeP">Вероятность p <output id="modePOut">0,3</output></label><input id="modeP" type="range" min="0" max="1" step="0.1" value="0.3"></div></div>
+<div class="bl-result" id="modeResult"></div>
+</div>
+<div class="bl-note"><b>Обратите внимание:</b> интервал от <i>np − q</i> до <i>np + p</i> имеет длину 1. Поэтому внутри него находится либо одно целое число <i>k₀</i>, либо два целых числа на границах — тогда обе вероятности одинаковы.</div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="consequences">← Следствия</button><button class="bl-btn" data-next="practice">Разобрать задачи →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="practice" id="practice">
+<div class="bl-kicker">06 · алгоритм и практика</div><h2 class="bl-h2">Как решать задачи без лишних действий</h2>
+<div class="bl-steps"><div class="bl-step"><p><b>Проверить схему:</b> независимы ли испытания, постоянно ли <i>p</i>, есть ли два взаимоисключающих исхода.</p></div><div class="bl-step"><p><b>Назначить успех.</b> Им может быть и желательное событие, и отказ, промах, выход за допуск — главное явно определить <i>p</i>.</p></div><div class="bl-step"><p><b>Перевести слова:</b> «ровно m» → один член; «от a до b» → сумма; «хотя бы один» → <i>1 − qⁿ</i>.</p></div><div class="bl-step"><p><b>Подставить и проверить:</b> вероятность должна лежать от 0 до 1; округлять лучше в самом конце.</p></div></div>
+<div class="bl-examples">
+<div class="bl-example"><span class="tag">задача 1 · геодезия</span><h3>Ровно один выход за допуск</h3><p>Вероятность выхода отдельного измерения за допуск равна 0,02. Выполнено 10 независимых измерений.</p><div class="bl-calc">P₁₀(1) = C₁₀¹·0,02·0,98⁹ ≈ 0,1667</div></div>
+<div class="bl-example"><span class="tag">задача 2 · контроль</span><h3>Хотя бы один дефект</h3><p>Вероятность дефекта пункта сети — 0,01. Проверяют 50 независимых пунктов.</p><div class="bl-calc">P(m ≥ 1) = 1 − 0,99⁵⁰ ≈ 0,3950</div></div>
+<div class="bl-example"><span class="tag">задача 3 · интервал</span><h3>От двух до четырёх сигналов</h3><p>Сигнал принимается с вероятностью 0,7; выполняют 6 независимых сеансов.</p><div class="bl-calc">P(2≤m≤4) = P₆(2)+P₆(3)+P₆(4) ≈ 0,5689</div></div>
+<div class="bl-example"><span class="tag">задача 4 · режим</span><h3>Вероятнейшее число успехов</h3><p>Для 30 наблюдений вероятность успеха <i>p = 0,8</i>, поэтому <i>q = 1 − p = 0,2</i>. Используем формулу вероятнейшего числа:</p><div class="bl-calc">np − q ≤ k₀ ≤ np + p<br>30·0,8 − 0,2 ≤ k₀ ≤ 30·0,8 + 0,8<br>23,8 ≤ k₀ ≤ 24,8<br>k₀ = 24</div></div>
+</div>
+<div class="bl-note"><b>Граница применимости.</b> Формула Бернулли точна, но при очень больших <i>n</i> вычислять факториалы неудобно. Тогда используют приближения Пуассона или Муавра—Лапласа — это продолжение темы.</div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="mode">← Вероятнейшее число</button><button class="bl-btn" data-next="quiz">Проверить себя →</button></div>
+</section>
+
+<section class="bl-section gl-tab-panel" data-gl-panel="quiz" id="quiz">
+<div class="bl-kicker">07 · самопроверка</div><h2 class="bl-h2">Пять коротких вопросов</h2><p class="bl-lead">Выберите ответ. Пояснение появится сразу.</p>
+<p class="bl-score" id="quizScore">Отвечено: 0 из 5 · правильно: 0</p>
+<div class="bl-quiz" id="quizBox"></div>
+<div class="bl-nav-bottom"><button class="bl-btn alt" data-prev="practice">← Практика</button><button class="bl-btn orange" id="quizReset" type="button">Пройти ещё раз</button></div>
+</section>
+</article>
+</div></div>
+<script>
+(function(){
+'use strict';
+var tabs=[].slice.call(document.querySelectorAll('[data-gl-tab]'));
+var panels=[].slice.call(document.querySelectorAll('[data-gl-panel]'));
+function show(id){tabs.forEach(function(x){x.classList.toggle('active',x.dataset.glTab===id)});panels.forEach(function(x){x.classList.toggle('active',x.dataset.glPanel===id)});var meta=document.querySelector('.gl-lesson-meta');if(meta)window.scrollTo({top:Math.max(0,meta.offsetTop-90),behavior:'smooth'});}
+tabs.forEach(function(x){x.addEventListener('click',function(){show(x.dataset.glTab)})});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-next],[data-prev]');if(b)show(b.dataset.next||b.dataset.prev)});
+function comb(n,k){if(k<0||k>n)return 0;k=Math.min(k,n-k);var r=1;for(var i=1;i<=k;i++)r=r*(n-k+i)/i;return r}
+function bin(n,k,p){if(k<0||k>n)return 0;if(p===0)return k===0?1:0;if(p===1)return k===n?1:0;return comb(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k)}
+function fmt(x,d){return Number(x).toFixed(d==null?4:d).replace('.',',')}
+function modes(n,p){var x=(n+1)*p,r=Math.round(x);if(Math.abs(x-r)<1e-10){var a=[];if(r-1>=0&&r-1<=n)a.push(r-1);if(r>=0&&r<=n)a.push(r);return a}return [Math.floor(x)]}
+var nR=document.getElementById('nRange'),pR=document.getElementById('pRange'),mR=document.getElementById('mRange');
+function renderDist(){var n=+nR.value,p=+pR.value,m=Math.min(+mR.value,n);mR.max=n;mR.value=m;document.getElementById('nOut').textContent=n;document.getElementById('pOut').textContent=fmt(p,1);document.getElementById('mOut').textContent=m;document.getElementById('axisN').textContent=n+' успехов';var vals=[],max=0;for(var k=0;k<=n;k++){var v=bin(n,k,p);vals.push(v);if(v>max)max=v}var md=modes(n,p),chart=document.getElementById('distChart');chart.innerHTML='';vals.forEach(function(v,k){var bar=document.createElement('div');bar.className='bl-bar'+(k===m?' on':'')+(md.indexOf(k)>=0?' mode':'');bar.style.height=Math.max(1,190*v/max)+'px';bar.title='m = '+k+', P = '+fmt(v,6);bar.innerHTML='<span>m='+k+' · '+fmt(v,5)+'</span>';bar.addEventListener('click',function(){mR.value=k;renderDist()});chart.appendChild(bar)});document.getElementById('probStat').textContent=fmt(vals[m],5);document.getElementById('modeStat').textContent=md.join(' и ');document.getElementById('meanStat').textContent=fmt(n*p,2);document.getElementById('noneStat').textContent=fmt(Math.pow(1-p,n),5);document.getElementById('labResult').innerHTML='Для <i>n = '+n+'</i>, <i>p = '+fmt(p,1)+'</i> вероятность ровно <strong>'+m+'</strong> успехов равна <strong>'+fmt(vals[m],6)+'</strong> ('+fmt(vals[m]*100,2)+'%).';}
+[nR,pR,mR].forEach(function(x){x.addEventListener('input',renderDist)});renderDist();
+var modeN=document.getElementById('modeN'),modeP=document.getElementById('modeP');function renderMode(){var n=+modeN.value,p=+modeP.value,q=1-p,ms=modes(n,p),left=n*p-q,right=n*p+p;document.getElementById('modeNOut').textContent=n;document.getElementById('modePOut').textContent=fmt(p,1);var probs=ms.map(function(k){return 'Pₙ('+k+') = '+fmt(bin(n,k,p),6)}).join('; ');document.getElementById('modeResult').innerHTML='<b>np − q ≤ k₀ ≤ np + p</b><br>'+n+'·'+fmt(p,1)+' − '+fmt(q,1)+' ≤ k₀ ≤ '+n+'·'+fmt(p,1)+' + '+fmt(p,1)+'<br><strong>'+fmt(left,1)+' ≤ k₀ ≤ '+fmt(right,1)+'</strong><br>'+(ms.length===2?'В интервал попадают два целых числа: <strong>k₀ = '+ms[0]+' и '+ms[1]+'</strong>. Их вероятности равны.':'В интервал попадает одно целое число: <strong>k₀ = '+ms[0]+'</strong>.')+'<br><span style="font-size:13px">'+probs+'</span>';}
+[modeN,modeP].forEach(function(x){x.addEventListener('input',renderMode)});renderMode();
+var quiz=[
+{q:'Какие условия обязательны для схемы Бернулли?',a:['Только большое число испытаний','Независимость, постоянная p и два исхода','Равная вероятность успеха и неуспеха'],c:1,e:'Вероятность p не обязана равняться 0,5. Главное — её постоянство и независимость испытаний.'},
+{q:'Что вычисляет Cₙᵐpᵐqⁿ⁻ᵐ?',a:['Вероятность ровно m успехов','Вероятность не менее m успехов','Среднее число успехов'],c:0,e:'Это формула Бернулли для ровно m появлений события в n испытаниях.'},
+{q:'Как найти вероятность хотя бы одного успеха?',a:['pⁿ','1 − pⁿ','1 − qⁿ'],c:2,e:'Противоположное событие — ни одного успеха — имеет вероятность qⁿ.'},
+{q:'При n = 9 и p = 0,5 вероятнейшие числа равны…',a:['только 5','4 и 5','только 4'],c:1,e:'По формуле np − q ≤ k₀ ≤ np + p получаем 4 ≤ k₀ ≤ 5, поэтому максимум имеют два значения: 4 и 5.'},
+{q:'Как записать вероятность «от 2 до 4 успехов»?',a:['Pₙ(4) − Pₙ(2)','Pₙ(2) + Pₙ(3) + Pₙ(4)','1 − Pₙ(2)'],c:1,e:'События с различным числом успехов несовместны, поэтому их вероятности складываются.'}
+];
+var answered=0,correct=0,box=document.getElementById('quizBox');function drawQuiz(){answered=0;correct=0;document.getElementById('quizScore').textContent='Отвечено: 0 из 5 · правильно: 0';box.innerHTML='';quiz.forEach(function(item,qi){var el=document.createElement('div');el.className='bl-q';el.innerHTML='<h3>'+(qi+1)+'. '+item.q+'</h3><div class="bl-options">'+item.a.map(function(a,i){return '<button class="bl-opt" type="button" data-i="'+i+'">'+a+'</button>'}).join('')+'</div><div class="bl-explain">'+item.e+'</div>';el.addEventListener('click',function(e){var b=e.target.closest('.bl-opt');if(!b||el.classList.contains('done'))return;el.classList.add('done');answered++;var pick=+b.dataset.i;if(pick===item.c){correct++;b.classList.add('good')}else{b.classList.add('bad');el.querySelectorAll('.bl-opt')[item.c].classList.add('good')}document.getElementById('quizScore').textContent='Отвечено: '+answered+' из 5 · правильно: '+correct});box.appendChild(el)});}
+document.getElementById('quizReset').addEventListener('click',drawQuiz);drawQuiz();
+})();
+</script>
+<script src="../../assets/search-data.js"></script>
+<script src="../../assets/courses-data.js"></script>
+<script src="../../assets/main.js"></script>
+<script src="../../assets/encyclopedia-data.js"></script>
+<script src="../../assets/lesson-blocks.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a418c2d84894e8db',t:'MTc5MDQ5Mzc4Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

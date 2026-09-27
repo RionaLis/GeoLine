@@ -17,7 +17,7 @@ window.COURSES_DATA = {
   "measurement-errors": {
     title: "ТМОГИ",
     topics: [
-      { title: "Тема 01. Основы теории вероятностей", lessons: [["probability-basics.html", "Основы теории вероятностей"], ["combinatorics-basics.html", "Комбинаторика: перестановки, размещения, сочетания"], ["probability-theorems.html", "Вероятность события и её теоремы"]] },
+      { title: "Тема 01. Основы теории вероятностей", lessons: [["probability-basics.html", "Основы теории вероятностей"], ["combinatorics-basics.html", "Комбинаторика: перестановки, размещения, сочетания"], ["probability-theorems.html", "Вероятность события и её теоремы"], ["repeated-trials-bernoulli.html", "Многократные повторные испытания. Формула Бернулли"]] },
       { title: "Тема 02. Основы математической статистики", lessons: [] },
       { title: "Тема 03. Теория погрешностей", lessons: [] },
       { title: "Тема 04. Корреляционно-регрессионный анализ", lessons: [] },

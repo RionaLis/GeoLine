@@ -120,6 +120,12 @@ window.SEARCH_DATA = [
     "url": "courses/measurement-errors/probability-theorems.html"
   },
   {
+    "title": "Многократные повторные испытания. Формула Бернулли",
+    "desc": "Схема Бернулли, вероятность ровно m успехов, следствия формулы, вероятность хотя бы одного успеха и вероятнейшее число.",
+    "course": "ТМОГИ",
+    "url": "courses/measurement-errors/repeated-trials-bernoulli.html"
+  },
+  {
     "title": "Связи систем координат и времени",
     "course": "Основы геодезической астрономии",
     "url": "courses/geodetic-astronomy/coord-time-links.html"
