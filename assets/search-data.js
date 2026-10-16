@@ -1169,4 +1169,8 @@ window.SEARCH_DATA = [
     "url": "encyclopedia/ekliptika.html"
   },
 
+  { title: "Предельные теоремы теории вероятностей", section: "ТМОГИ: Тема 02", url: "courses/measurement-errors/limit-theorems.html", keywords: "чебышев бернулли ляпунов цпт муавр лаплас предельные теоремы" },
+  { title: "Нормальный закон распределения Гаусса", section: "ТМОГИ: Тема 02", url: "courses/measurement-errors/normal-distribution.html", keywords: "гаусс нормальное распределение ско мат ожидание стандартное нормальное N(0,1)" },
+  { title: "Вероятность попадания в интервал", section: "ТМОГИ: Тема 02", url: "courses/measurement-errors/interval-probability.html", keywords: "лаплас функция лапласа интеграл вероятностей правило трех сигм интервал" },
+  { title: "Проверка на нормальность распределения", section: "ТМОГИ: Тема 02", url: "courses/measurement-errors/normality-test.html", keywords: "проверка нормальности гистограмма выравнивающая кривая пирсон хи-квадрат критерий согласия" },
 ];

@@ -18,7 +18,12 @@ window.COURSES_DATA = {
     title: "ТМОГИ",
     topics: [
       { title: "Тема 01. Основы теории вероятностей", lessons: [["probability-basics.html", "Основы теории вероятностей"], ["combinatorics-basics.html", "Комбинаторика: перестановки, размещения, сочетания"], ["probability-theorems.html", "Вероятность события и её теоремы"], ["discrete-random-variable.html", "Закон распределения дискретной случайной величины"], ["continuous-random-variable.html", "Закон распределения непрерывной случайной величины"], ["numerical-characteristics.html", "Числовые характеристики случайных величин"], ["probability-distributions.html", "Законы распределения в геодезии и регрессионном анализе"]] },
-      { title: "Тема 02. Основы математической статистики", lessons: [] },
+            { title: "Тема 02. Основы математической статистики", lessons: [
+        ["limit-theorems.html", "Предельные теоремы"],
+        ["normal-distribution.html", "Нормальный закон распределения"],
+        ["interval-probability.html", "Вероятность попадания в интервал"],
+        ["normality-test.html", "Проверка на нормальность распределения"]
+      ] },
       { title: "Тема 03. Теория погрешностей", lessons: [] },
       { title: "Тема 04. Корреляционно-регрессионный анализ", lessons: [] },
       { title: "Тема 05. Метод наименьших квадратов", lessons: [] },
