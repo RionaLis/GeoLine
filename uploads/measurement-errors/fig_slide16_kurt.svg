@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 310" width="100%" height="100%" style="max-width: 520px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #ffffff; border-radius: 8px;">
+  <defs>
+    <marker id="arr-axis-16" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1e293b"/>
+    </marker>
+  </defs>
+
+  <!-- Coordinate Grid -->
+  <g opacity="0.6">
+    <line x1="50" y1="25" x2="50" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="75" y1="25" x2="75" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="100" y1="25" x2="100" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="125" y1="25" x2="125" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="150" y1="25" x2="150" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="175" y1="25" x2="175" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="200" y1="25" x2="200" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="225" y1="25" x2="225" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="250" y1="25" x2="250" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="275" y1="25" x2="275" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="300" y1="25" x2="300" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="325" y1="25" x2="325" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="350" y1="25" x2="350" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="375" y1="25" x2="375" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="400" y1="25" x2="400" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="425" y1="25" x2="425" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="450" y1="25" x2="450" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="475" y1="25" x2="475" y2="260" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="25" x2="480" y2="25" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="50" x2="480" y2="50" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="75" x2="480" y2="75" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="100" x2="480" y2="100" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="125" x2="480" y2="125" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="150" x2="480" y2="150" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="175" x2="480" y2="175" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="200" x2="480" y2="200" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="225" x2="480" y2="225" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="250" x2="480" y2="250" stroke="#e2e8f0" stroke-width="0.8"/>
+  </g>
+
+  <!-- Axes -->
+  <line x1="60" y1="270" x2="60" y2="20" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-axis-16)"/>
+  <text x="50" y="16" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">φ(x)</text>
+
+  <line x1="50" y1="260" x2="480" y2="260" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-axis-16)"/>
+  <text x="485" y="264" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">x</text>
+
+  <!-- Center x = 260 -->
+  <line x1="260" y1="35" x2="260" y2="260" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="260" y="278" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">M(X)</text>
+
+  <!-- Curve 1: Leptokurtic (E > 0) - Sharp, tall peak -->
+  <path d="M 130 260 C 200 260, 230 190, 245 110 C 253 45, 260 35, 260 35 C 260 35, 267 45, 275 110 C 290 190, 320 260, 390 260" 
+        fill="none" stroke="#2563eb" stroke-width="2.8"/>
+  <text x="355" y="45" font-size="12" font-weight="bold" fill="#2563eb">E &gt; 0 (островершинное)</text>
+
+  <!-- Curve 2: Mesokurtic (E = 0) - Normal curve -->
+  <path d="M 100 260 C 180 260, 215 190, 240 140 C 252 95, 260 85, 260 85 C 260 85, 268 95, 280 140 C 305 190, 340 260, 420 260" 
+        fill="none" stroke="#16a34a" stroke-width="2.6"/>
+  <text x="355" y="95" font-size="12" font-weight="bold" fill="#16a34a">E = 0 (нормальное)</text>
+
+  <!-- Curve 3: Platykurtic (E < 0) - Flat peak, wide shoulders -->
+  <path d="M 70 260 C 150 260, 200 200, 230 160 C 248 135, 260 135, 260 135 C 260 135, 272 135, 290 160 C 320 200, 370 260, 450 260" 
+        fill="none" stroke="#ea580c" stroke-width="2.6"/>
+  <text x="355" y="145" font-size="12" font-weight="bold" fill="#ea580c">E &lt; 0 (плосковершинное)</text>
+
+  <!-- Legend box -->
+  <rect x="75" y="40" width="165" height="58" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="85" y="58" font-size="12" font-weight="bold" fill="#1e293b">Эксцесс (крутость):</text>
+  <text x="85" y="74" font-size="11" fill="#475569">E = μ₄ / σ⁴ − 3</text>
+  <text x="85" y="88" font-size="11" fill="#64748b">Относительно Гаусса</text>
+</svg>

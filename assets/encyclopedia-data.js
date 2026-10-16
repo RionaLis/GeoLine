@@ -9,6 +9,15 @@
 window.ENCYCLOPEDIA = {
 terms: {
   "sluchainaya-velichina": { t: "Случайная величина", d: "Величина, обладающая некоторым множеством возможных значений, причём заранее нельзя предсказать, какое именно значение она примет в результате того или иного испытания." },
+  "matematicheskoe-ozhidanie": { t: "Математическое ожидание", d: "Среднее из всех возможных значений случайной величины с учётом вероятностей их появления; первый начальный момент распределения и аналог центра тяжести." },
+  "dispersiya": { t: "Дисперсия", d: "Математическое ожидание квадрата отклонения случайной величины от её математического ожидания; второй центральный момент, характеризующий степень рассеяния." },
+  "srednee-kvadraticheskoe-otklonenie": { t: "Среднее квадратическое отклонение (СКО)", d: "Положительный квадратный корень из дисперсии; основная мера точности в теории погрешностей измерений, имеющая размерность измеряемой величины." },
+  "asimmetriya": { t: "Асимметрия (скошенность)", d: "Нормированный третий центральный момент, характеризующий скошенность графика плотности вероятности относительно математического ожидания." },
+  "ekscess": { t: "Эксцесс", d: "Нормированный четвёртый центральный момент (минус 3), характеризующий степень островершинности или плосковершинности кривой распределения по сравнению с нормальным законом." },
+  "ravnomernoe-raspredelenie": { t: "Равномерное распределение", d: "Непрерывное распределение, при котором плотность вероятности постоянна на некотором интервале; описывает ошибки округления и дискретизации отсчётов." },
+  "raspredelenie-pirsona": { t: "Распределение Пирсона (хи-квадрат)", d: "Распределение суммы квадратов k независимых стандартных нормальных случайных величин; основа оценки дисперсий и проверки критериев согласия." },
+  "raspredelenie-studenta": { t: "Распределение Стьюдента (t-распределение)", d: "Распределение отношения стандартной нормальной величины к квадратному корню из независимой хи-квадрат величины; применяется при малых выборках и в регрессионном анализе." },
+  "raspredelenie-fishera": { t: "Распределение Фишера (F-распределение)", d: "Распределение отношения двух независимых выборочных дисперсий; применяется для проверки гипотезы о равенстве точности и адекватности моделей регрессии." },
   "zakon-raspredeleniya": { t: "Закон распределения", d: "Всякое соотношение, устанавливающее связь между значениями случайной величины и вероятностями появления этих значений; полностью определяет поведение случайной величины." },
   "diskretnaya-sluchainaya-velichina": { t: "Дискретная случайная величина", d: "Случайная величина, множество значений которой не более чем счётно, то есть её значения можно перечислить (0, 1, 2, …)." },
   "nepreryvnaya-sluchainaya-velichina": { t: "Непрерывная случайная величина", d: "Случайная величина, множество значений которой более чем счётно (несчётно); её возможные значения заполняют отрезок числовой оси, а вероятность попадания в отдельную точку равна нулю." },
@@ -221,9 +230,6 @@ lessons: {
   "geodetic-astronomy/coord-time-links.html": ["chasovoi-ugol", "zvezdnoe-vremya", "vsemirnoe-vremya", "vysota-svetila", "azimut"],
   "geodetic-astronomy/time-systems.html": ["solnechnoe-vremya", "zvezdnoe-vremya", "uravnenie-vremeni", "vsemirnoe-koordinirovannoe-vremya", "sidericheskii-mesyac"],
   "geodetic-astronomy/reduction-calculations.html": ["ekvatorialnaya-sistema-koordinat", "chasovoi-ugol", "zvezdnoe-vremya", "vsemirnoe-vremya", "vysota-svetila"],
-  "geodetic-astronomy/zenithal-methods.html": ["zenit", "shirota", "vysota-svetila", "chasovoi-ugol", "popravka-chasov"],
-  "geodetic-astronomy/azimuthal-methods.html": ["azimut", "kollimacionnaya-oshibka", "polnyi-priem", "mesto-nulya", "lichnaya-pogreshnost"],
-  "geodetic-astronomy/approximate-methods.html": ["shirota", "azimut", "dolgota", "solnechnoe-vremya", "uravnenie-vremeni", "astronomicheskaya-refrakciya"],
   "geodetic-astronomy/angle-measuring-instruments.html": ["astronomicheskii-teodolit", "teodolit", "limb", "kollimacionnaya-oshibka", "poverka", "taheometr", "zenit-teleskop", "passazhnyi-instrument"],
   "geodetic-astronomy/time-measurement-instruments.html": ["hronometr", "kvarcevye-chasy", "gosudarstvennaya-sluzhba-vremeni", "hronograf", "popravka-chasov", "hod-chasov", "zvezdnoe-vremya", "vsemirnoe-koordinirovannoe-vremya"],
   "geodetic-astronomy/automation-and-errors.html": ["astronomicheskaya-refrakciya", "lichnaya-pogreshnost", "pzs-matrica", "kollimacionnaya-oshibka", "mesto-nulya", "popravka-chasov"],
@@ -231,7 +237,9 @@ lessons: {
   "measurement-errors/probability-basics.html": ["sluchainyi-eksperiment", "elementarnyi-ishod", "sobytie", "generalnaya-sovokupnost", "vyborka"],
   "measurement-errors/probability-theorems.html": ["klassicheskaya-veroyatnost", "uslovnaya-veroyatnost", "teorema-slozheniya", "teorema-umnozheniya", "polnaya-veroyatnost"],
   "measurement-errors/discrete-random-variable.html": ["sluchainaya-velichina", "zakon-raspredeleniya", "diskretnaya-sluchainaya-velichina", "ryad-raspredeleniya", "mnogougolnik-raspredeleniya", "funkciya-raspredeleniya"],
-  "measurement-errors/continuous-random-variable.html": ["nepreryvnaya-sluchainaya-velichina", "funkciya-raspredeleniya", "plotnost-raspredeleniya", "element-veroyatnosti", "zakon-raspredeleniya"]
+  "measurement-errors/continuous-random-variable.html": ["nepreryvnaya-sluchainaya-velichina", "funkciya-raspredeleniya", "plotnost-raspredeleniya", "element-veroyatnosti", "zakon-raspredeleniya"],
+  "measurement-errors/numerical-characteristics.html": ["matematicheskoe-ozhidanie", "dispersiya", "srednee-kvadraticheskoe-otklonenie", "asimmetriya", "ekscess", "sluchainaya-velichina"],
+  "measurement-errors/probability-distributions.html": ["ravnomernoe-raspredelenie", "raspredelenie-pirsona", "raspredelenie-studenta", "raspredelenie-fishera", "zakon-raspredeleniya"]
 }
 ,
 };

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 300" width="100%" height="100%" style="max-width: 540px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #ffffff; border-radius: 8px;">
+  <defs>
+    <marker id="arr-axis-11" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1e293b"/>
+    </marker>
+  </defs>
+
+  <!-- Coordinate Grid -->
+  <g opacity="0.6">
+    <line x1="50" y1="25" x2="50" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="75" y1="25" x2="75" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="100" y1="25" x2="100" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="125" y1="25" x2="125" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="150" y1="25" x2="150" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="175" y1="25" x2="175" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="200" y1="25" x2="200" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="225" y1="25" x2="225" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="250" y1="25" x2="250" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="275" y1="25" x2="275" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="300" y1="25" x2="300" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="325" y1="25" x2="325" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="350" y1="25" x2="350" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="375" y1="25" x2="375" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="400" y1="25" x2="400" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="425" y1="25" x2="425" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="450" y1="25" x2="450" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="475" y1="25" x2="475" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="500" y1="25" x2="500" y2="270" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="25" x2="510" y2="25" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="50" x2="510" y2="50" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="75" x2="510" y2="75" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="100" x2="510" y2="100" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="125" x2="510" y2="125" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="150" x2="510" y2="150" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="175" x2="510" y2="175" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="200" x2="510" y2="200" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="225" x2="510" y2="225" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="250" x2="510" y2="250" stroke="#e2e8f0" stroke-width="0.8"/>
+  </g>
+
+  <!-- Corridor +/- delta_bar -->
+  <rect x="65" y="100" width="445" height="90" fill="#10b981" opacity="0.10"/>
+  <line x1="65" y1="100" x2="510" y2="100" stroke="#10b981" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="65" y1="190" x2="510" y2="190" stroke="#10b981" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- M(X) horizontal line -->
+  <line x1="65" y1="145" x2="510" y2="145" stroke="#0070c0" stroke-width="2.2"/>
+
+  <!-- Axes -->
+  <!-- Y-axis (X / Value) -->
+  <line x1="65" y1="275" x2="65" y2="25" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-axis-11)"/>
+  <text x="52" y="20" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">X</text>
+
+  <!-- X-axis (i / Measurement index) -->
+  <line x1="55" y1="270" x2="520" y2="270" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-axis-11)"/>
+  <text x="525" y="274" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">i</text>
+  <text x="50" y="284" font-size="12" fill="#64748b">0</text>
+
+  <!-- Labels on the Y-axis -->
+  <!-- M(X) tick and label -->
+  <line x1="60" y1="145" x2="70" y2="145" stroke="#0070c0" stroke-width="2"/>
+  <text x="56" y="149" font-size="12" font-weight="bold" fill="#0070c0" text-anchor="end">M(X)</text>
+
+  <!-- Upper corridor tick and label: +Δ̄ -->
+  <line x1="60" y1="100" x2="70" y2="100" stroke="#10b981" stroke-width="2"/>
+  <text x="56" y="104" font-size="12" font-weight="bold" fill="#10b981" text-anchor="end">+Δ̄</text>
+
+  <!-- Lower corridor tick and label: -Δ̄ -->
+  <line x1="60" y1="190" x2="70" y2="190" stroke="#10b981" stroke-width="2"/>
+  <text x="56" y="194" font-size="12" font-weight="bold" fill="#10b981" text-anchor="end">-Δ̄</text>
+
+  <!-- Measurement polyline -->
+  <polyline points="80,205 120,105 160,175 200,75 240,185 280,110 320,215 360,95 400,160 440,80 480,170" fill="none" stroke="#ff5050" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="80" cy="205" r="4" fill="#ff5050"/>
+<circle cx="120" cy="105" r="4" fill="#ff5050"/>
+<circle cx="160" cy="175" r="4" fill="#ff5050"/>
+<circle cx="200" cy="75" r="4" fill="#ff5050"/>
+<circle cx="240" cy="185" r="4" fill="#ff5050"/>
+<circle cx="280" cy="110" r="4" fill="#ff5050"/>
+<circle cx="320" cy="215" r="4" fill="#ff5050"/>
+<circle cx="360" cy="95" r="4" fill="#ff5050"/>
+<circle cx="400" cy="160" r="4" fill="#ff5050"/>
+<circle cx="440" cy="80" r="4" fill="#ff5050"/>
+<circle cx="480" cy="170" r="4" fill="#ff5050"/>
+</svg>

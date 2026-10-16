@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" style="max-width: 640px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #ffffff; border-radius: 8px;">
+  <defs>
+    <marker id="arr-stud" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1e293b"/>
+    </marker>
+  </defs>
+
+  <!-- Coordinate Grid -->
+  <g opacity="0.6">
+    <line x1="50" y1="25" x2="50" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="75" y1="25" x2="75" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="100" y1="25" x2="100" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="125" y1="25" x2="125" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="150" y1="25" x2="150" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="175" y1="25" x2="175" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="200" y1="25" x2="200" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="225" y1="25" x2="225" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="250" y1="25" x2="250" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="275" y1="25" x2="275" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="300" y1="25" x2="300" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="325" y1="25" x2="325" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="350" y1="25" x2="350" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="375" y1="25" x2="375" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="400" y1="25" x2="400" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="425" y1="25" x2="425" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="450" y1="25" x2="450" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="475" y1="25" x2="475" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="500" y1="25" x2="500" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="525" y1="25" x2="525" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="550" y1="25" x2="550" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="575" y1="25" x2="575" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="600" y1="25" x2="600" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="25" x2="610" y2="25" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="50" x2="610" y2="50" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="75" x2="610" y2="75" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="100" x2="610" y2="100" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="125" x2="610" y2="125" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="150" x2="610" y2="150" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="175" x2="610" y2="175" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="200" x2="610" y2="200" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="225" x2="610" y2="225" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="250" x2="610" y2="250" stroke="#e2e8f0" stroke-width="0.8"/>
+<line x1="50" y1="275" x2="610" y2="275" stroke="#e2e8f0" stroke-width="0.8"/>
+  </g>
+
+  <!-- Curves -->
+  <!-- t(1) -->
+  <path d="M 70,254.1 L 74,253.9 L 78,253.7 L 82,253.5 L 86,253.3 L 90,253.1 L 94,252.9 L 98,252.6 L 102,252.4 L 106,252.1 L 110,251.8 L 114,251.5 L 118,251.2 L 122,250.8 L 126,250.5 L 130,250.1 L 134,249.7 L 138,249.3 L 142,248.8 L 146,248.3 L 150,247.8 L 154,247.3 L 158,246.7 L 162,246.1 L 166,245.4 L 170,244.7 L 174,244.0 L 178,243.1 L 182,242.3 L 186,241.3 L 190,240.3 L 194,239.2 L 198,238.0 L 202,236.7 L 206,235.4 L 210,233.8 L 214,232.2 L 218,230.4 L 222,228.4 L 226,226.3 L 230,224.0 L 234,221.4 L 238,218.6 L 242,215.5 L 246,212.1 L 250,208.4 L 254,204.3 L 258,199.8 L 262,194.9 L 266,189.5 L 270,183.6 L 274,177.3 L 278,170.4 L 282,163.2 L 286,155.5 L 290,147.7 L 294,139.7 L 298,132.0 L 302,124.7 L 306,118.3 L 310,113.1 L 314,109.4 L 318,107.5 L 322,107.5 L 326,109.4 L 330,113.1 L 334,118.3 L 338,124.7 L 342,132.0 L 346,139.7 L 350,147.7 L 354,155.5 L 358,163.2 L 362,170.4 L 366,177.3 L 370,183.6 L 374,189.5 L 378,194.9 L 382,199.8 L 386,204.3 L 390,208.4 L 394,212.1 L 398,215.5 L 402,218.6 L 406,221.4 L 410,224.0 L 414,226.3 L 418,228.4 L 422,230.4 L 426,232.2 L 430,233.8 L 434,235.4 L 438,236.7 L 442,238.0 L 446,239.2 L 450,240.3 L 454,241.3 L 458,242.3 L 462,243.1 L 466,244.0 L 470,244.7 L 474,245.4 L 478,246.1 L 482,246.7 L 486,247.3 L 490,247.8 L 494,248.3 L 498,248.8 L 502,249.3 L 506,249.7 L 510,250.1 L 514,250.5 L 518,250.8 L 522,251.2 L 526,251.5 L 530,251.8 L 534,252.1 L 538,252.4 L 542,252.6 L 546,252.9 L 550,253.1 L 554,253.3 L 558,253.5 L 562,253.7 L 566,253.9 L 570,254.1" fill="none" stroke="#ea580c" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- t(4) -->
+  <path d="M 70,258.7 L 74,258.6 L 78,258.5 L 82,258.4 L 86,258.3 L 90,258.2 L 94,258.0 L 98,257.9 L 102,257.7 L 106,257.6 L 110,257.4 L 114,257.1 L 118,256.9 L 122,256.6 L 126,256.4 L 130,256.1 L 134,255.7 L 138,255.3 L 142,254.9 L 146,254.5 L 150,254.0 L 154,253.4 L 158,252.8 L 162,252.1 L 166,251.4 L 170,250.5 L 174,249.6 L 178,248.6 L 182,247.5 L 186,246.2 L 190,244.8 L 194,243.3 L 198,241.6 L 202,239.7 L 206,237.6 L 210,235.2 L 214,232.6 L 218,229.7 L 222,226.5 L 226,223.0 L 230,219.2 L 234,214.9 L 238,210.2 L 242,205.1 L 246,199.6 L 250,193.6 L 254,187.1 L 258,180.2 L 262,172.8 L 266,165.1 L 270,157.0 L 274,148.6 L 278,140.1 L 282,131.5 L 286,123.1 L 290,114.9 L 294,107.2 L 298,100.1 L 302,93.8 L 306,88.5 L 310,84.4 L 314,81.6 L 318,80.2 L 322,80.2 L 326,81.6 L 330,84.4 L 334,88.5 L 338,93.8 L 342,100.1 L 346,107.2 L 350,114.9 L 354,123.1 L 358,131.5 L 362,140.1 L 366,148.6 L 370,157.0 L 374,165.1 L 378,172.8 L 382,180.2 L 386,187.1 L 390,193.6 L 394,199.6 L 398,205.1 L 402,210.2 L 406,214.9 L 410,219.2 L 414,223.0 L 418,226.5 L 422,229.7 L 426,232.6 L 430,235.2 L 434,237.6 L 438,239.7 L 442,241.6 L 446,243.3 L 450,244.8 L 454,246.2 L 458,247.5 L 462,248.6 L 466,249.6 L 470,250.5 L 474,251.4 L 478,252.1 L 482,252.8 L 486,253.4 L 490,254.0 L 494,254.5 L 498,254.9 L 502,255.3 L 506,255.7 L 510,256.1 L 514,256.4 L 518,256.6 L 522,256.9 L 526,257.1 L 530,257.4 L 534,257.6 L 538,257.7 L 542,257.9 L 546,258.0 L 550,258.2 L 554,258.3 L 558,258.4 L 562,258.5 L 566,258.6 L 570,258.7" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- Normal (k = inf) -->
+  <path d="M 70,260.0 L 74,260.0 L 78,260.0 L 82,260.0 L 86,260.0 L 90,260.0 L 94,260.0 L 98,260.0 L 102,260.0 L 106,260.0 L 110,260.0 L 114,260.0 L 118,259.9 L 122,259.9 L 126,259.9 L 130,259.9 L 134,259.8 L 138,259.7 L 142,259.7 L 146,259.6 L 150,259.4 L 154,259.2 L 158,259.0 L 162,258.7 L 166,258.3 L 170,257.9 L 174,257.3 L 178,256.6 L 182,255.8 L 186,254.7 L 190,253.5 L 194,252.0 L 198,250.2 L 202,248.2 L 206,245.8 L 210,243.0 L 214,239.8 L 218,236.1 L 222,231.9 L 226,227.3 L 230,222.1 L 234,216.4 L 238,210.1 L 242,203.3 L 246,196.0 L 250,188.1 L 254,179.9 L 258,171.2 L 262,162.3 L 266,153.1 L 270,143.9 L 274,134.6 L 278,125.4 L 282,116.5 L 286,108.0 L 290,100.1 L 294,92.7 L 298,86.2 L 302,80.5 L 306,75.9 L 310,72.3 L 314,69.9 L 318,68.7 L 322,68.7 L 326,69.9 L 330,72.3 L 334,75.9 L 338,80.5 L 342,86.2 L 346,92.7 L 350,100.1 L 354,108.0 L 358,116.5 L 362,125.4 L 366,134.6 L 370,143.9 L 374,153.1 L 378,162.3 L 382,171.2 L 386,179.9 L 390,188.1 L 394,196.0 L 398,203.3 L 402,210.1 L 406,216.4 L 410,222.1 L 414,227.3 L 418,231.9 L 422,236.1 L 426,239.8 L 430,243.0 L 434,245.8 L 438,248.2 L 442,250.2 L 446,252.0 L 450,253.5 L 454,254.7 L 458,255.8 L 462,256.6 L 466,257.3 L 470,257.9 L 474,258.3 L 478,258.7 L 482,259.0 L 486,259.2 L 490,259.4 L 494,259.6 L 498,259.7 L 502,259.7 L 506,259.8 L 510,259.9 L 514,259.9 L 518,259.9 L 522,259.9 L 526,260.0 L 530,260.0 L 534,260.0 L 538,260.0 L 542,260.0 L 546,260.0 L 550,260.0 L 554,260.0 L 558,260.0 L 562,260.0 L 566,260.0 L 570,260.0" fill="none" stroke="#16a34a" stroke-width="2.6" stroke-dasharray="6,3" stroke-linecap="round"/>
+
+  <!-- Center Line -->
+  <line x1="320" y1="55" x2="320" y2="260" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+  <!-- Critical Ticks for t(4) at alpha = 0.05 (t_crit = 2.776 -> 320 +/- 139 px) -->
+  <line x1="181" y1="210" x2="181" y2="260" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <line x1="459" y1="210" x2="459" y2="260" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <text x="181" y="278" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">−t_кр</text>
+  <text x="459" y="278" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">+t_кр</text>
+
+  <!-- Axes -->
+  <line x1="60" y1="270" x2="60" y2="25" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-stud)"/>
+  <text x="50" y="20" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">f(t)</text>
+
+  <line x1="50" y1="260" x2="605" y2="260" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arr-stud)"/>
+  <text x="610" y="264" font-size="14" font-weight="bold" fill="#1e293b" font-style="italic">t</text>
+  <text x="320" y="278" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">0</text>
+
+  <!-- Legend -->
+  <rect x="75" y="35" width="200" height="74" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="85" y1="52" x2="110" y2="52" stroke="#16a34a" stroke-width="2.6" stroke-dasharray="5,3"/>
+  <text x="118" y="56" font-size="11" font-weight="bold" fill="#16a34a">N(0, 1) Гаусс (k = ∞)</text>
+  <line x1="85" y1="72" x2="110" y2="72" stroke="#2563eb" stroke-width="2.6"/>
+  <text x="118" y="76" font-size="11" font-weight="bold" fill="#2563eb">Стьюдент t(k = 4)</text>
+  <line x1="85" y1="92" x2="110" y2="92" stroke="#ea580c" stroke-width="2.2"/>
+  <text x="118" y="96" font-size="11" font-weight="bold" fill="#ea580c">Стьюдент t(k = 1) Коши</text>
+</svg>
