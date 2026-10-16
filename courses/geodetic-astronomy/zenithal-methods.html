@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Интерактивный урок о зенитальных способах астрономических определений: параллактический треугольник, основное уравнение cos Z = sin φ sin δ + cos φ cos δ cos t, раздельные и совместные способы, способы равных высот (Талькотт, Мазаев, Цингер, Певцов), выгоднейшие условия наблюдений и источники ошибок измерения зенитных расстояний.">
+<title>Зенитальные способы астрономических определений — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+:root{--ink:#092c33;--muted:#5c7370;--white:#fff;--dark:#063f3b;--dark2:#07534d;--green:#0a655d;--green-soft:#e9f5f1;--green-line:#b3d9d0;--accent:#ff7136;--accent-dark:#d9501a;--accent-soft:#ffe9de;--line:#d5e3de;--radius:18px;--mono:'Roboto Mono',Consolas,monospace;--lesson-w:1220px}
+:root{--blue:#2474c6;--violet:#7655b7;--cyan:#118c91;--gold:#b9780c;--red:#d45834;--shadow:0 18px 50px rgba(18,54,49,.10)}
+.section{padding:26px 0 60px}
+.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.article,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
+.article{padding:28px 31px}.panel{padding:18px}
+.article h2{margin:0 0 10px}
+.article h3{font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:22px 0 8px}
+.lead{color:#405a55;margin:0 0 12px}
+ul.plain{margin:10px 0 10px 18px}ul.plain li{margin:6px 0;color:#3d5751}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:#096158;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;overflow:auto}
+.formula b{color:#07534d}
+.note{border-left:3px solid var(--accent);background:#fff2ec;padding:13px 16px;border-radius:0 10px 10px 0;margin:15px 0;color:#75462d}
+.note.green{border-left-color:var(--cyan);background:#eef7f6;color:#315951}
+.note.blue{border-left-color:var(--blue);background:#eef4fb;color:#274b70}
+.muted{color:#6a7d79;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;margin:14px 0}
+.card{padding:15px;border:1px solid var(--line);border-radius:14px;background:#f8fbfa}
+.card b{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;border-radius:99px;padding:3px 9px;font:700 11px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:800 11px var(--mono);color:var(--accent-dark);text-transform:uppercase}
+.ctl{display:grid;grid-template-columns:150px 1fr 104px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+@media(max-width:640px){.ctl{grid-template-columns:1fr 1fr}}
+.ctl label{font:600 12.5px var(--mono);color:#405a55}
+.ctl .val{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+input[type=range]{accent-color:var(--accent);width:100%}
+input[type=number],select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:600 13px var(--mono);width:100%;background:#fff;color:#163f39}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:12px 0}
+.out{padding:11px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9}
+.out small{display:block;color:#768a85;font:700 10px var(--mono);text-transform:uppercase;margin-bottom:3px}
+.out b{font:700 15px var(--mono);color:#0a3f3a}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{border:1px solid var(--green-line);background:#fff;border-radius:99px;padding:7px 13px;font:700 12px var(--mono);color:#0a655d;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent-dark)}
+.btn.on{background:var(--green);border-color:var(--green);color:#fff}
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.cap{font:500 11.5px var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+.quiz-q{border:1px solid var(--line);border-radius:13px;padding:14px;margin:12px 0;background:#fafcfb}
+.answers{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.ans{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:13.5px;cursor:pointer;text-align:left}
+.ans:hover{border-color:var(--accent)}
+.ans.ok{background:#e2f6ea;border-color:#43a86a;color:#186b3c;font-weight:700}
+.ans.bad{background:#fdeceb;border-color:#d45834;color:#a33a1c}
+.score{margin-top:12px;font:600 13.5px var(--mono);color:#0a655d}
+.tree{display:grid;gap:10px}
+.tree-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.tnode{border:1px solid var(--line);border-radius:12px;background:#f8fbfa;padding:12px;cursor:pointer;transition:.15s}
+.tnode:hover{border-color:var(--accent)}
+.tnode.on{border-color:var(--accent);background:#fff3ed;box-shadow:0 6px 18px rgba(255,113,54,.14)}
+.tnode b{display:block;color:#0a4f4a;font-size:13.5px}
+.tnode small{color:#7c8f8a;font:600 10.5px var(--mono);text-transform:uppercase}
+.tdetail{border:1px solid var(--line);border-radius:13px;padding:18px;background:#fff;margin-top:12px;min-height:150px}
+.tdetail h4{margin:0 0 8px;color:var(--green);font-size:16px}
+.tdetail ul{margin:8px 0 8px 18px;padding:0}
+.tdetail li{margin:5px 0;color:#3d5751;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1px solid var(--line);background:#f7fbf9;border-radius:99px;padding:5px 11px;font:600 12px var(--mono);color:#3d5a54}
+.bars{margin:12px 0}
+.brow2{display:grid;grid-template-columns:180px 1fr 96px;gap:10px;align-items:center;margin:7px 0}
+@media(max-width:640px){.brow2{grid-template-columns:1fr}}
+.brow2 .nm{font:600 12.5px var(--mono);color:#405a55}
+.track{height:15px;border-radius:8px;background:#eef4f2;position:relative;overflow:hidden}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px}
+.brow2 .vl{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+.steps{counter-reset:st;margin:12px 0}
+.step{position:relative;padding:12px 14px 12px 46px;border:1px solid var(--line);border-radius:13px;background:#f9fcfb;margin:9px 0}
+.step:before{counter-increment:st;content:counter(st);position:absolute;left:13px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:700 12px/24px var(--mono);text-align:center}
+.step b{color:#0a4f4a}
+.step .f{font-family:"Cambria Math",Georgia,serif;color:#096158;margin-top:5px}
+.worktable{font-size:13px}
+.worktable td{font-family:var(--mono)}
+.worktable td:first-child{font-family:inherit;color:#405a55}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+.pill{border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;background:#f7fbfa;padding:11px 14px}
+.pill b{display:block;color:#0a4f4a;margin-bottom:4px}
+/* ---------- интерактивная блок-схема классификации ---------- */
+.bs-grid{display:grid;grid-template-columns:minmax(0,1.34fr) minmax(0,.66fr);gap:22px;align-items:start}
+@media(max-width:1040px){.bs-grid{grid-template-columns:1fr}}
+.bs{margin:16px 0 4px}
+.bs-row{display:flex;gap:14px;align-items:stretch;justify-content:center}
+.bs-col{flex:1 1 0;display:flex;flex-direction:column;align-items:center;min-width:0}
+.bs-fork{position:relative;height:26px;width:100%}
+.bs-fork::before{content:"";position:absolute;left:50%;top:0;width:2px;height:13px;background:#b9d6cf;transform:translateX(-1px)}
+.bs-fork::after{content:"";position:absolute;left:50%;top:12px;height:2px;background:#b9d6cf;transform:translateX(-50%);width:calc(100% - 100%/var(--n,2))}
+.bs-fork.n2{--n:2}.bs-fork.n3{--n:3}
+.bs-stub{width:2px;height:14px;background:#b9d6cf}
+.bs-box{width:100%;max-width:560px;border:1.6px solid #9fc4bd;border-radius:12px;background:#fff;padding:11px 14px;cursor:pointer;font:inherit;text-align:center;transition:.15s}
+.bs-box:hover{border-color:var(--accent);box-shadow:0 8px 20px rgba(255,113,54,.13)}
+.bs-box.on{border-color:var(--accent);background:#fff3ed}
+.bs-box small{display:block;font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:#8aa5a0;margin-bottom:3px}
+.bs-box b{display:block;color:#0a4f4a;font-size:14px;line-height:1.28;font-weight:700}
+.bs-box.sm b{font-size:13px}
+.bs-list{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:8px}
+.bs-item{display:flex;gap:9px;align-items:flex-start;border:1.4px solid var(--line);border-radius:11px;background:#f9fcfb;padding:9px 11px;cursor:pointer;font:inherit;text-align:left;transition:.15s}
+.bs-item:hover{border-color:var(--accent)}
+.bs-item.on{border-color:var(--accent);background:#fff3ed;box-shadow:0 8px 20px rgba(255,113,54,.13)}
+.bs-item i{flex:0 0 22px;height:22px;border-radius:50%;background:#0a655d;color:#fff;font:700 11.5px/22px var(--mono);text-align:center;font-style:normal}
+.bs-item.on i{background:var(--accent)}
+.bs-item span{font-size:12.6px;color:#25443f;line-height:1.32;padding-top:1px}
+.bs-item em{font-style:normal;font:700 12px var(--mono);color:#0a655d;padding-top:3px}
+.bs-head{border:1px dashed #b9d6cf;border-radius:11px;background:#f2faf8;padding:9px 11px;font:700 11.5px/1.3 var(--mono);color:#0a4f4a;text-align:center;margin-bottom:2px}
+.bs-head i{display:block;font-style:normal;font-size:15px;color:var(--accent-dark);margin-bottom:3px}
+.detail-panel{position:sticky;top:14px}
+.dc-tag{display:inline-block;border-radius:99px;padding:2px 9px;font:700 10.5px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:7px}
+.dc-row{margin:0 0 11px}
+.dc-row>b{display:block;font:800 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent-dark);margin-bottom:4px}
+.dc-row ol{margin:0 0 0 17px;padding:0}
+.dc-row ol li{margin:4px 0;color:#3d5751;font-size:13.4px}
+.dc-row span{color:#3d5751;font-size:13.6px}
+.tdetail h4{margin:0 0 6px}
+.tdetail p{margin:0 0 9px;color:#3d5751;font-size:13.6px}
+.tdetail .formula{font-size:13px;margin:10px 0}
+.tdetail .note{font-size:12.8px;margin:10px 0 0}
+
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside>
+<main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-06">Тема 06. Методы астрономических наблюдений в геодезии</a></div>
+<h1>Зенитальные способы астрономических определений</h1>
+<p class="gl-meta-summary">Способы, в которых измеряют зенитные расстояния светил. Параллактический треугольник и основное уравнение cos Z = sin φ sin δ + cos φ cos δ cos t; раздельные и совместные определения, способы равных высот; выгоднейшие условия наблюдений и ошибки измерения Z. Интерактивная модель небесной сферы, классификация способов и мини-МНК.</p>
+<div class="tabs-wrap gl-tabs"><div class="container"><div class="tabs" id="tabs">
+<button class="tab active" data-view="basics">Основное уравнение</button>
+<button class="tab" data-view="methods">Способы</button>
+<button class="tab" data-view="classify">Классификация</button>
+<button class="tab" data-view="conditions">Условия и ошибки</button>
+<button class="tab" data-view="practice">Практикум</button>
+<button class="tab" data-view="check">Самопроверка</button>
+</div></div></div></section>
+<div class="section"><div class="container">
+
+<!-- ================= BASICS ================= -->
+<section class="view active" id="basics">
+<div class="grid">
+<div class="article">
+<h2>Что такое зенитальный способ</h2>
+<p class="lead">Все способы астрономических определений делят на две большие группы по тому, <b>что именно измеряет наблюдатель</b>. Если прибором измеряют <b>зенитное расстояние Z</b> (или высоту h = 90° − Z) светила, способ называют <b>зенитальным</b>. Если измеряют <b>горизонтальные направления</b> на светила и на земной предмет — способ <b>азимутальный</b>. Зенитальные способы дают, как правило, широту φ и поправку часов u (то есть долготу λ), азимутальные — азимут направления.</p>
+<div class="formula">Измеряемая величина — зенитное расстояние <b>Z</b> (угол между отвесной линией и направлением на светило).</div>
+<p class="lead">Аналитическая основа всех зенитальных способов — решение <b>параллактического треугольника</b> PZσ, построенного для каждого наблюдаемого светила: вершины — полюс мира P, зенит наблюдателя Z и светило σ. Три его стороны — дуги больших кругов:</p>
+<div class="formula">
+∪PZ = 90° − φ &nbsp;&nbsp;•&nbsp;&nbsp; ∪Zσ = Z &nbsp;&nbsp;•&nbsp;&nbsp; ∪Pσ = Δ = 90° − δ
+</div>
+<p class="lead">Сферические углы треугольника: <b>t</b> — часовой угол при полюсе, <b>180° − A</b> — при зените (если азимут отсчитывать от точки юга, как принято в астрономии), <b>q</b> — параллактический угол при светиле. Записывая для этого треугольника теорему косинусов относительно стороны Zσ, получаем <b>основное уравнение зенитальных способов</b>:</p>
+<div class="formula">
+cos Z = sin φ sin δ + cos φ cos δ cos t, &nbsp;&nbsp; где t = s − α = T + u − α.
+</div>
+<p class="lead">В этом уравнении измеряемая величина — левая часть (Z), известны из Астрономического ежегодника α и δ светила, известен момент наблюдения T по хронометру. Неизвестных два: <b>широта φ</b> и <b>поправка часов u</b>. Одно уравнение — два неизвестных, поэтому для определения φ и u наблюдают <b>не менее двух светил</b> (или одно светило дважды), а при решении задачи совместно с поправкой места зенита — не менее трёх.</p>
+<div class="note"><b>Главная мысль урока.</b> Дальше всё сводится к тому, <i>как</i> избавиться от второго неизвестного: наблюдением в плоскости меридиана (раздельный путь) либо наблюдением светил на одном и том же зенитном расстоянии (путь равных высот). От выбора этих условий зависит и точность, и методика наблюдений.</div>
+</div>
+<div class="panel">
+<h2>Три «нуля отсчёта» и место зенита</h2>
+<p class="muted">Зенитное расстояние получают из отсчётов по вертикальному кругу. Для этого нужно знать <b>место зенита</b> MZ — отсчёт по вертикальному кругу, когда визирная ось направлена точно в зенит. Формулы зависят от прибора.</p>
+<div class="gloss">
+<div class="pill"><b>Теодолит с одной нитью (ОТ-02, Т2)</b><span class="muted">MZ = КЛ + КП ± 180° (1.57); при наблюдении неподвижного объекта Z′ = КЛ − КП + 90° (1.58)</span></div>
+<div class="pill"><b>Приборы с несколькими нитями (АУ 2/10, Вильд Т4, ДКМ-3А)</b><span class="muted">MZ = (КЛ + КП)/2 (1.60); на подвижный объект Z′ = КЛ − MZ или Z′ = MZ − КП (1.61)</span></div>
+<div class="pill"><b>Наклон уровня при вертикальном круге</b><span class="muted">i″ = b·τ″/2 (1.63); отсчёт исправляют: КЛ = КЛ′ + i, КП = КП′ + i (1.62)</span></div>
+</div>
+<h3 style="font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:16px 0 8px">Как визируют на светило</h3>
+<ul class="plain">
+<li><b>Метод наведения.</b> Горизонтальную нить наводят на светило и фиксируют момент T по хронометру. Хорошо, когда Z меняется медленно, — вблизи меридиана и при φ &gt; 60°.</li>
+<li><b>Метод прохождений.</b> Трубу неподвижно закрепляют по высоте, светило проходит несколько горизонтальных нитей; берут показания хронометра в моменты прохождений. Средний момент соответствует средней нити.</li>
+</ul>
+<div class="note green"><b>Контроль:</b> перед взятием отсчёта в оптических теодолитах совмещают концы пузырька контактного уровня; при работе с уровнями без контактного устройства в отсчёты вводят поправку за наклон оси уровня.</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:24px">
+<h2>Интерактив 1. Параллактический треугольник и основное уравнение</h2>
+<p class="muted">Вид небесной сферы «сверху» в азимутальной проекции: в центре — зенит Z, к северу (вверх) — полюс мира P, радиус круга соответствует высоте h = 0°. Двигайте ползунки — светило σ перемещается по своей суточной параллели, перестраиваются треугольник PZσ и решение основного уравнения. Пунктиром показана часть параллели под горизонтом.</p>
+<div class="two" style="grid-template-columns:1fr 330px">
+<div>
+<svg id="ptSvg" viewBox="0 0 700 470" role="img" aria-label="Параллактический треугольник и суточная параллель светила"></svg>
+<div class="cap">Рис. 1. Параллактический треугольник PZσ, суточная параллель светила и альмукантарат (интерактив)</div>
+</div>
+<div>
+<div class="ctl"><label>широта φ</label><input type="range" id="pPhi" min="0" max="80" step="0.5" value="56"><span class="val" id="pPhiV">56,0°</span></div>
+<div class="ctl"><label>склонение δ</label><input type="range" id="pDec" min="-40" max="89" step="0.5" value="22"><span class="val" id="pDecV">22,0°</span></div>
+<div class="ctl"><label>часовой угол t</label><input type="range" id="pT" min="0" max="360" step="1" value="315"><span class="val" id="pTV">315°</span></div>
+<div class="btnrow">
+<button class="btn" id="pMer" type="button">t = 0 (меридиан)</button>
+<button class="btn" id="pVert" type="button">1-й вертикал</button>
+<button class="btn" id="pPlay" type="button">▶ сутки</button>
+</div>
+<div class="readout">
+<div class="out"><small>Z</small><b id="pZ">—</b></div>
+<div class="out"><small>h = 90° − Z</small><b id="pH">—</b></div>
+<div class="out"><small>азимут A</small><b id="pA">—</b></div>
+<div class="out"><small>параллакс. угол q</small><b id="pQ">—</b></div>
+</div>
+<div class="formula" style="font-size:13.5px" id="pSub">—</div>
+<div class="muted" id="pCheck">—</div>
+</div>
+</div>
+<svg id="ptChart" viewBox="0 0 700 200" style="margin-top:14px" role="img" aria-label="График изменения зенитного расстояния светила за сутки"></svg>
+<div class="cap">Рис. 2. Изменение Z(t) за сутки (t от 0 до 24h): минимум — в кульминации, максимум — в нижней кульминации</div>
+<div class="note blue"><b>Как читать рисунок.</b> Точка Z — центр: зенит наблюдателя. P — полюс мира на высоте φ над точкой севера. Сторона PZ равна 90° − φ, сторона Zσ — измеряемое зенитное расстояние, сторона Pσ — полярное расстояние 90° − δ. Угол при полюсе — часовой угол t, при зените — азимут светила. Именно из этого треугольника «читаются» все зенитальные способы.</div>
+</div>
+
+<div class="grid" style="margin-top:24px">
+<div class="article">
+<h2>Почему одного светила недостаточно</h2>
+<p class="lead">Подставим в основное уравнение измеренное Z и момент T. Получим одно уравнение с двумя неизвестными — φ и u. Геометрически это значит: одна и та же измеренная высота может быть получена на разных широтах, если соответственно изменить поправку часов.</p>
+<div class="two">
+<div><div class="formula" style="margin-top:0">cos Z₁ = sin φ sin δ₁ + cos φ cos δ₁ cos(T₁ + u − α₁)</div></div>
+<div><div class="formula" style="margin-top:0">cos Z₂ = sin φ sin δ₂ + cos φ cos δ₂ cos(T₂ + u − α₂)</div></div>
+</div>
+<p class="lead">Систему из двух (и более) уравнений решают относительно φ и u. Так как уравнения нелинейные, их приводят к линейному виду и отыскивают не сами величины, а поправки к их приближённым значениям:</p>
+<div class="formula">
+φ = φ₀ + Δφ, &nbsp;&nbsp; u = u₀ + Δu &nbsp;&nbsp;→&nbsp;&nbsp; V<sub>Z</sub> = cos A · x + sin A · y − ΔMZ + l, &nbsp; l = Z<sub>выч</sub> − Z<sub>изм</sub>.
+</div>
+<ul class="plain">
+<li><b>x, y</b> — условные составляющие уклонения отвесной линии: переходят от астрономических φ, λ к геодезическим;</li>
+<li>можно доказать, что <b>du = dλ</b>, поэтому вместо Δu записывают поправку Δλ к приближённой долготе: Δu = Δλ;</li>
+<li>свободный член <b>l</b> = Z<sub>выч</sub> − Z<sub>изм</sub>, где Z<sub>выч</sub> вычисляют по формуле (1.71) при известных φ₀, u₀;</li>
+<li>при n = 3 решение единственное, при n &gt; 3 систему решают по методу наименьших квадратов с весами.</li>
+</ul>
+<div class="note"><b>Требование к программе наблюдений.</b> Светила нужно наблюдать при <b>различных азимутах</b>, иначе коэффициенты уравнений поправок совпадут, уравнения окажутся зависимыми и система — несовместной.</div>
+<div class="note green"><b>О точности предварительных координат.</b> Отбрасывая вторые производные при линеаризации, приходим к выводу: приближённые φ₀, λ₀ достаточно знать с ошибкой не более <b>100″</b> — такие координаты снимают с карты масштаба 1:1 000 000 и крупнее. Если предварительные координаты известны с ошибкой до 10″, коэффициенты уравнений поправок достаточно знать до трёх значащих цифр.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 2. Один светило — много решений</h2>
+<p class="muted">Измеренному зенитному расстоянию Z = 40° при часовом угле t = 300° соответствует целая линия на плоскости (φ, u). Нажмите «Показать линию» и сравните три пары (φ, u), дающие одну и ту же высоту.</p>
+<div class="btnrow"><button class="btn" id="ambBtn" type="button">Показать линию решений</button></div>
+<svg id="ambSvg" viewBox="0 0 640 300" role="img" aria-label="Линия решений основного уравнения в плоскости широта — поправка часов"></svg>
+<div class="cap">Рис. 3. «Неоднозначность» одного уравнения: кривая равных высот в координатах φ (по горизонтали) и u (по вертикали)</div>
+<div class="readout">
+<div class="out"><small>точка 1</small><b id="amb1">—</b></div>
+<div class="out"><small>точка 2</small><b id="amb2">—</b></div>
+<div class="out"><small>точка 3</small><b id="amb3">—</b></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= METHODS ================= -->
+<section class="view" id="methods">
+<div class="article">
+<h2>Два пути определения φ и u</h2>
+<p class="lead">Из основного уравнения есть два принципиально разных выхода: <b>раздельный</b> (сначала одним условием находим φ, потом другим — u) и <b>совместный</b> (решаем систему уравнений сразу для всех неизвестных). Раздельный путь удобнее с точки зрения наивыгоднейших условий для каждой величины, совместный — единообразием методики наблюдений и обработки.</p>
+<div class="cards">
+<div class="card"><span class="tag">раздельный</span><b>Светило в плоскости меридиана</b>При t = 0 (и 180°) cos t = ±1, и уравнение упрощается до φ = Z<sub>S</sub> + δ<sub>S</sub>. Так находят широту, после чего из любого светила находят u и λ.</div>
+<div class="card"><span class="tag">совместный</span><b>Два светила в перпендикулярных вертикалах</b>Измеряют Z₁ и Z₂ светил, расположенных в произвольных, но взаимно перпендикулярных вертикалах. Система двух уравнений решается относительно φ и u.</div>
+<div class="card"><span class="tag">равные высоты</span><b>Светила на одном альмукантарате</b>Z₁ = Z₂ — измеряются только моменты прохождений через горизонтальную нить. Исключаются ошибки отсчитывания по вертикальному кругу и ослабляется влияние рефракции.</div>
+</div>
+</div>
+
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Раздельный способ: широта в меридиане</h2>
+<p class="muted">В плоскости меридиана t = 0 или t = 180°, и основное уравнение даёт простое соотношение. Соберите схему: светило на меридиане, измерено Z, из АЕ известно δ.</p>
+<div class="btnrow">
+<button class="btn on" id="mCase1" type="button">Светило к югу от зенита</button>
+<button class="btn" id="mCase2" type="button">Светило к северу (верхняя кульминация)</button>
+</div>
+<svg id="merSvg" viewBox="0 0 640 380" role="img" aria-label="Схема определения широты в плоскости меридиана"></svg>
+<div class="ctl"><label>склонение δ</label><input type="range" id="mDec" min="-60" max="89" step="0.5" value="22"><span class="val" id="mDecV">22,0°</span></div>
+<div class="ctl"><label>Z (измерено)</label><input type="range" id="mZ" min="1" max="89" step="0.5" value="34"><span class="val" id="mZV">34,0°</span></div>
+<div class="readout">
+<div class="out"><small>формула</small><b id="mFormula" style="font-size:13px">—</b></div>
+<div class="out"><small>широта φ</small><b id="mPhi">—</b></div>
+</div>
+<div class="muted" id="mHint"></div>
+<div class="note green" style="margin-bottom:0">Определив φ, из наблюдения любого светила в момент T находят u, а затем местное звёздное время s = T + u и долготу λ = s + S.</div>
+</div>
+<div class="article">
+<h2>Совместный способ: светила на равных высотах</h2>
+<p class="lead">Зенитные расстояния измеряются тем точнее, чем они меньше? Наоборот: с ростом широты точность измерения Z падает, а вместе с ней и точность φ. Поэтому в совместных способах рекомендуется наблюдать светила <b>на одном круге высот — альмукантарате</b> (или вблизи него). Тогда Z₁ = Z₂, и из двух уравнений исключается сама измеряемая величина:</p>
+<div class="formula">
+sin φ sin δ₁ + cos φ cos δ₁ cos t₁ = sin φ sin δ₂ + cos φ cos δ₂ cos t₂
+<span style="display:block;margin-top:8px">⟹ &nbsp; tg φ = [cos δ₂ cos t₂ − cos δ₁ cos t₁] / [sin δ₁ − sin δ₂]</span>
+</div>
+<p class="lead">Здесь t = T + u − α, то есть для вычисления φ нужно знать поправку часов u (её берут из приёма радиосигналов точного времени). Главный выигрыш: <b>измеряются только моменты T₁ и T₂ прохождений светил через горизонтальную нить</b> — ошибки отсчитывания по вертикальному кругу в результат не входят.</p>
+<div class="note"><b>Недостаток способа.</b> Неизвестные φ и u стоят под знаками тригонометрических функций — уравнение нелинейно. Для повышения точности исходное уравнение приводят к линейному виду и отыскивают поправки Δφ и Δu из обработки многократных наблюдений: φ = φ₀ + Δφ, u = u₀ + Δu.</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:24px">
+<h2>Интерактив 3. Две звезды на одном альмукантарате</h2>
+<p class="muted">Задайте координаты двух звёзд и их часовые углы (поправка часов известна из сигналов времени). Обе звезды наблюдаются на одной высоте — их кривые Z(t) пересекаются на высоте альмукантарата. Решение tg φ = (cos δ₂ cos t₂ − cos δ₁ cos t₁)/(sin δ₁ − sin δ₂) даёт широту.</p>
+<div class="two" style="grid-template-columns:1fr 320px">
+<div>
+<svg id="eqSvg" viewBox="0 0 640 320" role="img" aria-label="Кривые зенитного расстояния двух звёзд и альмукантарат"></svg>
+<div class="cap">Рис. 4. Кривые Z₁(t) и Z₂(t): пересечение отвечает наблюдению на одном альмукантарате</div>
+</div>
+<div>
+<div class="ctl"><label>δ₁ звезды</label><input type="range" id="e1D" min="-40" max="80" step="0.5" value="35"><span class="val" id="e1DV">35°</span></div>
+<div class="ctl"><label>t₁</label><input type="range" id="e1T" min="-120" max="120" step="1" value="-45"><span class="val" id="e1TV">−45°</span></div>
+<div class="ctl"><label>δ₂ звезды</label><input type="range" id="e2D" min="-40" max="80" step="0.5" value="5"><span class="val" id="e2DV">5°</span></div>
+<div class="ctl"><label>t₂</label><input type="range" id="e2T" min="-120" max="120" step="1" value="30"><span class="val" id="e2TV">30°</span></div>
+<div class="readout">
+<div class="out"><small>Z₁</small><b id="eZ1">—</b></div>
+<div class="out"><small>Z₂</small><b id="eZ2">—</b></div>
+<div class="out"><small>tg φ</small><b id="eTg">—</b></div>
+<div class="out"><small>широта φ</small><b id="ePhi">—</b></div>
+</div>
+<div class="muted" id="eHint">—</div>
+</div>
+</div>
+</div>
+
+<div class="grid" style="margin-top:24px">
+<div class="article">
+<h2>Способы равных высот: главная идея</h2>
+<p class="lead">Способ равных высот (Сомер, Кнорре, Гаусс, Мазаев, Цингер, Певцов) — это методика, при которой систематические ошибки, действующие в функции зенитного расстояния, <b>взаимно уничтожаются в разности измерений</b>:</p>
+<div class="chips">
+<span class="chip">рефракция</span><span class="chip">гнутие трубы</span><span class="chip">погрешность места зенита MZ</span><span class="chip">ошибки делений лимба вертикального круга</span><span class="chip">азимутальные сдвиги прибора</span>
+</div>
+<p class="lead">Именно поэтому способы равных высот — самые точные: результат определяется не абсолютным значением Z, а разностью малых величин, где все общие систематические погрешности сокращаются.</p>
+<h3>Что измеряется и что вычисляется</h3>
+<table>
+<tr><th>Способ</th><th>Измеряется</th><th>Находится</th></tr>
+<tr><td>Сомер — Акимов</td><td>Z светил, равномерно распределённых по азимутам (n ≥ 3)</td><td>φ, λ (совместно), уклонения отвеса x, y</td></tr>
+<tr><td>Мазаев (Гаусс, Кнорре)</td><td>моменты прохождений 12–16 светил через один альмукантарат</td><td>φ, λ совместно</td></tr>
+<tr><td>Талькотт (Горребоу)</td><td>малая разность Z пары звёзд в меридиане (окулярный микрометр), |Z<sub>S</sub> − Z<sub>N</sub>| &lt; 20′</td><td>φ</td></tr>
+<tr><td>Цингер</td><td>моменты пары звёзд на равных высотах вблизи 1-го вертикала (по одной к E и W)</td><td>u, λ (поправка часов)</td></tr>
+<tr><td>Певцов</td><td>моменты пары звёзд на равных высотах вблизи меридиана (10–40° от него)</td><td>φ</td></tr>
+</table>
+<div class="note green"><b>Правило симметрии.</b> Пары звёзд выбирают симметрично: для Цингера — по азимуту относительно меридиана (A<sub>E</sub> = 360° − A<sub>W</sub>), для Певцова — относительно первого вертикала (A<sub>N</sub> = 180° − A<sub>S</sub>). Тогда перекрёстные коэффициенты нормальных уравнений обращаются в нуль, и обработка резко упрощается.</div>
+</div>
+<div class="panel">
+<h2>Способ Талькотта: две звезды в меридиане</h2>
+<p class="muted">Наблюдают две звезды в плоскости меридиана: одна к северу от зенита, другая к югу, кульминирующие почти одновременно. Окулярным микрометром измеряют малую разность зенитных расстояний. Возможны два случая.</p>
+<svg id="talSvg" viewBox="0 0 620 330" role="img" aria-label="Схема способа Талькотта"></svg>
+<div class="ctl"><label>δ<sub>S</sub> южной</label><input type="range" id="talDS" min="-45" max="70" step="0.5" value="30"><span class="val" id="talDSV">30°</span></div>
+<div class="ctl"><label>δ<sub>N</sub> северной</label><input type="range" id="talDN" min="-10" max="88" step="0.5" value="62"><span class="val" id="talDNV">62°</span></div>
+<div class="ctl"><label>Z<sub>S</sub></label><input type="range" id="talZS" min="1" max="60" step="0.5" value="14"><span class="val" id="talZSV">14°</span></div>
+<div class="ctl"><label>Z<sub>N</sub></label><input type="range" id="talZN" min="1" max="60" step="0.5" value="14.3"><span class="val" id="talZNV">14,3°</span></div>
+<div class="btnrow">
+<button class="btn on" id="talC1" type="button">1: обе в верхней кульминации</button>
+<button class="btn" id="talC2" type="button">2: северная — в нижней</button>
+</div>
+<div class="readout">
+<div class="out"><small>разность |Z<sub>S</sub>−Z<sub>N</sub>|</small><b id="talDiff">—</b></div>
+<div class="out"><small>широта φ</small><b id="talPhi">—</b></div>
+</div>
+<div class="formula" style="font-size:13.5px" id="talFormula">—</div>
+<div class="note" style="margin-bottom:0"><b>Контроль.</b> Разность зенитных расстояний не должна превышать 20′. Средняя квадратическая погрешность широты: ≈ 0,8″ по одной паре и ≈ 0,3″ по 10–12 парам. Нельзя применять при φ &gt; 65° в летний период.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CLASSIFY ================= -->
+<section class="view" id="classify">
+<div class="bs-grid">
+<div class="article">
+<h2>Классификация зенитальных способов</h2>
+<p class="lead">Блок-схема соответствует рис. 1.28 учебника. Основание деления — <b>что именно измеряют</b>: зенитное расстояние Z (способы разных высот) или только моменты прохождения светил через заданный альмукантарат (способы равных высот, Z не измеряют). Внутри первой группы способы различаются <b>расположением светил</b>: на разных вертикалах (A различны) или в плоскости одного вертикала (A = ±180°). <b>Нажмите на любой блок</b> — справа раскроется описание способа: условие наблюдений, алгоритм работы, расчётные формулы и точность.</p>
+<div class="bs">
+<div class="bs-row">
+<button class="bs-box on" type="button" data-node="root"><small>рис. 1.28</small><b>Зенитальные способы астрономических определений</b></button>
+</div>
+<div class="bs-fork n2"></div>
+<div class="bs-row">
+<div class="bs-col">
+<button class="bs-box" type="button" data-node="diff"><small>ветвь 1</small><b>Способы разных высот, т.е. измеряют Z</b></button>
+<div class="bs-fork n2"></div>
+<div class="bs-row">
+<div class="bs-col">
+<button class="bs-box sm" type="button" data-node="diffvar"><small>подгруппа</small><b>Наблюдение звёзд на разных вертикалах (A разн.)</b></button>
+<div class="bs-stub"></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="somner"><i>1</i><span>Совместно φ и U — способ Сомнера–Акимова</span></button>
+<button class="bs-item" type="button" data-node="perp"><i>2</i><span>Совместное определение φ и U из наблюдения пар звёзд во взаимно перпендикулярных вертикалах</span></button>
+<button class="bs-item" type="button" data-node="polsun"><i>3</i><span>Определение φ по Полярной звезде и Солнцу</span></button>
+<button class="bs-item" type="button" data-node="sunu"><i>4</i><span>Определение U по наблюдению Солнца вблизи 1-го вертикала</span></button>
+</div>
+</div>
+<div class="bs-col">
+<button class="bs-box sm" type="button" data-node="diffone"><small>подгруппа</small><b>Наблюдение звёзд в плоскости одного вертикала (A = ±180°)</b></button>
+<div class="bs-stub"></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="struve"><i>1</i><span>Определение φ из наблюдений звёзд вблизи меридиана — способ Струве</span></button>
+<button class="bs-item" type="button" data-node="talkott"><i>2</i><span>Определение φ из наблюдений звёзд вблизи меридиана на разных Z при ΔZ &lt; 20′ — способ Талькотта</span></button>
+<button class="bs-item" type="button" data-node="uvert"><i>3</i><span>Определение U из наблюдения звёзд вблизи 1-го вертикала</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="bs-col">
+<button class="bs-box" type="button" data-node="equal"><small>ветвь 2</small><b>Способы равных высот (Z не измеряют)</b></button>
+<div class="bs-stub"></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="gauss"><i>1</i><span>Совместно φ и U: — способ Гаусса; — способ Мазаева</span></button>
+<button class="bs-item" type="button" data-node="kavlaysky"><i>2</i><span>Совместно φ и U, наблюдая пары звёзд во взаимно перпендикулярных вертикалах — способ Кавлайского</span></button>
+<button class="bs-item" type="button" data-node="pevcov"><i>3</i><span>Определение φ из наблюдений пар звёзд вблизи плоскости меридиана — способ Певцова</span></button>
+<button class="bs-item" type="button" data-node="zinger"><i>4</i><span>Определение U из наблюдения пар звёзд вблизи плоскости 1-го вертикала — способ Цингера</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="note green" style="margin-top:16px"><b>Мнемоника выбора.</b> Нужна широта — наблюдают вблизи меридиана (там Z чувствительно к φ и не зависит от ошибок часов). Нужна поправка часов или долгота — наблюдают вблизи первого вертикала. Нужны обе величины совместно — светила «раскладывают» по азимутам, лучше всего в двух взаимно перпендикулярных вертикалах при Z<sub>ср</sub> ≈ 35°.</div>
+</div>
+<div class="panel detail-panel"><div class="tdetail" id="treeDetail"></div></div>
+</div>
+</section>
+
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Сравнение способов</h2>
+<table>
+<tr><th>Способ</th><th>Измерения</th><th>Определяется</th><th>Точность</th></tr>
+<tr><td>Раздельный (меридиан)</td><td>Z и T одного светила у меридиана</td><td>φ, затем u</td><td>0,5–1″</td></tr>
+<tr><td>Сомер — Акимов</td><td>Z и T трёх и более светил в разных вертикалах</td><td>φ, λ, x, y</td><td>≈ 0,4″ при 36 светилах</td></tr>
+<tr><td>Талькотт</td><td>разность Z пары звёзд (микрометр)</td><td>φ</td><td>0,8″ (1 пара), 0,3″ (10–12 пар)</td></tr>
+<tr><td>Мазаев</td><td>прохождения 12–16 светил через альмукантарат</td><td>φ, λ</td><td>0,3–0,5″</td></tr>
+<tr><td>Цингер</td><td>прохождения пары звёзд у 1-го вертикала</td><td>u, λ</td><td>0,3–0,5″ (один из самых точных)</td></tr>
+<tr><td>Певцов</td><td>прохождения пары звёзд вблизи меридиана</td><td>φ</td><td>не уступает Талькотту</td></tr>
+</table>
+</div>
+<div class="article">
+<h2>Что даёт единая теория</h2>
+<p class="lead">При n &gt; 3 в зенитальных способах возникает задача уравнивания. Общая теория астрономических определений предлагает находить не сами φ, u, A, а поправки к приближённым значениям, приводя нелинейные уравнения к линейному виду.</p>
+<div class="formula">Z = f₁(φ, u) &nbsp;→&nbsp; Z = f₁(φ₀, u₀) + (∂f₁/∂φ)Δφ + (∂f₁/∂u)Δu &nbsp;→&nbsp; V<sub>Z</sub> = cos A·Δφ + 15·cos φ·sin A·Δu − ΔMZ + l</div>
+<ul class="plain">
+<li>коэффициенты при неизвестных имеют ясный геометрический смысл: <b>cos A</b> «взвешивает» широту, <b>cos φ sin A</b> — время;</li>
+<li>единый вид уравнений поправок ⇒ единый алгоритм обработки и удобство программирования;</li>
+<li>при n &gt; 3 система решается по МНК с весами уравнений;</li>
+<li>недостаток общей схемы — нельзя достичь наивысшей точности, возможной в раздельных способах при специально выбранных наивыгоднейших условиях.</li>
+</ul>
+<div class="note blue"><b>Проверьте себя.</b> Почему в способе Сомнера — Акимова zенитные расстояния рекомендуют выбирать в пределах 10–60°, а светила — равномерно по азимутам? Ответ: ошибки рефракции и гнутия растут с Z, а равномерность по азимутам обеспечивает хорошую обусловленность системы уравнений.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CONDITIONS ================= -->
+<section class="view" id="conditions">
+<div class="grid">
+<div class="article">
+<h2>Наивыгоднейшие условия наблюдений</h2>
+<p class="lead">Дифференцируя основное уравнение, получаем линейные соотношения между ошибками измерений и ошибками определяемых величин:</p>
+<div class="formula">
+ΔZ = −cos A · Δφ + cos φ · sin A · Δt<br>
+Δφ = −ΔZ / cos A + cos φ · tg A · Δt &nbsp;&nbsp;&nbsp; Δt = Δu
+</div>
+<p class="lead">Отсюда следуют два «золотых» вывода, известных из учебника:</p>
+<ul class="plain">
+<li><b>Δφ минимально при наблюдении в плоскости меридиана</b>: при A = 0° (cos A = 1) ошибка зенитного расстояния входит в широту в полном размере, но ошибка времени на неё не влияет вовсе; при A = 180° — аналогично, с обратным знаком. При A → 90° коэффициент 1/cos A неограниченно растёт — широта из таких наблюдений получается плохо.</li>
+<li><b>Δu (Δλ) минимально в первом вертикале</b>: при A<sub>W</sub> = 90°, A<sub>E</sub> = 270° чувствительность Z ко времени максимальна, а к широте — нулевая.</li>
+</ul>
+<div class="note"><b>Практические границы.</b> В точных способах светила наблюдают на одном альмукантарате при <b>10° &lt; Z &lt; 60°</b>, причём разность зенитных расстояний звёзд серии — не более <b>5–7°</b>: тогда остаточное влияние рефракции и гнутия не превышает 0,2–0,3″. В определениях средней точности допустимы <b>10° &lt; Z &lt; 70°</b>. При Z &gt; 70° рефракция сказывается слишком сильно, при Z &lt; 10° опасны инструментальные ошибки.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 4. Чувствительность Z к φ и ко времени</h2>
+<p class="muted">Ползунком задайте зенитное расстояние и азимут светила — столбики показывают, как ошибка измерения Z величиной 1″ и ошибка времени 1s переходят в ошибку широты.</p>
+<div class="ctl"><label>азимут A</label><input type="range" id="sA" min="0" max="360" step="1" value="0"><span class="val" id="sAV">0°</span></div>
+<div class="ctl"><label>Z</label><input type="range" id="sZ" min="5" max="85" step="1" value="35"><span class="val" id="sZV">35°</span></div>
+<div class="ctl"><label>широта φ</label><input type="range" id="sPhi" min="0" max="75" step="1" value="56"><span class="val" id="sPhiV">56°</span></div>
+<div class="bars" id="sensBars"></div>
+<div class="readout">
+<div class="out"><small>|∂φ/∂Z|</small><b id="sDZ">—</b></div>
+<div class="out"><small>|∂φ/∂t| (на 1s)</small><b id="sDT">—</b></div>
+<div class="out"><small>оценка наблюд.</small><b id="sRate">—</b></div>
+</div>
+<svg id="sensChart" viewBox="0 0 620 210" role="img" aria-label="Зависимость чувствительности от азимута светила"></svg>
+<div class="cap">Рис. 5. |cos A| — «вес» широты и |sin A| — «вес» времени в зависимости от азимута светила</div>
+</div>
+</div>
+
+<div class="grid" style="margin-top:24px">
+<div class="article">
+<h2>Ошибки, влияющие на измерение Z</h2>
+<table>
+<tr><th>Источник</th><th>Формула / закономерность</th><th>Как ослабить</th></tr>
+<tr><td>Наклон оси вращения трубы и коллимационная ошибка</td><td>ΔZ = (i″ + c″)·cos Z / ρ″ (1.65)</td><td>условие Z &gt; 10°; исследование прибора, наблюдения при КЛ и КП</td></tr>
+<tr><td>Гнутие трубы</td><td>ΔZ = g·sin Z (1.66)</td><td>наблюдать пару звёзд на равных высотах по обе стороны от зенита: Δφ = +ΔZ для южных и Δφ = −ΔZ для северных звёзд</td></tr>
+<tr><td>Остаточная рефракция</td><td>при разных Z достигает 1–2′</td><td>один альмукантарат, 10° &lt; Z &lt; 60°, разность Z в серии ≤ 5–7°</td></tr>
+<tr><td>Ошибка визирования</td><td>W = r″/(W·k<sup>1/2</sup>) (1.67)</td><td>увеличение трубы, число наведений, яркие звёзды</td></tr>
+<tr><td>Ошибка фиксации момента</td><td>m<sub>T</sub> = m<sub>S</sub>/V (1.68)</td><td>выбор светил с малой скоростью изменения Z (вблизи меридиана)</td></tr>
+<tr><td>Ошибка отсчитывания</td><td>зависит от качества делений лимба</td><td>повторные приёмы, перестановка лимба, приёмы КЛ/КП</td></tr>
+</table>
+<div class="note"><b>Ключевая закономерность.</b> Все ошибки, действующие в функции зенитного расстояния (рефракция, гнутие, место зенита), переходят в широту и время через коэффициенты cos A и cos φ sin A, а в способах равных высот — взаимно уничтожаются в разности измерений.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 5. Калькулятор инструментальных поправок</h2>
+<p class="muted">Оцените, насколько ошибки прибора искажают измеренное зенитное расстояние.</p>
+<div class="ctl"><label>наклон оси i″</label><input type="range" id="cI" min="-30" max="30" step="0.5" value="6"><span class="val" id="cIV">6″</span></div>
+<div class="ctl"><label>коллимация c″</label><input type="range" id="cC" min="-30" max="30" step="0.5" value="4"><span class="val" id="cCV">4″</span></div>
+<div class="ctl"><label>гнутие g″</label><input type="range" id="cG" min="-5" max="5" step="0.1" value="1.5"><span class="val" id="cGV">1,5″</span></div>
+<div class="ctl"><label>Z</label><input type="range" id="cZ" min="5" max="85" step="1" value="35"><span class="val" id="cZV">35°</span></div>
+<div class="readout">
+<div class="out"><small>(i + c)·cos Z</small><b id="cOut1">—</b></div>
+<div class="out"><small>g·sin Z</small><b id="cOut2">—</b></div>
+<div class="out"><small>суммарно ΔZ</small><b id="cOut3">—</b></div>
+</div>
+<svg id="corrSvg" viewBox="0 0 620 200" role="img" aria-label="Зависимость инструментальных поправок от зенитного расстояния"></svg>
+<div class="cap">Рис. 6. Как меняются поправки ΔZ<sub>i+c</sub> и ΔZ<sub>гнут</sub> с ростом зенитного расстояния</div>
+<div class="note green" style="margin-bottom:0">При Z → 0 растёт коллимационная составляющая, при Z → 90° — составляющая гнутия. Рабочий компромисс точных способов — тот же интервал 10° &lt; Z &lt; 60°.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= PRACTICE ================= -->
+<section class="view" id="practice">
+<div class="grid">
+<div class="article">
+<h2>Практикум 1. Совместное определение φ и λ по n светилам</h2>
+<p class="lead">Это схема способа Сомнера — Акимова: измерены зенитные расстояния светил, по приближённым координатам φ₀, λ₀ вычислены Z<sub>выч</sub> и азимуты A. Составляют уравнения поправок и решают систему. Введите три набора (A, l = Z<sub>выч</sub> − Z<sub>изм</sub>) и получите x, y, ΔMZ.</p>
+<div class="two">
+<div>
+<table class="worktable">
+<tr><th>светило</th><th>A, °</th><th>l = Z<sub>выч</sub>−Z<sub>изм</sub>, ″</th></tr>
+<tr><td>1</td><td><input type="number" id="mnA1" value="35" step="1"></td><td><input type="number" id="mnL1" value="12" step="0.1"></td></tr>
+<tr><td>2</td><td><input type="number" id="mnA2" value="125" step="1"></td><td><input type="number" id="mnL2" value="-18" step="0.1"></td></tr>
+<tr><td>3</td><td><input type="number" id="mnA3" value="250" step="1"></td><td><input type="number" id="mnL3" value="7" step="0.1"></td></tr>
+</table>
+<div class="ctl"><label>φ₀</label><input type="number" id="mnPhi0" value="56.0000" step="0.0001"><span class="val">°</span></div>
+<div class="ctl"><label>λ₀</label><input type="number" id="mnLam0" value="28.5000" step="0.0001"><span class="val">°</span></div>
+<div class="btnrow"><button class="btn on" id="mnRun" type="button">Решить систему</button></div>
+</div>
+<div>
+<div class="formula" style="font-size:13.5px">V<sub>Z</sub> = cos A·x + sin A·y − ΔMZ + l</div>
+<div class="readout">
+<div class="out"><small>x (Δφ)</small><b id="mnX">—</b></div>
+<div class="out"><small>y (Δλ·cos φ)</small><b id="mnY">—</b></div>
+<div class="out"><small>ΔMZ</small><b id="mnMZ">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>φ = φ₀ + x</small><b id="mnPhi">—</b></div>
+<div class="out"><small>λ = λ₀ + y/(15cos φ₀)</small><b id="mnLam">—</b></div>
+</div>
+<div class="muted" id="mnNote">—</div>
+</div>
+</div>
+<div class="note"><b>Порядок наблюдений (приём):</b> приём радиосигналов времени → измерение горизонтальных углов Q и зенитных расстояний → приём радиосигналов времени. Для каждого светила при КЛ и КП; отсчёты уровня обязательны.</div>
+</div>
+<div class="panel">
+<h2>Практикум 2. Обработка приёма способа Мазаева</h2>
+<p class="lead">В способе Мазаева 12–16 светил наблюдаются на одном альмукантарате, измеряются моменты прохождения. Уравнение поправок для каждого светила: V<sub>i</sub> = −ζ′ + x cos A<sub>i</sub> + y sin A<sub>i</sub> + l, вес P = 1.</p>
+<div class="steps">
+<div class="step"><b>Установка альмукантарата.</b><div class="f">Z<sub>эф</sub> = 30° или 45°; трубу закрепляют по высоте на весь приём</div></div>
+<div class="step"><b>Наблюдение.</b><div class="f">Момент прохождения светила через горизонтальную нить — T<sub>i</sub>; уровень; светила берут по всей азимутальной окружности</div></div>
+<div class="step"><b>Замыкание приёма.</b><div class="f">Повторный приём радиосигналов точного времени; контроль хода хронометра</div></div>
+<div class="step"><b>Вычисление свободных членов.</b><div class="f">l = Z₀ − Z<sub>эф</sub>, где Z₀ = Z′₀ + поправки за уровень, за зенитальное ускорение, за аберрацию</div></div>
+<div class="step"><b>Решение системы и переход к координатам.</b><div class="f">φ = φ₀ + x, &nbsp; λ = λ₀ + y/(15 cos φ₀)</div></div>
+</div>
+<div class="note green" style="margin-bottom:0"><b>Достоинства способа.</b> Простая методика наблюдений и обработки, исключение поправок за рефракцию и гнутие, независимость от ошибок делений лимба вертикального круга. <b>Недостаток:</b> нет преимуществ перед раздельными способами определения φ и λ.</div>
+</div>
+</div>
+
+<div class="panel" style="margin-top:24px">
+<h2>Практикум 3. Талькотт и Цингер: численные примеры</h2>
+<div class="two">
+<div>
+<h3 style="font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:0 0 8px">Талькотт (случай 1)</h3>
+<p class="lead" style="margin:0 0 8px">Дано: δ<sub>S</sub> = 30°00′, Z<sub>S</sub> = 14°00′; δ<sub>N</sub> = 62°00′, Z<sub>N</sub> = 14°18′.</p>
+<div class="formula" style="font-size:14px">
+φ = ½(δ<sub>S</sub> + δ<sub>N</sub>) + ½(Z<sub>S</sub> − Z<sub>N</sub>) = 46°00′ + (−9′) = <b>45°51′</b>
+</div>
+<div class="muted">Обратите внимание: в результат входит только <b>разность</b> зенитных расстояний — общие ошибки измерения высоты сократились.</div>
+</div>
+<div>
+<h3 style="font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:0 0 8px">Цингер (пара звёзд)</h3>
+<p class="lead" style="margin:0 0 8px">Дано: Z<sub>E</sub><sup>выч</sup> = 42°10′18″, Z<sub>W</sub><sup>выч</sup> = 42°10′52″, sin A<sub>W</sub> = 0,80, sin A<sub>E</sub> = −0,76.</p>
+<div class="formula" style="font-size:14px">
+y = −(Z<sub>W</sub><sup>выч</sup> − Z<sub>E</sub><sup>выч</sup>)/(sin A<sub>W</sub> − sin A<sub>E</sub>) = −(34″)/(1,56) = <b>−21,8″</b>
+</div>
+<div class="muted">Затем λ = λ₀ + y/(15 cos φ₀). Вес пары P = 2 sin²A<sub>W</sub>; при 5–6 парах достигается точность определения времени порядка 0,01s.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section class="view" id="check">
+<div class="article">
+<h2>Самопроверка</h2>
+<p class="lead">Ответьте на вопросы — правильный вариант подсветится зелёным, ошибочный красным. Счёт ведётся внизу.</p>
+<div id="quiz"></div>
+<div class="score" id="score">Отвечено: 0/8</div>
+<div class="note green" style="margin-top:18px"><b>Итог урока.</b> Зенитальные способы опираются на одно основное уравнение (1.42). Всё разнообразие методик — это способы обойти второе неизвестное: наблюдением в меридиане, в первом вертикале, на равных высотах или совместным решением системы уравнений поправок. Наивыгоднейшие условия и способы равных высот возвращают нас к одной идее — избавиться от систематических ошибок, действующих в функции зенитного расстояния.</div>
+<p class="muted">Дальше по курсу: <a href="azimuthal-methods.html" style="color:#d9501a">Азимутальные способы астрономических определений</a> — там измеряют горизонтальные направления и определяют азимут местного предмета.</p>
+</div>
+</section>
+</div></div>
+</main></div>
+<script src="../../assets/search-data.js"></script><script src="../../assets/courses-data.js"></script><script src="../../assets/main.js"></script><script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+<script>
+/* ============================================================
+   Урок «Зенитальные способы астрономических определений»
+   ============================================================ */
+var D=Math.PI/180,R2D=180/Math.PI,$$=function(id){return document.getElementById(id);};
+function sn(x){return Math.sin(x*D);} function cs(x){return Math.cos(x*D);} function tg(x){return Math.tan(x*D);}
+function fx(v,n){return v.toFixed(n===undefined?2:n).replace('.',',');}
+
+function svgNum(s){return String(s)
+  .replace(/([a-zA-Z][a-zA-Z0-9:._-]*)="\s*(-?\d+),(\d+)"/g,'$1="$2.$3"')
+  .replace(/d="([^"]*)"/g,function(m,p){return 'd="'+p.replace(/,/g,'.')+'"';})
+  .replace(/translate\((-?\d+),(\d+)\)/g,'translate($1.$2)');}
+/* --- перехват innerHTML: любые десятичные запятые в атрибутах заменяются на точку --- */
+(function(){
+  var proto=window.Element&&window.Element.prototype;if(!proto)return;
+  var d=Object.getOwnPropertyDescriptor(proto,'innerHTML');if(!d||!d.set)return;
+  try{Object.defineProperty(proto,'innerHTML',{configurable:true,enumerable:!!d.enumerable,
+    get:function(){return d.get.call(this);},
+    set:function(v){d.set.call(this,(typeof v==='string')?svgNum(v):v);}});}catch(e){}
+})();
+
+/* --- защита от вырожденных данных в виджетах --- */
+function fin(x){return typeof x==='number'&&isFinite(x);}
+function blankOut(ids){for(var i=0;i<ids.length;i++){var e=$$(ids[i]);if(e)e.textContent='—';}}
+/* --- автоисправление десятичных запятых в числовых атрибутах SVG (RU-локаль) --- */
+(function(){
+  var ATTRS=/^(x|y|x1|y1|x2|y2|cx|cy|r|rx|ry|d|points|transform|width|height|offset|font-size|stroke-width)$/;
+  function fix(root){
+    if(!root||root.nodeType!==1)return;
+    var list=[root].concat([].slice.call(root.querySelectorAll('*')));
+    for(var i=0;i<list.length;i++){
+      var el=list[i];if(!el.attributes)continue;
+      for(var k=0;k<el.attributes.length;k++){
+        var at=el.attributes[k];
+        if(ATTRS.test(at.name)&&at.value.indexOf(',')>-1)at.value=at.value.replace(/,/g,'.');
+      }
+    }
+  }
+  window.__fixSvgAttrs=fix;fix(document.body);
+  if(window.MutationObserver){
+    new MutationObserver(function(muts){
+      var t=[];
+      for(var i=0;i<muts.length;i++)if(muts[i].target&&muts[i].target.nodeType===1)t.push(muts[i].target);
+      for(var j=0;j<t.length;j++)fix(t[j]);
+    }).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+function dms(v,sec){var s=v<0?'−':'';v=Math.abs(v);var d=Math.floor(v),m=Math.floor((v-d)*60+1e-9),ss=((v-d)*60-m)*60;
+  return s+d+'°'+String(m).padStart(2,'0')+'′'+(sec===false?'':' '+ss.toFixed(1).replace('.',',')+'″');}
+function hms(t){var s=t<0?'−':'';t=Math.abs(t)/15;var h=Math.floor(t),m=(t-h)*60;return s+h+'h'+String(Math.round(m)).padStart(2,'0')+'m';}
+function zen(phi,dec,t){var c=sn(phi)*sn(dec)+cs(phi)*cs(dec)*cs(t);return Math.acos(Math.max(-1,Math.min(1,c)))*R2D;}
+function azi(phi,dec,t){var z=zen(phi,dec,t)*D,s=Math.sin(z);if(s<1e-9)return 0;
+  var sA=-cs(dec)*sn(t)/s,cA=(sn(dec)-sn(phi)*Math.cos(z))/((cs(phi)*s)||1e-9);
+  var A=Math.atan2(sA,cA)*R2D;return (A+360)%360;}
+function par(phi,dec,t){var z=zen(phi,dec,t)*D,den=Math.sin(z)*cs(dec);
+  if(Math.abs(den)<1e-9)return 0;return Math.acos(Math.max(-1,Math.min(1,(sn(phi)-Math.cos(z)*sn(dec))/den)))*R2D;}
+
+/* ---------- вкладки ---------- */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#tabs .tab'));
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+    [].slice.call(document.querySelectorAll('.view')).forEach(function(v){v.classList.toggle('active',v.id===b.dataset.view);});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+}
+
+)();
+
+/* ============================================================
+   1. Параллактический треугольник
+   ============================================================ */
+(function(){
+  var svg=$$('ptSvg'),chart=$$('ptChart');if(!svg)return;
+  var C={x:350,y:232},RAD=196,CLIP='ptClip';
+  var st={phi:56,dec:22,t:315},play=null;
+
+  function proj(h,A){var r=RAD*(90-h)/90,a=A*D;return {x:C.x+r*Math.sin(a),y:C.y-r*Math.cos(a)};}
+  function vec(h,A){return [cs(h)*cs(A),cs(h)*sn(A),sn(h)];}
+  function fromVec(v){var h=Math.asin(Math.max(-1,Math.min(1,v[2])))*R2D,A=Math.atan2(v[1],v[0])*R2D;return {h:h,A:(A+360)%360};}
+  function slerpPath(v1,v2,n){
+    var dot=v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2],om=Math.acos(Math.max(-1,Math.min(1,dot))),pts=[];
+    if(om<1e-6)return 'M'+JSON.stringify([]);
+    for(var i=0;i<=n;i++){var s=i/n,a=Math.sin((1-s)*om)/Math.sin(om),b=Math.sin(s*om)/Math.sin(om);
+      var v=[a*v1[0]+b*v2[0],a*v1[1]+b*v2[1],a*v1[2]+b*v2[2]],hh=fromVec(v),p=proj(hh.h,hh.A);pts.push(fx(p.x,1)+' '+fx(p.y,1));}
+    return 'M'+pts.join(' L');
+  }
+  function arcScreen(cx,cy,r,ang1,ang2){
+    var a1=ang1*D,a2=ang2*D,x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1),x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2);
+    var dd=((ang2-ang1+540)%360)-180;
+    return 'M'+fx(x1,1)+' '+fx(y1,1)+' A'+r+' '+r+' 0 '+(Math.abs(dd)>180?1:0)+' '+(dd>0?1:0)+' '+fx(x2,1)+' '+fx(y2,1);
+  }
+  function draw(){
+    var phi=st.phi,dec=st.dec,t=st.t;
+    var Z=zen(phi,dec,t),h=90-Z,A=azi(phi,dec,t),q=par(phi,dec,t);
+    var s='<defs><clipPath id="'+CLIP+'"><circle cx="'+C.x+'" cy="'+C.y+'" r="'+RAD+'"/></clipPath></defs>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+RAD+'" fill="#f2f9f7" stroke="#b3d9d0" stroke-width="1.5"/>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+RAD*(60/90)+'" fill="none" stroke="#cfe6e0" stroke-dasharray="4 5"/>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+RAD*(30/90)+'" fill="none" stroke="#cfe6e0" stroke-dasharray="4 5"/>';
+    s+='<text x="'+(C.x+RAD*(60/90)*0.72)+'" y="'+(C.y-6)+'" font-size="10" fill="#8aa5a0" font-family="Roboto Mono,monospace">Z=30°</text>';
+    s+='<text x="'+(C.x+RAD*(30/90)*0.62)+'" y="'+(C.y-6)+'" font-size="10" fill="#8aa5a0" font-family="Roboto Mono,monospace">60°</text>';
+    s+='<line x1="'+C.x+'" y1="'+(C.y-RAD)+'" x2="'+C.x+'" y2="'+(C.y+RAD)+'" stroke="#9dc4bd" stroke-width="1.2"/>';
+    s+='<text x="'+(C.x-4)+'" y="'+(C.y-RAD-7)+'" font-size="11" text-anchor="middle" fill="#5f7c76" font-family="Roboto Mono,monospace">N (север)</text>';
+    s+='<text x="'+(C.x-4)+'" y="'+(C.y+RAD+16)+'" font-size="11" text-anchor="middle" fill="#5f7c76" font-family="Roboto Mono,monospace">S</text>';
+    s+='<text x="'+(C.x+RAD+6)+'" y="'+(C.y+4)+'" font-size="11" fill="#5f7c76" font-family="Roboto Mono,monospace">E</text>';
+    s+='<text x="'+(C.x-RAD-16)+'" y="'+(C.y+4)+'" font-size="11" fill="#5f7c76" font-family="Roboto Mono,monospace">W</text>';
+    /* суточная параллель */
+    var day='',night='';
+    for(var i=0;i<=360;i++){var hh=90-zen(phi,dec,i),p=proj(hh,i%360);
+      if(hh>=0)day+=(day?' L':'M')+fx(p.x,1)+' '+fx(p.y,1);else night+=(night?' L':'M')+fx(p.x,1)+' '+fx(p.y,1);}
+    s+='<g clip-path="url(#'+CLIP+')"><path d="'+night+'" fill="none" stroke="#c9dcd8" stroke-width="1.4" stroke-dasharray="4 6"/></g>';
+    s+='<path d="'+day+'" fill="none" stroke="#7655b7" stroke-width="1.6" opacity=".55"/>';
+    /* треугольник */
+    var P=proj(phi,0),S=proj(h,A),Zc={x:C.x,y:C.y};
+    s+='<path d="'+slerpPath(vec(h,A),vec(phi,0),60)+'" fill="none" stroke="#d9501a" stroke-width="2.2"/>';
+    s+='<line x1="'+P.x+'" y1="'+P.y+'" x2="'+Zc.x+'" y2="'+Zc.y+'" stroke="#2474c6" stroke-width="2.2"/>';
+    s+='<line x1="'+Zc.x+'" y1="'+Zc.y+'" x2="'+S.x+'" y2="'+S.y+'" stroke="#0a655d" stroke-width="2.2"/>';
+    /* углы при P и Z */
+    var angP=Math.atan2(S.y-P.y,S.x-P.x)*R2D,angPm=Math.atan2(Zc.y-P.y,Zc.x-P.x)*R2D;
+    var angZ=Math.atan2(S.y-Zc.y,S.x-Zc.x)*R2D,angZn=Math.atan2(-1,0)*R2D;
+    s+='<path d="'+arcScreen(P.x,P.y,30,angPm,angP)+'" fill="none" stroke="#d9501a" stroke-width="1.4"/>';
+    s+='<path d="'+arcScreen(Zc.x,Zc.y,34,angZn,angZ)+'" fill="none" stroke="#0a655d" stroke-width="1.4"/>';
+    /* подписи сторон */
+    var mid=function(x1,y1,x2,y2,f){return {x:x1+(x2-x1)*f,y:y1+(y2-y1)*f};};
+    var m1=mid(P.x,P.y,Zc.x,Zc.y,.5),m2=mid(Zc.x,Zc.y,S.x,S.y,.55);
+    var mp=(function(){var v1=vec(h,A),v2=vec(phi,0),dot=v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2],
+      om=Math.acos(Math.max(-1,Math.min(1,dot))),a=Math.sin(om/2)/Math.sin(om),b=a,
+      v=[a*v1[0]+b*v2[0],a*v1[1]+b*v2[1],a*v1[2]+b*v2[2]],hh=fromVec(v);return proj(hh.h,hh.A);})();
+    s+='<text x="'+(m1.x-58)+'" y="'+(m1.y+4)+'" font-size="11.5" fill="#1a5ea8" font-family="Roboto Mono,monospace">90°−φ</text>';
+    s+='<text x="'+(m2.x+8)+'" y="'+(m2.y-4)+'" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">Z</text>';
+    s+='<text x="'+(mp.x+8)+'" y="'+(mp.y+4)+'" font-size="11.5" fill="#b8471b" font-family="Roboto Mono,monospace">90°−δ</text>';
+    s+='<text x="'+(P.x+34)+'" y="'+(P.y-8)+'" font-size="11.5" fill="#b8471b" font-family="Roboto Mono,monospace">t</text>';
+    s+='<text x="'+(Zc.x+40*Math.sin((angZ+angZn)/2*D))+'" y="'+(Zc.y-40*Math.cos((angZ+angZn)/2*D))+'" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">A</text>';
+    /* точки */
+    s+='<circle cx="'+P.x+'" cy="'+P.y+'" r="6" fill="#b8471b"/><text x="'+(P.x+11)+'" y="'+(P.y-10)+'" font-size="13" font-weight="700" fill="#b8471b">P</text>';
+    s+='<circle cx="'+Zc.x+'" cy="'+Zc.y+'" r="5.5" fill="#0a655d"/><text x="'+(Zc.x+10)+'" y="'+(Zc.y+16)+'" font-size="13" font-weight="700" fill="#0a655d">Z</text>';
+    s+='<circle cx="'+S.x+'" cy="'+S.y+'" r="7" fill="#ff7136" stroke="#fff" stroke-width="2"/><text x="'+(S.x+12)+'" y="'+(S.y-9)+'" font-size="13" font-weight="700" fill="#d9501a">σ</text>';
+    svg.innerHTML=svgNum(s);
+    $$('pZ').textContent=dms(Z);
+    $$('pH').textContent=dms(h);
+    $$('pA').textContent=dms(A);
+    $$('pQ').textContent=dms(q);
+    $$('pSub').innerHTML='cos Z = sin&nbsp;'+fx(phi,1)+'°·sin&nbsp;'+fx(dec,1)+'° + cos&nbsp;'+fx(phi,1)+'°·cos&nbsp;'+fx(dec,1)+'°·cos&nbsp;'+fx(t,0)+'° = <b>'+fx(sn(phi)*sn(dec)+cs(phi)*cs(dec)*cs(t),5)+'</b>';
+    $$('pCheck').innerHTML='t = '+hms(t>180?t-360:t)+' при h = '+dms(h)+'; '+(h<0?'<b>светило под горизонтом</b> — наблюдать нельзя':'светило над горизонтом')+', sin A · sin Z = '+fx(Math.sin(A*D)*Math.sin(Z*D),5)+' = cos δ sin t = '+fx(cs(dec)*sn(t),5);
+    /* график Z(t) */
+    var maxZ=Math.max.apply(null,(function(){var a=[];for(var i=0;i<=360;i+=3)a.push(zen(phi,dec,i));return a;})());
+    var W=700,H=200,x0=52,x1=W-16,y0=18,y1=H-38,ztop=Math.min(180,Math.max(20,Math.ceil(maxZ/10)*10));
+    var px=function(tt){return x0+(tt/360)*(x1-x0);},py=function(zz){return y0+(1-zz/ztop)*(y1-y0);};
+    var g='<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var zz=0;zz<=ztop;zz+=ztop>90?30:15){g+='<line x1="'+x0+'" y1="'+py(zz)+'" x2="'+x1+'" y2="'+py(zz)+'" stroke="#e4eeeb"/><text x="'+(x0-8)+'" y="'+(py(zz)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+zz+'°</text>';}
+    for(var hh=0;hh<=24;hh+=6){g+='<line x1="'+px(hh*15)+'" y1="'+y0+'" x2="'+px(hh*15)+'" y2="'+y1+'" stroke="#e4eeeb"/><text x="'+px(hh*15)+'" y="'+(y1+16)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+hh+'h</text>';}
+    g+='<text x="'+x0+'" y="'+(y0-3)+'" font-size="10" fill="#8aa5a0" font-family="Roboto Mono,monospace">Z (меньше — выше над горизонтом)</text>';
+    var curve='';for(var i2=0;i2<=360;i2+=2){curve+=(curve?' L':'M')+fx(px(i2),1)+' '+fx(py(zen(phi,dec,i2)),1);}
+    g+='<path d="'+curve+'" fill="none" stroke="#2474c6" stroke-width="2.2"/>';
+    g+='<line x1="'+x0+'" y1="'+py(Z)+'" x2="'+x1+'" y2="'+py(Z)+'" stroke="#ff7136" stroke-dasharray="5 5"/>';
+    g+='<circle cx="'+px(t)+'" cy="'+py(Z)+'" r="5.5" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    chart.innerHTML=svgNum(g);
+  }
+  function sync(){$$('pPhiV').textContent=fx(st.phi,1)+'°';$$('pDecV').textContent=fx(st.dec,1)+'°';$$('pTV').textContent=fx(st.t,0)+'°';}
+  $$('pPhi').addEventListener('input',function(){st.phi=+this.value;sync();draw();});
+  $$('pDec').addEventListener('input',function(){st.dec=+this.value;sync();draw();});
+  $$('pT').addEventListener('input',function(){st.t=+this.value;sync();draw();});
+  $$('pMer').addEventListener('click',function(){st.t=0;$$('pT').value=0;sync();draw();});
+  $$('pVert').addEventListener('click',function(){
+    var best=0,bd=1e9;
+    for(var i=-180;i<=180;i++){var a=azi(st.phi,st.dec,i),dd=Math.min(Math.abs(a-90),Math.abs(a-270));if(dd<bd&&90-zen(st.phi,st.dec,i)>0){bd=dd;best=i;}}
+    st.t=(best+360)%360;$$('pT').value=st.t;sync();draw();});
+  $$('pPlay').addEventListener('click',function(){
+    if(play){clearInterval(play);play=null;this.classList.remove('on');this.textContent='▶ сутки';return;}
+    this.classList.add('on');this.textContent='⏸ пауза';
+    play=setInterval(function(){st.t=(st.t+3)%360;$$('pT').value=st.t;sync();draw();},80);});
+  sync();draw();
+})();
+
+/* ============================================================
+   2. Линия решений одного уравнения
+   ============================================================ */
+(function(){
+  var svg=$$('ambSvg');if(!svg)return;
+  var shown=false,Zt=40,t0=300,phi0=56,dec=22,phiU=0;
+  /* при известных δ, t, Z находим λ-эквивалент: u из уравнения */
+  function solveU(phi,Z,dec,t){ /* cosZ = sinphi sindec + cosphi cosdec cos(t) -> t known => u = t - (T - alpha); условно считаем t как функцию u */
+    var c=(Math.cos(Z*D)-sn(phi)*sn(dec))/(cs(phi)*cs(dec));c=Math.max(-1,Math.min(1,c));
+    return Math.acos(c)*R2D;}
+  function draw(){
+    var W=640,H=300,x0=56,x1=W-20,y0=22,y1=H-42;
+    var px=function(p){return x0+(p-40)/(80-40)*(x1-x0);},py=function(u){return y0+(1-(u+180)/360)*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var p=40;p<=80;p+=10)g+='<line x1="'+px(p)+'" y1="'+y0+'" x2="'+px(p)+'" y2="'+y1+'" stroke="#e4eeeb"/><text x="'+px(p)+'" y="'+(y1+16)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+p+'°</text>';
+    for(var u=-180;u<=180;u+=90)g+='<line x1="'+x0+'" y1="'+py(u)+'" x2="'+x1+'" y2="'+py(u)+'" stroke="#e4eeeb"/><text x="'+(x0-8)+'" y="'+(py(u)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+hms(u)+'</text>';
+    g+='<text x="'+x0+'" y="'+(y0-6)+'" font-size="10.5" fill="#8aa5a0" font-family="Roboto Mono,monospace">поправка часов u</text>';
+    g+='<text x="'+(x1-40)+'" y="'+(y1+30)+'" font-size="10.5" fill="#8aa5a0" font-family="Roboto Mono,monospace">широта φ</text>';
+    if(shown){
+      var curve='';
+      for(var p2=40;p2<=80;p2+=0.5){var u1=solveU(p2,Zt,dec,t0),u2=-u1;
+        if(u1>=-180&&u1<=180){curve+=(curve?' L':'M')+fx(px(p2),1)+' '+fx(py(u1),1);}}
+      g+='<path d="'+curve+'" fill="none" stroke="#ff7136" stroke-width="2.6"/>';
+      var pts=[phi0,phi0+8,phi0-9],lbl=['точка 1','точка 2','точка 3'];
+      pts.forEach(function(p,i){var u=solveU(p,Zt,dec,t0);u=Math.max(-180,Math.min(180,u));
+        g+='<circle cx="'+px(p)+'" cy="'+py(u)+'" r="6" fill="#0a655d" stroke="#fff" stroke-width="2"/>';
+        g+='<text x="'+(px(p)+10)+'" y="'+(py(u)-9)+'" font-size="11" fill="#0a655d" font-family="Roboto Mono,monospace">'+fx(u,1)+'°</text>';});
+    }else{
+      g+='<text x="'+(x0+30)+'" y="'+(y0+40)+'" font-size="13" fill="#a8bbb6" font-family="Roboto Mono,monospace">нажмите «Показать линию решений»</text>';
+    }
+    g+='<text x="'+(x0+30)+'" y="'+(y1-14)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">Z = '+fx(Zt,1)+'°, δ = '+fx(dec,0)+'°, t = '+fx(t0,0)+'°</text>';
+    svg.innerHTML=svgNum(g);
+    if(shown){[phi0,phi0+8,phi0-9].forEach(function(p,i){
+      var u=solveU(p,Zt,dec,t0);if(u>180||u<-180)u=NaN;$$('amb'+(i+1)).textContent=isNaN(u)?'—':'φ='+fx(p,1)+'° · u='+fx(u,1)+'°';});}
+  }
+  $$('ambBtn').addEventListener('click',function(){shown=!shown;this.classList.toggle('on',shown);draw();});
+  draw();
+})();
+
+/* ============================================================
+   3. Раздельный способ: широта в меридиане
+   ============================================================ */
+(function(){
+  var svg=$$('merSvg');if(!svg)return;
+  var dec=22,Z=34,side='S';
+  function draw(){
+    var phi=side==='S'?(Z+dec):(Z-dec);
+    var W=640,H=380,O={x:320,y:306},R=246;
+    var pt=function(alt,s){return {x:O.x+(s==='S'?1:-1)*R*cs(alt),y:O.y-R*sn(alt)};};
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    s+='<path d="M '+pt(0,'W').x+' '+pt(0,'W').y+' A '+R+' '+R+' 0 0 1 '+pt(0,'S').x+' '+pt(0,'S').y+'" fill="#f2f9f7" stroke="#b3d9d0" stroke-width="1.5"/>';
+    s+='<line x1="40" y1="'+O.y+'" x2="600" y2="'+O.y+'" stroke="#9dc4bd" stroke-width="1.6"/>';
+    s+='<text x="52" y="'+(O.y-8)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">N</text>';
+    s+='<text x="576" y="'+(O.y-8)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">S</text>';
+    s+='<line x1="'+O.x+'" y1="'+(O.y-R-14)+'" x2="'+O.x+'" y2="'+(O.y+20)+'" stroke="#9dc4bd" stroke-width="1.2" stroke-dasharray="5 5"/>';
+    var Zp={x:O.x,y:O.y-R};s+='<circle cx="'+Zp.x+'" cy="'+Zp.y+'" r="5.5" fill="#0a655d"/><text x="'+(Zp.x+10)+'" y="'+(Zp.y+16)+'" font-size="13" font-weight="700" fill="#0a655d">Z</text>';
+    var P=pt(phi,'N');s+='<circle cx="'+P.x+'" cy="'+P.y+'" r="6" fill="#b8471b"/><text x="'+(P.x-22)+'" y="'+(P.y-8)+'" font-size="13" font-weight="700" fill="#b8471b">P</text>';
+    /* экватор и параллель */
+    var eq=pt(90-phi,'S'),eqN=pt(-(90-phi),'N');
+    s+='<line x1="'+eq.x+'" y1="'+eq.y+'" x2="'+eqN.x+'" y2="'+eqN.y+'" stroke="#2474c6" stroke-width="1.6" stroke-dasharray="7 5"/>';
+    s+='<text x="'+(eq.x+8)+'" y="'+(eq.y-12)+'" font-size="11.5" fill="#2474c6" font-family="Roboto Mono,monospace">небесный экватор</text>';
+    /* звезда */
+    var altS=90-Z,St=pt(altS,side);
+    var par=pt(90-dec,'S'),parN=pt(-(90-dec),'N');
+    s+='<line x1="'+par.x+'" y1="'+par.y+'" x2="'+parN.x+'" y2="'+parN.y+'" stroke="#7655b7" stroke-width="1.3" stroke-dasharray="4 5"/>';
+    s+='<circle cx="'+St.x+'" cy="'+St.y+'" r="7.5" fill="#ff7136" stroke="#fff" stroke-width="2"/><text x="'+(St.x+12)+'" y="'+(St.y-10)+'" font-size="13" font-weight="700" fill="#d9501a">σ</text>';
+    /* дуги */
+    var arc=function(a1,a2,cc){var p1=pt(a1,side),p2=pt(a2,side),r=R;return 'M'+p1.x+' '+p1.y+' A '+r+' '+r+' 0 0 '+(side==='S'?1:0)+' '+p2.x+' '+p2.y;};
+    var R2=R-26;
+    var p1=pt(90,side),p2=pt(altS,side);
+    s+='<path d="M'+pt(0,side).x+' '+pt(0,side).y+' A '+R+' '+R+' 0 0 '+(side==='S'?1:0)+' '+pt(phi,'N').x+' '+pt(phi,'N').y+'" fill="none" stroke="none"/>';
+    /* дуга Z между зенитом и звездой */
+    var a1=Math.atan2(pt(90,side).y-O.y,pt(90,side).x-O.x)*R2D,a2=Math.atan2(St.y-O.y,St.x-O.x)*R2D;
+    s+='<path d="'+arcScreenArc(O,R2,a1,a2)+'" fill="none" stroke="#0a655d" stroke-width="1.8"/>';
+    s+='<text x="'+(O.x+(side==='S'?1:-1)*(R2-30))+'" y="'+(O.y-R2*0.62)+'" font-size="12" fill="#0a655d" font-family="Roboto Mono,monospace">Z = '+dms(Z,false)+'</text>';
+    var a3=Math.atan2(par.y-O.y,par.x-O.x)*R2D,a4=Math.atan2(St.y-O.y,St.x-O.x)*R2D;
+    s+='<path d="'+arcScreenArc(O,R2-40,a3,a4)+'" fill="none" stroke="#7655b7" stroke-width="1.8"/>';
+    s+='<text x="'+(O.x+(side==='S'?1:-1)*(R2-96))+'" y="'+(O.y-R2*0.30)+'" font-size="12" fill="#7655b7" font-family="Roboto Mono,monospace">δ = '+dms(dec,false)+'</text>';
+    var a5=Math.atan2(O.y-7-O.y,O.x-O.x)*R2D,a6=Math.atan2(P.y-O.y,P.x-O.x)*R2D;
+    s+='<path d="'+arcScreenArc(O,R-14,a5,a6)+'" fill="none" stroke="#b8471b" stroke-width="1.8"/>';
+    s+='<text x="'+(O.x-R+40)+'" y="'+(O.y-R*0.5)+'" font-size="12" fill="#b8471b" font-family="Roboto Mono,monospace">φ = '+dms(phi,false)+'</text>';
+    s+='<circle cx="'+O.x+'" cy="'+O.y+'" r="4" fill="#063f3b"/><text x="'+(O.x+8)+'" y="'+(O.y+18)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">наблюдатель</text>';
+    svg.innerHTML=svgNum(s);
+    $$('mFormula').textContent=side==='S'?'φ = Z + δ':'φ = Z − δ';
+    $$('mPhi').textContent=dms(phi,false);
+    $$('mHint').textContent='';
+  }
+  function arcScreenArc(c,r,a1,a2){var x1=c.x+r*Math.cos(a1*D),y1=c.y+r*Math.sin(a1*D),x2=c.x+r*Math.cos(a2*D),y2=c.y+r*Math.sin(a2*D);
+    var dd=((a2-a1+540)%360)-180;return 'M'+fx(x1,1)+' '+fx(y1,1)+' A'+r+' '+r+' 0 '+(Math.abs(dd)>180?1:0)+' '+(dd>0?1:0)+' '+fx(x2,1)+' '+fx(y2,1);}
+  $$('mDec').addEventListener('input',function(){dec=+this.value;$$('mDecV').textContent=fx(dec,1)+'°';draw();});
+  $$('mZ').addEventListener('input',function(){Z=+this.value;$$('mZV').textContent=fx(Z,1)+'°';draw();});
+  $$('mCase1').addEventListener('click',function(){side='S';this.classList.add('on');$$('mCase2').classList.remove('on');draw();});
+  $$('mCase2').addEventListener('click',function(){side='N';this.classList.add('on');$$('mCase1').classList.remove('on');
+    if(dec<=Z)$$('mHint').textContent='Для наблюдения звезды к северу от зенита нужно δ > φ; при заданных δ и Z широта получается отрицательной — это геометрически невозможно.';draw();});
+  draw();
+})();
+
+/* ============================================================
+   4. Две звезды на одном альмукантарате
+   ============================================================ */
+(function(){
+  var svg=$$('eqSvg');if(!svg)return;
+  var d1=35,t1=-45,d2=5,t2=30;
+  function calc(){
+    var num=cs(d2)*cs(t2)-cs(d1)*cs(t1),den=sn(d1)-sn(d2);
+    var tgp=num/den,phi=Math.atan(tgp)*R2D;
+    if(phi<0)phi+=180;
+    if(den<0&&phi>0)phi=phi; /* tg периодичен */
+    var phi2=Math.atan(tgp)*R2D; if(phi2<0)phi2+=180;
+    return {phi:phi,tgp:tgp,Z1:zen(phi,d1,t1),Z2:zen(phi,d2,t2)};
+  }
+  function draw(){
+    var r=calc(),W=640,H=320,x0=54,x1=W-18,y0=20,y1=H-40;
+    if(!fin(r.tgp)||!fin(r.phi)||!fin(r.Z1)||!fin(r.Z2)){
+      blankOut(['eZ1','eZ2','eTg','ePhi']);
+      if(svg)svg.innerHTML='';
+      $$('eHint').textContent='При равных склонениях δ₁ = δ₂ решение вырождается: tg φ не определён (Z₁ и Z₂ совпадают на всей суточной параллели). Измените склонение одной из звёзд.';
+      return;}
+    var pts=[],zmax=0;
+    for(var i=-180;i<=180;i+=2){var z1=zen(r.phi,d1,i),z2=zen(r.phi,d2,i),z3=zen(r.phi+3,d1,i);
+      zmax=Math.max(zmax,z1,z2);pts.push([i,z1,z2]);}
+    zmax=Math.min(180,Math.ceil(zmax/10)*10);
+    var px=function(t){return x0+(t+180)/360*(x1-x0);},py=function(z){return y0+(z/zmax)*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var z=0;z<=zmax;z+=30)g+='<line x1="'+x0+'" y1="'+py(z)+'" x2="'+x1+'" y2="'+py(z)+'" stroke="#e4eeeb"/><text x="'+(x0-8)+'" y="'+(py(z)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+z+'°</text>';
+    for(var t=-180;t<=180;t+=60)g+='<line x1="'+px(t)+'" y1="'+y0+'" x2="'+px(t)+'" y2="'+y1+'" stroke="#e4eeeb"/><text x="'+px(t)+'" y="'+(y1+16)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+hms(t)+'</text>';
+    var c1='',c2='';pts.forEach(function(p,i){c1+=(i?' L':'M')+fx(px(p[0]),1)+' '+fx(py(p[1]),1);c2+=(i?' L':'M')+fx(px(p[0]),1)+' '+fx(py(p[2]),1);});
+    g+='<path d="'+c1+'" fill="none" stroke="#0a655d" stroke-width="2.4"/>';
+    g+='<path d="'+c2+'" fill="none" stroke="#7655b7" stroke-width="2.4"/>';
+    g+='<circle cx="'+px(t1)+'" cy="'+py(r.Z1)+'" r="5.5" fill="#0a655d" stroke="#fff" stroke-width="2"/>';
+    g+='<circle cx="'+px(t2)+'" cy="'+py(r.Z2)+'" r="5.5" fill="#7655b7" stroke="#fff" stroke-width="2"/>';
+    g+='<text x="'+(px(t1)+9)+'" y="'+(py(r.Z1)-8)+'" font-size="11" fill="#0a655d" font-family="Roboto Mono,monospace">Z₁='+dms(r.Z1,false)+'</text>';
+    g+='<text x="'+(px(t2)+9)+'" y="'+(py(r.Z2)-8)+'" font-size="11" fill="#7655b7" font-family="Roboto Mono,monospace">Z₂='+dms(r.Z2,false)+'</text>';
+    g+='<text x="'+(x0+8)+'" y="'+(y0+14)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">Z →</text>';
+    svg.innerHTML=svgNum(g);
+    $$('eZ1').textContent=dms(r.Z1,false);$$('eZ2').textContent=dms(r.Z2,false);
+    $$('eTg').textContent=fx(r.tgp,4);$$('ePhi').textContent=dms(r.phi,false);
+    var diff=Math.abs(r.Z1-r.Z2);
+    $$('eHint').innerHTML=diff<0.05?'<b>Высоты совпали</b> — пара пригодна для совместного определения φ и u (ошибки измерения Z при этом сокращаются).':
+      'Разность высот '+fx(diff*60,1)+'′. В способах равных высот стремятся к Z₁ = Z₂: подберите перемещением ползунков близкие условия.';
+  }
+  ['e1D','e1T','e2D','e2T'].forEach(function(id){
+    $$(id).addEventListener('input',function(){
+      d1=+$$('e1D').value;t1=+$$('e1T').value;d2=+$$('e2D').value;t2=+$$('e2T').value;
+      $$('e1DV').textContent=fx(d1,1)+'°';$$('e1TV').textContent=fx(t1,0)+'°';
+      $$('e2DV').textContent=fx(d2,1)+'°';$$('e2TV').textContent=fx(t2,0)+'°';draw();});
+  });
+  draw();
+})();
+
+/* ============================================================
+   5. Способ Талькотта
+   ============================================================ */
+(function(){
+  var svg=$$('talSvg');if(!svg)return;
+  var dS=30,dN=62,dz=0,caseN=1;
+  function draw(){
+    var dzDeg=dz/60;
+    var phi=caseN===1?(dS+dN)/2+dzDeg/2:90+(dS-dN)/2+dzDeg/2;
+    var W=620,H=330,O={x:310,y:266},R=214;
+    var pt=function(alt,north){return {x:O.x+(north?-1:1)*R*cs(alt),y:O.y-R*sn(alt)};};
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    s+='<path d="M '+pt(0,true).x+' '+pt(0,true).y+' A '+R+' '+R+' 0 0 1 '+pt(0,false).x+' '+pt(0,false).y+'" fill="#f2f9f7" stroke="#b3d9d0" stroke-width="1.5"/>';
+    s+='<line x1="30" y1="'+O.y+'" x2="590" y2="'+O.y+'" stroke="#9dc4bd" stroke-width="1.5"/>';
+    s+='<text x="40" y="'+(O.y-8)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">N</text>';
+    s+='<text x="568" y="'+(O.y-8)+'" font-size="12" fill="#5f7c76" font-family="Roboto Mono,monospace">S</text>';
+    s+='<line x1="'+O.x+'" y1="'+(O.y-R-10)+'" x2="'+O.x+'" y2="'+O.y+'" stroke="#9dc4bd" stroke-dasharray="5 5"/>';
+    var Zp={x:O.x,y:O.y-R};s+='<circle cx="'+Zp.x+'" cy="'+Zp.y+'" r="5" fill="#0a655d"/><text x="'+(Zp.x+10)+'" y="'+(Zp.y+15)+'" font-size="12.5" font-weight="700" fill="#0a655d">Z</text>';
+    var P=pt(phi,true);s+='<circle cx="'+P.x+'" cy="'+P.y+'" r="5.5" fill="#b8471b"/><text x="'+(P.x-20)+'" y="'+(P.y-6)+'" font-size="12.5" font-weight="700" fill="#b8471b">P</text>';
+    var altS=90-Math.abs(phi-dS),altN=caseN===1?90-(dN-phi):(dN+phi-90);
+    var StS=pt(altS,false),StN=pt(altN,true);
+    s+='<circle cx="'+StS.x+'" cy="'+StS.y+'" r="7" fill="#ff7136" stroke="#fff" stroke-width="2"/><text x="'+(StS.x+10)+'" y="'+(StS.y-10)+'" font-size="12.5" font-weight="700" fill="#d9501a">σS</text>';
+    s+='<circle cx="'+StN.x+'" cy="'+StN.y+'" r="7" fill="#7655b7" stroke="#fff" stroke-width="2"/><text x="'+(StN.x-30)+'" y="'+(StN.y-10)+'" font-size="12.5" font-weight="700" fill="#7655b7">σN</text>';
+    var eq=pt(90-phi,false),eqN=pt(-(90-phi),true);
+    s+='<line x1="'+eq.x+'" y1="'+eq.y+'" x2="'+eqN.x+'" y2="'+eqN.y+'" stroke="#2474c6" stroke-width="1.4" stroke-dasharray="6 5"/>';
+    s+='<circle cx="'+O.x+'" cy="'+O.y+'" r="4" fill="#063f3b"/>';
+    s+='<text x="'+O.x+'" y="'+(O.y+22)+'" font-size="11.5" text-anchor="middle" fill="#5f7c76" font-family="Roboto Mono,monospace">φ = '+dms(phi,false)+'</text>';
+    svg.innerHTML=svgNum(s);
+    $$('talDiff').textContent=fx(Math.abs(dz),1)+'′';
+    $$('talPhi').textContent=dms(phi,false);
+    $$('talFormula').innerHTML=caseN===1
+      ?'φ = ½(δ<sub>S</sub> + δ<sub>N</sub>) + ½(Z<sub>S</sub> − Z<sub>N</sub>) = ½('+fx(dS,1)+' + '+fx(dN,1)+') + ½('+fx(dz,1)+'′/60) = <b>'+dms(phi,false)+'</b>'
+      :'φ = 90° + ½(δ<sub>S</sub> − δ<sub>N</sub>) + ½(Z<sub>S</sub> − Z<sub>N</sub>) = 90° + ½('+fx(dS,1)+' − '+fx(dN,1)+') + ½('+fx(dz,1)+'′/60) = <b>'+dms(phi,false)+'</b>';
+  }
+  ['talDS','talDN','talZS','talZN'].forEach(function(id){$$(id).addEventListener('input',function(){
+    dS=+$$('talDS').value;dN=+$$('talDN').value;
+    var zs=+$$('talZS').value,zn=+$$('talZN').value;dz=zs-zn;
+    $$('talDSV').textContent=fx(dS,1)+'°';$$('talDNV').textContent=fx(dN,1)+'°';
+    $$('talZSV').textContent=fx(zs,1)+'°';$$('talZNV').textContent=fx(zn,1)+'°';draw();});});
+  $$('talC1').addEventListener('click',function(){caseN=1;this.classList.add('on');$$('talC2').classList.remove('on');draw();});
+  $$('talC2').addEventListener('click',function(){caseN=2;this.classList.add('on');$$('talC1').classList.remove('on');draw();});
+  draw();
+})();
+
+/* ============================================================
+   6. Классификация: интерактивная блок-схема (рис. 1.28)
+   ============================================================ */
+(function(){
+  var det=$$('treeDetail');if(!det)return;
+  var N={
+    root:{tag:'группа способов',
+      t:'Зенитальные способы астрономических определений',
+      b:'Способы, в которых измеряют зенитное расстояние Z светил (либо фиксируют моменты прохождения светил через заданный альмукантарат). Основой служит параллактический треугольник P–Z–σ и основное уравнение зенитальных способов.',
+      f:['cos Z = sin φ sin δ + cos φ cos δ cos t','t = T<sub>H</sub> + u − α'],
+      al:['Выбор светил по наивыгоднейшим условиям для определяемой величины (φ, u или обеих совместно)','Измерения при двух положениях круга: Z и моменты T<sub>H</sub> (или моменты прохождения через альмукантарат)','Линеаризация: уравнения поправок относительно приближённых φ₀, u₀, M<sub>Z0</sub>','Решение по МНК и переход к φ = φ₀ + Δφ, λ = λ₀ + Δu (Δu = Δλ)'],
+      n:['Приближённые координаты нужны с ошибкой не более 100″ (карта 1:1 000 000 и крупнее), иначе нельзя пренебрегать вторыми производными.','Все способы делятся на две группы — разных высот и равных высот.']},
+    diff:{tag:'ветвь 1',
+      t:'Способы разных высот, т.е. измеряют Z',
+      b:'Зенитные расстояния измеряют по вертикальному кругу при КЛ и КП. Способы этой группы дают как раздельные (только φ или только u), так и совместные определения — в зависимости от того, как расположены светила.',
+      al:['Измеряют Z при двух положениях круга: среднее свободно от места зенита и коллимационной ошибки','Фиксируют моменты наблюдений и берут отсчёты по горизонтальному кругу (для азимутов светил)','Составляют уравнения поправок; вес зависит от азимута и зенитного расстояния светила'],
+      f:['V<sub>Z</sub> = cos A·Δφ + 15cos φ·sin A·Δu − ΔM<sub>Z</sub> + l<sub>Z</sub>','∂Z/∂φ = cos A, &nbsp; ∂Z/∂u = 15 cos φ sin A'],
+      n:['Точность ограничена погрешностями измерения Z: рефракция, гнутие трубы, деления вертикального круга, внешние условия.']},
+    diffvar:{tag:'подгруппа',
+      t:'Наблюдение звёзд на разных вертикалах (A разн.)',
+      b:'Светила выбирают в разных вертикалах, поэтому коэффициенты при неизвестных Δφ и Δu различны — по n ≥ 3 светилам обе величины определяются совместно.',
+      al:['Равномерное распределение светил по азимутам','Выгодно: пары светил во взаимно перпендикулярных вертикалах','Z<sub>ср</sub> ≈ 35° (20° < Z < 50°)'],
+      n:['Если наблюдать светила при одинаковых азимутах, уравнения поправок становятся зависимыми и система может оказаться несовместной.']},
+    diffone:{tag:'подгруппа',
+      t:'Наблюдение звёзд в плоскости одного вертикала (A = ±180°)',
+      b:'Плоскость вертикала совпадает либо с меридианом (A = 0° или 180°), либо с первым вертикалом (A = 90° или 270°). Коэффициент при одном из неизвестных обращается в нуль, и способ становится раздельным: чувствительность Z максимальна к φ — в меридиане, к u — в первом вертикале.',
+      f:['в меридиане: cos A = ±1 &nbsp;→&nbsp; Z зависит только от φ','в 1-м вертикале: sin A = ±1 &nbsp;→&nbsp; Z максимально чувствительно к u'],
+      al:['Наблюдения серии светил, проходящих заданный вертикал','Раздельная обработка: определяют либо φ, либо u с наивысшей точностью','Принцип симметрии в выборе светил обнуляет перекрёстные коэффициенты']},
+    equal:{tag:'ветвь 2',
+      t:'Способы равных высот (Z не измеряют)',
+      b:'Светила наблюдают на одном альмукантарате: вертикальный круг остаётся неподвижным, измеряют только моменты прохождения звезды через горизонтальную нить. Зенитное расстояние входит как общая постоянная ζ′, для которой также составляют уравнение поправок.',
+      al:['Устанавливают трубу на выбранное Z (обычно 30° или 45°)','Наблюдают моменты T прохождения каждой звезды через нить альмукантарата','Серия замыкается приёмами радиосигналов точного времени','Совместно решают уравнения поправок относительно x, y, ζ′'],
+      n:['Исключаются погрешности рефракции, гнутия трубы и деления лимба вертикального круга — они действуют в функции Z и вычитаются в разностях.']},
+    somner:{tag:'разные вертикалы • разные Z',num:'1',
+      t:'Совместно φ и U — способ Сомнера–Акимова',
+      b:'Измеряют зенитные расстояния n светил (n ≥ 3), равномерно расположенных по азимутам; одновременно фиксируют звёздное время. Наблюдать можно звёзды, Солнце, планеты.',
+      cond:'Z светил в пределах 10–60°; азимуты заметно различаются; у светил известны α, δ; приближённые φ₀, λ₀ сняты с карты.',
+      al:['Приём радиосигналов времени до и после серии','Для каждого светила: отсчёты по горизонтальному и вертикальному кругам и момент T<sub>H</sub>','Вычисляют Z<sub>выч</sub> по основному уравнению и свободный член l<sub>Z</sub> = Z<sub>выч</sub> − Z<sub>изм</sub>','Составляют уравнения поправок и решают по МНК относительно x, y, ΔM<sub>Z</sub>','Переходят к φ = φ₀ + x, λ = λ₀ + y/(15 cos φ₀)'],
+      f:['V<sub>Z</sub> = cos A·x + sin A·y − ΔM<sub>Z</sub> + l<sub>Z</sub>, &nbsp; P = 1','cos Z<sub>выч</sub> = sin φ₀ sin δ + cos φ₀ cos δ cos t','φ = φ₀ + x, &nbsp; λ = λ₀ + y/(15 cos φ₀)'],
+      n:['Достоинства: простая программа наблюдений (яркие звёзды, в том числе днём), высокая производительность при облачном небе.','Недостаток: измеряются Z, поэтому сильно влияют инструментальные ошибки и внешние условия — в высокоточных работах способ не применяют.']},
+    perp:{tag:'разные вертикалы • разные Z',num:'2',
+      t:'Совместное определение φ и U из наблюдения пар звёзд во взаимно перпендикулярных вертикалах',
+      b:'Частный случай способа разных вертикалов: пары светил подбирают так, чтобы вертикалы были взаимно перпендикулярны (A₂ = A₁ ± 90°), а зенитные расстояния близки между собой.',
+      cond:'A₂ = A₁ ± 90°; Z<sub>ср</sub> ≈ 35° (20° < Z < 50°); светила распределены равномерно по азимутам.',
+      al:['Выбор пар: по одному светилу в каждом из двух перпендикулярных вертикалов','Измерения Z и моментов, обработка по общей схеме способа разных вертикалов','Контроль: веса трёх неизвестных должны быть близки'],
+      f:['P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3 при Z<sub>ср</sub> = 35,3°','при Z<sub>ср</sub> = 45°: P<sub>Δa′</sub> = n/2, а P<sub>x</sub> = P<sub>y</sub> = n/4'],
+      n:['При такой схеме недиагональные коэффициенты нормальных уравнений стремятся к нулю, а веса неизвестных выравниваются — это наивыгоднейшая схема совместного определения (§1.6).']},
+    polsun:{tag:'разные вертикалы • приближённый способ',num:'3',
+      t:'Определение φ по Полярной звезде и Солнцу',
+      b:'Приближённое определение широты по измеренным зенитным расстояниям Полярной звезды (h = 90° − Z) и по зенитным расстояниям Солнца вблизи кульминации.',
+      cond:'Полярная: три приёма, по два наведения при КЛ и КП. Солнце: наблюдения вблизи кульминации, отступление по азимуту до 20°; поправка часов не грубее 10<sup>s</sup>; место зенита известно.',
+      al:['Полярная: Z′ = ¼[L₁ + L₂ + (360° − R₁) + (360° − R₂)], затем Z = Z′ + ρ','h = 90° − Z; поправки I, II, III выбирают из таблиц АЕ по местному звёздному времени s = S₀ + M(1 + µ) + λ','φ = h + I + II + III; расхождение между приёмами не более 1′','Солнце: Z центра диска как среднее наведений на края, δ = δ<sub>АЕ</sub> + ϑ<sub>δ</sub>M*, φ = R + F'],
+      f:['φ = h + I + II + III','φ = R + F, &nbsp; tg R = tg δ / cos t','cos F = cos Z / √(1 − cos²δ·sin²t)'],
+      n:['Точность: m<sub>φ</sub> ≈ 0,3″ по Полярной (3 приёма) и около 2″ по Солнцу — приближённые способы примерно вдвое грубее наблюдений Полярной в зените.'],
+      link:{href:'approximate-methods.html',txt:'Подробный разбор с калькуляторами — урок «Приближённые способы астрономических определений», вкладки «Широта по Полярной» и «Широта по Солнцу»'}},
+    sunu:{tag:'разные вертикалы • приближённый способ',num:'4',
+      t:'Определение U по наблюдению Солнца вблизи 1-го вертикала',
+      b:'Совместное приближённое определение поправки часов (долготы) и азимута направления по измеренным зенитным расстояниям Солнца вблизи первого вертикала.',
+      cond:'Z < 80°; Солнце вблизи первого вертикала, где чувствительность Z к поправке часов максимальна (sin A = ±1); наведение на центр диска как среднее наведений на его края.',
+      al:['Наводят на края диска: нижний и верхний — горизонтальной нитью, левый и правый — вертикальной, фиксируя время и отсчёты ГК и ВК','Вычисляют Z и склонение δ = δ<sub>АЕ</sub> + ϑ<sub>δ</sub>M*','Решают параллактический треугольник по трём сторонам Z, Φ = 90° − φ, Δ = 90° − δ','Находят t и A, далее m = t ∓ E, λ = m − M и азимут предмета a = A + Q'],
+      f:['P = ½(Z + Φ + Δ)','tg(t/2) = √[ sin(P−Φ)·sin(P−Δ) / (sin P·sin(P−Z)) ]','tg((180° − A)/2) = √[ sin(P−Z)·sin(P−Φ) / (sin P·sin(P−Δ)) ]','λ = m − M, &nbsp; a<sub>з.п.</sub> = A + Q'],
+      n:['Расхождение между приёмами в азимуте и долготе — не более 1,5<sup>m</sup>. Ошибка поправки часов в 1<sup>s</sup> даёт такую же ошибку долготы.'],
+      link:{href:'approximate-methods.html',txt:'Численный пример из журнала наблюдений — урок «Приближённые способы», вкладка «Долгота и азимут по Солнцу»'}},
+    struve:{tag:'один вертикал • широта',num:'1',
+      t:'Определение φ из наблюдений звёзд вблизи меридиана — способ Струве',
+      b:'Светила наблюдают в плоскости истинного меридиана, в верхней или нижней кульминации, где Z зависит практически только от φ и δ.',
+      cond:'A = 0° или 180°; наивыгоднейшие условия — большие зенитные расстояния (60° ≤ Z ≤ 80°), при которых чувствительность к ошибкам часов и координат светил минимальна; в пределе Z = 90°.',
+      al:['Наблюдают светило вблизи кульминации, измеряя Z при КЛ и КП и фиксируя время','В верхней кульминации: φ = δ + Z (светило к югу от зенита)','Для северного светила в нижней кульминации: φ = 180° − δ − Z','Отступление от меридиана учитывают по основному уравнению как малую поправку'],
+      f:['φ = δ + Z &nbsp;(верхняя кульминация, светило к югу от зенита)','φ = 180° − δ − Z &nbsp;(нижняя кульминация, светило к северу)','Δφ = ΔZ — погрешность Z входит в широту полностью'],
+      n:['Способ прост в наблюдениях, но погрешности измерения Z, рефракции и гнутия трубы входят в результат целиком — поэтому применяется на больших Z, где удобно использовать меры борьбы с рефракцией (наблюдения на разных Z, симметричные приёмы).']},
+    talkott:{tag:'один вертикал • широта',num:'2',
+      t:'Определение φ из наблюдений звёзд вблизи меридиана на разных Z при ΔZ < 20′ — способ Талькотта',
+      b:'Наблюдают две звезды в плоскости меридиана: одну к северу от зенита σ<sub>N</sub>, другую к югу σ<sub>S</sub>. Звёзды кульминируют почти одновременно, а разность зенитных расстояний |Z<sub>S</sub> − Z<sub>N</sub>| < 20′ измеряют окулярным микрометром без изменения наклона трубы.',
+      cond:'Обе звезды — в плоскости меридиана; кульминации близки по времени; |Z<sub>S</sub> − Z<sub>N</sub>| < 20′ (измерение микрометром).',
+      al:['Трубу устанавливают на нужное Z и закрепляют','Наводят на первую звезду и берут отсчёт микрометра','После её прохождения наводят на вторую звезду и берут второй отсчёт: разность отсчётов даёт (Z<sub>S</sub> − Z<sub>N</sub>)','Вычисляют широту по одной из двух рабочих формул'],
+      f:['φ = ½(δ<sub>S</sub> + δ<sub>N</sub>) + ½(Z<sub>S</sub> − Z<sub>N</sub>) &nbsp;— обе звезды в верхней кульминации','φ = 90° + ½(δ<sub>S</sub> − δ<sub>N</sub>) + ½(Z<sub>S</sub> − Z<sub>N</sub>) &nbsp;— северная звезда в нижней кульминации'],
+      n:['Наиболее полно исключаются ошибки измерения Z, влияние рефракции и гнутия трубы: они входят в разность почти одинаково.','m<sub>φ</sub> ≈ 0,8″ по одной паре и ≈ 0,3″ по 10–12 парам.','Недостатки: критичны погрешности окулярного микрометра, приходится наблюдать слабые звёзды, нельзя применять при φ > 65° в летний период.']},
+    uvert:{tag:'один вертикал • время',num:'3',
+      t:'Определение U из наблюдения звёзд вблизи 1-го вертикала',
+      b:'Светила наблюдают вблизи первого вертикала (A ≈ 90° или 270°), где Z наиболее чувствительно к поправке часов: коэффициент при времени максимален (sin A = ±1), а влияние ошибок широты мало (cos A → 0).',
+      cond:'Светила проходят вблизи первого вертикала; у каждого измеряют Z и фиксируют момент; приближённые φ₀, u₀ известны.',
+      al:['Наблюдают прохождения серии звёзд через первый вертикал: момент T и зенитное расстояние Z','По приближённым φ₀, u₀ вычисляют Z<sub>выч</sub> каждой звезды','Составляют уравнения поправок; вблизи первого вертикала главный член — при Δu','Решают систему и получают Δu (Δλ); далее λ = λ₀ + Δλ, u = u₀ + Δu'],
+      f:['V<sub>Z</sub> = cos A·x + sin A·y + l, &nbsp; y = 15 cos φ₀·Δu','вблизи 1-го вертикала: sin A = ±1, cos A ≈ 0','Δu = (Z<sub>выч</sub> − Z<sub>изм</sub>) / (15 cos φ₀ · sin A)'],
+      n:['Ошибки широты почти не влияют на результат — это главное преимущество схемы.','Погрешности измерения Z, рефракции и гнутия входят полностью, поэтому способ применяют с умеренными требованиями к точности или в сочетании с поправками.']},
+    gauss:{tag:'равные высоты',num:'1',
+      t:'Совместно φ и U: — способ Гаусса; — способ Мазаева',
+      b:'Первое решение задачи определения φ и λ по трём звёздам на равной высоте дал Гаусс (1808). Кнорре (1832) предложил наблюдать n ≥ 3 звёзд на одном альмукантарате. В 1942–1945 гг. А. В. Мазаев разработал методику наблюдений астрономическим теодолитом и составил таблицы для поиска звёзд.',
+      cond:'12–16 звёзд на одном альмукантарате при Z = 30° и Z = 45°; измеряется время прохождения звезды через альмукантарат; серия замыкается приёмами радиосигналов точного времени.',
+      al:['Устанавливают трубу на выбранное Z<sub>эф</sub> (30° или 45°)','Наблюдают моменты T<sub>H</sub> прохождения каждой звезды через нить','Составляют уравнение поправок для каждой звезды','Решают систему по МНК относительно ζ′, x, y и переходят к φ и λ'],
+      f:['V<sub>i</sub> = −ζ′ + x cos A<sub>i</sub> + y sin A<sub>i</sub> + l, &nbsp; P = 1','l = Z₀ − Z<sub>эф</sub>','φ = φ₀ + x, &nbsp; λ = λ₀ + y/(15 cos φ₀)'],
+      n:['Исключаются поправки за рефракцию и гнутие трубы; не влияют ошибки делений лимба вертикального круга.','Недостаток: не имеет преимуществ перед раздельными способами определения широты и долготы.']},
+    kavlaysky:{tag:'равные высоты',num:'2',
+      t:'Совместно φ и U, наблюдая пары звёзд во взаимно перпендикулярных вертикалах — способ Кавлайского',
+      b:'Способ равных высот, в котором пары светил на одном альмукантарате подбирают так, чтобы их вертикалы были взаимно перпендикулярны. Сочетает идею симметричных пар с наивыгоднейшим распределением светил по азимутам: недиагональные коэффициенты нормальных уравнений обращаются в нуль, а веса неизвестных выравниваются.',
+      cond:'Пары звёзд на одном альмукантарате Z<sub>ср</sub> ≈ 35°; вертикалы пар взаимно перпендикулярны; n пар за серию.',
+      al:['Устанавливают трубу на альмукантарат Z<sub>ср</sub> ≈ 35°','Наблюдают пары светил с разностью азимутов 90°: моменты прохождения через нить','Составляют уравнения поправок с весом P = 1','Решают по МНК совместно относительно Δa′, x, y'],
+      f:['P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3 при Z<sub>ср</sub> = 35,3°','V = Δa′ + b·x + c·y + l, &nbsp; b = sin A·ctg Z, &nbsp; c = cos A·ctg Z','вес уравнения P = sin² Z'],
+      n:['Z не измеряют, поэтому исключаются рефракция, гнутие трубы и ошибки делений вертикального круга.','Наблюдение каждой пары быстрое — прибор не успевает сдвинуться по азимуту.','В учебнике (Мицкевич, 2014) этот способ приведён только на схеме рис. 1.28: его описание в тексте не раскрыто. Изложение здесь построено по общей теории способов равных высот и принципу наивыгоднейших условий (§1.6, §1.8) и служит для полноты схемы.']},
+    pevcov:{tag:'равные высоты',num:'3',
+      t:'Определение φ из наблюдений пар звёзд вблизи плоскости меридиана — способ Певцова',
+      b:'Две звезды наблюдают на одном альмукантарате вблизи меридиана: одна к югу, другая к северу от зенита, на азимутах, симметричных относительно первого вертикала. Измеряемая величина — время прохождения звезды через альмукантарат.',
+      cond:'Азимуты звёзд 10–40° от меридиана; условие симметрии A<sub>N</sub> = 180° − A<sub>S</sub>; наблюдения при высокоточных работах — с фотоэлектрической регистрацией.',
+      al:['Устанавливают трубу на альмукантарат','Фиксируют моменты прохождения южной и северной звёзд пары','Для каждой пары вычисляют x<sub>i</sub> по разности Z<sub>выч</sub>','Получают x<sub>ср</sub> как среднее весовое и φ = φ₀ + x<sub>ср</sub>'],
+      f:['A<sub>N</sub> = 180° − A<sub>S</sub>','x<sub>i</sub> = (Z<sup>выч</sup><sub>N</sub> − Z<sup>выч</sup><sub>S</sub>) / (cos A<sub>S</sub> − cos A<sub>N</sub>), &nbsp; P = 2cos²A<sub>N</sub>','φ = φ₀ + x<sub>ср</sub>, &nbsp; вес P<sub>φ</sub> = [P<sub>x</sub>]'],
+      n:['Не уступает по точности способу Талькотта и позволяет наблюдать более яркие звёзды; исключаются рефракция, гнутие трубы и другие систематические погрешности.','Недостаток: время наблюдения пары возрастает до 15<sup>m</sup>, а при наблюдении южных звёзд верхнюю часть теодолита приходится заметно смещать по азимуту.','Влияние недостатков ослабляют окулярным микрометром с нитями, разнесёнными на 50–60″.']},
+    zinger:{tag:'равные высоты',num:'4',
+      t:'Определение U из наблюдения пар звёзд вблизи плоскости 1-го вертикала — способ Цингера',
+      b:'Две звезды наблюдают на одном альмукантарате вблизи первого вертикала: одна на востоке σ<sub>E</sub>, другая на западе σ<sub>W</sub>. Пары подбирают симметричными по азимуту относительно меридиана. Применяется для определения поправки часов (долготы).',
+      cond:'Разрешается наблюдать звёзды на удалении по азимуту от первого вертикала до 30°; условие симметрии A<sub>E</sub> = 360° − A<sub>W</sub>; измеряется время прохождения через альмукантарат.',
+      al:['Устанавливают трубу на альмукантарат вблизи первого вертикала','Фиксируют моменты прохождения восточной и западной звёзд пары','Для каждой пары вычисляют y<sub>i</sub> по разности Z<sub>выч</sub>','Находят y<sub>ср</sub> как среднее весовое, затем λ и поправку часов'],
+      f:['A<sub>E</sub> = 360° − A<sub>W</sub>','y<sub>i</sub> = −(Z<sup>выч</sup><sub>W</sub> − Z<sup>выч</sup><sub>E</sub>) / (sin A<sub>W</sub> − sin A<sub>E</sub>), &nbsp; P = 2sin²A<sub>W</sub>','y<sub>ср</sub> = [P<sub>i</sub>y<sub>i</sub>]/[P<sub>i</sub>]; &nbsp; λ = λ₀ + y<sub>ср</sub>/(15 cos φ), &nbsp; P<sub>λ</sub> = P<sub>y</sub>cos²φ','U = U₀ + y<sub>ср</sub>/(15 cos φ)'],
+      n:['Один из самых точных способов определения времени: по 5–6 парам точность поправки часов достигает ≈0,01<sup>s</sup>.','Пара наблюдается быстро; сумма систематических поправок к установочному Z исключается в разности зенитных расстояний звёзд пары.']}
+  };
+  function show(key){
+    var n=N[key];if(!n)return;
+    var h='<div class="dc-tag">'+(n.tag||'')+(n.num?(' · пункт '+n.num):'')+'</div><h4>'+(n.num?n.num+'. ':'')+n.t+'</h4>';
+    h+='<p>'+n.b+'</p>';
+    if(n.cond)h+='<div class="dc-row"><b>Условие наблюдений</b><span>'+n.cond+'</span></div>';
+    if(n.al)h+='<div class="dc-row"><b>Алгоритм</b><ol>'+n.al.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol></div>';
+    if(n.f)h+='<div class="dc-row"><b>Расчётные формулы</b><div class="formula">'+n.f.join('<br>')+'</div></div>';
+    if(n.n)h+='<div class="note green">'+n.n.map(function(x){return '<div>'+x+'</div>';}).join('')+'</div>';
+    if(n.link)h+='<p style="margin:10px 0 0"><a href="'+n.link.href+'" style="color:#d9501a;font-weight:700">'+n.link.txt+' →</a></p>';
+    det.innerHTML=h;
+  }
+  document.querySelectorAll('.bs-box,.bs-item').forEach(function(nd){nd.addEventListener('click',function(){
+    document.querySelectorAll('.bs-box,.bs-item').forEach(function(o){o.classList.remove('on');});nd.classList.add('on');show(nd.dataset.node);});});
+  show('root');
+})();
+
+/* ============================================================
+   7. Чувствительность и инструментальные поправки
+   ============================================================ */
+(function(){
+  var chart=$$('sensChart');
+  if(chart){
+    var A=0,Z=35,phi=56;
+    function draw(){
+      var cA=Math.abs(cs(A)),sA=Math.abs(sn(A));
+      var dPhiZ=Math.abs(1/Math.max(1e-3,cs(A)));  /* ∂φ/∂Z ≈ −1/cos A */
+      var dPhiT=sA*Math.abs(cs(phi))*15/3600;      /* 1s времени -> градусы -> * |cos φ sin A| */
+      var dZdt=Math.abs(cs(phi)*sn(A));            /* ∂Z/∂t на 1° часового угла */
+      $$('sDZ').textContent=fx(dPhiZ,2);
+      $$('sDT').textContent=fx(Math.abs(cs(phi)*sn(A))*15/3600*3600,2)+'″';
+      $$('sRate').textContent=(Z>10&&Z<60)?'в допуске 10°–60°':(Z<10?'Z < 10°: опасны инструментальные ошибки':(Z<70?'Z > 60°: растёт рефракция':'Z > 70°: рефракция велика — способ неприменим'));
+      var bars=[{t:'«вес» широты |cos A|',v:cA,c:'#0a655d'},{t:'«вес» времени |sin A|',v:sA,c:'#7655b7'},
+                {t:'∂Z/∂t на 1° (|cos φ sin A|)',v:dZdt,c:'#2474c6'},{t:'∂φ/∂Z = 1/|cos A| (норм.)',v:Math.min(1,dPhiZ/6),c:'#ff7136'}];
+      $$('sensBars').innerHTML=bars.map(function(b){
+        return '<div class="brow2"><span class="nm">'+b.t+'</span><span class="track"><span class="fill" style="width:'+(Math.max(0,Math.min(1,b.v))*100).toFixed(1)+'%;background:'+b.c+'"></span></span><span class="vl">'+fx(b.v,3)+'</span></div>';}).join('');
+      var W=620,H=210,x0=44,x1=W-14,y0=16,y1=H-34;
+      var px=function(a){return x0+a/360*(x1-x0);},py=function(v){return y1-v*(y1-y0);};
+      var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+      for(var a=0;a<=360;a+=45)g+='<line x1="'+px(a)+'" y1="'+y0+'" x2="'+px(a)+'" y2="'+y1+'" stroke="#eef4f2"/><text x="'+px(a)+'" y="'+(y1+15)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+a+'°</text>';
+      g+='<line x1="'+x0+'" y1="'+y1+'" x2="'+x1+'" y2="'+y1+'" stroke="#c9dcd8"/>';
+      var p1='',p2='';
+      for(var i=0;i<=360;i+=2){p1+=(i?' L':'M')+fx(px(i),1)+' '+fx(py(Math.abs(cs(i))),1);
+        p2+=(i?' L':'M')+fx(px(i),1)+' '+fx(py(Math.abs(sn(i))),1);}
+      g+='<path d="'+p1+'" fill="none" stroke="#0a655d" stroke-width="2.2"/>';
+      g+='<path d="'+p2+'" fill="none" stroke="#7655b7" stroke-width="2.2" stroke-dasharray="6 4"/>';
+      g+='<line x1="'+px(A)+'" y1="'+y0+'" x2="'+px(A)+'" y2="'+y1+'" stroke="#ff7136"/>';
+      g+='<circle cx="'+px(A)+'" cy="'+py(Math.abs(cs(A)))+'" r="5" fill="#0a655d" stroke="#fff" stroke-width="2"/>';
+      g+='<circle cx="'+px(A)+'" cy="'+py(Math.abs(sn(A)))+'" r="5" fill="#7655b7" stroke="#fff" stroke-width="2"/>';
+      g+='<text x="'+(x0+6)+'" y="'+(y0+12)+'" font-size="11" fill="#0a655d" font-family="Roboto Mono,monospace">|cos A| — вес широты (меридиан: A = 0°, 180°)</text>';
+      g+='<text x="'+(x0+6)+'" y="'+(y0+28)+'" font-size="11" fill="#7655b7" font-family="Roboto Mono,monospace">|sin A| — вес времени (1-й вертикал: A = 90°, 270°)</text>';
+      chart.innerHTML=svgNum(g);
+    }
+    $$('sA').addEventListener('input',function(){A=+this.value;$$('sAV').textContent=A+'°';draw();});
+    $$('sZ').addEventListener('input',function(){Z=+this.value;$$('sZV').textContent=Z+'°';draw();});
+    $$('sPhi').addEventListener('input',function(){phi=+this.value;$$('sPhiV').textContent=phi+'°';draw();});
+    draw();
+  }
+  var corr=$$('corrSvg');
+  if(corr){
+    var i2=6,c2=4,g2=1.5,Z2=35;
+    function draw2(){
+      var v1=(i2+c2)*cs(Z2),v2=g2*sn(Z2);
+      $$('cOut1').textContent=fx(v1,2)+'″';$$('cOut2').textContent=fx(v2,2)+'″';$$('cOut3').textContent=fx(v1+v2,2)+'″';
+      var W=620,H=200,x0=48,x1=W-14,y0=16,y1=H-32;
+      var px=function(z){return x0+z/90*(x1-x0);},py=function(v){return y1-(v+0)/(Math.max(12,Math.abs(i2+c2)+Math.abs(g2))*1.15)*(y1-y0);};
+      var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+      for(var z=0;z<=90;z+=15)g+='<line x1="'+px(z)+'" y1="'+y0+'" x2="'+px(z)+'" y2="'+y1+'" stroke="#eef4f2"/><text x="'+px(z)+'" y="'+(y1+15)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+z+'°</text>';
+      g+='<line x1="'+x0+'" y1="'+y1+'" x2="'+x1+'" y2="'+y1+'" stroke="#c9dcd8"/>';
+      var p1='',p2='';
+      for(var z2=0;z2<=90;z2+=1){p1+=(z2?' L':'M')+fx(px(z2),1)+' '+fx(py((i2+c2)*cs(z2)),1);
+        p2+=(z2?' L':'M')+fx(px(z2),1)+' '+fx(py(g2*sn(z2)),1);}
+      g+='<path d="'+p1+'" fill="none" stroke="#2474c6" stroke-width="2.2"/>';
+      g+='<path d="'+p2+'" fill="none" stroke="#b9780c" stroke-width="2.2"/>';
+      g+='<line x1="'+px(Z2)+'" y1="'+y0+'" x2="'+px(Z2)+'" y2="'+y1+'" stroke="#ff7136"/>';
+      g+='<text x="'+(x0+6)+'" y="'+(y0+12)+'" font-size="11" fill="#2474c6" font-family="Roboto Mono,monospace">(i + c)·cos Z — наклон оси и коллимация</text>';
+      g+='<text x="'+(x0+6)+'" y="'+(y0+28)+'" font-size="11" fill="#b9780c" font-family="Roboto Mono,monospace">g·sin Z — гнутие трубы</text>';
+      g+='<text x="'+(x0+6)+'" y="'+(y1-8)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">по горизонтали — зенитное расстояние Z</text>';
+      corr.innerHTML=svgNum(g);
+    }
+    ['cI','cC','cG','cZ'].forEach(function(id){$$(id).addEventListener('input',function(){
+      i2=+$$('cI').value;c2=+$$('cC').value;g2=+$$('cG').value;Z2=+$$('cZ').value;
+      $$('cIV').textContent=fx(i2,1)+'″';$$('cCV').textContent=fx(c2,1)+'″';$$('cGV').textContent=fx(g2,1)+'″';$$('cZV').textContent=Z2+'°';draw2();});});
+    draw2();
+  }
+})();
+
+/* ============================================================
+   8. Мини-МНК: совместное определение φ и λ
+   ============================================================ */
+(function(){
+  if(!$$('mnRun'))return;
+  function det3(m){return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);}
+  function solve(A,l){
+    var M=[[cs(A[0]),sn(A[0]),-1],[cs(A[1]),sn(A[1]),-1],[cs(A[2]),sn(A[2]),-1]],d=det3(M);
+    if(Math.abs(d)<1e-9)return null;
+    var rep=function(col,vals){var m=M.map(function(r,i){return [r[0],r[1],r[2]];});m[0][col]=vals[0];m[1][col]=vals[1];m[2][col]=vals[2];return det3(m);};
+    var b=[-l[0],-l[1],-l[2]];
+    return {x:rep(0,b)/d,y:rep(1,b)/d,mz:-rep(2,b)/d};
+  }
+  function run(){
+    var A=[+$$('mnA1').value,+$$('mnA2').value,+$$('mnA3').value],
+        l=[+$$('mnL1').value,+$$('mnL2').value,+$$('mnL3').value],
+        phi0=+$$('mnPhi0').value,lam0=+$$('mnLam0').value;
+    var r=solve(A,l);
+    if(!r){$$('mnNote').textContent='Система вырождена: азимуты светил почти одинаковы — нужны наблюдения при существенно различных азимутах.';return;}
+    $$('mnX').textContent=fx(r.x,2)+'″';
+    $$('mnY').textContent=fx(r.y,2)+'″';
+    $$('mnMZ').textContent=fx(r.mz,2)+'″';
+    $$('mnPhi').textContent=dms(phi0+r.x/3600,false);
+    var dl=r.y/3600/(15*cs(phi0))*15;   /* y″ -> градусы долготы */
+    $$('mnLam').textContent=dms(lam0+r.y/(3600*15*Math.abs(cs(phi0))),false);
+    $$('mnNote').innerHTML='Коэффициенты уравнений: cos A = '+fx(cs(A[0]),3)+', '+fx(cs(A[1]),3)+', '+fx(cs(A[2]),3)+
+      '; sin A = '+fx(sn(A[0]),3)+', '+fx(sn(A[1]),3)+', '+fx(sn(A[2]),3)+'. Проверка: сумма невязок должна быть близка к нулю.';
+  }
+  ['mnA1','mnA2','mnA3','mnL1','mnL2','mnL3','mnPhi0','mnLam0'].forEach(function(id){$$(id).addEventListener('input',run);});
+  $$('mnRun').addEventListener('click',run);
+  run();
+})();
+
+/* ============================================================
+   9. Самопроверка
+   ============================================================ */
+(function(){
+  if(!$$('quiz'))return;
+  var qs=[
+    ['Что является основным уравнением зенитальных способов?',['cos Z = sin φ sin δ + cos φ cos δ cos t','ctg A sin t = ctg δ cos φ − sin φ cos t','s = T + u'],0],
+    ['Сколько светил нужно отнаблюдать, чтобы совместно определить φ и u без поправки места зенита?',['достаточно одного','не менее двух светил (или одно дважды)','не менее трёх с учётом ΔMZ'],2],
+    ['При каком положении светила широта определяется наивыгоднейшим образом?',['в первом вертикале (A = 90°)','в плоскости меридиана (A = 0°, 180°)','на горизонте (Z = 90°)'],1],
+    ['Поправку часов (долготу) наивыгоднее определять:',['в первом вертикале','в плоскости меридиана','в элонгации'],0],
+    ['Что измеряют в способах равных высот?',['зенитные расстояния светил','только моменты прохождения светил через горизонтальную нить','горизонтальные углы между светилами'],1],
+    ['Разность зенитных расстояний пары звёзд в способе Талькотта не должна превышать:',['5″','20′','2°'],1],
+    ['Почему в серии точных наблюдений разность Z звёзд берут не более 5–7°?',['иначе не хватит поля зрения','чтобы остаточное влияние рефракции и гнутия не превышало 0,2–0,3″','так требует инструкция по хронометру'],1],
+    ['Что произойдёт, если все светила серии наблюдать при близких азимутах?',['увеличится точность','система уравнений поправок окажется плохо обусловленной','нельзя будет ввести поправку за рефракцию'],1]
+  ];
+  var done={};
+  $$('quiz').innerHTML=qs.map(function(q,i){return '<div class="quiz-q"><b>'+(i+1)+'. '+q[0]+'</b><div class="answers">'+
+    q[1].map(function(a,j){return '<button class="ans" data-q="'+i+'" data-a="'+j+'">'+a+'</button>';}).join('')+'</div></div>';}).join('');
+  $$('quiz').addEventListener('click',function(e){
+    var b=e.target.closest('.ans');if(!b||done[b.dataset.q]!==undefined)return;
+    var q=+b.dataset.q,a=+b.dataset.a;done[q]=a;
+    b.parentElement.querySelectorAll('.ans').forEach(function(x,j){if(j===qs[q][2])x.classList.add('ok');else if(j===a)x.classList.add('bad');});
+    var n=Object.keys(done).length,ok=Object.keys(done).filter(function(i){return done[i]===qs[i][2];}).length;
+    $$('score').innerHTML=n<qs.length?('Отвечено: '+n+'/'+qs.length+' · верно: '+ok):('Результат: <b>'+ok+'/'+qs.length+'</b>. '+(ok===qs.length?'Отлично: зенитальные способы разобраны полностью.':'Вернитесь к вкладкам «Основное уравнение», «Условия и ошибки» и интерактивам.'));
+  });
+})();
+
+</script>
+</body>
+</html>

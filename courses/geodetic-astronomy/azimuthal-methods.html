@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Интерактивный урок об азимутальных способах астрономических определений: измерение горизонтальных направлений на светила, место севера, основное уравнение, классификация способов, определение азимута по Полярной звезде и способ Деллена, выгоднейшие условия и точность.">
+<title>Азимутальные способы астрономических определений — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+:root{--ink:#092c33;--muted:#5c7370;--white:#fff;--dark:#063f3b;--dark2:#07534d;--green:#0a655d;--green-soft:#e9f5f1;--green-line:#b3d9d0;--accent:#ff7136;--accent-dark:#d9501a;--accent-soft:#ffe9de;--line:#d5e3de;--radius:18px;--mono:'Roboto Mono',Consolas,monospace;--lesson-w:1220px}
+:root{--blue:#2474c6;--violet:#7655b7;--cyan:#118c91;--gold:#b9780c;--red:#d45834;--shadow:0 18px 50px rgba(18,54,49,.10)}
+.section{padding:26px 0 60px}
+.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.article,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
+.article{padding:28px 31px}.panel{padding:18px}
+.article h2{margin:0 0 10px}
+.article h3{font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:22px 0 8px}
+.lead{color:#405a55;margin:0 0 12px}
+ul.plain{margin:10px 0 10px 18px}ul.plain li{margin:6px 0;color:#3d5751}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:#096158;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;overflow:auto}
+.formula b{color:#07534d}
+.note{border-left:3px solid var(--accent);background:#fff2ec;padding:13px 16px;border-radius:0 10px 10px 0;margin:15px 0;color:#75462d}
+.note.green{border-left-color:var(--cyan);background:#eef7f6;color:#315951}
+.note.blue{border-left-color:var(--blue);background:#eef4fb;color:#274b70}
+.muted{color:#6a7d79;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;margin:14px 0}
+.card{padding:15px;border:1px solid var(--line);border-radius:14px;background:#f8fbfa}
+.card b{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;border-radius:99px;padding:3px 9px;font:700 11px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:800 11px var(--mono);color:var(--accent-dark);text-transform:uppercase}
+.ctl{display:grid;grid-template-columns:160px 1fr 104px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+@media(max-width:640px){.ctl{grid-template-columns:1fr 1fr}}
+.ctl label{font:600 12.5px var(--mono);color:#405a55}
+.ctl .val{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+input[type=range]{accent-color:var(--accent);width:100%}
+input[type=number],input[type=text],select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:600 13px var(--mono);width:100%;background:#fff;color:#163f39}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:12px 0}
+.out{padding:11px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9}
+.out small{display:block;color:#768a85;font:700 10px var(--mono);text-transform:uppercase;margin-bottom:3px}
+.out b{font:700 15px var(--mono);color:#0a3f3a}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{border:1px solid var(--green-line);background:#fff;border-radius:99px;padding:7px 13px;font:700 12px var(--mono);color:#0a655d;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent-dark)}
+.btn.on{background:var(--green);border-color:var(--green);color:#fff}
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.cap{font:500 11.5px var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+.quiz-q{border:1px solid var(--line);border-radius:13px;padding:14px;margin:12px 0;background:#fafcfb}
+.answers{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.ans{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:13.5px;cursor:pointer;text-align:left}
+.ans:hover{border-color:var(--accent)}
+.ans.ok{background:#e2f6ea;border-color:#43a86a;color:#186b3c;font-weight:700}
+.ans.bad{background:#fdeceb;border-color:#d45834;color:#a33a1c}
+.score{margin-top:12px;font:600 13.5px var(--mono);color:#0a655d}
+.tree-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 12px}
+.tcol{border:1px solid var(--line);border-radius:14px;background:#f8fbfa;padding:12px}
+.tcol>h4{margin:0 0 8px;font-size:14px;color:var(--dark2)}
+.tnode{border:1px solid var(--line);border-radius:11px;background:#fff;padding:9px 11px;margin:7px 0;cursor:pointer;transition:.15s}
+.tnode:hover{border-color:var(--accent)}
+.tnode.on{border-color:var(--accent);background:#fff3ed}
+.tnode b{display:block;color:#0a4f4a;font-size:13px}
+.tnode small{color:#7c8f8a;font:600 10px var(--mono)}
+.tdetail{border:1px solid var(--line);border-radius:13px;padding:18px;background:#fff;min-height:150px}
+.tdetail h4{margin:0 0 8px;color:var(--green);font-size:16px}
+.tdetail ul{margin:8px 0 8px 18px;padding:0}
+.tdetail li{margin:5px 0;color:#3d5751;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1px solid var(--line);background:#f7fbf9;border-radius:99px;padding:5px 11px;font:600 12px var(--mono);color:#3d5a54}
+.bars{margin:12px 0}
+.brow2{display:grid;grid-template-columns:190px 1fr 96px;gap:10px;align-items:center;margin:7px 0}
+@media(max-width:640px){.brow2{grid-template-columns:1fr}}
+.brow2 .nm{font:600 12.5px var(--mono);color:#405a55}
+.track{height:15px;border-radius:8px;background:#eef4f2;position:relative;overflow:hidden}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px}
+.brow2 .vl{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+.worktable td{font-family:var(--mono);font-size:12.5px;padding:6px 9px}
+.worktable td:first-child{font-family:inherit;color:#405a55;width:38%}
+.worktable tr.hl td{background:#fff5ef;font-weight:700}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+.pill{border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;background:#f7fbfa;padding:11px 14px}
+.pill b{display:block;color:#0a4f4a;margin-bottom:4px}
+.steps{counter-reset:st;margin:12px 0}
+.step{position:relative;padding:12px 14px 12px 46px;border:1px solid var(--line);border-radius:13px;background:#f9fcfb;margin:9px 0}
+.step:before{counter-increment:st;content:counter(st);position:absolute;left:13px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:700 12px/24px var(--mono);text-align:center}
+.step b{color:#0a4f4a}
+.step .f{font-family:"Cambria Math",Georgia,serif;color:#096158;margin-top:5px}
+/* ---------- интерактивная блок-схема классификации ---------- */
+.bs-grid{display:grid;grid-template-columns:minmax(0,1.34fr) minmax(0,.66fr);gap:22px;align-items:start}
+@media(max-width:1040px){.bs-grid{grid-template-columns:1fr}}
+.bs{margin:16px 0 4px}
+.bs-row{display:flex;gap:14px;align-items:stretch;justify-content:center}
+.bs-col{flex:1 1 0;display:flex;flex-direction:column;align-items:center;min-width:0}
+.bs-fork{position:relative;height:26px;width:100%}
+.bs-fork::before{content:"";position:absolute;left:50%;top:0;width:2px;height:13px;background:#b9d6cf;transform:translateX(-1px)}
+.bs-fork::after{content:"";position:absolute;left:50%;top:12px;height:2px;background:#b9d6cf;transform:translateX(-50%);width:calc(100% - 100%/var(--n,2))}
+.bs-fork.n2{--n:2}.bs-fork.n3{--n:3}
+.bs-stub{width:2px;height:14px;background:#b9d6cf}
+.bs-box{width:100%;max-width:560px;border:1.6px solid #9fc4bd;border-radius:12px;background:#fff;padding:11px 14px;cursor:pointer;font:inherit;text-align:center;transition:.15s}
+.bs-box:hover{border-color:var(--accent);box-shadow:0 8px 20px rgba(255,113,54,.13)}
+.bs-box.on{border-color:var(--accent);background:#fff3ed}
+.bs-box small{display:block;font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:#8aa5a0;margin-bottom:3px}
+.bs-box b{display:block;color:#0a4f4a;font-size:14px;line-height:1.28;font-weight:700}
+.bs-box.sm b{font-size:13px}
+.bs-list{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:8px}
+.bs-item{display:flex;gap:9px;align-items:flex-start;border:1.4px solid var(--line);border-radius:11px;background:#f9fcfb;padding:9px 11px;cursor:pointer;font:inherit;text-align:left;transition:.15s;width:100%}
+.bs-item:hover{border-color:var(--accent)}
+.bs-item.on{border-color:var(--accent);background:#fff3ed;box-shadow:0 8px 20px rgba(255,113,54,.13)}
+.bs-item i{flex:0 0 22px;height:22px;border-radius:50%;background:#0a655d;color:#fff;font:700 11.5px/22px var(--mono);text-align:center;font-style:normal}
+.bs-item.on i{background:var(--accent)}
+.bs-item span{font-size:12.6px;color:#25443f;line-height:1.32;padding-top:1px}
+.bs-item em{font-style:normal;font:700 12px var(--mono);color:#0a655d;padding-top:3px}
+.bs-subs{display:flex;flex-direction:column;gap:5px;margin:6px 0 4px 12px;padding-left:9px;border-left:1px dashed #b9d6cf;width:calc(100% - 12px)}
+.bs-sub{display:flex;gap:8px;align-items:flex-start;border:1px solid #e3efec;border-radius:9px;background:#fdfefe;padding:6px 9px;cursor:pointer;font:inherit;text-align:left;transition:.15s;width:100%}
+.bs-sub:hover{border-color:var(--accent)}
+.bs-sub.on{border-color:var(--accent);background:#fff3ed}
+.bs-sub em{flex:0 0 18px;font:700 11.5px/18px var(--mono);font-style:normal;color:#0a655d;text-align:center;background:#eaf5f2;border-radius:6px}
+.bs-sub.on em{background:var(--accent);color:#fff}
+.bs-sub span{font-size:12.1px;color:#3d5751;line-height:1.3}
+.bs-head{border:1px dashed #b9d6cf;border-radius:11px;background:#f2faf8;padding:9px 11px;font:700 11.5px/1.3 var(--mono);color:#0a4f4a;text-align:center;margin-bottom:2px}
+.bs-head i{display:block;font-style:normal;font-size:15px;color:var(--accent-dark);margin-bottom:3px}
+.bs-cnt{display:inline-block;margin-top:6px;border-radius:99px;padding:3px 8px;font:700 10px var(--mono);letter-spacing:.04em;background:#fff3ed;color:#b8471b;border:1px solid #f3cdb9}
+.detail-panel{position:sticky;top:14px}
+.dc-tag{display:inline-block;border-radius:99px;padding:2px 9px;font:700 10.5px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:7px}
+.dc-row{margin:0 0 11px}
+.dc-row>b{display:block;font:800 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent-dark);margin-bottom:4px}
+.dc-row ol{margin:0 0 0 17px;padding:0}
+.dc-row ol li{margin:4px 0;color:#3d5751;font-size:13.4px}
+.dc-row span{color:#3d5751;font-size:13.6px}
+.tdetail h4{margin:0 0 6px}
+.tdetail p{margin:0 0 9px;color:#3d5751;font-size:13.6px}
+.tdetail .formula{font-size:13px;margin:10px 0}
+.tdetail .note{font-size:12.8px;margin:10px 0 0}
+@media(max-width:1180px){.bs-outer,.bs-two,.bs-three{flex-direction:column}}
+
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside>
+<main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-06">Тема 06. Методы астрономических наблюдений в геодезии</a></div>
+<h1>Азимутальные способы астрономических определений</h1>
+<p class="gl-meta-summary">Способы, в которых измеряют горизонтальные направления на светила и на земной предмет. Место севера и основное уравнение; выгоднейшие условия; классификация способов; определение азимута по Полярной звезде и способ Деллена. Интерактивный лимб, модель движения Полярной и полный численный пример из учебника.</p>
+<div class="tabs-wrap gl-tabs"><div class="container"><div class="tabs" id="tabs">
+<button class="tab active" data-view="problem">Постановка задачи</button>
+<button class="tab" data-view="conditions">Выгоднейшие условия</button>
+<button class="tab" data-view="classify">Классификация</button>
+<button class="tab" data-view="polaris">Азимут по Полярной</button>
+<button class="tab" data-view="dellen">Способ Деллена</button>
+<button class="tab" data-view="practice">Практикум</button>
+<button class="tab" data-view="check">Самопроверка</button>
+</div></div></div></section>
+<div class="section"><div class="container">
+
+<!-- ================= PROBLEM ================= -->
+<section class="view active" id="problem">
+<div class="grid">
+<div class="article">
+<h2>Что измеряют в азимутальных способах</h2>
+<p class="lead">Астрономический азимут направления — двугранный угол между плоскостью меридиана и плоскостью вертикала этого направления. В астрономии счёт азимутов ведут <b>от точки юга S к западу</b> от 0° до 360°; для согласования с геодезией азимут отсчитывают <b>от точки севера N</b> — тогда счёт идёт по ходу часовой стрелки на восток.</p>
+<p class="lead">В азимутальных способах измеряют <b>не азимут</b>, а горизонтальный угол между направлением на земной предмет и направлением на светило. Прибор при этом ориентируют произвольно: направление лимба, совпадающее с меридианом, — <b>место севера M<sub>N</sub></b> — заранее неизвестно.</p>
+<div class="formula">
+A<sub>N</sub> = R<sub>σ</sub> − M<sub>N</sub> &nbsp;&nbsp;•&nbsp;&nbsp; a<sub>N</sub> = R<sub>з.п.</sub> − M<sub>N</sub> &nbsp;&nbsp;•&nbsp;&nbsp; Q = R<sub>σ</sub> − R<sub>з.п.</sub>
+</div>
+<p class="lead">где R<sub>σ</sub> — отсчёт по горизонтальному кругу при наблюдении светила, R<sub>з.п.</sub> — отсчёт на земной предмет, Q — измеренный горизонтальный угол между ними. Искомых величин три: <b>φ, u, M<sub>N</sub></b> (или, что то же, азимут направления a). Поэтому <b>необходимо отнаблюдать не менее трёх светил</b>.</p>
+<div class="gloss">
+<div class="pill"><b>Дано</b><span class="muted">λ, δ — экваториальные координаты светил; T — моменты наблюдений; R<sub>σ</sub> — отсчёты по горизонтальному кругу</span></div>
+<div class="pill"><b>Определить</b><span class="muted">φ, u, A — азимут светила, M<sub>N</sub> — место севера, а затем a — азимут направления на земной предмет</span></div>
+</div>
+<h3>Основное уравнение азимутальных способов</h3>
+<p class="lead">Из параллактического треугольника по формуле четырёх элементов получают связь азимута светила с широтой и часовым углом:</p>
+<div class="formula">
+ctg A · sin t = sin φ · cos t − cos φ · tg δ, &nbsp;&nbsp; где t = T<sub>H</sub> + u − α
+</div>
+<p class="lead">В учебнике то же соотношение записывают через угол при зените 180° − A (астрономический счёт азимутов от юга):</p>
+<div class="formula">
+ctg(180° − A)·sin t = ctg(90° − δ)·cos(90° − φ) − sin(90° − φ)·cos t
+</div>
+<div class="note"><b>Главная трудность.</b> Азимут светила меняется с течением времени тем быстрее, чем дальше светило от полюса мира. Поэтому при измерении горизонтальных направлений обязательно берут отсчёты по хронометру — и выбирают светила, у которых азимут меняется медленно и известен точно.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 1. Лимб, место севера и отсчёты</h2>
+<p class="muted">Горизонтальный круг прибора совмещён с плоскостью астрономического горизонта. Поворачивая ползунки, задайте отсчёты на светило и на земной предмет, а также положение места севера. Синие подписи — отсчёты по лимбу, зелёные — азимуты от точки севера.</p>
+<svg id="limbSvg" viewBox="0 0 620 470" role="img" aria-label="Горизонтальный круг: отсчёты по лимбу, место севера и азимуты"></svg>
+<div class="ctl"><label>отсчёт R<sub>σ</sub></label><input type="range" id="lRs" min="0" max="360" step="1" value="50"><span class="val" id="lRsV">50°</span></div>
+<div class="ctl"><label>отсчёт R<sub>з.п.</sub></label><input type="range" id="lRo" min="0" max="360" step="1" value="0"><span class="val" id="lRoV">0°</span></div>
+<div class="ctl"><label>место севера M<sub>N</sub></label><input type="range" id="lMn" min="0" max="360" step="1" value="322"><span class="val" id="lMnV">322°</span></div>
+<div class="readout">
+<div class="out"><small>Q = R<sub>σ</sub> − R<sub>з.п.</sub></small><b id="lQ">—</b></div>
+<div class="out"><small>A<sub>N</sub> = R<sub>σ</sub> − M<sub>N</sub></small><b id="lA">—</b></div>
+<div class="out"><small>a = R<sub>з.п.</sub> − M<sub>N</sub></small><b id="la">—</b></div>
+</div>
+<div class="muted" id="lHint">—</div>
+</div>
+</div>
+
+<div class="grid" style="margin-top:24px">
+<div class="article">
+<h2>Погрешности, действующие на горизонтальное направление</h2>
+<p class="lead">Горизонтальные направления на светила измеряют не у горизонта, а на разных зенитных расстояниях — поэтому особенно тщательно учитывают инструментальные поправки, растущие с уменьшением Z.</p>
+<table>
+<tr><th>Источник</th><th>Формула</th><th>Как исключают</th></tr>
+<tr><td>Наклон горизонтальной оси вращения трубы</td><td>L′ = L + b·ctg Z (1.94), b = i·τ/2</td><td>наклон определяют по накладному уровню дважды, переставляя уровень на 180°: i = (i₁ + i₂)/2 (1.95)</td></tr>
+<tr><td>Коллимационная ошибка</td><td>L′ = L − c·sin Z (КЛ), R′ = R + c·sin Z (КП) (1.96)</td><td>наблюдения при КЛ и КП; c = (L − (R ± 180°))/2 (1.97). При малых Z влияние не исключается полностью, если Z<sub>L</sub> ≠ Z<sub>R</sub></td></tr>
+<tr><td>Неправильная форма цапф</td><td>—</td><td>исследование астроуниверсала, введение поправок</td></tr>
+<tr><td>Боковое гнутие трубы</td><td>ΔN = Δβ·cosec Z (1.98)</td><td>специальные исследования на полевом пункте</td></tr>
+<tr><td>Рен и эксцентриситет лимба</td><td>—</td><td>перестановка лимба, наблюдения при двух кругах</td></tr>
+<tr><td>Боковая рефракция</td><td>существенна при больших Z</td><td>Z &lt; 75°; наблюдения в несколько вечеров, в прямом и обратном направлениях; высота визирного луча над препятствием 6–8 м</td></tr>
+<tr><td>Тепловое воздействие на прибор</td><td>смещение визирной оси</td><td>равномерный нагрев, укрытие прибора, перерывы в наблюдениях</td></tr>
+<tr><td>Азимутальный сдвиг астростолба</td><td>изменение азимута знака</td><td>поверительная труба, повторные наблюдения в другие вечера</td></tr>
+</table>
+<div class="note"><b>Обратите внимание на роль ctg Z:</b> при Z = 45° влияние наклона оси равно величине наклона, при Z = 10° оно уже в 5,7 раза больше. Поэтому азимутальные наблюдения стремятся выполнять на возможно меньших и по возможности близких зенитных расстояниях.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 2. Инструментальные поправки в направлениях</h2>
+<p class="muted">Оцените, как наклон оси и коллимационная ошибка искажают отсчёт по горизонтальному кругу в зависимости от зенитного расстояния светила.</p>
+<div class="ctl"><label>наклон оси i″</label><input type="range" id="nI" min="-30" max="30" step="0.5" value="5"><span class="val" id="nIV">5″</span></div>
+<div class="ctl"><label>коллимация c″</label><input type="range" id="nC" min="-30" max="30" step="0.5" value="8"><span class="val" id="nCV">8″</span></div>
+<div class="ctl"><label>Z светила</label><input type="range" id="nZ" min="3" max="85" step="1" value="25"><span class="val" id="nZV">25°</span></div>
+<div class="readout">
+<div class="out"><small>b·ctg Z (наклон)</small><b id="nOut1">—</b></div>
+<div class="out"><small>c·sin Z (коллимация, КЛ)</small><b id="nOut2">—</b></div>
+<div class="out"><small>суммарная поправка</small><b id="nOut3">—</b></div>
+</div>
+<svg id="nSvg" viewBox="0 0 620 210" role="img" aria-label="Влияние наклона оси и коллимации на горизонтальное направление"></svg>
+<div class="cap">Рис. 1. Влияние наклона оси b·ctg Z и коллимации c·sin Z на отсчёт по горизонтальному кругу</div>
+<div class="note green" style="margin-bottom:0"><b>Мера борьбы:</b> работать при двух положениях круга и на малых Z, но не менее 10°, где начинает преобладать коллимационная ошибка. Практический оптимум азимутальных наблюдений — 20° &lt; Z &lt; 50°.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CONDITIONS ================= -->
+<section class="view" id="conditions">
+<div class="grid">
+<div class="article">
+<h2>Выгоднейшие условия в азимутальных способах</h2>
+<p class="lead">Дифференцируя основное уравнение азимутальных способов, получают соотношения между ошибками измерений и ошибками вычисляемых величин. Их анализ даёт практические выводы о выборе светил.</p>
+<p class="lead">Уравнения поправок для измеренного горизонтального угла показывают, как ошибки координат пункта входят в определяемый азимут:</p>
+<div class="formula">
+V = Δa′ + b·x + c·y + l, &nbsp;&nbsp; где b = sin A · ctg Z, &nbsp; c = cos A · ctg Z, &nbsp; вес P = sin² Z
+</div>
+<p class="lead">Коэффициенты b и c «взвешивают» влияние уклонения отвесной линии (а значит, и ошибок знания широты и долготы) на азимут. Дифференцируя основное уравнение азимутальных способов (1.52) – (1.54), поочерёдно выделяют Δφ, Δu и ΔA и получают условия, при которых каждая из этих поправок минимальна.</p>
+<h3>Что из этого следует</h3>
+<table>
+<tr><th>Определяемая величина</th><th>Наивыгоднейшие условия</th><th>Смысл</th></tr>
+<tr><td>Δφ минимально</td><td>cos Z = 1, Z = 0°; sin A = 1, A = 90°, 270°</td><td>широту определяют по светилам в плоскости первого вертикала и на малых зенитных расстояниях</td></tr>
+<tr><td>Δu минимально</td><td>Z = 0°, A = 0°, 180°</td><td>поправку часов — по светилам в плоскости истинного меридиана (способ Деллена)</td></tr>
+<tr><td>ΔA минимально</td><td>A = 0°, 180°; δ = 90°</td><td>азимут направления точнее всего определяют по <b>близполюсным</b> звёздам — практически по Полярной звезде</td></tr>
+<tr><td>Метод Струве</td><td>Z = 90°</td><td>наблюдение на большом зенитном расстоянии в меридиане (ΔA определяется через cos A tg Z · Δδ)</td></tr>
+<tr><td>Элонгация</td><td>светило в наибольшем удалении от меридиана</td><td>способ наблюдения звёзд в элонгации предложил М. В. Ломоносов</td></tr>
+</table>
+<div class="note green"><b>Равенство весов.</b> В совместных способах определения φ, u, a равенство весов P<sub>a′</sub> = P<sub>x</sub> = P<sub>y</sub> достигается при наблюдении светил на альмукантарате <b>Z<sub>ср</sub> = 35,3°</b> в двух взаимно перпендикулярных вертикалах: веса равны n/3, где n — число светил. При Z<sub>ср</sub> = 45° равенство нарушается: P<sub>a′</sub> = n/2, P<sub>x</sub> = P<sub>y</sub> = n/4 — азимут получается точнее, координаты — грубее. В раздельных способах стремятся к максимуму каждого веса, сохраняя принцип симметрии в выборе светил: тогда перекрёстные коэффициенты нормальных уравнений равны нулю и обработка упрощается.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 3. Почему Полярная звезда?</h2>
+<p class="muted">Азимут близполюсного светила меняется очень медленно и мало — поэтому ошибки момента наблюдения и широты слабо влияют на определяемый азимут направления. Двигая ползунки, сравните поведение Полярной (δ ≈ 89,3°) и далёкой от полюса звезды.</p>
+<div class="ctl"><label>склонение δ</label><input type="range" id="pDec" min="10" max="89.5" step="0.5" value="89.5"><span class="val" id="pDecV">89,5°</span></div>
+<div class="ctl"><label>широта φ</label><input type="range" id="pPhi" min="0" max="75" step="1" value="56"><span class="val" id="pPhiV">56°</span></div>
+<div class="ctl"><label>часовой угол t</label><input type="range" id="pT" min="-180" max="180" step="1" value="-60"><span class="val" id="pTV">−60°</span></div>
+<div class="btnrow">
+<button class="btn" id="pPol" type="button">Полярная (δ = 89°16′)</button>
+<button class="btn" id="pEql" type="button">Экваториальная звезда (δ = 0°)</button>
+</div>
+<div class="readout">
+<div class="out"><small>азимут светила a*</small><b id="pA">—</b></div>
+<div class="out"><small>Δ = 90° − δ</small><b id="pDel">—</b></div>
+<div class="out"><small>da*/dt (на 1s)</small><b id="pRate">—</b></div>
+<div class="out"><small>da*/dφ (на 1′)</small><b id="pDphi">—</b></div>
+</div>
+<svg id="pChart" viewBox="0 0 620 240" role="img" aria-label="Изменение азимута светила за сутки"></svg>
+<div class="cap">Рис. 2. Азимут светила a*(t) за сутки: у Полярной он меняется в узких пределах и медленно, у экваториальной звезды пробегает все 360°</div>
+<div class="muted" id="pHint">—</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CLASSIFY ================= -->
+<section class="view" id="classify">
+<div class="bs-grid">
+<div class="article">
+<h2>Классификация азимутальных способов</h2>
+<p class="lead">Блок-схема соответствует рис. 1.35 учебника (в его обозначениях азимут записан как α — здесь, как и во всём курсе, азимут обозначен <b>a</b>). <b>Все азимутальные способы делятся на два типа:</b> 1) способы, основанные на наблюдении светил в различных вертикалах (способы разных азимутов); 2) наблюдение серии звёзд в плоскости одного вертикала (способы равных азимутов). <b>Тип 1 делится на два вида наблюдений:</b> 1.1) звёзды на различных зенитных расстояниях — реализуется <b>четырьмя способами</b> (колонка I); 1.2) звёзды на равных высотах — <b>двумя способами</b> (колонка II). <b>Тип 2 реализуется четырьмя способами</b> (колонка III). Итого по схеме 4 + 2 + 4 = 10 способов. <b>Нажмите на любой блок, пункт или подпункт</b> — справа раскроется описание: условие наблюдений, алгоритм, расчётные формулы и точность.</p>
+<div class="bs">
+<div class="bs-row">
+<button class="bs-box on" type="button" data-node="root"><small>рис. 1.35</small><b>Азимутальные способы астрономических определений</b></button>
+</div>
+<div class="bs-row" style="margin-top:10px">
+<button class="bs-box sm" type="button" data-node="meas" style="max-width:540px"><small>измеренные величины</small><b>Горизонтальные углы между светилами и земным предметом</b></button>
+</div>
+<div class="bs-fork n2"></div>
+<div class="bs-row bs-outer" style="align-items:flex-start">
+<div class="bs-col" style="flex:2.15">
+<button class="bs-box sm" type="button" data-node="diffaz"><small>тип 1</small><b>Способы, основанные на наблюдении светил в различных вертикалах (способы разных азимутов)</b></button>
+<div class="bs-fork n2"></div>
+<div class="bs-row bs-two" style="align-items:flex-start">
+<div class="bs-col" style="flex:1.16">
+<button class="bs-box sm" type="button" data-node="col1"><small>тип 1.1 · 4 способа</small><b>Наблюдение звёзд на различных зенитных расстояниях</b></button>
+<div class="bs-stub"></div>
+<div class="bs-head"><i>I</i>Способы определения a, λ, φ из наблюдений светил в различных вертикалах и на различных зенитных расстояниях<span class="bs-cnt">4 способа</span></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="I1"><i>1</i><span>Определение a, λ, φ</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="I1a"><em>а</em><span>из наблюдения n светил на любых Z и любых вертикалах</span></button>
+<button class="bs-sub" type="button" data-node="I1b"><em>б</em><span>из наблюдений n светил вблизи плоскостей двух взаимно перпендикулярных вертикалов</span></button>
+<button class="bs-sub" type="button" data-node="I1v"><em>в</em><span>из многократных наблюдений одного и того же светила</span></button>
+</div>
+<button class="bs-item" type="button" data-node="I2"><i>2</i><span>Определение φ (наблюдается вблизи 1-го вертикала)</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="I2a"><em>а</em><span>светило наблюдается вблизи 1-го вертикала (угол между светилом и местным предметом)</span></button>
+<button class="bs-sub" type="button" data-node="I2b"><em>б</em><span>по горизонтальным направлениям на n светил вблизи 1-го вертикала</span></button>
+<button class="bs-sub" type="button" data-node="I2v"><em>в</em><span>по разностям направлений пар ярких звёзд</span></button>
+</div>
+<button class="bs-item" type="button" data-node="I3"><i>3</i><span>Определение λ (светила наблюдаются вблизи меридиана)</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="I3a"><em>а</em><span>по горизонтальным направлениям на n светил</span></button>
+<button class="bs-sub" type="button" data-node="I3b"><em>б</em><span>по разностям направлений пар ярких звёзд</span></button>
+<button class="bs-sub" type="button" data-node="I3v"><em>в</em><span>по горизонтальным направлениям на Полярную и южную звезду (способ Деллена)</span></button>
+</div>
+<button class="bs-item" type="button" data-node="I4"><i>4</i><span>Определение a</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="I4a"><em>а</em><span>на разных вертикалах</span></button>
+<button class="bs-sub" type="button" data-node="I4b"><em>б</em><span>вблизи меридиана</span></button>
+<button class="bs-sub" type="button" data-node="I4v"><em>в</em><span>во взаимно перпендикулярных вертикалах</span></button>
+<button class="bs-sub" type="button" data-node="I4g"><em>г</em><span>по углу между Полярной звездой и местным предметом</span></button>
+<button class="bs-sub" type="button" data-node="I4d"><em>д</em><span>по наблюдениям звёзд в элонгации</span></button>
+</div>
+</div>
+</div>
+<div class="bs-col" style="flex:.84">
+<button class="bs-box sm" type="button" data-node="col2"><small>тип 1.2 · 2 способа</small><b>Наблюдение звёзд на равных высотах</b></button>
+<div class="bs-stub"></div>
+<div class="bs-head"><i>II</i>Способы определения a, λ, φ из наблюдений светил на равных высотах<span class="bs-cnt">2 способа</span></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="II1"><i>1</i><span>Определение a, λ, φ из наблюдения n звёзд</span></button>
+<button class="bs-item" type="button" data-node="II2"><i>2</i><span>Определение λ, φ из наблюдений пар звёзд</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="bs-col" style="flex:1">
+<button class="bs-box sm" type="button" data-node="eqaz"><small>тип 2 · 4 способа</small><b>Наблюдение серии звёзд в плоскости одного вертикала (способы равных азимутов)</b></button>
+<div class="bs-stub"></div>
+<div class="bs-head"><i>III</i>Способы определения a, λ, φ из наблюдения серии звёзд в одном вертикале (способы равных азимутов)<span class="bs-cnt">4 способа</span></div>
+<div class="bs-list">
+<button class="bs-item" type="button" data-node="III1"><i>1</i><span>Определение a, λ, φ из наблюдения n звёзд в двух взаимно перпендикулярных вертикалах</span></button>
+<button class="bs-item" type="button" data-node="III2"><i>2</i><span>Определение φ</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="III2a"><em>а</em><span>из наблюдений n звёзд в первых вертикалах</span></button>
+<button class="bs-sub" type="button" data-node="III2b"><em>б</em><span>из наблюдений пар звёзд в вертикале земного предмета</span></button>
+</div>
+<button class="bs-item" type="button" data-node="III3"><i>3</i><span>Определение λ</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="III3a"><em>а</em><span>из наблюдений n звёзд в меридиане</span></button>
+<button class="bs-sub" type="button" data-node="III3b"><em>б</em><span>из наблюдений прохождений южной звезды в вертикале Полярной</span></button>
+<button class="bs-sub" type="button" data-node="III3v"><em>в</em><span>из наблюдений южных звёзд в вертикалах северных звёзд</span></button>
+</div>
+<button class="bs-item" type="button" data-node="III4"><i>4</i><span>Определение a</span></button>
+<div class="bs-subs">
+<button class="bs-sub" type="button" data-node="III4a"><em>а</em><span>n звёзд в меридиане</span></button>
+<button class="bs-sub" type="button" data-node="III4b"><em>б</em><span>n звёзд в 1-м вертикале</span></button>
+<button class="bs-sub" type="button" data-node="III4v"><em>в</em><span>из наблюдений n звёзд в вертикале местного предмета</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel detail-panel" id="treePanel"><div class="tdetail" id="treeDetail"></div></div>
+</div>
+
+
+
+<div class="article">
+<h2>Что выбрать на практике</h2>
+<div class="cards">
+<div class="card"><span class="tag">основной способ в АГС</span><b>Азимут по Полярной звезде</b>Принят как основной способ определения точных азимутов в астрономо-геодезической сети. Полярная — незаходящая звезда, её можно наблюдать и ночью, и днём; способ прост в наблюдениях и вычислениях.</div>
+<div class="card"><span class="tag">высокие широты</span><b>Способ Деллена</b>Рекомендован инструкцией при φ &gt; 65°: измеряется малый горизонтальный угол между вертикалами Полярной и южной звезды окулярным микрометром; наблюдение пары занимает 8–10 минут.</div>
+<div class="card"><span class="tag">координаты</span><b>Способ равных азимутов и высот</b>Серии светил в одном вертикале или на одном альмукантарате дают φ, λ с исключением систематических ошибок, зависящих от зенитного расстояния.</div>
+</div>
+<div class="note"><b>Общая теория.</b> Как и в зенитальных способах, здесь применяют линеаризацию: искомые величины представляют в виде a = a₀ + Δa, φ = φ₀ + Δφ, λ = λ₀ + Δλ и составляют уравнения поправок. При n &gt; 3 задача решается по МНК — это позволяет вести наблюдения по единой методике и обрабатывать их по единому алгоритму.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= POLARIS ================= -->
+<section class="view" id="polaris">
+<div class="grid">
+<div class="article">
+<h2>Определение азимута по Полярной звезде</h2>
+<p class="lead">Способ рассматривают как определение азимута из многократных наблюдений <b>одного и того же светила</b>. Для горизонтального угла между светилом и земным предметом можно составить уравнение V = Δa′ + b·x + c·y + l с весом P = sin²Z, где b = sin A ctg Z, c = cos A ctg Z.</p>
+<p class="lead">Но Полярная почти не меняет своего видимого положения: коэффициенты b и c при многократных измерениях получаются практически одинаковыми, система уравнений поправок оказывается <b>плохо обусловленной</b> и неразрешимой. Поэтому φ и λ полагают известными (x = y = 0) и определяют только поправку Δa:</p>
+<div class="formula">
+V = Δa + l, &nbsp; вес P<sub>i</sub> = sin²Z &nbsp;&nbsp;→&nbsp;&nbsp; Δa = −[P l]/[P], &nbsp; a = a₀ + Δa
+</div>
+<p class="lead">где l = (a₀ − A<sub>N</sub>) − Q, а Q — измеренный горизонтальный угол. Вес уравненного азимута P<sub>a</sub> = [P] ≈ n·sin²Z<sub>ср</sub>.</p>
+<div class="note green"><b>Достоинства способа.</b>
+<ol style="margin:8px 0 0 18px">
+<li>Полярная — незаходящая звезда: её можно наблюдать ночью и днём.</li>
+<li>Способ прост в наблюдениях и вычислениях.</li>
+<li>Погрешности определения времени и широты не оказывают существенного влияния на точность определения азимута.</li>
+</ol>
+<b>Недостаток:</b> наибольшее влияние на окончательный результат оказывают инструментальные ошибки.</div>
+<h3>Рабочие формулы</h3>
+<div class="formula">
+Δ = 90° − δ — полярное расстояние; &nbsp; a* = −Δ″ · sec φ · sin(t + δt), &nbsp; δt″ = Δ″ · tg φ · sin t
+</div>
+<p class="lead">где a* — азимут Полярной от точки севера, t = s − α, δt — поправка в часовой угол за счёт влияния широты, Δ″ — полярное расстояние в секундах дуги. Далее</p>
+<div class="formula">a = Q + a* &nbsp;&nbsp;(с учётом ±180° при измерении угла от обратного направления)</div>
+<div class="note"><b>Требования перед наблюдениями.</b> Астрономические координаты пункта: широта с ошибкой менее 5′, долгота не грубее 0,5<sup>m</sup>. Поправка часов известна с погрешностью не более 1<sup>m</sup>, коллимационная ошибка не более 30″. Азимут определяют <b>двумя приёмами</b> с перестановкой лимба на произвольный угол; допустимое расхождение между приёмами — 40″.</div>
+<h3>Порядок наблюдений в приёме</h3>
+<div class="steps">
+<div class="step"><b>Наблюдение земного предмета (КЛ)</b></div>
+<div class="step"><b>Наблюдение Полярной (КЛ)</b></div>
+<div class="step"><b>Наблюдение Полярной (КП)</b></div>
+<div class="step"><b>Наблюдение земного предмета (КП)</b></div>
+</div>
+</div>
+<div class="panel">
+<h2>Интерактив 4. Азимут Полярной: точная и приближённая формулы</h2>
+<p class="muted">Двигая часовой угол, следите за азимутом Полярной по точной («ctg A · sin t») и приближённой («−Δ sec φ sin(t + δt)») формулам. Видно, что при δ → 90° обе дают одну и ту же малую величину, а чувствительность к времени и широте становится ничтожной.</p>
+<div class="ctl"><label>широта φ</label><input type="range" id="qPhi" min="30" max="75" step="0.5" value="55.5"><span class="val" id="qPhiV">55,5°</span></div>
+<div class="ctl"><label>δ Полярной</label><input type="range" id="qDec" min="88" max="89.9" step="0.01" value="89.2"><span class="val" id="qDecV">89,20°</span></div>
+<div class="ctl"><label>часовой угол t</label><input type="range" id="qT" min="-180" max="180" step="0.5" value="50"><span class="val" id="qTV">50°</span></div>
+<div class="readout">
+<div class="out"><small>точная формула</small><b id="qA1">—</b></div>
+<div class="out"><small>a* (2.7)</small><b id="qA2">—</b></div>
+<div class="out"><small>Δ = 90° − δ</small><b id="qDel">—</b></div>
+<div class="out"><small>δt</small><b id="qDt">—</b></div>
+</div>
+<svg id="qSvg" viewBox="0 0 620 420" role="img" aria-label="Суточное движение Полярной вокруг полюса мира"></svg>
+<div class="cap">Рис. 3. Полярная описывает малый круг радиуса Δ = 90° − δ вокруг полюса мира; азимут меняется от −Δ·sec φ до +Δ·sec φ</div>
+<div class="readout">
+<div class="out"><small>a* в элонгации</small><b id="qEl">—</b></div>
+<div class="out"><small>максим. da*/dt</small><b id="qMax">—</b></div>
+</div>
+<div class="muted" id="qHint">—</div>
+</div>
+</div>
+</section>
+
+<!-- ================= DELLEN ================= -->
+<section class="view" id="dellen">
+<div class="grid">
+<div class="article">
+<h2>Теоретические основы способа Деллена</h2>
+<p class="lead">Способ основан на наблюдении ярких звёзд и рекомендован инструкцией при <b>φ &gt; 65°</b>. Суть: измеряют <b>малый горизонтальный угол Q′</b> между плоскостями вертикалов <b>Полярной</b> и <b>южной</b> звезды в моменты T<sub>N</sub> и T<sub>S</sub>. Идея в том, чтобы малый угол измерять не по отсчётам горизонтального круга, а <b>окулярным микрометром</b> — тогда деления лимба и ошибки его эксцентриситета в результат практически не входят.</p>
+<p class="lead">Считая Полярную обычной северной звездой, для каждой пары получают два уравнения поправок:</p>
+<div class="formula">
+Δa − y·ctg Z<sub>N</sub> + l<sub>N</sub> = V<sub>N</sub> &nbsp;&nbsp;(Полярная)<br>
+Δa + y·ctg Z<sub>S</sub> + l<sub>S</sub> = V<sub>S</sub> &nbsp;&nbsp;(южная звезда)
+</div>
+<p class="lead">Неизвестное y исключается совместным решением пары — коэффициенты при нём у северной и южной звёзд противоположны по знаку:</p>
+<div class="formula">
+y<sub>i</sub> = (l<sub>N</sub> − l<sub>S</sub>) / (ctg Z<sub>N</sub> + ctg Z<sub>S</sub>), &nbsp; вес P<sub>y</sub> = cos²Z<sub>N</sub> + cos²Z<sub>S</sub>
+</div>
+<p class="lead">Уравненное значение y<sub>ср</sub> получают из наблюдений n пар как среднее весовое: y<sub>ср</sub> = [P<sub>y</sub> y]/[P<sub>y</sub>]. Далее поправка часов и долгота пункта:</p>
+<div class="formula">
+U = U₀ + (1/15)·y<sub>ср</sub>·sec φ, &nbsp; λ = λ₀ + (1/15)·y<sub>ср</sub>·sec φ &nbsp;&nbsp; с весом P = P<sub>y</sub>·cos²φ
+</div>
+<div class="cards">
+<div class="card"><span class="tag">время</span><b>8–10 минут на пару</b>За такое время можно не опасаться азимутальных сдвигов прибора.</div>
+<div class="card"><span class="tag">яркость</span><b>Только яркие звёзды</b>Способ успешно применяется в высоких широтах и в период полярного дня.</div>
+<div class="card"><span class="tag">точность</span><b>Малый измеряемый угол</b>Ошибка самого угла и инструментальные погрешности входят ослабленными.</div>
+</div>
+<div class="note green"><b>Почему при φ &gt; 65°?</b> В высоких широтах суточные параллели светил идут под малыми углами к альмукантаратам, моменты прохождений становятся неблагоприятными для зенитальных способов; зато Полярная стоит высоко и её вертикал служит устойчивой «осью» для измерения малого угла до южной звезды.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 5. Пара «Полярная — южная звезда»</h2>
+<p class="muted">Полярная и южная звезда наблюдаются почти одновременно, их вертикалы разделены малым углом Q′. Задайте результаты пары и посмотрите, как вычисляется y.</p>
+<svg id="delSvg" viewBox="0 0 620 380" role="img" aria-label="Схема способа Деллена: вертикалы Полярной и южной звезды"></svg>
+<div class="ctl"><label>Z<sub>N</sub> (Полярная)</label><input type="range" id="dZN" min="5" max="60" step="0.5" value="34"><span class="val" id="dZNV">34°</span></div>
+<div class="ctl"><label>Z<sub>S</sub> (южная)</label><input type="range" id="dZS" min="5" max="60" step="0.5" value="38"><span class="val" id="dZSV">38°</span></div>
+<div class="ctl"><label>Q′, ″</label><input type="range" id="dQ" min="-600" max="600" step="1" value="128"><span class="val" id="dQV">128″</span></div>
+<div class="ctl"><label>l<sub>N</sub>, ″</label><input type="range" id="dLN" min="-200" max="200" step="1" value="-40"><span class="val" id="dLNV">−40″</span></div>
+<div class="readout">
+<div class="out"><small>ctg Z<sub>N</sub> + ctg Z<sub>S</sub></small><b id="dSum">—</b></div>
+<div class="out"><small>вес P<sub>y</sub></small><b id="dP">—</b></div>
+<div class="out"><small>y, ″</small><b id="dY">—</b></div>
+</div>
+<div class="muted" id="dHint">—</div>
+</div>
+</div>
+</section>
+
+<!-- ================= PRACTICE ================= -->
+<section class="view" id="practice">
+<div class="article">
+<h2>Практикум. Азимут по часовому углу Полярной: пример из учебника</h2>
+<p class="lead">Ниже воспроизведён разбор примера: пункт Навлицы, 18.07.1981, инструмент 2Т2А № 948, φ = 55°32′, λ = 1<sup>h</sup>55<sup>m</sup>00<sup>s</sup>, u = +2<sup>m</sup>08<sup>s</sup>. В журнале: наблюдения земного предмета (КЛ и КП) и Полярной в моменты 23<sup>h</sup>59<sup>m</sup>31<sup>s</sup> и 24<sup>h</sup>04<sup>m</sup>13<sup>s</sup>; горизонтальный круг дал угол Q = 14°,821111. Задача — получить азимут направления на земной предмет.</p>
+<div class="two">
+<div>
+<div class="ctl"><label>φ, °</label><input type="number" id="wPhi" value="55.5333" step="0.0001"><span class="val">°</span></div>
+<div class="ctl"><label>λ, h m s</label><input type="text" id="wLam" value="1 55 00"><span class="val">h m s</span></div>
+<div class="ctl"><label>u, m s</label><input type="text" id="wU" value="2 08"><span class="val">m s</span></div>
+<div class="ctl"><label>T<sub>набл</sub>, h m s</label><input type="text" id="wT" value="24 01 52"><span class="val">h m s</span></div>
+<div class="ctl"><label>n + k, h</label><input type="number" id="wNK" value="4" step="1"><span class="val">h</span></div>
+<div class="ctl"><label>S₀, h m s</label><input type="text" id="wS0" value="19 37 09"><span class="val">h m s</span></div>
+<div class="ctl"><label>α Полярной, h m s</label><input type="text" id="wAl" value="2 17 07"><span class="val">h m s</span></div>
+<div class="ctl"><label>δ Полярной, °</label><input type="number" id="wDel" value="89.204625" step="0.000001"><span class="val">°</span></div>
+<div class="ctl"><label>Q, °</label><input type="number" id="wQ" value="14.821111" step="0.000001"><span class="val">°</span></div>
+<div class="btnrow">
+<button class="btn on" id="wRun" type="button">Вычислить</button>
+<button class="btn" id="wReset" type="button">Пример из учебника</button>
+</div>
+</div>
+<div>
+<div class="readout">
+<div class="out"><small>s — местное звёздное</small><b id="wS">—</b></div>
+<div class="out"><small>t = s − α</small><b id="wTt">—</b></div>
+<div class="out"><small>Δ = 90° − δ</small><b id="wDelta">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>a* (Полярной)</small><b id="wAst">—</b></div>
+<div class="out"><small>a — азимут направления</small><b id="wA">—</b></div>
+</div>
+<div class="muted" id="wNote">—</div>
+</div>
+</div>
+<table class="worktable" id="wTable"></table>
+<div class="note green"><b>Контроль примера.</b> В учебнике получено a* = +1,0716953° (≈ 1°04′18″) и a = 15°53′34″ при допустимом расхождении между приёмами 40″. Сравните промежуточные величины: s = 17<sup>h</sup>39<sup>m</sup>27<sup>s</sup>, t = 15<sup>h</sup>22<sup>m</sup>20<sup>s</sup>, Δ″ = 2863,35″, δt″ = −3222,61″.</div>
+</div>
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Апостериорная оценка точности</h2>
+<p class="lead">Из-за малого объёма наблюдений (2–3 приёма) оценку точности выполняют по формулам теории погрешностей: m = σ₀√Q, Q = F<sup>T</sup>P<sup>−1</sup>F, P<sub>i</sub> = σ₀²/σ<sub>i</sub>², где F — матрица частных производных определяемой величины по переменным (α, δ, u, β).</p>
+<table>
+<tr><th>Величина</th><th>∂a/∂(·)</th><th>Вес P</th><th>σ</th></tr>
+<tr><td>α (прямое восхождение)</td><td>−0,5</td><td>1</td><td>13″</td></tr>
+<tr><td>δ (склонение)</td><td>−2,5</td><td>19</td><td>3″</td></tr>
+<tr><td>u (поправка часов)</td><td>+0,227</td><td>169</td><td>1<sup>s</sup></td></tr>
+<tr><td>β (горизонтальный угол)</td><td>−1</td><td>42</td><td>2″</td></tr>
+</table>
+<div class="formula" style="font-size:14px">m = σ₀·√Q, &nbsp; Q = F<sup>T</sup>P<sup>−1</sup>F, &nbsp; P<sub>i</sub> = σ₀²/σ<sub>i</sub>²</div>
+<div class="note" style="margin-bottom:0"><b>Вывод.</b> Апостериорная оценка точности азимута по одному приёму получилась существенно лучше априорной — типичная ситуация для приближённых способов: число наблюдений мало, зато сами наблюдения выгодно выбраны.</div>
+</div>
+<div class="panel">
+<h2>Разбор требований к наблюдениям</h2>
+<div class="gloss">
+<div class="pill"><b>Не более 30″</b><span class="muted">допустимая коллимационная ошибка перед определением азимута</span></div>
+<div class="pill"><b>Два приёма</b><span class="muted">с перестановкой лимба на произвольный угол — для исключения ошибок делений</span></div>
+<div class="pill"><b>40″</b><span class="muted">допустимое расхождение азимута между приёмами</span></div>
+<div class="pill"><b>Менее 5′ и 0,5<sup>m</sup></b><span class="muted">требуемая точность знания широты и долготы пункта</span></div>
+<div class="pill"><b>Не более 1<sup>m</sup></b><span class="muted">допустимая погрешность поправки часов</span></div>
+<div class="pill"><b>КЛ → σ → σ → КП</b><span class="muted">порядок обхода в приёме: земной предмет, светило при КЛ, светило при КП, земной предмет при КП</span></div>
+</div>
+<div class="note green" style="margin-bottom:0">Наблюдения Полярной можно вести и днём — это особенно ценно зимой в высоких широтах и при коротких ночах. Именно поэтому способ принят как основной для определения точных азимутов в астрономо-геодезической сети.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section class="view" id="check">
+<div class="article">
+<h2>Самопроверка</h2>
+<p class="lead">Ответьте на вопросы — правильный вариант подсветится зелёным, ошибочный красным.</p>
+<div id="quiz"></div>
+<div class="score" id="score">Отвечено: 0/8</div>
+<div class="note green" style="margin-top:18px"><b>Итог урока.</b> В азимутальных способах измеряют горизонтальные направления, а «неизвестных» всегда на одно больше, чем измерений: к φ и u добавляется место севера M<sub>N</sub> (или азимут направления a). Отсюда — минимум три светила в совместном определении и особая роль близполюсных звёзд: у Полярной азимут меняется медленно, поэтому ошибки времени и широты почти не влияют на результат.</div>
+<p class="muted">Связанные уроки: <a href="zenithal-methods.html" style="color:#d9501a">Зенитальные способы</a> · <a href="approximate-methods.html" style="color:#d9501a">Приближённые способы астроопределений</a></p>
+</div>
+</section>
+</div></div>
+</main></div>
+<script src="../../assets/search-data.js"></script><script src="../../assets/courses-data.js"></script><script src="../../assets/main.js"></script><script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+<script>
+/* ============================================================
+   Урок «Азимутальные способы астрономических определений»
+   ============================================================ */
+var D=Math.PI/180,R2D=180/Math.PI,$$=function(id){return document.getElementById(id);};
+function sn(x){return Math.sin(x*D);} function cs(x){return Math.cos(x*D);} function tgd(x){return Math.tan(x*D);}
+function fx(v,n){return v.toFixed(n===undefined?2:n).replace('.',',');}
+
+function svgNum(s){return String(s)
+  .replace(/([a-zA-Z][a-zA-Z0-9:._-]*)="\s*(-?\d+),(\d+)"/g,'$1="$2.$3"')
+  .replace(/d="([^"]*)"/g,function(m,p){return 'd="'+p.replace(/,/g,'.')+'"';})
+  .replace(/translate\((-?\d+),(\d+)\)/g,'translate($1.$2)');}
+/* --- перехват innerHTML: любые десятичные запятые в атрибутах заменяются на точку --- */
+(function(){
+  var proto=window.Element&&window.Element.prototype;if(!proto)return;
+  var d=Object.getOwnPropertyDescriptor(proto,'innerHTML');if(!d||!d.set)return;
+  try{Object.defineProperty(proto,'innerHTML',{configurable:true,enumerable:!!d.enumerable,
+    get:function(){return d.get.call(this);},
+    set:function(v){d.set.call(this,(typeof v==='string')?svgNum(v):v);}});}catch(e){}
+})();
+
+/* --- защита от пустых/нечисловых полей в практикуме --- */
+function fin(x){return typeof x==='number'&&isFinite(x);}
+function blankOut(ids){for(var i=0;i<ids.length;i++){var e=$$(ids[i]);if(e)e.textContent='—';}}
+/* --- автоисправление десятичных запятых в числовых атрибутах SVG (RU-локаль) --- */
+(function(){
+  var ATTRS=/^(x|y|x1|y1|x2|y2|cx|cy|r|rx|ry|d|points|transform|width|height|offset|font-size|stroke-width)$/;
+  function fix(root){
+    if(!root||root.nodeType!==1)return;
+    var list=[root].concat([].slice.call(root.querySelectorAll('*')));
+    for(var i=0;i<list.length;i++){
+      var el=list[i];if(!el.attributes)continue;
+      for(var k=0;k<el.attributes.length;k++){
+        var at=el.attributes[k];
+        if(ATTRS.test(at.name)&&at.value.indexOf(',')>-1)at.value=at.value.replace(/,/g,'.');
+      }
+    }
+  }
+  window.__fixSvgAttrs=fix;fix(document.body);
+  if(window.MutationObserver){
+    new MutationObserver(function(muts){
+      var t=[];
+      for(var i=0;i<muts.length;i++)if(muts[i].target&&muts[i].target.nodeType===1)t.push(muts[i].target);
+      for(var j=0;j<t.length;j++)fix(t[j]);
+    }).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+function dms(v,sec){var s=v<0?'−':'';v=Math.abs(v);var d=Math.floor(v),m=Math.floor((v-d)*60+1e-9),ss=((v-d)*60-m)*60;
+  return s+d+'°'+String(m).padStart(2,'0')+'′'+(sec===false?'':' '+ss.toFixed(1).replace('.',',')+'″');}
+function hms(t){var s=t<0?'−':'';t=Math.abs(t);var h=Math.floor(t),m=Math.floor((t-h)*60+1e-9),ss=((t-h)*60-m)*60;
+  return s+h+'h'+String(m).padStart(2,'0')+'m'+String(Math.round(ss)).padStart(2,'0')+'s';}
+function zen(phi,dec,t){var c=sn(phi)*sn(dec)+cs(phi)*cs(dec)*cs(t);return Math.acos(Math.max(-1,Math.min(1,c)))*R2D;}
+function azi(phi,dec,t){var z=zen(phi,dec,t)*D,s=Math.sin(z);if(s<1e-9)return 0;
+  var sA=-cs(dec)*sn(t)/s,cA=(sn(dec)-sn(phi)*Math.cos(z))/((cs(phi)*s)||1e-9);
+  var A=Math.atan2(sA,cA)*R2D;return (A+360)%360;}
+/* азимут близполюсного светила по рабочей формуле (2.7) */
+function starAz(phi,dec,t){var dsec=(90-dec)*3600,dt=dsec*tgd(phi)*sn(t);
+  return -dsec*sn(t+dt/3600)/cs(phi)/3600;}
+function mod360(x){return ((x%360)+360)%360;}
+function phms(str){var a=String(str).trim().split(/[\s:,]+/).map(Number);
+  if(a.length===1)return a[0];if(a.length===2)return a[0]+a[1]/60;return a[0]+a[1]/60+a[2]/3600;}
+function pms(str){var a=String(str).trim().split(/[\s:,]+/).map(Number);
+  if(a.length===1)return a[0];return a[0]*60+a[1];}
+
+/* ---------- вкладки ---------- */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#tabs .tab'));
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+    [].slice.call(document.querySelectorAll('.view')).forEach(function(v){v.classList.toggle('active',v.id===b.dataset.view);});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+}
+
+)();
+
+/* ============================================================
+   1. Лимб: отсчёты, место севера, азимуты
+   ============================================================ */
+(function(){
+  var svg=$$('limbSvg');if(!svg)return;
+  var Rs=50,Ro=0,Mn=322;
+  function draw(){
+    var C={x:310,y:236},R=178;
+    var pt=function(A,r){var a=A*D;return {x:C.x+r*Math.sin(a),y:C.y-r*Math.cos(a)};};
+    var AN=mod360(Rs-Mn),a=mod360(Ro-Mn),Q=mod360(Rs-Ro);
+    var s='<rect width="620" height="470" fill="#fff"/>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+R+'" fill="#f7fbfa" stroke="#b3d9d0" stroke-width="1.6"/>';
+    /* деления лимба: чтение R -> азимут R - Mn */
+    for(var Rd=0;Rd<360;Rd+=5){
+      var A=mod360(Rd-Mn),len=(Rd%30===0)?13:7,p1=pt(A,R),p2=pt(A,R-len);
+      s+='<line x1="'+fx(p1.x,1)+'" y1="'+fx(p1.y,1)+'" x2="'+fx(p2.x,1)+'" y2="'+fx(p2.y,1)+'" stroke="'+(Rd%30===0?'#8fb3ac':'#c9dcd8')+'" stroke-width="1.2"/>';
+      if(Rd%30===0){var pl=pt(A,R-26);
+        s+='<text x="'+fx(pl.x,1)+'" y="'+(fx(pl.y,1))+'" font-size="10" text-anchor="middle" fill="#5b88a8" font-family="Roboto Mono,monospace">'+Rd+'°</text>';}
+    }
+    /* меридиан и стороны горизонта */
+    s+='<line x1="'+C.x+'" y1="'+(C.y-R)+'" x2="'+C.x+'" y2="'+(C.y+R)+'" stroke="#9dc4bd" stroke-width="1.4"/>';
+    s+='<text x="'+(C.x+8)+'" y="'+(C.y-R+14)+'" font-size="12.5" font-weight="700" fill="#0a655d">N</text>';
+    s+='<text x="'+(C.x+8)+'" y="'+(C.y+R-6)+'" font-size="12.5" font-weight="700" fill="#0a655d">S</text>';
+    s+='<text x="'+(C.x+R-14)+'" y="'+(C.y+4)+'" font-size="12" fill="#5f7c76">E</text>';
+    s+='<text x="'+(C.x-R+6)+'" y="'+(C.y+4)+'" font-size="12" fill="#5f7c76">W</text>';
+    /* нуль лимба */
+    var z0=pt(mod360(-Mn),R);
+    s+='<line x1="'+C.x+'" y1="'+C.y+'" x2="'+fx(z0.x,1)+'" y2="'+fx(z0.y,1)+'" stroke="#2474c6" stroke-width="1.6" stroke-dasharray="7 5"/>';
+    s+='<text x="'+fx(z0.x,1)+'" y="'+fx(z0.y-9,1)+'" font-size="10.5" text-anchor="middle" fill="#2474c6" font-family="Roboto Mono,monospace">нуль лимба</text>';
+    /* направления */
+    var S1=pt(AN,R-10),O1=pt(a,R-10);
+    s+='<line x1="'+C.x+'" y1="'+C.y+'" x2="'+fx(S1.x,1)+'" y2="'+fx(S1.y,1)+'" stroke="#ff7136" stroke-width="3"/>';
+    s+='<circle cx="'+fx(S1.x,1)+'" cy="'+fx(S1.y,1)+'" r="7" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    s+='<text x="'+fx(S1.x+10,1)+'" y="'+fx(S1.y-8,1)+'" font-size="12.5" font-weight="700" fill="#d9501a">σ (светило)</text>';
+    s+='<line x1="'+C.x+'" y1="'+C.y+'" x2="'+fx(O1.x,1)+'" y2="'+fx(O1.y,1)+'" stroke="#0a655d" stroke-width="3"/>';
+    s+='<rect x="'+fx(O1.x-7,1)+'" y="'+fx(O1.y-7,1)+'" width="14" height="14" fill="#0a655d" stroke="#fff" stroke-width="2"/>';
+    s+='<text x="'+fx(O1.x+10,1)+'" y="'+fx(O1.y+16,1)+'" font-size="12.5" font-weight="700" fill="#0a655d">земной предмет</text>';
+    /* дуги Q и AN */
+    var ang=function(A){return Math.atan2(pt(A,1).y-C.y,pt(A,1).x-C.x)*R2D;};
+    function arc(a1,a2,r,cc){var p1=pt(a1,r),p2=pt(a2,r),dd=((a2-a1+540)%360)-180;
+      return '<path d="M'+fx(p1.x,1)+' '+fx(p1.y,1)+' A'+r+' '+r+' 0 '+(Math.abs(dd)>180?1:0)+' '+(dd>0?1:0)+' '+fx(p2.x,1)+' '+fx(p2.y,1)+'" fill="none" stroke="'+cc+'" stroke-width="2"/>';}
+    var q1=ang(a),q2=ang(AN),qq=mod360(a-AN)>180?mod360(AN-a):mod360(a-AN);
+    s+=arc(q1,q2,62,'#ff7136');
+    s+=arc(ang(0),ang(AN),92,'#7655b7');
+    var mid=function(A,r){var p=pt(A,r);return p;};
+    var mQ=mid((q1+q2)/2+(Math.abs(q1-q2)>180?(q1>q2?180:-180):0),62);
+    s+='<text x="'+fx(mQ.x+6,1)+'" y="'+fx(mQ.y,1)+'" font-size="11.5" fill="#d9501a" font-family="Roboto Mono,monospace">Q</text>';
+    var mA=mid(AN/2,92);
+    s+='<text x="'+fx(mA.x+6,1)+'" y="'+fx(mA.y,1)+'" font-size="11.5" fill="#7655b7" font-family="Roboto Mono,monospace">A_N</text>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="4.5" fill="#063f3b"/>';
+    s+='<text x="10" y="462" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">синие подписи — отсчёты по лимбу; зелёные и фиолетовые — азимуты от точки севера</text>';
+    svg.innerHTML=svgNum(s);
+    $$('lQ').textContent=dms(Q,false);
+    $$('lA').textContent=dms(AN,false);
+    $$('la').textContent=dms(a,false);
+    $$('lHint').innerHTML='Отсчёты по лимбу: R<sub>σ</sub> = '+fx(Rs,0)+'°, R<sub>з.п.</sub> = '+fx(Ro,0)+'°, место севера M<sub>N</sub> = '+fx(Mn,0)+
+      '°. Ищем азимут направления: a = R<sub>з.п.</sub> − M<sub>N</sub> = '+fx(Ro-Mn,0)+'° → '+dms(a,false)+'. Тот же ответ получим как a = A<sub>N</sub> + Q = '+dms(AN,false)+' + '+dms(Q,false)+'.';
+  }
+  $$('lRs').addEventListener('input',function(){Rs=+this.value;$$('lRsV').textContent=Rs+'°';draw();});
+  $$('lRo').addEventListener('input',function(){Ro=+this.value;$$('lRoV').textContent=Ro+'°';draw();});
+  $$('lMn').addEventListener('input',function(){Mn=+this.value;$$('lMnV').textContent=Mn+'°';draw();});
+  draw();
+})();
+
+/* ============================================================
+   2. Инструментальные поправки в направлениях
+   ============================================================ */
+(function(){
+  var svg=$$('nSvg');if(!svg)return;
+  var i2=5,c2=8,Z=25;
+  function draw(){
+    var b=i2, v1=b/Math.tan(Z*D), v2=c2*Math.sin(Z*D);
+    $$('nOut1').textContent=fx(v1,2)+'″';$$('nOut2').textContent=fx(v2,2)+'″';$$('nOut3').textContent=fx(v1+v2,2)+'″';
+    var W=620,H=210,x0=52,x1=W-16,y0=16,y1=H-34;
+    var vmax=Math.max(30,Math.abs(v1),Math.abs(v2));
+    var px=function(z){return x0+(z-3)/82*(x1-x0);},py=function(v){return y1-Math.max(-vmax,Math.min(vmax,v))/vmax*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var z=5;z<=85;z+=10)g+='<line x1="'+px(z)+'" y1="'+y0+'" x2="'+px(z)+'" y2="'+y1+'" stroke="#eef4f2"/><text x="'+px(z)+'" y="'+(y1+15)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+z+'°</text>';
+    g+='<line x1="'+x0+'" y1="'+py(0)+'" x2="'+x1+'" y2="'+py(0)+'" stroke="#c9dcd8"/>';
+    var p1='',p2='';
+    for(var z2=6;z2<=86;z2+=1){p1+=(z2&&p1?' L':'M')+fx(px(z2),1)+' '+fx(py(b/Math.tan(z2*D)),1);
+      p2+=(z2&&p2?' L':'M')+fx(px(z2),1)+' '+fx(py(c2*Math.sin(z2*D)),1);}
+    g+='<path d="'+p1+'" fill="none" stroke="#2474c6" stroke-width="2.2"/>';
+    g+='<path d="'+p2+'" fill="none" stroke="#b9780c" stroke-width="2.2"/>';
+    g+='<line x1="'+px(Z)+'" y1="'+y0+'" x2="'+px(Z)+'" y2="'+y1+'" stroke="#ff7136"/>';
+    g+='<text x="'+(x0+6)+'" y="'+(y0+12)+'" font-size="11" fill="#2474c6" font-family="Roboto Mono,monospace">b·ctg Z — влияние наклона горизонтальной оси</text>';
+    g+='<text x="'+(x0+6)+'" y="'+(y0+28)+'" font-size="11" fill="#b9780c" font-family="Roboto Mono,monospace">c·sin Z — коллимационная ошибка (КЛ)</text>';
+    g+='<text x="'+(x0+6)+'" y="'+(y1-8)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">по горизонтали — зенитное расстояние Z светила</text>';
+    svg.innerHTML=svgNum(g);
+  }
+  ['nI','nC','nZ'].forEach(function(id){$$(id).addEventListener('input',function(){
+    i2=+$$('nI').value;c2=+$$('nC').value;Z=+$$('nZ').value;
+    $$('nIV').textContent=fx(i2,1)+'″';$$('nCV').textContent=fx(c2,1)+'″';$$('nZV').textContent=Z+'°';draw();});});
+  draw();
+})();
+
+/* ============================================================
+   3. Почему Полярная: скорость изменения азимута
+   ============================================================ */
+(function(){
+  var svg=$$('pChart');if(!svg)return;
+  var dec=89.5,phi=56,t=-60;
+  function draw(){
+    var az=function(x){var A=starAz(phi,dec,x);return A;};
+    var a0=az(t);
+    var dt=15/3600/2;   /* полсекунды времени -> градусы часового угла */
+    var rate=(az(t+dt)-az(t-dt))/(2*dt/15);   /* ″ на 1 секунду времени */
+    var dphi=(az(t)-starAz(phi+1/60,dec,t))*3600;  /* ″ на 1′ широты */
+    var del=90-dec;
+    $$('pA').textContent=fx(a0,4)+'°';
+    $$('pDel').textContent=fx(del,4)+'° ('+fx(del*60,2)+'′)';
+    $$('pRate').textContent=fx(rate,2)+'″/с';
+    $$('pDphi').textContent=fx(dphi,3)+'″';
+    $$('pHint').innerHTML=Math.abs(del)<1.5
+      ?'<b>Близполюсное светило.</b> Азимут известен с малой ошибкой, меняется медленно: даже ошибка момента наблюдения на несколько секунд почти не искажает азимут направления.'
+      :'<b>Далёкое от полюса светило.</b> Азимут меняется на десятки угловых секунд за секунду времени — определять по нему азимут направления можно лишь при очень точном знании момента и координат.';
+    var W=620,H=240,x0=54,x1=W-16,y0=18,y1=H-40;
+    var Amin=0,Amax=360;
+    var small=Math.abs(del)*Math.max(1,1/cs(phi));
+    var lo=0,hi=360;
+    if(small<20){var arr=[];for(var i=-180;i<=180;i+=2)arr.push(starAz(phi,dec,i));
+      var mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr);lo=mn-1;hi=mx+1;}
+    var px=function(tt){return x0+(tt+180)/360*(x1-x0);},py=function(A){return y0+(1-(A-lo)/(hi-lo))*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var A2=Math.ceil(lo/ (hi-lo>180?60:0.5))*(hi-lo>180?60:0.5);A2<=hi;A2+=(hi-lo>180?60:0.5))
+      g+='<line x1="'+x0+'" y1="'+py(A2)+'" x2="'+x1+'" y2="'+py(A2)+'" stroke="#eef4f2"/><text x="'+(x0-8)+'" y="'+(py(A2)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+fx(A2,1)+'°</text>';
+    for(var tt=-180;tt<=180;tt+=60)g+='<line x1="'+px(tt)+'" y1="'+y0+'" x2="'+px(tt)+'" y2="'+y1+'" stroke="#eef4f2"/><text x="'+px(tt)+'" y="'+(y1+16)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+(tt/15)+'h</text>';
+    var curve='';
+    for(var i2=-180;i2<=180;i2+=2)curve+=(curve?' L':'M')+fx(px(i2),1)+' '+fx(py(starAz(phi,dec,i2)),1);
+    g+='<path d="'+curve+'" fill="none" stroke="#7655b7" stroke-width="2.4"/>';
+    if(small<20){[0.5,-0.5].forEach(function(k){var v=k*del*3600/cs(phi)/3600;
+      g+='<line x1="'+x0+'" y1="'+py(v)+'" x2="'+x1+'" y2="'+py(v)+'" stroke="#d9501a" stroke-dasharray="5 5"/>';});}
+    g+='<circle cx="'+px(t)+'" cy="'+py(a0)+'" r="5.5" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    g+='<text x="'+(x0+6)+'" y="'+(y0+12)+'" font-size="11" fill="#7655b7" font-family="Roboto Mono,monospace">азимут светила a*(t) за сутки</text>';
+    if(small<20)g+='<text x="'+(x0+6)+'" y="'+(y0+28)+'" font-size="11" fill="#d9501a" font-family="Roboto Mono,monospace">±Δ·sec φ — пределы изменения азимута</text>';
+    svg.innerHTML=svgNum(g);
+  }
+  ['pDec','pPhi','pT'].forEach(function(id){$$(id).addEventListener('input',function(){
+    dec=+$$('pDec').value;phi=+$$('pPhi').value;t=+$$('pT').value;
+    $$('pDecV').textContent=fx(dec,1)+'°';$$('pPhiV').textContent=phi+'°';$$('pTV').textContent=fx(t,0)+'°';draw();});});
+  $$('pPol').addEventListener('click',function(){dec=89.2667;$$('pDec').value=89.3;$$('pDecV').textContent='89,3°';this.classList.add('on');$$('pEql').classList.remove('on');draw();});
+  $$('pEql').addEventListener('click',function(){dec=0;$$('pDec').value=0.5;$$('pDecV').textContent='0,5°';this.classList.add('on');$$('pPol').classList.remove('on');draw();});
+  draw();
+})();
+
+/* ============================================================
+   4. Классификация: интерактивная блок-схема (рис. 1.35)
+   ============================================================ */
+(function(){
+  var det=$$('treeDetail');if(!det)return;
+  var N={
+    root:{tag:'группа способов',
+      t:'Азимутальные способы астрономических определений',
+      b:'Способы, в которых измеряют горизонтальные углы между светилами и земным предметом. Искомые величины — азимут направления a, широта φ и поправка часов u (долгота λ); прибор ориентируют произвольно, поэтому место севера M<sub>N</sub> также неизвестно. Минимум — три светила.<br><br><b>Все способы делятся на два типа.</b> Тип 1 — наблюдение светил в различных вертикалах (способы разных азимутов); он делится на два вида наблюдений: на различных зенитных расстояниях (4 способа, колонка I) и на равных высотах (2 способа, колонка II). Тип 2 — наблюдение серии звёзд в плоскости одного вертикала (способы равных азимутов); он реализуется 4 способами (колонка III).',
+      cond:'Приближённые φ₀, u₀ известны с ошибкой не более 100″; светила с известными α, δ доступны наблюдениям.',
+      al:['Измеряют горизонтальные углы Q между светилом и местным предметом при КЛ и КП','Берут отсчёты по вертикальному кругу (с точностью 1–2′, для весов) или вычисляют Z по часовым углам','Составляют уравнения поправок и решают по МНК','Переходят к a = a₀ + Δa, φ = φ₀ + x, λ = λ₀ + y/(15 cos φ₀)'],
+      f:['ctg A·sin t = sin φ·cos t − cos φ·tg δ, &nbsp; t = T<sub>H</sub> + u − α','V = Δa′ + b·x + c·y + l, &nbsp; b = sin A·ctg Z, &nbsp; c = cos A·ctg Z','вес уравнения P = sin² Z'],
+      n:['Классификация (рис. 1.35) делит способы по расположению светил: различные вертикалы — разных азимутов; один вертикал — равных азимутов; отдельно выделены наблюдения на равных высотах.']},
+    meas:{tag:'основа всех способов',
+      t:'Измеренные величины — горизонтальные углы между светилами и земным предметом',
+      b:'Азимут нельзя измерить «напрямую»: прибор устанавливают произвольно, поэтому измеряют угол Q между светилом (азимут которого вычисляют) и земным предметом. Азимут предмета получают как a = A<sub>σ</sub> + Q, где A<sub>σ</sub> — вычисленный азимут светила. Из отсчётов лимба: Q = R<sub>σ</sub> − R<sub>з.п.</sub>, M<sub>N</sub> = R<sub>σ</sub> − A<sub>σ</sub>.',
+      al:['Приём радиосигналов времени до серии','Наведение на местный предмет (КЛ), затем на светило, отсчёты уровня','Повторение при другом круге','Замыкание серии приёмом сигналов времени'],
+      f:['Q = R<sub>σ</sub> − R<sub>з.п.</sub>','M<sub>N</sub> = R<sub>σ</sub> − A<sub>σ</sub>','a = A<sub>σ</sub> + Q &nbsp;(при необходимости ± 180°)'],
+      n:['Систематические ошибки горизонтального круга и инструментальные поправки входят в Q и в азимут: отсюда требования к исследованию прибора.']},
+    diffaz:{tag:'ветвь 1',
+      t:'Способы, основанные на наблюдении светил в различных вертикалах (способы разных азимутов)',
+      b:'Светила располагаются в разных вертикалах, поэтому коэффициенты при неизвестных различны и все три величины (a, φ, u) определяются совместно. Наивыгоднейшая схема — равномерное распределение светил по азимутам.<br><br><b>Тип делится на два вида наблюдений:</b> 1.1) звёзды на различных зенитных расстояниях — 4 способа (пункты 1–4 колонки I); 1.2) звёзды на равных высотах — 2 способа (пункты 1–2 колонки II).',
+      cond:'Z<sub>ср</sub> ≈ 35°, допустимо 20° < Z < 50°; n ≥ 3 светил; уклонение отвесной линии учитывается через x, y.',
+      f:['V = Δa′ + b·x + c·y + l, &nbsp; P = sin² Z','при Z<sub>ср</sub> = 35,3°: P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3'],
+      al:['Приёмы сигналов времени до и после серии','Измерение углов Q и отсчётов вертикального круга','Составление уравнений поправок','Решение по МНК (при n > 3), оценка точности']},
+    col1:{tag:'подгруппа',
+      t:'Наблюдение звёзд на различных зенитных расстояниях',
+      b:'Измеряют углы Q для светил с разными азимутами и разными зенитными расстояниями (§1.8). Это самый общий случай: он даёт все три неизвестные, но точность зависит от выбора светил.<br><br><b>Реализуется четырьмя способами</b> — пункты 1–4 колонки I: совместное определение a, λ, φ; определение φ (вблизи 1-го вертикала); определение λ (вблизи меридиана); определение a.',
+      cond:'Наивыгоднейшие условия: Z<sub>ср</sub> = 35° (20° < Z < 50°), светила равномерно по азимутам. Минимум — 3 светила; для m ≈ 0,4″ наблюдают 36 светил.',
+      al:['Определяют программу наблюдений и выбирают светила по таблицам','Измеряют углы Q между светилом и предметом, фиксируя время','Вычисляют Z светил (по отсчёту ВК или по часовым углам) для весов и коэффициентов','Решают систему уравнений поправок и получают a, φ, λ'],
+      n:['Если обработка ведётся на ЭВМ, Z можно вычислять по часовым углам — отсчёты по вертикальному кругу тогда не нужны.']},
+    col2:{tag:'подгруппа',
+      t:'Наблюдение звёзд на равных высотах',
+      b:'Светила наблюдаются в разных вертикалах, но на одном альмукантарате: Z — общая постоянная величина, а измеряются углы Q и моменты времени. Систематические погрешности, зависящие от Z, исключаются.<br><br><b>Реализуется двумя способами</b> — пункты 1–2 колонки II: совместное определение a, λ, φ из наблюдения n звёзд и определение λ, φ из наблюдений пар звёзд.',
+      cond:'Альмукантарат выбирают вблизи Z ≈ 35°; серии из n светил замыкают приёмами сигналов времени.',
+      n:['Такие схемы применяют, когда нужно ослабить влияние рефракции, гнутия трубы и ошибок делений вертикального круга.']},
+    eqaz:{tag:'ветвь 2',
+      t:'Наблюдение серии звёзд в плоскости одного вертикала (способы равных азимутов)',
+      b:'Серия светил наблюдается в одном вертикале (в меридиане, в первом вертикале или в вертикале местного предмета). Азимуты светил одинаковы, различаются только зенитные расстояния — это даёт наивыгоднейшие условия для определения какой-либо одной величины.<br><br><b>Реализуется четырьмя способами</b> — пункты 1–4 колонки III: совместное определение a, λ, φ (в двух взаимно перпендикулярных вертикалах); определение φ; определение λ; определение a.',
+      cond:'Вертикал выбирают под задачу: меридиан — для λ, первый вертикал — для φ, вертикал предмета — для a.',
+      f:['P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3 &nbsp;(Z<sub>ср</sub> = 35,3°, два взаимно перпендикулярных вертикала)','при Z<sub>ср</sub> = 45°: P<sub>Δa′</sub> = n/2, &nbsp; P<sub>x</sub> = P<sub>y</sub> = n/4'],
+      al:['Выбор вертикала по определяемой величине','Наблюдение серии светил, проходящих этот вертикал','Составление уравнений поправок с учётом симметрии выбора светил','Раздельное определение φ, λ или a']},
+
+    I1:{tag:'колонка I · пункт 1',
+      t:'Определение a, λ, φ — общий случай',
+      b:'Полное (совместное) определение азимута направления, широты и долготы по наблюдениям светил в различных вертикалах и на различных зенитных расстояниях. Конкретная схема выбирается из соображений обусловленности системы уравнений поправок.',
+      cond:'n ≥ 3; желательно равномерное распределение светил по азимутам; Z<sub>ср</sub> ≈ 35°.',
+      f:['V = Δa′ + b·x + c·y + l','b = sin A·ctg Z, &nbsp; c = cos A·ctg Z, &nbsp; P = sin² Z'],
+      al:['Наблюдения по общей методике (сигналы времени — углы — сигналы времени)','Составление n уравнений поправок','Решение по МНК относительно Δa′, x, y','Переход к a = a₀ + Δa′, φ = φ₀ + x, λ = λ₀ + y/(15 cos φ₀)']},
+    I1a:{tag:'колонка I · 1а',
+      t:'а) из наблюдения n светил на любых Z и любых вертикалах',
+      b:'Основной вариант способа разных вертикалов (§1.8): каждое светило даёт одно уравнение, коэффициенты которого различны.',
+      cond:'Наилучшие условия: Z<sub>ср</sub> = 35°, 20° < Z < 50°, светила равномерно по азимутам; минимум 3 светила, для m ≈ 0,4″ — 36 светил.',
+      al:['Приём радиосигналов времени','Измерение угла Q: наведение на предмет (КЛ), наблюдение светила, отсчёты уровня; при КП — повторение','Обработка приёмов сигналов времени и журнала наблюдений','Составление и решение нормальных уравнений, оценка точности'],
+      f:['V = Δa′ + b·x + c·y + l','a = a₀ + Δa, &nbsp; φ = φ₀ + x, &nbsp; λ = λ₀ + y/(15 cos φ₀)'],
+      n:['Отсчёты по вертикальному кругу берут с точностью 1–2′ — только для вычисления коэффициентов и весов.']},
+    I1b:{tag:'колонка I · 1б',
+      t:'б) из наблюдений n светил вблизи плоскостей двух взаимно перпендикулярных вертикалов',
+      b:'Наивыгоднейшая расстановка светил: по светилам (или парам) в двух взаимно перпендикулярных вертикалах. Тогда перекрёстные коэффициенты нормальных уравнений обращаются в нуль, а веса неизвестных выравниваются.',
+      cond:'Разность азимутов светил ≈ 90°; Z<sub>ср</sub> ≈ 35,3°; симметрия выбора светил по Z.',
+      f:['P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3 &nbsp;при Z<sub>ср</sub> = 35,3°','при Z<sub>ср</sub> = 45°: P<sub>Δa′</sub> = n/2, &nbsp; P<sub>x</sub> = P<sub>y</sub> = n/4'],
+      n:['Равенство весов означает, что азимут и координаты определяются с одинаковой относительной точностью — это и есть критерий наивыгоднейших условий (§1.6).']},
+    I1v:{tag:'колонка I · 1в',
+      t:'в) из многократных наблюдений одного и того же светила',
+      b:'Одно светило наблюдают многократно; при этом все уравнения имеют почти одинаковые коэффициенты b и c, система оказывается плохо обусловленной и в совместной постановке неразрешима. Поэтому задачу переводят в раздельную: полагают x = y = 0 (φ и λ известны) и определяют только азимут.',
+      cond:'Светило доступно многократным наблюдениям (например, Полярная или Солнце); φ и λ известны с достаточной точностью.',
+      al:['Измеряют горизонтальные углы Q<sub>i</sub> между светилом и предметом','Вычисляют азимут светила A<sub>i</sub> на моменты наблюдений','Составляют уравнения V = Δa + l и решают по МНК','a = a₀ + Δa, вес P<sub>a</sub> = [P] ≈ n sin² Z'],
+      f:['V = Δa + l, &nbsp; l = (a₀ − A<sub>N</sub>) − Q, &nbsp; P = sin² Z','a = a₀ + Δa, &nbsp; P<sub>a</sub> = [P]'],
+      n:['Именно так строится основной способ определения точных азимутов в астрономо-геодезической сети — по Полярной звезде (см. 4г в этой же схеме).']},
+    I2:{tag:'колонка I · пункт 2',
+      t:'Определение φ (светило наблюдается вблизи 1-го вертикала)',
+      b:'Для широты наивыгоднейшие условия: cos Z = 1 (Z = 0°) и sin A = 1 (A = 90°, 270°). Практический вывод: наблюдать светила в плоскости первого вертикала на малых зенитных расстояниях.',
+      cond:'Светила вблизи первого вертикала; Z по возможности малые (ctg Z велик — чувствительность к φ максимальна).',
+      f:['b = sin A·ctg Z → max при A = 90°, 270°','V = Δa′ + b·x + c·y + l, &nbsp; P = sin² Z'],
+      al:['Измеряют углы Q между светилом и местным предметом','Составляют уравнения поправок','Решают относительно x = Δφ','Получают φ = φ₀ + x']},
+    I2a:{tag:'колонка I · 2а',
+      t:'а) светило наблюдается вблизи 1-го вертикала (угол между светилом и местным предметом)',
+      b:'Измеряется горизонтальный угол между светилом, находящимся вблизи первого вертикала, и местным предметом. При A ≈ 90° или 270° влияние ошибок долготы (коэффициент c = cos A·ctg Z) минимально, а коэффициент при широте максимален.',
+      cond:'Светило вблизи первого вертикала; Z небольшое; приближённые a₀, φ₀ известны.',
+      al:['Наведение на предмет и на светило, отсчёты лимба и уровня','Вычисление Z и A светила по формуле (1.99)','Уравнение поправок; решение относительно Δφ'],
+      f:['ctg A·sin t = sin φ·cos t − cos φ·tg δ','V = Δa′ + sin A·ctg Z·x + cos A·ctg Z·y + l','вблизи 1-го вертикала: cos A ≈ 0 → влияние y минимально'],
+      n:['Чтобы исключить неизвестный азимут предмета, наблюдают несколько светил или пары.']},
+    I2b:{tag:'колонка I · 2б',
+      t:'б) по горизонтальным направлениям на n светил вблизи 1-го вертикала',
+      b:'Наблюдают серию светил, проходящих вблизи первого вертикала, и получают широту из совместного решения по всем измеренным углам.',
+      cond:'n светил вблизи первого вертикала; Z малые; равномерность по времени прохождения.',
+      al:['Серия наблюдений «предмет — светило» для каждого светила','Вычисление Z и A<sub>i</sub> по часовым углам','Составление уравнений поправок, решение по МНК','Оценка точности по весам P = sin² Z'],
+      f:['V<sub>i</sub> = Δa′ + b<sub>i</sub>x + c<sub>i</sub>y + l<sub>i</sub>','φ = φ₀ + x']},
+    I2v:{tag:'колонка I · 2в',
+      t:'в) по разностям направлений пар ярких звёзд',
+      b:'Измеряют не полные направления, а малые разности направлений между парами ярких звёзд, что снижает требования к точности лимба и исключает неизвестное место севера.',
+      cond:'Пары ярких звёзд с близкими азимутами и Z; разности направлений малы.',
+      al:['Измерение разности направлений пары','Вычисление соответствующих азимутов светил','Составление уравнений поправок для разностей','Определение φ по совокупности пар'],
+      f:['ΔQ = (A₂ − A₁) − (R₂ − R₁)','V = b·x + l'],
+      n:['Систематические ошибки делений лимба в разностях существенно ослабляются.']},
+    I3:{tag:'колонка I · пункт 3',
+      t:'Определение λ (светила наблюдаются вблизи меридиана)',
+      b:'Для поправки часов наивыгоднейшие условия: Z = 0°, A = 0° или 180°. Практический вывод: светила надо наблюдать на любых зенитных расстояниях в плоскости истинного меридиана.',
+      cond:'Светила вблизи меридиана; любые Z; желательна симметрия пар относительно меридиана.',
+      f:['c = cos A·ctg Z → max при A = 0°, 180°','Δλ = Δu, &nbsp; y = 15 cos φ₀·Δu'],
+      al:['Наблюдение светил вблизи меридиана','Вычисление Z и азимутов светил','Составление уравнений поправок с максимальным весом при y','Получение λ = λ₀ + y/(15 cos φ₀)']},
+    I3a:{tag:'колонка I · 3а',
+      t:'а) по горизонтальным направлениям на n светил',
+      b:'Серия светил вблизи меридиана даёт максимальную чувствительность к поправке часов: коэффициент c = cos A·ctg Z близок к ±ctg Z.',
+      cond:'n светил вблизи меридиана; Z умеренные (20° < Z < 50° для устойчивости весов).',
+      al:['Наблюдения по общей методике','Вычисление коэффициентов и весов','Решение системы относительно y','λ = λ₀ + y/(15 cos φ₀), вес P<sub>λ</sub> = P<sub>y</sub>cos²φ'],
+      f:['V = Δa′ + b·x + c·y + l','y = 15 cos φ₀·Δλ']},
+    I3b:{tag:'колонка I · 3б',
+      t:'б) по разностям направлений пар ярких звёзд',
+      b:'Пары ярких звёзд подбирают симметрично относительно меридиана и измеряют малые разности направлений: систематические поправки входят в разность почти одинаково и исключаются.',
+      cond:'Пары, симметричные относительно меридиана; малые разности азимутов.',
+      al:['Измерение разностей направлений пар','Вычисление азимутов светил','Составление разностного уравнения поправок','Определение λ по среднему весовому'],
+      f:['ΔQ = (A₂ − A₁) − (R₂ − R₁)','V = c·y + l']},
+    I3v:{tag:'колонка I · 3в · способ Деллена',
+      t:'в) по горизонтальным направлениям на Полярную и южную звезду',
+      b:'Способ Деллена (§1.10): измеряют малый горизонтальный угол между плоскостями вертикалов Полярной и южной звезды, причём не по отсчётам лимба, а окулярным микрометром — это позволяет получать малые углы с высокой точностью.',
+      cond:'φ > 65° (рекомендован инструкцией); наблюдаются яркие звёзды; каждая пара — 8–10 минут, за которые азимутальные сдвиги прибора незначительны.',
+      al:['Наблюдение Полярной (T<sub>N</sub>) и южной звезды (T<sub>S</sub>) с измерением угла Q′ микрометром','Составление уравнений для каждой пары','Получение y для пары и y<sub>ср</sub> как среднего весового','Вычисление U = U₀ + (1/15)y<sub>ср</sub>sec φ и λ'],
+      f:['y = (l<sub>N</sub> − l<sub>S</sub>)/(ctg Z<sub>N</sub> + ctg Z<sub>S</sub>), &nbsp; P<sub>y</sub> = cos²Z<sub>N</sub> + cos²Z<sub>S</sub>','U = U₀ + (1/15)·y<sub>ср</sub>·sec φ, &nbsp; P<sub>U</sub> = P<sub>y</sub>cos²φ'],
+      n:['Способ применим в высоких широтах и в период полярного дня, так как основан на наблюдениях ярких звёзд.']},
+    I4:{tag:'колонка I · пункт 4',
+      t:'Определение a — азимута направления',
+      b:'Наивыгоднейшие условия: A = 0°, 180° и δ = 90°, то есть наблюдения близполюсных светил и светил в меридиане, где влияние ошибок времени и широты на азимут светила минимально.',
+      cond:'Близполюсные светила (Полярная) либо светила в меридиане; при наблюдениях в элонгации — минимум изменения азимута во времени.',
+      f:['ΔA минимально при A = 0°, 180° и δ = 90°','a = A<sub>σ</sub> + Q'],
+      al:['Выбор светил по условиям минимума ΔA','Измерение углов между светилом и предметом','Вычисление азимутов светил','Получение a и оценка точности']},
+    I4a:{tag:'колонка I · 4а',
+      t:'а) на разных вертикалах',
+      b:'Общий случай: светила наблюдаются в разных вертикалах, азимут предмета получают совместно с координатами или при известных φ и u.',
+      cond:'n ≥ 3 светил; распределение по азимутам; Z<sub>ср</sub> ≈ 35°.',
+      al:['Наблюдения серии','Совместное решение относительно Δa′, x, y','a = a₀ + Δa′'],
+      f:['V = Δa′ + b·x + c·y + l']},
+    I4b:{tag:'колонка I · 4б',
+      t:'б) вблизи меридиана',
+      b:'Светила вблизи меридиана имеют азимут A ≈ 0° или 180°, где ΔA минимально: влияние ошибок времени и широты на вычисляемый азимут светила практически исчезает.',
+      cond:'Светила вблизи плоскости меридиана; Z любые; измерения углов между светилом и предметом.',
+      al:['Наблюдение светил вблизи меридиана','Вычисление их азимутов','Определение a предмета по измеренным углам'],
+      f:['ΔA ≈ 0 при A = 0°, 180°','a = A<sub>σ</sub> + Q']},
+    I4v:{tag:'колонка I · 4в',
+      t:'в) во взаимно перпендикулярных вертикалах',
+      b:'Светила (или пары) располагают в двух взаимно перпендикулярных вертикалах — такая схема выравнивает веса неизвестных и обнуляет перекрёстные коэффициенты.',
+      cond:'Разность азимутов светил ≈ 90°; Z<sub>ср</sub> ≈ 35,3°.',
+      f:['P<sub>Δa′</sub> = n/3 при Z<sub>ср</sub> = 35,3°'],
+      al:['Подбор пар по азимутам и Z','Наблюдения и обработка по общей схеме','Контроль весов неизвестных']},
+    I4g:{tag:'колонка I · 4г · основной способ АГС',
+      t:'г) по углу между Полярной звездой и местным предметом',
+      b:'§1.9. Полярная расположена вблизи полюса мира, поэтому при многократных измерениях коэффициенты b и c почти одинаковы и совместная система плохо обусловлена. Полагая φ и λ известными (x = y = 0, Δa′ = Δa), определяют только поправку азимута.',
+      cond:'Широта и долгота пункта известны; коллимационная ошибка не более 30″; наблюдения двумя приёмами с перестановкой лимба; последовательность З.П.(КЛ) — Полярная(КЛ) — Полярная(КП) — З.П.(КП).',
+      al:['Приём радиосигналов времени','Измерение угла Q между Полярной и местным предметом','Вычисление горизонтального угла Q<sub>выч</sub> = a₀ − A<sub>N</sub> по формуле (1.103)','Уравнение V = Δa + l, l = Q<sub>выч</sub> − Q; решение Δa = −[Pl]/[P]','a = a₀ + Δa, вес P<sub>a</sub> = [P] ≈ n sin²Z'],
+      f:['V = Δa + l, &nbsp; l = (a₀ − A<sub>N</sub>) − Q, &nbsp; P<sub>i</sub> = sin²Z','Q = a₀ − A<sub>N</sub>, где A<sub>N</sub> вычисляется по (1.103)','a = a₀ + Δa &nbsp;с весом [P] ≈ n·sin²Z'],
+      n:['Достоинства: Полярная — незаходящая звезда (наблюдения и ночью, и днём); способ прост в наблюдениях и вычислениях; ошибки времени и широты влияют слабо.','Недостаток: наибольшее влияние оказывают инструментальные ошибки.','В России и ряде стран северного полушария способ принят как основной для определения точных азимутов в астрономо-геодезической сети.']},
+    I4d:{tag:'колонка I · 4д · способ Ломоносова',
+      t:'д) по наблюдениям звёзд в элонгации',
+      b:'В элонгации азимут светила меняется медленно (da/dt → 0), поэтому ошибки фиксации моментов наблюдений почти не влияют на результат. Способ предложил М. В. Ломоносов.',
+      cond:'Близполюсные светила вблизи элонгаций (t ≈ 6<sup>h</sup> или 18<sup>h</sup>); наблюдения в моменты максимального удаления от меридиана.',
+      al:['Вычисление моментов элонгаций по α и δ','Наблюдение светила вблизи элонгации','Вычисление азимута светила и определение a'],
+      n:['Выгодно при определении азимутов на пунктах, где неудобно фиксировать моменты с высокой точностью.']},
+
+    II1:{tag:'колонка II · пункт 1',
+      t:'Определение a, λ, φ из наблюдения n звёзд (на равных высотах)',
+      b:'Светила наблюдаются на одном альмукантарате в разных вертикалах: Z — общая постоянная, а уравнения поправок составляются по измеренным углам Q и моментам времени.',
+      cond:'Альмукантарат вблизи Z ≈ 35°; n ≥ 3 светил; серия замыкается приёмами сигналов времени.',
+      al:['Установка трубы на выбранный альмукантарат','Наблюдения: угол Q между светилом и предметом + момент прохождения','Составление уравнений поправок','Решение по МНК относительно Δa′, x, y'],
+      f:['V = Δa′ + b·x + c·y + l, &nbsp; P = sin² Z','b = sin A·ctg Z, &nbsp; c = cos A·ctg Z'],
+      n:['Систематические ошибки, зависящие от Z, исключаются: они одинаковы для всех светил серии.']},
+    II2:{tag:'колонка II · пункт 2',
+      t:'Определение λ, φ из наблюдений пар звёзд (на равных высотах)',
+      b:'Пары светил подбирают симметрично по азимуту относительно меридиана или первого вертикала: при вычитании уравнений поправок перекрёстные члены исчезают, и λ, φ определяются раздельно.',
+      cond:'Пары на одном альмукантарате; симметрия по азимутам; измеряются углы Q и время.',
+      al:['Подбор пар по таблицам','Наблюдения пары на одном альмукантарате','Составление разностных уравнений','Раздельное определение y (λ) и x (φ)'],
+      f:['разность уравнений: c·y (или b·x) без перекрёстных членов','λ = λ₀ + y/(15 cos φ₀), &nbsp; φ = φ₀ + x'],
+      n:['Принцип симметрии — основной приём повышения точности в азимутальных способах.']},
+
+    III1:{tag:'колонка III · пункт 1',
+      t:'Определение a, λ, φ из наблюдения n звёзд в двух взаимно перпендикулярных вертикалах',
+      b:'Серия светил наблюдается в одном вертикале (или в двух взаимно перпендикулярных): азимуты светил одинаковы, различаются лишь зенитные расстояния.',
+      cond:'Z<sub>ср</sub> = 35,3° (тогда веса неизвестных равны); серия не менее n = 3 светил в каждом вертикале.',
+      f:['P<sub>Δa′</sub> = P<sub>x</sub> = P<sub>y</sub> = n/3 &nbsp;при Z<sub>ср</sub> = 35,3°','при Z<sub>ср</sub> = 45°: P<sub>Δa′</sub> = n/2, &nbsp; P<sub>x</sub> = P<sub>y</sub> = n/4'],
+      al:['Выбор вертикала (первый вертикал — для φ, меридиан — для λ)','Наблюдение серии светил, проходящих этот вертикал','Составление уравнений поправок','Раздельное определение неизвестных']},
+    III2:{tag:'колонка III · пункт 2',
+      t:'Определение φ (способы равных азимутов)',
+      b:'Широту определяют по светилам, проходящим один и тот же вертикал: наиболее выгодны первый вертикал и вертикал земного предмета.',
+      f:['b = sin A·ctg Z — максимальный член при A = 90°, 270°']},
+    III2a:{tag:'колонка III · 2а',
+      t:'а) из наблюдений n звёзд в первых вертикалах',
+      b:'Светила наблюдаются в моменты прохождения первого вертикала: A ≈ 90° или 270°, где чувствительность к широте максимальна, а к долготе — минимальна.',
+      cond:'n светил, проходящих первый вертикал; Z по возможности малые; фиксируются моменты и отсчёты лимба.',
+      al:['Вычисление моментов прохождения первого вертикала по α, δ','Наблюдения «предмет — светило» у каждого прохождения','Составление уравнений поправок','Определение x = Δφ и φ = φ₀ + x'],
+      f:['A = 90° или 270° → b = ±ctg Z, &nbsp; c ≈ 0','V = Δa′ + b·x + l'],
+      n:['Такая схема почти нечувствительна к ошибкам долготы — удобно при неточном знании λ₀.']},
+    III2b:{tag:'колонка III · 2б',
+      t:'б) из наблюдений пар звёзд в вертикале земного предмета',
+      b:'Пара звёзд наблюдается в вертикале земного предмета: углы между светилом и предметом близки к нулю, поэтому погрешности измерения углов и ошибка Δa′ влияют минимально.',
+      cond:'Две звезды, проходящие вертикал предмета; измерения ведутся при малых Q.',
+      al:['Наблюдения пары в моменты прохождения вертикала','Вычисление азимутов светил','Разностное уравнение поправок','Определение φ = φ₀ + x'],
+      f:['Q → 0', 'V = x·b + l']},
+    III3:{tag:'колонка III · пункт 3',
+      t:'Определение λ (способы равных азимутов)',
+      b:'Долготу (поправку часов) определяют по светилам, проходящим меридиан или близкий к нему вертикал: там коэффициент при y максимален.',
+      f:['A = 0°, 180° → c = ±ctg Z']},
+    III3a:{tag:'колонка III · 3а',
+      t:'а) из наблюдений n звёзд в меридиане',
+      b:'Классический приём: наблюдают прохождения звёзд через меридиан, фиксируя моменты; азимут светила известен (0° или 180°), поэтому поправка часов определяется непосредственно.',
+      cond:'n звёзд, проходящих меридиан (или вертикал предмета, совмещённый с меридианом); точная фиксация моментов.',
+      al:['Вычисление моментов кульминаций по α','Наблюдение прохождений с фиксацией времени','Составление уравнений поправок','Получение λ = λ₀ + y/(15 cos φ₀)'],
+      f:['A = 0° или 180° → c = ±ctg Z','y = 15 cos φ₀·Δλ'],
+      n:['Для этого приёма применяют инструменты с неподвижной трубой в плоскости меридиана (пассажный инструмент, зенит-телескоп).']},
+    III3b:{tag:'колонка III · 3б',
+      t:'б) из наблюдений прохождений южной звезды в вертикале Полярной',
+      b:'Вертикал Полярной служит «репером» меридиана: вблизи кульминаций он совпадает с меридианом. Наблюдая прохождение южной звезды в этом вертикале, получают связь между временем и меридианом, а следовательно — поправку часов.',
+      cond:'Момент наблюдения выбирается по Полярной (вблизи её кульминации вертикал Полярной наиболее близок к меридиану); южная звезда должна проходить этот же вертикал.',
+      al:['Вычисление моментов прохождений южной звезды через вертикал Полярной','Наблюдение с фиксацией времени','Составление уравнения поправок','Определение λ'],
+      n:['Приём удобен в полярных областях, где Полярная доступна практически всегда.']},
+    III3v:{tag:'колонка III · 3в',
+      t:'в) из наблюдений южных звёзд в вертикалах северных звёзд',
+      b:'Южные звёзды наблюдаются в моменты, когда они находятся в вертикале соответствующих северных звёзд: вертикал северной звезды, азимут которой вычисляется, служит опорой для определения долготы.',
+      cond:'Пары «северная — южная звезда» с совпадающими вертикалами в момент наблюдения; вычисление моментов прохождения.',
+      al:['Вычисление моментов, когда южная звезда входит в вертикал северной','Наблюдение этих моментов','Составление уравнений поправок','Определение λ по совокупности пар']},
+    III4:{tag:'колонка III · пункт 4',
+      t:'Определение a (способы равных азимутов)',
+      b:'Азимут направления определяют по светилам, азимуты которых известны заранее: в меридиане (A = 0°, 180°), в первом вертикале (A = 90°, 270°) или в вертикале самого предмета.',
+      f:['a = A<sub>σ</sub> + Q']},
+    III4a:{tag:'колонка III · 4а',
+      t:'а) n звёзд в меридиане',
+      b:'Наблюдают светила в меридиане: их азимуты равны 0° или 180°, поэтому измеренные углы между светилом и предметом сразу дают азимут предмета, а ошибки времени и широты влияют слабо.',
+      cond:'Светила вблизи кульминаций; углы Q измеряются относительно предмета.',
+      al:['Наблюдение прохождений светил','Измерение углов между светилом и предметом','Вычисление a = A<sub>σ</sub> + Q'],
+      f:['A<sub>σ</sub> = 0° или 180°','a = A<sub>σ</sub> + Q']},
+    III4b:{tag:'колонка III · 4б',
+      t:'б) n звёзд в 1-м вертикале',
+      b:'Светила наблюдаются в первом вертикале (A = 90° или 270°): их азимуты известны, что даёт независимый контроль и позволяет получать азимут предмета.',
+      cond:'n светил, проходящих первый вертикал.',
+      al:['Вычисление моментов прохождения первого вертикала','Наблюдение и измерение углов','Определение a по каждому светилу и среднее весовое'],
+      f:['A<sub>σ</sub> = 90° или 270°','P = sin² Z']},
+    III4v:{tag:'колонка III · 4в',
+      t:'в) из наблюдений n звёзд в вертикале местного предмета',
+      b:'Серия светил наблюдается в вертикале самого предмета: углы Q малы, азимут предмета получают по вычисленным азимутам светил в моменты их прохождения.',
+      cond:'n светил, проходящих вертикал предмета; измерения при малых Q.',
+      al:['Вычисление моментов прохождения вертикала предмета','Наблюдения светил вблизи этих моментов','Определение a по вычисленным азимутам светил'],
+      f:['Q → 0','a = A<sub>σ</sub> + Q']}
+  };
+  function show(key){
+    var n=N[key];if(!n)return;
+    var h='<div class="dc-tag">'+(n.tag||'')+'</div><h4>'+n.t+'</h4>';
+    h+='<p>'+n.b+'</p>';
+    if(n.cond)h+='<div class="dc-row"><b>Условие наблюдений</b><span>'+n.cond+'</span></div>';
+    if(n.al)h+='<div class="dc-row"><b>Алгоритм</b><ol>'+n.al.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol></div>';
+    if(n.f)h+='<div class="dc-row"><b>Расчётные формулы</b><div class="formula">'+n.f.join('<br>')+'</div></div>';
+    if(n.n)h+='<div class="note green">'+n.n.map(function(x){return '<div>'+x+'</div>';}).join('')+'</div>';
+    det.innerHTML=h;
+  }
+  document.querySelectorAll('.bs-box,.bs-item,.bs-sub').forEach(function(nd){nd.addEventListener('click',function(){
+    document.querySelectorAll('.bs-box,.bs-item,.bs-sub').forEach(function(o){o.classList.remove('on');});nd.classList.add('on');show(nd.dataset.node);});});
+  show('root');
+})();
+
+/* ============================================================
+   5. Азимут Полярной: точная и рабочая формулы
+   ============================================================ */
+(function(){
+  var svg=$$('qSvg');if(!svg)return;
+  var phi=55.5,dec=89.2,t=50;
+  function draw(){
+    var aExact=azi(phi,dec,t);if(aExact>180)aExact-=360;
+    var aWork=starAz(phi,dec,t);
+    var del=90-dec,dt=del*3600*tgd(phi)*sn(t);
+    $$('qA1').textContent=fx(aExact,4)+'°';
+    $$('qA2').textContent=fx(aWork,4)+'°';
+    $$('qDel').textContent=fx(del,4)+'° ('+fx(del*3600,2)+'″)';
+    $$('qDt').textContent=fx(dt,1)+'″ ('+fx(dt/3600,4)+'°)';
+    var amp=del*3600/cs(phi)/3600;
+    $$('qEl').textContent='± '+fx(Math.abs(amp),4)+'°';
+    var dr=(starAz(phi,dec,t+1)-starAz(phi,dec,t-1))/2*3600;   /* ″ на 1° часового угла */
+    $$('qMax').textContent=fx(Math.abs(dr)*15/3600,2)+'″/с';
+    $$('qHint').innerHTML='Разность точной и рабочей формул для этого положения: <b>'+fx(Math.abs(aExact-aWork)*3600,2)+'″</b>. '+
+      (Math.abs(aExact-aWork)*3600<1?'Рабочая формула (2.7) пригодна: расхождение меньше 1″.':'При большом Δ расхождение растёт — нужна более полная формула или Астрономический ежегодник с видимыми местами близполюсных звёзд.');
+    /* scheme */
+    var C={x:310,y:212},K=Math.max(46,26+del*34);
+    var semiY=K, semiX=K*Math.abs(1/cs(phi));
+    var W=620,H=420;
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    s+='<line x1="'+C.x+'" y1="'+(C.y-semiY-40)+'" x2="'+C.x+'" y2="'+(C.y+semiY+40)+'" stroke="#9dc4bd" stroke-dasharray="6 5"/>';
+    s+='<text x="'+(C.x+8)+'" y="'+(C.y-semiY-46)+'" font-size="11.5" fill="#5f7c76" font-family="Roboto Mono,monospace">небесный меридиан</text>';
+    s+='<ellipse cx="'+C.x+'" cy="'+C.y+'" rx="'+fx(semiX,1)+'" ry="'+fx(semiY,1)+'" fill="none" stroke="#7655b7" stroke-width="1.8" stroke-dasharray="5 4"/>';
+    for(var tt=-180;tt<=180;tt+=5){
+      var a=starAz(phi,dec,tt),X=C.x+a*K/ (del*3600/cs(phi)/3600||1), Y=C.y-semiY*Math.cos(tt*D);
+      X=C.x+semiX*Math.sin(tt*D);
+      if(tt%45===0)s+='<circle cx="'+fx(X,1)+'" cy="'+fx(Y,1)+'" r="2.6" fill="#7655b7"/>';
+    }
+    var Xs=C.x+semiX*Math.sin(t*D),Ys=C.y-semiY*Math.cos(t*D);
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="7" fill="#b8471b"/><text x="'+(C.x+10)+'" y="'+(C.y+5)+'" font-size="13" font-weight="700" fill="#b8471b">P</text>';
+    s+='<circle cx="'+fx(Xs,1)+'" cy="'+fx(Ys,1)+'" r="7" fill="#ff7136" stroke="#fff" stroke-width="2"/><text x="'+fx(Xs+12,1)+'" y="'+fx(Ys-10,1)+'" font-size="13" font-weight="700" fill="#d9501a">Полярная</text>';
+    s+='<circle cx="'+fx(C.x+semiX,1)+'" cy="'+C.y+'" r="4.5" fill="#0a655d"/><circle cx="'+fx(C.x-semiX,1)+'" cy="'+C.y+'" r="4.5" fill="#0a655d"/>';
+    s+='<line x1="'+fx(C.x-semiX-30,1)+'" y1="'+C.y+'" x2="'+fx(C.x+semiX+30,1)+'" y2="'+C.y+'" stroke="#0a655d" stroke-dasharray="4 5"/>';
+    s+='<text x="'+(C.x-semiX-30)+'" y="'+(C.y+22)+'" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">элонгация: a* = −Δ·sec φ</text>';
+    s+='<text x="'+(C.x+semiX-30)+'" y="'+(C.y+22)+'" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">элонгация: a* = +Δ·sec φ</text>';
+    s+='<text x="16" y="'+(H-14)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">горизонтальные отклонения больше вертикальных в sec φ раз</text>';
+    svg.innerHTML=svgNum(s);
+  }
+  ['qPhi','qDec','qT'].forEach(function(id){$$(id).addEventListener('input',function(){
+    phi=+$$('qPhi').value;dec=+$$('qDec').value;t=+$$('qT').value;
+    $$('qPhiV').textContent=fx(phi,1)+'°';$$('qDecV').textContent=fx(dec,2)+'°';$$('qTV').textContent=fx(t,0)+'°';draw();});});
+  draw();
+})();
+
+/* ============================================================
+   6. Способ Деллена
+   ============================================================ */
+(function(){
+  var svg=$$('delSvg');if(!svg)return;
+  var ZN=34,ZS=38,Q=128,lN=-40;
+  function draw(){
+    var ctN=1/tgd(ZN),ctS=1/tgd(ZS),sum=ctN+ctS,Py=Math.pow(cs(ZN),2)+Math.pow(cs(ZS),2);
+    var lS=lN-Q;                       /* измеренный минус вычисленный угол пары */
+    var y=(lN-lS)/sum;
+    $$('dSum').textContent=fx(sum,4);
+    $$('dP').textContent=fx(Py,3);
+    $$('dY').textContent=fx(y,2)+'″';
+    $$('dHint').innerHTML='При Q′ = '+Q+'″ и l<sub>N</sub> = '+lN+'″, l<sub>S</sub> = '+fx(lS,0)+'″ получаем y = (l<sub>N</sub> − l<sub>S</sub>)/(ctg Z<sub>N</sub> + ctg Z<sub>S</sub>) = <b>'+fx(y,2)+'″</b>. '+
+      'Далее U = U₀ + (1/15)·y<sub>ср</sub>·sec φ. Обратите внимание: чем больше Z, тем меньше ctg Z и тем ниже вес пары — пары с малыми Z предпочтительнее.';
+    /* схема: два вертикала и отсчёты по окулярному микрометру */
+    var W=620,H=380,Zc={x:310,y:64};
+    var visN=-16,visS=-34;                 /* наклон вертикалов (углы увеличены для наглядности) */
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    s+='<line x1="30" y1="'+(H-26)+'" x2="590" y2="'+(H-26)+'" stroke="#dbe9e6"/>';
+    s+='<text x="42" y="'+(H-32)+'" font-size="12" fill="#8aa5a0" font-family="Roboto Mono,monospace">N</text>';
+    s+='<text x="564" y="'+(H-32)+'" font-size="12" fill="#8aa5a0" font-family="Roboto Mono,monospace">S</text>';
+    s+='<line x1="'+Zc.x+'" y1="'+(Zc.y-34)+'" x2="'+Zc.x+'" y2="'+(H-26)+'" stroke="#9dc4bd" stroke-dasharray="6 5"/>';
+    s+='<circle cx="'+Zc.x+'" cy="'+Zc.y+'" r="6" fill="#0a655d"/><text x="'+(Zc.x+12)+'" y="'+(Zc.y+5)+'" font-size="12.5" font-weight="700" fill="#0a655d" font-family="Roboto Mono,monospace">Z — зенит</text>';
+    var rayL=196;
+    var endP=function(deg,len){return {x:Zc.x+Math.sin(deg*D)*len,y:Zc.y+Math.cos(deg*D)*len};};
+    var eN=endP(visN,rayL),eS=endP(visS,rayL);
+    s+='<line x1="'+Zc.x+'" y1="'+Zc.y+'" x2="'+fx(eN.x,1)+'" y2="'+fx(eN.y,1)+'" stroke="#ff7136" stroke-width="2.4"/>';
+    s+='<line x1="'+Zc.x+'" y1="'+Zc.y+'" x2="'+fx(eS.x,1)+'" y2="'+fx(eS.y,1)+'" stroke="#7655b7" stroke-width="2.4"/>';
+    s+='<circle cx="'+fx(eN.x,1)+'" cy="'+fx(eN.y,1)+'" r="8" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    s+='<circle cx="'+fx(eS.x,1)+'" cy="'+fx(eS.y,1)+'" r="8" fill="#7655b7" stroke="#fff" stroke-width="2"/>';
+    s+='<text x="'+fx(eN.x-14,1)+'" y="'+fx(eN.y+4,1)+'" font-size="12" text-anchor="end" fill="#d9501a" font-family="Roboto Mono,monospace">σN — Полярная</text>';
+    s+='<text x="'+fx(eS.x-14,1)+'" y="'+fx(eS.y+4,1)+'" font-size="12" text-anchor="end" fill="#7655b7" font-family="Roboto Mono,monospace">σS — южная звезда</text>';
+    var arcr=104,p1=endP(visN,arcr),p2=endP(visS,arcr);
+    s+='<path d="M'+fx(p1.x,1)+' '+fx(p1.y,1)+' A'+arcr+' '+arcr+' 0 0 0 '+fx(p2.x,1)+' '+fx(p2.y,1)+'" fill="none" stroke="#d9501a" stroke-width="1.6"/>';
+    s+='<text x="'+fx((p1.x+p2.x)/2-8,1)+'" y="'+fx((p1.y+p2.y)/2+30,1)+'" font-size="11.5" text-anchor="end" fill="#d9501a" font-family="Roboto Mono,monospace">Q′ = '+Q+'″</text>';
+    /* шкала окулярного микрометра */
+    var y0=344,px=1.1;
+    s+='<line x1="40" y1="'+y0+'" x2="580" y2="'+y0+'" stroke="#9dc4bd" stroke-width="1.5"/>';
+    for(var v=-200;v<=200;v+=40){
+      var X=Zc.x+v*px;
+      s+='<line x1="'+fx(X,1)+'" y1="'+(y0-6)+'" x2="'+fx(X,1)+'" y2="'+(y0+6)+'" stroke="#b6d2cc"/>';
+      if(((v+200)/40)%2===0)s+='<text x="'+fx(X,1)+'" y="'+(y0+19)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+v+'</text>';
+    }
+    s+='<text x="580" y="'+(y0-14)+'" font-size="11" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">отсчёты окулярного микрометра, ″</text>';
+    var XN=Zc.x+lN*px,XS=Zc.x+lS*px;
+    s+='<line x1="'+fx(eN.x,1)+'" y1="'+fx(eN.y+10,1)+'" x2="'+fx(XN,1)+'" y2="'+(y0-9)+'" stroke="#e5bda6" stroke-dasharray="4 4"/>';
+    s+='<line x1="'+fx(eS.x,1)+'" y1="'+fx(eS.y+10,1)+'" x2="'+fx(XS,1)+'" y2="'+(y0-9)+'" stroke="#cdc0e6" stroke-dasharray="4 4"/>';
+    s+='<circle cx="'+fx(XN,1)+'" cy="'+y0+'" r="6" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    s+='<circle cx="'+fx(XS,1)+'" cy="'+y0+'" r="6" fill="#7655b7" stroke="#fff" stroke-width="2"/>';
+    s+='<text x="'+fx(XN,1)+'" y="'+(y0-13)+'" font-size="11" text-anchor="middle" fill="#d9501a" font-family="Roboto Mono,monospace">lN = '+lN+'″</text>';
+    s+='<text x="'+fx(XS,1)+'" y="'+(y0-13)+'" font-size="11" text-anchor="middle" fill="#7655b7" font-family="Roboto Mono,monospace">lS = '+fx(lS,0)+'″</text>';
+    /* формула */
+    s+='<rect x="376" y="112" width="226" height="62" rx="11" fill="#fff5ef" stroke="#f2cbb8"/>';
+    s+='<text x="489" y="136" font-size="12" text-anchor="middle" fill="#75462d" font-family="Roboto Mono,monospace">y = (lN − lS)/(ctg ZN + ctg ZS)</text>';
+    s+='<text x="489" y="158" font-size="13" font-weight="700" text-anchor="middle" fill="#b8471b" font-family="Roboto Mono,monospace">y = '+fx(y,2)+'″</text>';
+    s+='<text x="376" y="196" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">углы между вертикалами увеличены;</text>';
+    s+='<text x="376" y="212" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">на деле вертикалы почти совпадают</text>';
+    s+='<text x="376" y="252" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">чем меньше Z, тем больше вес пары;</text>';
+    s+='<text x="376" y="268" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">3 пары; yср → U = U₀ + yср·sec φ/15</text>';
+    svg.innerHTML=svgNum(s);
+  }
+  function semiSafe(v){return Math.max(20,Math.min(120,Math.abs(v)*4000));}
+  ['dZN','dZS','dQ','dLN'].forEach(function(id){$$(id).addEventListener('input',function(){
+    ZN=+$$('dZN').value;ZS=+$$('dZS').value;Q=+$$('dQ').value;lN=+$$('dLN').value;
+    $$('dZNV').textContent=ZN+'°';$$('dZSV').textContent=ZS+'°';$$('dQV').textContent=Q+'″';$$('dLNV').textContent=lN+'″';draw();});});
+  draw();
+})();
+
+/* ============================================================
+   7. Практикум: пример из учебника
+   ============================================================ */
+(function(){
+  if(!$$('wRun'))return;
+  function run(){
+    var phi=+$$('wPhi').value,
+        lam=phms($$('wLam').value),u=pms($$('wU').value)/3600,
+        T=phms($$('wT').value),nk=+$$('wNK').value,S0=phms($$('wS0').value),
+        al=phms($$('wAl').value),del=+$$('wDel').value,Q=+$$('wQ').value;
+    if(![phi,lam,u,T,nk,S0,al,del,Q].every(fin)){
+      blankOut(['wS','wTt','wDelta','wAst','wA']);
+      $$('wTable').innerHTML='';$$('wNote').textContent='Введите числовые значения во все поля — пример не рассчитывается.';
+      return;}
+    var Dn=T, Dd=Dn+u, M=Dd-nk, Mmu=M*1.0027379, S=S0+Mmu+lam;
+    var t=(S-al)*15; t=((t%360)+360)%360;
+    var Dd_=(90-del), dsec=Dd_*3600, dtsec=dsec*tgd(phi)*sn(t);
+    var arg=t+dtsec/3600;
+    var astSec=-dsec*sn(arg)/cs(phi);
+    var ast=astSec/3600, a=ast+Q;
+    $$('wS').textContent=hms(S%24);
+    $$('wTt').textContent=hms(t/15);
+    $$('wDelta').textContent=fx(Dd_,6)+'° = '+fx(dsec,2)+'″';
+    $$('wAst').textContent=fx(ast,6)+'° = '+dms(ast,true);
+    $$('wA').textContent=dms(((a%360)+360)%360,true);
+    $$('wNote').innerHTML='t = '+fx(t,5)+'°; t + δt = '+fx(((arg%360)+360)%360,5)+'°; sin(t + δt) = '+fx(sn(arg),7)+'; cos φ = '+fx(cs(phi),8)+'.';
+    var rows=[
+      ['Д<sub>набл</sub> (декретное время)',hms(T)],
+      ['u','+ '+hms(u)],
+      ['Д = Д<sub>набл</sub> + u',hms(Dd)],
+      ['n + k',fx(nk,0)+'h'],
+      ['М = Д − (n + k)',hms(M)],
+      ['М·(1 + µ), µ = 0,0027379',fx(Mmu,6)+'h'],
+      ['S₀ (звёздное время в 0h Гринвича)',hms(S0)],
+      ['λ',hms(lam)],
+      ['s = S₀ + М(1 + µ) + λ',hms(S%24)],
+      ['α Полярной',hms(al)],
+      ['t = s − α',hms(t/15)+' ('+fx(t,5)+'°)'],
+      ['Δ = 90° − δ',fx(Dd_,6)+'° = '+fx(dsec,2)+'″'],
+      ['δt″ = Δ″·tg φ·sin t',fx(dtsec,2)+'″ ('+fx(dtsec/3600,4)+'°)'],
+      ['t + δt',fx(((arg%360)+360)%360,5)+'°'],
+      ['sin(t + δt)',fx(sn(arg),7)],
+      ['cos φ',fx(cs(phi),8)],
+      ['a* = −Δ″·sec φ·sin(t + δt)',fx(astSec,2)+'″ = '+fx(ast,6)+'° = '+dms(ast,true)],
+      ['Q (измеренный горизонтальный угол)',fx(Q,6)+'° = '+dms(Q,true)],
+      ['<b>a = a* + Q — азимут направления</b>','<b>'+dms(((a%360)+360)%360,true)+'</b>']
+    ];
+    $$('wTable').innerHTML='<tr><th>Величина</th><th>Значение</th></tr>'+rows.map(function(r,i){
+      return '<tr'+(i===rows.length-1?' class="hl"':'')+'><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
+  }
+  ['wPhi','wLam','wU','wT','wNK','wS0','wAl','wDel','wQ'].forEach(function(id){$$(id).addEventListener('input',run);});
+  $$('wRun').addEventListener('click',run);
+  $$('wReset').addEventListener('click',function(){
+    $$('wPhi').value='55.5333';$$('wLam').value='1 55 00';$$('wU').value='2 08';$$('wT').value='24 01 52';
+    $$('wNK').value='4';$$('wS0').value='19 37 09';$$('wAl').value='2 17 07';$$('wDel').value='89.204625';$$('wQ').value='14.821111';run();});
+  run();
+})();
+
+/* ============================================================
+   8. Самопроверка
+   ============================================================ */
+(function(){
+  if(!$$('quiz'))return;
+  var qs=[
+    ['Что измеряют в азимутальных способах?',['горизонтальные направления на светила и на земной предмет','зенитные расстояния светил','только моменты прохождения светил через меридиан'],0],
+    ['Сколько неизвестных в азимутальных способах и сколько нужно светил?',['два неизвестных — достаточно двух светил','три неизвестных (φ, u, M_N) — не менее трёх светил','одно неизвестное — достаточно одного светила'],1],
+    ['Как связано место севера с отсчётами по лимбу?',['A_N = R_σ − M_N','M_N = R_σ + A_N','A_N = M_N − R_σ'],0],
+    ['Наивыгоднейшие условия для определения азимута направления:',['δ → 0°','A = 0°, 180° и δ = 90° (близполюсные светила)','Z → 90° при любых δ'],1],
+    ['Почему способ по Полярной звезде даёт точный азимут?',['Полярная очень яркая','азимут Полярной меняется медленно, а ошибки времени и широты слабо влияют на результат','Полярная всегда находится в зените'],1],
+    ['Как влияет наклон горизонтальной оси на отсчёт по горизонтальному кругу?',['пропорционально sin Z','пропорционально ctg Z','не влияет вовсе'],1],
+    ['Какой способ рекомендован при φ > 65°?',['способ Цингера','способ Деллена','способ Талькотта'],1],
+    ['При каком Z_ср достигается равенство весов P_a′ = P_x = P_y в совместных способах?',['Z_ср = 35,3°','Z_ср = 45°','Z_ср = 60°'],0]
+  ];
+  var done={};
+  $$('quiz').innerHTML=qs.map(function(q,i){return '<div class="quiz-q"><b>'+(i+1)+'. '+q[0]+'</b><div class="answers">'+
+    q[1].map(function(a,j){return '<button class="ans" data-q="'+i+'" data-a="'+j+'">'+a+'</button>';}).join('')+'</div></div>';}).join('');
+  $$('quiz').addEventListener('click',function(e){
+    var b=e.target.closest('.ans');if(!b||done[b.dataset.q]!==undefined)return;
+    var q=+b.dataset.q,a=+b.dataset.a;done[q]=a;
+    b.parentElement.querySelectorAll('.ans').forEach(function(x,j){if(j===qs[q][2])x.classList.add('ok');else if(j===a)x.classList.add('bad');});
+    var n=Object.keys(done).length,ok=Object.keys(done).filter(function(i){return done[i]===qs[i][2];}).length;
+    $$('score').innerHTML=n<qs.length?('Отвечено: '+n+'/'+qs.length+' · верно: '+ok):('Результат: <b>'+ok+'/'+qs.length+'</b>. '+(ok===qs.length?'Отлично: азимутальные способы разобраны.':'Вернитесь к вкладкам «Постановка задачи», «Выгоднейшие условия» и практикуму.'));
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -60,25 +60,32 @@
     font-family:Manrope,sans-serif; transition:transform .2s, box-shadow .2s, opacity .15s;
   }
   button:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(222,80,26,.25);}
-  button.secondary{background:#fff; color:#4a625d; border:1px solid var(--line); box-shadow:none;}
-  button.secondary:hover{box-shadow:var(--shadow); border-color:#a7c7bf;}
-  button.setup{background:var(--teal); color:#fff;}
-  button.setup:hover{box-shadow:0 10px 24px rgba(10,101,93,.25);}
-  button.kp{background:#f0b429; color:#3d2c02;}
-  button.kp:hover{box-shadow:0 10px 24px rgba(240,180,41,.3);}
-  button.rec{background:#e7f6f1; color:#0a655d; border:1px solid #b3d9d0;}
-  button.rec:hover{box-shadow:0 10px 24px rgba(10,101,93,.15);}
-  button:disabled{opacity:.45; cursor:default; transform:none; box-shadow:none;}
+  /* Все интерактивные кнопки модели — единый цвет и контрастный белый текст */
+  .controls button,
+  .controls button.secondary,
+  .controls button.setup,
+  .controls button.kp,
+  .controls button.rec{
+    background:var(--accent); color:#fff; border:1px solid var(--accent); box-shadow:none;
+  }
+  .controls button:hover:not(:disabled){box-shadow:0 10px 24px rgba(222,80,26,.28);}
+  .controls button:focus-visible{outline:3px solid rgba(9,44,51,.35); outline-offset:2px;}
+  /* Неактивная кнопка остаётся хорошо читаемой, но явно «выключенной» */
+  button:disabled,
+  .controls button:disabled{
+    background:#e3ebe8; color:#5d6f6b; border-color:#c7d6d1;
+    opacity:1; cursor:not-allowed; transform:none; box-shadow:none;
+  }
   .instr-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:8px 0 16px;}
   .instr-btn{
-    background:#fff; color:var(--ink); border:1px solid var(--line); border-radius:12px;
+    background:#fff; color:var(--ink); border:2px solid #b9cdc7; border-radius:12px;
     padding:10px 16px; text-align:center; cursor:pointer; transition:.25s;
   }
-  .instr-btn:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:#a7c7bf;}
+  .instr-btn:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--accent);}
   .instr-btn b{display:block; font-size:15px;}
-  .instr-btn span{font:500 10px 'Roboto Mono',Consolas,monospace; color:var(--muted);}
-  .instr-btn.active{background:#e8f5f1; border-color:var(--teal); box-shadow:0 0 0 2px rgba(10,101,93,.18);}
-  .instr-btn.active span{color:#12624f;}
+  .instr-btn span{font:500 10px 'Roboto Mono',Consolas,monospace; color:#5d6f6b;}
+  .instr-btn.active{background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 8px 20px rgba(222,80,26,.25);}
+  .instr-btn.active span{color:#fff;}
   .limb-row{
     display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;
     background:#f5f8f7; border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:14px;
@@ -142,7 +149,7 @@
 <div class="gl-meta-nav"><a href="index.html">Геодезия. Курс 1</a><span class="gl-meta-sep">·</span><a href="index.html#topic-02">Тема 02. Геодезическое оборудование</a></div>
 <h1>Теодолиты: измерение горизонтальных углов</h1>
 <p class="gl-meta-summary">Принцип измерения горизонтального угла как разности отсчётов по лимбу; полный приём при двух положениях круга (КЛ и КП), полевой журнал и контроль расхождений. Интерактивный тренажёр проводит все шаги работы на станции.</p>
-<div class="gl-tabs" role="tablist"><button class="active" data-gl-tab="h0" type="button">Схема измерения</button><button class="" data-gl-tab="h1" type="button">Журнал и порядок</button><button class="" data-gl-tab="h2" type="button">Вычисления</button><button class="" data-gl-tab="h3" type="button">Тренажёр</button><button class="" data-gl-tab="h4" type="button">Контроль</button></div></section>
+<div class="gl-tabs" role="tablist"><button class="active" data-gl-tab="h0" type="button">Схема измерения</button><button class="" data-gl-tab="h1" type="button">Журнал и порядок</button><button class="" data-gl-tab="h2" type="button">Вычисления</button><button class="" data-gl-tab="h4" type="button">Контроль</button></div></section>
 <div class="wrap">
 <!-- ================= 1. СУТЬ ================= -->
 <div class="card gl-tab-panel" data-gl-panel="h0">
@@ -195,7 +202,10 @@
 <li><b>Первый полуприём (КЛ)</b> — при положении круг лево наводят на правую цель <span class="hl-g">A</span>, берут отсчёт a₁ по микроскопу и записывают в журнал; затем на левую <span class="hl">C</span> — отсчёт c₁. Вычисляют угол полуприёма β′ = a₁ − c₁.</li>
 <li><b>Между полуприёмами</b> — трубу переводят через зенит (теперь положение круг право) и <span class="hl">сбивают лимб на 1–2°</span>, чтобы отсчёты второго полуприёма пришлись на другие штрихи лимба.</li>
 <li><b>Второй полуприём (КП)</b> — при положении круг право повторяют: отсчёт a₂, затем c₂; вычисляют β″ = a₂ − c₂.</li>
-<li><b>Контроль и результат</b> — расхождение |β′ − β″| ≤ 2t (двойная точность отсчёта); β = (β′ + β″) / 2.</li>
+<li><b>Контроль и результат</b> — расхождение полуприёмов не должно превышать <b>двойной точности отсчётного устройства</b>:
+      |β′ − β″| ≤ 2t, где t — точность прибора (для Т30, 2Т30, 4Т30П t = 30″, значит <span class="hl-r">2t = 1′</span>;
+      для Т5 t = 5″, значит <span class="hl-r">2t = 10″</span>). Если допуск выдержан, β = (β′ + β″) / 2;
+      если нет — приём бракуется и выполняется заново.</li>
 </ol>
 </div>
 <div>
@@ -215,19 +225,21 @@
 <td class="jlabel">A</td><td class="jlabel" rowspan="2">КЛ</td>
 <td>122</td><td>34</td>
 <td rowspan="2">67</td><td rowspan="2">18</td>
-<td rowspan="4">67</td><td rowspan="4">17,0</td>
+<td rowspan="4">67</td><td rowspan="4">17,5</td>
 </tr>
 <tr><td class="jlabel">C</td><td>55</td><td>16</td></tr>
 <tr>
 <td class="jlabel">A</td><td class="jlabel" rowspan="2">КП</td>
 <td>303</td><td>30</td>
-<td rowspan="2">67</td><td rowspan="2">16</td>
+<td rowspan="2">67</td><td rowspan="2">17</td>
 </tr>
-<tr><td class="jlabel">C</td><td>236</td><td>14</td></tr>
+<tr><td class="jlabel">C</td><td>236</td><td>13</td></tr>
 </table>
 <p style="font-size:13px;color:var(--muted);margin-top:6px;">
         Отсчёты и углы полуприёмов — до целой минуты; до 0,1′ (…,0 или …,5) записывается только среднее.
-        В примере расхождение между полуприёмами составило 2′ — на пределе допуска (2t = 2′), приём принят.
+        В примере журнал вёлся теодолитом 4Т30П (t = 30″), расхождение между полуприёмами составило
+        67°18′ − 67°17′ = 1′ — ровно на пределе допуска (2t = 1′), поэтому приём принят,
+        β = (67°18′ + 67°17′) / 2 = 67°17,5′.
       </p>
 <div class="note">
 <b>Зачем два полуприёма?</b> Измерение при КЛ и КП исключает влияние
@@ -238,14 +250,39 @@
       </div>
 </div>
 </div>
+<!-- ---- перенесено из вкладки «Тренажёр»: отсчётные устройства и допуски ---- -->
+<h2 style="margin-top:26px;border-top:1px solid var(--line);padding-top:22px;"><span class="num" style="width:auto;padding:0 10px;">2.1</span>Отсчётные устройства теодолитов и допуск 2t</h2>
+<p>Допуск на расхождение полуприёмов задаёт <b>точность отсчётного устройства t</b> — она указана
+  в самом названии прибора: у серии Т30 <b>t = 30″</b>, у Т5 <b>t = 5″</b>. Контрольный допуск равен <b>2t</b>.</p>
+<div style="overflow-x:auto;">
+<table>
+<tr><th>Теодолит</th><th>Устройство</th><th>Цена деления лимба</th><th>Отсчёт берут</th><th>Точность t</th><th>Допуск 2t</th></tr>
+<tr><td><b>Т30</b></td><td>Штриховой микроскоп: неподвижный индекс-штрих, отсчёт между штрихами (10′) оценивается на глаз</td><td>10′</td><td>до 1′</td><td>30″</td><td><b>1′</b></td></tr>
+<tr><td><b>2Т30 / 4Т30П</b></td><td>Шкаловой микроскоп: шкала 0–6 (деления по 5′), градусный штрих лимба «читается» по шкале</td><td>1°</td><td>до 1′</td><td>30″</td><td><b>1′</b></td></tr>
+<tr><td><b>Т5</b></td><td>Шкаловой микроскоп: шкала на 60 делений по 1′, десятые доли минуты — на глаз</td><td>1°</td><td>до 0,1′</td><td>5″</td><td><b>10″</b></td></tr>
+</table>
+</div>
+<div class="note">
+    У всей серии Т30 (Т30, 2Т30, 4Т30П) отсчёты берутся <b>до целой минуты</b>;
+    до десятых долей минуты (…,0′ или …,5′) вычисляется только <b>среднее значение угла</b> из двух полуприёмов.
+  </div>
+<div class="note">
+<b>Частая ошибка.</b> Допуск 2t нельзя отсчитывать от разряда записи отсчёта: отсчёт у Т30 и 4Т30П
+    берут до 1′, но точность прибора t = 30″, поэтому допустимое расхождение полуприёмов —
+    <span class="hl-r">1′, а не 2′</span>. Для Т5 (t = 5″) допуск составляет <span class="hl-r">10″</span>.
+  </div>
+<div class="note">
+    Переключайте тип теодолита в интерактивной модели на вкладке <b>«Вычисления»</b> —
+    окно микроскопа, точность отсчёта и допуск контроля изменятся.
+  </div>
 </div>
 <!-- ================= 2. ИНТЕРАКТИВНАЯ МОДЕЛЬ ================= -->
 <div class="card gl-tab-panel" data-gl-panel="h2">
 <h2><span class="num">3</span>Интерактивная модель: полный приём (вид сбоку)</h2>
 <div class="instr-row" id="instrRow">
-<div class="instr-btn" data-id="t30"><b>Т30</b><span>штриховой микроскоп · отсчёт до 1′</span></div>
-<div class="instr-btn active" data-id="t2t30"><b>2Т30 / 4Т30П</b><span>шкаловой микроскоп · отсчёт до 1′</span></div>
-<div class="instr-btn" data-id="t5"><b>Т5</b><span>шкаловой микроскоп · отсчёт до 0,1′</span></div>
+<div class="instr-btn" data-id="t30"><b>Т30</b><span>отсчёт до 1′ · t = 30″ · допуск 2t = 1′</span></div>
+<div class="instr-btn active" data-id="t2t30"><b>2Т30 / 4Т30П</b><span>отсчёт до 1′ · t = 30″ · допуск 2t = 1′</span></div>
+<div class="instr-btn" data-id="t5"><b>Т5</b><span>отсчёт до 0,1′ · t = 5″ · допуск 2t = 10″</span></div>
 </div>
 <div class="limb-row">
 <span class="mode-badge" id="modeBadge">КЛ — положение круг лево</span>
@@ -325,33 +362,19 @@
 <div id="jControl" style="text-align:center;font-size:13px;color:var(--muted);margin-top:6px;"></div>
 <div class="status" id="status">Прибор стоит в стороне от колышка, площадка наклонена. Выполните пункт 1 — приведение в рабочее положение.</div>
 </div>
-<!-- ================= 4. ОТСЧЁТНЫЕ УСТРОЙСТВА ================= -->
-<div class="card gl-tab-panel" data-gl-panel="h3">
-<h2><span class="num">4</span>Отсчётные устройства теодолитов</h2>
-<table>
-<tr><th>Теодолит</th><th>Устройство</th><th>Цена деления лимба</th><th>Отсчёт</th><th>Допуск 2t</th></tr>
-<tr><td><b>Т30</b></td><td>Штриховой микроскоп: неподвижный индекс-штрих, отсчёт между штрихами (10′) оценивается на глаз</td><td>10′</td><td>до 1′</td><td>2′</td></tr>
-<tr><td><b>2Т30 / 4Т30П</b></td><td>Шкаловой микроскоп: шкала 0–6 (деления по 5′), градусный штрих лимба «читается» по шкале</td><td>1°</td><td>до 1′</td><td>2′</td></tr>
-<tr><td><b>Т5</b></td><td>Шкаловой микроскоп: шкала на 60 делений по 1′, десятые доли минуты — на глаз</td><td>1°</td><td>до 0,1′</td><td>0,2′</td></tr>
-</table>
-<div class="note">
-    У всей серии Т30 (Т30, 2Т30, 4Т30П) отсчёты берутся <b>до целой минуты</b>;
-    до десятых долей минуты (…,0′ или …,5′) вычисляется только <b>среднее значение угла</b> из двух полуприёмов.
-  </div>
-<div class="note">
-    Переключайте тип теодолита в модели выше — окно микроскопа, точность отсчёта и допуск контроля изменятся.
-  </div>
-</div>
 <!-- ================= 5. ЗАПОМНИТЬ ================= -->
 <div class="card gl-tab-panel" data-gl-panel="h4">
-<h2><span class="num">5</span>Главное, что нужно запомнить</h2>
+<h2><span class="num">4</span>Главное, что нужно запомнить</h2>
 <ul>
 <li>Сначала — <span class="hl-g">центрирование по отвесу над колышком</span> и <span class="hl-g">горизонтирование по уровню</span>, только потом измерения.</li>
 <li>Горизонтальный угол — это угол между <span class="hl-b">проекциями визирных лучей</span> на горизонтальную плоскость.</li>
 <li>Угол получается как <span class="hl-r">разность двух отсчётов</span>: β = a − c (правая цель минус левая); если a &lt; c — прибавляем 360°.</li>
 <li>Наводить трубу — на <span class="hl">низ вехи</span>, биссектором сетки нитей.</li>
 <li>Полный приём = полуприём при КЛ + полуприём при КП; между ними трубу переводят через зенит и <span class="hl">сбивают лимб на 1–2°</span>.</li>
-<li>Контроль: |β′ − β″| ≤ 2t; результат — среднее из двух полуприёмов.</li>
+<li>Контроль: |β′ − β″| ≤ 2t, где t — точность отсчётного устройства прибора:
+    для <span class="hl">Т30, 2Т30, 4Т30П</span> (t = 30″) допуск <span class="hl-r">2t = 1′</span>,
+    для <span class="hl">Т5</span> (t = 5″) допуск <span class="hl-r">2t = 10″</span>;
+    результат — среднее из двух полуприёмов.</li>
 <li>У серии Т30 отсчёты берутся <span class="hl">до целой минуты</span>; до 0,1′ (…,0 или …,5) вычисляется только среднее значение угла.</li>
 </ul>
 </div>
@@ -382,9 +405,12 @@ function fmtDM1(r){
    Вся серия Т30 (Т30, 2Т30, 4Т30П): отсчёты берутся до целой минуты,
    до десятых долей минуты (…,0 / …,5) вычисляется только среднее. */
 var INSTR = {
-  t30:  { name:'Т30',        round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'штриховой микроскоп', tol:2/60,   tolTxt:'2′'  },
-  t2t30:{ name:'2Т30/4Т30П', round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tol:2/60,   tolTxt:'2′'  },
-  t5:   { name:'Т5',         round:function(r){return Math.round(r*600)/600;}, fmt:fmtDM1, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tol:0.2/60, tolTxt:'0,2′'}
+  /* t — точность отсчётного устройства (заложена в марке прибора):
+     Т30, 2Т30, 4Т30П — t = 30″  →  допуск 2t = 1′;
+     Т5              — t = 5″   →  допуск 2t = 10″. */
+  t30:  { name:'Т30',        round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'штриховой микроскоп', tTxt:'30″', tol:1/60,     tolTxt:'1′',  spread:1.6 },
+  t2t30:{ name:'2Т30/4Т30П', round:function(r){return Math.round(r*60)/60;},   fmt:fmtDM0, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tTxt:'30″', tol:1/60,     tolTxt:'1′',  spread:1.6 },
+  t5:   { name:'Т5',         round:function(r){return Math.round(r*600)/600;}, fmt:fmtDM1, fmtMean:fmtDM1, dev:'шкаловой микроскоп',  tTxt:'5″',  tol:10/3600,  tolTxt:'10″', spread:0.8 }
 };
 
 /* ================= состояние ================= */
@@ -1085,13 +1111,13 @@ function aim(which){
    до 10° — тогда контроль не сойдётся и среднее вычислить нельзя. */
 function newErrPlan(){
   var plan = { small: [], blunderAt: -1, blunder: 0 };
-  var tol = INSTR[S.instr].tol; // 2t, град
+  var tol = INSTR[S.instr].tol; // 2t, град (Т30/4Т30П — 1′, Т5 — 10″)
   // случайные ошибки первых двух отсчётов (a1, c1)
   var e0 = (Math.random()-0.5)*0.6*tol;
   var e1 = (Math.random()-0.5)*0.6*tol;
-  // целевое расхождение полуприёмов: равномерно из [-2t; +2t],
-  // чтобы попадались невязки и 0, и 1, и 2 минуты
-  var D = (Math.random()*2 - 1) * tol;
+  // целевое расхождение полуприёмов: равномерно из [-spread·2t; +spread·2t] —
+  // чаще всего невязка укладывается в допуск, но иногда выходит за него
+  var D = (Math.random()*2 - 1) * (INSTR[S.instr].spread || 1.6) * tol;
   // подбираем ошибки a2, c2 так, чтобы (e0-e1)-(e2-e3) = D
   var e2 = (Math.random()-0.5)*0.6*tol;
   var e3 = e2 - (e0 - e1) + D;
@@ -1212,17 +1238,20 @@ function finishSet(){
   // среднее из двух полуприёмов — до десятых долей минуты (…,0 или …,5)
   var mean = norm360(S.b1 + angDiff(S.b2, S.b1)/2);
   var ok = diff <= instr.tol + 1e-9;
+  // Т5 — расхождение в секундах, серия Т30 — в целых минутах
   var diffTxt = diff >= 1
     ? (Math.round(diff*10)/10).toFixed(1).replace('.',',') + '°'
-    : (Math.round(diff*600)/10).toFixed(1).replace('.',',') + '′';
+    : (S.instr === 't5'
+        ? Math.round(diff*3600) + '″'
+        : Math.round(diff*60) + '′');
   if (ok){
     jSet('jM', mean, instr, true);
     document.getElementById('jControl').innerHTML =
-      '<span style="color:#15803d;">✓ Контроль: расхождение β′ и β″ = ' + diffTxt + ' ≤ 2t = ' + instr.tolTxt + '. В журнал записано среднее.</span>';
+      '<span style="color:#15803d;">✓ Контроль: расхождение β′ и β″ = ' + diffTxt + ' ≤ 2t = ' + instr.tolTxt + ' (' + instr.name + ', t = ' + instr.tTxt + '). В журнал записано среднее.</span>';
     setStatus('Приём завершён! β′ = ' + instr.fmt(S.b1) + ', β″ = ' + instr.fmt(S.b2) + '; расхождение ' + diffTxt + ' в допуске. Среднее β = ' + instr.fmtMean(mean) + ' занесено в журнал.');
   } else {
     document.getElementById('jControl').innerHTML =
-      '<span style="color:#dc2626;">✗ Расхождение β′ и β″ = ' + diffTxt + ' &gt; 2t = ' + instr.tolTxt + ' — в одном из отсчётов промах, среднее вычислить невозможно. Приём бракуется и начинается заново.</span>';
+      '<span style="color:#dc2626;">✗ Расхождение β′ и β″ = ' + diffTxt + ' &gt; 2t = ' + instr.tolTxt + ' (' + instr.name + ', t = ' + instr.tTxt + ') — среднее вычислить нельзя. Приём бракуется и начинается заново.</span>';
     setStatus('Расхождение ' + diffTxt + ' превышает допуск 2t = ' + instr.tolTxt + '! Журнал очищен — повторите приём с первого измерения (КЛ: наведение на A). Прибор в рабочем положении.');
     // возврат к первому измерению: прибор остаётся установленным
     setTimeout(function(){
@@ -1302,7 +1331,7 @@ row.addEventListener('click', function(e){
   btn.classList.add('active');
   S.instr = btn.getAttribute('data-id');
   S.mode = 'KL';
-  clearReadings('Выбран теодолит ' + INSTR[S.instr].name + ' (' + INSTR[S.instr].dev + ', допуск 2t = ' + INSTR[S.instr].tolTxt + '). Начните приём заново.');
+  clearReadings('Выбран теодолит ' + INSTR[S.instr].name + ' (' + INSTR[S.instr].dev + ', t = ' + INSTR[S.instr].tTxt + ', допуск 2t = ' + INSTR[S.instr].tolTxt + '). Начните приём заново.');
   renderAll();
 });
 
@@ -1316,5 +1345,5 @@ renderAll();
 <script src="../../assets/courses-data.js"></script>
 <script src="../../assets/main.js"></script>
 <script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a439d2292d1a2d98',t:'MTc5MDg0MDQ0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

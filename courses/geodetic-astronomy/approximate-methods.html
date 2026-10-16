@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Интерактивный урок о приближённых способах астрономических определений: широта по измеренным зенитным расстояниям Полярной звезды, азимут по Полярной, определение широты по Солнцу, долготы и азимута по Солнцу, апостериорная оценка точности, примеры обработки наблюдений.">
+<title>Приближённые способы астрономических определений — ГеоЛиния</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+:root{--ink:#092c33;--muted:#5c7370;--white:#fff;--dark:#063f3b;--dark2:#07534d;--green:#0a655d;--green-soft:#e9f5f1;--green-line:#b3d9d0;--accent:#ff7136;--accent-dark:#d9501a;--accent-soft:#ffe9de;--line:#d5e3de;--radius:18px;--mono:'Roboto Mono',Consolas,monospace;--lesson-w:1220px}
+:root{--blue:#2474c6;--violet:#7655b7;--cyan:#118c91;--gold:#b9780c;--red:#d45834;--shadow:0 18px 50px rgba(18,54,49,.10)}
+.section{padding:26px 0 60px}
+.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.article,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
+.article{padding:28px 31px}.panel{padding:18px}
+.article h2{margin:0 0 10px}
+.article h3{font:800 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-dark);margin:22px 0 8px}
+.lead{color:#405a55;margin:0 0 12px}
+ul.plain{margin:10px 0 10px 18px}ul.plain li{margin:6px 0;color:#3d5751}
+.formula{background:#eaf8f4;border:1px solid #bfe6dc;border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:#096158;font-family:"Cambria Math",Georgia,serif;font-size:16.5px;overflow:auto}
+.formula b{color:#07534d}
+.note{border-left:3px solid var(--accent);background:#fff2ec;padding:13px 16px;border-radius:0 10px 10px 0;margin:15px 0;color:#75462d}
+.note.green{border-left-color:var(--cyan);background:#eef7f6;color:#315951}
+.note.blue{border-left-color:var(--blue);background:#eef4fb;color:#274b70}
+.muted{color:#6a7d79;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;margin:14px 0}
+.card{padding:15px;border:1px solid var(--line);border-radius:14px;background:#f8fbfa}
+.card b{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;border-radius:99px;padding:3px 9px;font:700 11px var(--mono);background:#e8f3f0;color:#315c54;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:800 11px var(--mono);color:var(--accent-dark);text-transform:uppercase}
+.ctl{display:grid;grid-template-columns:170px 1fr 108px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+@media(max-width:640px){.ctl{grid-template-columns:1fr 1fr}}
+.ctl label{font:600 12.5px var(--mono);color:#405a55}
+.ctl .val{font:700 12.5px var(--mono);color:var(--accent-dark);text-align:right}
+input[type=range]{accent-color:var(--accent);width:100%}
+input[type=number],input[type=text],select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:600 13px var(--mono);width:100%;background:#fff;color:#163f39}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:12px 0}
+.out{padding:11px;border:1px solid var(--line);border-radius:12px;background:#f7fbf9}
+.out small{display:block;color:#768a85;font:700 10px var(--mono);text-transform:uppercase;margin-bottom:3px}
+.out b{font:700 15px var(--mono);color:#0a3f3a}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{border:1px solid var(--green-line);background:#fff;border-radius:99px;padding:7px 13px;font:700 12px var(--mono);color:#0a655d;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent-dark)}
+.btn.on{background:var(--green);border-color:var(--green);color:#fff}
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.cap{font:500 11.5px var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+.quiz-q{border:1px solid var(--line);border-radius:13px;padding:14px;margin:12px 0;background:#fafcfb}
+.answers{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.ans{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:13.5px;cursor:pointer;text-align:left}
+.ans:hover{border-color:var(--accent)}
+.ans.ok{background:#e2f6ea;border-color:#43a86a;color:#186b3c;font-weight:700}
+.ans.bad{background:#fdeceb;border-color:#d45834;color:#a33a1c}
+.score{margin-top:12px;font:600 13.5px var(--mono);color:#0a655d}
+.worktable td{font-family:var(--mono);font-size:12.5px;padding:6px 9px}
+.worktable td:first-child{font-family:inherit;color:#405a55;width:42%}
+.worktable tr.hl td{background:#fff5ef;font-weight:700}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+.pill{border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;background:#f7fbfa;padding:11px 14px}
+.pill b{display:block;color:#0a4f4a;margin-bottom:4px}
+.steps{counter-reset:st;margin:12px 0}
+.step{position:relative;padding:12px 14px 12px 46px;border:1px solid var(--line);border-radius:13px;background:#f9fcfb;margin:9px 0}
+.step:before{counter-increment:st;content:counter(st);position:absolute;left:13px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:700 12px/24px var(--mono);text-align:center}
+.step b{color:#0a4f4a}
+.step .f{font-family:"Cambria Math",Georgia,serif;color:#096158;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1px solid var(--line);background:#f7fbf9;border-radius:99px;padding:5px 11px;font:600 12px var(--mono);color:#3d5a54}
+.mrow{display:grid;grid-template-columns:70px 1fr 1fr 96px;gap:8px;align-items:center;margin:6px 0}
+@media(max-width:640px){.mrow{grid-template-columns:1fr 1fr}}
+</style>
+<link rel="stylesheet" href="../../assets/lesson-site.css">
+</head>
+<body class="gl-lesson" data-root="../.." data-page="courses"><div class="gl-lesson-layout">
+<aside class="gl-sidebar" data-course="geodetic-astronomy" aria-label="Разделы курса"></aside>
+<main class="gl-lesson-content"><section class="gl-lesson-meta">
+<div class="gl-meta-nav"><a href="index.html">Основы геодезической астрономии</a><span class="gl-meta-sep">·</span><a href="index.html#topic-06">Тема 06. Методы астрономических наблюдений в геодезии</a></div>
+<h1>Приближённые способы астрономических определений</h1>
+<p class="gl-meta-summary">Быстрые определения широты и азимута по Полярной звезде и по Солнцу: рабочие формулы, таблицы Астрономического ежегодника, порядок приёмов, апостериорная оценка точности и полный разбор примеров из учебника. Интерактивные калькуляторы приёмов и модель годового движения Солнца.</p>
+<div class="tabs-wrap gl-tabs"><div class="container"><div class="tabs" id="tabs">
+<button class="tab active" data-view="overview">Что дают приближённые способы</button>
+<button class="tab" data-view="plat">Широта по Полярной</button>
+<button class="tab" data-view="paz">Азимут по Полярной</button>
+<button class="tab" data-view="slat">Широта по Солнцу</button>
+<button class="tab" data-view="slon">Долгота и азимут по Солнцу</button>
+<button class="tab" data-view="practice">Практикум</button>
+<button class="tab" data-view="check">Самопроверка</button>
+</div></div></div></section>
+<div class="section"><div class="container">
+
+<!-- ================= OVERVIEW ================= -->
+<section class="view active" id="overview">
+<div class="grid">
+<div class="article">
+<h2>Зачем нужны приближённые способы</h2>
+<p class="lead">Точные способы требуют длинных серий наблюдений, тщательных исследований прибора и уравнивания по методу наименьших квадратов. Приближённые способы решают ту же задачу — дают <b>широту, долготу и азимут</b> — но за 3–4 приёма, по простым формулам, с точностью, достаточной для рекогносцировки, съёмки, контроля и большинства инженерных задач.</p>
+<div class="cards">
+<div class="card"><span class="tag">Полярная звезда</span><b>Широта</b>Измеряют зенитные расстояния Полярной при двух положениях круга. Широту получают как среднее из <b>трёх приёмов</b>. Рабочая формула: φ = h + I + II + III, где I, II, III — поправки из АЕ.</div>
+<div class="card"><span class="tag">Полярная звезда</span><b>Азимут направления</b>Измеряют горизонтальный угол Q между Полярной и земным предметом в те моменты, когда часовой угол известен. Азимут: a = a* + Q.</div>
+<div class="card"><span class="tag">Солнце</span><b>Широта</b>Измеряют зенитные расстояния Солнца вблизи кульминации (отступление по азимуту до 20°). Формула φ = R + F.</div>
+<div class="card"><span class="tag">Солнце</span><b>Долгота и азимут</b>Совместно: из измеренных зенитных расстояний Солнца у первого вертикала решают параллактический треугольник и получают t и A, затем λ и азимут предмета.</div>
+</div>
+<h3>Что требуется перед наблюдениями</h3>
+<table>
+<tr><th>Способ</th><th>Знать заранее</th><th>Допуски</th></tr>
+<tr><td>Широта по Полярной</td><td>приближённая долгота λ, поправка часов u, место зенита MZ</td><td>расхождение между приёмами ≤ 1′</td></tr>
+<tr><td>Азимут по Полярной</td><td>φ (ошибка &lt; 5′), λ (не грубее 0,5<sup>m</sup>), u (&lt; 1<sup>m</sup>)</td><td>коллимация &lt; 30″; расхождение между приёмами ≤ 40″</td></tr>
+<tr><td>Широта по Солнцу</td><td>u (ошибка &lt; 10<sup>s</sup>), MZ определён заранее</td><td>наблюдения вблизи кульминации, отступление до 20°; расхождение ≤ 1′</td></tr>
+<tr><td>Долгота и азимут по Солнцу</td><td>широта пункта, MZ</td><td>наблюдения у первого вертикала, Z &lt; 80°; расхождение между приёмами ≤ 1,5<sup>m</sup></td></tr>
+</table>
+<div class="note green"><b>Общее правило.</b> Приближённые способы не требуют уравнивания: каждый приём обрабатывают независимо, а результат получают как среднее. Контроль — расхождение между приёмами. Именно поэтому так важны таблицы Астрономического ежегодника: они заменяют длинные вычисления готовыми поправками.</div>
+</div>
+<div class="panel">
+<h2>Апостериорная оценка точности</h2>
+<p class="lead">Из-за малого объёма наблюдений оценка точности выполняется по формулам теории погрешностей:</p>
+<div class="formula">m = σ₀·√Q, &nbsp;&nbsp; Q = F<sup>T</sup>P<sup>−1</sup>F, &nbsp;&nbsp; P<sub>i</sub> = σ₀²/σ<sub>i</sub>²</div>
+<p class="lead">где F — матрица частных производных определяемой величины по переменным (α, δ, u, Z, β), P — веса, σ₀ — средняя квадратическая погрешность единицы веса. Для определения широты по Полярной матрица F имеет вид:</p>
+<div class="formula" style="font-size:14px">F = ( ∂φ/∂α &nbsp; ∂φ/∂δ &nbsp; ∂φ/∂u &nbsp; ∂φ/∂Z )</div>
+<p class="muted">Частные производные находят численно — как приращение функции, делённое на приращение аргумента. Для оценки достаточно обработать <b>один приём</b> наблюдений.</p>
+<div class="mrow"><span class="muted" style="font-size:11.5px">переменная</span><span class="muted" style="font-size:11.5px">∂φ/∂x (по учебнику)</span><span class="muted" style="font-size:11.5px">σ<sub>x</sub> (задаётся)</span><span class="muted" style="font-size:11.5px">вклад = |∂φ/∂x|·σ<sub>x</sub></span></div>
+<div id="mRows"></div>
+<div class="btnrow"><button class="btn on" id="mRun" type="button">Оценить m</button></div>
+<div class="readout">
+<div class="out"><small>m (С.К.П. результата)</small><b id="mOut">—</b></div>
+<div class="out"><small>главный источник</small><b id="mTop" style="font-size:13px">—</b></div>
+</div>
+<div class="note"><b>Как читать.</b> В приближённых определениях почти всегда доминирует одна-две переменные: для широты по Полярной это склонение и зенитное расстояние, для азимута по Полярной — горизонтальный угол и склонение. Двигая ползунки, убедитесь, что уменьшение «неглавного» источника почти не меняет результат.</div>
+<div class="note blue"><b>Числа из учебника (табл. 2.1).</b> Из обработки одного приёма наблюдений Полярной получено: ∂φ/∂α = 0,19; ∂φ/∂δ = 0,41; ∂φ/∂u = 0,19; ∂φ/∂Z = 0,5. Веса переменных связаны соотношением P<sub>i</sub> = σ₀²/σ<sub>i</sub>², а итоговая оценка m<sub>φ</sub> ≈ 0,3″ оказалась заметно лучше априорной — 60″. Именно поэтому апостериорную оценку стоит выполнять по одному приёму прямо в поле.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= POLARIS LATITUDE ================= -->
+<section class="view" id="plat">
+<div class="grid">
+<div class="article">
+<h2>Определение широты по измеренным зенитным расстояниям Полярной звезды</h2>
+<p class="lead">Для отыскания Полярной используют «Таблицы высот и азимутов Полярной звезды» Астрономического ежегодника. Наблюдения выполняют при двух положениях вертикального круга, широту получают как среднее из <b>трёх приёмов</b>.</p>
+<h3>Порядок действий в приёме</h3>
+<div class="steps">
+<div class="step"><b>КЛ: два наведения</b><div class="f">наводят горизонтальной нитью на Полярную (ближе к перекрестию), фиксируют показания часов T₁, T₂ с точностью до секунд, берут отсчёты по вертикальному кругу L₁, L₂, предварительно установив пузырёк уровня вертикального круга на середину</div></div>
+<div class="step"><b>КП: два наведения</b><div class="f">те же действия: отсчёты T₃, T₄ и R₁, R₂</div></div>
+<div class="step"><b>Метеоданные</b><div class="f">отсчитывают температуру воздуха t °C и атмосферное давление P</div></div>
+</div>
+<h3>Рабочие формулы</h3>
+<div class="formula">
+φ = h + I + II + III, &nbsp;&nbsp; h = 90° − Z, &nbsp;&nbsp; Z = Z′ + ρ<br>
+Z′ = ¼[L₁ + L₂ + (360° − R₁) + (360° − R₂)]
+</div>
+<p class="lead">где ρ — поправка за рефракцию из АЕ (табл. XI) по величинам Z′, t°, P; I, II, III — поправки из таблицы «Широта по наблюдениям Полярной звезды», выбираемые по местному звёздному времени:</p>
+<div class="formula" style="font-size:15px">
+T<sub>ср</sub> = (T₁ + T₂ + T₃ + T₄)/4, &nbsp; Д = T<sub>ср</sub> + u, &nbsp; M = Д − (n + k)<br>
+s = S₀ + M·(1 + µ) + λ, &nbsp; 1 + µ = 1,0027379
+</div>
+<p class="lead">где u — поправка часов в средний момент наблюдений; M — всемирное время; S₀ — звёздное время в 0<sup>h</sup> всемирного времени; n — номер часового пояса; k — поправка за переход к декретному времени; λ — долгота пункта. <b>Расхождение в широте между приёмами — не более 1′.</b></p>
+<div class="note"><b>Физический смысл поправок.</b> Полярная находится на расстоянии Δ = 90° − δ ≈ 0,8° от полюса мира, поэтому её высота отличается от широты на величину порядка Δ·cos t. Главная поправка <b>I</b> как раз и учитывает это смещение (−Δ·cos t), поправки <b>II</b> и <b>III</b> — малые члены второго порядка (десятые доли минуты), зависящие от Δ² и от склонения. В таблицах АЕ все три поправки даны готовыми — их сумма редко превышает 1°.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 1. Обработка приёма</h2>
+<p class="muted">Введите отсчёты по вертикальному кругу и условия наблюдений. Калькулятор выполнит все шаги приёма; поправка I вычислена аналитически (эквивалент таблицы АЕ), а остаток отнесён к II + III — по величине видно, что они малы.</p>
+<div class="two">
+<div>
+<div class="ctl"><label>L₁ (КЛ)</label><input type="text" id="vL1" value="34 48 55"><span class="val">° ′ ″</span></div>
+<div class="ctl"><label>L₂ (КЛ)</label><input type="text" id="vL2" value="34 48 12"><span class="val">° ′ ″</span></div>
+<div class="ctl"><label>R₁ (КП)</label><input type="text" id="vR1" value="325 14 20"><span class="val">° ′ ″</span></div>
+<div class="ctl"><label>R₂ (КП)</label><input type="text" id="vR2" value="325 14 00"><span class="val">° ′ ″</span></div>
+</div>
+<div>
+<div class="ctl"><label>δ Полярной, °</label><input type="number" id="vDec" value="89.098" step="0.001"><span class="val">°</span></div>
+<div class="ctl"><label>t (воздуха), °C</label><input type="number" id="vT" value="13" step="0.5"><span class="val">°C</span></div>
+<div class="ctl"><label>P, мм рт. ст.</label><input type="number" id="vP" value="752" step="0.5"><span class="val">мм</span></div>
+<div class="ctl"><label>t (часовой угол), °</label><input type="number" id="vHt" value="112" step="0.1"><span class="val">°</span></div>
+</div>
+</div>
+<svg id="vSvg" viewBox="0 0 620 330" role="img" aria-label="Схема определения широты по Полярной звезде"></svg>
+<div class="readout">
+<div class="out"><small>Z′</small><b id="vZp">—</b></div>
+<div class="out"><small>ρ (рефракция)</small><b id="vRho">—</b></div>
+<div class="out"><small>Z = Z′ + ρ</small><b id="vZ">—</b></div>
+<div class="out"><small>h = 90° − Z</small><b id="vH">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>I = −Δ·cos t</small><b id="vI">—</b></div>
+<div class="out"><small>II + III</small><b id="vII">—</b></div>
+<div class="out"><small>φ</small><b id="vPhi">—</b></div>
+<div class="out"><small>контроль</small><b id="vCtl" style="font-size:12.5px">—</b></div>
+</div>
+<div class="muted" id="vNote">—</div>
+</div>
+</div>
+</section>
+
+<!-- ================= POLARIS AZIMUTH ================= -->
+<section class="view" id="paz">
+<div class="grid">
+<div class="article">
+<h2>Математическая обработка азимута по Полярной звезде</h2>
+<p class="lead">Перед наблюдениями должны быть известны астрономические координаты пункта: <b>широта с ошибкой менее 5′</b>, <b>долгота не грубее 0,5<sup>m</sup></b>. Поправка часов должна быть известна с погрешностью <b>не более 1<sup>m</sup></b>, коллимационная ошибка не должна превышать <b>30″</b>.</p>
+<p class="lead">Азимут направления определяют <b>двумя приёмами</b> с перестановкой лимба на произвольный угол. Каждый приём наблюдают при двух положениях вертикального круга в последовательности:</p>
+<div class="chips">
+<span class="chip">1. земной предмет (КЛ)</span><span class="chip">2. Полярная (КЛ)</span><span class="chip">3. Полярная (КП)</span><span class="chip">4. земной предмет (КП)</span>
+</div>
+<h3>Рабочие формулы</h3>
+<div class="formula">
+a = a* + Q (± 180°) &nbsp;&nbsp;•&nbsp;&nbsp; a* = −Δ″·sec φ·sin(t + δt) &nbsp;&nbsp;•&nbsp;&nbsp; δt″ = Δ″·tg φ·sin t
+</div>
+<div class="formula" style="font-size:15px">
+Δ = 90° − δ &nbsp;&nbsp;•&nbsp;&nbsp; t = s − α &nbsp;&nbsp;•&nbsp;&nbsp; s = S₀ + M(1 + µ) + λ &nbsp;&nbsp;•&nbsp;&nbsp; M = T<sub>ср</sub> + u − (n + k)
+</div>
+<p class="lead">Здесь a — азимут земного предмета от точки севера; a* — азимут Полярной от точки севера; Q — горизонтальный угол, измеренный теодолитом между направлениями на Полярную и на земной предмет; α, δ — экваториальные координаты Полярной из таблицы «Видимые места близполюсных звёзд» АЕ; Δ — полярное расстояние.</p>
+<div class="note green"><b>Допустимое расхождение между приёмами — 40″.</b> Координаты a и δ, а также S₀ берут из Астрономического ежегодника; склонение и прямое восхождение Полярной меняются медленно, но именно точность δ определяет точность азимута: приближённо Δa* ≈ −sec φ · sin t · Δδ.</div>
+<h3>Откуда берётся точность: суточное движение Полярной</h3>
+<p class="lead">Полярная описывает вокруг полюса малый круг радиусом Δ. Её азимут меняется в пределах ±Δ·sec φ (для широты 56° это ±1,4°), проходя за сутки полный цикл. Скорость изменения азимута максимальна вблизи меридиана и близка к нулю в <b>элонгациях</b> — поэтому наблюдения в элонгации дают наилучший результат по точности фиксации моментов (этот способ и предложил М. В. Ломоносов).</p>
+</div>
+<div class="panel">
+<h2>Интерактив 2. Точность азимута по Полярной</h2>
+<p class="muted">Ползунками задайте положение звезды на её малом круге и оцените, как ошибки исходных данных переходят в азимут. Обратите внимание: в элонгациях скорость изменения азимута минимальна, а вблизи меридиана — максимальна.</p>
+<div class="ctl"><label>широта φ</label><input type="range" id="aPhi" min="40" max="75" step="0.5" value="56"><span class="val" id="aPhiV">56,0°</span></div>
+<div class="ctl"><label>δ Полярной</label><input type="range" id="aDec" min="88" max="89.9" step="0.01" value="89.1"><span class="val" id="aDecV">89,10°</span></div>
+<div class="ctl"><label>часовой угол t</label><input type="range" id="aT" min="-180" max="180" step="1" value="0"><span class="val" id="aTV">0°</span></div>
+<div class="readout">
+<div class="out"><small>a*</small><b id="aA">—</b></div>
+<div class="out"><small>пределы a* за сутки</small><b id="aAmp">—</b></div>
+<div class="out"><small>da*/dt (1s времени)</small><b id="aRate">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>Δa* при ошибке δ = 1″</small><b id="aDd">—</b></div>
+<div class="out"><small>Δa* при ошибке u = 1<sup>m</sup></small><b id="aDu">—</b></div>
+<div class="out"><small>Δa* при ошибке φ = 1′</small><b id="aDp">—</b></div>
+</div>
+<svg id="aSvg" viewBox="0 0 620 250" role="img" aria-label="Азимут Полярной в течение суток"></svg>
+<div class="cap">Рис. 1. Азимут Полярной за сутки: два максимума (элонгации) и два нуля (меридиан)</div>
+<div class="muted" id="aHint">—</div>
+</div>
+</div>
+</section>
+
+<!-- ================= SUN LATITUDE ================= -->
+<section class="view" id="slat">
+<div class="grid">
+<div class="article">
+<h2>Определение широты по измеренным зенитным расстояниям Солнца</h2>
+<p class="lead">Измерения выполняют в моменты, близкие к кульминации Солнца; допустимы отступления от меридиана по азимуту <b>до 20°</b>. Поправка часов должна быть известна с ошибкой менее 10<sup>s</sup>, место зенита — определено заранее.</p>
+<h3>Методика наблюдений</h3>
+<p class="lead">Измерение зенитных расстояний производят при двух положениях круга и при двух положениях Солнца относительно сетки нитей: наводят горизонтальную нить на <b>нижний</b> или <b>верхний</b> край Солнца так, чтобы вертикальная нить проходила через центр изображения. Фиксируют момент наведения T₁ и отсчёт L₁, затем наводят на другой край и берут T₂, L₂. После первого полуприёма выполняют второй полуприём при другом положении круга (T₃, R₁ и T₄, R₂). Широту вычисляют для каждого полуприёма, затем берут среднее.</p>
+<h3>Рабочие формулы</h3>
+<div class="formula">
+φ = R + F &nbsp;&nbsp;•&nbsp;&nbsp; tg R = tg δ / cos t &nbsp;&nbsp;•&nbsp;&nbsp; cos F = cos Z / √(1 − cos²δ · sin²t)
+</div>
+<div class="formula" style="font-size:15px">
+δ = δ<sub>AE</sub> + ϑ<sub>δ</sub>·M* &nbsp;&nbsp;•&nbsp;&nbsp; t = m + E − α ... → &nbsp; m = M + λ &nbsp;&nbsp;•&nbsp;&nbsp; Z = Z₀ + ρ − P &nbsp;&nbsp;•&nbsp;&nbsp; ρ ≈ 58,08″·tg Z′, P ≈ 9″·sin Z′
+</div>
+<p class="lead">где δ<sub>AE</sub> — склонение Солнца из АЕ, ϑ<sub>δ</sub> — часовое изменение склонения, M* — земное динамическое время, E — уравнение времени из АЕ, ρ и P — поправки за рефракцию и суточный параллакс Солнца, δ₀ = 0° около 22 марта и 22 сентября; зимой склонение отрицательное. <b>Расхождение в широте между приёмами — не более 1′.</b></p>
+<div class="note"><b>Почему нельзя далеко уходить от меридиана?</b> Формула φ = R + F построена на том, что часовой угол Солнца мал: при t → 0 величины R и F совпадают с δ и Z, а поправка F быстро растёт с t. Каждое отклонение от кульминации усиливает влияние ошибок часов и склонения.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 3. Солнце в году и точность определения широты</h2>
+<p class="muted">Слева — годовой ход склонения Солнца и уравнения времени (упрощённая модель действична для учебных оценок). Ползунок даты показывает, где Солнце находится в момент кульминации; ползунки Z, δ и t позволяют проследить, как растёт ошибка широты при отступлении от меридиана.</p>
+<div class="ctl"><label>дата (день года)</label><input type="range" id="sDay" min="1" max="365" step="1" value="200"><span class="val" id="sDayV">19.07</span></div>
+<svg id="sSvg" viewBox="0 0 620 250" role="img" aria-label="Годовой ход склонения Солнца и уравнения времени"></svg>
+<div class="readout">
+<div class="out"><small>δ Солнца</small><b id="sDec">—</b></div>
+<div class="out"><small>E (уравнение времени)</small><b id="sE">—</b></div>
+<div class="out"><small>полуденная высота h</small><b id="sH">—</b></div>
+</div>
+<div class="ctl"><label>Z (измерено)</label><input type="range" id="sZ" min="5" max="80" step="0.05" value="34.6358"><span class="val" id="sZV">34,64°</span></div>
+<div class="ctl"><label>t (часовой угол)</label><input type="range" id="sT" min="-25" max="25" step="0.1" value="5.8875"><span class="val" id="sTV">5,89°</span></div>
+<div class="ctl"><label>широта φ (истинная)</label><input type="range" id="sPhi" min="30" max="70" step="0.01" value="55.6149"><span class="val" id="sPhiV">55,61°</span></div>
+<div class="readout">
+<div class="out"><small>R</small><b id="sR">—</b></div>
+<div class="out"><small>F</small><b id="sF">—</b></div>
+<div class="out"><small>φ = R + F</small><b id="sPhiOut">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>∂φ/∂t (на 1′)</small><b id="sDphiT">—</b></div>
+<div class="out"><small>∂φ/∂δ (на 1″)</small><b id="sDphiD">—</b></div>
+<div class="out"><small>∂φ/∂Z (на 1″)</small><b id="sDphiZ">—</b></div>
+</div>
+<div class="muted" id="sHint">—</div>
+</div>
+</div>
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Наведение на края диска Солнца</h2>
+<p class="muted">Центр Солнца получают как среднее двух наведений на противоположные края. Нажмите кнопки — на схеме подсветится соответствующее положение.</p>
+<div class="btnrow">
+<button class="btn on" id="k1" type="button">нижний край</button>
+<button class="btn" id="k2" type="button">верхний край</button>
+<button class="btn" id="k3" type="button">левый край</button>
+<button class="btn" id="k4" type="button">правый край</button>
+<button class="btn" id="k5" type="button">центр (среднее)</button>
+</div>
+<svg id="sunSvg" viewBox="0 0 620 320" role="img" aria-label="Наведение на края диска Солнца"></svg>
+<div class="muted" id="sunHint">—</div>
+</div>
+<div class="article">
+<h2>Как считается полуприём</h2>
+<div class="steps">
+<div class="step"><b>Первый полуприём (КЛ)</b><div class="f">T₁, L₁ (один край) и T₂, L₂ (другой край) → Z′ = ½[(L₁ − MZ) + (MZ − L₂)] с учётом места зенита</div></div>
+<div class="step"><b>Второй полуприём (КП)</b><div class="f">T₃, R₁ и T₄, R₂ → ещё одно значение Z′</div></div>
+<div class="step"><b>Поправки</b><div class="f">Z = Z′ + ρ − P: рефракция и суточный параллакс Солнца</div></div>
+<div class="step"><b>Склонение на момент наблюдения</b><div class="f">δ = δ<sub>AE</sub> + ϑ<sub>δ</sub>·M* — линейное интерполирование по часовому изменению</div></div>
+<div class="step"><b>Широта полуприёма</b><div class="f">φ = R + F; итог — среднее из полуприёмов</div></div>
+</div>
+<div class="note green" style="margin-bottom:0"><b>Точность.</b> Ошибка определения δ всего на 20″ даёт ошибку азимута порядка 30″, а ошибка часов в 1<sup>s</sup> — такую же ошибку в долготе. Поэтому склонение Солнца интерполируют линейно по часовому изменению, а поправку часов стремятся знать точнее 10<sup>s</sup>.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= SUN LONGITUDE & AZIMUTH ================= -->
+<section class="view" id="slon">
+<div class="grid">
+<div class="article">
+<h2>Совместное определение азимута направления и долготы по Солнцу</h2>
+<p class="lead">Азимут и долготу (поправку часов) получают как среднее из <b>трёх приёмов</b>. Наблюдения Солнца выполняют вблизи первого вертикала на зенитных расстояниях менее 80°. Наведение на центр диска Солнца получают как среднее из двух наведений на его края: на нижний и верхний — горизонтальной нитью, на левый и правый — вертикальной нитью, действуя одновременно микрометренными винтами трубы и алидады горизонтального круга.</p>
+<p class="lead">Изображение Солнца всё время удерживают на горизонтальной нити, а в момент касания вертикальной нитью фиксируют время по часам до целых секунд.</p>
+<h3>Порядок наведений в приёме</h3>
+<div class="chips">
+<span class="chip">1. З.П. КЛ — отсчёт L</span><span class="chip">2. Солнце, положение 1: T₁, ГК L₁, ВК νL₁</span><span class="chip">3. Солнце, положение 2: T₂, ГК L₂, ВК νL₂</span><span class="chip">4. КП: Солнце, положение 1: T₃, ГК R₁, ВК νR₁</span><span class="chip">5. КП: Солнце, положение 2: T₄, ГК R₂, ВК νR₂</span>
+</div>
+<h3>Решение параллактического треугольника</h3>
+<p class="lead">На момент наблюдения по АЕ берут δ и часовое изменение склонения и вычисляют δ = δ<sub>AE</sub> + ϑ<sub>δ</sub>M*, M* = M + ΔT. Тогда для параллактического треугольника известны три стороны: Z, Φ = 90° − φ, Δ = 90° − δ. Находят полупериметр</p>
+<div class="formula">P = ½(Z + Φ + Δ)</div>
+<p class="lead">и вспомогательную величину</p>
+<div class="formula">l = √[ sin(P − Φ)·sin(P − Δ)·sin(P − Z) ] / sin P</div>
+<p class="lead">по которой находят углы параллактического треугольника:</p>
+<div class="formula">
+tg(t/2) = √[ sin(P − Φ)·sin(P − Δ) / (sin P·sin(P − Z)) ] &nbsp;&nbsp;•&nbsp;&nbsp;
+tg(A/2) = √[ sin(P − Z)·sin(P − Φ) / (sin P·sin(P − Δ)) ]
+</div>
+<p class="lead">Формула даёт значение A<sub>0</sub> в пределах 0–180°. Если Солнце наблюдалось <b>к востоку</b> от меридиана, то A = A<sub>E</sub> = A<sub>0</sub>, а часовой угол в счёте 0–24<sup>h</sup> равен t<sub>E</sub> = 24<sup>h</sup> − t; если <b>к западу</b> — A = A<sub>W</sub> = 360° − A<sub>0</sub>, t<sub>W</sub> = t (здесь t — модуль часового угла, найденный по формуле tg(t/2)). Азимут направления на земной предмет:</p>
+<div class="formula">a<sub>з.п.</sub> = A<sub>E,W</sub> + Q (±180°) &nbsp;&nbsp;•&nbsp;&nbsp; m = t<sub>E,W</sub> ∓ E &nbsp;&nbsp;•&nbsp;&nbsp; λ = m − M</div>
+<p class="lead">где E — интерполированное уравнение времени. <b>Допускаемое расхождение между приёмами в азимуте и долготе — не более 1,5<sup>m</sup>.</b></p>
+<div class="note"><b>Влияние погрешностей эфемерид.</b> Ошибка в долготе пункта напрямую связана с ошибкой поправки часов: если время определяется с точностью 1<sup>s</sup>, такой же точности будет и долгота. Ошибка азимута, определённого по зенитным расстояниям Солнца, составит около 30″ при ошибке склонения не более 20″ — именно это позволяет интерполировать склонение линейно по часовому изменению.</div>
+</div>
+<div class="panel">
+<h2>Интерактив 4. Решение треугольника по трём сторонам</h2>
+<p class="muted">Задайте измеренное Z, широту пункта и склонение Солнца — калькулятор решит параллактический треугольник теми же формулами, что и в учебнике, и покажет часовой угол, азимут и дальнейшие шаги.</p>
+<div class="ctl"><label>Z (измерено)</label><input type="range" id="gZ" min="10" max="88" step="0.05" value="71.1"><span class="val" id="gZV">71,10°</span></div>
+<div class="ctl"><label>φ пункта</label><input type="range" id="gPhi" min="30" max="75" step="0.05" value="55.53"><span class="val" id="gPhiV">55,53°</span></div>
+<div class="ctl"><label>δ Солнца</label><input type="range" id="gDec" min="-23" max="23" step="0.01" value="21.2"><span class="val" id="gDecV">21,20°</span></div>
+<div class="ctl"><label>Солнце относительно меридиана</label><select id="gSide"><option value="e">к востоку (до полудня)</option><option value="w">к западу (после полудня)</option></select><span class="val">A₀ → A</span></div>
+<div class="readout">
+<div class="out"><small>P (полупериметр)</small><b id="gP">—</b></div>
+<div class="out"><small>l</small><b id="gL">—</b></div>
+<div class="out"><small>t</small><b id="gT">—</b></div>
+<div class="out"><small>A₀ по формуле tg(A/2)</small><b id="gA180">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>A (от точки севера)</small><b id="gA">—</b></div>
+<div class="out"><small>λ = m − M при E и M</small><b id="gLam">—</b></div>
+</div>
+<div class="ctl"><label>E (уравнение времени), мин</label><input type="range" id="gE" min="-16" max="16" step="0.1" value="-6"><span class="val" id="gEV">−6,0 мин</span></div>
+<div class="ctl"><label>M (всемирное время), ч</label><input type="range" id="gM" min="0" max="24" step="0.01" value="17"><span class="val" id="gMV">17,00 ч</span></div>
+<div class="muted" id="gHint">—</div>
+<svg id="gSvg" viewBox="0 0 620 300" role="img" aria-label="Параллактический треугольник Солнца: известны три стороны"></svg>
+<div class="cap">Рис. 2. К решению треугольника по трём сторонам: известны Z, Φ = 90° − φ и Δ = 90° − δ</div>
+</div>
+</div>
+</section>
+
+<!-- ================= PRACTICE ================= -->
+<section class="view" id="practice">
+<div class="article">
+<h2>Практикум. Широта по Солнцу: пример из учебника</h2>
+<p class="lead">Пункт Навлицы, 17.07.1986, инструмент 2Т2А № 948: λ = 1<sup>h</sup>54<sup>m</sup>33<sup>s</sup>; u = +17<sup>s</sup>; MZ = +36″. Журнал приёма: 13<sup>h</sup>47<sup>m</sup>22<sup>s</sup> → 34°22′07″ и 13<sup>h</sup>47<sup>m</sup>58<sup>s</sup> → 34°54′13″ (КЛ), 13<sup>h</sup>49<sup>m</sup>22<sup>s</sup> → 325°09′34″ и 13<sup>h</sup>50<sup>m</sup>40<sup>s</sup> → 325°43′10″ (КП); среднее из полуприёмов Z′<sub>Θ</sub> = 34°37′34″. В таблице вычислений учебника: зенитное расстояние центра Солнца <b>Z = 34°38′09″</b>, часовой угол <b>t<sub>Θ</sub> = 354,1125°</b>, склонение Солнца <b>δ = 21,259962°</b>; поправки ρ = +4″ (рефракция) и P = −5″ (суточный параллакс) уже введены. В учебнике получено <b>φ = 55°36′54″</b>. Проверьте каждый шаг таблицы.</p>
+<div class="two">
+<div>
+<div class="ctl"><label>Z центра Солнца, ° ′ ″</label><input type="text" id="qZ0" value="34 38 09"><span class="val">° ′ ″</span></div>
+<div class="ctl"><label>ρ, ″</label><input type="number" id="qRho" value="4" step="1"><span class="val">″</span></div>
+<div class="ctl"><label>P (параллакс), ″</label><input type="number" id="qP" value="-5" step="1"><span class="val">″</span></div>
+<div class="ctl"><label>δ Солнца, °</label><input type="number" id="qDec" value="21.259962" step="0.000001"><span class="val">°</span></div>
+<div class="ctl"><label>t<sub>Θ</sub>, °</label><input type="number" id="qT" value="354.1125" step="0.0001"><span class="val">°</span></div>
+<div class="btnrow">
+<button class="btn on" id="qRun" type="button">Вычислить</button>
+<button class="btn" id="qReset" type="button">Данные примера</button>
+</div>
+</div>
+<div>
+<div class="readout">
+<div class="out"><small>Z = Z′ + ρ − P</small><b id="qZ">—</b></div>
+<div class="out"><small>R</small><b id="qR">—</b></div>
+<div class="out"><small>F</small><b id="qF">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>φ = R + F</small><b id="qPhi">—</b></div>
+<div class="out"><small>cos F (проверка)</small><b id="qCosF">—</b></div>
+</div>
+<div class="muted" id="qNote">—</div>
+</div>
+</div>
+<table class="worktable" id="qTable"></table>
+<div class="note green"><b>Оценка точности по учебнику.</b> Из обработки одного приёма получено: ∂φ/∂δ = 1,05; ∂φ/∂E = 2,4 (при σ<sub>E</sub> = 18 600); ∂φ/∂Z = 1 (σ<sub>Z</sub> = 2″), и апостериорная оценка точности оказалась лучше априорной (60″). При этом ошибка определения широты по Солнцу примерно <b>в два раза грубее</b>, чем по Полярной звезде.</div>
+</div>
+<div class="grid" style="margin-top:24px">
+<div class="panel">
+<h2>Практикум 2. Азимут, долгота и часовой угол по Солнцу</h2>
+<p class="muted">Полное воспроизведение таблицы вычислений учебника (Навлицы, 15.07.1992): φ = 55°31′54″, M = 16,071945<sup>h</sup>, Z = 71,4727780°, Q = 94,2874350°, δ = 21,542975°, E = 11<sup>h</sup>54<sup>m</sup>00,62<sup>s</sup>, Солнце наблюдалось на западе. Меняйте исходные данные — все строки таблицы пересчитываются.</p>
+<div class="two">
+<div>
+<div class="ctl"><label>φ, ° ′ ″</label><input type="text" id="jPhi" value="55 31 54"><span class="val">° ′ ″</span></div>
+<div class="ctl"><label>M, ч</label><input type="number" id="jM" value="16.071945" step="0.000001"><span class="val">h</span></div>
+<div class="ctl"><label>Z, °</label><input type="number" id="jZ" value="71.4727780" step="0.0000001"><span class="val">°</span></div>
+</div>
+<div>
+<div class="ctl"><label>Q, °</label><input type="number" id="jQ" value="94.2874350" step="0.0000001"><span class="val">°</span></div>
+<div class="ctl"><label>δ Солнца, °</label><input type="number" id="jD" value="21.542975" step="0.000001"><span class="val">°</span></div>
+<div class="ctl"><label>E, ч</label><input type="number" id="jE" value="11.900172" step="0.000001"><span class="val">h</span></div>
+</div>
+</div>
+<div class="btnrow">
+<button class="btn on" id="jEside" type="button">Солнце на западе</button>
+<button class="btn" id="jWside" type="button">Солнце на востоке</button>
+<button class="btn" id="jReset" type="button">Данные учебника</button>
+</div>
+<div class="readout">
+<div class="out"><small>P</small><b id="jP">—</b></div>
+<div class="out"><small>l</small><b id="jL">—</b></div>
+<div class="out"><small>tg(A/2)</small><b id="jTgA">—</b></div>
+<div class="out"><small>A (или 360° − A)</small><b id="jA">—</b></div>
+</div>
+<div class="readout">
+<div class="out"><small>t<sub>0</sub></small><b id="jT0">—</b></div>
+<div class="out"><small>t, ч</small><b id="jTh">—</b></div>
+<div class="out"><small>a = A + Q</small><b id="jAs">—</b></div>
+<div class="out"><small>λ = m − M</small><b id="jLam">—</b></div>
+</div>
+<table class="worktable" id="jTable"></table>
+<p class="muted" id="jNote">—</p>
+<div class="note"><b>О расхождении с ответом учебника.</b> В учебнике значение уравнения времени напечатано как E = 11<sup>h</sup>54<sup>m</sup>00,62<sup>s</sup>, но собственная выкладка примера (m = 17,989262<sup>h</sup>) отвечает E ≈ 11<sup>h</sup>54<sup>m</sup>06,2<sup>s</sup>. Напечатанное значение даёт λ = 1<sup>h</sup>55<sup>m</sup>08<sup>s</sup> вместо 1<sup>h</sup>55<sup>m</sup>02<sup>s</sup> — разница 6<sup>s</sup> объясняется только значением E: формулы здесь применены те же самые, что в учебнике (11)–(16). Подставьте E = 11,901711<sup>h</sup>, чтобы получить ответ учебника буквально.</div>
+</div>
+<div class="article">
+<h2>Что запомнить</h2>
+<table>
+<tr><th>Определяем</th><th>По Полярной</th><th>По Солнцу</th></tr>
+<tr><td>Широта φ</td><td>φ = h + I + II + III; 3 приёма; расхождение ≤ 1′</td><td>φ = R + F вблизи кульминации (до 20°); расхождение ≤ 1′</td></tr>
+<tr><td>Азимут a</td><td>a = a* + Q; a* = −Δ″ sec φ sin(t + δt); 2 приёма; ≤ 40″</td><td>a = A + Q из решения треугольника; у 1-го вертикала; ≤ 1,5<sup>m</sup></td></tr>
+<tr><td>Долгота λ</td><td>через поправку часов u: λ = s + S (по звёздному времени)</td><td>λ = m − M, где m = t ∓ E</td></tr>
+</table>
+<div class="note blue"><b>Главный вывод темы.</b> Приближённые способы дают результат за 2–4 приёма вместо длинных серий, но требуют <b>хорошей организации приёма</b>: заранее определённое место зенита, известные с нужной точностью координаты и поправка часов, строгое чередование КЛ–КП и повторные наведения на светило. Именно поэтому расхождения между приёмами служат основным контролем качества.</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section class="view" id="check">
+<div class="article">
+<h2>Самопроверка</h2>
+<p class="lead">Ответьте на вопросы — правильный вариант подсветится зелёным, ошибочный красным.</p>
+<div id="quiz"></div>
+<div class="score" id="score">Отвечено: 0/8</div>
+<div class="note green" style="margin-top:18px"><b>Итог курса.</b> Зенитальные способы измеряют зенитные расстояния и дают φ и u; азимутальные измеряют горизонтальные направления и дают азимут направления; приближённые способы решают те же задачи быстро — по Полярной звезде и по Солнцу, с опорой на таблицы Астрономического ежегодника. Все три группы опираются на один параллактический треугольник — и именно это делает геодезическую астрономию единой дисциплиной.</div>
+<p class="muted">Связанные уроки: <a href="zenithal-methods.html" style="color:#d9501a">Зенитальные способы</a> · <a href="azimuthal-methods.html" style="color:#d9501a">Азимутальные способы</a> · <a href="reduction-calculations.html" style="color:#d9501a">Редукционные вычисления в астрономии</a></p>
+</div>
+</section>
+</div></div>
+</main></div>
+<script src="../../assets/search-data.js"></script><script src="../../assets/courses-data.js"></script><script src="../../assets/main.js"></script><script src="../../assets/encyclopedia-data.js"></script><script src="../../assets/lesson-blocks.js"></script>
+<script>
+/* ============================================================
+   Урок «Приближённые способы астрономических определений»
+   ============================================================ */
+var D=Math.PI/180,R2D=180/Math.PI,$$=function(id){return document.getElementById(id);};
+function sn(x){return Math.sin(x*D);} function cs(x){return Math.cos(x*D);} function tgd(x){return Math.tan(x*D);}
+function fx(v,n){return v.toFixed(n===undefined?2:n).replace('.',',');}
+
+function svgNum(s){return String(s)
+  .replace(/([a-zA-Z][a-zA-Z0-9:._-]*)="\s*(-?\d+),(\d+)"/g,'$1="$2.$3"')
+  .replace(/d="([^"]*)"/g,function(m,p){return 'd="'+p.replace(/,/g,'.')+'"';})
+  .replace(/translate\((-?\d+),(\d+)\)/g,'translate($1.$2)');}
+/* --- перехват innerHTML: любые десятичные запятые в атрибутах заменяются на точку --- */
+(function(){
+  var proto=window.Element&&window.Element.prototype;if(!proto)return;
+  var d=Object.getOwnPropertyDescriptor(proto,'innerHTML');if(!d||!d.set)return;
+  try{Object.defineProperty(proto,'innerHTML',{configurable:true,enumerable:!!d.enumerable,
+    get:function(){return d.get.call(this);},
+    set:function(v){d.set.call(this,(typeof v==='string')?svgNum(v):v);}});}catch(e){}
+})();
+
+/* --- защита от пустых/нечисловых полей в виджетах --- */
+function fin(x){return typeof x==='number'&&isFinite(x);}
+function blankOut(ids){for(var i=0;i<ids.length;i++){var e=$$(ids[i]);if(e)e.textContent='—';}}
+/* --- автоисправление десятичных запятых в числовых атрибутах SVG (RU-локаль) --- */
+(function(){
+  var ATTRS=/^(x|y|x1|y1|x2|y2|cx|cy|r|rx|ry|d|points|transform|width|height|offset|font-size|stroke-width)$/;
+  function fix(root){
+    if(!root||root.nodeType!==1)return;
+    var list=[root].concat([].slice.call(root.querySelectorAll('*')));
+    for(var i=0;i<list.length;i++){
+      var el=list[i];if(!el.attributes)continue;
+      for(var k=0;k<el.attributes.length;k++){
+        var at=el.attributes[k];
+        if(ATTRS.test(at.name)&&at.value.indexOf(',')>-1)at.value=at.value.replace(/,/g,'.');
+      }
+    }
+  }
+  window.__fixSvgAttrs=fix;fix(document.body);
+  if(window.MutationObserver){
+    new MutationObserver(function(muts){
+      var t=[];
+      for(var i=0;i<muts.length;i++)if(muts[i].target&&muts[i].target.nodeType===1)t.push(muts[i].target);
+      for(var j=0;j<t.length;j++)fix(t[j]);
+    }).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+function dms(v,sec){var s=v<0?'−':'';v=Math.abs(v);var d=Math.floor(v),m=Math.floor((v-d)*60+1e-9),ss=((v-d)*60-m)*60;
+  return s+d+'°'+String(m).padStart(2,'0')+'′'+(sec===false?'':' '+ss.toFixed(1).replace('.',',')+'″');}
+function hms(t){var s=t<0?'−':'';t=Math.abs(t);var h=Math.floor(t),m=Math.floor((t-h)*60+1e-9),ss=((t-h)*60-m)*60;
+  return s+h+'h'+String(m).padStart(2,'0')+'m'+String(Math.round(ss)).padStart(2,'0')+'s';}
+function pdeg(str){var a=String(str).trim().split(/[\s:,]+/).map(Number);
+  return a.length===1?a[0]:a[0]+(a[1]||0)/60+(a[2]||0)/3600;}
+function pms(str){var a=String(str).trim().split(/[\s:,]+/).map(Number);
+  return a.length===1?a[0]:a[0]*60+a[1];}
+function zen(phi,dec,t){var c=sn(phi)*sn(dec)+cs(phi)*cs(dec)*cs(t);return Math.acos(Math.max(-1,Math.min(1,c)))*R2D;}
+
+/* ---------- вкладки ---------- */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#tabs .tab'));
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+    [].slice.call(document.querySelectorAll('.view')).forEach(function(v){v.classList.toggle('active',v.id===b.dataset.view);});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });});
+}
+
+)();
+
+/* ============================================================
+   1. Апостериорная оценка точности
+   ============================================================ */
+(function(){
+  var host=$$('mRows');if(!host)return;
+  var rows=[
+    {k:'α (прямое восхождение)',d:0.19,dr:0.01,dd:3,s:2,  lab:'″'},
+    {k:'δ (склонение)',        d:0.41,dr:0.01,dd:3,s:0.25,lab:'″'},
+    {k:'u (поправка часов)',   d:0.19,dr:0.01,dd:3,s:1,  lab:'s'},
+    {k:'Z (зенитное расстояние)',d:0.5, dr:0.01,dd:3,s:2, lab:'″'}
+  ];
+  host.innerHTML=rows.map(function(r,i){
+    return '<div class="mrow"><span class="muted" style="font-size:12px">'+(r.k.split(' ')[0])+'</span>'+
+      '<input type="range" id="mD'+i+'" min="0" max="2" step="0.01" value="'+r.d+'">'+
+      '<input type="number" id="mS'+i+'" value="'+r.s+'" step="0.05">'+
+      '<span class="vg" id="mV'+i+'" style="font:700 12.5px var(--mono);color:#d9501a;text-align:right">—</span></div>';}).join('');
+  function run(){
+    var sum=0,parts=rows.map(function(r,i){
+      var d=+$$('mD'+i).value,s=+$$('mS'+i).value,c=Math.abs(d*s);
+      $$('mV'+i).textContent=fx(c,2)+'″';sum+=c*c;return {c:c,k:rows[i].k,d:d,s:s};});
+    var m=Math.sqrt(sum);
+    $$('mOut').textContent=fx(m,2)+'″';
+    parts.sort(function(a,b){return b.c-a.c;});
+    $$('mTop').innerHTML=parts[0].k.split(' ')[0]+' — '+fx(parts[0].c,2)+'″ из '+fx(m,2)+'″';
+    $$('mRun').classList.add('on');
+  }
+  rows.forEach(function(r,i){$$('mD'+i).addEventListener('input',run);$$('mS'+i).addEventListener('input',run);});
+  $$('mRun').addEventListener('click',run);
+  run();
+})();
+
+/* ============================================================
+   2. Широта по Полярной: обработка приёма
+   ============================================================ */
+(function(){
+  var svg=$$('vSvg');if(!svg)return;
+  function run(){
+    var L1=pdeg($$('vL1').value),L2=pdeg($$('vL2').value),R1=pdeg($$('vR1').value),R2=pdeg($$('vR2').value);
+    var dec=+$$('vDec').value,tAir=+$$('vT').value,P=+$$('vP').value,ht=+$$('vHt').value;
+    if(![L1,L2,R1,R2,dec,tAir,P,ht].every(fin)){blankOut(['vZp','vRho','vZ','vH','vI','vII','vPhi','vCtl']);$$('vNote').textContent='Введите числовые значения во все поля — иначе широта не вычисляется.';return;}
+    var Zp=(L1+L2+(360-R1)+(360-R2))/4;
+    var rho=21.67*P*Math.tan(Zp*D)/(273+tAir);      /* рефракция, ″ */
+    var Z=Zp+rho/3600, h=90-Z;
+    var delta=90-dec, dsec=delta*3600;
+    var I=-dsec*cs(ht)/3600;                        /* главная поправка, ° */
+    /* точное значение широты при известных Z и t: cos Z = sinφ sinδ + cosφ cosδ cos t
+       -> a·sinφ + b·cosφ = cos Z,  a = sinδ, b = cosδ cos t  */
+    var aa=sn(dec),bb=cs(dec)*cs(ht),RR=Math.sqrt(aa*aa+bb*bb),psi=Math.atan2(bb,aa)*R2D;
+    var cand=[],asn=Math.asin(Math.max(-1,Math.min(1,cs(Z)/RR)))*R2D;
+    cand.push(asn-psi);cand.push(180-asn-psi);cand.push(-180-asn-psi);
+    var approx=h+I,best=cand[0],bd=1e9;
+    cand.forEach(function(v){if(Math.abs(v-approx)<bd){bd=Math.abs(v-approx);best=v;}});
+    var phi=best, II_III=phi-h-I;
+    $$('vZp').textContent=dms(Zp,true);
+    $$('vRho').textContent='+'+fx(rho,1)+'″';
+    $$('vZ').textContent=dms(Z,true);
+    $$('vH').textContent=dms(h,true);
+    $$('vI').textContent=(I>=0?'+':'−')+fx(Math.abs(I)*60,2)+'′';
+    $$('vII').textContent=(II_III>=0?'+':'−')+fx(Math.abs(II_III)*3600,1)+'″';
+    $$('vPhi').textContent=dms(phi,true);
+    $$('vCtl').textContent=(rho>0&&Math.abs(rho)<120)?'ρ в допуске':'проверьте условия';
+    $$('vNote').innerHTML='Z′ = ¼[L₁ + L₂ + (360° − R₁) + (360° − R₂)] = '+dms(Zp,true)+'; ρ = 21,67″·P·tg Z′/(273 + t) = '+fx(rho,1)+'″; h = 90° − Z = '+dms(h,true)+
+      '; I = −Δ·cos t = '+fx(I*60,2)+'′. Сумма φ = h + I + (II + III) = '+dms(phi,true)+'. В таблицах АЕ все три поправки выбирают по местному звёздному времени; здесь главная часть I вычислена аналитически, а остаток отнесён к II + III.';
+    /* схема «увеличенная полоса высот»: малый круг Полярной вокруг полюса мира */
+    var W=620,H=330,ax=132,x1=W-22,top=44,bot=H-64;
+    var hstar=phi+I, delta=90-dec;
+    var hi=phi+1.85, lo=phi-0.75, sc=(bot-top)/(hi-lo);
+    var y=function(alt){return bot-(alt-lo)*sc;};
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    s+='<rect x="'+ax+'" y="'+top+'" width="'+(x1-ax)+'" height="'+(bot-top)+'" fill="#f8fbfa" stroke="#e2efeb"/>';
+    /* шкала высот: деления через 0,1°, подписи через 0,5° */
+    for(var k=0;k<=40;k++){
+      var alt=Math.ceil(lo*10)/10+k*0.1;
+      if(alt>hi)break;
+      var isHalf=Math.abs(alt*2-Math.round(alt*2))<0.001;
+      s+='<line x1="'+(ax-(isHalf?9:5))+'" y1="'+fx(y(alt),1)+'" x2="'+ax+'" y2="'+fx(y(alt),1)+'" stroke="'+(isHalf?'#b6d2cc':'#dbe9e6')+'"/>';
+      if(isHalf)s+='<text x="'+(ax-13)+'" y="'+fx(y(alt)+3.5,1)+'" font-size="10.5" text-anchor="end" fill="#7d9892" font-family="Roboto Mono,monospace">'+fx(alt,1)+'°</text>';
+    }
+    s+='<text x="'+ax+'" y="'+(top-10)+'" font-size="11" fill="#5f7c76" font-family="Roboto Mono,monospace">высота, ° — масштаб увеличен</text>';
+    s+='<text x="'+ax+'" y="'+(top+18)+'" font-size="11.5" fill="#7655b7" font-family="Roboto Mono,monospace">I = −Δ·cos t = '+(I>=0?'+':'−')+fx(Math.abs(I)*60,2)+'′</text>';
+    /* горизонталь полюса мира */
+    s+='<line x1="'+ax+'" y1="'+fx(y(phi),1)+'" x2="'+x1+'" y2="'+fx(y(phi),1)+'" stroke="#b8471b" stroke-width="2"/>';
+    s+='<text x="'+x1+'" y="'+fx(y(phi)-7,1)+'" font-size="11.5" text-anchor="end" fill="#b8471b" font-family="Roboto Mono,monospace">φ = '+dms(phi,true)+' — высота полюса мира P</text>';
+    /* малый круг Полярной вокруг полюса */
+    var cx=300,cy=y(phi),rr=Math.min(260,Math.abs(delta)*sc);
+    s+='<circle cx="'+cx+'" cy="'+fx(cy,1)+'" r="'+fx(rr,1)+'" fill="none" stroke="#e5d6ef" stroke-width="1.4" stroke-dasharray="5 5"/>';
+    s+='<text x="'+(x1-8)+'" y="'+(top+18)+'" font-size="11.5" text-anchor="end" fill="#7655b7" font-family="Roboto Mono,monospace">Δ = 90° − δ = '+fx(delta,3)+'° — радиус малого круга</text>';
+    var pS={x:cx+rr*Math.sin(ht*D),y:cy-rr*Math.cos(ht*D)};
+    s+='<line x1="'+cx+'" y1="'+fx(cy,1)+'" x2="'+fx(pS.x,1)+'" y2="'+fx(pS.y,1)+'" stroke="#7655b7" stroke-width="1.8"/>';
+    s+='<path d="M '+cx+' '+fx(cy-rr*0.55,1)+' A '+fx(rr*0.55,1)+' '+fx(rr*0.55,1)+' 0 0 '+(((ht%360)+360)%360<180?1:0)+' '+fx(cx+rr*0.55*Math.sin(ht*D),1)+' '+fx(cy-rr*0.55*Math.cos(ht*D),1)+'" fill="none" stroke="#7655b7" stroke-width="1.4"/>';
+    s+='<text x="'+fx(cx+22,1)+'" y="'+fx(cy-rr*0.62,1)+'" font-size="11.5" fill="#7655b7" font-family="Roboto Mono,monospace">t = '+fx(ht,1)+'°</text>';
+    s+='<circle cx="'+cx+'" cy="'+fx(cy,1)+'" r="6" fill="#b8471b"/>';
+    s+='<text x="'+(cx+9)+'" y="'+fx(cy+16,1)+'" font-size="11.5" font-weight="700" fill="#b8471b" font-family="Roboto Mono,monospace">P</text>';
+    /* Полярная и мера поправки */
+    s+='<line x1="'+ax+'" y1="'+fx(pS.y,1)+'" x2="'+fx(pS.x,1)+'" y2="'+fx(pS.y,1)+'" stroke="#ff7136" stroke-width="2" stroke-dasharray="6 4"/>';
+    s+='<circle cx="'+fx(pS.x,1)+'" cy="'+fx(pS.y,1)+'" r="8" fill="#ff7136" stroke="#fff" stroke-width="2.5"/>';
+    s+='<text x="'+fx(pS.x,1)+'" y="'+fx(pS.y+27,1)+'" font-size="11.5" font-weight="700" text-anchor="middle" fill="#d9501a" font-family="Roboto Mono,monospace">Полярная: h = '+dms(hstar,true)+'</text>';
+    var xm=cx-42;
+    s+='<line x1="'+xm+'" y1="'+fx(cy,1)+'" x2="'+xm+'" y2="'+fx(pS.y,1)+'" stroke="#7655b7" stroke-width="3"/>';
+    s+='<line x1="'+(xm-8)+'" y1="'+fx(cy,1)+'" x2="'+(xm+8)+'" y2="'+fx(cy,1)+'" stroke="#7655b7" stroke-width="3"/>';
+    s+='<line x1="'+(xm-8)+'" y1="'+fx(pS.y,1)+'" x2="'+(xm+8)+'" y2="'+fx(pS.y,1)+'" stroke="#7655b7" stroke-width="3"/>';
+    s+='<text x="'+(xm-13)+'" y="'+fx((cy+pS.y)/2+4,1)+'" font-size="11.5" text-anchor="end" fill="#7655b7" font-family="Roboto Mono,monospace">φ − h = I + (II + III) = '+fx(Math.abs(phi-hstar)*60,2)+'′</text>';
+    /* итог */
+    s+='<text x="'+ax+'" y="'+(H-30)+'" font-size="11" fill="#405a55" font-family="Roboto Mono,monospace">φ = h + I + (II + III) = '+dms(h,true)+' + '+fx(I*60,2)+'′ + '+fx(II_III*3600,1)+'″ = <tspan fill="#b8471b" font-weight="700">'+dms(phi,true)+'</tspan></text>';
+    s+='<text x="'+ax+'" y="'+(H-12)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">измеренному Z = '+fx(Z,3)+'° отвечает высота h = 90° − Z</text>';
+    svg.innerHTML=svgNum(s);
+  }
+  ['vL1','vL2','vR1','vR2','vDec','vT','vP','vHt'].forEach(function(id){$$(id).addEventListener('input',run);});
+  run();
+})();
+
+/* ============================================================
+   3. Точность азимута по Полярной
+   ============================================================ */
+(function(){
+  var svg=$$('aSvg');if(!svg)return;
+  var phi=56,dec=89.1,t=0;
+  function starAz(p,dd,tx){var ds=(90-dd)*3600,dt=ds*tgd(p)*sn(tx);
+    return -ds*sn(tx+dt/3600)/cs(p)/3600;}
+  function draw(){
+    var a0=starAz(phi,dec,t);
+    var amp=(90-dec)*3600/cs(phi)/3600;
+    var d1=(starAz(phi,dec,t+1)-starAz(phi,dec,t-1))/2*3600;   /* ″ на 1° часового угла */
+    var rate=Math.abs(d1)*15/3600;                             /* ″ на 1 секунду времени */
+    var byDec=Math.abs(starAz(phi,dec-1/3600,t)-a0)*3600;      /* ″ при ошибке δ в 1″ */
+    var byU=Math.abs(starAz(phi,dec,t+15/60)-a0)*3600;         /* ″ при ошибке u в 1m */
+    var byPhi=Math.abs(starAz(phi+1/60,dec,t)-a0)*3600;        /* ″ при ошибке φ в 1′ */
+    $$('aA').textContent=fx(a0,4)+'°';
+    $$('aAmp').textContent='± '+fx(Math.abs(amp),4)+'°';
+    $$('aRate').textContent=fx(rate,3)+'″';
+    $$('aDd').textContent=fx(byDec,3)+'″';
+    $$('aDu').textContent=fx(byU,3)+'″';
+    $$('aDp').textContent=fx(byPhi,3)+'″';
+    var nearEl=Math.min(Math.abs(Math.abs(t)-90),90);
+    $$('aHint').innerHTML=(Math.abs(Math.abs(t)-90)<12)
+      ?'<b>Близко к элонгации.</b> Скорость изменения азимута минимальна ('+fx(rate,3)+'″/с): ошибки момента наблюдения почти не влияют на результат — это наивыгоднейший момент наблюдений.'
+      :(Math.abs(t)<12?'<b>Вблизи меридиана.</b> Азимут меняется быстрее всего ('+fx(rate,3)+'″/с): к точности фиксации моментов предъявляются повышенные требования.'
+      :'Промежуточное положение: скорость изменения азимута '+fx(rate,3)+'″/с.');
+    var W=620,H=250,x0=56,x1=W-16,y0=48,y1=H-40;
+    var lo=-Math.abs(amp)-0.2*Math.abs(amp)-0.05,hi=Math.abs(amp)*1.2+0.05;
+    var px=function(tt){return x0+(tt+180)/360*(x1-x0);},py=function(a){return y0+(1-(a-lo)/(hi-lo))*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var a=lo;a<=hi;a+=(hi-lo)/6)g+='<line x1="'+x0+'" y1="'+py(a)+'" x2="'+x1+'" y2="'+py(a)+'" stroke="#eef4f2"/><text x="'+(x0-8)+'" y="'+(py(a)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+fx(a,2)+'°</text>';
+    for(var tt=-180;tt<=180;tt+=45)g+='<line x1="'+px(tt)+'" y1="'+y0+'" x2="'+px(tt)+'" y2="'+y1+'" stroke="#eef4f2"/><text x="'+px(tt)+'" y="'+(y1+16)+'" font-size="10" text-anchor="middle" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+fx(tt/15,0)+'h</text>';
+    var c='';for(var i=-180;i<=180;i+=2)c+=(c?' L':'M')+fx(px(i),1)+' '+fx(py(starAz(phi,dec,i)),1);
+    g+='<path d="'+c+'" fill="none" stroke="#7655b7" stroke-width="2.4"/>';
+    g+='<line x1="'+x0+'" y1="'+py(0)+'" x2="'+x1+'" y2="'+py(0)+'" stroke="#c9dcd8"/>';
+    [-90,90].forEach(function(tt){g+='<line x1="'+px(tt)+'" y1="'+y0+'" x2="'+px(tt)+'" y2="'+y1+'" stroke="#0a655d" stroke-dasharray="4 5"/><text x="'+(px(tt)+6)+'" y="'+(py(0)-9)+'" font-size="10.5" fill="#0a655d" font-family="Roboto Mono,monospace">элонгация</text>';});
+    g+='<circle cx="'+px(t)+'" cy="'+py(a0)+'" r="6" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    g+='<text x="'+(x0+6)+'" y="'+(y0+12)+'" font-size="11" fill="#7655b7" font-family="Roboto Mono,monospace">a*(t) — азимут Полярной за сутки</text>';
+    svg.innerHTML=svgNum(g);
+  }
+  ['aPhi','aDec','aT'].forEach(function(id){$$(id).addEventListener('input',function(){
+    phi=+$$('aPhi').value;dec=+$$('aDec').value;t=+$$('aT').value;
+    $$('aPhiV').textContent=fx(phi,1)+'°';$$('aDecV').textContent=fx(dec,2)+'°';$$('aTV').textContent=fx(t,0)+'°';draw();});});
+  draw();
+})();
+
+/* ============================================================
+   4. Солнце: годовой ход и широта
+   ============================================================ */
+(function(){
+  var svg=$$('sSvg');if(!svg)return;
+  var day=200;
+  function sunDec(n){return 23.44*sn(360/365.25*(n-81));}
+  function eqTime(n){var B=360/365.25*(n-81);return (9.87*sn(2*B)-7.53*cs(B)-1.5*sn(B));}
+  function draw(){
+    var dec=sunDec(day),E=eqTime(day);
+    $$('sDayV').textContent=new Date(2024,0,day).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'});
+    $$('sDec').textContent=(dec>=0?'+':'−')+fx(Math.abs(dec),2)+'°';
+    $$('sE').textContent=(E>=0?'+':'−')+fx(Math.abs(E),1)+' мин';
+    var W=620,H=250,x0=52,x1=W-46,y0=44,y1=H-40;
+    var px=function(n){return x0+(n-1)/364*(x1-x0);},py=function(v){return y0+(1-(v+25)/50)*(y1-y0);};
+    var g='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    for(var v=-20;v<=20;v+=10)g+='<line x1="'+x0+'" y1="'+py(v)+'" x2="'+x1+'" y2="'+py(v)+'" stroke="#eef4f2"/><text x="'+(x0-8)+'" y="'+(py(v)+4)+'" font-size="10" text-anchor="end" fill="#8aa5a0" font-family="Roboto Mono,monospace">'+v+'</text><text x="'+(x1+8)+'" y="'+(py(v)+4)+'" font-size="10" fill="#7fa4d0" font-family="Roboto Mono,monospace">'+v+'</text>';
+    g+='<text x="'+(x1+8)+'" y="'+(y0-10)+'" font-size="10.5" fill="#2474c6" font-family="Roboto Mono,monospace">E, мин</text>';
+    g+='<text x="'+(x0-8)+'" y="'+(y0-10)+'" font-size="10.5" text-anchor="end" fill="#b9780c" font-family="Roboto Mono,monospace">δ, °</text>';
+    [[80,'22.03'],[172,'21.06'],[266,'23.09'],[355,'21.12']].forEach(function(m){
+      g+='<line x1="'+px(m[0])+'" y1="'+y0+'" x2="'+px(m[0])+'" y2="'+y1+'" stroke="#f0f4f3"/><text x="'+px(m[0])+'" y="'+(y1+15)+'" font-size="10" text-anchor="middle" fill="#9db3ad" font-family="Roboto Mono,monospace">'+m[1]+'</text>';});
+    var cd='',ce='';
+    for(var n=1;n<=365;n+=3){cd+=(cd?' L':'M')+fx(px(n),1)+' '+fx(py(sunDec(n)),1);ce+=(ce?' L':'M')+fx(px(n),1)+' '+fx(py(eqTime(n)),1);}
+    g+='<path d="'+cd+'" fill="none" stroke="#b9780c" stroke-width="2.6"/>';
+    g+='<path d="'+ce+'" fill="none" stroke="#2474c6" stroke-width="1.8" stroke-dasharray="6 4"/>';
+    g+='<line x1="'+px(day)+'" y1="'+y0+'" x2="'+px(day)+'" y2="'+y1+'" stroke="#ff7136"/>';
+    g+='<circle cx="'+px(day)+'" cy="'+py(dec)+'" r="5.5" fill="#b9780c" stroke="#fff" stroke-width="2"/>';
+    g+='<circle cx="'+px(day)+'" cy="'+py(E)+'" r="4.5" fill="#2474c6" stroke="#fff" stroke-width="2"/>';
+    g+='<text x="'+(x0+6)+'" y="'+(y0-22)+'" font-size="11" fill="#b9780c" font-family="Roboto Mono,monospace">δ Солнца (слева, °)</text>';
+    g+='<text x="'+(x0+150)+'" y="'+(y0-22)+'" font-size="11" fill="#2474c6" font-family="Roboto Mono,monospace">уравнение времени E (справа, мин)</text>';
+    svg.innerHTML=svgNum(g);
+    /* полуденная высота */
+    var phi=+$$('sPhi').value;
+    $$('sH').textContent=fx(90-Math.abs(phi-dec),2)+'°';
+    var hout=90-Math.abs(phi-dec);
+    var zRef=zen(phi,dec,0);
+    $$('sHint').innerHTML='Солнце в кульминации: Z = '+fx(zRef,2)+'°, высота h = '+fx(hout,2)+'°. Зимой δ отрицательно, и полуденная высота минимальна. Для определения широты наблюдения ведут вблизи кульминации — в идеале при t = 0.';
+  }
+  $$('sDay').addEventListener('input',function(){day=+this.value;draw();});
+  /* широта по Солнцу */
+  var Z=34.6358,t=5.8875,phi=55.6149;
+  function solar(Zv,dd,tv){
+    var R=Math.atan(tgd(dd)/cs(tv))*R2D;
+    var k=Math.sqrt(Math.max(1e-9,1-cs(dd)*cs(dd)*sn(tv)*sn(tv)));
+    var F=Math.acos(Math.max(-1,Math.min(1,cs(Zv)/k)))*R2D;
+    return {R:R,F:F,phi:R+F};
+  }
+  function runSolar(){
+    Z=+$$('sZ').value;t=+$$('sT').value;phi=+$$('sPhi').value;
+    var dec=sunDec(day);
+    var r=solar(Z,dec,t);
+    $$('sZV').textContent=fx(Z,2)+'°';$$('sTV').textContent=fx(t,2)+'°';$$('sPhiV').textContent=fx(phi,2)+'°';
+    $$('sR').textContent=fx(r.R,4)+'°';
+    $$('sF').textContent=fx(r.F,4)+'°';
+    $$('sPhiOut').textContent=dms(r.phi,true);
+    var dT=(solar(Z,dec,t+1/60).phi-r.phi)*3600;
+    var dD=(solar(Z,dec+1/3600,t).phi-r.phi)*3600;
+    var dZ=(solar(Z+1/3600,dec,t).phi-r.phi)*3600;
+    $$('sDphiT').textContent=fx(Math.abs(dT),3)+'″';
+    $$('sDphiD').textContent=fx(Math.abs(dD),3)+'″';
+    $$('sDphiZ').textContent=fx(Math.abs(dZ),3)+'″';
+    var err=(r.phi-phi)*3600;
+    $$('sHint').innerHTML='Основная формула: tg R = tg δ/cos t, cos F = cos Z/√(1 − cos²δ·sin²t), φ = R + F. '+
+      'При заданных Z, δ и t получаем '+dms(r.phi,true)+'. '+
+      (Math.abs(t)>15?'<b>Отступление от меридиана '+fx(Math.abs(t),1)+'° — предельное:</b> чувствительность широты к часовому углу выросла до '+fx(Math.abs(dT),2)+'″ на 1′.':'Отступление от меридиана '+fx(Math.abs(t),1)+'° — в допуске (до 20°).');
+    draw();
+  }
+  ['sZ','sT','sPhi'].forEach(function(id){$$(id).addEventListener('input',runSolar);});
+  $$('sDay').addEventListener('input',function(){day=+this.value;draw();runSolar();});
+  runSolar();
+})();
+
+/* ============================================================
+   5. Наблюдение краёв диска Солнца
+   ============================================================ */
+(function(){
+  var svg=$$('sunSvg');if(!svg)return;
+  var mode='lower',pos=0,anim=null;
+  var txt={
+    lower:'<b>Нижний край.</b> Горизонтальную нить наводят на нижний край диска; вертикальная нить проходит через центр изображения. Зенитное расстояние центра получим, вычтя из отсчёта полудиаметр Солнца ≈ 16′.',
+    upper:'<b>Верхний край.</b> Наведение на верхний край; центр — прибавлением полудиаметра (≈16′). Среднее двух наведений на верхний и нижний край автоматически даёт центр.',
+    left:'<b>Левый край.</b> Вертикальную нить наводят на левый край, удерживая изображение Солнца на горизонтальной нити; в момент касания фиксируют время до целых секунд.',
+    right:'<b>Правый край.</b> Наведение на правый край; среднее с наведением на левый край даёт центр по горизонтальному направлению — так определяют место Seвера при работе с Солнцем.',
+    center:'<b>Центр.</b> Среднее из двух наведений на противоположные края. Полудиаметр исключается, а ошибка наведения уменьшается вдвое.'
+  };
+  function draw(){
+    var W=620,H=320,C={x:310,y:168},Rs=74;
+    var s='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+    /* полупрозрачные призрачные диски (видимые края) */
+    s+='<circle cx="'+(C.x-11)+'" cy="'+(C.y+11)+'" r="'+Rs+'" fill="#ffe9b0" opacity=".45"/>';
+    s+='<circle cx="'+(C.x+11)+'" cy="'+(C.y-11)+'" r="'+Rs+'" fill="#ffe9b0" opacity=".45"/>';
+    s+='<circle cx="'+(C.x-11)+'" cy="'+C.y+'" r="'+Rs+'" fill="#ffe9b0" opacity=".45"/>';
+    s+='<circle cx="'+(C.x+11)+'" cy="'+C.y+'" r="'+Rs+'" fill="#ffe9b0" opacity=".45"/>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+Rs+'" fill="#ffd27a" fill-opacity="'+(mode==='center'?'.55':'.92')+'" stroke="#e09a1f" stroke-width="2.5"/>';
+    /* визирные нити */
+    s+='<line x1="34" y1="'+C.y+'" x2="'+(W-34)+'" y2="'+C.y+'" stroke="#5b7f8b" stroke-width="1.6"/>';
+    s+='<line x1="'+C.x+'" y1="30" x2="'+C.x+'" y2="'+(H-26)+'" stroke="#5b7f8b" stroke-width="1.6"/>';
+    /* пунктирные диаметры — контроль полудиаметра */
+    s+='<line x1="'+(C.x-11)+'" y1="'+(C.y+11)+'" x2="'+(C.x+11)+'" y2="'+(C.y-11)+'" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="5 4" opacity=".9"/>';
+    s+='<line x1="'+(C.x-11)+'" y1="'+C.y+'" x2="'+(C.x+11)+'" y2="'+C.y+'" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="5 4" opacity=".9"/>';
+    var mk=function(x,y2,lab,cc,on,ax,ay){
+      var h='<circle cx="'+x+'" cy="'+y2+'" r="'+(on?9:6)+'" fill="'+cc+'" opacity="'+(on?1:.5)+'" stroke="#fff" stroke-width="2"/>';
+      if(on){
+        /* выноска: линия + плашка с подписью, чтобы текст не ложился на диск */
+        var tx=x+ax, ty=y2+ay, a=Math.abs(ax)>Math.abs(ay)?(ax>0?0:180):(ay>0?90:270);
+        h+='<line x1="'+x+'" y1="'+y2+'" x2="'+(tx+(ax>0?-6:6)*(Math.abs(ay)<Math.abs(ax)?1:0))+'" y2="'+(ty+(ay>0?-8:4)*(Math.abs(ay)>Math.abs(ax)?1:0))+'" stroke="'+cc+'" stroke-width="1.1"/>';
+        var anch=(ax>0?'start':ax<0?'end':'middle');
+        h+='<text x="'+tx+'" y="'+(ty+4)+'" font-size="12" font-weight="700" fill="none" stroke="#ffffff" stroke-width="3.4" text-anchor="'+anch+'" font-family="Roboto Mono,monospace">'+lab+'</text>';
+        h+='<text x="'+tx+'" y="'+(ty+4)+'" font-size="12" font-weight="700" fill="'+cc+'" text-anchor="'+anch+'" font-family="Roboto Mono,monospace">'+lab+'</text>';
+      }
+      return h;};
+    var lowOn=(mode==='lower'||mode==='center'), upOn=(mode==='upper'||mode==='center'),
+        leftOn=(mode==='left'||mode==='center'), rightOn=(mode==='right'||mode==='center');
+    s+=mk(C.x-11,C.y+11,'нижний край (T₁)','#d9501a',lowOn,64,118);
+    s+=mk(C.x+11,C.y-11,'верхний край (T₂)','#2474c6',upOn,-152,-64);
+    s+=mk(C.x-11,C.y,'левый край (T₁)','#7655b7',leftOn,-148,96);
+    s+=mk(C.x+11,C.y,'правый край (T₂)','#0a655d',rightOn,152,-12);
+    if(mode==='center'){
+      s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="5" fill="#0a655d"/>';
+      s+='<text x="'+(C.x+8)+'" y="'+(C.y+74)+'" font-size="12" font-weight="700" fill="none" stroke="#ffffff" stroke-width="3.4" text-anchor="middle" font-family="Roboto Mono,monospace">центр = среднее наведений</text>';
+      s+='<text x="'+(C.x+8)+'" y="'+(C.y+74)+'" font-size="12" font-weight="700" fill="#0a655d" text-anchor="middle" font-family="Roboto Mono,monospace">центр = среднее наведений</text>';
+      s+='<line x1="'+C.x+'" y1="'+(C.y+5)+'" x2="'+(C.x+8)+'" y2="'+(C.y+64)+'" stroke="#0a655d" stroke-width="1.1" stroke-dasharray="4 3"/>';
+    }
+    s+='<text x="40" y="'+(H-10)+'" font-size="11" fill="#8aa5a0" font-family="Roboto Mono,monospace">диск Солнца смещается вдоль суточной параллели; видимый радиус ≈ 16′</text>';
+    svg.innerHTML=svgNum(s);
+    svg.innerHTML=svgNum(s);
+    $$('sunHint').innerHTML=txt[mode]+' Видимый полудиаметр Солнца меняется от 15,7′ (в афелии) до 16,3′ (в перигелии) — при наблюдении одного края поправку берут из АЕ.';
+  }
+  ['k1','k2','k3','k4','k5'].forEach(function(id,i){
+    var m=['lower','upper','left','right','center'][i];
+    $$(id).addEventListener('click',function(){
+      mode=m;['k1','k2','k3','k4','k5'].forEach(function(x){$$(x).classList.remove('on');});this.classList.add('on');draw();});
+  });
+  draw();
+})();
+
+/* ============================================================
+   6. Долгота и азимут по Солнцу: решение треугольника
+   ============================================================ */
+(function(){
+  var svg=$$('gSvg');if(!svg)return;
+  function run(){
+    var Z=+$$('gZ').value,phi=+$$('gPhi').value,dec=+$$('gDec').value,E=+$$('gE').value,M=+$$('gM').value;
+    if(![Z,phi,dec,E,M].every(fin)){blankOut(['gZV','gPhiV','gDecV','gEV','gMV','gP','gL','gT','gA180','gA','gLam']);$$('gHint').textContent='Введите числовые значения во все поля.';return;}
+    $$('gZV').textContent=fx(Z,2)+'°';$$('gPhiV').textContent=fx(phi,2)+'°';$$('gDecV').textContent=fx(dec,2)+'°';
+    $$('gEV').textContent=fx(E,1)+' мин';$$('gMV').textContent=fx(M,2)+' ч';
+    var Phi=90-phi,Del=90-dec,P=(Z+Phi+Del)/2;
+    var l=Math.sqrt(sn(P-Phi)*sn(P-Del)*sn(P-Z))/sn(P);
+    var tt=2*Math.atan(Math.sqrt(sn(P-Phi)*sn(P-Del)/(sn(P)*sn(P-Z))))*R2D;
+    if(![l,tt].every(fin)){
+      blankOut(['gP','gL','gT','gA180','gA','gLam']);$$('gHint').textContent='Для такого набора исходных данных сферический треугольник не существует: проверьте Z, φ и δ.';return;}
+    var a180=2*Math.atan(Math.sqrt(sn(P-Z)*sn(P-Phi)/(sn(P)*sn(P-Del))))*R2D;
+    var side=($$('gSide')&&$$('gSide').value==='w')?'w':'e';
+    var A=(side==='w')?(360-a180):a180;
+    $$('gP').textContent=fx(P,4)+'° ('+dms(P,false)+')';
+    $$('gL').textContent=fx(l,5);
+    $$('gT').textContent=fx(tt,4)+'° ('+hms(tt/15)+')';
+    $$('gA180').textContent=fx(a180,4)+'°';
+    $$('gA').textContent=fx(A,4)+'°';
+    var east=(side==='e');
+    var tEW=east?(360-tt)/15:(tt/15);   /* часы: t_E = 24h − t или t_W = t */
+    var m=tEW-E/60;
+    var lam=((m-M)%24+24)%24;
+    $$('gLam').textContent=hms(lam)+' ('+fx(lam*15-180,3)+'° от Гринвича)';
+    $$('gHint').innerHTML='P = ½(Z + Φ + Δ) = '+fx(P,4)+'°. Трём сторонам Z, Φ, Δ отвечают два положения Солнца — к востоку и к западу от меридиана; переключатель задаёт, какое из них наблюдалось. '+(east?'Солнце к востоку: A = A₀ = '+fx(a180,4)+'°, t<sub>E</sub> = 24<sup>h</sup> − t.':'Солнце к западу: A = 360° − A₀ = '+fx(A,4)+'°, t<sub>W</sub> = t.')+
+      ' m = t ∓ E = '+fx(m,4)+'<sup>h</sup>; λ = m − M = '+hms(lam)+'. Азимут направления на земной предмет: a = A + Q.';
+    /* схема: сфера радиуса R, наблюдатель в центре; вертикал Z задаёт масштаб */
+    var C={x:310,y:152},R=138;
+    var pn=function(h,A2){var r=R*((90-h)/90),a=A2*D;return {x:C.x+r*Math.sin(a),y:C.y-r*Math.cos(a),r:r};};
+    var s='<rect width="620" height="300" fill="#fff"/>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="'+R+'" fill="#f7fbfa" stroke="#b3d9d0" stroke-width="1.6"/>';
+    s+='<path d="M '+C.x+' '+C.y+' m '+(-R)+' 0 a '+R+' '+R+' 0 0 0 '+(2*R)+' 0" fill="#eef4f2" stroke="none"/>';
+    s+='<text x="'+(C.x+22)+'" y="'+(C.y+R-12)+'" font-size="11" fill="#7d9892" font-family="Roboto Mono,monospace">плоскость горизонта</text>';
+    s+='<line x1="'+C.x+'" y1="'+(C.y-R)+'" x2="'+C.x+'" y2="'+(C.y+R)+'" stroke="#9dc4bd" stroke-dasharray="6 5"/>';
+    s+='<line x1="'+(C.x-R)+'" y1="'+C.y+'" x2="'+(C.x+R)+'" y2="'+C.y+'" stroke="#cfe6e0"/>';
+    s+='<text x="'+(C.x+10)+'" y="18" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">Z — зенит</text>';
+    s+='<text x="'+(C.x-R-2)+'" y="'+(C.y-8)+'" font-size="11.5" text-anchor="end" fill="#7d9892" font-family="Roboto Mono,monospace">N</text>';
+    s+='<text x="'+(C.x+R+2)+'" y="'+(C.y-8)+'" font-size="11.5" fill="#7d9892" font-family="Roboto Mono,monospace">S</text>';
+    var P1=pn(phi,0),St=pn(90-Z,A);
+    /* стороны Z, Φ, Δ — прямые хорды треугольника */
+    s+='<line x1="'+C.x+'" y1="'+C.y+'" x2="'+fx(P1.x,1)+'" y2="'+fx(P1.y,1)+'" stroke="#b8471b" stroke-width="2.2"/>';
+    s+='<line x1="'+C.x+'" y1="'+C.y+'" x2="'+fx(St.x,1)+'" y2="'+fx(St.y,1)+'" stroke="#0a655d" stroke-width="2.2"/>';
+    s+='<line x1="'+fx(P1.x,1)+'" y1="'+fx(P1.y,1)+'" x2="'+fx(St.x,1)+'" y2="'+fx(St.y,1)+'" stroke="#d9501a" stroke-width="2.2"/>';
+    /* дуги углов t и A у полюса и в зените */
+    var arcP=function(a1,a2,rr,cc,dash){var p1={x:P1.x+rr*Math.sin(a1*D),y:P1.y-rr*Math.cos(a1*D)},
+        p2={x:P1.x+rr*Math.sin(a2*D),y:P1.y-rr*Math.cos(a2*D)};
+      var dd=((a2-a1+540)%360)-180;
+      return '<path d="M'+fx(p1.x,1)+' '+fx(p1.y,1)+' A'+rr+' '+rr+' 0 '+(Math.abs(dd)>180?1:0)+' '+(dd>0?1:0)+' '+fx(p2.x,1)+' '+fx(p2.y,1)+'" fill="none" stroke="'+cc+'" stroke-width="1.6"'+(dash?' stroke-dasharray="4 4"':'')+'/>';};
+    var dirP=Math.atan2(St.x-P1.x,-(St.y-P1.y))*R2D, dirZ=Math.atan2(P1.x-C.x,-(P1.y-C.y))*R2D, dirZ2=Math.atan2(St.x-C.x,-(St.y-C.y))*R2D;
+    s+=arcP(0,dirP,40,'#d9501a')+arcP(0,dirP,34,'#d9501a',true);
+    s+='<text x="'+(P1.x-60)+'" y="'+(P1.y+8)+'" font-size="11.5" text-anchor="middle" fill="#d9501a" font-family="Roboto Mono,monospace">t = '+fx(tt,2)+'°</text>';
+    var la=pn(90-0.42*90,A/2);   /* точка на биссектрисе угла A */
+    s+='<circle cx="'+fx(la.x,1)+'" cy="'+fx(la.y,1)+'" r="2.6" fill="#7655b7"/>';
+    s+='<text x="'+fx(la.x+8,1)+'" y="'+fx(la.y+4,1)+'" font-size="11.5" fill="#7655b7" font-family="Roboto Mono,monospace">A = '+fx(A,2)+'°</text>';
+    s+='<circle cx="'+C.x+'" cy="'+C.y+'" r="4.5" fill="#063f3b"/>';
+    s+='<circle cx="'+fx(P1.x,1)+'" cy="'+fx(P1.y,1)+'" r="6" fill="#b8471b"/><text x="'+fx(P1.x+9,1)+'" y="'+fx(P1.y-8,1)+'" font-size="12" font-weight="700" fill="#b8471b" font-family="Roboto Mono,monospace">P</text>';
+    s+='<circle cx="'+fx(St.x,1)+'" cy="'+fx(St.y,1)+'" r="7.5" fill="#ff7136" stroke="#fff" stroke-width="2"/>';
+    s+='<text x="'+fx(St.x+13,1)+'" y="'+fx(St.y+18,1)+'" font-size="12" font-weight="700" fill="#d9501a" font-family="Roboto Mono,monospace">Солнце</text>';
+    s+='<text x="'+fx((C.x+St.x)/2-74,1)+'" y="'+fx((C.y+St.y)/2+18,1)+'" font-size="11.5" fill="#0a655d" font-family="Roboto Mono,monospace">Z = '+fx(Z,2)+'°</text>';
+    s+='<text x="'+fx((C.x+P1.x)/2-16,1)+'" y="'+fx((C.y+P1.y)/2+2,1)+'" font-size="11.5" text-anchor="end" fill="#b8471b" font-family="Roboto Mono,monospace">Ф = 90°−φ</text>';
+    s+='<text x="'+fx(St.x+12,1)+'" y="'+fx(St.y-12,1)+'" font-size="11.5" fill="#d9501a" font-family="Roboto Mono,monospace">Δ = 90°−δ = '+fx(Del,2)+'°</text>';
+    svg.innerHTML=svgNum(s);
+    svg.innerHTML=svgNum(s);
+  }
+  ['gZ','gPhi','gDec','gE','gM'].forEach(function(id){$$(id).addEventListener('input',run);});
+  if($$('gSide'))$$('gSide').addEventListener('change',run);
+  run();
+})();
+
+/* ============================================================
+   7. Практикум: широта по Солнцу, пример из учебника
+   ============================================================ */
+(function(){
+  if(!$$('qRun'))return;
+  function run(){
+    var Z=pdeg($$('qZ0').value),rho=+$$('qRho').value,P=+$$('qP').value,dec=+$$('qDec').value,t=+$$('qT').value;
+    if(![Z,rho,P,dec,t].every(fin)){blankOut(['qZ','qR','qF','qPhi','qCosF']);$$('qTable').innerHTML='';$$('qNote').textContent='Введите числовые значения во все поля.';return;}
+    var tgR=tgd(dec)/cs(t),R=Math.atan(tgR)*R2D;
+    var cosZ=cs(Z),sinDec=sn(dec),cosF=cosZ/Math.sqrt(Math.max(1e-12,1-cs(dec)*cs(dec)*sn(t)*sn(t)));
+    var F=Math.acos(Math.max(-1,Math.min(1,cosF)))*R2D,phi=R+F;
+    $$('qZ').textContent=dms(Z,true);
+    $$('qR').textContent=fx(R,6)+'° = '+dms(R,true);
+    $$('qF').textContent=fx(F,6)+'° = '+dms(F,true);
+    $$('qPhi').textContent=dms(phi,true);
+    $$('qCosF').textContent=fx(cosF,7);
+    $$('qNote').innerHTML='Высота Солнца h = 90° − Z = '+dms(90-Z,true)+'. Склонение δ = '+fx(dec,6)+'°, часовой угол t = '+fx(t,4)+'° (отступление от меридиана '+fx(180-Math.abs(180-Math.abs(t)),2)+'°).';
+    var rows=[
+      ['Z<sub>Θ</sub> (зенитное расстояние центра Солнца)','<b>'+dms(Z,true)+'</b>'],
+      ['ρ (рефракция), введена','+ '+fx(rho,0)+'″'],
+      ['P (суточный параллакс Солнца), введена','− '+fx(Math.abs(P),0)+'″'],
+      ['t<sub>Θ</sub>','<b>'+fx(t,6)+'°</b>'],
+      ['tg δ',fx(tgd(dec),8)],
+      ['cos t<sub>Θ</sub>',fx(cs(t),6)],
+      ['tg R = tg δ / cos t',fx(tgR,7)],
+      ['R','<b>'+fx(R,6)+'°</b> = '+dms(R,true)],
+      ['sin R',fx(sn(R),7)],
+      ['cos Z<sub>Θ</sub>',fx(cosZ,5)],
+      ['sin δ',fx(sinDec,7)],
+      ['cos F = cos Z / √(1 − cos²δ sin²t)','<b>'+fx(cosF,7)+'</b>'],
+      ['F','<b>'+fx(F,6)+'°</b> = '+dms(F,true)],
+      ['<b>φ = R + F</b>','<b>'+dms(phi,true)+'</b>']
+    ];
+    $$('qTable').innerHTML='<tr><th>Обозначение</th><th>Вычисление</th></tr>'+rows.map(function(r,i){
+      return '<tr'+(i===rows.length-1?' class="hl"':'')+'><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
+  }
+  ['qZ0','qRho','qP','qDec','qT'].forEach(function(id){$$(id).addEventListener('input',run);});
+  $$('qRun').addEventListener('click',run);
+  $$('qReset').addEventListener('click',function(){
+    $$('qZ0').value='34 38 09';$$('qRho').value='4';$$('qP').value='-5';
+    $$('qDec').value='21.259962';$$('qT').value='354.1125';run();});
+  run();
+})();
+
+/* ============================================================
+   7b. Практикум 2: азимут и долгота по Солнцу (таблица учебника)
+   ============================================================ */
+(function(){
+  if(!$$('jPhi'))return;
+  var west=true;
+  function dms2(v,sec){var s2=v<0?'−':'';v=Math.abs(v);var d=Math.floor(v),m=Math.floor((v-d)*60+1e-9),ss=((v-d)*60-m)*60;
+    return s2+d+'°'+String(m).padStart(2,'0')+'′'+(sec===false?'':' '+ss.toFixed(2).replace('.',',')+'″');}
+  function run(){
+    var phi=pdeg($$('jPhi').value),M=+$$('jM').value,Z=+$$('jZ').value,Q=+$$('jQ').value,dec=+$$('jD').value,E=+$$('jE').value;
+    if(![phi,M,Z,Q,dec,E].every(fin)){blankOut(['jP','jL','jTgA','jA','jT0','jTh','jAs','jLam']);$$('jTable').innerHTML='';$$('jNote').textContent='Введите числовые значения во все поля.';return;}
+    var Phi=90-phi,Del=90-dec,P=(Z+Phi+Del)/2;
+    var l=Math.sqrt(sn(P-Phi)*sn(P-Del)*sn(P-Z))/sn(P);
+    var tgA2=Math.sqrt(sn(P-Z)*sn(P-Phi)/(sn(P)*sn(P-Del)));
+    var tgT2=Math.sqrt(sn(P-Phi)*sn(P-Del)/(sn(P)*sn(P-Z)));
+    var A0=2*Math.atan(tgA2)*R2D,t0=2*Math.atan(tgT2)*R2D;
+    if(![l,tgA2,tgT2,A0,t0].every(fin)){
+      blankOut(['jP','jL','jTgA','jA','jT0','jTh','jAs','jLam']);$$('jTable').innerHTML='';
+      $$('jNote').textContent='Для такого набора исходных данных сферический треугольник не существует: нужно P − Φ > 0, P − Δ > 0, P − Z > 0.';return;}
+    var A,tEW;
+    if(west){A=360-A0;tEW=t0/15;}else{A=A0;tEW=(360-t0)/15;}
+    var a=((A+Q)%360+360)%360;
+    var m=tEW-E,lam=((m-M)%24+24)%24;
+    $$('jP').textContent=fx(P,6)+'°';
+    $$('jL').textContent=fx(l,8);
+    $$('jTgA').textContent=fx(tgA2,8);
+    $$('jA').textContent=(west?'360° − A = ':'A = ')+fx(A,5)+'° ('+dms2(A)+')';
+    $$('jT0').textContent=fx(t0,6)+'°';
+    $$('jTh').innerHTML=fx(tEW,7)+'<sup>h</sup>';
+    $$('jAs').textContent=fx(a,6)+'° ('+dms2(a)+')';
+    $$('jLam').innerHTML=hms(lam)+' = '+fx(lam,6)+'<sup>h</sup>';
+    var rows=[
+      ['φ','известна: '+dms2(phi)],
+      ['Φ = 90° − φ','<b>'+fx(Phi,6)+'°</b>'],
+      ['Δ = 90° − δ','<b>'+fx(Del,6)+'°</b>'],
+      ['P − Φ','<b>'+fx(P-Phi,6)+'°</b>'],
+      ['P − Δ','<b>'+fx(P-Del,6)+'°</b>'],
+      ['P − Z','<b>'+fx(P-Z,6)+'°</b>'],
+      ['sin(P − Φ)','<b>'+fx(sn(P-Phi),8)+'</b>'],
+      ['sin(P − Δ)','<b>'+fx(sn(P-Del),8)+'</b>'],
+      ['sin(P − Z)','<b>'+fx(sn(P-Z),8)+'</b>'],
+      ['P','<b>'+fx(P,6)+'°</b>'],
+      ['l','<b>'+fx(l,8)+'</b>'],
+      ['tg(A/2)','<b>'+fx(tgA2,8)+'</b>'],
+      [(west?'360° − A':'A'),'<b>'+fx(A,5)+'°</b>'],
+      ['tg(t/2)','<b>'+fx(tgT2,8)+'</b>'],
+      ['t<sub>0</sub>','<b>'+fx(t0,6)+'°</b>'],
+      ['t','<b>'+fx(tEW,7)+'h</b>'],
+      ['a = A + Q','<b>'+fx(a,6)+'° = '+dms2(a)+'</b>'],
+      ['m = t ∓ E','<b>'+fx(((m%24)+24)%24,6)+'h</b>'],
+      ['<b>λ = m − M</b>','<b>'+hms(lam)+'</b>']
+    ];
+    $$('jTable').innerHTML='<tr><th>Обозначение</th><th>Вычисление</th></tr>'+rows.map(function(r,i){
+      return '<tr'+(i===rows.length-1?' class="hl"':'')+'><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
+    $$('jNote').innerHTML='Значения таблицы учебника: P = 87,199065°, sin(P − Δ) = 0,32130790, sin(P − Z) = 0,27104208, tg(A/2) = 0,81982045, A = 78,691206°, 360° − A = 281,30879°, t<sub>0</sub> = 88,364766°, t = 5,8909844<sup>h</sup>, a = 15°35′46″, m = 17,989262<sup>h</sup>, λ = 1<sup>h</sup>55<sup>m</sup>02<sup>s</sup>. Калькулятор воспроизводит их с точностью до округлений промежуточных величин (λ отличается на несколько секунд времени).';
+  }
+  ['jPhi','jM','jZ','jQ','jD','jE'].forEach(function(id){$$(id).addEventListener('input',run);});
+  $$('jEside').addEventListener('click',function(){west=true;this.classList.add('on');$$('jWside').classList.remove('on');run();});
+  $$('jWside').addEventListener('click',function(){west=false;this.classList.add('on');$$('jEside').classList.remove('on');run();});
+  $$('jReset').addEventListener('click',function(){
+    $$('jPhi').value='55 31 54';$$('jM').value='16.071945';$$('jZ').value='71.4727780';
+    $$('jQ').value='94.2874350';$$('jD').value='21.542975';$$('jE').value='11.900172';run();});
+  run();
+})();
+
+/* ============================================================
+   8. Самопроверка
+   ============================================================ */
+(function(){
+  if(!$$('quiz'))return;
+  var qs=[
+    ['Как получают широту по наблюдениям Полярной звезды?',['φ = h + I + II + III, где I, II, III — поправки из АЕ','φ = δ + Z по любому светилу','φ = h − Δ']  ,0],
+    ['Сколько приёмов выполняют при определении широты по Полярной и каково допустимое расхождение?',['один приём; расхождение 1″','три приёма; расхождение между приёмами ≤ 1′','два приёма; расхождение 40″'],1],
+    ['Из каких отсчётов вычисляют Z′ в приёме по Полярной?',['Z′ = ¼[L₁ + L₂ + (360° − R₁) + (360° − R₂)]','Z′ = ½(L₁ + L₂)','Z′ = L₁ − R₁ + 180°'],0],
+    ['Какая точность знания координат требуется перед определением азимута по Полярной?',['φ с ошибкой менее 5′, λ не грубее 0,5m, u не более 1m','φ с ошибкой менее 1″, λ до 0,01s','координаты знать не нужно'],0],
+    ['Где Солнце наблюдают при определении широты по зенитным расстояниям?',['у первого вертикала на Z < 80°','вблизи кульминации, отступление по азимуту допустимо до 20°','в любой точке неба'],1],
+    ['По какой формуле вычисляют широту по Солнцу?',['φ = R + F, где tg R = tg δ/cos t','φ = Z + δ','φ = 90° − Z − δ'],0],
+    ['Как получают центр диска Солнца при наведении?',['по одному наведению на край','как среднее двух наведений на противоположные края','по отсчёту на верхний край с поправкой 16″'],1],
+    ['Что получают совместно при наблюдениях Солнца у первого вертикала?',['только широту','азимут направления и долготу (поправку часов)','уклонение отвесной линии'],1]
+  ];
+  var done={};
+  $$('quiz').innerHTML=qs.map(function(q,i){return '<div class="quiz-q"><b>'+(i+1)+'. '+q[0]+'</b><div class="answers">'+
+    q[1].map(function(a,j){return '<button class="ans" data-q="'+i+'" data-a="'+j+'">'+a+'</button>';}).join('')+'</div></div>';}).join('');
+  $$('quiz').addEventListener('click',function(e){
+    var b=e.target.closest('.ans');if(!b||done[b.dataset.q]!==undefined)return;
+    var q=+b.dataset.q,a=+b.dataset.a;done[q]=a;
+    b.parentElement.querySelectorAll('.ans').forEach(function(x,j){if(j===qs[q][2])x.classList.add('ok');else if(j===a)x.classList.add('bad');});
+    var n=Object.keys(done).length,ok=Object.keys(done).filter(function(i){return done[i]===qs[i][2];}).length;
+    $$('score').innerHTML=n<qs.length?('Отвечено: '+n+'/'+qs.length+' · верно: '+ok):('Результат: <b>'+ok+'/'+qs.length+'</b>. '+(ok===qs.length?'Отлично: приближённые способы разобраны.':'Вернитесь к вкладкам «Широта по Полярной», «Азимут по Полярной» и практикуму.'));
+  });
+})();
+
+</script>
+</body>
+</html>
